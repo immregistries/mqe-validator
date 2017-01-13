@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.immregistries.dqa.validator.model.codes.CodeReceived;
-
 public enum PotentialIssue {
 	  GeneralAuthorizationException(  IssueObject.GENERAL, IssueType.ISSUE_TYPE_EXCEPTION, IssueField.GENERAL_AUTHORIZATION,"", IssueLevel.ERROR)
 	, GeneralConfigurationException(  IssueObject.GENERAL, IssueType.ISSUE_TYPE_EXCEPTION, IssueField.GENERAL_CONFIGURATION,"", IssueLevel.ERROR)
@@ -733,37 +731,21 @@ public enum PotentialIssue {
 
   public ValidationIssue build(String value) {
 	  	ValidationIssue found = build();
-	  	found.getCodeReceived().setCodeValue(value);
+	  	found.setCodeReceived(value);
 		return found;
   }
-  
-  public ValidationIssue build(CodeReceived cr) {
-	  	ValidationIssue found = build();
-	  	found.setCodeReceived(cr);
-		return found;
-}
   
   public ValidationIssue build() {
 		ValidationIssue found = new ValidationIssue();
 		found.setIssue(this);
-		CodeReceived cr = new CodeReceived();
-		found.setCodeReceived(cr);
-		
 		//This needs to be equipped to be naunced. Need to make an option to override this in a profile. 
 		found.setIssueAction(this.getDefaultAction());
-		
 		return found;
-		
   }
   
   public static ValidationIssue buildIssue(IssueField field, IssueType type) {
 	  PotentialIssue issue = get(field, type);
 	  return issue.build();
-  }
-  
-  public static ValidationIssue buildIssue(IssueField field, IssueType type, CodeReceived cr) {
-	  PotentialIssue issue = get(field, type); 
-	  return issue.build(cr);
   }
   
   public static ValidationIssue buildIssue(IssueField field, IssueType type, String value) {

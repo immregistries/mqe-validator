@@ -69,7 +69,7 @@ public class VaccinationParserHL7Tester {
 		for (ValidationRuleResult vrr : list) {
 			for (ValidationIssue i : vrr.getIssues()) {
 				if (a == i.getIssueAction()) {
-					System.out.println(i.getIssue() + "[" + i.getCodeReceived().getCodeValue() + "]");
+					System.out.println(i.getIssue() + "[" + i.getCodeReceived() + "]");
 				}
 			}
 		}

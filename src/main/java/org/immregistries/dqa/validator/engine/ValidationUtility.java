@@ -11,7 +11,6 @@ import org.immregistries.dqa.validator.engine.issues.IssueType;
 import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
-import org.immregistries.dqa.validator.model.codes.CodeReceived;
 import org.slf4j.Logger;
 
 @SuppressWarnings("rawtypes")
@@ -24,9 +23,7 @@ public enum ValidationUtility {
 	public ValidationIssue createIssue(PotentialIssue issue, String codedValue) {
 		ValidationIssue found = new ValidationIssue();
 		found.setIssue(issue);
-		CodeReceived cr = new CodeReceived();
-		cr.setCodeValue(codedValue);
-		found.setCodeReceived(cr);
+		found.setCodeReceived(codedValue);
 		found.setIssueAction(IssueLevel.ERROR);//This needs to be equipped to be naunced. This will comes off a profile. 
 		return found;
 	}

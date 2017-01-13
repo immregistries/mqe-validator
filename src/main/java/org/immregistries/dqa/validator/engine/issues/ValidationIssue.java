@@ -7,20 +7,25 @@
  */
 package org.immregistries.dqa.validator.engine.issues;
 
-import org.immregistries.dqa.validator.model.codes.CodeReceived;
+import org.immregistries.dqa.hl7util.builder.Reportable;
 
 public class ValidationIssue implements Reportable
 {
   private PotentialIssue issue = null;//should this be a String?
   private int positionId = 0;//This says where in the ACK to put it. 
   private IssueLevel issueLevel = null; //this is how bad it is. 
-  private CodeReceived codeReceived = null;//This is the related value. 
+  private String codeReceived = null;//This is the related value. 
   private String hl7Reference;//This is where it is from in the HL7 message. 
   
   public PotentialIssue getIssue()
   {
     return issue;
   }
+  
+  public String getMessage() {
+	  return issue != null ? issue.getDisplayText() : "";
+  }
+  
   public void setIssue(PotentialIssue issue)
   {
     this.issue = issue;
@@ -37,15 +42,20 @@ public class ValidationIssue implements Reportable
   {
     return issueLevel;
   }
+  
+  public String getLevel() {
+	  return issueLevel != null ? issueLevel.getActionCode() : "W";//defaults to warn. 
+  }
+  
   public void setIssueAction(IssueLevel issueAction)
   {
     this.issueLevel = issueAction;
   }
-  public CodeReceived getCodeReceived()
+  public String getCodeReceived()
   {
     return codeReceived;
   }
-  public void setCodeReceived(CodeReceived codeReceived)
+  public void setCodeReceived(String codeReceived)
   {
     this.codeReceived = codeReceived;
   }

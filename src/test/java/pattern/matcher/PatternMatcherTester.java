@@ -1,7 +1,5 @@
 package pattern.matcher;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class PatternMatcherTester {

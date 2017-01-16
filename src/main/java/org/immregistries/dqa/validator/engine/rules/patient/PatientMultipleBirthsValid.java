@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaPatient;
@@ -25,7 +25,7 @@ public class PatientMultipleBirthsValid extends ValidationRule<DqaPatient> {
 		String multipleBirthInd = target.getBirthMultipleInd();
 
 		if (common.isEmpty(multipleBirthInd)) {
-			issues.add(PotentialIssue.PatientBirthIndicatorIsMissing.build());
+			issues.add(MessageAttribute.PatientBirthIndicatorIsMissing.build());
 			passed = false;
 		} else {
 			
@@ -37,20 +37,20 @@ public class PatientMultipleBirthsValid extends ValidationRule<DqaPatient> {
 				// gotta handle those codes received...
 				
 				if (common.isEmpty(birthOrder)) {
-					issues.add(PotentialIssue.PatientBirthOrderIsMissingAndMultipleBirthIndicated.build());
+					issues.add(MessageAttribute.PatientBirthOrderIsMissingAndMultipleBirthIndicated.build());
 					passed = false;
 				}
 				
 			} else if ("N".equals(multipleBirthInd)) {
 				
 				if (!common.isEmpty(birthOrder) && !"1".equals(birthOrder)) {
-					issues.add(PotentialIssue.PatientBirthOrderIsInvalid.build());
+					issues.add(MessageAttribute.PatientBirthOrderIsInvalid.build());
 					passed = false;
 				}
 				
 			} else {
 				
-				issues.add(PotentialIssue.PatientBirthIndicatorIsInvalid.build());
+				issues.add(MessageAttribute.PatientBirthIndicatorIsInvalid.build());
 				passed = false;
 				
 			}

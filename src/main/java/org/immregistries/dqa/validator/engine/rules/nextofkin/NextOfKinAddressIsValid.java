@@ -8,7 +8,7 @@ import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.common.AddressFields;
 import org.immregistries.dqa.validator.engine.common.AddressValidator;
 import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaNextOfKin;
@@ -46,7 +46,7 @@ public class NextOfKinAddressIsValid extends ValidationRule<DqaNextOfKin> {
 		Address p = m.getPatient().getAddress();
 
 		if (nokAddress != null && !nokAddress.equals(p)) {
-			issues.add(PotentialIssue.NextOfKinAddressIsDifferentFromPatientAddress.build());
+			issues.add(MessageAttribute.NextOfKinAddressIsDifferentFromPatientAddress.build());
 		}
 
 		passed = issues.size() == 0;

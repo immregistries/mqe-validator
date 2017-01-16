@@ -6,7 +6,7 @@ import java.util.List;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaVaccination;
@@ -27,13 +27,13 @@ public class VaccinationActionCodeIsValid extends ValidationRule<DqaVaccination>
 		} else {
 			String actionCode = target.getActionCode();
 			if (target.isActionAdd()) {
-				issues.add(PotentialIssue.VaccinationActionCodeIsValuedAsAdd.build(actionCode));
-				issues.add(PotentialIssue.VaccinationActionCodeIsValuedAsAddOrUpdate.build(actionCode));
+				issues.add(MessageAttribute.VaccinationActionCodeIsValuedAsAdd.build(actionCode));
+				issues.add(MessageAttribute.VaccinationActionCodeIsValuedAsAddOrUpdate.build(actionCode));
 			} else if (target.isActionUpdate()) {
-				issues.add(PotentialIssue.VaccinationActionCodeIsValuedAsUpdate.build(actionCode));
-				issues.add(PotentialIssue.VaccinationActionCodeIsValuedAsAddOrUpdate.build(actionCode));
+				issues.add(MessageAttribute.VaccinationActionCodeIsValuedAsUpdate.build(actionCode));
+				issues.add(MessageAttribute.VaccinationActionCodeIsValuedAsAddOrUpdate.build(actionCode));
 			} else if (target.isActionDelete()) {
-				issues.add(PotentialIssue.VaccinationActionCodeIsValuedAsDelete.build(actionCode));
+				issues.add(MessageAttribute.VaccinationActionCodeIsValuedAsDelete.build(actionCode));
 			}
 		}
 		

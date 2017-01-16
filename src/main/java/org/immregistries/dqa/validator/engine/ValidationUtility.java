@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.validator.engine.common.CommonRules;
 import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.IssueLevel;
 import org.immregistries.dqa.validator.engine.issues.IssueType;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.slf4j.Logger;
@@ -20,11 +20,11 @@ public enum ValidationUtility {
 	private static final CommonRules common  = CommonRules.INSTANCE;
 	private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(ValidationUtility.class);
 	
-	public ValidationIssue createIssue(PotentialIssue issue, String codedValue) {
+	public ValidationIssue createIssue(MessageAttribute attribute, String codedValue) {
 		ValidationIssue found = new ValidationIssue();
-		found.setIssue(issue);
+		found.setMessageAttribute(attribute);
 		found.setCodeReceived(codedValue);
-		found.setIssueAction(IssueLevel.ERROR);//This needs to be equipped to be naunced. This will comes off a profile. 
+		found.setSeverityLevel(SeverityLevel.ERROR);//This needs to be equipped to be naunced. This will comes off a profile. 
 		return found;
 	}
 
@@ -45,7 +45,7 @@ public enum ValidationUtility {
 		return true;
 	}
 	
-	public boolean addToListIfEmpty(String value, PotentialIssue issue, List<ValidationIssue> toList) {
+	public boolean addToListIfEmpty(String value, MessageAttribute issue, List<ValidationIssue> toList) {
 		if (this.common.isEmpty(value)) {
 			toList.add(issue.build(value));
 			return true;
@@ -54,21 +54,10 @@ public enum ValidationUtility {
 	}
 	
 	public boolean addToListIfEmpty(String value, IssueField field, List<ValidationIssue> toList) {
-		PotentialIssue issue = PotentialIssue.get(field, IssueType.MISSING);
+		MessageAttribute issue = MessageAttribute.get(field, IssueType.MISSING);
 		return addToListIfEmpty(value, issue, toList);
 	}
 	
-	
-//	public List<IssueFound> makeIssueList(IssueFound... issues) {
-//		List<IssueFound> issuesList = new ArrayList<IssueFound>();
-//		for (IssueFound issue : issues) {
-//			if (issue != null) {
-//				issuesList.add(issue);
-//			}
-//		}
-//		return issuesList;
-//	}
-
 	public List<Class<? extends ValidationRule>> makeRuleList(Class<? extends ValidationRule>... classes) {
 		return Arrays.asList(classes);
 	};

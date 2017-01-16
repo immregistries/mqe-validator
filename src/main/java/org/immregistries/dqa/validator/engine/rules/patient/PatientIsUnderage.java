@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaPatient;
@@ -38,7 +38,7 @@ public class PatientIsUnderage extends ValidationRule<DqaPatient> {
 			DateTime eighteenYearsFromSubmission = new DateTime(m.getMessageHeader().getMessageDate().getTime()).minusYears(18);
 			
 			if (/* patient is underage */eighteenYearsFromSubmission.isBefore(target.getBirthDate().getTime())) {
-				issues.add(PotentialIssue.PatientBirthDateIsUnderage.build(target.getBirthDate().toString()));
+				issues.add(MessageAttribute.PatientBirthDateIsUnderage.build(target.getBirthDate().toString()));
 				passed = true;
 			}
 		}

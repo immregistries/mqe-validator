@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.issues.IssueField;
 import org.immregistries.dqa.validator.engine.issues.IssueType;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.hl7types.Address;
  
@@ -27,7 +27,7 @@ public enum AddressValidator {
 		boolean passed = true;
 		
 		if (a == null) {
-			issues.add(PotentialIssue.buildIssue(fields.getAddress(),
+			issues.add(MessageAttribute.buildIssue(fields.getAddress(),
 					IssueType.MISSING));
 			passed = false;
 		} else {
@@ -56,56 +56,56 @@ public enum AddressValidator {
 
 	protected void addStreetIssues(String street, IssueField field, List<ValidationIssue> issues) {
 		if (common.isEmpty(street)) {
-			issues.add(PotentialIssue.buildIssue(field, IssueType.MISSING));
+			issues.add(MessageAttribute.buildIssue(field, IssueType.MISSING));
 		} else {
 			if (!validCity(street)) {
-				issues.add(PotentialIssue.buildIssue(field, IssueType.INVALID, street));
+				issues.add(MessageAttribute.buildIssue(field, IssueType.INVALID, street));
 			}
 		}
 	}
 	
 	protected void addCityIssues(String city, IssueField field, List<ValidationIssue> issues) {
 		if (common.isEmpty(city)) {
-			issues.add(PotentialIssue.buildIssue(field, IssueType.MISSING));
+			issues.add(MessageAttribute.buildIssue(field, IssueType.MISSING));
 		} else {
 			if (!validCity(city)) {
-				issues.add(PotentialIssue.buildIssue(field, IssueType.INVALID, city));
+				issues.add(MessageAttribute.buildIssue(field, IssueType.INVALID, city));
 			}
 		}
 	}
 	
 	protected void addStateIssues(String state, IssueField field, List<ValidationIssue> issues) {
 		if (common.isEmpty(state)) {
-			issues.add(PotentialIssue.buildIssue(field, IssueType.MISSING));
+			issues.add(MessageAttribute.buildIssue(field, IssueType.MISSING));
 		} else {
 			if (!validState(state)) {
-				issues.add(PotentialIssue.buildIssue(field, IssueType.INVALID, state));
+				issues.add(MessageAttribute.buildIssue(field, IssueType.INVALID, state));
 			}
 		}
 	}
 	
 	protected void addZipIssues(String zip, IssueField field, List<ValidationIssue> issues) {
 		if (common.isEmpty(zip)) {
-			issues.add(PotentialIssue.buildIssue(field,  IssueType.MISSING));
+			issues.add(MessageAttribute.buildIssue(field,  IssueType.MISSING));
 		} else {
 			if (!isValidZip(zip)) {
-				issues.add(PotentialIssue.buildIssue(field, IssueType.INVALID, zip));
+				issues.add(MessageAttribute.buildIssue(field, IssueType.INVALID, zip));
 			}
 		}
 	}
 	
 	protected void addCountyIssues(String county, IssueField field, List<ValidationIssue> issues) {
 		if (common.isEmpty(county)) {
-			issues.add(PotentialIssue.buildIssue(field,  IssueType.MISSING));
+			issues.add(MessageAttribute.buildIssue(field,  IssueType.MISSING));
 		} 
 	}
 	
 	protected void addCountryIssues(String country, IssueField field, List<ValidationIssue> issues) {
 		if (common.isEmpty(country)) {
-			issues.add(PotentialIssue.buildIssue(field,  IssueType.MISSING));
+			issues.add(MessageAttribute.buildIssue(field,  IssueType.MISSING));
 		} else {
 			if (!validCountryCode(country)) {
-				issues.add(PotentialIssue.buildIssue(field, IssueType.INVALID, country));
+				issues.add(MessageAttribute.buildIssue(field, IssueType.INVALID, country));
 			}
 		}
 	}

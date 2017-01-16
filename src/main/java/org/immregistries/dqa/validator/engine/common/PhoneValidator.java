@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.issues.IssueField;
 import org.immregistries.dqa.validator.engine.issues.IssueType;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.hl7types.PhoneNumber;
 
@@ -38,7 +38,7 @@ public enum PhoneValidator {
 		if (StringUtils.isNotEmpty(phone.getNumber())) {
 			
 			if (phone.getAreaCode().equals("") || phone.getLocalNumber().equals("")) {
-				PotentialIssue pIssue = PotentialIssue.get(piPhone, IssueType.INCOMPLETE);
+				MessageAttribute pIssue = MessageAttribute.get(piPhone, IssueType.INCOMPLETE);
 				if (pIssue != null) {
 					issues.add(pIssue.build(phone.getNumber()));
 				}
@@ -56,14 +56,14 @@ public enum PhoneValidator {
 			
 			//Invalid phone number format. 
 			if (!isValidPhone(phone)) {
-				PotentialIssue pIssue = PotentialIssue.get(piPhone, IssueType.INVALID);
+				MessageAttribute pIssue = MessageAttribute.get(piPhone, IssueType.INVALID);
 				if (pIssue != null) {
 					issues.add(pIssue.build(phone.getNumber()));
 				}
 			}
 			
 		} else {
-			issues.add(PotentialIssue.get(piPhone, IssueType.MISSING).build()); 
+			issues.add(MessageAttribute.get(piPhone, IssueType.MISSING).build()); 
 		}
 		return issues;
 	}

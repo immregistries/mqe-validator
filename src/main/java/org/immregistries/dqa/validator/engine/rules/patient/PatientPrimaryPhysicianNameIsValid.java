@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaPatient;
@@ -21,7 +21,7 @@ public class PatientPrimaryPhysicianNameIsValid extends ValidationRule<DqaPatien
 		
 		if (physician != null) {
 			if (physician.getName() == null || common.isEmpty(physician.getName())) {
-				issues.add(PotentialIssue.PatientPrimaryPhysicianNameIsMissing.build());
+				issues.add(MessageAttribute.PatientPrimaryPhysicianNameIsMissing.build());
 				passed = false;
 			}
 		}

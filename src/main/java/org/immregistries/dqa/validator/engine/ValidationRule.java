@@ -7,7 +7,7 @@ import org.immregistries.dqa.validator.engine.codes.CodeRepository;
 import org.immregistries.dqa.validator.engine.common.CodeHandler;
 import org.immregistries.dqa.validator.engine.common.CommonRules;
 import org.immregistries.dqa.validator.engine.common.DateUtility;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.slf4j.Logger;
@@ -46,7 +46,7 @@ public abstract class ValidationRule<T> {
 			 return executeRule(target, m);
 		} catch (Exception e) {
 			LOGGER.error("Error running rule - " + this.getClass() + " problem: " + e.getMessage(), e);
-			ValidationIssue[] issues = new ValidationIssue[]{PotentialIssue.GeneralProcessingException.build(this.getClass().getName())};
+			ValidationIssue[] issues = new ValidationIssue[]{MessageAttribute.GeneralProcessingException.build(this.getClass().getName())};
 			return buildResults(Arrays.asList(issues), false);
 		}
 	}

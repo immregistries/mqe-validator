@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientIsUnderage;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientNameIsValid;
@@ -39,7 +39,7 @@ public class NextOfKinNameIsNotSameAsPatient extends ValidationRule<DqaNextOfKin
 				&& areEqual(target.getNameSuffix(), patient.getNameMiddle())
 				&& areEqual(target.getNameSuffix(), patient.getNameSuffix())) {
 
-			issues.add(PotentialIssue.PatientGuardianNameIsSameAsUnderagePatient.build());
+			issues.add(MessageAttribute.PatientGuardianNameIsSameAsUnderagePatient.build());
 			passed = false;
 		}
 		

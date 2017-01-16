@@ -13,7 +13,7 @@ import org.immregistries.dqa.codebase.client.reference.CodeStatusValue;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
 import org.immregistries.dqa.validator.engine.issues.IssueField;
 import org.immregistries.dqa.validator.engine.issues.IssueType;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -123,7 +123,7 @@ public enum CodeHandler {
 			throw new IllegalArgumentException("Empty list sent in for issueToList.  This should not happen.  IssueField: " + field + " Issue Type: " + type);
 		}
 		
-		PotentialIssue issue = PotentialIssue.get(field, type);
+		MessageAttribute issue = MessageAttribute.get(field, type);
 		if (issue != null) {
 			issues.add(issue.build());
 		} else {

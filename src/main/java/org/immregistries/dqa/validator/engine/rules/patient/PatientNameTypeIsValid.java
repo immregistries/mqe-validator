@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaPatient;
@@ -20,7 +20,7 @@ public class PatientNameTypeIsValid extends ValidationRule<DqaPatient> {
 		if (target != null && target.getName() != null) {
 			String type = target.getName().getType();
 			if (common.isEmpty(type)) {
-				issues.add(PotentialIssue.PatientNameTypeCodeIsMissing.build());
+				issues.add(MessageAttribute.PatientNameTypeCodeIsMissing.build());
 			}
 			
 			//TODO: code received stuff. 

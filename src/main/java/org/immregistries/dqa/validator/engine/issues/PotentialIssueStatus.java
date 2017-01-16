@@ -1,14 +1,8 @@
-/*
- * Copyright 2013 by Dandelion Software & Research, Inc (DSR)
- * 
- * This application was written for immunization information system (IIS) community and has
- * been released by DSR under an Apache 2 License with the hope that this software will be used
- * to improve Public Health.  
- */
 package org.immregistries.dqa.validator.engine.issues;
 
 import java.io.Serializable;
 
+import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.validator.model.SubmitterProfile;
 
 public class PotentialIssueStatus implements Serializable
@@ -17,9 +11,9 @@ public class PotentialIssueStatus implements Serializable
   private static final long serialVersionUID = 1l;
   
   private int potentialIssueStatusId = 0;
-  private PotentialIssue issue = null;
+  private MessageAttribute issue = null;
   private SubmitterProfile profile = null;
-  private IssueLevel action = null;
+  private SeverityLevel action = null;
   private int expectMin = 0;
   private int expectMax = 100;
   
@@ -28,7 +22,7 @@ public class PotentialIssueStatus implements Serializable
     // default
   }
   
-  public PotentialIssueStatus(PotentialIssue potentialIssue, SubmitterProfile profile)
+  public PotentialIssueStatus(MessageAttribute potentialIssue, SubmitterProfile profile)
   {
     issue = potentialIssue;
     this.profile = profile;
@@ -56,12 +50,12 @@ public class PotentialIssueStatus implements Serializable
     this.potentialIssueStatusId = potentialIssueStatusId;
   }
 
-  public PotentialIssue getIssue()
+  public MessageAttribute getIssue()
   {
     return issue;
   }
 
-  public void setIssue(PotentialIssue issue)
+  public void setIssue(MessageAttribute issue)
   {
     this.issue = issue;
   }
@@ -76,12 +70,12 @@ public class PotentialIssueStatus implements Serializable
     this.profile = profile;
   }
 
-  public IssueLevel getAction()
+  public SeverityLevel getAction()
   {
     return action;
   }
 
-  public void setAction(IssueLevel action)
+  public void setAction(SeverityLevel action)
   {
     this.action = action;
   }

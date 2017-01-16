@@ -8,7 +8,7 @@ import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.codebase.client.reference.CodesetType;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaVaccination;
@@ -36,7 +36,7 @@ public class VaccinationCodeGroupsMatch extends ValidationRule<DqaVaccination> {
 	    {
 	      if (!checkGroupMatch(vaccineCvx, cptCvxCode.getValue()))
 	      {
-	        issues.add(PotentialIssue.VaccinationCvxCodeAndCptCodeAreInconsistent.build());
+	        issues.add(MessageAttribute.VaccinationCvxCodeAndCptCodeAreInconsistent.build());
 	      }
 	    }
 	    

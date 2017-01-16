@@ -8,7 +8,7 @@ import java.util.Map;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.Observation;
@@ -47,7 +47,7 @@ public class VaccinationObservationsAreValidFIXTHIS extends
 					&& observation.getIdentifierCode().equals(
 							OBX_VACCINE_FUNDING)) {
 				if (common.isEmpty(observation.getValue())) {
-					issues.add(PotentialIssue.ObservationValueIsMissing.build());
+					issues.add(MessageAttribute.ObservationValueIsMissing.build());
 				} else {
 					financialEligibilityCode = observation.getValue();
 				}
@@ -72,7 +72,7 @@ public class VaccinationObservationsAreValidFIXTHIS extends
 						OBX_VIS_PRESENTED)) {
 					if (!observation.getValue().equals("")) {
 						if (!datr.isDate(observation.getValue())) {
-							issues.add(PotentialIssue.VaccinationVisPresentedDateIsInvalid
+							issues.add(MessageAttribute.VaccinationVisPresentedDateIsInvalid
 									.build());
 							vaccinationVIS.setPresentedDate(datr
 									.parseDate(observation.getValue()));
@@ -81,7 +81,7 @@ public class VaccinationObservationsAreValidFIXTHIS extends
 							OBX_VIS_PUBLISHED)) {
 
 						if (!datr.isDate(observation.getValue())) {
-							issues.add(PotentialIssue.VaccinationVisPublishedDateIsInvalid
+							issues.add(MessageAttribute.VaccinationVisPublishedDateIsInvalid
 									.build());
 						} else {
 							vaccinationVIS.setPublishedDate(datr
@@ -100,7 +100,7 @@ public class VaccinationObservationsAreValidFIXTHIS extends
 			}
 			if (vaccinationVISMap.size() == 0) {
 				if (target.isAdministered()) {
-					issues.add(PotentialIssue.VaccinationVisIsMissing.build());
+					issues.add(MessageAttribute.VaccinationVisIsMissing.build());
 				}
 			} else {
 				boolean firstOne = true;
@@ -119,31 +119,31 @@ public class VaccinationObservationsAreValidFIXTHIS extends
 
 					if (vaccinationVIS.getPublishedDate() == null) {
 						if (target.isAdministered()) {
-							issues.add(PotentialIssue.VaccinationVisPublishedDateIsMissing
+							issues.add(MessageAttribute.VaccinationVisPublishedDateIsMissing
 									.build());
 						}
 					}
 					if (vaccinationVIS.getPresentedDate() == null) {
 						if (target.isAdministered()) {
-							issues.add(PotentialIssue.VaccinationVisPresentedDateIsMissing
+							issues.add(MessageAttribute.VaccinationVisPresentedDateIsMissing
 									.build());
 						}
 					} else {
 						if (target.getAdminDate() != null) {
 							if (target.getAdminDate().after(
 									vaccinationVIS.getPresentedDate())) {
-								issues.add(PotentialIssue.VaccinationVisPresentedDateIsAfterAdminDate
+								issues.add(MessageAttribute.VaccinationVisPresentedDateIsAfterAdminDate
 										.build());
 							} else if (target.getAdminDate().before(
 									vaccinationVIS.getPresentedDate())) {
-								issues.add(PotentialIssue.VaccinationVisPresentedDateIsNotAdminDate
+								issues.add(MessageAttribute.VaccinationVisPresentedDateIsNotAdminDate
 										.build());
 							}
 						}
 						if (vaccinationVIS.getPublishedDate() != null) {
 							if (vaccinationVIS.getPresentedDate().before(
 									vaccinationVIS.getPublishedDate())) {
-								issues.add(PotentialIssue.VaccinationVisPresentedDateIsBeforePublishedDate
+								issues.add(MessageAttribute.VaccinationVisPresentedDateIsBeforePublishedDate
 										.build());
 							}
 						}
@@ -154,10 +154,10 @@ public class VaccinationObservationsAreValidFIXTHIS extends
 							// TODO verify that code and date are recognized,
 							// this logic will
 							// work for now
-							issues.add(PotentialIssue.VaccinationVisIsUnrecognized
+							issues.add(MessageAttribute.VaccinationVisIsUnrecognized
 									.build());
 							if (firstOne && target.isAdministered()) {
-								issues.add(PotentialIssue.VaccinationVisIsMissing
+								issues.add(MessageAttribute.VaccinationVisIsMissing
 										.build());
 							}
 						}

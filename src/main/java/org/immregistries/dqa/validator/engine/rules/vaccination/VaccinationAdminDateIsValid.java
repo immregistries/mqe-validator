@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaVaccination;
@@ -23,14 +23,14 @@ public class VaccinationAdminDateIsValid extends ValidationRule<DqaVaccination> 
 		boolean passed = true;
 
 		if (this.common.isEmpty(dateString)) {
-			issues.add(PotentialIssue.VaccinationAdminDateIsMissing.build(dateString));
+			issues.add(MessageAttribute.VaccinationAdminDateIsMissing.build(dateString));
 			passed = false;
 			
 			return buildResults(issues, passed);
 		}
 
 		if (!this.common.isValidDate(dateString)) {
-			issues.add(PotentialIssue.VaccinationAdminDateIsInvalid.build(dateString));
+			issues.add(MessageAttribute.VaccinationAdminDateIsInvalid.build(dateString));
 			passed = false;
 			return buildResults(issues, passed);
 		};
@@ -43,13 +43,13 @@ public class VaccinationAdminDateIsValid extends ValidationRule<DqaVaccination> 
 		int lastDayofMonth = cal.getMaximum(Calendar.DAY_OF_MONTH);
 
 		if (dayOfMonth == 1) {
-			issues.add(PotentialIssue.VaccinationAdminDateIsOnFirstDayOfMonth.build(dateString));
+			issues.add(MessageAttribute.VaccinationAdminDateIsOnFirstDayOfMonth.build(dateString));
 			
 		} else if (dayOfMonth == 15) {
-			issues.add(PotentialIssue.VaccinationAdminDateIsOn15ThDayOfMonth.build(dateString));
+			issues.add(MessageAttribute.VaccinationAdminDateIsOn15ThDayOfMonth.build(dateString));
 			
 		} else if (dayOfMonth == lastDayofMonth) {
-			issues.add(PotentialIssue.VaccinationAdminDateIsOnLastDayOfMonth.build(dateString));
+			issues.add(MessageAttribute.VaccinationAdminDateIsOnLastDayOfMonth.build(dateString));
 		}
 		
 		
@@ -59,21 +59,21 @@ public class VaccinationAdminDateIsValid extends ValidationRule<DqaVaccination> 
 		        {
 		          if (datr.isAfterDate(target.getAdminDate(), target.getExpirationDate()))
 		          {
-		            issues.add(PotentialIssue.VaccinationAdminDateIsAfterLotExpirationDate.build());
+		            issues.add(MessageAttribute.VaccinationAdminDateIsAfterLotExpirationDate.build());
 		          }
 		        }
 		      }
 		      
 	      	if (datr.isAfterDate(target.getAdminDate(), m.getReceivedDate()))
 		      {
-		        issues.add(PotentialIssue.VaccinationAdminDateIsAfterMessageSubmitted.build());
+		        issues.add(MessageAttribute.VaccinationAdminDateIsAfterMessageSubmitted.build());
 		      }
 		      
 		      if (m.getPatient().getDeathDate() != null)
 		      {
 		        if (datr.isAfterDate(target.getAdminDate(), m.getPatient().getDeathDate()))
 		        {
-		          issues.add(PotentialIssue.VaccinationAdminDateIsAfterPatientDeathDate.build());
+		          issues.add(MessageAttribute.VaccinationAdminDateIsAfterPatientDeathDate.build());
 		        }
 		      }
 		      
@@ -81,7 +81,7 @@ public class VaccinationAdminDateIsValid extends ValidationRule<DqaVaccination> 
 		      {
 		        if (datr.isBeforeDate(target.getAdminDate(), m.getPatient().getBirthDate()))
 		        {
-		          issues.add(PotentialIssue.VaccinationAdminDateIsBeforeBirth.build());
+		          issues.add(MessageAttribute.VaccinationAdminDateIsBeforeBirth.build());
 		        }
 		      }
 		      
@@ -90,16 +90,16 @@ public class VaccinationAdminDateIsValid extends ValidationRule<DqaVaccination> 
 
 		        if (datr.isAfterDate(target.getAdminDate(), target.getSystemEntryDate()))
 		        {
-		          issues.add(PotentialIssue.VaccinationAdminDateIsAfterSystemEntryDate.build());
+		          issues.add(MessageAttribute.VaccinationAdminDateIsAfterSystemEntryDate.build());
 		        }
 		      }
 		      
 		      if (target.getAdminDateEnd() == null) {
-		    	  issues.add(PotentialIssue.VaccinationAdminDateEndIsMissing.build());
+		    	  issues.add(MessageAttribute.VaccinationAdminDateEndIsMissing.build());
 		      } else {
 		        if (!target.getAdminDateEnd().equals(target.getAdminDate()))
 		        {
-		          issues.add(PotentialIssue.VaccinationAdminDateEndIsDifferentFromStartDate.build());
+		          issues.add(MessageAttribute.VaccinationAdminDateEndIsDifferentFromStartDate.build());
 		        }
 		      }
 		

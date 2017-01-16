@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaNextOfKin;
@@ -36,7 +36,7 @@ public class MessageHasResponsibleParty extends ValidationRule<DqaPatient> {
 		}
 		
 		if (!hasRespParty) {
-			issues.add(this.util.createIssue(PotentialIssue.PatientGuardianResponsiblePartyIsMissing, ""));
+			issues.add(this.util.createIssue(MessageAttribute.PatientGuardianResponsiblePartyIsMissing, ""));
 			passed = false;
 		}
 		

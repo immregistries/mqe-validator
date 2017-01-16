@@ -7,7 +7,7 @@ import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaVaccination;
@@ -40,7 +40,7 @@ public class VaccinationProductIsValid extends ValidationRule<DqaVaccination> {
 			issues.addAll(codr.handleCode(target.getProduct(), IssueField.VACCINATION_PRODUCT));
 			codr.handleUseDate(product, adminDate, IssueField.VACCINATION_PRODUCT);
 		} else {
-			issues.add(PotentialIssue.VaccinationProductIsMissing.build());
+			issues.add(MessageAttribute.VaccinationProductIsMissing.build());
 		}
 //		}
 

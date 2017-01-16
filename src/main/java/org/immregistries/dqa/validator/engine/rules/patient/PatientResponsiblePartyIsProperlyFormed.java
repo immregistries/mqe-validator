@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaNextOfKin;
@@ -36,27 +36,27 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<DqaN
 	    	this.util.addToListIfEmpty(target.getAddress().getStateCode(), 	IssueField.PATIENT_GUARDIAN_ADDRESS_STATE, issues);
 	    	this.util.addToListIfEmpty(target.getAddress().getCity(), 		IssueField.PATIENT_GUARDIAN_ADDRESS_CITY, issues);
 	    	this.util.addToListIfEmpty(target.getAddress().getZip(), 			IssueField.PATIENT_GUARDIAN_ADDRESS_ZIP, issues);
-	    	this.util.addToListIfEmpty(target.getNameFirst(),  PotentialIssue.PatientGuardianNameFirstIsMissing, issues);
-	    	this.util.addToListIfEmpty(target.getNameLast(),   PotentialIssue.PatientGuardianNameLastIsMissing, issues);
+	    	this.util.addToListIfEmpty(target.getNameFirst(),  MessageAttribute.PatientGuardianNameFirstIsMissing, issues);
+	    	this.util.addToListIfEmpty(target.getNameLast(),   MessageAttribute.PatientGuardianNameLastIsMissing, issues);
 	    	
 			if (StringUtils.isEmpty(tFirst) || StringUtils.isEmpty(tLast)) {
-				issues.add(PotentialIssue.PatientGuardianNameIsMissing.build());
+				issues.add(MessageAttribute.PatientGuardianNameIsMissing.build());
 			}
 
 			if (pFirst != null && !pFirst.equals("") && pLast != null && !pLast.equals("")) {
 				if (pFirst.equals(tFirst) && pLast.equals(tLast)) {
-					issues.add(PotentialIssue.PatientGuardianNameIsSameAsUnderagePatient.build());
+					issues.add(MessageAttribute.PatientGuardianNameIsSameAsUnderagePatient.build());
 				}
 			}
 
-			this.util.addToListIfEmpty(target.getPhoneNumber(), PotentialIssue.PatientGuardianPhoneIsMissing, issues);
-			this.util.addToListIfEmpty(target.getRelationshipCode(), PotentialIssue.PatientGuardianRelationshipIsMissing, issues);
+			this.util.addToListIfEmpty(target.getPhoneNumber(), MessageAttribute.PatientGuardianPhoneIsMissing, issues);
+			this.util.addToListIfEmpty(target.getRelationshipCode(), MessageAttribute.PatientGuardianRelationshipIsMissing, issues);
 			
 			passed = (issues.size() == 0);
 
 		} else {
 			// Shouldn't the responsible party be present???  This didn't raise any issues in the original code.  I'm not sure why.
-			issues.add(PotentialIssue.PatientGuardianResponsiblePartyIsMissing.build());
+			issues.add(MessageAttribute.PatientGuardianResponsiblePartyIsMissing.build());
 			passed = false;
 		}
 

@@ -1,34 +1,28 @@
-/*
- * Copyright 2013 by Dandelion Software & Research, Inc (DSR)
- * 
- * This application was written for immunization information system (IIS) community and has
- * been released by DSR under an Apache 2 License with the hope that this software will be used
- * to improve Public Health.  
- */
 package org.immregistries.dqa.validator.engine.issues;
 
-import org.immregistries.dqa.hl7util.builder.Reportable;
+import org.immregistries.dqa.hl7util.Reportable;
+import org.immregistries.dqa.hl7util.SeverityLevel;
 
 public class ValidationIssue implements Reportable
 {
-  private PotentialIssue issue = null;//should this be a String?
+  private MessageAttribute messageAttribute = null;//should this be a String?
   private int positionId = 0;//This says where in the ACK to put it. 
-  private IssueLevel issueLevel = null; //this is how bad it is. 
-  private String codeReceived = null;//This is the related value. 
+  private SeverityLevel severityLevel = null; //this is how bad it is. 
+  private String valueReceived = null;//This is the related value. 
   private String hl7Reference;//This is where it is from in the HL7 message. 
   
-  public PotentialIssue getIssue()
+  public MessageAttribute getIssue()
   {
-    return issue;
+    return messageAttribute;
   }
   
   public String getMessage() {
-	  return issue != null ? issue.getDisplayText() : "";
+	  return messageAttribute != null ? messageAttribute.getDisplayText() : "";
   }
   
-  public void setIssue(PotentialIssue issue)
+  public void setMessageAttribute(MessageAttribute issue)
   {
-    this.issue = issue;
+    this.messageAttribute = issue;
   }
   public int getPositionId()
   {
@@ -38,26 +32,18 @@ public class ValidationIssue implements Reportable
   {
     this.positionId = positionId;
   }
-  public IssueLevel getIssueAction()
-  {
-    return issueLevel;
-  }
   
-  public String getLevel() {
-	  return issueLevel != null ? issueLevel.getActionCode() : "W";//defaults to warn. 
-  }
-  
-  public void setIssueAction(IssueLevel issueAction)
+  public void setSeverityLevel(SeverityLevel level)
   {
-    this.issueLevel = issueAction;
+    this.severityLevel = level;
   }
   public String getCodeReceived()
   {
-    return codeReceived;
+    return valueReceived;
   }
   public void setCodeReceived(String codeReceived)
   {
-    this.codeReceived = codeReceived;
+    this.valueReceived = codeReceived;
   }
   public String getHl7Reference() {
 	  return hl7Reference;
@@ -68,17 +54,41 @@ public class ValidationIssue implements Reportable
   
   public boolean isError()
   {
-	  return IssueLevel.ERROR.equals(this.issueLevel);
+	  return SeverityLevel.ERROR.equals(this.severityLevel);
   }
 
 @Override
 public String toString() {
-	return "IssueFound [issue=" + issue + ", positionId=" + positionId
-			+ ", issueAction=" + issueLevel + ", codeReceived=" + codeReceived
+	return "IssueFound [issue=" + messageAttribute + ", positionId=" + positionId
+			+ ", issueAction=" + severityLevel + ", codeReceived=" + valueReceived
 			+ "]";
 }
-public IssueLevel getIssueLevel() {
-	return this.issueLevel;
+public SeverityLevel getSeverityLevel() {
+	return this.severityLevel;
+}
+
+@Override
+public String getSeverity() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public int getHl7ErrorCode() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public String getHl7Location() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public String getReportedMessage() {
+	// TODO Auto-generated method stub
+	return null;
 }
 
 }

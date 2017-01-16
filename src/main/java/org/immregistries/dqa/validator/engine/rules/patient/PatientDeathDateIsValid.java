@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaPatient;
@@ -48,12 +48,12 @@ public class PatientDeathDateIsValid extends ValidationRule<DqaPatient> {
 
 		if (target.getDeathDate() != null) {
 			if (target.getBirthDate() != null && target.getDeathDate().before(target.getBirthDate())) {
-				issues.add(PotentialIssue.PatientDeathDateIsBeforeBirth.build(target.getDeathDate().toString()));
+				issues.add(MessageAttribute.PatientDeathDateIsBeforeBirth.build(target.getDeathDate().toString()));
 				passed = false;
 			}
 			
 			 if (message.getReceivedDate().before(target.getDeathDate())) {
-			 	issues.add(PotentialIssue.PatientDeathDateIsInFuture.build(target.getDeathDate().toString()));
+			 	issues.add(MessageAttribute.PatientDeathDateIsInFuture.build(target.getDeathDate().toString()));
 			 	passed = false;
 		     }
 		} 

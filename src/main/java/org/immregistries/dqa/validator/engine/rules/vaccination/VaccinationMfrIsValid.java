@@ -6,7 +6,7 @@ import java.util.List;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaVaccination;
@@ -37,14 +37,14 @@ public class VaccinationMfrIsValid extends ValidationRule<DqaVaccination> {
 						target.getAdminDate())
 						|| datr.isAfterDate(target.getAdminDate(),
 								vaccineMvx.getValidEndDate())) {
-					issues.add(PotentialIssue.VaccinationManufacturerCodeIsInvalidForDateAdministered
+					issues.add(MessageAttribute.VaccinationManufacturerCodeIsInvalidForDateAdministered
 							.build(target.getManufacturer()));
 					passed = false;
 				} else if (vaccineMvx.getUseStartDate().after(
 						target.getAdminDate())
 						|| target.getAdminDate().after(
 								vaccineMvx.getUseEndDate())) {
-					issues.add(PotentialIssue.VaccinationManufacturerCodeIsUnexpectedForDateAdministered
+					issues.add(MessageAttribute.VaccinationManufacturerCodeIsUnexpectedForDateAdministered
 							.build(target.getManufacturer()));
 				}
 			}

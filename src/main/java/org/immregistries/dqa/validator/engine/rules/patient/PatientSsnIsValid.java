@@ -7,7 +7,7 @@ import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.issues.IssueField;
 import org.immregistries.dqa.validator.engine.issues.IssueType;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaPatient;
@@ -22,10 +22,10 @@ public class PatientSsnIsValid extends ValidationRule<DqaPatient> {
 		String ssn = target.getIdSsnNumber();
 		
 		if (common.isEmpty(ssn)) {
-			issues.add(PotentialIssue.get(IssueField.PATIENT_SSN,  IssueType.MISSING).build());
+			issues.add(MessageAttribute.get(IssueField.PATIENT_SSN,  IssueType.MISSING).build());
 			passed = false;
 		} else if (!isSsnPattern(ssn)) {
-			issues.add(PotentialIssue.get(IssueField.PATIENT_SSN,  IssueType.INVALID).build());
+			issues.add(MessageAttribute.get(IssueField.PATIENT_SSN,  IssueType.INVALID).build());
 			passed = false;
 		}
 		

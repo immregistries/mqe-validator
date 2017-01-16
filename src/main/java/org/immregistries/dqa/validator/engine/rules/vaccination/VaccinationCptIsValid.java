@@ -8,7 +8,7 @@ import org.immregistries.dqa.codebase.client.reference.CodesetType;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaVaccination;
@@ -37,7 +37,7 @@ public class VaccinationCptIsValid extends ValidationRule<DqaVaccination> {
 			//TODO:  figure out if this is the right place for use dates and start dates. 
 			if (cpt != null && target.getAdminDate() != null) {
 					codr.handleUseDate(cpt, target.getAdminDateString(), IssueField.VACCINATION_CPT_CODE);
-					issues.add(PotentialIssue.VaccinationCptCodeIsInvalidForDateAdministered.build(target.getAdminCptCode()));
+					issues.add(MessageAttribute.VaccinationCptCodeIsInvalidForDateAdministered.build(target.getAdminCptCode()));
 					passed = false;
 			} 
 		}

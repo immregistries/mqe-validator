@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientIsUnderage;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
@@ -29,10 +29,10 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
 		if (StringUtils.isNotEmpty(relationship)) {
 			if (!target.isResponsibleRelationship()) {
 				if (target.isChildRelationship()) {
-					issues.add(PotentialIssue.NextOfKinRelationshipIsUnexpected.build(relationship));
+					issues.add(MessageAttribute.NextOfKinRelationshipIsUnexpected.build(relationship));
 					passed = false;
 				} else {
-					issues.add(PotentialIssue.NextOfKinRelationshipIsNotResponsibleParty.build(relationship));
+					issues.add(MessageAttribute.NextOfKinRelationshipIsNotResponsibleParty.build(relationship));
 					passed = false;
 				}
 			}

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaVaccination;
@@ -23,9 +23,9 @@ public class VaccinationSystemEntryTimeIsValid extends
 		boolean passed = true;
 
 		if (target.getSystemEntryDate() == null) {
-			issues.add(PotentialIssue.VaccinationSystemEntryTimeIsMissing.build());
+			issues.add(MessageAttribute.VaccinationSystemEntryTimeIsMissing.build());
 		} else if (datr.isBeforeDate(m.getReceivedDate(),target.getSystemEntryDate())) {
-			issues.add(PotentialIssue.VaccinationSystemEntryTimeIsInFuture.build());
+			issues.add(MessageAttribute.VaccinationSystemEntryTimeIsInFuture.build());
 		}
 
 		passed = (issues.size() == 0);

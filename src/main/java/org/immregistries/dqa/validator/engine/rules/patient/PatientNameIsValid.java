@@ -9,7 +9,7 @@ import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.codes.KnowNameList;
 import org.immregistries.dqa.validator.engine.codes.model.KnownName;
 import org.immregistries.dqa.validator.engine.codes.model.KnownName.NameType;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaPatient;
@@ -30,16 +30,16 @@ public class PatientNameIsValid extends ValidationRule<DqaPatient> {
 		
 //		First Name Issues:
 		if (common.isEmpty(first)) {
-			issues.add(PotentialIssue.PatientNameFirstIsMissing.build(first));
+			issues.add(MessageAttribute.PatientNameFirstIsMissing.build(first));
 			passed = false;
 		} else {
 			if (listr.firstNameOnlyMatch(NameType.INVALID_NAME, first)) {
-				issues.add(PotentialIssue.PatientNameFirstIsInvalid.build(first));
+				issues.add(MessageAttribute.PatientNameFirstIsInvalid.build(first));
 				passed = false;
 			}
 
 			if (!common.isValidNameChars(first)) {
-				issues.add(PotentialIssue.PatientNameFirstIsInvalid
+				issues.add(MessageAttribute.PatientNameFirstIsInvalid
 						.build(first));
 				passed = false;
 			}
@@ -48,7 +48,7 @@ public class PatientNameIsValid extends ValidationRule<DqaPatient> {
 					&& StringUtils.isEmpty(target.getNameMiddle())) {
 				int pos = first.lastIndexOf(' ');
 				if (pos > -1 && pos == first.length() - 2) {
-					issues.add(PotentialIssue.PatientNameFirstMayIncludeMiddleInitial
+					issues.add(MessageAttribute.PatientNameFirstMayIncludeMiddleInitial
 							.build(first));
 				}
 			}
@@ -56,30 +56,30 @@ public class PatientNameIsValid extends ValidationRule<DqaPatient> {
 		
 //		Last Name Issues:
 		if (common.isEmpty(last)) {
-			issues.add(PotentialIssue.PatientNameLastIsMissing.build(last));
+			issues.add(MessageAttribute.PatientNameLastIsMissing.build(last));
 			passed = false;
 		} else {
 			if (listr.lastNameOnlyMatch(NameType.INVALID_NAME, last)) {
-					issues.add(PotentialIssue.PatientNameLastIsInvalid.build());
+					issues.add(MessageAttribute.PatientNameLastIsInvalid.build());
 					passed = false;
 			}
 			
 			if (!common.isValidNameChars(last)) {
-				issues.add(PotentialIssue.PatientNameLastIsInvalid.build());
+				issues.add(MessageAttribute.PatientNameLastIsInvalid.build());
 			}
 				
 		}
 		
 		if (listr.matches(NameType.UNNAMED_NEWBORN, first, last, middle)) {
-			issues.add(PotentialIssue.PatientNameMayBeTemporaryNewbornName.build("first[" + first + "] middle[" + middle + "] last[" + last));
+			issues.add(MessageAttribute.PatientNameMayBeTemporaryNewbornName.build("first[" + first + "] middle[" + middle + "] last[" + last));
 		}
 
 		if (listr.matches(NameType.TEST_PATIENT, first, last, middle)) {
-			issues.add(PotentialIssue.PatientNameMayBeTestName.build());
+			issues.add(MessageAttribute.PatientNameMayBeTestName.build());
 	    }
 
 		if (listr.matches(NameType.JUNK_NAME, first, last, middle)) {
-			issues.add(PotentialIssue.PatientNameHasJunkName.build());
+			issues.add(MessageAttribute.PatientNameHasJunkName.build());
 	    }
 		
 //		 ALL OF THIS SHOULD BE IN THE EXTRACT/TRANSFORM LAYER:

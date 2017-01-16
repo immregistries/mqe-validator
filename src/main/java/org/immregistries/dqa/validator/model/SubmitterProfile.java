@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Random;
 
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.PotentialIssueStatus;
 
 public class SubmitterProfile implements Serializable
@@ -47,7 +47,7 @@ public class SubmitterProfile implements Serializable
   private String accessKey = "";
   private String dataFormat = "";
   private Organization organization = null;
-  private HashMap<PotentialIssue, PotentialIssueStatus> potentialIssueStatusMap = null;
+  private HashMap<MessageAttribute, PotentialIssueStatus> potentialIssueStatusMap = null;
   private String profileCode = "";
   private int profileId = 0;
   private String profileLabel = "";
@@ -81,12 +81,12 @@ public class SubmitterProfile implements Serializable
     return organization;
   }
 
-  public PotentialIssueStatus getPotentialIssueStatus(PotentialIssue potentialIssue)
+  public PotentialIssueStatus getPotentialIssueStatus(MessageAttribute potentialIssue)
   {
     return potentialIssueStatusMap.get(potentialIssue);
   }
 
-  public HashMap<PotentialIssue, PotentialIssueStatus> getPotentialIssueStatusMap()
+  public HashMap<MessageAttribute, PotentialIssueStatus> getPotentialIssueStatusMap()
   {
     return potentialIssueStatusMap;
   }
@@ -167,7 +167,7 @@ public class SubmitterProfile implements Serializable
     this.organization = organization;
   }
 
-  public void setPotentialIssueStatusMap(HashMap<PotentialIssue, PotentialIssueStatus> potentialIssueStatusMap)
+  public void setPotentialIssueStatusMap(HashMap<MessageAttribute, PotentialIssueStatus> potentialIssueStatusMap)
   {
     this.potentialIssueStatusMap = potentialIssueStatusMap;
   }

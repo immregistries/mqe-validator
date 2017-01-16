@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaPatient;
@@ -19,7 +19,7 @@ public class PatientExists extends ValidationRule<DqaPatient> {
 		boolean passed = true;
 		
 		if (target == null) {
-			issues.add(PotentialIssue.PatientObjectIsMissing.build());
+			issues.add(MessageAttribute.PatientObjectIsMissing.build());
 			passed = false;
 		}
 		

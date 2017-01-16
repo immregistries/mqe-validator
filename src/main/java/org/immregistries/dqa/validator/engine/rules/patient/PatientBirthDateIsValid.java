@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaPatient;
@@ -26,12 +26,12 @@ public class PatientBirthDateIsValid extends ValidationRule<DqaPatient> {
 		String birthDateString = target.getBirthDateString();
 		
 		if (this.common.isEmpty(birthDateString)) {
-			issues.add(PotentialIssue.PatientBirthDateIsMissing.build(birthDateString));
+			issues.add(MessageAttribute.PatientBirthDateIsMissing.build(birthDateString));
 			passed = false;
 		}
 		
 		if (!this.common.isValidDate(birthDateString)) {
-			issues.add(PotentialIssue.PatientBirthDateIsInvalid.build(birthDateString));
+			issues.add(MessageAttribute.PatientBirthDateIsInvalid.build(birthDateString));
 			passed = false;
 		} else {
 			Date birthDate = this.common.parseDateFrom(birthDateString);
@@ -40,13 +40,13 @@ public class PatientBirthDateIsValid extends ValidationRule<DqaPatient> {
 			//on when the message is validated...  we might need to keep that. 
 			Date receivedDate = message.getReceivedDate();
 			if (receivedDate != null && receivedDate.before(birthDate)) { 
-				issues.add(PotentialIssue.PatientBirthDateIsInFuture.build(birthDateString));
+				issues.add(MessageAttribute.PatientBirthDateIsInFuture.build(birthDateString));
 				passed = false;
 			}
 			
 			Date messageDate = message.getMessageHeader().getMessageDate();
 			if (messageDate != null && messageDate.before(birthDate)) {
-				issues.add(PotentialIssue.PatientBirthDateIsAfterSubmission.build(birthDateString));
+				issues.add(MessageAttribute.PatientBirthDateIsAfterSubmission.build(birthDateString));
 				passed = false;
 			}
 		}

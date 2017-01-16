@@ -9,7 +9,7 @@ import org.immregistries.dqa.codebase.client.reference.CvxConceptType;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.codes.AdministeredLikelihood;
-import org.immregistries.dqa.validator.engine.issues.PotentialIssue;
+import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaVaccination;
@@ -33,9 +33,9 @@ public class VaccinationIsForeign extends ValidationRule<DqaVaccination> {
 		
 		if (CvxConceptType.FOREIGN_VACCINE == concept) {
 			if (administered) {
-				issues.add(PotentialIssue.VaccinationAdministeredCodeIsForiegn.build());
+				issues.add(MessageAttribute.VaccinationAdministeredCodeIsForiegn.build());
 			} else {
-				issues.add(PotentialIssue.VaccinationHistoricalCodeIsForeign.build());
+				issues.add(MessageAttribute.VaccinationHistoricalCodeIsForeign.build());
 			}
 		
 			passed = true;

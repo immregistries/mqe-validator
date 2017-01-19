@@ -1,7 +1,12 @@
 package org.immregistries.dqa.validator.engine.issues;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.immregistries.dqa.hl7util.Reportable;
 import org.immregistries.dqa.hl7util.SeverityLevel;
+import org.immregistries.dqa.hl7util.hl7model.CodedWithExceptions;
+import org.immregistries.dqa.hl7util.hl7model.ErrorLocation;
 
 public class ValidationIssue implements Reportable
 {
@@ -68,27 +73,46 @@ public SeverityLevel getSeverityLevel() {
 }
 
 @Override
-public String getSeverity() {
-	// TODO Auto-generated method stub
-	return null;
+public String getDiagnosticMessage()
+{
+  // TODO: Not implemented yet
+  return null;
 }
 
 @Override
-public int getHl7ErrorCode() {
-	// TODO Auto-generated method stub
-	return 0;
+public CodedWithExceptions getApplicationErrorCode()
+{
+  // TODO: Not implemented yet
+  return null;
 }
 
 @Override
-public String getHl7Location() {
-	// TODO Auto-generated method stub
-	return null;
+public SeverityLevel getSeverity()
+{
+  // TODO: Not implemented yet
+  return null;
 }
 
 @Override
-public String getReportedMessage() {
-	// TODO Auto-generated method stub
-	return null;
+public CodedWithExceptions getHl7ErrorCode()
+{
+  // TODO: Not implemented yet
+  return null;
 }
+
+@Override
+public List<ErrorLocation> getHl7LocationList()
+{
+  // TODO: Not implemented yet
+  return null;
+}
+
+@Override
+public String getReportedMessage()
+{
+  // TODO: Not implemented yet
+  return null;
+}
+
 
 }

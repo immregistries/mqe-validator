@@ -734,6 +734,7 @@ public enum MessageAttribute {
   public ValidationIssue build(String value) {
 	  	ValidationIssue found = build();
 	  	found.setCodeReceived(value);
+	  	found.setHl7Reference(this.getTargetField().getHl7Field());
 		return found;
   }
   

@@ -22,6 +22,17 @@ public enum DateUtility {
 	
 	public Date parseDate(String dateString) {
 		
+		DateTime dt = parseDateTime(dateString);
+		
+		if (dt != null) {
+			return dt.toDate();
+		}
+		
+		return null;
+	}
+	
+	public DateTime parseDateTime(String dateString) {
+		
 		if (StringUtils.isEmpty(dateString)) {
 			return null;
 		}
@@ -30,7 +41,7 @@ public enum DateUtility {
 		for (DateTimeFormatter dateFormatter : DATE_FORMATS) {
 			try {
 				DateTime dt = DateTime.parse(dateString, dateFormatter);
-				return dt.toDate();
+				return dt;
 			} catch (IllegalArgumentException iae) {
 				continue;//try the next format. 
 			}
@@ -42,6 +53,10 @@ public enum DateUtility {
 //	This puts a dateTime object to the DQA's expected String format. 
 	public String toString(DateTime input) {
 		return input.toString(dtf1);
+	}
+	
+	public String toString(Date input) {
+		return new DateTime(input).toString(dtf1);
 	}
 	
 	public boolean isDate(String dateString) {

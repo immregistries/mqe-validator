@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum IssueObject {
-	  GENERAL( "General")
+	  GENERAL( "General", "GEN")
 	, HL7( "HL7")
 	, HL7_MSH( "HL7 MSH")
 	, HL7_NK1( "HL7 NK1")
@@ -15,10 +15,10 @@ public enum IssueObject {
 	, HL7_PV1( "HL7 PV1")
 	, HL7_RXA( "HL7 RXA")
 	, HL7_RXR( "HL7 RXR")
-	, NEXT_OF_KIN( "Next-of-kin")
-	, OBSERVATION( "Observation")
-	, PATIENT( "Patient")
-	, VACCINATION( "Vaccination")
+	, NEXT_OF_KIN( "Next-of-kin", "NK1")
+	, OBSERVATION( "Observation", "OBX")
+	, PATIENT( "Patient", "PID")
+	, VACCINATION( "Vaccination", "VAC")
 	;
 	
 	  

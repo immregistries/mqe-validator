@@ -1,10 +1,21 @@
 package org.immregistries.dqa.validator.engine.issues;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.immregistries.dqa.hl7util.Reportable;
 import org.immregistries.dqa.hl7util.SeverityLevel;
+import org.immregistries.dqa.hl7util.hl7model.CodedWithExceptions;
+import org.immregistries.dqa.hl7util.hl7model.ErrorLocation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ValidationIssue implements Reportable
 {
+  
+private static final Logger logger = LoggerFactory
+		.getLogger(ValidationIssue.class);
+
   private MessageAttribute messageAttribute = null;//should this be a String?
   private int positionId = 0;//This says where in the ACK to put it. 
   private SeverityLevel severityLevel = null; //this is how bad it is. 
@@ -68,25 +79,40 @@ public SeverityLevel getSeverityLevel() {
 }
 
 @Override
-public String getSeverity() {
+public SeverityLevel getSeverity() {
 	// TODO Auto-generated method stub
-	return null;
+	return this.severityLevel;
 }
 
 @Override
-public int getHl7ErrorCode() {
-	// TODO Auto-generated method stub
-	return 0;
+public CodedWithExceptions getHl7ErrorCode() {
+	CodedWithExceptions cwe = new CodedWithExceptions();
+	cwe.setIdentifier("000");
+	return cwe;
 }
 
 @Override
-public String getHl7Location() {
-	// TODO Auto-generated method stub
-	return null;
+public List<ErrorLocation> getHl7LocationList() {
+	List<ErrorLocation> list = new ArrayList<ErrorLocation>();
+	logger.info("Adding : " + this.hl7Reference);
+	ErrorLocation el = new ErrorLocation(this.hl7Reference);
+	list.add(el);
+	return list;
 }
 
 @Override
 public String getReportedMessage() {
+	return this.messageAttribute.getDisplayText();
+}
+
+@Override
+public String getDiagnosticMessage() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public CodedWithExceptions getApplicationErrorCode() {
 	// TODO Auto-generated method stub
 	return null;
 }

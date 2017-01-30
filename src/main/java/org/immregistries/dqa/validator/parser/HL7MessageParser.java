@@ -2,8 +2,6 @@ package org.immregistries.dqa.validator.parser;
 
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.immregistries.dqa.hl7util.parser.HL7MessageMap;
 import org.immregistries.dqa.hl7util.parser.MessageParserHL7;
 import org.immregistries.dqa.validator.model.DqaMessageHeader;
@@ -15,6 +13,8 @@ import org.immregistries.dqa.validator.parser.hl7.HL7MessageHeaderParser;
 import org.immregistries.dqa.validator.parser.hl7.HL7NokParser;
 import org.immregistries.dqa.validator.parser.hl7.HL7PatientParser;
 import org.immregistries.dqa.validator.parser.hl7.HL7VaccineParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * <ul>
@@ -78,9 +78,7 @@ import org.immregistries.dqa.validator.parser.hl7.HL7VaccineParser;
 public enum HL7MessageParser  {
 	INSTANCE;
 	
-	
-	
-	protected static final Log LOGGER = LogFactory.getLog(HL7MessageParser.class);
+	protected static final Logger LOGGER = LoggerFactory.getLogger(HL7MessageParser.class);
 	
 	private MessageParserHL7 parser = new MessageParserHL7();
 	

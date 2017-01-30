@@ -5,16 +5,16 @@ import java.util.Map;
 
 public enum IssueObject {
 	  GENERAL( "General", "GEN")
-	, HL7( "HL7")
-	, HL7_MSH( "HL7 MSH")
-	, HL7_NK1( "HL7 NK1")
-	, HL7_OBX( "HL7 OBX")
-	, HL7_ORC( "HL7 ORC")
-	, HL7_PD1( "HL7 PD1")
-	, HL7_PID( "HL7 PID")
-	, HL7_PV1( "HL7 PV1")
-	, HL7_RXA( "HL7 RXA")
-	, HL7_RXR( "HL7 RXR")
+	, HL7( "HL7", "HL7")
+	, HL7_MSH( "HL7 MSH", "MSH")
+	, HL7_NK1( "HL7 NK1", "NK1")
+	, HL7_OBX( "HL7 OBX", "OBX")
+	, HL7_ORC( "HL7 ORC", "ORC")
+	, HL7_PD1( "HL7 PD1", "PD1")
+	, HL7_PID( "HL7 PID", "PID")
+	, HL7_PV1( "HL7 PV1", "PV1")
+	, HL7_RXA( "HL7 RXA", "RXA")
+	, HL7_RXR( "HL7 RXR", "RXR")
 	, NEXT_OF_KIN( "Next-of-kin", "NK1")
 	, OBSERVATION( "Observation", "OBX")
 	, PATIENT( "Patient", "PID")
@@ -31,8 +31,10 @@ public enum IssueObject {
 	}
 	
 	private String description;
-	private IssueObject(String desc) {
+	private String location;
+	private IssueObject(String desc, String location) {
 		this.description = desc;
+		this.location = location;
 	}
 	
 	public String getDescription() {
@@ -42,4 +44,9 @@ public enum IssueObject {
 	public static IssueObject getByDesc(String desc) {
 		return mappd.get(desc);
 	}
+
+	public String getLocation() {
+		return location;
+	}
+
 }

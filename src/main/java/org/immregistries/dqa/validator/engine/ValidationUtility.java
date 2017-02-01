@@ -24,7 +24,7 @@ public enum ValidationUtility {
 		ValidationIssue found = new ValidationIssue();
 		found.setMessageAttribute(attribute);
 		found.setCodeReceived(codedValue);
-		found.setSeverityLevel(SeverityLevel.ERROR);//This needs to be equipped to be naunced. This will comes off a profile. 
+		found.setSeverityLevel(attribute.getDefaultAction());//This needs to be equipped to be naunced. This will comes off a profile. 
 		return found;
 	}
 

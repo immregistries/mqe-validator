@@ -26,7 +26,7 @@ public class PotentialIssueStatus implements Serializable
   {
     issue = potentialIssue;
     this.profile = profile;
-    action = issue.getDefaultAction();
+    action = issue.getSeverity();
     expectMin = 0;
     expectMax = 100;
   }

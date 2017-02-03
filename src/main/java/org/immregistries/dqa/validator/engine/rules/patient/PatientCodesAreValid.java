@@ -45,7 +45,7 @@ public class PatientCodesAreValid extends ValidationRule<DqaPatient> {
 		}
 		
 		issues.addAll(this.codr.handleCode(target.getPrimaryLanguage(),
-				IssueField.PATIENT_PRIMARY_LANGUAGE));
+				IssueField.PRIMARY_LANGUAGE));
 		
 		issues.addAll(this.codr.handleCode(target.getPhysician().getNumber(),
 				IssueField.PATIENT_PRIMARY_PHYSICIAN_ID));

@@ -20,7 +20,6 @@ private static final Logger logger = LoggerFactory
   private int positionId = 0;//This says where in the ACK to put it. 
   private SeverityLevel severityLevel = null; //this is how bad it is. 
   private String valueReceived = null;//This is the related value. 
-  private String hl7Reference;//This is where it is from in the HL7 message. 
   
   public MessageAttribute getIssue()
   {
@@ -57,12 +56,9 @@ private static final Logger logger = LoggerFactory
     this.valueReceived = codeReceived;
   }
   public String getHl7Reference() {
-	  return hl7Reference;
+	  return String.valueOf(this.messageAttribute.getHl7Locations());
   }
-  public void setHl7Reference(String hl7Reference) {
-	  this.hl7Reference = hl7Reference;
-  }
-  
+
   public boolean isError()
   {
 	  return SeverityLevel.ERROR.equals(this.severityLevel);
@@ -74,29 +70,30 @@ public String toString() {
 			+ ", issueAction=" + severityLevel + ", codeReceived=" + valueReceived
 			+ "]";
 }
-public SeverityLevel getSeverityLevel() {
-	return this.severityLevel;
-}
 
 @Override
 public SeverityLevel getSeverity() {
-	// TODO Auto-generated method stub
+	if (this.severityLevel == null) {
+		return this.messageAttribute.getSeverity();
+	}
 	return this.severityLevel;
 }
 
 @Override
 public CodedWithExceptions getHl7ErrorCode() {
 	CodedWithExceptions cwe = new CodedWithExceptions();
-	cwe.setIdentifier("000");
+	cwe.setIdentifier(this.messageAttribute.getHl7ErrorCode());
 	return cwe;
 }
 
 @Override
 public List<ErrorLocation> getHl7LocationList() {
 	List<ErrorLocation> list = new ArrayList<ErrorLocation>();
-	logger.info("Adding : " + this.hl7Reference);
-	ErrorLocation el = new ErrorLocation(this.hl7Reference);
-	list.add(el);
+	for (String loc : this.messageAttribute.getHl7Locations()) {
+		logger.info("Adding : " + loc);
+		ErrorLocation el = new ErrorLocation(loc);
+		list.add(el);
+	}
 	return list;
 }
 
@@ -113,8 +110,9 @@ public String getDiagnosticMessage() {
 
 @Override
 public CodedWithExceptions getApplicationErrorCode() {
-	// TODO Auto-generated method stub
-	return null;
+	CodedWithExceptions cwe = new CodedWithExceptions();
+	cwe.setIdentifier(this.messageAttribute.getDqaErrorCode());
+	return cwe;
 }
 
 }

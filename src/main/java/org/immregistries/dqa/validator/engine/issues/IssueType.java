@@ -1,9 +1,9 @@
 package org.immregistries.dqa.validator.engine.issues;
 
 public enum IssueType {
-	 	 ISSUE_TYPE_EXCEPTION("exception")
+	 	 EXCEPTION("exception")
 	    ,BEFORE_BIRTH("is before birth")
-	    ,DEPRECATE("is deprecated")
+	    ,DEPRECATED("is deprecated")
 	    ,IGNORED("is ignored")
 	    ,IN_FUTURE("is in future")
 	    ,INCOMPLETE("is incomplete")
@@ -41,18 +41,18 @@ public enum IssueType {
 	    ,KNOWN_TEST_NAME("is a known test name")
 	    ,INVALID_PREFIXES("has invalid prefixes")
 	    ,ARE_INCONSISTENT("are inconsistent")
-	    ,CONFLICTS_WITH_COMPLETION_STATUS("conflicts completion status")
+	    ,CONFLICTS_COMPLETION_STATUS("conflicts completion status")
 	    ,UNEXPECTED_FOR_DATE_ADMINISTERED("is unexpected for date administered")
 	    ,INVALID_FOR_DATE_ADMINISTERED("is invalid for date administered")
 	    ,AFTER_ADMIN_DATE("is after admin date")
 	    ,NOT_SAME_AS_ADMIN_DATE("is not admin date")
 	    ,BEFORE_PUBLISHED_DATE("is before published date")
-
+	    , BEFORE_VERSION_DATE("is before version date")
 	    
 	    ,NOT_RESPONSIBLE_PARTY("is not responsible party")
 	    
-	    ,ADMIN_BUT_APPEARS_HISTORICAL("is administered but appears to historical")
-	    ,HISTORICAL_BUT_APPEARS_ADMIN("is historical but appears to be administered")
+	    ,ADMINISTERED_BUT_APPEARS_TO_HISTORICAL("is administered but appears to historical")
+	    ,HISTORICAL_BUT_APPEARS_TO_BE_ADMINISTERED("is historical but appears to be administered")
 	    ,INVALID_FOR_VACCINE("is invalid for vaccine indicated")
 	    ,INVALID_FOR_BODY_SITE("is invalid for body site indicated")
 	    

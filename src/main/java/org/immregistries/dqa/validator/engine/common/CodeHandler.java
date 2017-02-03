@@ -48,7 +48,7 @@ public enum CodeHandler {
 					issueToList(field, IssueType.UNRECOGNIZED, issues);
 					break;
 				case DEPRECATED:
-					issueToList(field, IssueType.DEPRECATE, issues);
+					issueToList(field, IssueType.DEPRECATED, issues);
 					break;
 				case IGNORED:
 					issueToList(field, IssueType.IGNORED, issues);

@@ -3,10 +3,10 @@ package org.immregistries.dqa.validator.engine.issues;
 import org.immregistries.dqa.codebase.client.reference.CodesetType;
 
 public enum IssueField {
-			  GENERAL_AUTHORIZATION("authorization", null, null)
-			, GENERAL_CONFIGURATION("configuration", null, null)
-			, GENERAL_PARSE("parse", null, null)
-			, GENERAL_PROCESSING("processing", null, null)
+			  AUTHORIZATION("authorization", null, null)
+			, CONFIGURATION("configuration", null, null)
+			, PARSE("parse", null, null)
+			, PROCESSING("processing", null, null)
 			, HL7_SEGMENT("segment", null, null)
 			, HL7_SEGMENTS("segments", null, null)
 			, HL7_MSH_ACCEPT_ACK_TYPE("accept ack type", null, null)
@@ -104,7 +104,7 @@ public enum IssueField {
 			, PATIENT_PHONE_TEL_EQUIP_CODE("phone tel equip code", null, null)
 			, PATIENT_PRIMARY_FACILITY_ID("primary facility id", null, null)
 			, PATIENT_PRIMARY_FACILITY_NAME("primary facility name", null, null)
-			, PATIENT_PRIMARY_LANGUAGE("primary language", CodesetType.PERSON_LANGUAGE, null)
+			, PRIMARY_LANGUAGE("primary language", CodesetType.PERSON_LANGUAGE, null)
 			, PATIENT_PRIMARY_PHYSICIAN_ID("primary physician id", CodesetType.PHYSICIAN_NUMBER, null)
 			, PATIENT_PRIMARY_PHYSICIAN_NAME("primary physician name", null, null)
 			, PATIENT_PROTECTION_INDICATOR("protection indicator", CodesetType.PATIENT_PROTECTION, null)
@@ -145,6 +145,8 @@ public enum IssueField {
 			, VACCINATION_ID_OF_SENDER("id of sender", null, null)
 			, VACCINATION_INFORMATION_SOURCE("information source", null, null)
 			, VACCINATION_VIS("VIS", null, null)
+			, VACCINATION_VIS_VERSION_DATE("VIS Version Date", null, null)
+			, VACCINATION_VIS_DELIVERY_DATE("VIS Delivery Date", null, null)
 			, VACCINATION_VIS_CVX_CODE("VIS CVX Code", CodesetType.VACCINATION_VIS_CVX_CODE, null)
 			, VACCINATION_VIS_DOCUMENT_TYPE("VIS document type", null, null)
 			, VACCINATION_VIS_PUBLISHED_DATE("VIS published date", null, null)

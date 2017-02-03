@@ -68,7 +68,7 @@ public class VaccinationParserHL7Tester {
 	private void reportResults(List<ValidationRuleResult> list, SeverityLevel a) {
 		for (ValidationRuleResult vrr : list) {
 			for (ValidationIssue i : vrr.getIssues()) {
-				if (a == i.getSeverityLevel()) {
+				if (a == i.getSeverity()) {
 					System.out.println(i.getIssue() + "[" + i.getCodeReceived() + "]");
 				}
 			}

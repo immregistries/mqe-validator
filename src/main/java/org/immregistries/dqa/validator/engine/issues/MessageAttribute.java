@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.hl7util.SeverityLevel;
 
 public enum MessageAttribute {
@@ -559,11 +560,16 @@ public enum MessageAttribute {
   {
     StringBuilder displayText = new StringBuilder();
 
-    displayText.append(targetObject.getDescription() + " " + fieldRef.getFieldDescription() + " " + issueType);
-    if (fieldValue != null && !fieldValue.equals(""))
-    {
+    displayText.append(targetObject.getDescription());
+    displayText.append(" ");
+    displayText.append(fieldRef.getFieldDescription());
+    displayText.append(" ");
+    displayText.append(issueType.getText());
+    
+    if (!StringUtils.isBlank(fieldValue)) {
       displayText.append(" " + fieldValue);
     }
+    
     return displayText.toString();
   }
 

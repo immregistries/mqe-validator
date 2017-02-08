@@ -8,12 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
-import org.immregistries.dqa.validator.engine.ValidationRuleEntityLists;
 import org.immregistries.dqa.validator.engine.ValidationRulePair;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.ValidationRunner;
 import org.immregistries.dqa.validator.engine.ValidationUtility;
 import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
+import org.immregistries.dqa.validator.engine.rules.ValidationRuleEntityLists;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientBirthDateIsValid;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientExists;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientIsUnderage;

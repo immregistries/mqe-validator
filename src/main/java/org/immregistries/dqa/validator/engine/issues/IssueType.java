@@ -29,7 +29,7 @@ public enum IssueType {
 	    ,OUT_OF_DATE("is out-of-date")
 	    ,VERY_LONG_AGO("is very long ago")
 	    ,AFTER_SUBMISSION("is after submission")
-	    
+	    ,UNEXPECTED_FORMAT("is an unexpected format")
 	    
 	    //These are the REALLY specific ones
 	    ,UNDERAGE("is underage")

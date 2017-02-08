@@ -3,6 +3,7 @@ package org.immregistries.dqa.validator.engine;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.immregistries.dqa.validator.engine.rules.ValidationRuleEntityLists;
 import org.immregistries.dqa.validator.model.DqaMessageHeader;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.model.DqaNextOfKin;
@@ -21,7 +22,7 @@ public enum RulePairBuilder {
 	}
 	
 	protected List<ValidationRulePair> buildMessageHeaderRulePairs(DqaMessageHeader mh, DqaMessageReceived mr) {
-		return util.buildRulePairs(ValidationRuleEntityLists.MESSAGE_RULES.getRules(),  mh,  mr);
+		return util.buildRulePairs(ValidationRuleEntityLists.MESSAGE_HEADER_RULES.getRules(),  mh,  mr);
 	}
 
 	protected List<ValidationRulePair> buildVaccinationRulePairs(DqaVaccination v, DqaMessageReceived mr) {

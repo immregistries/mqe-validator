@@ -24,26 +24,31 @@ public class VaccinationUseCvx extends ValidationRule<DqaVaccination> {
 		String cvxString = target.getAdminCvxCode();
 		
 		Code cvxCode = repo.getCodeFromValue(cvxString, CodesetType.VACCINATION_CVX_CODE);
-		CodeStatusValue cvxStatus = CodeStatusValue.getBy(cvxCode.getCodeStatus());
 		
 		boolean useCvx = true;
 		
-		if (cvxStatus == null || cvxCode == null) {
+		if (cvxCode == null) {
 			useCvx = false;
-		}
-		
-		if (useCvx) {
-			switch (cvxStatus) {
-			case INVALID:
-			case IGNORED:
-				useCvx = true;
-				break;
-			default:
-				break;
+		} else {
+			CodeStatusValue cvxStatus = CodeStatusValue.getBy(cvxCode.getCodeStatus());
+			
+			
+			if (cvxStatus == null || cvxCode == null) {
+				useCvx = false;
 			}
+			
+			if (useCvx) {
+				switch (cvxStatus) {
+				case INVALID:
+				case IGNORED:
+					useCvx = true;
+					break;
+				default:
+					break;
+				}
+			}
+			passed = useCvx;
 		}
-		
-		passed = useCvx;
 
 		return buildResults(issues, passed);
 	}

@@ -45,6 +45,7 @@ public class PatientBirthDateIsValid extends ValidationRule<DqaPatient> {
 			}
 			
 			Date messageDate = message.getMessageHeader().getMessageDate();
+			
 			if (messageDate != null && messageDate.before(birthDate)) {
 				issues.add(MessageAttribute.PatientBirthDateIsAfterSubmission.build(birthDateString));
 				passed = false;

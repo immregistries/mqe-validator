@@ -6,7 +6,7 @@ import java.util.Map;
 public enum IssueObject {
 	  GENERAL( "General", "GEN")
 	, HL7( "HL7", "HL7")
-	, HL7_MSH( "HL7 MSH", "MSH")
+	, MESSAGE_HEADER( "Message Header", "MSH")
 	, HL7_NK1( "HL7 NK1", "NK1")
 	, HL7_OBX( "HL7 OBX", "OBX")
 	, HL7_ORC( "HL7 ORC", "ORC")

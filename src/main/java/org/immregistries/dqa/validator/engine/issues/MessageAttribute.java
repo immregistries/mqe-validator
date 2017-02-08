@@ -14,6 +14,39 @@ public enum MessageAttribute {
 	GeneralParseException(IssueObject.GENERAL, IssueType.EXCEPTION, IssueField.PARSE, "", SeverityLevel.ACCEPT, "207", "DQA0004", ""),
 	GeneralProcessingException(IssueObject.GENERAL, IssueType.EXCEPTION, IssueField.PROCESSING, "", SeverityLevel.ACCEPT, "207", "DQA0005", ""),
 
+	//These might be validated from NIST validations. 
+	//Maybe we have an entry for Hl7StructureWarning, Hl7StructureError...
+	//We need to figure this out...
+	//DQA should not be looking at the ACK type...
+	//accept ack type
+	
+	MessageAcceptAckTypeIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, IssueField.MESSAGE_ACCEPT_ACK_TYPE, "", SeverityLevel.ACCEPT, "101", "DQA0006", "MSH-15"),
+	MessageAppAckTypeIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, IssueField.MESSAGE_APP_ACK_TYPE, "", SeverityLevel.ACCEPT, "101", "DQA0410", "MSH-16"),
+	MessageMessageControlIdIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, IssueField.MESSAGE_CONTROL_ID, "", SeverityLevel.WARN, "101", "DQA0014", "MSH-10"),
+	
+	//This we validate against other stuff. 
+	MessageMessageDateIsInFuture(IssueObject.MESSAGE_HEADER, IssueType.IN_FUTURE, IssueField.MESSAGE_DATE, "", SeverityLevel.ACCEPT, "102", "DQA0015", "MSH-7"),
+	MessageMessageDateIsInvalid(IssueObject.MESSAGE_HEADER, IssueType.INVALID, IssueField.MESSAGE_DATE, "", SeverityLevel.ACCEPT, "102", "DQA0016", "MSH-7"),
+	MessageMessageDateIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, IssueField.MESSAGE_DATE, "", SeverityLevel.ACCEPT, "101", "DQA0017", "MSH-7"),
+	MessageMessageDateIsNotPrecise(IssueObject.MESSAGE_HEADER, IssueType.NOT_PRECISE, IssueField.MESSAGE_DATE, "", SeverityLevel.ACCEPT, "102", "DQA0526", "MSH-7"),
+	MessageMessageDateIsMissingTimezone(IssueObject.MESSAGE_HEADER, IssueType.MISSING_TIMEZONE, IssueField.MESSAGE_DATE, "", SeverityLevel.INFO, "102", "DQA0527", "MSH-7"),
+	MessageMessageDateIsUnexpectedFormat(IssueObject.MESSAGE_HEADER, IssueType.UNEXPECTED_FORMAT, IssueField.MESSAGE_DATE, "", SeverityLevel.INFO, "102", "DQA9999", "MSH-7"),
+	
+	//
+	MessageMessageProfileIdIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, IssueField.MESSAGE_PROFILE_ID, "", SeverityLevel.ACCEPT, "101", "DQA0439", "MSH-21"),
+	MessageMessageTriggerIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, IssueField.MESSAGE_TRIGGER, "", SeverityLevel.WARN, "101", "DQA0018", "MSH-9.2"),
+	MessageMessageTypeIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, IssueField.MESSAGE_TYPE, "", SeverityLevel.WARN, "101", "DQA0020", "MSH-9.1"),
+	MessageProcessingIdIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, IssueField.MESSAGE_PROCESSING_ID, "", SeverityLevel.ACCEPT, "101", "DQA0023", "MSH-11"),
+	MessageReceivingApplicationIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, IssueField.MESSAGE_RECEIVING_APPLICATION, "", SeverityLevel.ACCEPT, "101", "DQA0030", "MSH-5"),
+	MessageReceivingFacilityIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, IssueField.MESSAGE_RECEIVING_FACILITY, "", SeverityLevel.ACCEPT, "101", "DQA0032", "MSH-6"),
+	MessageSendingApplicationIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, IssueField.MESSAGE_SENDING_APPLICATION, "", SeverityLevel.ACCEPT, "101", "DQA0035", "MSH-3"),
+	MessageSendingFacilityIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, IssueField.MESSAGE_SENDING_FACILITY, "", SeverityLevel.WARN, "101", "DQA0037", "MSH-4"),
+	
+	MessageVersionIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, IssueField.MESSAGE_VERSION, "", SeverityLevel.ACCEPT, "101", "DQA0038", "MSH-12"),
+	MessageVersionIsUnrecognized(IssueObject.MESSAGE_HEADER, IssueType.UNRECOGNIZED, IssueField.MESSAGE_VERSION, "", SeverityLevel.WARN, "103", "DQA0039", "MSH-12"),
+	MessageVersionIsInvalid(IssueObject.MESSAGE_HEADER, IssueType.INVALID, IssueField.MESSAGE_VERSION, "", SeverityLevel.WARN, "103", "DQA0523", "MSH-12"),
+	
+	
 	NextOfKinAddressIsDifferentFromPatientAddress(IssueObject.NEXT_OF_KIN, IssueType.DIFFERENT_FROM_PATIENT_ADDRESS, IssueField.NEXT_OF_KIN_ADDRESS, "", SeverityLevel.ACCEPT, "102", "DQA0056", "NK1-4"),
 	NextOfKinAddressIsMissing(IssueObject.NEXT_OF_KIN, IssueType.MISSING, IssueField.NEXT_OF_KIN_ADDRESS, "", SeverityLevel.ACCEPT, "101", "DQA0057", "NK1-4"),
 	NextOfKinAddressCityIsInvalid(IssueObject.NEXT_OF_KIN, IssueType.INVALID, IssueField.NEXT_OF_KIN_ADDRESS_CITY, "", SeverityLevel.WARN, "102", "DQA0058", "NK1-4.3"),
@@ -412,7 +445,7 @@ public enum MessageAttribute {
 	VaccinationVisPresentedDateIsNotAdminDate(IssueObject.VACCINATION, IssueType.NOT_SAME_AS_ADMIN_DATE, IssueField.VACCINATION_VIS_PRESENTED_DATE,"", SeverityLevel.WARN, "", "DQA9999", ""),
 	VaccinationVisPresentedDateIsBeforePublishedDate(IssueObject.VACCINATION, IssueType.BEFORE_PUBLISHED_DATE, IssueField.VACCINATION_VIS_PRESENTED_DATE,"", SeverityLevel.WARN, "", "DQA9999", ""),
 	VaccinationVisPresentedDateIsAfterAdminDate(IssueObject.VACCINATION, IssueType.AFTER_ADMIN_DATE, IssueField.VACCINATION_VIS_PRESENTED_DATE,"", SeverityLevel.WARN, "", "DQA9999", ""),
-	VaccinationVisIsMissing(IssueObject.VACCINATION, IssueType.MISSING, IssueField.VACCINATION_VIS,"", SeverityLevel.INFO, "100", "DQA9999", "OBX-5"),
+	VaccinationVisIsMissing(IssueObject.VACCINATION, IssueType.MISSING, IssueField.VACCINATION_VIS,"", SeverityLevel.INFO, "100", "DQA9999", ""),
 	VaccinationVisIsUnrecognized(IssueObject.VACCINATION, IssueType.UNRECOGNIZED, IssueField.VACCINATION_VIS,"", SeverityLevel.WARN, "", "DQA9999", ""),
 	VaccinationVisPublishedDateIsInvalid(IssueObject.VACCINATION, IssueType.INVALID, IssueField.VACCINATION_VIS_PUBLISHED_DATE,"", SeverityLevel.WARN, "", "DQA9999", ""),
 	

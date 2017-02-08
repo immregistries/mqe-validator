@@ -54,19 +54,9 @@ public class DqaMessageHeader implements Serializable
     this.headerId = headerId;
   }
 
-  public String getAckTypeAccept()
-  {
-    return ackTypeAccept;
-  }
-
   public String getAckTypeAcceptCode()
   {
     return ackTypeAccept;
-  }
-
-  public String getAckTypeApplication()
-  {
-    return ackTypeApplication;
   }
 
   public String getAckTypeApplicationCode()

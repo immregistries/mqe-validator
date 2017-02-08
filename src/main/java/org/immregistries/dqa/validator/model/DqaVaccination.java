@@ -60,7 +60,6 @@ public class DqaVaccination {
   private String informationSource = "";//new CodedEntity(CodesetType.VACCINATION_INFORMATION_SOURCE);
   private String lotNumber = "";
   private String manufacturer = "";//new CodedEntity(CodesetType.VACCINATION_MANUFACTURER_CODE);
-  private DqaMessageReceived messageReceived = null;
   private List<Observation> observations = new ArrayList<Observation>();
   private String orderControl = "";//new CodedEntity(CodesetType.VACCINATION_ORDER_CONTROL_CODE);
   private Id orderedBy = new Id(CodesetType.PHYSICIAN_NUMBER);
@@ -72,7 +71,7 @@ public class DqaVaccination {
   private long vaccinationId = 0l;
   private String fundingSource = "";//new CodedEntity(CodesetType.VACCINATION_FUNDING_SOURCE);
   private String refusalReason = "";
-  private List<VaccinationVIS> vaccinationVisList = new ArrayList<VaccinationVIS>();
+  private VaccinationVIS vaccinationVis = null;
   private String tradeName = "";//new CodedEntity(CodesetType.VACCINATION_TRADE_NAME);
   private String vaccineValidity = "";//new CodedEntity(CodesetType.VACCINATION_VALIDITY);
 
@@ -121,9 +120,13 @@ public class DqaVaccination {
     this.vaccineValidity = vaccineValidityCode;
   }
 
-  public List<VaccinationVIS> getVaccinationVisList()
+  public VaccinationVIS getVaccinationVis()
   {
-    return vaccinationVisList;
+    return vaccinationVis;
+  }
+  
+  public void setVaccinationVis(VaccinationVIS vis) {
+	  this.vaccinationVis = vis;
   }
 
   public String getRefusalReason()
@@ -146,31 +149,6 @@ public class DqaVaccination {
     this.fundingSource = fundingSourceCode;
   }
 
-  public Date getVisPresentedDate()
-  {
-    return vaccinationVisList.size() > 0 ? vaccinationVisList.get(0).getPresentedDate() : null;
-  }
-
-  public void setVisPresentedDate(Date visPresentedDate)
-  {
-    if (vaccinationVisList.size() > 0)
-    {
-      vaccinationVisList.get(0).setPresentedDate(visPresentedDate);
-    }
-  }
-
-  public String getVisDocumentCode()
-  {
-    return vaccinationVisList.size() > 0 ? vaccinationVisList.get(0).getDocumentCode() : "";
-  }
-
-  public void setVisDocumentCode(String visDocumentCode)
-  {
-    if (vaccinationVisList.size() > 0)
-    {
-      vaccinationVisList.get(0).setDocumentCode(visDocumentCode);
-    }
-  }
 
   public String getFundingSource()
   {
@@ -375,11 +353,6 @@ public class DqaVaccination {
     return manufacturer;
   }
 
-  public DqaMessageReceived getMessageReceived()
-  {
-    return messageReceived;
-  }
-
   public List<Observation> getObservations()
   {
     return observations;
@@ -454,11 +427,6 @@ public class DqaVaccination {
 //  {
 //    return vaccineCvx;
 //  }
-
-  public Date getVisPublicationDate()
-  {
-    return vaccinationVisList.size() > 0 ? vaccinationVisList.get(0).getPublishedDate() : null;
-  }
 
   public boolean isActionAdd()
   {
@@ -661,11 +629,6 @@ public class DqaVaccination {
     manufacturer = manufacturerCode;
   }
 
-  public void setMessageReceived(DqaMessageReceived messageReceived)
-  {
-    this.messageReceived = messageReceived;
-  }
-
   public void setObservations(List<Observation> observations)
   {
     this.observations = observations;
@@ -720,14 +683,6 @@ public class DqaVaccination {
 //  {
 //    this.vaccineCvx = vaccineCvx;
 //  }
-
-  public void setVisPublicationDate(Date visPublicationDate)
-  {
-    if (vaccinationVisList.size() > 0)
-    {
-      vaccinationVisList.get(0).setPublishedDate(visPublicationDate);
-    }
-  }
 
 public String getAdminDateString() {
 	return adminDateString;

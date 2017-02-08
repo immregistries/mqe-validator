@@ -20,13 +20,13 @@ public enum MessageValidator {
 	public List<ValidationRuleResult> validateMessage(DqaMessageReceived m) {
 		
 		//first validate the high order elements of the message: 
-		List<ValidationRuleResult> headerAndPatientResults = validateHeaderAndPatient(m);
+		List<ValidationRuleResult> headerAndPatientResults = validateHighOrderElements(m);
 		
 		//Generate a list of passed classes from the results: 
 		List<Class> headerAndPatientPassed = util.getPassedFromResults(headerAndPatientResults);
 		
 		//Then validate the list items.  The resons they are treated separately is desribed elsewhere.  
-		List<ValidationRuleResult> listEntityResults = validateVaccinationAndNokEntries(m, headerAndPatientPassed);
+		List<ValidationRuleResult> listEntityResults = validateListItems(m, headerAndPatientPassed);
 		
 		//Then add them all together.
 		List<ValidationRuleResult> validationResults = new ArrayList<ValidationRuleResult>();
@@ -36,14 +36,14 @@ public enum MessageValidator {
 		return validationResults;
 	}
 	
-	protected List<ValidationRuleResult> validateHeaderAndPatient(DqaMessageReceived m) {
+	protected List<ValidationRuleResult> validateHighOrderElements(DqaMessageReceived m) {
 		List<ValidationRulePair> headerAndPatientRules = builder.buildHeaderAndPatientRuleList(m);
 		List<ValidationRuleResult> headerAndPatientResults = runner.processValidationRules(headerAndPatientRules, new ArrayList<Class>());
 	
 		return headerAndPatientResults;
 	}
 	
-	protected List<ValidationRuleResult> validateVaccinationAndNokEntries(DqaMessageReceived m, List<Class> mainPassed) {
+	protected List<ValidationRuleResult> validateListItems(DqaMessageReceived m, List<Class> mainPassed) {
 		List<List<ValidationRulePair>> listEntityRuleLists = builder.buildListItemRuleLists(m);
 		
 		List<ValidationRuleResult> listRuleResults = new ArrayList<ValidationRuleResult>();

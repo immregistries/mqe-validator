@@ -3,6 +3,7 @@ package org.immregistries.dqa.validator.engine.common;
 import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
+import org.immregistries.dqa.validator.IISProperties;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
@@ -15,11 +16,20 @@ public enum DateUtility {
 	INSTANCE;
 	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(DateUtility.class);
 	
+	//TODO: add time zone to the date time formats. 
+	//example from NIST: 
+	//20150624073733.994-0500
+	private final String nistFormat1 = "yyyyMMddHHmmss.SSSZ";
+	private final String nistFormat2 = "yyyyMMddHHmmssZ";
+	private final DateTimeFormatter nist1 = DateTimeFormat.forPattern(nistFormat1);
+	private final DateTimeFormatter nist2 = DateTimeFormat.forPattern(nistFormat2);
+	private final DateTimeFormatter dtf0 = DateTimeFormat.forPattern("yyyyMMddHHmmss");
 	private final DateTimeFormatter dtf1 = DateTimeFormat.forPattern("yyyyMMdd");
 	private final DateTimeFormatter dtf2 = DateTimeFormat.forPattern("yyyy-MM-dd");
 	private final DateTimeFormatter dtf3 = DateTimeFormat.forPattern("yyyy/MM/dd");
-	private final DateTimeFormatter[] DATE_FORMATS = {dtf1,dtf2,dtf3};
-	
+	private final IISProperties props = IISProperties.INSTANCE;
+	private final DateTimeFormatter expected = DateTimeFormat.forPattern(props.getExpectedDateFormat());
+	private final DateTimeFormatter[] DATE_FORMATS = {expected, dtf0, dtf1, nist2, nist1, dtf2,dtf3};
 	public Date parseDate(String dateString) {
 		
 		DateTime dt = parseDateTime(dateString);
@@ -29,6 +39,29 @@ public enum DateUtility {
 		}
 		
 		return null;
+	}
+	
+	public boolean isExpectedDateFormat(String dateString) {
+		try {
+			DateTime.parse(dateString, expected);
+			return true;
+		} catch (IllegalArgumentException iae) {
+			return false;
+		}
+	}
+	
+	public boolean hasTimezone(String dateString) {
+		try {
+			DateTime dt = DateTime.parse(dateString, nist1);
+			return true;
+		} catch (IllegalArgumentException iae) {
+			try {
+				DateTime dt = DateTime.parse(dateString, nist2);
+				return true;
+			} catch (IllegalArgumentException iae2) {
+				return false;
+			}
+		}
 	}
 	
 	public DateTime parseDateTime(String dateString) {
@@ -48,6 +81,15 @@ public enum DateUtility {
 		}
 		
 		return null;
+	}
+	
+	/**
+	 * this is for testing to know what the string ought to look like. 
+	 * @param in
+	 * @return
+	 */
+	protected String toFullNistString(DateTime in) {
+		return in.toString(nist1);
 	}
 	
 //	This puts a dateTime object to the DQA's expected String format. 

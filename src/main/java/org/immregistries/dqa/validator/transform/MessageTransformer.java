@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.immregistries.dqa.validator.engine.common.CodeHandler;
 import org.immregistries.dqa.validator.engine.common.DateUtility;
 import org.immregistries.dqa.validator.model.DqaMessageHeader;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
@@ -17,6 +18,8 @@ import org.immregistries.dqa.validator.model.DqaVaccination;
 import org.immregistries.dqa.validator.model.VaccinationVIS;
 import org.immregistries.dqa.validator.model.hl7types.Address;
 import org.immregistries.dqa.validator.model.hl7types.PatientImmunity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 //NOTE: When you do things like change a FLU vaccine - do that in the business layer
@@ -61,9 +64,11 @@ import org.immregistries.dqa.validator.model.hl7types.PatientImmunity;
 
 public enum MessageTransformer {
 	INSTANCE;
+	
+	private static final Logger logger = LoggerFactory.getLogger(MessageTransformer.class);
+	
 	private DateUtility datr = DateUtility.INSTANCE;
 	private AddressCleanser ac = AddressCleanserDefault.INSTANCE;
-	
 	
 	
 	//given an HL7 object model, put it into the VXU business object model. 
@@ -84,6 +89,10 @@ public enum MessageTransformer {
 
 	protected void transformHeaderData(DqaMessageHeader mh) {
 		if (mh != null) {
+//			if (mh.getMessageDate() == null) {
+//				//
+//			}
+			//TODO: deal with this. 
 			mh.setMessageDate(datr.parseDate(mh.getMessageDateString()));
 		}
 	}
@@ -145,7 +154,7 @@ public enum MessageTransformer {
 					//make a VIS object from this set, add to the list for the vaccine.
 					VaccinationVIS vis = createVISFromObxSet(obsSet);
 					//add to vaccine's list. 
-					v.getVaccinationVisList().add(vis);
+					v.setVaccinationVis(vis);
 				} 
 				
 				if (isImmunity) {
@@ -234,26 +243,19 @@ public enum MessageTransformer {
 					break;
 				case OBX_VIS_PUBLISHED:
 					String publishedDateString = o.getValue();
-					Date pubDate = datr.parseDate(publishedDateString);
-					vis.setPublishedDate(pubDate);
+					vis.setPublishedDateString(publishedDateString);
 					break;
 				case OBX_VIS_PRESENTED:
 					String presentedDateString = o.getValue();
-					Date presDate = datr.parseDate(presentedDateString);
-					//Problem:  Should the date be an invalid format, 
-					// 			This will resolve to null
-					//			which is the same as if it were missing. 
-					//			We could just save the date string, and then parse it 
-					//			into a date for a second field in the VIS object. 
-					//			Hmm...  is that pattern good?  not sure. 
-					//			Or should the object remain strictly representing a VIS object. 
-					vis.setPresentedDate(presDate);
+					vis.setPresentedDateString(presentedDateString);
 					break;
 				default:
 					//not a vis part. 
 					break;
 			}
 		}
+		
+		logger.info("VIS object built from observations: " + vis);
 		return vis;
 	}
 	

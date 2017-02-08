@@ -1,8 +1,6 @@
 package org.immregistries.dqa.validator.engine.common;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.Date;
 
@@ -98,5 +96,20 @@ public class DateUtilityTest {
 		assertFalse("should not be an adult if null is sent", datr.isAdult(null));
 		assertFalse("Should not be an adult if today is birthday", datr.isAdult(new Date()));
 		assertFalse("Should not be an adult if age 17", datr.isAdult(seventeenYearsAgo.toDate()));
+	}
+	
+	@Test
+	public void nistFormat() {
+		System.out.println("expected format: " + datr.toFullNistString(new DateTime()));
+		
+		
+		String fullDateWithTimezone = "20150624073733.994-0500";
+		String partialDateNoMillisWithTimezone = "20150624073733-0500";
+
+		Date d1z = datr.parseDate(fullDateWithTimezone);
+		Date d2z = datr.parseDate(partialDateNoMillisWithTimezone);
+		
+		assertNotNull("shouldn't be null - d1z", d1z);
+		assertNotNull("shouldn't be null - d2z", d2z);
 	}
 }

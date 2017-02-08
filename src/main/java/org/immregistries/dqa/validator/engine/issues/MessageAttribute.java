@@ -412,10 +412,9 @@ public enum MessageAttribute {
 	VaccinationVisPresentedDateIsNotAdminDate(IssueObject.VACCINATION, IssueType.NOT_SAME_AS_ADMIN_DATE, IssueField.VACCINATION_VIS_PRESENTED_DATE,"", SeverityLevel.WARN, "", "DQA9999", ""),
 	VaccinationVisPresentedDateIsBeforePublishedDate(IssueObject.VACCINATION, IssueType.BEFORE_PUBLISHED_DATE, IssueField.VACCINATION_VIS_PRESENTED_DATE,"", SeverityLevel.WARN, "", "DQA9999", ""),
 	VaccinationVisPresentedDateIsAfterAdminDate(IssueObject.VACCINATION, IssueType.AFTER_ADMIN_DATE, IssueField.VACCINATION_VIS_PRESENTED_DATE,"", SeverityLevel.WARN, "", "DQA9999", ""),
-	VaccinationVisIsMissing(IssueObject.VACCINATION, IssueType.MISSING, IssueField.VACCINATION_VIS,"", SeverityLevel.WARN, "", "DQA9999", ""),
+	VaccinationVisIsMissing(IssueObject.VACCINATION, IssueType.MISSING, IssueField.VACCINATION_VIS,"", SeverityLevel.INFO, "100", "DQA9999", "OBX-5"),
 	VaccinationVisIsUnrecognized(IssueObject.VACCINATION, IssueType.UNRECOGNIZED, IssueField.VACCINATION_VIS,"", SeverityLevel.WARN, "", "DQA9999", ""),
 	VaccinationVisPublishedDateIsInvalid(IssueObject.VACCINATION, IssueType.INVALID, IssueField.VACCINATION_VIS_PUBLISHED_DATE,"", SeverityLevel.WARN, "", "DQA9999", ""),
-	
 	
 	VaccinationLotExpirationDateIsInvalid(IssueObject.VACCINATION, IssueType.INVALID, IssueField.VACCINATION_LOT_EXPIRATION_DATE, "", SeverityLevel.WARN, "102", "DQA0336", "RXA-16"),
 	VaccinationLotExpirationDateIsMissing(IssueObject.VACCINATION, IssueType.MISSING, IssueField.VACCINATION_LOT_EXPIRATION_DATE, "", SeverityLevel.ACCEPT, "101", "DQA0337", "RXA-16"),

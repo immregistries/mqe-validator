@@ -31,7 +31,7 @@ public class MessageTransformerTest {
 		
 	TestMessageGenerator genr = new TestMessageGenerator();
 	HL7MessageParser toObj = HL7MessageParser.INSTANCE;
-	MessageTransformer mt = new MessageTransformer();
+	MessageTransformer mt = MessageTransformer.INSTANCE;
 	
 	@Test
 	public final void testObxList() {

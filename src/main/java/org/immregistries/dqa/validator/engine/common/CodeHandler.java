@@ -20,46 +20,51 @@ import org.slf4j.LoggerFactory;
 
 public enum CodeHandler {
 		INSTANCE;
-	
+
 	/**
 	 * This codemap object will get all the information we know about a code.
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(CodeHandler.class);
 	protected final DateUtility datr = DateUtility.INSTANCE;
 	protected final CodeRepository repo = CodeRepository.INSTANCE;
-	  
+
 	public List<ValidationIssue> handleCode(String value, IssueField field) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
-		
+		//LOGGER.info("value:" + value + " field: " + field);
+
 		if (StringUtils.isBlank(value)) {
 			issueToList(field, IssueType.MISSING, issues);
+			return issues;
 		}
-		
+
 		Code c = repo.getCodeFromValue(value, field.getCodesetType());
 		if (c!=null) {
 			CodeStatus status = c.getCodeStatus();
 			String statusValue = status.getStatus();
 			CodeStatusValue csVal = CodeStatusValue.getBy(statusValue);
 			switch (csVal) {
+				case VALID:
+					break;
 				case INVALID:
 					issueToList(field, IssueType.INVALID, issues);
-					break;
-				case UNRECOGNIZED:
-					issueToList(field, IssueType.UNRECOGNIZED, issues);
 					break;
 				case DEPRECATED:
 					issueToList(field, IssueType.DEPRECATED, issues);
 					break;
 				case IGNORED:
 					issueToList(field, IssueType.IGNORED, issues);
-					break;	
-				default: 
+					break;
+				case UNRECOGNIZED:
 					issueToList(field, IssueType.UNRECOGNIZED, issues);
+					break;
+				default:
+					issueToList(field, IssueType.UNRECOGNIZED, issues);
+					break;
 			}
 		} else {
 			issueToList(field, IssueType.UNRECOGNIZED, issues);
 		}
-		
+
 		return issues;
 	}
 
@@ -69,14 +74,14 @@ public enum CodeHandler {
 		if (codedValue == null || StringUtils.isEmpty(usedDateString)) {
 			return issues;
 		}
-		
+
 		UseDate useDate = codedValue.getUseDate();
-		
+
 		if (useDate != null) {
 
 			String notExpectedAfterDateString = useDate.getNotExpectedAfter();
 			String notExpectedBeforeDateString = useDate.getNotExpectedBefore();
-			
+
 			String notBeforeDateString = useDate.getNotBefore();
 			String notAfterDateString = useDate.getNotAfter();
 			LOGGER.debug("Expected Dates: notExpectedAfterDateString["+notExpectedAfterDateString+"] notExpectedBeforeDateString[" + notExpectedBeforeDateString + "]");
@@ -93,7 +98,7 @@ public enum CodeHandler {
 		}
 		return issues;
 	}
-	
+
 	public List<ValidationIssue> handleAgeDate(Code codedValue, Date birthDate, Date referenceDate, IssueField field) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 
@@ -101,7 +106,7 @@ public enum CodeHandler {
 			LOGGER.debug("One of the inputs is null.  returning no issues: code[" + codedValue+"] birthDate["+birthDate+"] refDate["+referenceDate+"]");
 			return issues;
 		}
-		
+
 		UseAge useAge = codedValue.getUseAge();
 
 		if (useAge != null) {
@@ -117,12 +122,12 @@ public enum CodeHandler {
 		}
 		return issues;
 	}
-	
+
 	protected void issueToList(IssueField field, IssueType type, List<ValidationIssue> issues) {
 		if (issues == null) {
 			throw new IllegalArgumentException("Empty list sent in for issueToList.  This should not happen.  IssueField: " + field + " Issue Type: " + type);
 		}
-		
+
 		MessageAttribute issue = MessageAttribute.get(field, type);
 		if (issue != null) {
 			issues.add(issue.build());

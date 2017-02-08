@@ -59,8 +59,8 @@ import org.immregistries.dqa.validator.model.hl7types.PatientImmunity;
     there really shouldn't be a lot of stuff in the MCIR specific one. 
 */ 
 
-public class MessageTransformer {
-
+public enum MessageTransformer {
+	INSTANCE;
 	private DateUtility datr = DateUtility.INSTANCE;
 	private AddressCleanser ac = AddressCleanserDefault.INSTANCE;
 	
@@ -72,6 +72,14 @@ public class MessageTransformer {
 		//Make sure to get the stuff from this class: VaccinationObservationsAreValidFIXTHIS
 		transformHeaderData(mr.getMessageHeader());
 		transformObservations(mr);
+		transformVaccinations(mr.getVaccinations());
+	}
+
+	private void transformVaccinations(List<DqaVaccination> vaccinations) {
+		for (DqaVaccination v : vaccinations) {
+			//transform information source into boolean for adminsitered: 
+			v.setAdministered("00".equals(v.getInformationSource()));
+		}
 	}
 
 	protected void transformHeaderData(DqaMessageHeader mh) {

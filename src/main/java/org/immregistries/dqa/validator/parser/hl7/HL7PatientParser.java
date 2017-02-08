@@ -34,6 +34,7 @@ public enum HL7PatientParser {
 		String legalFirstNm 	= map.get("PID-5-2");//getLegalFirstNm(map);
 		String legalMiddleNm 	= map.get("PID-5-3");//getLegalMiddleNm(map);
 		String legalSuffixNm 	= map.get("PID-5-4");//getLegalSuffixNm(map);
+		String legalNmTypeCd    = map.get("PID-5-7");//name type code. 
 		String momsMaidenNm 	= map.get("PID-6");//getMomsMaidenNm(map);
 		String birthDt 			= map.get("PID-7");//getPID7BirthDt(map);
 		String sexCd 			= map.get("PID-8");//getSexCd(map);
@@ -84,6 +85,7 @@ public enum HL7PatientParser {
 		patient.setNameLast(legalLastNm);//PID-5-1, first repetition
 		patient.setNameMiddle(legalMiddleNm);//PID-5-3, first repetition
 		patient.setNameSuffix(legalSuffixNm);//PID-5-4, first repetition
+		patient.setNameTypeCode(legalNmTypeCd);
 		patient.setMotherMaidenName(momsMaidenNm);//PID-6
 		patient.setRace(raceCd);//PID-10
 		patient.setSexCode(sexCd);//PID-8

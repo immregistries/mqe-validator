@@ -53,10 +53,8 @@ public class VaccinationObservationsAreValidFIXTHIS extends
 				}
 
 			} else if (observation.getIdentifierCode().equals(OBX_VACCINE_TYPE)
-					|| observation.getIdentifierCode()
-							.equals(OBX_VIS_PRESENTED)
-					|| observation.getIdentifierCode()
-							.equals(OBX_VIS_PUBLISHED)) {
+					|| observation.getIdentifierCode().equals(OBX_VIS_PRESENTED)
+					|| observation.getIdentifierCode().equals(OBX_VIS_PUBLISHED)) {
 				String key = observation.getSubId();
 				VaccinationVIS vaccinationVIS = vaccinationVISMap.get(key);
 				if (vaccinationVIS == null) {

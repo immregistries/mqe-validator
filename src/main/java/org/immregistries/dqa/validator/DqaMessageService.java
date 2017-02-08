@@ -6,11 +6,13 @@ import org.immregistries.dqa.validator.engine.MessageValidator;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.model.DqaMessageReceived;
 import org.immregistries.dqa.validator.parser.HL7MessageParser;
+import org.immregistries.dqa.validator.transform.MessageTransformer;
 
 public enum DqaMessageService {
 	INSTANCE;
 	
 	private MessageValidator validator = MessageValidator.INSTANCE;
+	private MessageTransformer transformer = MessageTransformer.INSTANCE;
 	private HL7MessageParser parser = HL7MessageParser.INSTANCE;
 	
 	//The purpose of this class is to be the main interface
@@ -31,6 +33,7 @@ public enum DqaMessageService {
 	 */
 	public DqaMessageServiceResponse processMessage(String messageText) {
 		DqaMessageReceived mr = parser.extractMessageFromText(messageText);
+		transformer.transform(mr);
 		List<ValidationRuleResult> validationResults = validator.validateMessage(mr);
 		
 		DqaMessageServiceResponse msr = new DqaMessageServiceResponse();

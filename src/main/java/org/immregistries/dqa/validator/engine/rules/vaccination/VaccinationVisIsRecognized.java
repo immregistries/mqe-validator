@@ -18,7 +18,7 @@ public class VaccinationVisIsRecognized extends
 
 	@Override
 	protected final Class[] getDependencies() {
-		return new Class[] {VaccinationVisIsPresent.class};
+		return new Class[] {VaccinationVisIsPresent.class, VaccinationIsAdministered.class};
 	}
 
 	@Override

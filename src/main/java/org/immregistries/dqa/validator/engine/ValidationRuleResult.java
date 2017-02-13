@@ -3,7 +3,7 @@ package org.immregistries.dqa.validator.engine;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
 
 public class ValidationRuleResult {
 	private List<ValidationIssue> issues = new ArrayList<ValidationIssue>();

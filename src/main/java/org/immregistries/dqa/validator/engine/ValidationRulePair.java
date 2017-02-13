@@ -1,6 +1,6 @@
 package org.immregistries.dqa.validator.engine;
 
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
 
 public class ValidationRulePair<T> {
 	

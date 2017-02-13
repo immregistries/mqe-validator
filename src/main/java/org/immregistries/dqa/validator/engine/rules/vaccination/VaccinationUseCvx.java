@@ -8,9 +8,9 @@ import org.immregistries.dqa.codebase.client.reference.CodeStatusValue;
 import org.immregistries.dqa.codebase.client.reference.CodesetType;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
-import org.immregistries.dqa.validator.model.DqaVaccination;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaVaccination;
 
 public class VaccinationUseCvx extends ValidationRule<DqaVaccination> {
 

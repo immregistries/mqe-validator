@@ -8,12 +8,12 @@ import java.util.List;
 
 import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.codebase.client.reference.CodesetType;
+import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
 import org.immregistries.dqa.validator.engine.common.CodeHandler;
-import org.immregistries.dqa.validator.engine.common.DateUtility;
-import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
+import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.junit.Before;
 import org.junit.Test;
 

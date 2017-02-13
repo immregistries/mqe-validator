@@ -9,10 +9,10 @@ import org.immregistries.dqa.codebase.client.reference.CvxConceptType;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.codes.AdministeredLikelihood;
-import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
-import org.immregistries.dqa.validator.model.DqaVaccination;
+import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaVaccination;
 
 public class VaccinationIsForeign extends ValidationRule<DqaVaccination> {
 

@@ -5,7 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.immregistries.dqa.validator.engine.common.AddressValidator;
-import org.immregistries.dqa.validator.model.hl7types.Address;
+import org.immregistries.dqa.vxu.hl7.Address;
 import org.junit.Before;
 import org.junit.Test;
 

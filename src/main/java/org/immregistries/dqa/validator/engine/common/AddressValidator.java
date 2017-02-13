@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.IssueType;
-import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
-import org.immregistries.dqa.validator.model.hl7types.Address;
+import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.IssueType;
+import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.hl7.Address;
  
 /**
  * This is to evaluate the basic expectations for an address in the system

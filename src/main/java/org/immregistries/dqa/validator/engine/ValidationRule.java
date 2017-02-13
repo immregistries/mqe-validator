@@ -3,13 +3,13 @@ package org.immregistries.dqa.validator.engine;
 import java.util.Arrays;
 import java.util.List;
 
+import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
 import org.immregistries.dqa.validator.engine.common.CodeHandler;
 import org.immregistries.dqa.validator.engine.common.CommonRules;
-import org.immregistries.dqa.validator.engine.common.DateUtility;
-import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
+import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
  */
 @SuppressWarnings("rawtypes")
 public abstract class ValidationRule<T> {
-	private static final Logger LOGGER = LoggerFactory.getLogger(ValidationRule.class);
+	protected static final Logger LOGGER = LoggerFactory.getLogger(ValidationRule.class);
 	/**
 	 * I wanted this to be a singleton 
 	 * because I know I'll have tons of rule objects floating around

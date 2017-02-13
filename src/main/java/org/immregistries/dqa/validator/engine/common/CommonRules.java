@@ -3,7 +3,8 @@ package org.immregistries.dqa.validator.engine.common;
 import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
-import org.immregistries.dqa.validator.model.hl7types.Name;
+import org.immregistries.dqa.core.util.DateUtility;
+import org.immregistries.dqa.vxu.hl7.Name;
 import org.slf4j.Logger;
 
 public enum CommonRules {

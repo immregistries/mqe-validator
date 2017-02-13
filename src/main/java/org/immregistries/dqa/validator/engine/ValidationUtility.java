@@ -6,11 +6,11 @@ import java.util.List;
 
 import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.validator.engine.common.CommonRules;
-import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.IssueType;
-import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
+import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.IssueType;
+import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.slf4j.Logger;
 
 @SuppressWarnings("rawtypes")
@@ -23,7 +23,7 @@ public enum ValidationUtility {
 	public ValidationIssue createIssue(MessageAttribute attribute, String codedValue) {
 		ValidationIssue found = new ValidationIssue();
 		found.setMessageAttribute(attribute);
-		found.setCodeReceived(codedValue);
+		found.setValueReceived(codedValue);
 		found.setSeverityLevel(attribute.getSeverity());//This needs to be equipped to be naunced. This will comes off a profile. 
 		return found;
 	}

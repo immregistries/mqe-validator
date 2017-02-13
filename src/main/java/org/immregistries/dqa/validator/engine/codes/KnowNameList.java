@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.immregistries.dqa.validator.engine.codes.model.KnownName;
-import org.immregistries.dqa.validator.engine.codes.model.KnownName.NameType;
+import org.immregistries.dqa.validator.engine.codes.KnownName.NameType;
 
 public enum KnowNameList {
 	INSTANCE;

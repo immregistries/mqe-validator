@@ -7,12 +7,12 @@ import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.common.AddressFields;
 import org.immregistries.dqa.validator.engine.common.AddressValidator;
-import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
-import org.immregistries.dqa.validator.model.DqaNextOfKin;
-import org.immregistries.dqa.validator.model.hl7types.Address;
+import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaNextOfKin;
+import org.immregistries.dqa.vxu.hl7.Address;
 
 public class NextOfKinAddressIsValid extends ValidationRule<DqaNextOfKin> {
 
@@ -46,7 +46,7 @@ public class NextOfKinAddressIsValid extends ValidationRule<DqaNextOfKin> {
 		Address p = m.getPatient().getAddress();
 
 		if (nokAddress != null && !nokAddress.equals(p)) {
-			issues.add(MessageAttribute.NextOfKinAddressIsDifferentFromPatientAddress.build());
+			issues.add(MessageAttribute.NextOfKinAddressIsDifferentFromPatientAddress.build(nokAddress.toString()));
 		}
 
 		passed = issues.size() == 0;

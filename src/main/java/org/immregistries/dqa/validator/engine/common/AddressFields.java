@@ -1,6 +1,6 @@
 package org.immregistries.dqa.validator.engine.common;
 
-import org.immregistries.dqa.validator.engine.issues.IssueField;
+import org.immregistries.dqa.validator.issue.IssueField;
 
 public class AddressFields {
 

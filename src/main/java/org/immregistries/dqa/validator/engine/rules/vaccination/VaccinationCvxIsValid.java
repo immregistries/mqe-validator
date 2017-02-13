@@ -5,21 +5,21 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
-import org.immregistries.dqa.validator.model.DqaVaccination;
+import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaVaccination;
 
 public class VaccinationCvxIsValid extends ValidationRule<DqaVaccination> {
 
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {
-
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 		issues.addAll(this.codr.handleCode(target.getAdminCvxCode(), IssueField.VACCINATION_CVX_CODE));
+		LOGGER.info("issues: " + issues);
 		
-		boolean passed = (issues.size() == 0);
+		boolean passed = issues.isEmpty();
 
 		return buildResults(issues, passed);
 	}

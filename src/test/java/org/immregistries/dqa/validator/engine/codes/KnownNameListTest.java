@@ -3,7 +3,7 @@ package org.immregistries.dqa.validator.engine.codes;
 import static org.junit.Assert.assertEquals;
 
 import org.immregistries.dqa.validator.engine.codes.KnowNameList;
-import org.immregistries.dqa.validator.engine.codes.model.KnownName.NameType;
+import org.immregistries.dqa.validator.engine.codes.KnownName.NameType;
 import org.junit.Test;
 
 public class KnownNameListTest {

@@ -2,14 +2,16 @@ package org.immregistries.dqa.validator.transform;
 
 import java.util.List;
 
-import org.immregistries.dqa.validator.engine.common.DateUtility;
-import org.immregistries.dqa.validator.model.DqaMessageHeader;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
-import org.immregistries.dqa.validator.model.Observation;
-import org.immregistries.dqa.validator.model.DqaPatient;
-import org.immregistries.dqa.validator.model.DqaVaccination;
-import org.immregistries.dqa.validator.model.hl7types.Address;
-import org.immregistries.dqa.validator.model.hl7types.PatientImmunity;
+import org.immregistries.dqa.core.util.DateUtility;
+import org.immregistries.dqa.validator.address.AddressCleanser;
+import org.immregistries.dqa.validator.address.AddressCleanserDefault;
+import org.immregistries.dqa.vxu.DqaMessageHeader;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaPatient;
+import org.immregistries.dqa.vxu.DqaVaccination;
+import org.immregistries.dqa.vxu.hl7.Address;
+import org.immregistries.dqa.vxu.hl7.Observation;
+import org.immregistries.dqa.vxu.hl7.PatientImmunity;
 
 public class MessageTransformerMCIR {
 

@@ -1,9 +1,9 @@
 package org.immregistries.dqa.validator.engine.codes;
 
 import org.apache.commons.lang3.StringUtils;
-import org.immregistries.dqa.validator.engine.common.DateUtility;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
-import org.immregistries.dqa.validator.model.DqaVaccination;
+import org.immregistries.dqa.core.util.DateUtility;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaVaccination;
 
 public enum AdministeredLikelihood {
 	INSTANCE;

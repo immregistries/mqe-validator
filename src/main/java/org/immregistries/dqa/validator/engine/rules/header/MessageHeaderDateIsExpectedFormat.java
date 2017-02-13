@@ -5,12 +5,17 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
-import org.immregistries.dqa.validator.model.DqaMessageHeader;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
+import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.DqaMessageHeader;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 public class MessageHeaderDateIsExpectedFormat extends ValidationRule<DqaMessageHeader> {
+
+	private final String expected = "yyyyMMddHHmmssZ";
+	private final DateTimeFormatter expectedFormat = DateTimeFormat.forPattern(expected);
 
 	@Override
 	protected final Class[] getDependencies() {
@@ -27,7 +32,7 @@ public class MessageHeaderDateIsExpectedFormat extends ValidationRule<DqaMessage
 		boolean passed = true;
 
 		if (!common.isEmpty(target.getMessageDateString())) {
-			if (!datr.isExpectedDateFormat(target.getMessageDateString())) {
+			if (!datr.isExpectedDateFormat(target.getMessageDateString(), expectedFormat)) {
 				issues.add(MessageAttribute.MessageMessageDateIsUnexpectedFormat.build(target.getMessageDateString()));
 			}
 		}

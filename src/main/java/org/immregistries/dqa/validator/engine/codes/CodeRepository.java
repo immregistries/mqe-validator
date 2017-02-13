@@ -1,23 +1,12 @@
 package org.immregistries.dqa.validator.engine.codes;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.codebase.client.CodeMap;
 import org.immregistries.dqa.codebase.client.CodeMapBuilder;
 import org.immregistries.dqa.codebase.client.generated.Code;
-import org.immregistries.dqa.codebase.client.generated.LinkTo;
-import org.immregistries.dqa.codebase.client.generated.Reference;
-import org.immregistries.dqa.codebase.client.generated.UseDate;
 import org.immregistries.dqa.codebase.client.reference.CodesetType;
-import org.immregistries.dqa.validator.engine.common.DateUtility;
-import org.immregistries.dqa.validator.model.codes.VaccineCpt;
-import org.immregistries.dqa.validator.model.codes.VaccineCvx;
-import org.immregistries.dqa.validator.model.codes.VaccineMvx;
 
 public enum CodeRepository {
 	INSTANCE;
@@ -27,8 +16,6 @@ public enum CodeRepository {
 	 */
 	  private CodeMap codeMapper = CodeMapBuilder.INSTANCE.getCodeMapFromClasspathResource("/Compiled.xml");
 	  
-	  private DateUtility datr = DateUtility.INSTANCE;
-	
 	//TODO:  get the data for these items.
 	
 	//TODO: X make a way to map values before looking them up in the database.  DONE!
@@ -42,13 +29,10 @@ public enum CodeRepository {
 		return c;
 	}
 
-	public VaccineMvx getMfrForCode(String manufacturerCode) {
-		VaccineMvx mvx = new VaccineMvx();
-		mvx.setMvxCode(manufacturerCode);
-		Code c = codeMapper.getCodeForCodeset(CodesetType.VACCINATION_MANUFACTURER_CODE, manufacturerCode);
+	public Code getMfrForCode(String manufacturerCode) {
 		//call the new XML based code repository
-		
-		return null;
+		Code c = codeMapper.getCodeForCodeset(CodesetType.VACCINATION_MANUFACTURER_CODE, manufacturerCode);
+		return c;
 	}
 
 	public Code getVaccineProduct(String vaccineCvx, String vaccineMvx, String adminDate) {

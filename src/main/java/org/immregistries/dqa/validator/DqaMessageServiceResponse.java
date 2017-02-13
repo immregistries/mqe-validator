@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
 
 /**
  * This will contain the results of this process.

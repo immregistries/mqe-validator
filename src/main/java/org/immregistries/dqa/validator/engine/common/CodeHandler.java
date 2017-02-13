@@ -10,11 +10,12 @@ import org.immregistries.dqa.codebase.client.generated.CodeStatus;
 import org.immregistries.dqa.codebase.client.generated.UseAge;
 import org.immregistries.dqa.codebase.client.generated.UseDate;
 import org.immregistries.dqa.codebase.client.reference.CodeStatusValue;
+import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
-import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.IssueType;
-import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
+import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.IssueType;
+import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,11 +34,12 @@ public enum CodeHandler {
 		//LOGGER.info("value:" + value + " field: " + field);
 
 		if (StringUtils.isBlank(value)) {
-			issueToList(field, IssueType.MISSING, issues);
+			issues.add(issueForField(field, IssueType.MISSING));
 			return issues;
 		}
 
 		Code c = repo.getCodeFromValue(value, field.getCodesetType());
+		LOGGER.info("handleCode - Code " + value + " for field " + field + " found? " + (c != null));
 		if (c!=null) {
 			CodeStatus status = c.getCodeStatus();
 			String statusValue = status.getStatus();
@@ -46,23 +48,23 @@ public enum CodeHandler {
 				case VALID:
 					break;
 				case INVALID:
-					issueToList(field, IssueType.INVALID, issues);
+					issues.add(issueForField(field, IssueType.INVALID, value));
 					break;
 				case DEPRECATED:
-					issueToList(field, IssueType.DEPRECATED, issues);
+					issues.add(issueForField(field, IssueType.DEPRECATED, value));
 					break;
 				case IGNORED:
-					issueToList(field, IssueType.IGNORED, issues);
+					issues.add(issueForField(field, IssueType.IGNORED, value));
 					break;
 				case UNRECOGNIZED:
-					issueToList(field, IssueType.UNRECOGNIZED, issues);
+					issues.add(issueForField(field, IssueType.UNRECOGNIZED, value));
 					break;
 				default:
-					issueToList(field, IssueType.UNRECOGNIZED, issues);
+					issues.add(issueForField(field, IssueType.UNRECOGNIZED, value));
 					break;
 			}
 		} else {
-			issueToList(field, IssueType.UNRECOGNIZED, issues);
+			issues.add(issueForField(field, IssueType.UNRECOGNIZED, value));
 		}
 
 		return issues;
@@ -88,10 +90,10 @@ public enum CodeHandler {
 			LOGGER.debug("Dont use Dates: notBeforeDateString["+notBeforeDateString+"] notAfterDateString[" + notAfterDateString + "]");
 			if (datr.isOutsideOfRange(usedDateString, notBeforeDateString, notAfterDateString)) {
 				LOGGER.info("Adding issue for: " + field + " - " + IssueType.BEFORE_OR_AFTER_USAGE_DATE_RANGE + " - " + issues);
-				issueToList(field, IssueType.BEFORE_OR_AFTER_USAGE_DATE_RANGE, issues);
+				issues.add(issueForField(field, IssueType.BEFORE_OR_AFTER_USAGE_DATE_RANGE));
 			} else if (datr.isOutsideOfRange(usedDateString, notExpectedBeforeDateString, notExpectedAfterDateString)) {
 				LOGGER.info("Adding issue for: " + field + " - " + IssueType.BEFORE_OR_AFTER_LICENSED_DATE_RANGE + " - " + issues);
-				issueToList(field, IssueType.BEFORE_OR_AFTER_LICENSED_DATE_RANGE, issues);
+				issues.add(issueForField(field, IssueType.BEFORE_OR_AFTER_LICENSED_DATE_RANGE));
 			}  else {
 				LOGGER.info("NO useDate issues for: " + field);
 			}
@@ -99,40 +101,46 @@ public enum CodeHandler {
 		return issues;
 	}
 
-	public List<ValidationIssue> handleAgeDate(Code codedValue, Date birthDate, Date referenceDate, IssueField field) {
+	public List<ValidationIssue> handleAgeDate(Code codedValue, Date birthDate, Date adminDate, IssueField field) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 
-		if (codedValue == null || birthDate == null || referenceDate == null) {
-			LOGGER.debug("One of the inputs is null.  returning no issues: code[" + codedValue+"] birthDate["+birthDate+"] refDate["+referenceDate+"]");
+		if (codedValue == null || birthDate == null || adminDate == null) {
+			LOGGER.debug("One of the inputs is null.  returning no issues: code[" + codedValue+"] startDate["+birthDate+"] endDate["+adminDate+"]");
 			return issues;
 		}
 
 		UseAge useAge = codedValue.getUseAge();
 
 		if (useAge != null) {
-			int ageInMonths = datr.monthsBetween(birthDate, referenceDate);
-			LOGGER.debug("age in months: " + ageInMonths);
+			int ageInMonths = datr.monthsBetween(birthDate, adminDate);
+//			LOGGER.info("age in months: " + ageInMonths);
 			int notBeforeMonthByte = useAge.getNotBeforeMonth();
 			int notNotAfterMonthByte = useAge.getNotAfterMonth();
-			LOGGER.debug("notBeforeMonthByte["+notBeforeMonthByte+"] notNotAfterMonthByte["+notNotAfterMonthByte+"]");
+//			LOGGER.info("notBeforeMonthByte["+notBeforeMonthByte+"] notNotAfterMonthByte["+notNotAfterMonthByte+"]");
+			
 			if (ageInMonths > notNotAfterMonthByte || ageInMonths < notBeforeMonthByte) {
-				LOGGER.info("Adding issue for: " + field + " - " + IssueType.BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE + " - " + issues);
-				issueToList(field, IssueType.BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE, issues);
+//				LOGGER.info("Adding issue for: " + field + " - " + IssueType.BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE + " - " + issues);
+				ValidationIssue vi = issueForField(field, IssueType.BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE);
+				LOGGER.info("validation issue: " + vi);
+				issues.add(vi);
 			}
 		}
 		return issues;
 	}
 
-	protected void issueToList(IssueField field, IssueType type, List<ValidationIssue> issues) {
-		if (issues == null) {
-			throw new IllegalArgumentException("Empty list sent in for issueToList.  This should not happen.  IssueField: " + field + " Issue Type: " + type);
-		}
+	protected ValidationIssue issueForField(IssueField field, IssueType type) {
+		return issueForField(field, type, null);
+	}
+	
+	protected ValidationIssue issueForField(IssueField field, IssueType type, String receivedValue) {
 
 		MessageAttribute issue = MessageAttribute.get(field, type);
+		
 		if (issue != null) {
-			issues.add(issue.build());
+			return issue.build(receivedValue);
 		} else {
 			LOGGER.warn("Checking for a condition that has no corresponding PotentialIssue. Field: " + field + " IssueType: "+ IssueType.BEFORE_OR_AFTER_VALID_DATE_FOR_AGE);
+			return MessageAttribute.GeneralProcessingException.build();
 		}
 	}
 }

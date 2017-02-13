@@ -2,13 +2,18 @@ package org.immregistries.dqa.validator.engine.common;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
-import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.IssueType;
-import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
-import org.immregistries.dqa.validator.model.hl7types.PhoneNumber;
+import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.IssueType;
+import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.hl7.PhoneNumber;
+
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
 
 /**
  * This is to evaluate the basic expectations for an address in the system this
@@ -38,9 +43,9 @@ public enum PhoneValidator {
 		if (StringUtils.isNotEmpty(phone.getNumber())) {
 			
 			if (phone.getAreaCode().equals("") || phone.getLocalNumber().equals("")) {
-				MessageAttribute pIssue = MessageAttribute.get(piPhone, IssueType.INCOMPLETE);
-				if (pIssue != null) {
-					issues.add(pIssue.build(phone.getNumber()));
+				MessageAttribute attr = MessageAttribute.get(piPhone, IssueType.INCOMPLETE);
+				if (attr != null) {
+					issues.add(attr.build(phone.getNumber()));
 				}
 			}
 			
@@ -56,9 +61,9 @@ public enum PhoneValidator {
 			
 			//Invalid phone number format. 
 			if (!isValidPhone(phone)) {
-				MessageAttribute pIssue = MessageAttribute.get(piPhone, IssueType.INVALID);
-				if (pIssue != null) {
-					issues.add(pIssue.build(phone.getNumber()));
+				MessageAttribute attr = MessageAttribute.get(piPhone, IssueType.INVALID);
+				if (attr != null) {
+					issues.add(attr.build(phone.getNumber()));
 				}
 			}
 			
@@ -67,8 +72,11 @@ public enum PhoneValidator {
 		}
 		return issues;
 	}
+	
+	private PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
 
 	protected boolean isValidPhone(PhoneNumber phone) {
+		
 		
 		if (phone.getCountryCode().equals("")
 				|| phone.getCountryCode().equals("1")
@@ -83,7 +91,7 @@ public enum PhoneValidator {
 				}
 			}
 			
-			if (!phone.getLocalNumber().equals("")) {
+			if (!StringUtils.isBlank(phone.getLocalNumber())) {
 				String num = phone.getLocalNumber();
 				StringBuilder numOnly = new StringBuilder();
 				for (int i = 0; i < num.length(); i++) {
@@ -101,16 +109,39 @@ public enum PhoneValidator {
 				if (num.substring(1, 3).equals("11")) {
 					return false;
 				}
+			} else {
+				return false;
 			}
 		}
 		
 		return true;
 	}
+	
+	protected boolean isValidPhoneAccordingToGoogle(PhoneNumber phone) {
+		if (phone == null || (StringUtils.isBlank(phone.getNumber()) && StringUtils.isBlank(phone.getAreaCode()) && StringUtils.isBlank(phone.getLocalNumber()))) {
+			return false;
+		}
+		
+		String numberToCheck = phone.getNumber();
+		if (StringUtils.isBlank(numberToCheck)) {
+			numberToCheck = phone.getAreaCode() + phone.getLocalNumber();
+		}
+		
+		try {
+			phoneUtil.parse(numberToCheck,  Locale.US.getCountry());
+			return true;
+		} catch (NumberParseException e) {
+			return false;
+		}
+	}
 
+	
 	private static boolean validPhone3Digit(String s) {
 		if (s == null || s.length() != 3) {
 			return false;
 		}
+		
+		
 		if (s.charAt(0) < '2' || s.charAt(0) > '9') {
 			return false;
 		}

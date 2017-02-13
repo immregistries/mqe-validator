@@ -1,6 +1,6 @@
 package org.immregistries.dqa.validator.engine.issues;
 
-import org.immregistries.dqa.validator.engine.issues.IssueField;
+import org.immregistries.dqa.validator.issue.IssueField;
 import org.junit.Test;
 
 public class PotentialIssueTester {

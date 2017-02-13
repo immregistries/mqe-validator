@@ -5,16 +5,16 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
-import org.immregistries.dqa.validator.model.DqaMessageHeader;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.DqaMessageHeader;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
 
 public class MessageVersionIs25 extends ValidationRule<DqaMessageHeader> {
 
 	@Override
 	protected final Class[] getDependencies() {
 		return new Class[] {
-				MessageVersionIsValid.class,
+				MessageVersionIsValid.class
 		};
 	}
 

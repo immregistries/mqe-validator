@@ -5,10 +5,10 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
-import org.immregistries.dqa.validator.model.DqaMessageHeader;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
+import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.DqaMessageHeader;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
 
 public class MessageHeaderDateIsValid extends ValidationRule<DqaMessageHeader> {
 
@@ -25,17 +25,20 @@ public class MessageHeaderDateIsValid extends ValidationRule<DqaMessageHeader> {
 
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 		boolean passed = true;
-
-		if (common.isEmpty(target.getMessageDateString())) {
+		
+		String messageDateString = target.getMessageDateString();
+		if (common.isEmpty(messageDateString)) {
 			issues.add(MessageAttribute.MessageMessageDateIsMissing.build());
 		} else {
+			LOGGER.info("messageDate: " + target.getMessageDate());
+			LOGGER.info("receivedDate: " + mr.getReceivedDate());
 			if (datr.isAfterDate(target.getMessageDate(), mr.getReceivedDate())) {
-				issues.add(MessageAttribute.MessageMessageDateIsInFuture.build(target.getMessageDateString()));
+				issues.add(MessageAttribute.MessageMessageDateIsInFuture.build(messageDateString));
 			}
 			
 			//Need to do the timezone validation. 
-			if (!datr.hasTimezone(target.getMessageDateString())) {
-				issues.add(MessageAttribute.MessageMessageDateIsMissingTimezone.build(target.getMessageDateString()));
+			if (!datr.hasTimezone(messageDateString)) {
+				issues.add(MessageAttribute.MessageMessageDateIsMissingTimezone.build(messageDateString));
 			}
 		}
 		

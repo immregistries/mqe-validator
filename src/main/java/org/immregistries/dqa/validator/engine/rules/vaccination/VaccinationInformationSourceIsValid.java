@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
-import org.immregistries.dqa.validator.model.DqaVaccination;
+import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaVaccination;
 
 public class VaccinationInformationSourceIsValid extends ValidationRule<DqaVaccination> {
 
@@ -45,12 +45,10 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<DqaVacci
 	        
 			switch (sourceCd) {
 				case DqaVaccination.INFO_SOURCE_ADMIN:
-					issues.add(MessageAttribute.VaccinationInformationSourceIsValuedAsAdministered
-							.build(sourceCd));
+					issues.add(MessageAttribute.VaccinationInformationSourceIsValuedAsAdministered.build(sourceCd));
 					break;
 				case DqaVaccination.INFO_SOURCE_HIST:
-					issues.add(MessageAttribute.VaccinationInformationSourceIsValuedAsHistorical
-							.build(sourceCd));
+					issues.add(MessageAttribute.VaccinationInformationSourceIsValuedAsHistorical.build(sourceCd));
 					break;
 			}
 	      }

@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.MessageValidator;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
-import org.immregistries.dqa.validator.parser.HL7MessageParser;
-import org.immregistries.dqa.validator.transform.MessageTransformer;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.parse.HL7MessageParser;
+import org.immregistries.dqa.vxu.transform.MessageTransformer;
 
 public enum DqaMessageService {
 	INSTANCE;

@@ -7,24 +7,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.immregistries.dqa.validator.engine.ValidationRule;
-import org.immregistries.dqa.validator.engine.ValidationRulePair;
-import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.ValidationRunner;
-import org.immregistries.dqa.validator.engine.ValidationUtility;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
 import org.immregistries.dqa.validator.engine.rules.ValidationRuleEntityLists;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientBirthDateIsValid;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientExists;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientIsUnderage;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdminAfterBirthDate;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdminDateIsValid;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
-import org.immregistries.dqa.validator.model.DqaPatient;
-import org.immregistries.dqa.validator.model.DqaVaccination;
-import org.immregistries.dqa.validator.model.hl7types.Address;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaPatient;
+import org.immregistries.dqa.vxu.DqaVaccination;
+import org.immregistries.dqa.vxu.hl7.PatientAddress;
 import org.junit.Test;
 
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class ValidationRuleTest {
 
 	private static final ValidationUtility util = ValidationUtility.INSTANCE;
@@ -187,7 +183,7 @@ public class ValidationRuleTest {
 		for (ValidationIssue issue : issues) {
 			System.out.println("ISSUE: " + issue.getIssue());
 		}
-		assertEquals("should be some issues", 16, issues.size());
+		assertEquals("should be some issues", 14, issues.size());
 	}
 	
 	@Test
@@ -211,7 +207,8 @@ public class ValidationRuleTest {
 		p.setAliasFirst("John");
 		p.setNameTypeCode("Superhero");
 		p.setMotherMaidenName("Cobbler");
-		Address a = p.getAddress();
+		PatientAddress a = new PatientAddress(); 
+		p.getPatientAddressList().add(a);
 		a.setCity("Lansing");
 		a.setStreet("121 Main");
 		a.setStateCode("MI");

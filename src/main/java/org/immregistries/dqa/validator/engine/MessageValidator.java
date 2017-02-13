@@ -3,7 +3,7 @@ package org.immregistries.dqa.validator.engine;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
 
 public enum MessageValidator {
 	INSTANCE;

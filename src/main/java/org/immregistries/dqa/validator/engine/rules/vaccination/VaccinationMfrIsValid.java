@@ -1,16 +1,18 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.immregistries.dqa.codebase.client.generated.Code;
+import org.immregistries.dqa.codebase.client.generated.UseDate;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
-import org.immregistries.dqa.validator.model.DqaVaccination;
-import org.immregistries.dqa.validator.model.codes.VaccineMvx;
+import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaVaccination;
 
 public class VaccinationMfrIsValid extends ValidationRule<DqaVaccination> {
 
@@ -28,29 +30,37 @@ public class VaccinationMfrIsValid extends ValidationRule<DqaVaccination> {
 			passed = (issues.size() == 0);
 		}
 
-		VaccineMvx vaccineMvx = repo.getMfrForCode(target.getManufacturerCode());
-
-		if (target.isAdministered()) {
-			if (vaccineMvx != null && !common.isEmpty(vaccineMvx.getMvxCode())
-					&& target.getAdminDate() != null) {
-				if (datr.isAfterDate(vaccineMvx.getValidStartDate(),
-						target.getAdminDate())
-						|| datr.isAfterDate(target.getAdminDate(),
-								vaccineMvx.getValidEndDate())) {
-					issues.add(MessageAttribute.VaccinationManufacturerCodeIsInvalidForDateAdministered
-							.build(target.getManufacturer()));
-					passed = false;
-				} else if (vaccineMvx.getUseStartDate().after(
-						target.getAdminDate())
-						|| target.getAdminDate().after(
-								vaccineMvx.getUseEndDate())) {
-					issues.add(MessageAttribute.VaccinationManufacturerCodeIsUnexpectedForDateAdministered
-							.build(target.getManufacturer()));
-				}
+		Code vaccineMvx = repo.getMfrForCode(target.getManufacturerCode());
+		
+		if (vaccineMvx != null) {
+			UseDate ud = vaccineMvx.getUseDate();
+		
+			if (target.isAdministered() && ud != null && target.getAdminDate() != null) {
+					String notBeforeString = ud.getNotBefore();
+					String notAfterString = ud.getNotAfter();
+					
+					Date notBeforeDate = datr.parseDate(notBeforeString);
+					Date notAfterDate = datr.parseDate(notAfterString);
+					
+					String notExpectedBeforeString = ud.getNotExpectedBefore();
+					String notExpectedAfterString = ud.getNotExpectedAfter();
+					
+					Date notExpectedBeforeDate = datr.parseDate(notExpectedBeforeString);
+					Date notExpectedAfterDate = datr.parseDate(notExpectedAfterString);
+					
+					if (datr.isAfterDate(target.getAdminDate(), notAfterDate) 
+					 || datr.isBeforeDate(target.getAdminDate(), notBeforeDate)) {
+						
+						issues.add(MessageAttribute.VaccinationManufacturerCodeIsInvalidForDateAdministered.build(target.getManufacturer()));
+						passed = false;
+						
+					} else if (datr.isAfterDate(target.getAdminDate(), notExpectedAfterDate) 
+						    || datr.isBeforeDate(target.getAdminDate(), notExpectedBeforeDate)) {
+						issues.add(MessageAttribute.VaccinationManufacturerCodeIsUnexpectedForDateAdministered.build(target.getManufacturer()));
+					}
 			}
 		}
-
-		passed = (issues.size() == 0);
+		passed = issues.isEmpty();
 
 		return buildResults(issues, passed);
 	}

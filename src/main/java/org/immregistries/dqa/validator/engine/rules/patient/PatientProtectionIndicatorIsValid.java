@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.engine.issues.IssueType;
-import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
-import org.immregistries.dqa.validator.model.DqaPatient;
+import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.IssueType;
+import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaPatient;
 
 public class PatientProtectionIndicatorIsValid extends ValidationRule<DqaPatient> {
 
@@ -28,10 +28,10 @@ public class PatientProtectionIndicatorIsValid extends ValidationRule<DqaPatient
 			issues.add(MessageAttribute.buildIssue(IssueField.PATIENT_PROTECTION_INDICATOR, IssueType.MISSING));
 			passed = false;
 		} else if ("Y".equals(protectionCode)) {
-		    issues.add(MessageAttribute.PatientProtectionIndicatorIsValuedAsYes.build());
+		    issues.add(MessageAttribute.PatientProtectionIndicatorIsValuedAsYes.build(protectionCode));
 		    passed = false;
 		} else if ("N".equals(protectionCode)) {
-			issues.add(MessageAttribute.PatientProtectionIndicatorIsValuedAsNo.build());
+			issues.add(MessageAttribute.PatientProtectionIndicatorIsValuedAsNo.build(protectionCode));
 			passed = false;
 	    }
 	 

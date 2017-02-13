@@ -7,12 +7,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.codes.KnowNameList;
-import org.immregistries.dqa.validator.engine.codes.model.KnownName;
-import org.immregistries.dqa.validator.engine.codes.model.KnownName.NameType;
-import org.immregistries.dqa.validator.engine.issues.MessageAttribute;
-import org.immregistries.dqa.validator.engine.issues.ValidationIssue;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
-import org.immregistries.dqa.validator.model.DqaPatient;
+import org.immregistries.dqa.validator.engine.codes.KnownName;
+import org.immregistries.dqa.validator.engine.codes.KnownName.NameType;
+import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaPatient;
 
 public class PatientNameIsValid extends ValidationRule<DqaPatient> {
 

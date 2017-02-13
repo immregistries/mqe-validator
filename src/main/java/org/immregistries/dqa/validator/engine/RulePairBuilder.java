@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.rules.ValidationRuleEntityLists;
-import org.immregistries.dqa.validator.model.DqaMessageHeader;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
-import org.immregistries.dqa.validator.model.DqaNextOfKin;
-import org.immregistries.dqa.validator.model.DqaPatient;
-import org.immregistries.dqa.validator.model.DqaVaccination;
+import org.immregistries.dqa.vxu.DqaMessageHeader;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaNextOfKin;
+import org.immregistries.dqa.vxu.DqaPatient;
+import org.immregistries.dqa.vxu.DqaVaccination;
 
 public enum RulePairBuilder {
 	INSTANCE;

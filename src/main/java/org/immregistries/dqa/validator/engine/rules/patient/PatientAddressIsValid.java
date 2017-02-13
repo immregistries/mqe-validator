@@ -4,10 +4,10 @@ import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.common.AddressFields;
 import org.immregistries.dqa.validator.engine.common.AddressValidator;
-import org.immregistries.dqa.validator.engine.issues.IssueField;
-import org.immregistries.dqa.validator.model.DqaMessageReceived;
-import org.immregistries.dqa.validator.model.DqaPatient;
-import org.immregistries.dqa.validator.model.hl7types.Address;
+import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.DqaPatient;
+import org.immregistries.dqa.vxu.hl7.Address;
 
 public class PatientAddressIsValid extends ValidationRule<DqaPatient> {
 

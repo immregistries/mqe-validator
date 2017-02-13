@@ -32,7 +32,7 @@ public class ValidationRunnerTest {
 		});
 		
 		DqaMessageReceived m = getFreshMessage();
-		m.getPatient().setBirthDateString("2016-01-01");
+		m.getPatient().setBirthDateString("20160101");
 		
 		ValidationRunner vr = ValidationRunner.INSTANCE;
 		

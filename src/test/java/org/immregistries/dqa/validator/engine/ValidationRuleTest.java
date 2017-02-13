@@ -40,7 +40,7 @@ public class ValidationRuleTest {
 		//let's say we start with a MessageReceived: 
 		DqaMessageReceived mr = new DqaMessageReceived();
 		DqaPatient p = new DqaPatient();
-		p.setBirthDateString("2016-01-01");
+		p.setBirthDateString("20160101");
 		mr.setPatient(p);
 		
 		ValidationRule<DqaPatient> vr = new PatientBirthDateIsValid();
@@ -135,7 +135,7 @@ public class ValidationRuleTest {
 		});
 		
 		DqaMessageReceived m = getFreshMessage();
-		m.getPatient().setBirthDateString("2016-01-01");
+		m.getPatient().setBirthDateString("20160101");
 		
 		List<ValidationRulePair> rpList = util.buildRulePairs(testRules, m.getPatient(),  m);
 
@@ -167,7 +167,7 @@ public class ValidationRuleTest {
 		
 		DqaMessageReceived mr = getFreshMessage();
 		
-		mr.getPatient().setBirthDateString("2016-01-01");
+		mr.getPatient().setBirthDateString("20160101");
 		
 		for (ValidationRule rule : patientRules) {
 			try {
@@ -217,7 +217,7 @@ public class ValidationRuleTest {
 		a.setCountryCode("US");
 		p.setBirthMultipleIndicator("N");
 		p.setBirthOrderNumber("1");
-//		p.setBirthDateString("2016-01-01");
+//		p.setBirthDateString("20160101");
 		mr.setPatient(p);
 		return mr;
 	}

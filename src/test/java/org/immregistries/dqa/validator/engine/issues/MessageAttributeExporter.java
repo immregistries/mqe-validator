@@ -50,7 +50,12 @@ public class MessageAttributeExporter {
         @Override
         public CodedWithExceptions getApplicationErrorCode() {
           CodedWithExceptions cwe = new CodedWithExceptions();
-          cwe.setIdentifier(ma.getDqaErrorCode());
+          cwe.setIdentifier(ma.getApplicationErrorCode().getId());
+          cwe.setText(ma.getApplicationErrorCode().getText());
+          cwe.setNameOfCodingSystem("HL70533");
+          cwe.setAlternateIdentifier(ma.getDqaErrorCode());
+          cwe.setAlternateText(ma.getDisplayText());
+          cwe.setNameOfAlternateCodingSystem("L");
           return cwe;
         }
       };

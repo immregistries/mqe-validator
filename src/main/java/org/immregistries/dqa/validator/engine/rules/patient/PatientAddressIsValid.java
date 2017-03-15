@@ -4,7 +4,7 @@ import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.common.AddressFields;
 import org.immregistries.dqa.validator.engine.common.AddressValidator;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 import org.immregistries.dqa.vxu.hl7.Address;
@@ -12,15 +12,15 @@ import org.immregistries.dqa.vxu.hl7.Address;
 public class PatientAddressIsValid extends ValidationRule<DqaPatient> {
 
 	private AddressFields fields = new AddressFields(
-			 	IssueField.PATIENT_ADDRESS,
-			 	IssueField.PATIENT_ADDRESS_STREET,
-			 	IssueField.PATIENT_ADDRESS_STREET2,
-			    IssueField.PATIENT_ADDRESS_CITY,
-			    IssueField.PATIENT_ADDRESS_STATE,
-			    IssueField.PATIENT_ADDRESS_COUNTY,
-			    IssueField.PATIENT_ADDRESS_COUNTRY,
-			    IssueField.PATIENT_ADDRESS_ZIP,
-			    IssueField.PATIENT_ADDRESS_TYPE);
+			 	VxuField.PATIENT_ADDRESS,
+			 	VxuField.PATIENT_ADDRESS_STREET,
+			 	VxuField.PATIENT_ADDRESS_STREET2,
+			    VxuField.PATIENT_ADDRESS_CITY,
+			    VxuField.PATIENT_ADDRESS_STATE,
+			    VxuField.PATIENT_ADDRESS_COUNTY,
+			    VxuField.PATIENT_ADDRESS_COUNTRY,
+			    VxuField.PATIENT_ADDRESS_ZIP,
+			    VxuField.PATIENT_ADDRESS_TYPE);
 
 	private AddressValidator addressValidator = AddressValidator.INSTANCE;
 

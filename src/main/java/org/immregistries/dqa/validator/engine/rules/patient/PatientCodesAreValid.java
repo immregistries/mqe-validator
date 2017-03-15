@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
@@ -26,40 +26,40 @@ public class PatientCodesAreValid extends ValidationRule<DqaPatient> {
 
 		
 		if ("Y".equals(target.getBirthMultipleInd())) {
-			issues.addAll(this.codr.handleCode(target.getBirthOrderNumber(), IssueField.PATIENT_BIRTH_ORDER));
+			issues.addAll(this.codr.handleCode(target.getBirthOrderNumber(), VxuField.PATIENT_BIRTH_ORDER));
 		}
 
-		issues.addAll(this.codr.handleCode(target.getEthnicity(), IssueField.PATIENT_ETHNICITY));
+		issues.addAll(this.codr.handleCode(target.getEthnicity(), VxuField.PATIENT_ETHNICITY));
 
-		issues.addAll(this.codr.handleCode(target.getSex(), IssueField.PATIENT_GENDER));
+		issues.addAll(this.codr.handleCode(target.getSex(), VxuField.PATIENT_GENDER));
 
-		issues.addAll(this.codr.handleCode(target.getName().getType(), IssueField.PATIENT_NAME_TYPE_CODE));
+		issues.addAll(this.codr.handleCode(target.getName().getType(), VxuField.PATIENT_NAME_TYPE_CODE));
 
 		if (target.getFacility() != null) {
 			String facilityId = target.getFacility().getId();
 			if (StringUtils.isBlank(facilityId)) {
-				ValidationIssue ifnd = MessageAttribute.buildIssue(IssueField.PATIENT_PRIMARY_FACILITY_ID
+				ValidationIssue ifnd = MessageAttribute.buildIssue(VxuField.PATIENT_PRIMARY_FACILITY_ID
 						, IssueType.MISSING, facilityId);
 				issues.add(ifnd);
 			}
 		}
 		
 		issues.addAll(this.codr.handleCode(target.getPrimaryLanguage(),
-				IssueField.PRIMARY_LANGUAGE));
+				VxuField.PATIENT_PRIMARY_LANGUAGE));
 		
 		issues.addAll(this.codr.handleCode(target.getPhysician().getNumber(),
-				IssueField.PATIENT_PRIMARY_PHYSICIAN_ID));
+				VxuField.PATIENT_PRIMARY_PHYSICIAN_ID));
 
 		issues.addAll(this.codr.handleCode(target.getProtection(), 
-				IssueField.PATIENT_PROTECTION_INDICATOR));
+				VxuField.PATIENT_PROTECTION_INDICATOR));
 
 		issues.addAll(this.codr.handleCode(target.getPublicity(), 
-				IssueField.PATIENT_PUBLICITY_CODE));
+				VxuField.PATIENT_PUBLICITY_CODE));
 		
 		issues.addAll(this.codr.handleCode(target.getRace(),
-				IssueField.PATIENT_RACE));
+				VxuField.PATIENT_RACE));
 
-		issues.addAll(this.codr.handleCode(target.getFinancialEligibility(),IssueField.PATIENT_VFC_STATUS));
+		issues.addAll(this.codr.handleCode(target.getFinancialEligibility(),VxuField.PATIENT_VFC_STATUS));
 
 		// mark passed if there's no issues.
 		passed = (issues.size() == 0);

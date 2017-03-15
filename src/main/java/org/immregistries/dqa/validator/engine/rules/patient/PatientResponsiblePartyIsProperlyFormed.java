@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
@@ -33,9 +33,9 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<DqaN
 			String tFirst = target.getNameFirst();
 			String tLast  = target.getNameLast();
 		        
-	    	this.util.addToListIfEmpty(target.getAddress().getStateCode(), 	IssueField.PATIENT_GUARDIAN_ADDRESS_STATE, issues);
-	    	this.util.addToListIfEmpty(target.getAddress().getCity(), 		IssueField.PATIENT_GUARDIAN_ADDRESS_CITY, issues);
-	    	this.util.addToListIfEmpty(target.getAddress().getZip(), 			IssueField.PATIENT_GUARDIAN_ADDRESS_ZIP, issues);
+	    	this.util.addToListIfEmpty(target.getAddress().getStateCode(), 	VxuField.PATIENT_GUARDIAN_ADDRESS_STATE, issues);
+	    	this.util.addToListIfEmpty(target.getAddress().getCity(), 		VxuField.PATIENT_GUARDIAN_ADDRESS_CITY, issues);
+	    	this.util.addToListIfEmpty(target.getAddress().getZip(), 			VxuField.PATIENT_GUARDIAN_ADDRESS_ZIP, issues);
 	    	this.util.addToListIfEmpty(target.getNameFirst(),  MessageAttribute.PatientGuardianNameFirstIsMissing, issues);
 	    	this.util.addToListIfEmpty(target.getNameLast(),   MessageAttribute.PatientGuardianNameLastIsMissing, issues);
 	    	

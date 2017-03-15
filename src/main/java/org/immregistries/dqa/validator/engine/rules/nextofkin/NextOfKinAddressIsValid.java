@@ -7,7 +7,7 @@ import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.common.AddressFields;
 import org.immregistries.dqa.validator.engine.common.AddressValidator;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
@@ -17,15 +17,15 @@ import org.immregistries.dqa.vxu.hl7.Address;
 public class NextOfKinAddressIsValid extends ValidationRule<DqaNextOfKin> {
 
 	private AddressFields fields = new AddressFields(
-			IssueField.NEXT_OF_KIN_ADDRESS,
-			IssueField.NEXT_OF_KIN_ADDRESS_STREET,
-			IssueField.NEXT_OF_KIN_ADDRESS_STREET2,
-			IssueField.NEXT_OF_KIN_ADDRESS_CITY,
-			IssueField.NEXT_OF_KIN_ADDRESS_STATE,
-			IssueField.NEXT_OF_KIN_ADDRESS_COUNTRY,
-			IssueField.NEXT_OF_KIN_ADDRESS_COUNTY,
-			IssueField.NEXT_OF_KIN_ADDRESS_ZIP,
-			IssueField.NEXT_OF_KIN_ADDRESS_TYPE);
+			VxuField.NEXT_OF_KIN_ADDRESS,
+			VxuField.NEXT_OF_KIN_ADDRESS_STREET,
+			VxuField.NEXT_OF_KIN_ADDRESS_STREET2,
+			VxuField.NEXT_OF_KIN_ADDRESS_CITY,
+			VxuField.NEXT_OF_KIN_ADDRESS_STATE,
+			VxuField.NEXT_OF_KIN_ADDRESS_COUNTRY,
+			VxuField.NEXT_OF_KIN_ADDRESS_COUNTY,
+			VxuField.NEXT_OF_KIN_ADDRESS_ZIP,
+			VxuField.NEXT_OF_KIN_ADDRESS_TYPE);
 
 	private AddressValidator addressValidator = AddressValidator.INSTANCE;
 

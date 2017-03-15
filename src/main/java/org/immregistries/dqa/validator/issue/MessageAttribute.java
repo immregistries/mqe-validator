@@ -505,9 +505,9 @@ public enum MessageAttribute {
 	UnknownValidationIssue(IssueObject.GENERAL, IssueType.UNRECOGNIZED, IssueField.CONFIGURATION, "", SeverityLevel.ERROR, "101", null, ErrorCode.DQA0000, "")
 ;
 
-	  private static final Map<IssueField, Map<IssueType, MessageAttribute>> fieldIssueMaps = new HashMap<IssueField, Map<IssueType, MessageAttribute>>();
+	  private static final Map<VxuField, Map<IssueType, MessageAttribute>> fieldIssueMaps = new HashMap<VxuField, Map<IssueType, MessageAttribute>>();
 	  
-	  private static final Map<IssueField, List<MessageAttribute>> objectIssueListMap = new HashMap<IssueField, List<MessageAttribute>>();
+	  private static final Map<VxuField, List<MessageAttribute>> objectIssueListMap = new HashMap<VxuField, List<MessageAttribute>>();
 	  
 	  private static final Map<String, MessageAttribute> displayTextMap = new HashMap<String, MessageAttribute>();
 	  static {
@@ -549,7 +549,7 @@ public enum MessageAttribute {
 	   * @param type
 	   * @return
 	   */
-	  public static MessageAttribute get(IssueField field, IssueType type) {
+	  public static MessageAttribute get(VxuField field, IssueType type) {
 		  Map<IssueType, MessageAttribute> fieldIssues = fieldIssueMaps.get(field);
 		  if (fieldIssues != null) {
 			  return fieldIssues.get(type);
@@ -566,7 +566,7 @@ public enum MessageAttribute {
 	    private String fieldValue = "";
 	    private IssueType issueType;
 	    private IssueObject targetObject;
-	    private IssueField fieldRef;
+	    private VxuField fieldRef;
 	    private SeverityLevel severity;
 	    private String[] hl7Locations;
 	    private ErrorCode dqaErrorCode;
@@ -775,7 +775,7 @@ public enum MessageAttribute {
     return issueType;
   }
 
-  public IssueField getTargetField()
+  public VxuField getTargetField()
   {
     return fieldRef;
   }
@@ -797,12 +797,12 @@ public enum MessageAttribute {
 		return found;
   }
   
-  public static ValidationIssue buildIssue(IssueField field, IssueType type) {
+  public static ValidationIssue buildIssue(VxuField field, IssueType type) {
 	  MessageAttribute issue = get(field, type);
 	  return issue.build();
   }
   
-  public static ValidationIssue buildIssue(IssueField field, IssueType type, String value) {
+  public static ValidationIssue buildIssue(VxuField field, IssueType type, String value) {
 	  MessageAttribute issue = get(field, type);
 	  return issue.build(value);
   }

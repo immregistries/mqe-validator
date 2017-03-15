@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
@@ -54,7 +54,7 @@ public enum AddressValidator {
 		return result;
 	}
 
-	protected void addStreetIssues(String street, IssueField field, List<ValidationIssue> issues) {
+	protected void addStreetIssues(String street, VxuField field, List<ValidationIssue> issues) {
 		if (common.isEmpty(street)) {
 			issues.add(MessageAttribute.buildIssue(field, IssueType.MISSING));
 		} else {
@@ -64,7 +64,7 @@ public enum AddressValidator {
 		}
 	}
 	
-	protected void addCityIssues(String city, IssueField field, List<ValidationIssue> issues) {
+	protected void addCityIssues(String city, VxuField field, List<ValidationIssue> issues) {
 		if (common.isEmpty(city)) {
 			issues.add(MessageAttribute.buildIssue(field, IssueType.MISSING));
 		} else {
@@ -74,7 +74,7 @@ public enum AddressValidator {
 		}
 	}
 	
-	protected void addStateIssues(String state, IssueField field, List<ValidationIssue> issues) {
+	protected void addStateIssues(String state, VxuField field, List<ValidationIssue> issues) {
 		if (common.isEmpty(state)) {
 			issues.add(MessageAttribute.buildIssue(field, IssueType.MISSING));
 		} else {
@@ -84,7 +84,7 @@ public enum AddressValidator {
 		}
 	}
 	
-	protected void addZipIssues(String zip, IssueField field, List<ValidationIssue> issues) {
+	protected void addZipIssues(String zip, VxuField field, List<ValidationIssue> issues) {
 		if (common.isEmpty(zip)) {
 			issues.add(MessageAttribute.buildIssue(field,  IssueType.MISSING));
 		} else {
@@ -94,13 +94,13 @@ public enum AddressValidator {
 		}
 	}
 	
-	protected void addCountyIssues(String county, IssueField field, List<ValidationIssue> issues) {
+	protected void addCountyIssues(String county, VxuField field, List<ValidationIssue> issues) {
 		if (common.isEmpty(county)) {
 			issues.add(MessageAttribute.buildIssue(field,  IssueType.MISSING));
 		} 
 	}
 	
-	protected void addCountryIssues(String country, IssueField field, List<ValidationIssue> issues) {
+	protected void addCountryIssues(String country, VxuField field, List<ValidationIssue> issues) {
 		if (common.isEmpty(country)) {
 			issues.add(MessageAttribute.buildIssue(field,  IssueType.MISSING));
 		} else {

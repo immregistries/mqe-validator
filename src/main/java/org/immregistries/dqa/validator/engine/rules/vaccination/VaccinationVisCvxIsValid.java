@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
@@ -31,7 +31,7 @@ public class VaccinationVisCvxIsValid extends
 		VaccinationVIS vis = target.getVaccinationVis();
 		String visCvx = vis.getCvxCode();
 			
-		issues.addAll(codr.handleCode(visCvx, IssueField.VACCINATION_VIS_CVX_CODE));
+		issues.addAll(codr.handleCode(visCvx, VxuField.VACCINATION_VIS_CVX_CODE));
 
 		passed = issues.isEmpty();
 		return buildResults(issues, passed);

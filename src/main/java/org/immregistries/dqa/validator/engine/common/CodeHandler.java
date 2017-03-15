@@ -12,7 +12,7 @@ import org.immregistries.dqa.codebase.client.generated.UseDate;
 import org.immregistries.dqa.codebase.client.reference.CodeStatusValue;
 import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
@@ -29,7 +29,7 @@ public enum CodeHandler {
 	protected final DateUtility datr = DateUtility.INSTANCE;
 	protected final CodeRepository repo = CodeRepository.INSTANCE;
 
-	public List<ValidationIssue> handleCode(String value, IssueField field) {
+	public List<ValidationIssue> handleCode(String value, VxuField field) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 		//LOGGER.info("value:" + value + " field: " + field);
 
@@ -70,7 +70,7 @@ public enum CodeHandler {
 		return issues;
 	}
 
-	public List<ValidationIssue> handleUseDate(Code codedValue, String usedDateString, IssueField field) {
+	public List<ValidationIssue> handleUseDate(Code codedValue, String usedDateString, VxuField field) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 
 		if (codedValue == null || StringUtils.isEmpty(usedDateString)) {
@@ -101,7 +101,7 @@ public enum CodeHandler {
 		return issues;
 	}
 
-	public List<ValidationIssue> handleAgeDate(Code codedValue, Date birthDate, Date adminDate, IssueField field) {
+	public List<ValidationIssue> handleAgeDate(Code codedValue, Date birthDate, Date adminDate, VxuField field) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 
 		if (codedValue == null || birthDate == null || adminDate == null) {
@@ -128,11 +128,11 @@ public enum CodeHandler {
 		return issues;
 	}
 
-	protected ValidationIssue issueForField(IssueField field, IssueType type) {
+	protected ValidationIssue issueForField(VxuField field, IssueType type) {
 		return issueForField(field, type, null);
 	}
 	
-	protected ValidationIssue issueForField(IssueField field, IssueType type, String receivedValue) {
+	protected ValidationIssue issueForField(VxuField field, IssueType type, String receivedValue) {
 
 		MessageAttribute issue = MessageAttribute.get(field, type);
 		

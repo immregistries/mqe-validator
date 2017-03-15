@@ -6,7 +6,7 @@ import java.util.List;
 import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
@@ -37,8 +37,8 @@ public class VaccinationProductIsValid extends ValidationRule<DqaVaccination> {
 
 //		if (target.isAdministered()) { //This check is not necessary because of the class dependency. 
 		if (product != null) {
-			issues.addAll(codr.handleCode(target.getProduct(), IssueField.VACCINATION_PRODUCT));
-			codr.handleUseDate(product, adminDate, IssueField.VACCINATION_PRODUCT);
+			issues.addAll(codr.handleCode(target.getProduct(), VxuField.VACCINATION_PRODUCT));
+			codr.handleUseDate(product, adminDate, VxuField.VACCINATION_PRODUCT);
 		} else {
 			issues.add(MessageAttribute.VaccinationProductIsMissing.build());
 		}

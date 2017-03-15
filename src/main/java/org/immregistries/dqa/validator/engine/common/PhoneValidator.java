@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
@@ -29,14 +29,14 @@ public enum PhoneValidator {
 	
 	private CodeHandler coder = CodeHandler.INSTANCE;
 	
-	public List<ValidationIssue> validatePhone(PhoneNumber phone, IssueField piPhone) {
+	public List<ValidationIssue> validatePhone(PhoneNumber phone, VxuField piPhone) {
 		return validatePhone(phone, piPhone, null, null);
 	}
 
 	public List<ValidationIssue> validatePhone(PhoneNumber phone,
-			IssueField piPhone, 
-			IssueField piPhoneTelUse,
-			IssueField piPhoneTelEquip) {
+			VxuField piPhone, 
+			VxuField piPhoneTelUse,
+			VxuField piPhoneTelEquip) {
 		
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 		

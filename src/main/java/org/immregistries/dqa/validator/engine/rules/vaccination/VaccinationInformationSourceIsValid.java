@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
@@ -37,7 +37,7 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<DqaVacci
 			passed = false;
 		} else {
 			
-	        issues.addAll(this.codr.handleCode(target.getInformationSource(), IssueField.VACCINATION_INFORMATION_SOURCE));
+	        issues.addAll(this.codr.handleCode(target.getInformationSource(), VxuField.VACCINATION_INFORMATION_SOURCE));
 	        
 	        if (issues.size() > 0) {
 	        	passed = false;

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -30,7 +30,7 @@ public class VaccinationOrdererIsValid extends ValidationRule<DqaVaccination> {
 			ordererNum = orderedBy.getNumber();
 		}
 		
-		issues.addAll(codr.handleCode(ordererNum,  IssueField.VACCINATION_ORDERED_BY));
+		issues.addAll(codr.handleCode(ordererNum,  VxuField.VACCINATION_ORDERED_BY));
 		
 		//Recorder
 		Id enteredBy = vaccination.getEnteredBy();
@@ -39,7 +39,7 @@ public class VaccinationOrdererIsValid extends ValidationRule<DqaVaccination> {
 			recorderNum = enteredBy.getNumber();
 		}
 		
-		issues.addAll(codr.handleCode(recorderNum, IssueField.VACCINATION_RECORDED_BY));
+		issues.addAll(codr.handleCode(recorderNum, VxuField.VACCINATION_RECORDED_BY));
 	    
 		// mark passed if there's no issues.
 		passed = (issues.size() == 0);

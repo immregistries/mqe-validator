@@ -25,6 +25,5 @@ public class VaccinationIsAdministeredOrHistorical extends
 		  	  	  && !target.getAdminCvxCode().equals("998")));
 
 		return buildResults(issues, passed);
-
 	}
 }

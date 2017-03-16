@@ -141,7 +141,7 @@ public class ReportScorerTest {
 		def = generatePatientNameReport(); 
 		scoredReport = re.getScoredReport(def, metrics);
 		assertNotNull("Should have a non-null report!", scoredReport);
-		assertEquals("want this report to add up to a lot", 200, scoredReport.getReportScore().getScored());
+		assertEquals("want this report to add up to a lot", 250, scoredReport.getReportScore().getScored());
 		
 		ReportDefinition defaultReport = ReportDefinitionBuilder.INSTANCE.getDeafult();
 		VxuScoredReport scoredDefaultReport = re.getScoredReport(defaultReport, metrics);

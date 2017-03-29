@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
@@ -25,7 +25,7 @@ public class PatientProtectionIndicatorIsValid extends ValidationRule<DqaPatient
 		//I'm thinking...  here.  No compelling reason yet.  just a feeling. 
 		
 		if (common.isEmpty(protectionCode)) {
-			issues.add(MessageAttribute.buildIssue(IssueField.PATIENT_PROTECTION_INDICATOR, IssueType.MISSING));
+			issues.add(MessageAttribute.buildIssue(VxuField.PATIENT_PROTECTION_INDICATOR, IssueType.MISSING));
 			passed = false;
 		} else if ("Y".equals(protectionCode)) {
 		    issues.add(MessageAttribute.PatientProtectionIndicatorIsValuedAsYes.build(protectionCode));

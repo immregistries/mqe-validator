@@ -8,7 +8,7 @@ import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.codebase.client.generated.UseDate;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
@@ -26,7 +26,7 @@ public class VaccinationMfrIsValid extends ValidationRule<DqaVaccination> {
 		boolean passed = true;
 
 		if (target.isAdministered()) {
-			issues.addAll(codr.handleCode(target.getManufacturer(), IssueField.VACCINATION_MANUFACTURER_CODE));
+			issues.addAll(codr.handleCode(target.getManufacturer(), VxuField.VACCINATION_MANUFACTURER_CODE));
 			passed = (issues.size() == 0);
 		}
 

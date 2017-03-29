@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
@@ -29,7 +29,7 @@ public class VaccinationConfidentialityCodeIsValid extends
 
 		String confCode = target.getConfidentialityCode();
 
-		issues.addAll(codr.handleCode(confCode,IssueField.VACCINATION_CONFIDENTIALITY_CODE));
+		issues.addAll(codr.handleCode(confCode,VxuField.VACCINATION_CONFIDENTIALITY_CODE));
 		passed = (issues.size() == 0);
 
 		if ("R".equals(confCode) || "V".equals(confCode)) {

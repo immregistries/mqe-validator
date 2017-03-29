@@ -42,7 +42,8 @@ public enum ValidationRuleEntityLists {
 			, new MessageHasResponsibleParty()
 			), 
 	VACCINATION_RULES(
-			    new VaccinationActionCodeIsValid()
+			    new VaccinationIsPresent()
+			  , new VaccinationActionCodeIsValid()
 			  , new VaccinationAdminAfterBirthDate()
 			  , new VaccinationAdminCodeCptIsValid()
 			  , new VaccinationAdminCodeCvxIsValid()
@@ -85,7 +86,8 @@ public enum ValidationRuleEntityLists {
 			, new MessageVersionIs25()
 			),
 	NEXT_OF_KIN_RULES(
-			new NextOfKinAddressIsSameAsPatientAddress()
+			  new NextOfKinIsPresent()
+			, new NextOfKinAddressIsSameAsPatientAddress()
 			),
 	;
 	

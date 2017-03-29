@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.validator.engine.common.CommonRules;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
@@ -53,7 +53,7 @@ public enum ValidationUtility {
 		return false;
 	}
 	
-	public boolean addToListIfEmpty(String value, IssueField field, List<ValidationIssue> toList) {
+	public boolean addToListIfEmpty(String value, VxuField field, List<ValidationIssue> toList) {
 		MessageAttribute issue = MessageAttribute.get(field, IssueType.MISSING);
 		return addToListIfEmpty(value, issue, toList);
 	}

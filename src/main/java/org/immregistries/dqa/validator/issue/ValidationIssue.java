@@ -114,7 +114,14 @@ public String getDiagnosticMessage() {
 @Override
 public CodedWithExceptions getApplicationErrorCode() {
 	CodedWithExceptions cwe = new CodedWithExceptions();
-	cwe.setIdentifier(this.messageAttribute.getDqaErrorCode());
+	if (!this.messageAttribute.getApplicationErrorCode().equals("")){
+	  cwe.setIdentifier(this.messageAttribute.getApplicationErrorCode().getId());
+      cwe.setText(this.messageAttribute.getApplicationErrorCode().getText());
+      cwe.setNameOfCodingSystem("HL70533");
+      cwe.setAlternateIdentifier(this.messageAttribute.getDqaErrorCode());
+      cwe.setAlternateText(this.messageAttribute.getDisplayText());
+      cwe.setNameOfAlternateCodingSystem("L");
+	}
 	return cwe;
 }
 

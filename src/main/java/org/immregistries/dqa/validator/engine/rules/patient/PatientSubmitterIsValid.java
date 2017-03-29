@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
@@ -25,15 +25,15 @@ public class PatientSubmitterIsValid extends ValidationRule<DqaPatient> {
 		
 		if (common.isEmpty(submitterNumStr)) {
 			
-			issues.add(MessageAttribute.get(IssueField.PATIENT_SUBMITTER_ID, IssueType.MISSING).build());
+			issues.add(MessageAttribute.get(VxuField.PATIENT_SUBMITTER_ID, IssueType.MISSING).build());
 			passed = false;
 			
 			if (common.isEmpty(assignAuthCodeStr)) {
-				issues.add(MessageAttribute.get(IssueField.PATIENT_SUBMITTER_ID_AUTHORITY, IssueType.MISSING).build());
+				issues.add(MessageAttribute.get(VxuField.PATIENT_SUBMITTER_ID_AUTHORITY, IssueType.MISSING).build());
 			}
 			
 			if (common.isEmpty(submitterTypeCdStr)) {
-				issues.add(MessageAttribute.get(IssueField.PATIENT_SUBMITTER_ID_TYPE_CODE, IssueType.MISSING).build());
+				issues.add(MessageAttribute.get(VxuField.PATIENT_SUBMITTER_ID_TYPE_CODE, IssueType.MISSING).build());
 			}
 	    }
 		

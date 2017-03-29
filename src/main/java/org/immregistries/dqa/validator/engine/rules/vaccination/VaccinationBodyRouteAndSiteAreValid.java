@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -26,8 +26,8 @@ public class VaccinationBodyRouteAndSiteAreValid extends ValidationRule<DqaVacci
 			String bodySite = vaccination.getBodySite();
 			String bodyRoute = vaccination.getBodyRoute();
 			
-			issues.addAll(codr.handleCode(bodyRoute, IssueField.VACCINATION_BODY_ROUTE));
-			issues.addAll(codr.handleCode(bodySite, IssueField.VACCINATION_BODY_SITE));
+			issues.addAll(codr.handleCode(bodyRoute, VxuField.VACCINATION_BODY_ROUTE));
+			issues.addAll(codr.handleCode(bodySite, VxuField.VACCINATION_BODY_SITE));
 		}
 	    
 		//These were not implemented in DQA 1.0

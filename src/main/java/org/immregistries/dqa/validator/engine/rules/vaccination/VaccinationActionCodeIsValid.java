@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
@@ -20,7 +20,7 @@ public class VaccinationActionCodeIsValid extends ValidationRule<DqaVaccination>
 		boolean passed = true;
 		
 		
-		issues.addAll(this.codr.handleCode(target.getAction(), IssueField.VACCINATION_ACTION_CODE));
+		issues.addAll(this.codr.handleCode(target.getAction(), VxuField.VACCINATION_ACTION_CODE));
 
 		if (issues.size() > 0) {
 			passed = false;

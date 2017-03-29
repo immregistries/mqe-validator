@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -24,7 +24,7 @@ public class VaccinationAdminCodeCptIsValid extends ValidationRule<DqaVaccinatio
 
 		String cpt = v.getAdminCptCode();
 
-		issues.addAll(codr.handleCode(cpt, IssueField.VACCINATION_ADMIN_CODE));
+		issues.addAll(codr.handleCode(cpt, VxuField.VACCINATION_ADMIN_CODE));
 		
 		passed = (issues.size() == 0);
 		

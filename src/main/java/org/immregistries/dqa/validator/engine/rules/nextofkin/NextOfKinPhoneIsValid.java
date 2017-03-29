@@ -6,7 +6,7 @@ import java.util.List;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.common.PhoneValidator;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
@@ -22,7 +22,7 @@ public class NextOfKinPhoneIsValid extends ValidationRule<DqaNextOfKin> {
 		boolean passed = true;
 		
 		issues.addAll(
-				phoneValidator.validatePhone(target.getPhone(), IssueField.NEXT_OF_KIN_PHONE_NUMBER)
+				phoneValidator.validatePhone(target.getPhone(), VxuField.NEXT_OF_KIN_PHONE_NUMBER)
 		);
 		
 		passed = (issues.size() == 0);

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
@@ -27,7 +27,7 @@ public class VaccinationCompletionStatusIsValid extends ValidationRule<DqaVaccin
 		
 		String completion = target.getCompletion();
 		
-		issues.addAll(this.codr.handleCode(completion, IssueField.VACCINATION_COMPLETION_STATUS));
+		issues.addAll(this.codr.handleCode(completion, VxuField.VACCINATION_COMPLETION_STATUS));
 		if (issues.size() > 0) {
 			passed = false;
 		}

@@ -9,7 +9,7 @@ import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.codebase.client.reference.CodesetType;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -44,7 +44,7 @@ public class VaccinationAdminDateIsValidForPatientAge extends ValidationRule<Dqa
 						vaccineCode
 						, adminDate
 						, birthDate
-						, IssueField.VACCINATION_ADMIN_DATE));
+						, VxuField.VACCINATION_ADMIN_DATE));
 			}
 			
 			passed = (issues.size() == 0);

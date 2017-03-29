@@ -8,7 +8,7 @@ import org.immregistries.dqa.codebase.client.reference.CodesetType;
 import org.immregistries.dqa.codebase.client.reference.CvxConceptType;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -46,7 +46,7 @@ public class VaccinationCvxUseIsValid extends ValidationRule<DqaVaccination> {
 				logger.info("Not evaluating date because the concept type indicates an UNSPECIFIED or FOREIGN_VACCINE, and it's not administered");
 			} else {
 				codr.handleUseDate(vaccineCode, target.getAdminDateString(),
-						IssueField.VACCINATION_ADMIN_DATE);
+						VxuField.VACCINATION_ADMIN_DATE);
 			}
 
 			passed = (issues.size() == 0);

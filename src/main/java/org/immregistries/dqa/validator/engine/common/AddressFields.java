@@ -1,29 +1,29 @@
 package org.immregistries.dqa.validator.engine.common;
 
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 
 public class AddressFields {
 
-	private IssueField address;
-	private IssueField street2Field;
-	private IssueField cityField;
-	private IssueField streetField;
-	private IssueField countryField;
-	private IssueField countyField;
-	private IssueField stateField;
-	private IssueField zipField;
-	private IssueField addressTypeField;
+	private VxuField address;
+	private VxuField street2Field;
+	private VxuField cityField;
+	private VxuField streetField;
+	private VxuField countryField;
+	private VxuField countyField;
+	private VxuField stateField;
+	private VxuField zipField;
+	private VxuField addressTypeField;
 	
 	public AddressFields(
-			  IssueField addressRef
-			, IssueField street
-			, IssueField street2
-			, IssueField city
-			, IssueField state
-			, IssueField county
-			, IssueField country
-			, IssueField zip
-			, IssueField type
+			  VxuField addressRef
+			, VxuField street
+			, VxuField street2
+			, VxuField city
+			, VxuField state
+			, VxuField county
+			, VxuField country
+			, VxuField zip
+			, VxuField type
 			) {
 		
 		this.address = addressRef;
@@ -37,31 +37,31 @@ public class AddressFields {
 		this.addressTypeField = type;
 	}
 	
-	public IssueField getAddress() {
+	public VxuField getAddress() {
 		return address;
 	}
-	public IssueField getStreet2Field() {
+	public VxuField getStreet2Field() {
 		return street2Field;
 	}
-	public IssueField getCityField() {
+	public VxuField getCityField() {
 		return cityField;
 	}
-	public IssueField getStreetField() {
+	public VxuField getStreetField() {
 		return streetField;
 	}
-	public IssueField getCountryField() {
+	public VxuField getCountryField() {
 		return countryField;
 	}
-	public IssueField getCountyField() {
+	public VxuField getCountyField() {
 		return countyField;
 	}
-	public IssueField getStateField() {
+	public VxuField getStateField() {
 		return stateField;
 	}
-	public IssueField getZipField() {
+	public VxuField getZipField() {
 		return zipField;
 	}
-	public IssueField getAddressTypeField() {
+	public VxuField getAddressTypeField() {
 		return addressTypeField;
 	}
 	

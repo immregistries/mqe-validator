@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.IssueField;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
@@ -22,7 +22,7 @@ public class PatientRegistryIdIsValid extends ValidationRule<DqaPatient> {
 		String regNum = target.getIdRegistryNumber();
 		
 		if (common.isEmpty(regNum)) {
-			issues.add(MessageAttribute.get(IssueField.PATIENT_REGISTRY_ID, IssueType.MISSING).build());
+			issues.add(MessageAttribute.get(VxuField.PATIENT_REGISTRY_ID, IssueType.MISSING).build());
 	    }
 		
 		// TODO PatientRegistryIdIsUnrecognized

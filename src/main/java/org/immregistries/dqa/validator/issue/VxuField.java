@@ -61,7 +61,7 @@ public enum VxuField {
 			, OBSERVATION_DATE_TIME_OF_OBSERVATION("date time of observation", null, null)
 			
 			//patient
-			, PATIENT_ADDRESS("address", null, null)
+			, PATIENT_ADDRESS("address", null, "PID-14")
 			, PATIENT_ADDRESS_CITY("address city", null, null)
 			, PATIENT_ADDRESS_COUNTRY("address country", null, null)
 			, PATIENT_ADDRESS_COUNTY("address county", null, null)
@@ -98,7 +98,7 @@ public enum VxuField {
 			, PATIENT_MIDDLE_NAME("middle name", null, "PID-5.3")
 			, PATIENT_MOTHERS_MAIDEN_NAME("mother's maiden name", null, "PID-6")
 			, PATIENT_NAME("name", null, null)
-			, PATIENT_NAME_FIRST("name first", null, null)
+			, PATIENT_NAME_FIRST("name first", null, "PID-5.1")
 			, PATIENT_NAME_LAST("name last", null, null)
 			, PATIENT_NAME_TYPE_CODE("name type code", CodesetType.PERSON_NAME_TYPE, null)
 			, PATIENT_PHONE("phone", null, null)

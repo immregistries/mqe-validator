@@ -52,7 +52,27 @@ public enum ReportDefinitionBuilder {
 		List<DqaReportFieldDefinition> fields = new ArrayList<>();
 		boolean checkForMissing = true;
 		boolean dontCheckForMissing = true;
-		fields.add(generateFieldDefinition("VACCINATION ADMIN DATE", Requirement.RECCOMENDED, VxuField.VACCINATION_ADMIN_DATE, 20, checkForMissing, getDefaultFieldIssues()));
+		
+		//required
+		fields.add(generateFieldDefinition("Vaccination Date", Requirement.REQUIRED, VxuField.VACCINATION_ADMIN_DATE, 45, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Vaccination Code", Requirement.REQUIRED, VxuField.VACCINATION_ADMIN_CODE, 45, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Information Source", Requirement.REQUIRED, VxuField.VACCINATION_INFORMATION_SOURCE, 45, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("VFC Status", Requirement.REQUIRED, VxuField.PATIENT_VFC_STATUS, 22, checkForMissing, getDefaultFieldIssues()));
+		
+		//expected
+		fields.add(generateFieldDefinition("CVX Code", Requirement.EXPECTED, VxuField.VACCINATION_CVX_CODE, 15, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Lot Number", Requirement.EXPECTED, VxuField.VACCINATION_LOT_NUMBER, 22, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Manufacturer", Requirement.EXPECTED, VxuField.VACCINATION_MANUFACTURER_CODE, 22, checkForMissing, getDefaultFieldIssues()));
+		
+		//recommended
+		fields.add(generateFieldDefinition("Admin Amount", Requirement.RECCOMENDED, VxuField.VACCINATION_ADMINISTERED_AMOUNT, 16, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Completion Status", Requirement.RECCOMENDED, VxuField.VACCINATION_COMPLETION_STATUS, 7, checkForMissing, getDefaultFieldIssues()));
+		
+		//optional
+		fields.add(generateFieldDefinition("Facility Id", Requirement.OPTIONAL, VxuField.VACCINATION_FACILITY_ID, 0, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Action Code", Requirement.OPTIONAL, VxuField.VACCINATION_ACTION_CODE, 0, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Refusal Reason", Requirement.OPTIONAL, VxuField.VACCINATION_REFUSAL_REASON, 0, checkForMissing, getDefaultFieldIssues()));
+		
 		return fields;
 	}
 	
@@ -93,8 +113,26 @@ public enum ReportDefinitionBuilder {
 		fields.add(generateFieldDefinition("Phone", Requirement.EXPECTED, VxuField.PATIENT_PHONE, 20, checkForMissing, getDefaultFieldIssues()));
 		//mother's maiden
 		fields.add(generateFieldDefinition("Mother's Maiden", Requirement.EXPECTED, VxuField.PATIENT_MOTHERS_MAIDEN_NAME, 20, checkForMissing, getDefaultFieldIssues()));
+
+		//recommended fields
+		fields.add(generateFieldDefinition("Ethnicity", Requirement.RECCOMENDED, VxuField.PATIENT_ETHNICITY, 7, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Race", Requirement.RECCOMENDED, VxuField.PATIENT_RACE, 7, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Complete Responsible Party", Requirement.RECCOMENDED, VxuField.PATIENT_GUARDIAN_RESPONSIBLE_PARTY, 1, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("First Name", Requirement.RECCOMENDED, VxuField.PATIENT_GUARDIAN_NAME_FIRST, 3, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Last Name", Requirement.RECCOMENDED, VxuField.PATIENT_GUARDIAN_NAME_LAST, 3, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Relationship", Requirement.RECCOMENDED, VxuField.PATIENT_GUARDIAN_RELATIONSHIP, 1, checkForMissing, getDefaultFieldIssues()));
 		
-		fields.add(generateFieldDefinition("Ethnicity", Requirement.RECCOMENDED, VxuField.PATIENT_ETHNICITY, 20, checkForMissing, getDefaultFieldIssues()));
+		//optional fields
+		fields.add(generateFieldDefinition("Birth Indicator", Requirement.OPTIONAL, VxuField.PATIENT_BIRTH_INDICATOR, 0, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Complete Responsible Party Address", Requirement.OPTIONAL, VxuField.PATIENT_GUARDIAN_ADDRESS, 0, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Street", Requirement.OPTIONAL, VxuField.PATIENT_GUARDIAN_ADDRESS_STREET, 0, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("City", Requirement.OPTIONAL, VxuField.PATIENT_GUARDIAN_ADDRESS_CITY, 0, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("State", Requirement.OPTIONAL, VxuField.PATIENT_GUARDIAN_ADDRESS_STATE, 0, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Zip", Requirement.OPTIONAL, VxuField.PATIENT_GUARDIAN_ADDRESS_ZIP, 0, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Responsible Party Phone", Requirement.OPTIONAL, VxuField.PATIENT_GUARDIAN_PHONE, 0, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Address County", Requirement.OPTIONAL, VxuField.PATIENT_ADDRESS_COUNTY, 0, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Financial Class", Requirement.OPTIONAL, VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE, 0, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Protection Indicator", Requirement.OPTIONAL, VxuField.PATIENT_PROTECTION_INDICATOR, 0, checkForMissing, getDefaultFieldIssues()));
 		
 		return fields;
 	}

@@ -30,6 +30,7 @@ public enum MessageResponseEvaluator {
 		Map<IssueObject, Integer> objCounts = new HashMap<IssueObject, Integer>();
 		
 		objCounts.put(IssueObject.PATIENT,  1);
+		objCounts.put(IssueObject.MESSAGE_HEADER,  1);		
 		
 		int vaccCount = 0;
 		int nokCount = 0;

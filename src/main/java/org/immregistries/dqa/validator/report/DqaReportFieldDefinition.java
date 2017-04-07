@@ -49,4 +49,7 @@ public class DqaReportFieldDefinition {
 	public void setRequirement(Requirement requirement) {
 		this.requirement = requirement;
 	}
+	public String getHl7Field() {
+		return this.field.getHl7Field();
+	}
 }

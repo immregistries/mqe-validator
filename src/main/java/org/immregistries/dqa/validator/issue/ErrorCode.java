@@ -476,5 +476,6 @@ public enum ErrorCode {
   DQA0553,
   DQA0554,
   DQA0555,
+  DQA0556,
   // Add new codes here below in ascending order
 }

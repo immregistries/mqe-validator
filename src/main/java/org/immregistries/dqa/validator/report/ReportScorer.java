@@ -51,6 +51,9 @@ public enum ReportScorer {
 		IssueObject sectionObject = section.getSectionObject();
 		Integer denominator = measures.getObjectCounts().get(sectionObject);
 		
+		if (denominator == null) {
+			denominator = 0;
+		}
 		reportSection.setObjectCount(denominator);
 		
 		List<DqaReportFieldDefinition> fields = section.getReportFields();

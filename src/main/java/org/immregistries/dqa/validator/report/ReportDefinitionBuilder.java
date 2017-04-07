@@ -25,6 +25,7 @@ public enum ReportDefinitionBuilder {
 		
 		def.getQualitySections().add(getDefaultPatientSection());
 		def.getQualitySections().add(getDefaultVaccinationSection());
+		def.getQualitySections().add(getDefaultMessageHeaderSection());
 		return def;
 	}
 	
@@ -48,6 +49,29 @@ public enum ReportDefinitionBuilder {
 
 				return section;
 	}
+
+	public ReportCompletenessSectionDefinition getDefaultMessageHeaderSection() {
+		//build a section for the patient. 
+				ReportCompletenessSectionDefinition section = new ReportCompletenessSectionDefinition();
+				section.setLabel("Message Header");
+				section.setSectionObject(IssueObject.MESSAGE_HEADER);
+				section.setReportFields(getMessageReportFields());
+
+				return section;
+	}
+	
+	
+	public List<DqaReportFieldDefinition> getMessageReportFields() {
+		List<DqaReportFieldDefinition> fields = new ArrayList<>();
+		boolean checkForMissing = true;
+		boolean dontCheckForMissing = true;
+		
+		//recommended
+		fields.add(generateFieldDefinition("Sending Responsible Organization", Requirement.RECCOMENDED, VxuField.MESSAGE_SENDING_RESPONSIBLE_ORGANIZATION, 10, checkForMissing, getDefaultFieldIssues()));
+		
+		return fields;
+	}
+	
 	public List<DqaReportFieldDefinition> getVaccinationReportFields() {
 		List<DqaReportFieldDefinition> fields = new ArrayList<>();
 		boolean checkForMissing = true;

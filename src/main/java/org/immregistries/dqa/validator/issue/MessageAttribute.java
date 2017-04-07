@@ -42,6 +42,7 @@ public enum MessageAttribute {
 	MessageReceivingFacilityIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, VxuField.MESSAGE_RECEIVING_FACILITY, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.DQA0032, "MSH-6"),
 	MessageSendingApplicationIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, VxuField.MESSAGE_SENDING_APPLICATION, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.DQA0035, "MSH-3"),
 	MessageSendingFacilityIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, VxuField.MESSAGE_SENDING_FACILITY, "", SeverityLevel.WARN, "101", null, ErrorCode.DQA0037, "MSH-4"),
+	MessageSendingResponsibleOrganizationIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, VxuField.MESSAGE_SENDING_RESPONSIBLE_ORGANIZATION, "", SeverityLevel.WARN, "101", null, ErrorCode.DQA0556, "MSH-22"),
 	
 	MessageVersionIsMissing(IssueObject.MESSAGE_HEADER, IssueType.MISSING, VxuField.MESSAGE_VERSION, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.DQA0038, "MSH-12"),
 	MessageVersionIsUnrecognized(IssueObject.MESSAGE_HEADER, IssueType.UNRECOGNIZED, VxuField.MESSAGE_VERSION, "", SeverityLevel.WARN, "103", null, ErrorCode.DQA0039, "MSH-12"),

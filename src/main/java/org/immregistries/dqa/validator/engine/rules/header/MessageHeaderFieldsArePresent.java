@@ -45,8 +45,10 @@ public class MessageHeaderFieldsArePresent extends ValidationRule<DqaMessageHead
 		if (common.isEmpty(target.getAckTypeApplicationCode())) {
 			issues.add(MessageAttribute.MessageAppAckTypeIsMissing.build());
 		}
-
-
+		if (common.isEmpty(target.getSendingRespOrg())) {
+			issues.add(MessageAttribute.MessageSendingResponsibleOrganizationIsMissing.build());
+		}
+		
 		passed = issues.isEmpty();
 		return buildResults(issues, passed);
 	}

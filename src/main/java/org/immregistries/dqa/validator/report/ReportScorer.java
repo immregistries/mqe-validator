@@ -1,7 +1,6 @@
 package org.immregistries.dqa.validator.report;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,12 +21,26 @@ public enum ReportScorer {
 	private ReportDefinitionBuilder defbuilder = ReportDefinitionBuilder.INSTANCE;
 	private MessageResponseEvaluator eval = MessageResponseEvaluator.INSTANCE;
     private DqaMessageService vlad = DqaMessageService.INSTANCE;
+    private ReportDefinition defaultDef = defbuilder.getDeafult();
     
 	public VxuScoredReport getDefaultReportForMessage(String vxuText) {
-		ReportDefinition defaultDef = defbuilder.getDeafult();
+		DqaMessageMetrics metrics = getDqaMetricsFor(vxuText);
+		return getDefaultReportForMetrics(metrics);
+	}
+	
+	public VxuScoredReport getDefaultReportForMetrics(DqaMessageMetrics metrics) {
+		return getScoredReport(this.defaultDef, metrics);
+	}
+	
+	public DqaMessageMetrics getDqaMetricsFor(String vxuText) {
 		DqaMessageServiceResponse response = vlad.processMessage(vxuText);
-		DqaMessageMetrics msgMetrics = eval.toMetrics(response.getValidationResults());
-		return getScoredReport(defaultDef, msgMetrics);
+		DqaMessageMetrics msgMetrics = getDqaMetricsFor(response);
+		return msgMetrics;
+	}
+	
+	public DqaMessageMetrics getDqaMetricsFor(DqaMessageServiceResponse validationResults) {
+		DqaMessageMetrics msgMetrics = eval.toMetrics(validationResults.getValidationResults());
+		return msgMetrics;
 	}
 	
 	public VxuScoredReport getScoredReport(ReportDefinition def, DqaMessageMetrics measures) {

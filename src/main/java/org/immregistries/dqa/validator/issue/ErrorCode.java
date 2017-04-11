@@ -1,5 +1,8 @@
 package org.immregistries.dqa.validator.issue;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum ErrorCode {
   DQA0000,
   DQA0002,
@@ -478,4 +481,17 @@ public enum ErrorCode {
   DQA0555,
   DQA0556,
   // Add new codes here below in ascending order
+  ;
+  
+  private static Map<String, ErrorCode> errorCodeStringMap = new HashMap<>();
+  
+  static {
+	  for (ErrorCode c : ErrorCode.values()) {
+		  errorCodeStringMap.put(c.name(),  c);
+	  }
+  }
+  
+  public static ErrorCode getByCodeString(String code) {
+	  return errorCodeStringMap.get(code);
+  }
 }

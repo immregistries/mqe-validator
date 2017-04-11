@@ -510,6 +510,8 @@ public enum MessageAttribute {
 	  
 	  private static final Map<VxuField, List<MessageAttribute>> objectIssueListMap = new HashMap<VxuField, List<MessageAttribute>>();
 	  
+	  private static final Map<ErrorCode, MessageAttribute> errorCodeAttributeMap = new HashMap<>();
+	  
 	  private static final Map<String, MessageAttribute> displayTextMap = new HashMap<String, MessageAttribute>();
 	  static {
 		  for (MessageAttribute issue : MessageAttribute.values()) {
@@ -528,6 +530,8 @@ public enum MessageAttribute {
 			  objectIssues.add(issue);
 			  
 			  displayTextMap.put(issue.getDisplayText() + issue.getIssueType().getText(), issue);
+			  
+			  errorCodeAttributeMap.put(issue.dqaErrorCode,  issue);
 		  }
 	  }
 	  /**
@@ -806,6 +810,15 @@ public enum MessageAttribute {
   public static ValidationIssue buildIssue(VxuField field, IssueType type, String value) {
 	  MessageAttribute issue = get(field, type);
 	  return issue.build(value);
+  }
+  
+  public static MessageAttribute getByDqaErrorCode(ErrorCode code) {
+	  return errorCodeAttributeMap.get(code);
+  }
+  
+  public static MessageAttribute getByDqaErrorCodeString(String codeString) {
+	  ErrorCode code =  ErrorCode.getByCodeString(codeString);
+	  return errorCodeAttributeMap.get(code);
   }
 
   public static MessageAttribute getPotentialIssueByDisplayText(String num, IssueType missing) {

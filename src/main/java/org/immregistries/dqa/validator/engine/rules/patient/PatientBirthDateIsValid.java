@@ -1,7 +1,6 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -10,6 +9,7 @@ import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
+import org.joda.time.DateTime;
 
 public class PatientBirthDateIsValid extends ValidationRule<DqaPatient> {
 
@@ -34,22 +34,24 @@ public class PatientBirthDateIsValid extends ValidationRule<DqaPatient> {
 			issues.add(MessageAttribute.PatientBirthDateIsInvalid.build(birthDateString));
 			passed = false;
 		} else {
-			Date birthDate = this.common.parseDateFrom(birthDateString);
+			DateTime birthDate = this.common.parseDateTimeFrom(birthDateString);
 		
 			//in the original validator, the "future" was determined based
 			//on when the message is validated...  we might need to keep that. 
-			Date receivedDate = message.getReceivedDate();
-			if (receivedDate != null && receivedDate.before(birthDate)) { 
+			DateTime receivedDate = new DateTime(message.getReceivedDate());
+			
+			if (receivedDate != null && receivedDate.isBefore(birthDate)) { 
 				issues.add(MessageAttribute.PatientBirthDateIsInFuture.build(birthDateString));
 				passed = false;
 			}
 			
-			Date messageDate = message.getMessageHeader().getMessageDate();
+			DateTime messageDate = new DateTime(message.getMessageHeader().getMessageDate());
 			
-			if (messageDate != null && messageDate.before(birthDate)) {
+			if (messageDate != null && messageDate.isBefore(birthDate)) {
 				issues.add(MessageAttribute.PatientBirthDateIsAfterSubmission.build(birthDateString));
 				passed = false;
 			}
+
 		}
 		
 		return buildResults(issues, passed);

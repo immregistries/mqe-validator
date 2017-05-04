@@ -1,5 +1,6 @@
 package org.immregistries.dqa.validator.engine;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import org.immregistries.dqa.validator.engine.common.CommonRules;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.code.CodeReceived;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

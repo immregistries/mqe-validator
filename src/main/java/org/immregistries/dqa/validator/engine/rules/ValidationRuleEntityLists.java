@@ -16,6 +16,7 @@ public enum ValidationRuleEntityLists {
 			  new PatientAddressIsValid() 
 			, new PatientAliasIsValid() 
 			, new PatientBirthDateIsValid()
+			, new PatientBirthDateIsReasonable()
 			, new PatientDeathDateIsValid()
 			, new PatientDeathIndicatorIsValid()
 			, new PatientEthnicityIsValid()

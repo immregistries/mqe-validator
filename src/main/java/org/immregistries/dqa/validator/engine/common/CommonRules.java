@@ -5,6 +5,7 @@ import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.vxu.hl7.Name;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 
 public enum CommonRules {
@@ -22,6 +23,10 @@ public enum CommonRules {
 	public boolean isValidDate(String dateString) {
 		//LOGGER.debug("Evaluating: evaluateIsValidDate for value: [" + dateString + "]");
 		return datr.isDate(dateString);
+	}
+	
+	public DateTime parseDateTimeFrom(String dateString) {
+		return datr.parseDateTime(dateString);
 	}
 
 	public Date parseDateFrom(String dateString) {

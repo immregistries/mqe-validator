@@ -9,6 +9,7 @@ import org.immregistries.dqa.vxu.code.CodeReceived;
 import org.joda.time.DateTime;
 
 public class DqaMessageMetrics {
+	
 	private Map<IssueObject, Integer> objectCounts = new HashMap<>();
 	private Map<MessageAttribute, Integer> attributeCounts = new HashMap<>();
 	private Map<CodeReceived, Integer> codeCounts = new HashMap<>();

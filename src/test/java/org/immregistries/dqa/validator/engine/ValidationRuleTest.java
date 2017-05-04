@@ -44,6 +44,7 @@ public class ValidationRuleTest {
 		mr.setPatient(p);
 		
 		ValidationRule<DqaPatient> vr = new PatientBirthDateIsValid();
+		
 		List<ValidationIssue> issues = vr.executeRule(p, mr).getIssues();
 		
 		assertEquals("should be zero issues", 0, issues.size());
@@ -51,6 +52,11 @@ public class ValidationRuleTest {
 		p.setBirthDateString("");
 		issues = vr.executeRule(p, mr).getIssues();
 		assertEquals("should be two issues", 2, issues.size());
+		
+		
+		p.setBirthDateString("18950101");
+		issues = vr.executeRule(p, mr).getIssues();
+		assertEquals("should be one issue", 1, issues.size());
 		
 	}
 	

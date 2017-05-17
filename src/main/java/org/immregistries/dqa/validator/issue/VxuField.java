@@ -10,13 +10,13 @@ public enum VxuField {
 	/*
 	 * What do you think about tagging the HL7 Location for these bad boys. Pull them from the MessageAttribute class.  
 	 */
-	
+
 			//general
 			  AUTHORIZATION("authorization", null, null)
 			, CONFIGURATION("configuration", null, null)
 			, PARSE("parse", null, null)
 			, PROCESSING("processing", null, null)
-			
+
 			//message header
 			, MESSAGE_ACCEPT_ACK_TYPE("accept ack type", CodesetType.ACKNOWLEDGEMENT_TYPE, "MSH-15")
 			, MESSAGE_ALT_CHARACTER_SET("alt character set", null, null)
@@ -37,7 +37,7 @@ public enum VxuField {
 			, MESSAGE_SENDING_FACILITY("sending facility", null, "MSH-4")
 			, MESSAGE_VERSION("version", null, "MSH-12")
 			, MESSAGE_SENDING_RESPONSIBLE_ORGANIZATION("sending responsible organization", null, "MSH-22")
-			
+
 			//Next of kin
 			, NEXT_OF_KIN_ADDRESS("address", null, "NK1-4")
 			, NEXT_OF_KIN_ADDRESS_CITY("address city", null, "NK1-4.3")
@@ -46,21 +46,21 @@ public enum VxuField {
 			, NEXT_OF_KIN_ADDRESS_STATE("address state", null, "NK1-4.4")
 			, NEXT_OF_KIN_ADDRESS_STREET("address street", null, "NK1-4.1")
 			, NEXT_OF_KIN_ADDRESS_STREET2("address street2", null, "NK1-4.2")
-			, NEXT_OF_KIN_ADDRESS_TYPE("address type", null, "NK1-4.7")
+			, NEXT_OF_KIN_ADDRESS_TYPE("address type", CodesetType.ADDRESS_TYPE, "NK1-4.7")
 			, NEXT_OF_KIN_ADDRESS_ZIP("address zip", null, "NK1-4.5")
 			, NEXT_OF_KIN_NAME("name", null, "NK1-2")
 			, NEXT_OF_KIN_NAME_FIRST("name first", null, "NK1-2.1")
 			, NEXT_OF_KIN_NAME_LAST("name last", null, "NK1-2.2")
 			, NEXT_OF_KIN_PHONE_NUMBER("phone number", null, "NK1-5")
-			, NEXT_OF_KIN_RELATIONSHIP("relationship", null, "NK1-3")
+			, NEXT_OF_KIN_RELATIONSHIP("relationship", CodesetType.PERSON_RELATIONSHIP, "NK1-3")
 			, NEXT_OF_KIN_SSN("SSN", null, "NK1-33")
-			
+
 			//observation
 			, OBSERVATION_VALUE_TYPE("value type", CodesetType.HL7_VALUE_TYPE, "OBX-2")
 			, OBSERVATION_IDENTIFIER_CODE("identifier code", CodesetType.OBSERVATION_IDENTIFIER, "OBX-3")
 			, OBSERVATION_VALUE("value", null, "OBX")
 			, OBSERVATION_DATE_TIME_OF_OBSERVATION("date time of observation", null, "OBX-14")
-			
+
 			//patient
 			, PATIENT_ADDRESS("address", null, "PID-11")
 			, PATIENT_ADDRESS_CITY("address city", null, "PID-11.3")
@@ -69,7 +69,7 @@ public enum VxuField {
 			, PATIENT_ADDRESS_STATE("address state", null, "PID-11.4")
 			, PATIENT_ADDRESS_STREET("address street", null, "PID-11.1")
 			, PATIENT_ADDRESS_STREET2("address street2", null, "PID-11.2")
-			, PATIENT_ADDRESS_TYPE("address type", null, "PID-11.7")
+			, PATIENT_ADDRESS_TYPE("address type", CodesetType.ADDRESS_TYPE, "PID-11.7")
 			, PATIENT_ADDRESS_ZIP("address zip", null, "PID-11.5")
 			, PATIENT_ALIAS("alias", null, "PID-5")
 			, PATIENT_BIRTH_DATE("birth date", null, "PID-7")
@@ -77,7 +77,7 @@ public enum VxuField {
 			, PATIENT_BIRTH_ORDER("birth order", CodesetType.BIRTH_ORDER, "PID-25")
 			, PATIENT_BIRTH_PLACE("birth place", null, "PID-23")
 			, PATIENT_BIRTH_REGISTRY_ID("birth registry id", null, "PID-3")
-			, PATIENT_CLASS("class", null, "PV1-2")
+			, PATIENT_CLASS("class", CodesetType.PATIENT_CLASS, "PV1-2")
 			, PATIENT_DEATH_DATE("death date", null, "PID-29")
 			, PATIENT_DEATH_INDICATOR("death indicator", null, "PID-30")
 			, PATIENT_ETHNICITY("ethnicity", CodesetType.PATIENT_ETHNICITY, "PID-22")
@@ -123,7 +123,7 @@ public enum VxuField {
 			, PATIENT_VFC_EFFECTIVE_DATE("VFC effective date", null, "PV1-20.2")
 			, PATIENT_VFC_STATUS("VFC status", CodesetType.FINANCIAL_STATUS_CODE, "PV1-20.1")
 			, PATIENT_WIC_ID("WIC id", null, "PID-3")
-			
+
 			//vaccination
 			, VACCINATION_ACTION_CODE("action code", CodesetType.VACCINATION_ACTION_CODE, "RXA-21")
 			, VACCINATION_ADMIN_CODE("admin code", CodesetType.VACCINATION_CVX_CODE, "RXA-5")
@@ -174,17 +174,17 @@ public enum VxuField {
 			, VACCINATION_VALIDITY_CODE("validity code", null, null)
 			, NONE("object", null, null)
 			;
-			  
+
 		private final String fieldDescription;
 		private final CodesetType valueType;
 		private final String hl7Field;
-		
+
 		private VxuField(String fieldDesc, CodesetType typeOfValue, String hl7Field) {
 			this.fieldDescription = fieldDesc;
 			this.valueType = typeOfValue;
 			this.hl7Field = hl7Field;
 		}
-		
+
 		public String getFieldDescription() {
 			return fieldDescription;
 		}

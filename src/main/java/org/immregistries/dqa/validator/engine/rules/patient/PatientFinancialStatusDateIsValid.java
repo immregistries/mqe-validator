@@ -1,9 +1,5 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.MessageAttribute;
@@ -11,38 +7,43 @@ import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class PatientFinancialStatusDateIsValid extends ValidationRule<DqaPatient> {
-	@Override
-	protected final Class[] getDependencies() {
-		return new Class[] {
-				PatientFinancialStatusCheckTrue.class,
-				PatientBirthDateIsValid.class};
-	}
+    @Override
+    protected final Class[] getDependencies() {
+        return new Class[]{
+                PatientFinancialStatusCheckTrue.class,
+                PatientBirthDateIsValid.class};
+    }
 
-	@Override
-	protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
-		boolean passed = true;
-		
-		Date finEligDte = target.getFinancialEligibilityDate();
-		Date birthDate = target.getBirthDate();
-		Date recDate = m.getReceivedDate();
-		
-		if (finEligDte != null) {
+    @Override
+    protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
+        List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
+        boolean passed = true;
 
-			if (this.datr.isBeforeDate(finEligDte, birthDate)) // finEligDte.before(trunc(birthDate)))
-			{
-				issues.add(MessageAttribute.PatientVfcEffectiveDateIsBeforeBirth.build());
-				passed = false;
-			}
+        Date finEligDte = target.getFinancialEligibilityDate();
+        Date birthDate = target.getBirthDate();
+        Date recDate = m.getReceivedDate();
 
-			if (this.datr.isBeforeDate(recDate,  finEligDte)) {
-				issues.add(MessageAttribute.PatientVfcEffectiveDateIsInFuture.build());
-				passed = false;
-			}
-		}
+        if (finEligDte != null) {
+            if (this.datr.isBeforeDate(finEligDte, birthDate)) {
+                issues.add(MessageAttribute.PatientVfcEffectiveDateIsBeforeBirth.build());
+                passed = false;
+            }
 
-		return buildResults(issues, passed);
-	}
+            if (this.datr.isBeforeDate(recDate, finEligDte)) {
+                issues.add(MessageAttribute.PatientVfcEffectiveDateIsInFuture.build());
+                passed = false;
+            }
+        } else {
+            issues.add(MessageAttribute.PatientVfcEffectiveDateIsMissing.build());
+            passed = false;
+        }
+
+        return buildResults(issues, passed);
+    }
 
 }

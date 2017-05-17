@@ -10,24 +10,19 @@ import org.immregistries.dqa.vxu.DqaPatient;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientRegistryIdIsValid extends ValidationRule<DqaPatient> {
-
+/**
+ * Created by Allison on 5/9/2017.
+ */
+public class PatientClassIsValid extends ValidationRule<DqaPatient> {
     @Override
     protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
         List<ValidationIssue> issues = new ArrayList<>();
-        boolean passed = true;
+        boolean passed;
 
-        String regNum = target.getIdRegistryNumber();
-        issues.addAll(codr.handleCode(regNum, VxuField.PATIENT_REGISTRY_ID));
+        issues.addAll(codr.handleCode(target.getPatientClass(), VxuField.PATIENT_CLASS));
 
-//		if (common.isEmpty(regNum)) {
-//			issues.add(MessageAttribute.get(VxuField.PATIENT_REGISTRY_ID, IssueType.MISSING).build());
-//	    }
+        passed = (issues.size() == 0);
 
-        // TODO PatientRegistryIdIsUnrecognized--can we use codr instead? I can't get it to work
-
-        passed = issues.size() == 0;
         return buildResults(issues, passed);
     }
-
 }

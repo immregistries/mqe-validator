@@ -3,31 +3,23 @@ package org.immregistries.dqa.validator.engine.rules.patient;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
-import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientRegistryIdIsValid extends ValidationRule<DqaPatient> {
-
-    @Override
+/**
+ * Created by Allison on 5/9/2017.
+ */
+public class PatientGuardianAddressIsValid extends ValidationRule<DqaPatient> {
     protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
         List<ValidationIssue> issues = new ArrayList<>();
-        boolean passed = true;
+        boolean passed;
 
-        String regNum = target.getIdRegistryNumber();
-        issues.addAll(codr.handleCode(regNum, VxuField.PATIENT_REGISTRY_ID));
+        // TODO: finish this and test it--is guardian the responsible party? if so, this should already be addressed by the next-of-kin address validation
 
-//		if (common.isEmpty(regNum)) {
-//			issues.add(MessageAttribute.get(VxuField.PATIENT_REGISTRY_ID, IssueType.MISSING).build());
-//	    }
-
-        // TODO PatientRegistryIdIsUnrecognized--can we use codr instead? I can't get it to work
-
-        passed = issues.size() == 0;
+        passed = (issues.size() == 0);
         return buildResults(issues, passed);
     }
-
 }

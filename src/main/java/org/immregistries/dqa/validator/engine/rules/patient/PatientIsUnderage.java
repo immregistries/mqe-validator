@@ -40,11 +40,11 @@ public class PatientIsUnderage extends ValidationRule<DqaPatient> {
 				&& m.getMessageHeader() != null
 				&& m.getMessageHeader().getMessageDate() != null) {
 			
-			DateTime eighteenYearsBeforeSubmission = (new DateTime(m.getMessageHeader().getMessageDate().getTime())).minusYears(18);
+			DateTime eighteenYearsBeforeToday = (new DateTime()).minusYears(18);
 			DateTime birthDate = new DateTime(target.getBirthDate());
 			
-			boolean underage = birthDate.isAfter(eighteenYearsBeforeSubmission);
-			logger.info("Eighteen years before submission: " + datr.toString(eighteenYearsBeforeSubmission));
+			boolean underage = birthDate.isAfter(eighteenYearsBeforeToday);
+			logger.info("Eighteen years before submission: " + datr.toString(eighteenYearsBeforeToday));
 			logger.info("patient birth date: " + datr.toString(birthDate));
 			
 			if (/* patient is underage */underage) {

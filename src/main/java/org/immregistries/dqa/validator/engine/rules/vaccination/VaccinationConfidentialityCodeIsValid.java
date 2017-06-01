@@ -17,7 +17,7 @@ public class VaccinationConfidentialityCodeIsValid extends
 
 	@Override
 	protected final Class[] getDependencies() {
-		return new Class[] { VaccinationValuedAmtIsValid.class };
+		return new Class[] { VaccinationAdministeredAmtIsValid.class };
 	}
 
 	@Override

@@ -35,7 +35,6 @@ public enum ValidationRuleEntityLists {
             , new PatientPrimaryPhysicianNameIsValid()
             , new PatientProtectionIndicatorIsValid()
             , new PatientRegistryIdIsValid()
-            , new PatientSsnIsValid()
             , new PatientSubmitterIsValid()
             , new PatientSystemCreationDateIsValid()
             , new PatientImmunityIsValid()

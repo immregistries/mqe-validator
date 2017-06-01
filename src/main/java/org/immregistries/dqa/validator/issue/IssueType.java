@@ -47,7 +47,7 @@ public enum IssueType {
 	    ,AFTER_ADMIN_DATE("is after admin date")
 	    ,NOT_SAME_AS_ADMIN_DATE("is not admin date")
 	    ,BEFORE_PUBLISHED_DATE("is before published date")
-	    , BEFORE_VERSION_DATE("is before version date")
+	    ,BEFORE_VERSION_DATE("is before version date")
 	    
 	    ,NOT_RESPONSIBLE_PARTY("is not responsible party")
 	    

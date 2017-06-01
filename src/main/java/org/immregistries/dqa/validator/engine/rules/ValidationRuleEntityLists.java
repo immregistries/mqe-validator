@@ -12,98 +12,94 @@ import java.util.List;
 
 @SuppressWarnings("rawtypes")
 public enum ValidationRuleEntityLists {
-    PATIENT_RULES(
-            new PatientAddressIsValid()
-            , new PatientAliasIsValid()
-            , new PatientBirthDateIsValid()
-            , new PatientBirthDateIsReasonable()
-            , new PatientClassIsValid()
-            , new PatientCodesAreValid()
-            , new PatientDeathDateIsValid()
-            , new PatientDeathIndicatorIsValid()
-            , new PatientExists()
-            , new PatientFinancialStatusCheckTrue()
-            , new PatientFinancialStatusDateIsValid()
-            , new PatientIsUnderage()
-            , new PatientMedicaidNumberIsValid()
-            , new PatientMiddleNameIsValid()
-            , new PatientMothersMaidenNameIsValid()
-            , new PatientMultipleBirthsValid()
-            , new PatientNameIsValid()
-            , new PatientNameSuffixIsValid()
-            , new PatientPhoneIsValid()
-            , new PatientPrimaryPhysicianNameIsValid()
-            , new PatientProtectionIndicatorIsValid()
-            , new PatientRegistryIdIsValid()
-            , new PatientSubmitterIsValid()
-            , new PatientSystemCreationDateIsValid()
-            , new PatientImmunityIsValid()
-            , new MessageHasResponsibleParty()
-    ),
-    VACCINATION_RULES(
-            new VaccinationIsPresent()
-            , new VaccinationActionCodeIsValid()
-            , new VaccinationAdminAfterBirthDate()
-            , new VaccinationAdminCodeCptIsValid()
-            , new VaccinationAdminCodeCvxIsValid()
-            , new VaccinationAdminCodeIsValid()
-            , new VaccinationAdminDateIsValid()
-            , new VaccinationAdminDateIsValidForPatientAge()
-            , new VaccinationAdministeredRequiredFieldsArePresent()
-            , new VaccinationAdministeredUnitIsValid()
-            , new VaccinationBodyRouteAndSiteAreValid()
-            , new VaccinationCodeGroupsMatch()
-            , new VaccinationCompletionStatusIsValid()
-            , new VaccinationConfidentialityCodeIsValid()
-            , new VaccinationCptIsValid()
-            , new VaccinationCvxIsValid()
-            , new VaccinationCvxUseIsValid()
-            , new VaccinationFinancialEligibilityCodeIsValid()
-            , new VaccinationInformationSourceIsValid()
-            , new VaccinationIsAdministered()
-            , new VaccinationIsAdministeredOrHistorical()
-            , new VaccinationIsForeign()
-            , new VaccinationMfrIsValid()
-            , new VaccinationOrdererIsValid()
-            , new VaccinationProductIsValid()
-            , new VaccinationRefusalReasonIsValid()
-            , new VaccinationSystemEntryTimeIsValid()
-            , new VaccinationUseCptInsteadOfCvx()
-            , new VaccinationUseCvx()
-            , new VaccinationValuedAmtIsValid()
-            , new VaccinationVisCvxIsValid()
-            , new VaccinationVisDatesAreValid()
-            , new VaccinationVisIsPresent()
-            , new VaccinationVisIsRecognized()
-            , new ObservationValueTypeIsValid()
-            , new ObservationDateIsValid()
-    ),
-    MESSAGE_HEADER_RULES(
-            new MessageHeaderCodesAreValid()
-            , new MessageHeaderFieldsArePresent()
-            , new MessageHeaderDateIsValid()
-            , new MessageHeaderDateIsExpectedFormat()
-            , new MessageVersionIsValid()
-            , new MessageVersionIs25()
-    ),
-    NEXT_OF_KIN_RULES(
-            new NextOfKinIsPresent()
-            //, new NextOfKinAddressIsSameAsPatientAddress() // this is checked in NextOfKinAddressIsValid()
-            , new NextOfKinAddressIsValid()
-            , new NextOfKinNameIsValid()
-            , new NextOfKinPhoneIsValid()
-            , new NextOfKinRelationshipIsValidForUnderagedPatient()
-    ),;
-
-    private final List<ValidationRule> rules;
-
-    private ValidationRuleEntityLists(ValidationRule... rulesIn) {
-        this.rules = Arrays.asList(rulesIn);
-    }
-
-    public List<ValidationRule> getRules() {
-        List<ValidationRule> rulesCopy = new ArrayList<ValidationRule>();
-        rulesCopy.addAll(this.rules);
-        return rulesCopy;
-    }
+	PATIENT_RULES(
+			  new PatientAddressIsValid() 
+			, new PatientAliasIsValid() 
+			, new PatientBirthDateIsValid()
+			, new PatientBirthDateIsReasonable()
+			, new PatientDeathDateIsValid()
+			, new PatientDeathIndicatorIsValid()
+			, new PatientEthnicityIsValid()
+			, new PatientExists()
+			, new PatientFinancialStatusCheckTrue()
+			, new PatientFinancialStatusDateIsValid()
+			, new PatientGenderIsValid()
+			, new PatientIsUnderage()
+			, new PatientMedicaidNumberIsValid()
+			, new PatientMiddleNameIsValid()
+			, new PatientMothersMaidenNameIsValid()
+			, new PatientMultipleBirthsValid()
+			, new PatientNameIsValid()
+			, new PatientNameSuffixIsValid()
+			, new PatientNameTypeIsValid()
+			, new PatientPhoneIsValid()
+			, new PatientPrimaryPhysicianNameIsValid()
+			, new PatientProtectionIndicatorIsValid()
+			, new PatientRegistryIdIsValid()
+//			, new PatientSsnIsValid() 
+			, new PatientSubmitterIsValid()
+			, new PatientSystemCreationDateIsValid()
+			, new PatientImmunityIsValid()
+			, new MessageHasResponsibleParty()
+			), 
+	VACCINATION_RULES(
+			    new VaccinationIsPresent()
+			  , new VaccinationActionCodeIsValid()
+			  , new VaccinationAdminAfterBirthDate()
+			  , new VaccinationAdminCodeCptIsValid()
+			  , new VaccinationAdminCodeCvxIsValid()
+			  , new VaccinationAdminCodeIsValid()
+			  , new VaccinationAdminDateIsValid()
+			  , new VaccinationAdminDateIsValidForPatientAge()
+			  , new VaccinationAdministeredRequiredFieldsArePresent()
+			  , new VaccinationAdministeredUnitIsValid()
+			  , new VaccinationBodyRouteAndSiteAreValid()
+			  , new VaccinationCodeGroupsMatch()
+			  , new VaccinationCompletionStatusIsValid()
+			  , new VaccinationConfidentialityCodeIsValid()
+			  , new VaccinationCptIsValid()
+			  , new VaccinationCvxIsValid()
+			  , new VaccinationCvxUseIsValid()
+			  , new VaccinationFinancialEligibilityCodeIsValid()
+			  , new VaccinationInformationSourceIsValid()
+			  , new VaccinationIsAdministered()
+			  , new VaccinationIsAdministeredOrHistorical()
+			  , new VaccinationIsForeign()
+			  , new VaccinationMfrIsValid()
+			  ,	new VaccinationOrdererIsValid()
+			  , new VaccinationProductIsValid()
+			  , new VaccinationRefusalReasonIsValid()
+			  , new VaccinationSystemEntryTimeIsValid()
+			  , new VaccinationUseCptInsteadOfCvx()
+			  , new VaccinationUseCvx()
+			  , new VaccinationAdministeredAmtIsValid()
+			  , new VaccinationVisCvxIsValid()
+			  , new VaccinationVisDatesAreValid()
+			  , new VaccinationVisIsPresent()
+			  , new VaccinationVisIsRecognized()
+			),
+	MESSAGE_HEADER_RULES(
+			  new MessageHeaderCodesAreValid()
+			, new MessageHeaderFieldsArePresent()
+			, new MessageHeaderDateIsValid()
+			, new MessageHeaderDateIsExpectedFormat()
+			, new MessageVersionIsValid()
+			, new MessageVersionIs25()
+			),
+	NEXT_OF_KIN_RULES(
+			  new NextOfKinIsPresent()
+			, new NextOfKinAddressIsSameAsPatientAddress()
+			),
+	;
+	
+	private final List<ValidationRule> rules;
+	private ValidationRuleEntityLists(ValidationRule...rulesIn) {
+		this.rules = Arrays.asList(rulesIn);
+	}
+	
+	public List<ValidationRule> getRules() {
+		List<ValidationRule> rulesCopy = new ArrayList<ValidationRule>();
+		rulesCopy.addAll(this.rules);
+		return rulesCopy;
+	}
 }

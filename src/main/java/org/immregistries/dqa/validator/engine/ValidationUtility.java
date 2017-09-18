@@ -8,7 +8,7 @@ import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.validator.engine.common.CommonRules;
 import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.IssueType;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ public enum ValidationUtility {
 	private static final CommonRules common  = CommonRules.INSTANCE;
 	private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(ValidationUtility.class);
 	
-	public ValidationIssue createIssue(MessageAttribute attribute, String codedValue) {
+	public ValidationIssue createIssue(Detection attribute, String codedValue) {
 		ValidationIssue found = new ValidationIssue();
 		found.setMessageAttribute(attribute);
 		found.setValueReceived(codedValue);
@@ -45,7 +45,7 @@ public enum ValidationUtility {
 		return true;
 	}
 	
-	public boolean addToListIfEmpty(String value, MessageAttribute issue, List<ValidationIssue> toList) {
+	public boolean addToListIfEmpty(String value, Detection issue, List<ValidationIssue> toList) {
 		if (this.common.isEmpty(value)) {
 			toList.add(issue.build(value));
 			return true;
@@ -54,7 +54,7 @@ public enum ValidationUtility {
 	}
 	
 	public boolean addToListIfEmpty(String value, VxuField field, List<ValidationIssue> toList) {
-		MessageAttribute issue = MessageAttribute.get(field, IssueType.MISSING);
+		Detection issue = Detection.get(field, IssueType.MISSING);
 		return addToListIfEmpty(value, issue, toList);
 	}
 	

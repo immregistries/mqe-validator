@@ -7,7 +7,7 @@ import java.util.List;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientBirthDateIsValid;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -28,7 +28,7 @@ public class VaccinationAdminAfterBirthDate extends ValidationRule<DqaVaccinatio
 		Date birthDate = m.getPatient().getBirthDate();
 		
 		if (adminDate.before(birthDate)) {
-			issues.add(this.util.createIssue(MessageAttribute.VaccinationAdminDateIsBeforeBirth, adminDate.toString()));
+			issues.add(this.util.createIssue(Detection.VaccinationAdminDateIsBeforeBirth, adminDate.toString()));
 			passed = false;
 		}
 		

@@ -6,7 +6,7 @@ import java.util.List;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientExists;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
@@ -31,7 +31,7 @@ public class NextOfKinAddressIsSameAsPatientAddress extends ValidationRule<DqaNe
 				|| !p.getStreet().equals(n.getStreet())
 				|| !p.getStreet2().equals(p.getStreet2())) {
 			
-			issues.add(MessageAttribute.NextOfKinAddressIsDifferentFromPatientAddress.build(n.toString()));
+			issues.add(Detection.NextOfKinAddressIsDifferentFromPatientAddress.build(n.toString()));
 			passed = false;
 		}
 

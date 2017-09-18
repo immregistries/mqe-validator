@@ -1,7 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -72,7 +72,7 @@ public class PatientAddressIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientAddressIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientAddressIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -85,7 +85,7 @@ public class PatientAddressIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientAddressStreetIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientAddressStreetIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -98,7 +98,7 @@ public class PatientAddressIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientAddressStreet2IsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientAddressStreet2IsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -111,7 +111,7 @@ public class PatientAddressIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientAddressCityIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientAddressCityIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -124,7 +124,7 @@ public class PatientAddressIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientAddressStateIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientAddressStateIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -137,7 +137,7 @@ public class PatientAddressIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientAddressZipIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientAddressZipIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -152,7 +152,7 @@ public class PatientAddressIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientAddressZipIsInvalid == r.getIssues().get(0).getIssue());
+                && Detection.PatientAddressZipIsInvalid == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -165,7 +165,7 @@ public class PatientAddressIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientAddressCountryIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientAddressCountryIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -178,7 +178,7 @@ public class PatientAddressIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientAddressCountyIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientAddressCountyIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -191,7 +191,7 @@ public class PatientAddressIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientAddressTypeIsValuedBadAddress == r.getIssues().get(0).getIssue());
+                && Detection.PatientAddressTypeIsValuedBadAddress == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -204,7 +204,7 @@ public class PatientAddressIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientAddressTypeIsUnrecognized == r.getIssues().get(0).getIssue());
+                && Detection.PatientAddressTypeIsUnrecognized == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -217,6 +217,6 @@ public class PatientAddressIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientAddressTypeIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientAddressTypeIsMissing == r.getIssues().get(0).getIssue());
     }
 }

@@ -4,7 +4,7 @@ import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.common.AddressFields;
 import org.immregistries.dqa.validator.engine.common.AddressValidator;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
@@ -48,7 +48,7 @@ public class PatientAddressIsValid extends ValidationRule<DqaPatient> {
 
         if (a != null) {
             if (a.getTypeCode() != null && "BA".equals(a.getTypeCode())) {
-                issues.add(MessageAttribute.PatientAddressTypeIsValuedBadAddress.build(a.toString()));
+                issues.add(Detection.PatientAddressTypeIsValuedBadAddress.build(a.toString()));
             }
 
             issues.addAll(this.codr.handleCode(a.getTypeCode(), VxuField.PATIENT_ADDRESS_TYPE));

@@ -53,11 +53,6 @@ public class ValidationRuleTest {
 		issues = vr.executeRule(p, mr).getIssues();
 		assertEquals("should be two issues", 2, issues.size());
 		
-		
-		p.setBirthDateString("18950101");
-		issues = vr.executeRule(p, mr).getIssues();
-		assertEquals("should be one issue", 1, issues.size());
-		
 	}
 	
 	@Test
@@ -189,7 +184,7 @@ public class ValidationRuleTest {
 		for (ValidationIssue issue : issues) {
 			System.out.println("ISSUE: " + issue.getIssue());
 		}
-		assertEquals("should be some issues", 14, issues.size());
+		assertEquals("should be some issues", 16, issues.size());
 	}
 	
 	@Test

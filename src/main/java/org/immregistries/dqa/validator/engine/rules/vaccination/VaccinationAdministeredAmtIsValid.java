@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -23,20 +23,20 @@ public class VaccinationAdministeredAmtIsValid extends ValidationRule<DqaVaccina
 
 		if (target.isAdministered()) {
 			if (common.isEmpty(administeredAmount) || "999".equals(administeredAmount)) {
-				issues.add(MessageAttribute.VaccinationAdministeredAmountIsMissing.build());
-				issues.add(MessageAttribute.VaccinationAdministeredAmountIsValuedAsUnknown.build());
+				issues.add(Detection.VaccinationAdministeredAmountIsMissing.build());
+				issues.add(Detection.VaccinationAdministeredAmountIsValuedAsUnknown.build());
 			} else {
 				try {
 					float amount = Float.parseFloat(target.getAmount());
 					if (amount == 0) {
-						issues.add(MessageAttribute.VaccinationAdministeredAmountIsValuedAsZero.build());
+						issues.add(Detection.VaccinationAdministeredAmountIsValuedAsZero.build());
 					} else if (amount > 999) {
-						issues.add(MessageAttribute.VaccinationAdministeredAmountIsInvalid.build(target.getAmount()));
+						issues.add(Detection.VaccinationAdministeredAmountIsInvalid.build(target.getAmount()));
 					} else {
 						passed = true;
 					}
 				} catch (NumberFormatException nfe) {
-					issues.add(MessageAttribute.VaccinationAdministeredAmountIsInvalid.build(target.getAmount()));
+					issues.add(Detection.VaccinationAdministeredAmountIsInvalid.build(target.getAmount()));
 				}
 			}
 		}

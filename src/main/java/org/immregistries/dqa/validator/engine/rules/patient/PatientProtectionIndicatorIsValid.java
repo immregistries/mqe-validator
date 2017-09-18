@@ -2,7 +2,7 @@ package org.immregistries.dqa.validator.engine.rules.patient;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
@@ -27,9 +27,9 @@ public class PatientProtectionIndicatorIsValid extends ValidationRule<DqaPatient
         issues.addAll(this.codr.handleCode(protectionCode, VxuField.PATIENT_PROTECTION_INDICATOR));
 
         if ("Y".equals(protectionCode)) {
-            issues.add(MessageAttribute.PatientProtectionIndicatorIsValuedAsYes.build(protectionCode));
+            issues.add(Detection.PatientProtectionIndicatorIsValuedAsYes.build(protectionCode));
         } else if ("N".equals(protectionCode)) {
-            issues.add(MessageAttribute.PatientProtectionIndicatorIsValuedAsNo.build(protectionCode));
+            issues.add(Detection.PatientProtectionIndicatorIsValuedAsNo.build(protectionCode));
         }
 
         passed = (issues.size() == 0);

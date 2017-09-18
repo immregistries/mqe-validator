@@ -14,7 +14,7 @@ public enum CodeRepository {
 	/**
 	 * This codemap object will get all the information we know about a code.
 	 */
-	  private CodeMap codeMapper = CodeMapBuilder.INSTANCE.getCodeMapFromClasspathResource("/Compiled.xml");
+	  private CodeMap codeMapper = CodeMapBuilder.INSTANCE.getCodeMap(Thread.currentThread().getContextClassLoader().getResourceAsStream("Compiled.xml"));
 	  
 	//TODO:  get the data for these items.
 	

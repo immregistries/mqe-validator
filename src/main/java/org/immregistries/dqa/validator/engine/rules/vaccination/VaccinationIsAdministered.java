@@ -6,7 +6,7 @@ import java.util.List;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.codes.AdministeredLikelihood;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -27,10 +27,10 @@ public class VaccinationIsAdministered extends ValidationRule<DqaVaccination> {
 		int administeredScore = confidenceCalculator.administeredLiklihoodScore(target, m);
 
 		if (administered && administeredScore < 10) {
-			issues.add(MessageAttribute.VaccinationInformationSourceIsAdministeredButAppearsToHistorical.build());
+			issues.add(Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical.build());
 		}
 		if (!administered && administeredScore >= 10) {
-			issues.add(MessageAttribute.VaccinationInformationSourceIsHistoricalButAppearsToBeAdministered.build());
+			issues.add(Detection.VaccinationInformationSourceIsHistoricalButAppearsToBeAdministered.build());
 		}
 		
 		passed = administered;

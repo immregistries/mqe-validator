@@ -1,7 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -64,7 +64,7 @@ public class PatientFinancialStatusDateIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientVfcEffectiveDateIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientVfcEffectiveDateIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -79,7 +79,7 @@ public class PatientFinancialStatusDateIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientVfcEffectiveDateIsBeforeBirth == r.getIssues().get(0).getIssue());
+                && Detection.PatientVfcEffectiveDateIsBeforeBirth == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -94,7 +94,7 @@ public class PatientFinancialStatusDateIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientVfcEffectiveDateIsInFuture == r.getIssues().get(0).getIssue());
+                && Detection.PatientVfcEffectiveDateIsInFuture == r.getIssues().get(0).getIssue());
     }
 
     /**

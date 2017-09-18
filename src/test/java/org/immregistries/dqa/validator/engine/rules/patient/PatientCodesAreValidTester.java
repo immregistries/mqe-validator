@@ -1,7 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -85,7 +85,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientEthnicityIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientEthnicityIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -98,7 +98,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientEthnicityIsUnrecognized == r.getIssues().get(0).getIssue());
+                && Detection.PatientEthnicityIsUnrecognized == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -111,7 +111,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientEthnicityIsDeprecated == r.getIssues().get(0).getIssue());
+                && Detection.PatientEthnicityIsDeprecated == r.getIssues().get(0).getIssue());
     }
 
     // PATIENT_GENDER
@@ -126,7 +126,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientGenderIsUnrecognized == r.getIssues().get(0).getIssue());
+                && Detection.PatientGenderIsUnrecognized == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -139,7 +139,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientGenderIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientGenderIsMissing == r.getIssues().get(0).getIssue());
     }
 
     // PATIENT_NAME_TYPE_CODE
@@ -154,7 +154,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientNameTypeCodeIsNotValuedLegal == r.getIssues().get(0).getIssue());
+                && Detection.PatientNameTypeCodeIsNotValuedLegal == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -209,7 +209,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientPrimaryFacilityIdIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientPrimaryFacilityIdIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -223,7 +223,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientPrimaryFacilityNameIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientPrimaryFacilityNameIsMissing == r.getIssues().get(0).getIssue());
     }
 
     // PATIENT_PRIMARY_LANGUAGE
@@ -238,7 +238,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientPrimaryLanguageIsDeprecated == r.getIssues().get(0).getIssue());
+                && Detection.PatientPrimaryLanguageIsDeprecated == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -251,7 +251,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientPrimaryLanguageIsUnrecognized == r.getIssues().get(0).getIssue());
+                && Detection.PatientPrimaryLanguageIsUnrecognized == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -264,7 +264,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientPrimaryLanguageIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientPrimaryLanguageIsMissing == r.getIssues().get(0).getIssue());
     }
 
     // PATIENT_PUBLICITY_CODE
@@ -279,7 +279,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientPublicityCodeIsUnrecognized == r.getIssues().get(0).getIssue());
+                && Detection.PatientPublicityCodeIsUnrecognized == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -292,7 +292,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientPublicityCodeIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientPublicityCodeIsMissing == r.getIssues().get(0).getIssue());
     }
 
     // PATIENT_RACE
@@ -307,7 +307,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientRaceIsDeprecated == r.getIssues().get(0).getIssue());
+                && Detection.PatientRaceIsDeprecated == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -320,7 +320,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientRaceIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientRaceIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -333,7 +333,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientRaceIsUnrecognized == r.getIssues().get(0).getIssue());
+                && Detection.PatientRaceIsUnrecognized == r.getIssues().get(0).getIssue());
     }
 
     // PATIENT_VFC_STATUS
@@ -349,7 +349,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientVfcStatusIsInvalid == r.getIssues().get(0).getIssue());
+                && Detection.PatientVfcStatusIsInvalid == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -362,7 +362,7 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientVfcStatusIsUnrecognized == r.getIssues().get(0).getIssue());
+                && Detection.PatientVfcStatusIsUnrecognized == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -375,6 +375,6 @@ public class PatientCodesAreValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientVfcStatusIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientVfcStatusIsMissing == r.getIssues().get(0).getIssue());
     }
 }

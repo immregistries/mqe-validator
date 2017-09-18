@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.hl7util.ApplicationErrorCode;
 import org.immregistries.dqa.hl7util.SeverityLevel;
 
-public enum MessageAttribute {
+public enum Detection {
 	GeneralAuthorizationException(IssueObject.GENERAL, IssueType.EXCEPTION, VxuField.AUTHORIZATION, "", SeverityLevel.ACCEPT, "207", null, ErrorCode.DQA0002, ""),
 	GeneralConfigurationException(IssueObject.GENERAL, IssueType.EXCEPTION, VxuField.CONFIGURATION, "", SeverityLevel.ACCEPT, "207", null, ErrorCode.DQA0003, ""),
 	GeneralParseException(IssueObject.GENERAL, IssueType.EXCEPTION, VxuField.PARSE, "", SeverityLevel.ACCEPT, "207", null, ErrorCode.DQA0004, ""),
@@ -506,26 +506,26 @@ public enum MessageAttribute {
 	UnknownValidationIssue(IssueObject.GENERAL, IssueType.UNRECOGNIZED, VxuField.CONFIGURATION, "", SeverityLevel.ERROR, "101", null, ErrorCode.DQA0000, "")
 ;
 
-	  private static final Map<VxuField, Map<IssueType, MessageAttribute>> fieldIssueMaps = new HashMap<VxuField, Map<IssueType, MessageAttribute>>();
+	  private static final Map<VxuField, Map<IssueType, Detection>> fieldIssueMaps = new HashMap<VxuField, Map<IssueType, Detection>>();
 	  
-	  private static final Map<VxuField, List<MessageAttribute>> objectIssueListMap = new HashMap<VxuField, List<MessageAttribute>>();
+	  private static final Map<VxuField, List<Detection>> objectIssueListMap = new HashMap<VxuField, List<Detection>>();
 	  
-	  private static final Map<ErrorCode, MessageAttribute> errorCodeAttributeMap = new HashMap<>();
+	  private static final Map<ErrorCode, Detection> errorCodeAttributeMap = new HashMap<>();
 	  
-	  private static final Map<String, MessageAttribute> displayTextMap = new HashMap<String, MessageAttribute>();
+	  private static final Map<String, Detection> displayTextMap = new HashMap<String, Detection>();
 	  static {
-		  for (MessageAttribute issue : MessageAttribute.values()) {
-			  Map<IssueType, MessageAttribute> map = fieldIssueMaps.get(issue.getTargetField());
+		  for (Detection issue : Detection.values()) {
+			  Map<IssueType, Detection> map = fieldIssueMaps.get(issue.getTargetField());
 			  if (map == null) {
-				  map = new HashMap<IssueType, MessageAttribute>();
+				  map = new HashMap<IssueType, Detection>();
 				  fieldIssueMaps.put(issue.getTargetField(), map);
 			  }
 			  
 			  map.put(issue.getIssueType(), issue);
 			  
-			  List<MessageAttribute> objectIssues = objectIssueListMap.get(issue.getTargetObject());
+			  List<Detection> objectIssues = objectIssueListMap.get(issue.getTargetObject());
 			  if (objectIssues == null) {
-				  objectIssues = new ArrayList<MessageAttribute>();
+				  objectIssues = new ArrayList<Detection>();
 			  }
 			  objectIssues.add(issue);
 			  
@@ -543,7 +543,7 @@ public enum MessageAttribute {
 	   * @param object
 	   * @return
 	   */
-	  public static List<MessageAttribute> getIssuesFor(IssueObject object) {
+	  public static List<Detection> getIssuesFor(IssueObject object) {
 		  return objectIssueListMap.get(object);
 	  }
 	  
@@ -554,12 +554,12 @@ public enum MessageAttribute {
 	   * @param type
 	   * @return
 	   */
-	  public static MessageAttribute get(VxuField field, IssueType type) {
-		  Map<IssueType, MessageAttribute> fieldIssues = fieldIssueMaps.get(field);
+	  public static Detection get(VxuField field, IssueType type) {
+		  Map<IssueType, Detection> fieldIssues = fieldIssueMaps.get(field);
 		  if (fieldIssues != null) {
 			  return fieldIssues.get(type);
 		  }
-		  return MessageAttribute.UnknownValidationIssue;
+		  return Detection.UnknownValidationIssue;
 	  }
 	  
 	    public static final String CHANGE_PRIORITY_BLOCKED = "Blocked";
@@ -729,7 +729,7 @@ public enum MessageAttribute {
       }
 	
 
-  private MessageAttribute(IssueObject entity, IssueType type,
+  private Detection(IssueObject entity, IssueType type,
 			VxuField fieldRef, String valuation, SeverityLevel severity,
 			String hl7ErrCode, ApplicationErrorCode applicationErrorCode, ErrorCode dqaErrorCode, String hl7Location) {
 	
@@ -803,31 +803,31 @@ public enum MessageAttribute {
   }
   
   public static ValidationIssue buildIssue(VxuField field, IssueType type) {
-	  MessageAttribute issue = get(field, type);
+	  Detection issue = get(field, type);
 	  return issue.build();
   }
   
   public static ValidationIssue buildIssue(VxuField field, IssueType type, String value) {
-	  MessageAttribute issue = get(field, type);
+	  Detection issue = get(field, type);
 	  return issue.build(value);
   }
   
-  public static MessageAttribute getByDqaErrorCode(ErrorCode code) {
+  public static Detection getByDqaErrorCode(ErrorCode code) {
 	  return errorCodeAttributeMap.get(code);
   }
   
-  public static MessageAttribute getByDqaErrorCodeString(String codeString) {
+  public static Detection getByDqaErrorCodeString(String codeString) {
 	  ErrorCode code =  ErrorCode.getByCodeString(codeString);
 	  return errorCodeAttributeMap.get(code);
   }
 
-  public static MessageAttribute getPotentialIssueByDisplayText(String num, IssueType missing) {
+  public static Detection getPotentialIssueByDisplayText(String num, IssueType missing) {
 
 		return getPotentialIssueByDisplayText(num + missing.getText());
 	}
   
-  public static MessageAttribute getPotentialIssueByDisplayText(String txt) {
-		MessageAttribute issue = displayTextMap.get(txt);
+  public static Detection getPotentialIssueByDisplayText(String txt) {
+		Detection issue = displayTextMap.get(txt);
 		if (issue == null) {
 			return UnknownValidationIssue;
 		} 

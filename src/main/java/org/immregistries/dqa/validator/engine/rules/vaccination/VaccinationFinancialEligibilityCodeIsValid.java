@@ -6,7 +6,7 @@ import java.util.List;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.VxuField;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -32,7 +32,7 @@ public class VaccinationFinancialEligibilityCodeIsValid extends
 		if (target.isAdministered()) {
 		   if (common.isEmpty(financialEligibilityCode))
 		      {
-		        issues.add(MessageAttribute.VaccinationFinancialEligibilityCodeIsMissing.build());
+		        issues.add(Detection.VaccinationFinancialEligibilityCodeIsMissing.build());
 		      } else {
 		      issues.addAll(codr.handleCode(financialEligibilityCode, VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE));
 		    }

@@ -8,11 +8,11 @@ import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.hl7util.builder.HL7Util;
 import org.immregistries.dqa.hl7util.model.CodedWithExceptions;
 import org.immregistries.dqa.hl7util.model.ErrorLocation;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 
 public class MessageAttributeExporter {
   public static void main(String[] args) {
-    for (final MessageAttribute ma : MessageAttribute.values()) {
+    for (final Detection ma : Detection.values()) {
       StringBuilder errSegment = new StringBuilder();
       Reportable reportable = new Reportable() {
         @Override
@@ -29,7 +29,7 @@ public class MessageAttributeExporter {
         public List<ErrorLocation> getHl7LocationList() {
           List<ErrorLocation> errorLocationList = new ArrayList<>();
           for (String loc : ma.getHl7Locations()) {
-            ErrorLocation el = new ErrorLocation(loc);
+            ErrorLocation el = ErrorLocation.getErrorLocationFromString(loc);
             errorLocationList.add(el);
           }
           return errorLocationList;

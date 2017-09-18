@@ -33,13 +33,20 @@ public enum DqaMessageService {
 	 */
 	public DqaMessageServiceResponse processMessage(String messageText) {
 		DqaMessageReceived mr = parser.extractMessageFromText(messageText);
+		
 		transformer.transform(mr);
+		
+		DqaMessageServiceResponse msr = validateData(mr);
+		
+		return msr;
+	}
+
+	public DqaMessageServiceResponse validateData(DqaMessageReceived mr) {
 		List<ValidationRuleResult> validationResults = validator.validateMessage(mr);
 		
 		DqaMessageServiceResponse msr = new DqaMessageServiceResponse();
 		msr.setMessageObjects(mr);
 		msr.getValidationResults().addAll(validationResults);
-		
 		return msr;
 	}
 }

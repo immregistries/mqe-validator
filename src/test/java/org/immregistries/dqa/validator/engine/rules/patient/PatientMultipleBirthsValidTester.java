@@ -1,7 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by Allison on 5/9/2017.
@@ -88,7 +88,7 @@ public class PatientMultipleBirthsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientBirthOrderIsInvalid == r.getIssues().get(0).getIssue());
+                && Detection.PatientBirthOrderIsInvalid == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -116,7 +116,7 @@ public class PatientMultipleBirthsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientBirthIndicatorIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientBirthIndicatorIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -130,7 +130,7 @@ public class PatientMultipleBirthsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientBirthIndicatorIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientBirthIndicatorIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -145,7 +145,7 @@ public class PatientMultipleBirthsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientBirthIndicatorIsInvalid == r.getIssues().get(0).getIssue());
+                && Detection.PatientBirthIndicatorIsInvalid == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -158,8 +158,7 @@ public class PatientMultipleBirthsValidTester {
         p.setBirthOrderNumber("abc");
 
         ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientBirthOrderIsInvalid == r.getIssues().get(0).getIssue());
+        assertEquals("should have one issue", 1, r.getIssues().size());
+        assertEquals("the issue should be this one: ", Detection.PatientBirthOrderIsInvalid, r.getIssues().get(0).getIssue());
     }
 }

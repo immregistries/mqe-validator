@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -48,7 +48,7 @@ public class PatientIsUnderage extends ValidationRule<DqaPatient> {
 			logger.info("patient birth date: " + datr.toString(birthDate));
 			
 			if (/* patient is underage */underage) {
-				issues.add(MessageAttribute.PatientBirthDateIsUnderage.build(datr.toString(birthDate)));
+				issues.add(Detection.PatientBirthDateIsUnderage.build(datr.toString(birthDate)));
 				passed = true;
 			}
 		}

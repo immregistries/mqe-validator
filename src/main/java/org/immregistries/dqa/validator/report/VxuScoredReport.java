@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.vxu.code.CodeReceived;
 import org.joda.time.DateTime;
 
@@ -40,7 +40,7 @@ public class VxuScoredReport {
 	private Map<CodeReceived, Integer> codeCount = new HashMap<>();
 	
 	//This is the issues, and how many came through. 
-	private Map<MessageAttribute, Integer> issueCounts = new HashMap<>();
+	private Map<Detection, Integer> issueCounts = new HashMap<>();
 	
 	//this is the timeliness categories, and how many messages are represented. 
 	private Map<TimelinessCategory, Integer> timelinessCount = new HashMap<>();
@@ -109,12 +109,12 @@ public class VxuScoredReport {
 	}
 
 
-	public Map<MessageAttribute, Integer> getIssueCounts() {
+	public Map<Detection, Integer> getIssueCounts() {
 		return issueCounts;
 	}
 
 
-	public void setIssueCounts(Map<MessageAttribute, Integer> issueCounts) {
+	public void setIssueCounts(Map<Detection, Integer> issueCounts) {
 		this.issueCounts = issueCounts;
 	}
 

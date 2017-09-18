@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -38,10 +38,10 @@ public class PatientMedicaidNumberIsValid extends ValidationRule<DqaPatient> {
 		PatientIdNumber id = target.getIdMedicaid();
 		
 	    if (id == null || common.isEmpty(id.getNumber())) {
-	    	issues.add(MessageAttribute.PatientMedicaidNumberIsMissing.build());
+	    	issues.add(Detection.PatientMedicaidNumberIsMissing.build());
 	    	passed = false;
 	    } else if (!common.isValidIdentifier(id.getNumber(), 9)) {
-	      issues.add(MessageAttribute.PatientMedicaidNumberIsInvalid.build(id.getNumber()));
+	      issues.add(Detection.PatientMedicaidNumberIsInvalid.build(id.getNumber()));
 	      passed = false;
 	    }
 

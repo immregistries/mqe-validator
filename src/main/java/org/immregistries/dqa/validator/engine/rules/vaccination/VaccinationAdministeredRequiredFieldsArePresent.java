@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -30,20 +30,20 @@ public class VaccinationAdministeredRequiredFieldsArePresent extends ValidationR
 	    // By default we assume that the vaccination was completed.
 
 	      if (common.isEmpty(target.getFacilityName())) {
-	    	  issues.add(MessageAttribute.VaccinationFacilityNameIsMissing.build());
+	    	  issues.add(Detection.VaccinationFacilityNameIsMissing.build());
 	      }
 	    	  
 	      if (target.getExpirationDate() == null) {
-	    	  issues.add(MessageAttribute.VaccinationLotExpirationDateIsMissing.build());
+	    	  issues.add(Detection.VaccinationLotExpirationDateIsMissing.build());
 	      }
 	      
 	      if (common.isEmpty(target.getLotNumber())) {
-	    	  issues.add(MessageAttribute.VaccinationLotNumberIsMissing.build());
+	    	  issues.add(Detection.VaccinationLotNumberIsMissing.build());
 	      } else {
 	        String lotNumber = target.getLotNumber();
 	        if (lotNumber.startsWith("LOT") || lotNumber.length() <= 4)
 	        {
-	          issues.add(MessageAttribute.VaccinationLotNumberIsInvalid.build());
+	          issues.add(Detection.VaccinationLotNumberIsInvalid.build());
 	        }
 	      }
 	    

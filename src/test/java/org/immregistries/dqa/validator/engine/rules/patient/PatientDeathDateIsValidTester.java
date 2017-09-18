@@ -1,7 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -67,7 +67,7 @@ public class PatientDeathDateIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientDeathDateIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.PatientDeathDateIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -83,7 +83,7 @@ public class PatientDeathDateIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientDeathDateIsBeforeBirth == r.getIssues().get(0).getIssue());
+                && Detection.PatientDeathDateIsBeforeBirth == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -99,7 +99,7 @@ public class PatientDeathDateIsValidTester {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.PatientDeathDateIsInFuture == r.getIssues().get(0).getIssue());
+                && Detection.PatientDeathDateIsInFuture == r.getIssues().get(0).getIssue());
     }
 
     /**

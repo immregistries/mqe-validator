@@ -6,7 +6,7 @@ import java.util.List;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.VxuField;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -28,12 +28,12 @@ public class VaccinationRefusalReasonIsValid extends
 		boolean passed = true;
 		
 		if (target.isCompletionCompleted() && !common.isEmpty(target.getRefusalCode())) {
-			issues.add(MessageAttribute.VaccinationRefusalReasonConflictsCompletionStatus.build());
+			issues.add(Detection.VaccinationRefusalReasonConflictsCompletionStatus.build());
 		}
 
 		if (target.isCompletionRefused()) {
 			if (common.isEmpty(target.getRefusalCode())) {
-				issues.add(MessageAttribute.VaccinationRefusalReasonIsMissing.build());
+				issues.add(Detection.VaccinationRefusalReasonIsMissing.build());
 			} else {
 				issues.addAll(codr.handleCode(target.getRefusal(), VxuField.VACCINATION_REFUSAL_REASON));
 			}

@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.immregistries.dqa.validator.issue.IssueObject;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.vxu.code.CodeReceived;
 import org.joda.time.DateTime;
 
 public class DqaMessageMetrics {
 	
 	private Map<IssueObject, Integer> objectCounts = new HashMap<>();
-	private Map<MessageAttribute, Integer> attributeCounts = new HashMap<>();
+	private Map<Detection, Integer> attributeCounts = new HashMap<>();
 	private Map<CodeReceived, Integer> codeCounts = new HashMap<>();
 
 	private DateTime firstMessageReceived;
@@ -23,10 +23,10 @@ public class DqaMessageMetrics {
 	public void setObjectCounts(Map<IssueObject, Integer> objectCounts) {
 		this.objectCounts = objectCounts;
 	}
-	public Map<MessageAttribute, Integer> getAttributeCounts() {
+	public Map<Detection, Integer> getAttributeCounts() {
 		return attributeCounts;
 	}
-	public void setAttributeCounts(Map<MessageAttribute, Integer> attributeCounts) {
+	public void setAttributeCounts(Map<Detection, Integer> attributeCounts) {
 		this.attributeCounts = attributeCounts;
 	}
 	public Map<CodeReceived, Integer> getCodeCounts() {

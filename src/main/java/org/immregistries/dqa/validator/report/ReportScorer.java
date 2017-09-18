@@ -9,7 +9,7 @@ import org.immregistries.dqa.validator.DqaMessageService;
 import org.immregistries.dqa.validator.DqaMessageServiceResponse;
 import org.immregistries.dqa.validator.issue.IssueObject;
 import org.immregistries.dqa.validator.issue.IssueType;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.VxuField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,7 +80,7 @@ public enum ReportScorer {
 		return reportSection;
 	}
 	
-	protected VxuFieldScore scoreField(DqaReportFieldDefinition fieldDef, Map<MessageAttribute, Integer> evaluated, int expectedFieldCount) {
+	protected VxuFieldScore scoreField(DqaReportFieldDefinition fieldDef, Map<Detection, Integer> evaluated, int expectedFieldCount) {
 		VxuFieldScore fieldScore = new VxuFieldScore();
 		fieldScore.setReportFieldDefinition(fieldDef);
 		fieldScore.getFieldScore().setPotential(fieldDef.getWeight());
@@ -243,7 +243,7 @@ public enum ReportScorer {
 		
 	}
 	
-	protected Map<IssueType, Integer> getIssueCounts(DqaReportFieldDefinition d, Map<MessageAttribute, Integer> measures) {
+	protected Map<IssueType, Integer> getIssueCounts(DqaReportFieldDefinition d, Map<Detection, Integer> measures) {
 		
 		Map<IssueType, Integer> map = new HashMap<>();
 		
@@ -256,7 +256,7 @@ public enum ReportScorer {
 		
 		for (ReportIssue thisType : lookfor) {
 			IssueType type = thisType.getType();
-			MessageAttribute attribute = MessageAttribute.get(field, type);
+			Detection attribute = Detection.get(field, type);
 			Integer countOfIssue = measures.get(attribute);
 			logger.info("getIssueCounts field: " + field + " type " + type + " attribute: " + attribute + " count: " + countOfIssue);
 			if (countOfIssue != null) {

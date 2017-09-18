@@ -3,7 +3,7 @@ package org.immregistries.dqa.validator.engine.rules.nextofkin;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
@@ -23,14 +23,14 @@ public class NextOfKinNameIsValid extends ValidationRule<DqaNextOfKin> {
         String last = target.getNameLast();
 
         if (StringUtils.isEmpty(first) && StringUtils.isEmpty(last)) {
-            issues.add(MessageAttribute.NextOfKinNameIsMissing.build(first + " " + last));
+            issues.add(Detection.NextOfKinNameIsMissing.build(first + " " + last));
         } else {
             if (StringUtils.isEmpty(first)) {
-                issues.add(MessageAttribute.NextOfKinNameFirstIsMissing.build(first));
+                issues.add(Detection.NextOfKinNameFirstIsMissing.build(first));
             }
 
             if (StringUtils.isEmpty(last)) {
-                issues.add(MessageAttribute.NextOfKinNameLastIsMissing.build(last));
+                issues.add(Detection.NextOfKinNameLastIsMissing.build(last));
             }
         }
 

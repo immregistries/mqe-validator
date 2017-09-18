@@ -4,7 +4,7 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.issue.IssueType;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.vxu.hl7.PhoneNumber;
@@ -39,7 +39,7 @@ public enum PhoneValidator {
 
         if (phone != null && StringUtils.isNotEmpty(phone.getNumber())) {
             if (StringUtils.isEmpty(phone.getAreaCode()) || StringUtils.isEmpty(phone.getLocalNumber())) {
-                MessageAttribute attr = MessageAttribute.get(piPhone, IssueType.INCOMPLETE);
+                Detection attr = Detection.get(piPhone, IssueType.INCOMPLETE);
                 if (attr != null) {
                     issues.add(attr.build(phone.getNumber()));
                 }
@@ -57,14 +57,14 @@ public enum PhoneValidator {
 
             //Invalid phone number format.
             if (!isValidPhone(phone)) {
-                MessageAttribute attr = MessageAttribute.get(piPhone, IssueType.INVALID);
+                Detection attr = Detection.get(piPhone, IssueType.INVALID);
                 if (attr != null) {
                     issues.add(attr.build(phone.getNumber()));
                 }
             }
 
         } else {
-            issues.add(MessageAttribute.get(piPhone, IssueType.MISSING).build());
+            issues.add(Detection.get(piPhone, IssueType.MISSING).build());
         }
         return issues;
     }

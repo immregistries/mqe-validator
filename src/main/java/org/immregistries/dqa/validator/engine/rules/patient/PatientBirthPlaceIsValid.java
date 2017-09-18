@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -28,7 +28,7 @@ public class PatientBirthPlaceIsValid extends ValidationRule<DqaPatient> {
 		String place = target.getBirthPlace();
 		
 		if (common.isEmpty(place)) {
-			issues.add(MessageAttribute.PatientBirthPlaceIsMissing.build());
+			issues.add(Detection.PatientBirthPlaceIsMissing.build());
 		}
 		
 		return buildResults(issues, passed);

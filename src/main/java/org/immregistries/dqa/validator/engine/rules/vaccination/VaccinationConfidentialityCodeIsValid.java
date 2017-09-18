@@ -6,7 +6,7 @@ import java.util.List;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.VxuField;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -33,7 +33,7 @@ public class VaccinationConfidentialityCodeIsValid extends
 		passed = (issues.size() == 0);
 
 		if ("R".equals(confCode) || "V".equals(confCode)) {
-			issues.add(MessageAttribute.VaccinationConfidentialityCodeIsValuedAsRestricted.build());
+			issues.add(Detection.VaccinationConfidentialityCodeIsValuedAsRestricted.build());
 		}
 
 		return buildResults(issues, passed);

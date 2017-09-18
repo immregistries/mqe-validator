@@ -7,7 +7,7 @@ import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.IssueType;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -31,7 +31,7 @@ public class PatientAliasIsValid extends ValidationRule<DqaPatient> {
 		String aliasLast = target.getAliasLast();
 		
 		if (common.isEmpty(aliasLast + aliasFirst)) {
-			issues.add(MessageAttribute.buildIssue(VxuField.PATIENT_ALIAS, IssueType.MISSING));
+			issues.add(Detection.buildIssue(VxuField.PATIENT_ALIAS, IssueType.MISSING));
 			passed = false;
 		}
 		

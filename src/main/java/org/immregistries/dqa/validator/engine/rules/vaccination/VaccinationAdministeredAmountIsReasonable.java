@@ -6,7 +6,7 @@ import java.util.List;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.IssueType;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
@@ -28,7 +28,7 @@ public class VaccinationAdministeredAmountIsReasonable extends ValidationRule<Dq
 
 		Double d = Double.parseDouble(target.getAmount()); 
 		if (d > 999) {
-			issues.add(MessageAttribute.VaccinationAdministeredAmountIsInvalid.build(target.getAmount()));
+			issues.add(Detection.VaccinationAdministeredAmountIsInvalid.build(target.getAmount()));
 		}
 
 		passed = (issues.size() == 0);

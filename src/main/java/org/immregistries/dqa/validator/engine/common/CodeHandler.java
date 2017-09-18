@@ -14,7 +14,7 @@ import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
 import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.IssueType;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -134,13 +134,13 @@ public enum CodeHandler {
 	
 	protected ValidationIssue issueForField(VxuField field, IssueType type, String receivedValue) {
 
-		MessageAttribute issue = MessageAttribute.get(field, type);
+		Detection issue = Detection.get(field, type);
 		
 		if (issue != null) {
 			return issue.build(receivedValue);
 		} else {
 			LOGGER.warn("Checking for a condition that has no corresponding PotentialIssue. Field: " + field + " IssueType: "+ IssueType.BEFORE_OR_AFTER_VALID_DATE_FOR_AGE);
-			return MessageAttribute.GeneralProcessingException.build();
+			return Detection.GeneralProcessingException.build();
 		}
 	}
 }

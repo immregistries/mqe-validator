@@ -2,7 +2,7 @@ package org.immregistries.dqa.validator.engine.rules.patient;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -30,16 +30,16 @@ public class PatientFinancialStatusDateIsValid extends ValidationRule<DqaPatient
 
         if (finEligDte != null) {
             if (this.datr.isBeforeDate(finEligDte, birthDate)) {
-                issues.add(MessageAttribute.PatientVfcEffectiveDateIsBeforeBirth.build());
+                issues.add(Detection.PatientVfcEffectiveDateIsBeforeBirth.build());
                 passed = false;
             }
 
             if (this.datr.isBeforeDate(recDate, finEligDte)) {
-                issues.add(MessageAttribute.PatientVfcEffectiveDateIsInFuture.build());
+                issues.add(Detection.PatientVfcEffectiveDateIsInFuture.build());
                 passed = false;
             }
         } else {
-            issues.add(MessageAttribute.PatientVfcEffectiveDateIsMissing.build());
+            issues.add(Detection.PatientVfcEffectiveDateIsMissing.build());
             passed = false;
         }
 

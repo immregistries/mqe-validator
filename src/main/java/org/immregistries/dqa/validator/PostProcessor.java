@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.immregistries.dqa.hl7util.SeverityLevel;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 
 /**
@@ -25,7 +25,7 @@ import org.immregistries.dqa.validator.issue.ValidationIssue;
  */
 public class PostProcessor {
 
-	public List<ValidationIssue> transformList(List<ValidationIssue> listIn, Map<MessageAttribute, SeverityLevel> overrides) {
+	public List<ValidationIssue> transformList(List<ValidationIssue> listIn, Map<Detection, SeverityLevel> overrides) {
 		return null;
 	}
 }

@@ -1,7 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -66,7 +66,7 @@ public class ObservationValueTypeIsValidTester {
         ValidationRuleResult r = rule.executeRule(v, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.ObservationValueTypeIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.ObservationValueTypeIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -80,7 +80,7 @@ public class ObservationValueTypeIsValidTester {
         ValidationRuleResult r = rule.executeRule(v, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.ObservationValueTypeIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.ObservationValueTypeIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -94,7 +94,7 @@ public class ObservationValueTypeIsValidTester {
         ValidationRuleResult r = rule.executeRule(v, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.ObservationValueTypeIsUnrecognized == r.getIssues().get(0).getIssue());
+                && Detection.ObservationValueTypeIsUnrecognized == r.getIssues().get(0).getIssue());
     }
 
     /**

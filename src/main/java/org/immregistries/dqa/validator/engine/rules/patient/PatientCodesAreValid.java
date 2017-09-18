@@ -3,7 +3,7 @@ package org.immregistries.dqa.validator.engine.rules.patient;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
@@ -33,7 +33,7 @@ public class PatientCodesAreValid extends ValidationRule<DqaPatient> {
 
         // name code is supposed to be L for legal
         if (!"L".equals(target.getNameTypeCode())) {
-            issues.add(MessageAttribute.PatientNameTypeCodeIsNotValuedLegal.build());
+            issues.add(Detection.PatientNameTypeCodeIsNotValuedLegal.build());
         }
 
         // facility
@@ -41,11 +41,11 @@ public class PatientCodesAreValid extends ValidationRule<DqaPatient> {
         String facilityName = target.getFacilityName();
 
         if (StringUtils.isBlank(facilityId)) {
-            issues.add(MessageAttribute.PatientPrimaryFacilityIdIsMissing.build(facilityId));
+            issues.add(Detection.PatientPrimaryFacilityIdIsMissing.build(facilityId));
         }
 
         if (StringUtils.isBlank(facilityName)) {
-            issues.add(MessageAttribute.PatientPrimaryFacilityNameIsMissing.build(facilityName));
+            issues.add(Detection.PatientPrimaryFacilityNameIsMissing.build(facilityName));
         }
 
         // language

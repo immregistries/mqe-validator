@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
@@ -33,7 +33,7 @@ public class MessageHeaderDateIsExpectedFormat extends ValidationRule<DqaMessage
 
 		if (!common.isEmpty(target.getMessageDateString())) {
 			if (!datr.isExpectedDateFormat(target.getMessageDateString(), expectedFormat)) {
-				issues.add(MessageAttribute.MessageMessageDateIsUnexpectedFormat.build(target.getMessageDateString()));
+				issues.add(Detection.MessageMessageDateIsUnexpectedFormat.build(target.getMessageDateString()));
 			}
 		}
 		

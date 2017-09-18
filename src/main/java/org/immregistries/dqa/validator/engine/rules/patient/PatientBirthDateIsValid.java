@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -26,12 +26,12 @@ public class PatientBirthDateIsValid extends ValidationRule<DqaPatient> {
 		String birthDateString = target.getBirthDateString();
 		
 		if (this.common.isEmpty(birthDateString)) {
-			issues.add(MessageAttribute.PatientBirthDateIsMissing.build(birthDateString));
+			issues.add(Detection.PatientBirthDateIsMissing.build(birthDateString));
 			passed = false;
 		}
 		
 		if (!this.common.isValidDate(birthDateString)) {
-			issues.add(MessageAttribute.PatientBirthDateIsInvalid.build(birthDateString));
+			issues.add(Detection.PatientBirthDateIsInvalid.build(birthDateString));
 			passed = false;
 		} else {
 			DateTime birthDate = this.common.parseDateTimeFrom(birthDateString);
@@ -41,14 +41,14 @@ public class PatientBirthDateIsValid extends ValidationRule<DqaPatient> {
 			DateTime receivedDate = new DateTime(message.getReceivedDate());
 			
 			if (receivedDate != null && receivedDate.isBefore(birthDate)) { 
-				issues.add(MessageAttribute.PatientBirthDateIsInFuture.build(birthDateString));
+				issues.add(Detection.PatientBirthDateIsInFuture.build(birthDateString));
 				passed = false;
 			}
 			
 			DateTime messageDate = new DateTime(message.getMessageHeader().getMessageDate());
 			
 			if (messageDate != null && messageDate.isBefore(birthDate)) {
-				issues.add(MessageAttribute.PatientBirthDateIsAfterSubmission.build(birthDateString));
+				issues.add(Detection.PatientBirthDateIsAfterSubmission.build(birthDateString));
 				passed = false;
 			}
 

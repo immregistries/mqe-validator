@@ -6,7 +6,7 @@ import java.util.List;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.VxuField;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -33,7 +33,7 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<DqaVacci
 		String sourceCd = target.getInformationSourceCode();
 		
 		if (common.isEmpty(sourceCd)) {
-			issues.add(MessageAttribute.VaccinationInformationSourceIsMissing.build());
+			issues.add(Detection.VaccinationInformationSourceIsMissing.build());
 			passed = false;
 		} else {
 			
@@ -45,10 +45,10 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<DqaVacci
 	        
 			switch (sourceCd) {
 				case DqaVaccination.INFO_SOURCE_ADMIN:
-					issues.add(MessageAttribute.VaccinationInformationSourceIsValuedAsAdministered.build(sourceCd));
+					issues.add(Detection.VaccinationInformationSourceIsValuedAsAdministered.build(sourceCd));
 					break;
 				case DqaVaccination.INFO_SOURCE_HIST:
-					issues.add(MessageAttribute.VaccinationInformationSourceIsValuedAsHistorical.build(sourceCd));
+					issues.add(Detection.VaccinationInformationSourceIsValuedAsHistorical.build(sourceCd));
 					break;
 			}
 	      }

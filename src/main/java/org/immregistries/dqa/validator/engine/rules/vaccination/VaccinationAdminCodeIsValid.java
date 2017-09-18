@@ -9,7 +9,7 @@ import org.immregistries.dqa.codebase.client.reference.CvxConceptType;
 import org.immregistries.dqa.codebase.client.reference.CvxSpecialValues;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -42,15 +42,15 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<DqaVaccination> 
 			
 			if (CvxConceptType.UNSPECIFIED == concept) {
 				if (target.isAdministered()) {
-					issues.add(MessageAttribute.VaccinationAdminCodeIsNotSpecific.build(cvxCode));
+					issues.add(Detection.VaccinationAdminCodeIsNotSpecific.build(cvxCode));
 				}
 			} else if (CvxSpecialValues.NO_VACCINE_ADMINISTERED == cvxSpecial) {
-				issues.add(MessageAttribute.VaccinationAdminCodeIsValuedAsNotAdministered
+				issues.add(Detection.VaccinationAdminCodeIsValuedAsNotAdministered
 						.build(cvxCode));
 			} else if (CvxSpecialValues.UNKNOWN == cvxSpecial) {
-				issues.add(MessageAttribute.VaccinationAdminCodeIsValuedAsUnknown.build(cvxCode));
+				issues.add(Detection.VaccinationAdminCodeIsValuedAsUnknown.build(cvxCode));
 			} else if (CvxConceptType.NON_VACCINE == concept) {
-				issues.add(MessageAttribute.VaccinationAdminCodeIsNotVaccine.build(cvxCode));
+				issues.add(Detection.VaccinationAdminCodeIsNotVaccine.build(cvxCode));
 			}
 
 			passed = (issues.size() == 0);

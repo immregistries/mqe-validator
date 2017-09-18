@@ -4,7 +4,7 @@ import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.common.AddressFields;
 import org.immregistries.dqa.validator.engine.common.AddressValidator;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
@@ -44,11 +44,11 @@ public class NextOfKinAddressIsValid extends ValidationRule<DqaNextOfKin> {
         if (nokAddress != null) {
             if (!nokAddress.equals(p)) {
                 //TODO this functionality is also in NextOfKinAddressIsSameAsPatientAddress, which should we use?
-                issues.add(MessageAttribute.NextOfKinAddressIsDifferentFromPatientAddress.build(nokAddress.toString()));
+                issues.add(Detection.NextOfKinAddressIsDifferentFromPatientAddress.build(nokAddress.toString()));
             }
 
             if (nokAddress.getTypeCode() != null && "BA".equals(nokAddress.getTypeCode())) {
-                issues.add(MessageAttribute.NextOfKinAddressTypeIsValuedBadAddress.build(nokAddress.toString()));
+                issues.add(Detection.NextOfKinAddressTypeIsValuedBadAddress.build(nokAddress.toString()));
             }
 
             issues.addAll(this.codr.handleCode(nokAddress.getTypeCode(), VxuField.NEXT_OF_KIN_ADDRESS_TYPE));

@@ -12,7 +12,7 @@ import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
 import org.immregistries.dqa.validator.engine.common.CodeHandler;
 import org.immregistries.dqa.validator.issue.VxuField;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +41,7 @@ public class CodeHandlerTest {
 		list = codr.handleUseDate(codeAnthrax, adminDate, VxuField.VACCINATION_ADMIN_DATE);
 		assertEquals("Should have an issue with adminDate of " + adminDate, 1, list.size());
 		
-		boolean theIssueIsCorrect = MessageAttribute.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange == list.get(0).getIssue();
+		boolean theIssueIsCorrect = Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange == list.get(0).getIssue();
 		assertTrue("the one issue should be VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange", theIssueIsCorrect);
 	}
 	

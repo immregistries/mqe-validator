@@ -2,7 +2,7 @@ package org.immregistries.dqa.validator.engine.rules.patient;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -51,12 +51,12 @@ public class PatientDeathDateIsValid extends ValidationRule<DqaPatient> {
 
         // if the death date is empty
         if ("Y".equals(target.getDeathIndicator()) && this.common.isEmpty(deathDateString)) {
-            issues.add(MessageAttribute.PatientDeathDateIsMissing.build(deathDateString));
+            issues.add(Detection.PatientDeathDateIsMissing.build(deathDateString));
             passed = false;
         } else {
             // if the death date isn't parsable
             if (!this.common.isValidDate(deathDateString)) {
-                issues.add(MessageAttribute.PatientDeathDateIsInvalid.build(deathDateString));
+                issues.add(Detection.PatientDeathDateIsInvalid.build(deathDateString));
                 passed = false;
             } else {
                 DateTime deathDate = this.common.parseDateTimeFrom(deathDateString);
@@ -64,7 +64,7 @@ public class PatientDeathDateIsValid extends ValidationRule<DqaPatient> {
 
                 // if the death date is after the date the message was received
                 if (receivedDate.isBefore(deathDate)) {
-                    issues.add(MessageAttribute.PatientDeathDateIsInFuture.build(deathDateString));
+                    issues.add(Detection.PatientDeathDateIsInFuture.build(deathDateString));
                     passed = false;
                 }
 
@@ -72,7 +72,7 @@ public class PatientDeathDateIsValid extends ValidationRule<DqaPatient> {
 
                 // if the death date is before the birth date
                 if (deathDate.isBefore(birthDate)) {
-                    issues.add(MessageAttribute.PatientDeathDateIsBeforeBirth.build(deathDateString));
+                    issues.add(Detection.PatientDeathDateIsBeforeBirth.build(deathDateString));
                     passed = false;
                 }
             }
@@ -80,12 +80,12 @@ public class PatientDeathDateIsValid extends ValidationRule<DqaPatient> {
 
         if (target.getDeathDate() != null) {
             if (target.getBirthDate() != null && target.getDeathDate().before(target.getBirthDate())) {
-                issues.add(MessageAttribute.PatientDeathDateIsBeforeBirth.build(target.getDeathDate().toString()));
+                issues.add(Detection.PatientDeathDateIsBeforeBirth.build(target.getDeathDate().toString()));
                 passed = false;
             }
 
             if (message.getReceivedDate().before(target.getDeathDate())) {
-                issues.add(MessageAttribute.PatientDeathDateIsInFuture.build(target.getDeathDate().toString()));
+                issues.add(Detection.PatientDeathDateIsInFuture.build(target.getDeathDate().toString()));
                 passed = false;
             }
         }

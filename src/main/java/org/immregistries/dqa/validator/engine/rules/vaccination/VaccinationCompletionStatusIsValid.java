@@ -6,7 +6,7 @@ import java.util.List;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.VxuField;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -34,16 +34,16 @@ public class VaccinationCompletionStatusIsValid extends ValidationRule<DqaVaccin
 		
 	    if (target.isCompletionCompleted())
 	    {
-	      issues.add(MessageAttribute.VaccinationCompletionStatusIsValuedAsCompleted.build(target.getCompletionCode()));
+	      issues.add(Detection.VaccinationCompletionStatusIsValuedAsCompleted.build(target.getCompletionCode()));
 	    } else if (target.isCompletionRefused())
 	    {
-	      issues.add(MessageAttribute.VaccinationCompletionStatusIsValuedAsRefused.build(target.getCompletionCode()));
+	      issues.add(Detection.VaccinationCompletionStatusIsValuedAsRefused.build(target.getCompletionCode()));
 	    } else if (target.isCompletionNotAdministered())
 	    {
-	      issues.add(MessageAttribute.VaccinationCompletionStatusIsValuedAsNotAdministered.build(target.getCompletionCode()));
+	      issues.add(Detection.VaccinationCompletionStatusIsValuedAsNotAdministered.build(target.getCompletionCode()));
 	    } else if (target.isCompletionPartiallyAdministered())
 	    {
-	      issues.add(MessageAttribute.VaccinationCompletionStatusIsValuedAsPartiallyAdministered.build(target.getCompletionCode()));
+	      issues.add(Detection.VaccinationCompletionStatusIsValuedAsPartiallyAdministered.build(target.getCompletionCode()));
 	    }
 		
 		return buildResults(issues, passed);

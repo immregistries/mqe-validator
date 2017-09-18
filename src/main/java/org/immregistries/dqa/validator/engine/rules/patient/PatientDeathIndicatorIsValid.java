@@ -2,7 +2,7 @@ package org.immregistries.dqa.validator.engine.rules.patient;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -49,13 +49,13 @@ public class PatientDeathIndicatorIsValid extends ValidationRule<DqaPatient> {
         String dInd = target.getDeathIndicator();
 
         if (this.common.isEmpty(dInd)) {
-            issues.add(this.util.createIssue(MessageAttribute.PatientDeathIndicatorIsMissing, dInd));
+            issues.add(this.util.createIssue(Detection.PatientDeathIndicatorIsMissing, dInd));
             passed = false; //should this be a pass???
         }
 
         if (!"Y".equals(dInd)) {
             if (target.getDeathDate() != null || target.getDeathDateString() != null) {
-                issues.add(this.util.createIssue(MessageAttribute.PatientDeathIndicatorIsInconsistent, target.getDeathDate().toString()));
+                issues.add(this.util.createIssue(Detection.PatientDeathIndicatorIsInconsistent, target.getDeathDate().toString()));
                 passed = false;
             }
         }

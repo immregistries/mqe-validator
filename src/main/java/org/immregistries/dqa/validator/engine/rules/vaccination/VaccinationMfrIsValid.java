@@ -9,7 +9,7 @@ import org.immregistries.dqa.codebase.client.generated.UseDate;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.VxuField;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -51,12 +51,12 @@ public class VaccinationMfrIsValid extends ValidationRule<DqaVaccination> {
 					if (datr.isAfterDate(target.getAdminDate(), notAfterDate) 
 					 || datr.isBeforeDate(target.getAdminDate(), notBeforeDate)) {
 						
-						issues.add(MessageAttribute.VaccinationManufacturerCodeIsInvalidForDateAdministered.build(target.getManufacturer()));
+						issues.add(Detection.VaccinationManufacturerCodeIsInvalidForDateAdministered.build(target.getManufacturer()));
 						passed = false;
 						
 					} else if (datr.isAfterDate(target.getAdminDate(), notExpectedAfterDate) 
 						    || datr.isBeforeDate(target.getAdminDate(), notExpectedBeforeDate)) {
-						issues.add(MessageAttribute.VaccinationManufacturerCodeIsUnexpectedForDateAdministered.build(target.getManufacturer()));
+						issues.add(Detection.VaccinationManufacturerCodeIsUnexpectedForDateAdministered.build(target.getManufacturer()));
 					}
 			}
 		}

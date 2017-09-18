@@ -17,12 +17,12 @@ public class ValidationIssue implements Reportable
 private static final Logger logger = LoggerFactory
 		.getLogger(ValidationIssue.class);
 
-  private MessageAttribute messageAttribute = null;//should this be a String?
+  private Detection messageAttribute = null;//should this be a String?
   private int positionId = 0;//This says where in the ACK to put it. 
   private SeverityLevel severityLevel = null; //this is how bad it is. 
   private String valueReceived = null;//This is the related value. 
   
-  public MessageAttribute getIssue()
+  public Detection getIssue()
   {
     return messageAttribute;
   }
@@ -31,7 +31,7 @@ private static final Logger logger = LoggerFactory
 	  return messageAttribute != null ? messageAttribute.getDisplayText() : "";
   }
   
-  public void setMessageAttribute(MessageAttribute issue)
+  public void setMessageAttribute(Detection issue)
   {
     this.messageAttribute = issue;
   }
@@ -92,7 +92,7 @@ public List<ErrorLocation> getHl7LocationList() {
 	List<ErrorLocation> list = new ArrayList<ErrorLocation>();
 	for (String loc : this.messageAttribute.getHl7Locations()) {
 		logger.info("Adding : " + loc);
-		ErrorLocation el = new ErrorLocation(loc);
+		ErrorLocation el = ErrorLocation.getErrorLocationFromString(loc);
 		list.add(el);
 	}
 	return list;

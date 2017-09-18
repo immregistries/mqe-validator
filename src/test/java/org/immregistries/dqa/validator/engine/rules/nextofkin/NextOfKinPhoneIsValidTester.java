@@ -1,7 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.nextofkin;
 
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
@@ -66,7 +66,7 @@ public class NextOfKinPhoneIsValidTester {
         ValidationRuleResult r = rule.executeRule(nok, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.NextOfKinPhoneNumberIsIncomplete == r.getIssues().get(0).getIssue());
+                && Detection.NextOfKinPhoneNumberIsIncomplete == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -80,7 +80,7 @@ public class NextOfKinPhoneIsValidTester {
         ValidationRuleResult r = rule.executeRule(nok, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.NextOfKinPhoneNumberIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.NextOfKinPhoneNumberIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -94,7 +94,7 @@ public class NextOfKinPhoneIsValidTester {
         ValidationRuleResult r = rule.executeRule(nok, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.NextOfKinPhoneNumberIsMissing == r.getIssues().get(0).getIssue());
+                && Detection.NextOfKinPhoneNumberIsMissing == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -108,7 +108,7 @@ public class NextOfKinPhoneIsValidTester {
         ValidationRuleResult r = rule.executeRule(nok, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.NextOfKinPhoneNumberIsInvalid == r.getIssues().get(0).getIssue());
+                && Detection.NextOfKinPhoneNumberIsInvalid == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -122,7 +122,7 @@ public class NextOfKinPhoneIsValidTester {
         ValidationRuleResult r = rule.executeRule(nok, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.NextOfKinPhoneNumberIsInvalid == r.getIssues().get(0).getIssue());
+                && Detection.NextOfKinPhoneNumberIsInvalid == r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -136,7 +136,7 @@ public class NextOfKinPhoneIsValidTester {
         ValidationRuleResult r = rule.executeRule(nok, mr);
         logger.info(r.getIssues().toString());
         assertTrue(1 == r.getIssues().size()
-                && MessageAttribute.NextOfKinPhoneNumberIsInvalid == r.getIssues().get(0).getIssue());
+                && Detection.NextOfKinPhoneNumberIsInvalid == r.getIssues().get(0).getIssue());
     }
 
     /**

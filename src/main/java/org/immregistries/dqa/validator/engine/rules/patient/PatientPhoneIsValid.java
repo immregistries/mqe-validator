@@ -10,7 +10,7 @@ import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
-import org.immregistries.dqa.vxu.hl7.PhoneNumber;
+import org.immregistries.dqa.vxu.DqaPhoneNumber;
 
 public class PatientPhoneIsValid extends ValidationRule<DqaPatient> {
 
@@ -20,7 +20,7 @@ public class PatientPhoneIsValid extends ValidationRule<DqaPatient> {
 	protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 		boolean passed = true;
-		PhoneNumber phone = target.getPhone();
+		DqaPhoneNumber phone = target.getPhone();
 		
 		List<ValidationIssue> phIssues = phValr.validatePhone(phone, VxuField.PATIENT_PHONE, VxuField.PATIENT_PHONE_TEL_USE_CODE, VxuField.PATIENT_PHONE_TEL_EQUIP_CODE);
 		issues.addAll(phIssues);

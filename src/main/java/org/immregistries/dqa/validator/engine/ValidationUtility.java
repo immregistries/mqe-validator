@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.validator.engine.common.CommonRules;
 import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.IssueType;
@@ -22,7 +21,7 @@ public enum ValidationUtility {
 	
 	public ValidationIssue createIssue(Detection attribute, String codedValue) {
 		ValidationIssue found = new ValidationIssue();
-		found.setMessageAttribute(attribute);
+		found.setDetection(attribute);
 		found.setValueReceived(codedValue);
 		found.setSeverityLevel(attribute.getSeverity());//This needs to be equipped to be naunced. This will comes off a profile. 
 		return found;

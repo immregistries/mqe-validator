@@ -60,7 +60,7 @@ public class MessageResponseEvaluatorTester {
 		ValidationRuleResult result3 = new ValidationRuleResult();
 		result3.setRuleClass(PatientNameIsValid.class);
 		ValidationIssue issue = new ValidationIssue();
-		issue.setMessageAttribute(Detection.PatientMiddleNameIsMissing);
+		issue.setDetection(Detection.PatientMiddleNameIsMissing);
 		result3.getIssues().add(issue);
 		result3.setRulePassed(false);
 		results.add(result3);

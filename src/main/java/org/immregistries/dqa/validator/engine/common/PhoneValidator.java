@@ -7,7 +7,7 @@ import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.validator.issue.VxuField;
-import org.immregistries.dqa.vxu.hl7.PhoneNumber;
+import org.immregistries.dqa.vxu.DqaPhoneNumber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +26,11 @@ public enum PhoneValidator {
 
     private CodeHandler coder = CodeHandler.INSTANCE;
 
-    public List<ValidationIssue> validatePhone(PhoneNumber phone, VxuField piPhone) {
+    public List<ValidationIssue> validatePhone(DqaPhoneNumber phone, VxuField piPhone) {
         return validatePhone(phone, piPhone, null, null);
     }
 
-    public List<ValidationIssue> validatePhone(PhoneNumber phone,
+    public List<ValidationIssue> validatePhone(DqaPhoneNumber phone,
                                                VxuField piPhone,
                                                VxuField piPhoneTelUse,
                                                VxuField piPhoneTelEquip) {
@@ -71,7 +71,7 @@ public enum PhoneValidator {
 
     private PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
 
-    protected boolean isValidPhone(PhoneNumber phone) {
+    protected boolean isValidPhone(DqaPhoneNumber phone) {
         if (StringUtils.isEmpty(phone.getCountryCode())
                 || phone.getCountryCode().equals("1")
                 || phone.getCountryCode().equals("+1")) {
@@ -114,7 +114,7 @@ public enum PhoneValidator {
         return true;
     }
 
-    protected boolean isValidPhoneAccordingToGoogle(PhoneNumber phone) {
+    protected boolean isValidPhoneAccordingToGoogle(DqaPhoneNumber phone) {
         if (phone == null || (StringUtils.isBlank(phone.getNumber()) && StringUtils.isBlank(phone.getAreaCode()) && StringUtils.isBlank(phone.getLocalNumber()))) {
             return false;
         }

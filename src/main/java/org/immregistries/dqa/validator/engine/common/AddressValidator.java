@@ -9,7 +9,7 @@ import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
-import org.immregistries.dqa.vxu.hl7.Address;
+import org.immregistries.dqa.vxu.DqaAddress;
  
 /**
  * This is to evaluate the basic expectations for an address in the system
@@ -22,7 +22,7 @@ public enum AddressValidator {
 	INSTANCE;
 	private CommonRules common = CommonRules.INSTANCE;
 	
-	public ValidationRuleResult getAddressIssuesFor(AddressFields fields, Address a) {
+	public ValidationRuleResult getAddressIssuesFor(AddressFields fields, DqaAddress a) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 		boolean passed = true;
 		
@@ -125,7 +125,7 @@ public enum AddressValidator {
 	    	;
 	}
 
-	public boolean isValid(Address a) {
+	public boolean isValid(DqaAddress a) {
 		boolean valid = 
 				validCity(a.getCity())
 				&& validState(a.getStateCode())

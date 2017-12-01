@@ -9,9 +9,9 @@ import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 import org.immregistries.dqa.vxu.DqaVaccination;
-import org.immregistries.dqa.vxu.hl7.Address;
+import org.immregistries.dqa.vxu.DqaAddress;
 import org.immregistries.dqa.vxu.hl7.Observation;
-import org.immregistries.dqa.vxu.hl7.PatientImmunity;
+import org.immregistries.dqa.vxu.PatientImmunity;
 
 public class MessageTransformerMCIR {
 
@@ -83,7 +83,7 @@ public class MessageTransformerMCIR {
 		
 	}
 	
-	protected void transformAddress(Address a) {
+	protected void transformAddress(DqaAddress a) {
 		ac.cleanThisAddress(a);
 	}
 	/*

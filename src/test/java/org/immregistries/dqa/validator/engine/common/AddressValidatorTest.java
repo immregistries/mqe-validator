@@ -4,8 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.immregistries.dqa.validator.engine.common.AddressValidator;
-import org.immregistries.dqa.vxu.hl7.Address;
+import org.immregistries.dqa.vxu.DqaAddress;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +12,7 @@ public class AddressValidatorTest {
 
 	@Before
 	public void buildNewAddress() {
-		Address a = new Address();
+		DqaAddress a = new DqaAddress();
 		a.setCity("Lansing");
 		a.setStateCode("MI");
 		a.setStreet("1221 Mechanic");
@@ -23,7 +22,7 @@ public class AddressValidatorTest {
 		this.address = a;
 	}
 	
-	private Address address;
+	private DqaAddress address;
 	private AddressValidator av = AddressValidator.INSTANCE;
 	
 	@Test

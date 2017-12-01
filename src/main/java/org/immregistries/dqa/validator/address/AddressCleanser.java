@@ -1,6 +1,6 @@
 package org.immregistries.dqa.validator.address;
 
-import org.immregistries.dqa.vxu.hl7.Address;
+import org.immregistries.dqa.vxu.DqaAddress;
 
 /**
  * The purpose of this is to provide a point to inject an 
@@ -18,5 +18,5 @@ public interface AddressCleanser {
 	 * 
 	 * 
 	 */
-	public void cleanThisAddress(Address a);
+	public void cleanThisAddress(DqaAddress a);
 }

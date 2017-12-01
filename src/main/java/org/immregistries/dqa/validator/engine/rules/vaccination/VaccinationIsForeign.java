@@ -29,6 +29,7 @@ public class VaccinationIsForeign extends ValidationRule<DqaVaccination> {
 		boolean administered = target.isAdministered();
 		
 		Code vaccineCode = this.repo.getCodeFromValue(cvxCode, CodesetType.VACCINATION_CVX_CODE);
+		if (vaccineCode != null) {
 		CvxConceptType concept = CvxConceptType.getBy(vaccineCode.getConceptType());
 		
 		if (CvxConceptType.FOREIGN_VACCINE == concept) {
@@ -37,7 +38,7 @@ public class VaccinationIsForeign extends ValidationRule<DqaVaccination> {
 			} else {
 				issues.add(Detection.VaccinationHistoricalCodeIsForeign.build());
 			}
-		
+		}
 			passed = true;
 		}
 

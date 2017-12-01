@@ -10,7 +10,7 @@ import org.immregistries.dqa.hl7util.model.CodedWithExceptions;
 import org.immregistries.dqa.hl7util.model.ErrorLocation;
 import org.immregistries.dqa.validator.issue.Detection;
 
-public class MessageAttributeExporter {
+public class DetectionExporter {
   public static void main(String[] args) {
     for (final Detection ma : Detection.values()) {
       StringBuilder errSegment = new StringBuilder();
@@ -29,7 +29,7 @@ public class MessageAttributeExporter {
         public List<ErrorLocation> getHl7LocationList() {
           List<ErrorLocation> errorLocationList = new ArrayList<>();
           for (String loc : ma.getHl7Locations()) {
-            ErrorLocation el = ErrorLocation.getErrorLocationFromString(loc);
+            ErrorLocation el = new ErrorLocation(loc);
             errorLocationList.add(el);
           }
           return errorLocationList;

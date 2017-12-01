@@ -9,3 +9,5 @@
 .settings/org.eclipse.wst.validation.prefs
 
 src/test/java/META-INF/MANIFEST\.MF
+
+*.iml

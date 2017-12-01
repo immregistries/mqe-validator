@@ -17,7 +17,7 @@ import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 import org.immregistries.dqa.vxu.DqaVaccination;
-import org.immregistries.dqa.vxu.hl7.PatientAddress;
+import org.immregistries.dqa.vxu.DqaPatientAddress;
 import org.junit.Test;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
@@ -208,7 +208,7 @@ public class ValidationRuleTest {
 		p.setAliasFirst("John");
 		p.setNameTypeCode("Superhero");
 		p.setMotherMaidenName("Cobbler");
-		PatientAddress a = new PatientAddress(); 
+		DqaPatientAddress a = new DqaPatientAddress();
 		p.getPatientAddressList().add(a);
 		a.setCity("Lansing");
 		a.setStreet("121 Main");

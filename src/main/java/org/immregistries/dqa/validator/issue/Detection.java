@@ -190,7 +190,7 @@ public enum Detection {
 	PatientImmunizationRegistryStatusIsUnrecognized(IssueObject.PATIENT, IssueType.UNRECOGNIZED, VxuField.PATIENT_IMMUNIZATION_REGISTRY_STATUS, "", SeverityLevel.WARN, "103", null, ErrorCode.DQA0164, "PD1-16"),
 	PatientMedicaidNumberIsInvalid(IssueObject.PATIENT, IssueType.INVALID, VxuField.PATIENT_MEDICAID_NUMBER, "", SeverityLevel.WARN, "102", null, ErrorCode.DQA0167, "PID-3"),
 	PatientMedicaidNumberIsMissing(IssueObject.PATIENT, IssueType.MISSING, VxuField.PATIENT_MEDICAID_NUMBER, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.DQA0168, "PID-3"),
-	PatientMiddleNameIsMissing(IssueObject.PATIENT, IssueType.MISSING, VxuField.PATIENT_MIDDLE_NAME, "", SeverityLevel.WARN, "101", null, ErrorCode.DQA0169, "PID-5.3"),
+	PatientMiddleNameIsMissing(IssueObject.PATIENT, IssueType.MISSING, VxuField.PATIENT_MIDDLE_NAME, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.DQA0169, "PID-5.3"),
 	PatientMiddleNameIsInvalid(IssueObject.PATIENT, IssueType.INVALID, VxuField.PATIENT_MIDDLE_NAME,"", SeverityLevel.ACCEPT, "101", null, ErrorCode.DQA0546, "PID-5.3"),
 	PatientMiddleNameMayBeInitial(IssueObject.PATIENT, IssueType.MAY_BE_AN_INITIAL, VxuField.PATIENT_MIDDLE_NAME, "", SeverityLevel.ACCEPT, "102", null, ErrorCode.DQA0170, "PID-5.3"),
 	//Some of these weren't represented in the XLS file. 
@@ -798,7 +798,7 @@ public enum Detection {
   
   public ValidationIssue build() {
 		ValidationIssue found = new ValidationIssue();
-		found.setMessageAttribute(this);
+		found.setDetection(this);
 		return found;
   }
   

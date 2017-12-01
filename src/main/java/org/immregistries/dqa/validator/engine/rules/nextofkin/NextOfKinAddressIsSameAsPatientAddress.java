@@ -10,7 +10,7 @@ import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
-import org.immregistries.dqa.vxu.hl7.Address;
+import org.immregistries.dqa.vxu.DqaAddress;
 
 public class NextOfKinAddressIsSameAsPatientAddress extends ValidationRule<DqaNextOfKin> {
 
@@ -24,8 +24,8 @@ public class NextOfKinAddressIsSameAsPatientAddress extends ValidationRule<DqaNe
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 		boolean passed = true;
 
-		Address p = message.getPatient().getAddress();
-		Address n = target.getAddress();
+		DqaAddress p = message.getPatient().getAddress();
+		DqaAddress n = target.getAddress();
 		if (!p.getCity().equals(n.getCity())
 				|| !p.getState().equals(n.getState())
 				|| !p.getStreet().equals(n.getStreet())

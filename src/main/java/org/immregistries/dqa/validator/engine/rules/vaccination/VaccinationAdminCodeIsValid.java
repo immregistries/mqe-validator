@@ -30,12 +30,21 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<DqaVaccination> 
 		
 		boolean passed = true;
 
+//		String cptCode =
 		String cvxCode = target.getAdminCvxCode();
-		
-		Code vaccineCode = this.repo.getCodeFromValue(cvxCode, CodesetType.VACCINATION_CVX_CODE);
-		
-		if (vaccineCode != null) {
-			String conceptTypeString = vaccineCode.getConceptType();
+		String ndcCode = target.getAdminNdc();
+
+		Code vaccineCvxCode = this.repo.getCodeFromValue(cvxCode, CodesetType.VACCINATION_CVX_CODE);
+		if (vaccineCvxCode == null) {
+        vaccineCvxCode = this.repo.getFirstRelatedCodeForCodeIn(CodesetType.VACCINATION_NDC_CODE_UNIT_OF_SALE, ndcCode, CodesetType.VACCINATION_CVX_CODE);
+        if (vaccineCvxCode == null) {
+            vaccineCvxCode = this.repo.getFirstRelatedCodeForCodeIn(CodesetType.VACCINATION_NDC_CODE_UNIT_OF_USE, ndcCode, CodesetType.VACCINATION_CVX_CODE);
+        }
+    }
+
+
+		if (vaccineCvxCode != null) {
+			String conceptTypeString = vaccineCvxCode.getConceptType();
 			CvxConceptType concept = CvxConceptType.getBy(conceptTypeString);
 
 			CvxSpecialValues cvxSpecial = CvxSpecialValues.getBy(cvxCode);
@@ -45,8 +54,7 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<DqaVaccination> 
 					issues.add(Detection.VaccinationAdminCodeIsNotSpecific.build(cvxCode));
 				}
 			} else if (CvxSpecialValues.NO_VACCINE_ADMINISTERED == cvxSpecial) {
-				issues.add(Detection.VaccinationAdminCodeIsValuedAsNotAdministered
-						.build(cvxCode));
+				issues.add(Detection.VaccinationAdminCodeIsValuedAsNotAdministered.build(cvxCode));
 			} else if (CvxSpecialValues.UNKNOWN == cvxSpecial) {
 				issues.add(Detection.VaccinationAdminCodeIsValuedAsUnknown.build(cvxCode));
 			} else if (CvxConceptType.NON_VACCINE == concept) {

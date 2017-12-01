@@ -17,23 +17,23 @@ public class ValidationIssue implements Reportable
 private static final Logger logger = LoggerFactory
 		.getLogger(ValidationIssue.class);
 
-  private Detection messageAttribute = null;//should this be a String?
+  private Detection detection = null;//should this be a String?
   private int positionId = 0;//This says where in the ACK to put it. 
   private SeverityLevel severityLevel = null; //this is how bad it is. 
   private String valueReceived = null;//This is the related value. 
   
   public Detection getIssue()
   {
-    return messageAttribute;
+    return detection;
   }
   
   public String getMessage() {
-	  return messageAttribute != null ? messageAttribute.getDisplayText() : "";
+	  return detection != null ? detection.getDisplayText() : "";
   }
   
-  public void setMessageAttribute(Detection issue)
+  public void setDetection(Detection issue)
   {
-    this.messageAttribute = issue;
+    this.detection = issue;
   }
   public int getPositionId()
   {
@@ -57,17 +57,18 @@ private static final Logger logger = LoggerFactory
     this.valueReceived = valueReceived;
   }
   public String getHl7Reference() {
-	  return String.valueOf(this.messageAttribute.getHl7Locations());
+	  return String.valueOf(this.detection.getHl7Locations());
   }
 
   public boolean isError()
   {
-	  return SeverityLevel.ERROR.equals(this.severityLevel);
+	  return (this.severityLevel != null && SeverityLevel.ERROR.equals(this.severityLevel))
+        || this.severityLevel == null && this.detection.getSeverity() == SeverityLevel.ERROR;
   }
 
 @Override
 public String toString() {
-	return "IssueFound [issue=" + messageAttribute + ", positionId=" + positionId
+	return "IssueFound [issue=" + detection + ", positionId=" + positionId
 			+ ", severity=" + getSeverity() + ", codeReceived=" + valueReceived
 			+ "]";
 }
@@ -75,7 +76,7 @@ public String toString() {
 @Override
 public SeverityLevel getSeverity() {
 	if (this.severityLevel == null) {
-		return this.messageAttribute.getSeverity();
+		return this.detection.getSeverity();
 	}
 	return this.severityLevel;
 }
@@ -83,16 +84,16 @@ public SeverityLevel getSeverity() {
 @Override
 public CodedWithExceptions getHl7ErrorCode() {
 	CodedWithExceptions cwe = new CodedWithExceptions();
-	cwe.setIdentifier(this.messageAttribute.getHl7ErrorCode());
+	cwe.setIdentifier(this.detection.getHl7ErrorCode());
 	return cwe;
 }
 
 @Override
 public List<ErrorLocation> getHl7LocationList() {
 	List<ErrorLocation> list = new ArrayList<ErrorLocation>();
-	for (String loc : this.messageAttribute.getHl7Locations()) {
+	for (String loc : this.detection.getHl7Locations()) {
 		logger.info("Adding : " + loc);
-		ErrorLocation el = ErrorLocation.getErrorLocationFromString(loc);
+		ErrorLocation el = new ErrorLocation(loc);
 		list.add(el);
 	}
 	return list;
@@ -100,7 +101,7 @@ public List<ErrorLocation> getHl7LocationList() {
 
 @Override
 public String getReportedMessage() {
-	return this.messageAttribute.getDisplayText();
+	return this.detection.getDisplayText();
 }
 
 @Override
@@ -114,12 +115,12 @@ public String getDiagnosticMessage() {
 @Override
 public CodedWithExceptions getApplicationErrorCode() {
 	CodedWithExceptions cwe = new CodedWithExceptions();
-	if (!this.messageAttribute.getApplicationErrorCode().equals("")){
-	  cwe.setIdentifier(this.messageAttribute.getApplicationErrorCode().getId());
-      cwe.setText(this.messageAttribute.getApplicationErrorCode().getText());
+	if (!this.detection.getApplicationErrorCode().equals("")){
+	  cwe.setIdentifier(this.detection.getApplicationErrorCode().getId());
+      cwe.setText(this.detection.getApplicationErrorCode().getText());
       cwe.setNameOfCodingSystem("HL70533");
-      cwe.setAlternateIdentifier(this.messageAttribute.getDqaErrorCode());
-      cwe.setAlternateText(this.messageAttribute.getDisplayText());
+      cwe.setAlternateIdentifier(this.detection.getDqaErrorCode());
+      cwe.setAlternateText(this.detection.getDisplayText());
       cwe.setNameOfAlternateCodingSystem("L");
 	}
 	return cwe;

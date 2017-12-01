@@ -6,8 +6,8 @@ import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
 import org.immregistries.dqa.vxu.DqaPatient;
-import org.immregistries.dqa.vxu.hl7.Address;
-import org.immregistries.dqa.vxu.hl7.PatientAddress;
+import org.immregistries.dqa.vxu.DqaAddress;
+import org.immregistries.dqa.vxu.DqaPatientAddress;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -38,7 +38,7 @@ public class NextOfKinAddressIsValidTester {
      */
     @Before
     public void setUpTheObjects() {
-        Address addr = new Address();
+        DqaAddress addr = new DqaAddress();
         addr.setStreet("233 Cherokee Ln");
         addr.setStreet2("Apt 106");
         addr.setCity("Flint");
@@ -51,7 +51,7 @@ public class NextOfKinAddressIsValidTester {
         nok.setAddress(addr);
         setNextOfKin();
 
-        p.getPatientAddressList().add(new PatientAddress(addr));
+        p.getPatientAddressList().add(new DqaPatientAddress(addr));
 
         mh.setMessageDate(new Date());
         mr.setMessageHeader(mh);
@@ -92,7 +92,7 @@ public class NextOfKinAddressIsValidTester {
         nok.getAddress().setStreet(null);
         setNextOfKin();
 
-        PatientAddress paddr = new PatientAddress(nok.getAddress());
+        DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
         p.getPatientAddressList().clear();
         p.getPatientAddressList().add(paddr);
 
@@ -110,7 +110,7 @@ public class NextOfKinAddressIsValidTester {
         nok.getAddress().setStreet2(null);
         setNextOfKin();
 
-        PatientAddress paddr = new PatientAddress(nok.getAddress());
+        DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
         p.getPatientAddressList().clear();
         p.getPatientAddressList().add(paddr);
 
@@ -128,7 +128,7 @@ public class NextOfKinAddressIsValidTester {
         nok.getAddress().setCity(null);
         setNextOfKin();
 
-        PatientAddress paddr = new PatientAddress(nok.getAddress());
+        DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
         p.getPatientAddressList().clear();
         p.getPatientAddressList().add(paddr);
 
@@ -146,7 +146,7 @@ public class NextOfKinAddressIsValidTester {
         nok.getAddress().setStateCode(null);
         setNextOfKin();
 
-        PatientAddress paddr = new PatientAddress(nok.getAddress());
+        DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
         p.getPatientAddressList().clear();
         p.getPatientAddressList().add(paddr);
 

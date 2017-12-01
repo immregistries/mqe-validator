@@ -5,7 +5,7 @@ import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
-import org.immregistries.dqa.vxu.hl7.PhoneNumber;
+import org.immregistries.dqa.vxu.DqaPhoneNumber;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -36,7 +36,7 @@ public class NextOfKinPhoneIsValidTester {
      */
     @Before
     public void setUpTheObjects() {
-        PhoneNumber phone = new PhoneNumber("810", "9573567");
+        DqaPhoneNumber phone = new DqaPhoneNumber("810", "9573567");
         nok.setPhone(phone);
         setNextOfKin();
 

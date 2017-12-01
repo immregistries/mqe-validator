@@ -9,7 +9,7 @@ import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
-import org.immregistries.dqa.vxu.hl7.Address;
+import org.immregistries.dqa.vxu.DqaAddress;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ public class PatientAddressIsValid extends ValidationRule<DqaPatient> {
         List<ValidationIssue> issues = new ArrayList<>();
         boolean passed;
 
-        Address a = target.getAddress();
+        DqaAddress a = target.getAddress();
 
         ValidationRuleResult result = addressValidator.getAddressIssuesFor(fields, a);
         issues.addAll(result.getIssues());

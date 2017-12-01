@@ -2,7 +2,7 @@ package org.immregistries.dqa.validator.engine.common;
 
 import static org.junit.Assert.*;
 
-import org.immregistries.dqa.vxu.hl7.PhoneNumber;
+import org.immregistries.dqa.vxu.DqaPhoneNumber;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,11 +10,11 @@ import org.junit.Test;
 public class PhoneValidatorTest {
 
 	PhoneValidator pd = PhoneValidator.INSTANCE;
-	private PhoneNumber pn;
+	private DqaPhoneNumber pn;
 	
 	@Before
 	public void buildNewCode() {
-		this.pn = new PhoneNumber();
+		this.pn = new DqaPhoneNumber();
 		pn.setCountryCode("+1");
 		pn.setAreaCode("517");
 		pn.setLocalNumber("5555555");

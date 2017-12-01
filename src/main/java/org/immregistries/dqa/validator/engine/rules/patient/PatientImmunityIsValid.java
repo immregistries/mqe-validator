@@ -9,7 +9,7 @@ import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
-import org.immregistries.dqa.vxu.hl7.PatientImmunity;
+import org.immregistries.dqa.vxu.PatientImmunity;
 
 public class PatientImmunityIsValid extends ValidationRule<DqaPatient> {
 	@Override

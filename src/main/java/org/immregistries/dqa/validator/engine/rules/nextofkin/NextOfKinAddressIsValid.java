@@ -9,7 +9,7 @@ import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
-import org.immregistries.dqa.vxu.hl7.Address;
+import org.immregistries.dqa.vxu.DqaAddress;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +35,8 @@ public class NextOfKinAddressIsValid extends ValidationRule<DqaNextOfKin> {
         List<ValidationIssue> issues = new ArrayList<>();
         boolean passed;
 
-        Address nokAddress = target.getAddress();
-        Address p = m.getPatient().getAddress();
+        DqaAddress nokAddress = target.getAddress();
+        DqaAddress p = m.getPatient().getAddress();
 
         ValidationRuleResult addrResult = addressValidator.getAddressIssuesFor(fields, nokAddress);
         issues.addAll(addrResult.getIssues());

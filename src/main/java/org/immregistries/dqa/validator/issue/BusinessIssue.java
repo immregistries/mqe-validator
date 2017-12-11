@@ -3,6 +3,7 @@ package org.immregistries.dqa.validator.issue;
 import java.util.List;
 
 import org.immregistries.dqa.hl7util.Reportable;
+import org.immregistries.dqa.hl7util.ReportableSource;
 import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.hl7util.builder.AckERRCode;
 import org.immregistries.dqa.hl7util.model.CodedWithExceptions;
@@ -16,7 +17,7 @@ public class BusinessIssue implements Reportable {
 	private String reportedMessage; // ERR-8
 	private String diagnosticMessage; // ERR-7
 	private CodedWithExceptions applicationErrorCode; // Detailed code of the issue, CDC code & DQA Code
-
+    
 
 	@Override public SeverityLevel getSeverity() {
 		return severity;
@@ -79,5 +80,10 @@ public class BusinessIssue implements Reportable {
 	public void setApplicationErrorCode(CodedWithExceptions applicationErrorCode) {
 		this.applicationErrorCode = applicationErrorCode;
 	}
+
+  @Override
+  public ReportableSource getSource() {
+    return ReportableSource.DQA;
+  }
 
 }

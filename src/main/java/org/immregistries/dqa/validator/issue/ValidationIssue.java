@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.hl7util.Reportable;
+import org.immregistries.dqa.hl7util.ReportableSource;
 import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.hl7util.model.CodedWithExceptions;
 import org.immregistries.dqa.hl7util.model.ErrorLocation;
@@ -64,6 +65,12 @@ private static final Logger logger = LoggerFactory
   {
 	  return (this.severityLevel != null && SeverityLevel.ERROR.equals(this.severityLevel))
         || this.severityLevel == null && this.detection.getSeverity() == SeverityLevel.ERROR;
+  }
+  
+
+  @Override
+  public ReportableSource getSource() {
+    return ReportableSource.DQA;
   }
 
 @Override

@@ -36,10 +36,7 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<DqaVaccination> 
 
 		Code vaccineCvxCode = this.repo.getCodeFromValue(cvxCode, CodesetType.VACCINATION_CVX_CODE);
 		if (vaccineCvxCode == null) {
-        vaccineCvxCode = this.repo.getFirstRelatedCodeForCodeIn(CodesetType.VACCINATION_NDC_CODE_UNIT_OF_SALE, ndcCode, CodesetType.VACCINATION_CVX_CODE);
-        if (vaccineCvxCode == null) {
-            vaccineCvxCode = this.repo.getFirstRelatedCodeForCodeIn(CodesetType.VACCINATION_NDC_CODE_UNIT_OF_USE, ndcCode, CodesetType.VACCINATION_CVX_CODE);
-        }
+        vaccineCvxCode = this.repo.getFirstRelatedCodeForCodeIn(CodesetType.VACCINATION_NDC_CODE, ndcCode, CodesetType.VACCINATION_CVX_CODE);
     }
 
 

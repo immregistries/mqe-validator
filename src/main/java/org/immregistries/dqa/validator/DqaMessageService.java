@@ -1,12 +1,12 @@
 package org.immregistries.dqa.validator;
 
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.MessageValidator;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.parse.HL7MessageParser;
-import org.immregistries.dqa.vxu.transform.MessageTransformer;
+import org.immregistries.dqa.validator.transform.MessageTransformer;
+
+import java.util.List;
 
 public enum DqaMessageService {
 	INSTANCE;
@@ -32,13 +32,14 @@ public enum DqaMessageService {
 	 * @return
 	 */
 	public DqaMessageServiceResponse processMessage(String messageText) {
-		DqaMessageReceived mr = parser.extractMessageFromText(messageText);
-		
-		transformer.transform(mr);
-		
+		DqaMessageReceived mr = this.extractMessageFromText(messageText);
 		DqaMessageServiceResponse msr = validateData(mr);
-		
 		return msr;
+	}
+
+	public DqaMessageReceived extractMessageFromText(String messageText) {
+		DqaMessageReceived mr = parser.extractMessageFromText(messageText);
+		return transformer.transform(mr);
 	}
 
 	public DqaMessageServiceResponse validateData(DqaMessageReceived mr) {

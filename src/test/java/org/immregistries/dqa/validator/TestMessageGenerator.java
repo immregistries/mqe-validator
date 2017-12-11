@@ -1,5 +1,8 @@
 package org.immregistries.dqa.validator;
 
+import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.dqa.vxu.parse.HL7MessageParser;
+
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,7 +11,7 @@ import java.util.Map;
 public class TestMessageGenerator {
 	
 	private static final String MSH = "MSH|^~\\&|ECW|1337-44-01|MCIR|MDCH|20140619191115||VXU^V04|61731|P|2.3.1|||AL\r";
-	private static final String PID =  "PID|||23456^^^^MR||LASTNAME^FIRSTNAME^LEGALMIDDLE^LEGALSUFFIX^^X~COOLNAME^AWESOMENAME2|MOMSMAIDEN|20120604|M||RACECD|100 Main^^Lansing^MI^48912-1330^US^^^60~^^^^^US^BDL^^123456||^PRN^PH^^^517^555-5555~(517)555-5555^P^H||en|||||||22|23||||||FIELD29-----||||||\r";
+	private static final String PID =  "PID|||23456^^^^MR||LASTNAME^FIRSTNAME^LEGALMIDDLE^LEGALSUFFIX^^X~COOLNAME^AWESOMENAME2|MOMSMAIDEN|20100604|M||RACECD|100 Main^^Lansing^MI^48912-1330^US^^^60~^^^^^US^BDL^^123456||^PRN^PH^^^517^555-5555~(517)555-5555^P^H||en|||||||22|23||||||FIELD29-----||||||\r";
 	private static final String PID2 = "PID|||00000^^^^MR~111111^^^^WC~22222^^^^SS~33333^^^^MA~44444^^^^SR||LEGALLAST^^^^^X~COOLNAME^AWESOMENAME2||20120605|F|||100 Main^^Lansing^MI^48912-1330^US^~^^^^^US^BDL^^123456||(517)555-2222^P^H~^PRN^PH^^^517^555-5555||en||||\r";
 	private static final String NK1 =  "NK1||NKLast^NKFirst|MTH^3^HL70063|100 Main^^Lansing^MI^48912 1330^US^|5175555555|||||||||||||||20||||||||||30|||33^^^^SS||||37|\r";
 	private static final String ORC =  "ORC|||123456|\r";
@@ -95,11 +98,26 @@ public class TestMessageGenerator {
 		return SEG_MAP;
 	}
 	
-	public List<String> getSegmentList1() {
-		return SEG_LIST;
-	}
-	
 	public String getAiraTestMsg() {
 		return AIRA_TEST_MSG;
 	}
+
+	private DqaMessageService service = DqaMessageService.INSTANCE;
+
+	public DqaMessageReceived getMsg1() {
+		return service.extractMessageFromText(this.getExampleVXU_1());
+	}
+
+	public DqaMessageReceived getMsg2() {
+		return service.extractMessageFromText(this.getExampleVXU_2());
+	}
+
+	public DqaMessageReceived getMsg3() {
+		return service.extractMessageFromText(this.getImmunityMessage());
+	}
+	public DqaMessageReceived getMsg4() {
+		return service.extractMessageFromText(this.getAiraTestMsg());
+	}
+
+
 }

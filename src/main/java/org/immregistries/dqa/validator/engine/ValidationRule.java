@@ -1,9 +1,5 @@
 package org.immregistries.dqa.validator.engine;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
 import org.immregistries.dqa.validator.engine.common.CodeHandler;
@@ -11,9 +7,11 @@ import org.immregistries.dqa.validator.engine.common.CommonRules;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
-import org.immregistries.dqa.vxu.code.CodeReceived;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A pass of a Validation Rule means that the concept expressed in the name is true.  

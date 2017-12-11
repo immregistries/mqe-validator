@@ -1,21 +1,35 @@
 package org.immregistries.dqa.validator.engine.codes;
 
-import java.util.List;
-import java.util.Map;
-
 import org.immregistries.dqa.codebase.client.CodeMap;
 import org.immregistries.dqa.codebase.client.CodeMapBuilder;
+import org.immregistries.dqa.codebase.client.RelatedCode;
 import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.codebase.client.reference.CodesetType;
 
+import java.util.List;
+
 public enum CodeRepository {
 	INSTANCE;
-	
+
+	public CodeMap getCodeMap() {
+		return codeMapper;
+	}
+
 	/**
 	 * This codemap object will get all the information we know about a code.
 	 */
-	  private CodeMap codeMapper = CodeMapBuilder.INSTANCE.getCodeMap(Thread.currentThread().getContextClassLoader().getResourceAsStream("Compiled.xml"));
-	  
+	  private final CodeMap codeMapper;
+	  private final RelatedCode related;
+
+	  CodeRepository() {
+	  	this.codeMapper = CodeMapBuilder.INSTANCE.getCodeMap(Thread.currentThread().getContextClassLoader().getResourceAsStream("Compiled.xml"));
+	  	this.related = new RelatedCode(codeMapper);
+	  }
+
+	  public RelatedCode getRelatedCodes() {
+	  	return related;
+	  }
+
 	//TODO:  get the data for these items.
 	
 	//TODO: X make a way to map values before looking them up in the database.  DONE!
@@ -29,6 +43,18 @@ public enum CodeRepository {
 		return c;
 	}
 
+	public Code getFirstRelatedCodeForCodeIn(CodesetType codeIn, String value, CodesetType codeOut) {
+	  	return this.codeMapper.getFirstRelatedCodeForCodeIn(codeIn, value, codeOut);
+	}
+
+	public List<Code> getRelatedCodesForCodeIn(CodesetType codeIn, String value, CodesetType codeOut) {
+	  	return this.codeMapper.getRelatedCodesForCodeIn(codeIn, value, codeOut);
+	}
+
+	public String getRelatedValue(Code in, CodesetType desired) {
+		return this.codeMapper.getRelatedValue(in, desired);
+	}
+
 	public Code getMfrForCode(String manufacturerCode) {
 		//call the new XML based code repository
 		Code c = codeMapper.getCodeForCodeset(CodesetType.VACCINATION_MANUFACTURER_CODE, manufacturerCode);
@@ -37,19 +63,6 @@ public enum CodeRepository {
 
 	public Code getVaccineProduct(String vaccineCvx, String vaccineMvx, String adminDate) {
 		return codeMapper.getProductFor(vaccineCvx, vaccineMvx, adminDate);
-	}
-
-	public List<Code> getRelatedCodesForCodeIn(CodesetType codeTypeIn, String codeIn, CodesetType codeTypeDesired) {
-		Map<CodesetType, List<Code>> relatedCodes = codeMapper.getRelatedCodes(codeTypeIn,  codeIn);
-		return relatedCodes.get(codeTypeDesired);
-	}
-	
-	public Code getFirstRelatedCodeForCodeIn(CodesetType codeTypeIn, String codeIn, CodesetType codeTypeDesired) {
-		List<Code> relatedCodes = getRelatedCodesForCodeIn(codeTypeIn, codeIn, codeTypeDesired);
-		if (relatedCodes != null && relatedCodes.size() > 0) {
-			return relatedCodes.get(0);
-		}
-		return null;
 	}
 
 	/**

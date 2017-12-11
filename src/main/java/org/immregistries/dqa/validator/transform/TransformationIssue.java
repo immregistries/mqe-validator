@@ -3,6 +3,7 @@ package org.immregistries.dqa.validator.transform;
 import java.util.List;
 
 import org.immregistries.dqa.hl7util.Reportable;
+import org.immregistries.dqa.hl7util.ReportableSource;
 import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.hl7util.model.CodedWithExceptions;
 import org.immregistries.dqa.hl7util.model.ErrorLocation;
@@ -44,5 +45,10 @@ public class TransformationIssue implements Reportable{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+  @Override
+  public ReportableSource getSource() {
+    return ReportableSource.DQA;
+  }
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.immregistries.dqa.hl7util.Reportable;
+import org.immregistries.dqa.hl7util.ReportableSource;
 import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.hl7util.builder.HL7Util;
 import org.immregistries.dqa.hl7util.model.CodedWithExceptions;
@@ -57,6 +58,11 @@ public class DetectionExporter {
           cwe.setAlternateText(ma.getDisplayText());
           cwe.setNameOfAlternateCodingSystem("L");
           return cwe;
+        }
+
+        @Override
+        public ReportableSource getSource() {
+          return ReportableSource.DQA;
         }
       };
       HL7Util.makeERRSegment(errSegment, reportable, true);

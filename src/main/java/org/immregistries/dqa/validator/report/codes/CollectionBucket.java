@@ -5,71 +5,70 @@ import org.immregistries.dqa.codebase.client.reference.CodesetType;
 
 import java.util.Objects;
 
-class CollectionBucket {
-        CodesetType type;
-        String collectionMetadata;
-        String metadataDesc;
+public class CollectionBucket {
 
-        public String getLabel() {
-            if (StringUtils.isNotBlank(getCollectionMetadata())) {
-                if (StringUtils.isNotBlank(getMetadataDesc())) {
-                    return type.getType() + " - " + getMetadataDesc() + "[" + getCollectionMetadata() + "]";
-                }
-                return type.getType() + " - " + getCollectionMetadata();
-            }
-            return type.getType();
-        }
-        CollectionBucket(CodesetType type) {
-            this.type = type;
-        }
+    String type;
+    String attribute;
+    String value;
+    int count;
 
-        CollectionBucket(CodesetType type, String collectionMetadata) {
-            this.type = type;
-            this.collectionMetadata = collectionMetadata;
-        }
-        CollectionBucket(CodesetType type, String collectionMetadata, String metaDataDesc) {
-            this(type, collectionMetadata);
-            this.metadataDesc = metaDataDesc;
-        }
-
-        @Override public String toString() {
-            return "CollectionBucket{" + "type=" + type + ", collectionMetadata='" + collectionMetadata + '\'' + ", metadataDesc='" + metadataDesc + '\'' + '}';
-        }
-
-        @Override public boolean equals(Object o) {
-            if (this == o)
-                return true;
-            if (o == null || getClass() != o.getClass())
-                return false;
-            CollectionBucket that = (CollectionBucket) o;
-            return type == that.type && Objects.equals(collectionMetadata, that.collectionMetadata);
-        }
-
-        @Override public int hashCode() {
-            return Objects.hash(type, collectionMetadata);
-        }
-
-        public CodesetType getType() {
-            return type;
-        }
-
-        public void setType(CodesetType type) {
-            this.type = type;
-        }
-
-        public String getCollectionMetadata() {
-            return collectionMetadata;
-        }
-
-        public void setCollectionMetadata(String collectionMetadata) {
-            this.collectionMetadata = collectionMetadata;
-        }
-
-        public String getMetadataDesc() {
-            return metadataDesc;
-        }
-
-        public void setMetadataDesc(String metadataDesc) {
-            this.metadataDesc = metadataDesc;
-        }
+    public CollectionBucket(CodesetType type, String attribute, String value) {
+        this.type = type.getType();
+        this.attribute = attribute;
+        this.value = value;
     }
+
+    public CollectionBucket(String type, String attribute, String value) {
+        this.type = type;
+        this.attribute = attribute;
+        this.value = value;
+    }
+
+    public CollectionBucket(String type, String attribute, String value, int count) {
+        this.type = type;
+        this.attribute = attribute;
+        this.value = value;
+        this.count = count;
+    }
+
+    @Override public String toString() {
+        return "CollectionBucket{" + type + " - " + getAttribute() + " / " + getValue() + " : " + getCount() + "}";
+    }
+
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        CollectionBucket that = (CollectionBucket) o;
+        return type == that.type && Objects.equals(attribute, that.attribute) && Objects.equals(value, that.value);
+    }
+    @Override public int hashCode() {
+
+        return Objects.hash(type, attribute, value);
+    }
+    public int getCount() {
+        return count;
+    }
+    public void setCount(int count) {
+        this.count = count;
+    }
+    public String getValue() {
+        return value;
+    }
+    public void setValue(String value) {
+        this.value = value;
+    }
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
+    public String getAttribute() {
+        return attribute;
+    }
+    public void setAttribute(String attribute) {
+        this.attribute = attribute;
+    }
+}

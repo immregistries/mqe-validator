@@ -51,13 +51,22 @@ public enum ReportDefinitionBuilder {
 	}
 
 	public ReportCompletenessSectionDefinition getDefaultMessageHeaderSection() {
-		//build a section for the patient. 
+		//build a section for the patient.
 				ReportCompletenessSectionDefinition section = new ReportCompletenessSectionDefinition();
 				section.setLabel("Message Header");
 				section.setSectionObject(IssueObject.MESSAGE_HEADER);
 				section.setReportFields(getMessageReportFields());
 
 				return section;
+	}
+
+	public ReportCompletenessSectionDefinition getCodeReceivedSection() {
+		//build a section for the patient.
+		ReportCompletenessSectionDefinition section = new ReportCompletenessSectionDefinition();
+		section.setLabel("Codes Received");
+		section.setSectionObject(null);
+		section.setReportFields(null);
+		return section;
 	}
 	
 	

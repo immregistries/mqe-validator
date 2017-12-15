@@ -5,12 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.validator.DqaMessageService;
 import org.immregistries.dqa.validator.DqaMessageServiceResponse;
-import org.immregistries.dqa.validator.issue.IssueObject;
-import org.immregistries.dqa.validator.issue.IssueType;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.VxuField;
+import org.immregistries.dqa.validator.issue.*;
+import org.immregistries.dqa.validator.report.codes.CodeCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,8 +19,8 @@ public enum ReportScorer {
 	
 	private ReportDefinitionBuilder defbuilder = ReportDefinitionBuilder.INSTANCE;
 	private MessageResponseEvaluator eval = MessageResponseEvaluator.INSTANCE;
-    private DqaMessageService vlad = DqaMessageService.INSTANCE;
-    private ReportDefinition defaultDef = defbuilder.getDeafult();
+	private DqaMessageService vlad = DqaMessageService.INSTANCE;
+  private ReportDefinition defaultDef = defbuilder.getDeafult();
     
 	public VxuScoredReport getDefaultReportForMessage(String vxuText) {
 		DqaMessageMetrics metrics = getDqaMetricsFor(vxuText);
@@ -40,11 +39,24 @@ public enum ReportScorer {
 	
 	public DqaMessageMetrics getDqaMetricsFor(DqaMessageServiceResponse validationResults) {
 		DqaMessageMetrics msgMetrics = eval.toMetrics(validationResults.getValidationResults());
+		CodeCollection cc = new CodeCollection(validationResults.getMessageObjects());
+		msgMetrics.setCodes(cc);
 		return msgMetrics;
 	}
 	
 	public VxuScoredReport getScoredReport(ReportDefinition def, DqaMessageMetrics measures) {
 		VxuScoredReport report = new VxuScoredReport();
+
+		Map<Detection, Integer> detectionCounts = measures.getAttributeCounts();
+		//turn these into reportables:
+		for (Detection d : detectionCounts.keySet()) {
+			Integer count = detectionCounts.get(d);
+			if (count != null) {// && (d.getSeverity() == SeverityLevel.ERROR || d.getSeverity() == SeverityLevel.WARN)) {
+				ScoreReportable r = new ScoreReportable(d, count);
+				report.getDetectionCounts().add(r);
+			}
+		}
+
 		List<ReportCompletenessSectionDefinition> sdList = def.getQualitySections();
 		for (ReportCompletenessSectionDefinition sd : sdList) {
 			//Score the section
@@ -54,7 +66,7 @@ public enum ReportScorer {
 			//append scored section to the report score. 
 			report.appendScoreToReportScore(scoredSection.getSectionScore());
 		}
-		
+
 		return report;
 	}
 	
@@ -112,7 +124,7 @@ public enum ReportScorer {
 	 * The issue demerit can never be more than the total field score, 
 	 * and never less than zero. 
 	 * @param issues
-	 * @param totalScore
+	 * @param maxDemerits
 	 * @return
 	 */
 	protected int getIssueDemeritTotal(List<FieldIssueScore> issues, int maxDemerits) {
@@ -205,7 +217,7 @@ public enum ReportScorer {
 	/**
 	 * These are generally going to return negative values. 
 	 * @param issue
-	 * @param count
+	 * @param issueCount
 	 * @param fieldCount
 	 * @return
 	 */

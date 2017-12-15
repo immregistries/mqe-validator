@@ -6,18 +6,17 @@ import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 public class CodeCollection {
-
+    private static final Logger logger = LoggerFactory.getLogger(CodeCollection.class);
     @Override public String toString() {
-        return "CodeCollection{ vaccineCodeCounts=" + vaccineCodeCounts + '}';
+        return "CodeCollection{ counts=" + codeCountList + '}';
     }
-
 	/*
 	For each message, we'll collect codes sent through.
 	we're not detecting anything about the codes.  Just counting.
@@ -26,46 +25,43 @@ public class CodeCollection {
 	and maybe the Code type should be from CodeBase
 	*/
 
+    public List<CollectionBucket> getCodeCountList() {
+        return codeCountList;
+    }
+
+    public void setCodeCountList(List<CollectionBucket> list) {
+        this.codeCountList = list;
+    }
     /**
      * A map of Types.
      */
-    Map<CollectionBucket, Map<String, Integer>> vaccineCodeCounts = new HashMap<>();
+//    Map<CollectionBucket, Map<String, Integer>> vaccineCodeCounts = new HashMap<>();
+    List<CollectionBucket> codeCountList = new ArrayList<>();
 
     public CodeCollection combine(CodeCollection other) {
         CodeCollection crNew = new CodeCollection();
-        crNew.vaccineCodeCounts.putAll(mergeTwo(this.vaccineCodeCounts, other.vaccineCodeCounts));
+//        crNew.vaccineCodeCounts.putAll(mergeTwo(this.vaccineCodeCounts, other.vaccineCodeCounts));
+        crNew.codeCountList.addAll(mergeTwo(this.codeCountList, other.codeCountList));
         return crNew;
     }
 
-    Map<CollectionBucket, Map<String, Integer>> mergeTwo(Map<CollectionBucket, Map<String, Integer>> one, Map<CollectionBucket, Map<String, Integer>> two) {
-        Map<CollectionBucket, Map<String, Integer>> combinedMap = new HashMap<>();
-        combinedMap.putAll(two);
-        for (CollectionBucket obj : one.keySet()) {
-            Map<String, Integer> listNew = combinedMap.get(obj);
-            Map<String, Integer> listOld = one.get(obj);
-            if (listNew == null) {
-                combinedMap.put(obj, listOld);
-            } else {
-                for (String value : listOld.keySet()) {
-                    Integer count = listNew.get(value);
-                    if (count == null) {
-                        listNew.put(value, listOld.get(value));
-                    } else {
-                        Integer count2 = listOld.get(value);
-                        if (count2 != null) {
-                            listNew.put(value, count + count2);
-                        }
-                    }
-                }
+    public void add(CollectionBucket cbIn) {
+        this.codeCountList.add(cbIn);
+    }
+    List<CollectionBucket> mergeTwo(List<CollectionBucket> one, List<CollectionBucket> two) {
+        List<CollectionBucket> cbNew = new ArrayList<>();
+        for (CollectionBucket cbOne : one) {
+            int x = two.indexOf(cbOne);
+            if (x > -1) {
+                CollectionBucket cbTwo = two.get(x);
+                int countNew = cbTwo.getCount() + cbOne.getCount();
+                CollectionBucket cbClone = new CollectionBucket(cbOne.getType(), cbOne.getAttribute(), cbOne.getValue());
+                cbClone.setCount(countNew);
+                cbNew.add(cbClone);
             }
         }
 
-        return combinedMap;
-    }
-
-
-    public Map<CollectionBucket, Map<String, Integer>> getVaccineCodeCounts() {
-        return vaccineCodeCounts;
+        return cbNew;
     }
 
     public CodeCollection() {
@@ -75,23 +71,21 @@ public class CodeCollection {
     public CodeCollection(DqaMessageReceived message) {
         //from the message, count the types of codes.
         DateTime birthDate = DateUtility.INSTANCE.parseDateTime(message.getPatient().getBirthDateString());
-        this.vaccineCodeCounts = this.collectVaccineCodes(message.getVaccinations(), birthDate);
+        this.codeCountList = this.collectVaccineCodesNew(message.getVaccinations(), birthDate);
     }
 
-    Map<CollectionBucket, Map<String, Integer>> getByType(CodesetType desiredType) {
-        Map<CollectionBucket, Map<String, Integer>> out = new HashMap<>();
-        for (CollectionBucket bucket : this.vaccineCodeCounts.keySet()) {
-            if (desiredType == bucket.getType()) {
-                out.put(bucket, this.vaccineCodeCounts.get(bucket));
+    List<CollectionBucket> getByType(CodesetType desiredType) {
+        List<CollectionBucket> cbNew = new ArrayList<>();
+        for (CollectionBucket bucket : this.codeCountList) {
+            if (desiredType.getType().equals(bucket.getType())) {
+                cbNew.add(bucket);
             }
         }
-        return out;
+        return cbNew;
     }
 
-
-    Map<CollectionBucket, Map<String, Integer>> collectVaccineCodes(List<DqaVaccination> vaccineList, DateTime birthDate) {
-        Map<CollectionBucket, Map<String, Integer>> vcounts = new HashMap<>();
-
+    List<CollectionBucket> collectVaccineCodesNew(List<DqaVaccination> vaccineList, DateTime birthDate) {
+        List<CollectionBucket> bucketList = new ArrayList<>();
         for (DqaVaccination v : vaccineList) {
             //calculate the vaccine admin date - birth date to get a year.
             DateTime adminDate = DateUtility.INSTANCE.parseDateTime(v.getAdminDateString());
@@ -102,39 +96,32 @@ public class CodeCollection {
 
             if (v.isAdministered()) {
                 adminType = "Administered";
-                countUp(new CollectionBucket(CodesetType.VACCINE_GROUP, adminAgeString, "Age"), v.getVaccineGroupsDerived(), vcounts);
+                for (String group : v.getVaccineGroupsDerived()) {
+                    addCounts(CodesetType.VACCINE_GROUP, adminAgeString, group, bucketList);
+                }
             }
-
-            countUp(new CollectionBucket(CodesetType.VACCINATION_CPT_CODE,  adminType), v.getAdminCptCode(), vcounts);
-            countUp(new CollectionBucket(CodesetType.VACCINATION_INFORMATION_SOURCE), v.getInformationSource(), vcounts);
-            countUp(new CollectionBucket(CodesetType.VACCINATION_CVX_CODE,  v.getInformationSource(), "Type"), v.getAdminCvxCode(), vcounts);
-            countUp(new CollectionBucket(CodesetType.VACCINATION_NDC_CODE,  adminType), v.getAdminNdc(), vcounts);
-            countUp(new CollectionBucket(CodesetType.ADMINISTRATION_UNIT,   adminType), v.getAmountUnit(), vcounts);
+            addCounts(CodesetType.VACCINATION_CPT_CODE,  adminType, v.getAdminCptCode(), bucketList);
+            addCounts(CodesetType.VACCINATION_INFORMATION_SOURCE, "RXA-9",  v.getInformationSource(), bucketList);
+            addCounts(CodesetType.VACCINATION_CVX_CODE,  v.getInformationSource(), v.getAdminCvxCode(), bucketList);
+            addCounts(CodesetType.VACCINATION_NDC_CODE,  adminType, v.getAdminNdc(), bucketList);
+            addCounts(CodesetType.ADMINISTRATION_UNIT,   adminType, v.getAmountUnit(), bucketList);
         }
-
-        return vcounts;
+        return bucketList;
     }
 
-    private void countUp(CollectionBucket codeType, List<String> vaccineGroupsDerived, Map<CollectionBucket, Map<String, Integer>> map) {
-        for (String value : vaccineGroupsDerived) {
-            countUp(codeType, value, map);
-        }
-    }
-
-    private void countUp(CollectionBucket codeType, String value, Map<CollectionBucket, Map<String, Integer>> map) {
-        Map<String, Integer> theseCounts = map.get(codeType);
-        if (theseCounts == null) {
-            theseCounts = new HashMap<>();
+    void addCounts(CodesetType ct, String attribute, String value, List<CollectionBucket> existing) {
+        if (StringUtils.isBlank(value)) {
+            return;//don't add anything to the count.
         }
 
-        if (StringUtils.isNotBlank(value)) {
-            map.put(codeType, theseCounts);
-            Integer count = theseCounts.get(value);
-            if (count == null) {
-                theseCounts.put(value, 1);
-            } else {
-                theseCounts.put(value, count + 1);
-            }
+        CollectionBucket cbLookup = new CollectionBucket(ct,  attribute, value);
+        int idx = existing.indexOf(cbLookup);
+        if (idx > -1) {
+            CollectionBucket cb = existing.get(idx);
+            cb.setCount(cb.getCount()+1);
+        } else {
+            cbLookup.setCount(1);
+            existing.add(cbLookup);
         }
     }
 }

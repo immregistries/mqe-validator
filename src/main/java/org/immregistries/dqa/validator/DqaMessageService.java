@@ -2,6 +2,7 @@ package org.immregistries.dqa.validator;
 
 import org.immregistries.dqa.validator.engine.MessageValidator;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
+import org.immregistries.dqa.validator.report.codes.CodeCollection;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.parse.HL7MessageParser;
 import org.immregistries.dqa.validator.transform.MessageTransformer;

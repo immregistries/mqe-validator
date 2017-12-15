@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -50,18 +50,8 @@ public class CodeCollectionTester {
     }
 
     private void reportCounts(CodeCollection codeCollection) {
-        for (CollectionBucket key : codeCollection.getVaccineCodeCounts().keySet()) {
-            Map<String, Integer> counts = codeCollection.getVaccineCodeCounts().get(key);
-            logger.warn(key.getLabel() + " : " + counts);
-        }
-    }
-
-    private void reportCounts(CodeCollection codeCollection, CodesetType reportThis) {
-        for (CollectionBucket key : codeCollection.getVaccineCodeCounts().keySet()) {
-            if (key.getType() == reportThis) {
-                Map<String, Integer> counts = codeCollection.getVaccineCodeCounts().get(key);
-                logger.warn(key.getLabel() + " : " + counts);
-            }
+        for (CollectionBucket cb : codeCollection.getCodeCountList()) {
+            logger.warn("Bucket: " + cb);
         }
     }
 
@@ -69,31 +59,23 @@ public class CodeCollectionTester {
     public void testCollecting() {
         DqaMessageReceived msg = tmg.getMsg1();
         CodeCollection cc = new CodeCollection(msg);
-        Map<CollectionBucket, Map<String, Integer>> groupCounts = cc.getByType(CodesetType.VACCINE_GROUP);
-        assertEquals("Should one group and age", 1, groupCounts.size());
-        reportCounts(cc, CodesetType.VACCINE_GROUP);
+        reportCounts(cc);
 
-        for (CollectionBucket cb : groupCounts.keySet()) {
-            assertEquals("Should be age 4", "4", cb.getCollectionMetadata());
-            Map<String, Integer> groupMap = groupCounts.get(cb);
-            assertEquals("Should be three groups represented", 3, groupMap.size());
-            for (String group : groupMap.keySet()) {
-                Integer i = groupMap.get(group);
-                assertEquals("Should only be one group represented for the three groups", new Integer(1), i);
-            }
+        List<CollectionBucket> groupCounts = cc.getByType(CodesetType.VACCINE_GROUP);
+        assertEquals("Should be three entries, one for each group", 3, groupCounts.size());
+        assertEquals("Should be three groups represented", 3, groupCounts.size());
+        for (CollectionBucket cb : groupCounts) {
+            assertEquals("Should be age 4", "4", cb.getAttribute());
         }
-
         msg = tmg.getMsg2();
         cc = new CodeCollection(msg);
         groupCounts = cc.getByType(CodesetType.VACCINE_GROUP);
         assertEquals("Should be one group age", 1, groupCounts.size());
-        reportCounts(cc, CodesetType.VACCINE_GROUP);
 
         msg = tmg.getMsg3();
         cc = new CodeCollection(msg);
         groupCounts = cc.getByType(CodesetType.VACCINE_GROUP);
         assertEquals("Should be one group age", 1, groupCounts.size());
-        reportCounts(cc, CodesetType.VACCINE_GROUP);
     }
 
 }

@@ -5,29 +5,40 @@ import org.immregistries.dqa.codebase.client.CodeMapBuilder;
 import org.immregistries.dqa.codebase.client.RelatedCode;
 import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.codebase.client.reference.CodesetType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 public enum CodeRepository {
 	INSTANCE;
 
-	public CodeMap getCodeMap() {
-		return codeMapper;
-	}
+	private static final Logger logger = LoggerFactory.getLogger(CodeRepository.class);
 
 	/**
 	 * This codemap object will get all the information we know about a code.
 	 */
-	  private final CodeMap codeMapper;
-	  private final RelatedCode related;
+	  private CodeMap codeMapper;
+	  private RelatedCode related;
 
 	  CodeRepository() {
-	  	this.codeMapper = CodeMapBuilder.INSTANCE.getCodeMap(Thread.currentThread().getContextClassLoader().getResourceAsStream("Compiled.xml"));
-	  	this.related = new RelatedCode(codeMapper);
+	  	//I want to delay building the codemap. this will speed up unit tests.
+	  }
+
+	  public CodeMap getCodeMap() {
+	  	if (this.codeMapper == null) {
+			  logger.info("Building code map!");
+			  this.codeMapper = CodeMapBuilder.INSTANCE.getCodeMap(Thread.currentThread().getContextClassLoader().getResourceAsStream("Compiled.xml"));
+		  }
+		  return this.codeMapper;
 	  }
 
 	  public RelatedCode getRelatedCodes() {
-	  	return related;
+		  logger.info("getRelatedCodes");
+	  	if (this.related == null) {
+	  		this.related = new RelatedCode(this.getCodeMap());
+		  }
+	  	return this.related;
 	  }
 
 	//TODO:  get the data for these items.
@@ -38,31 +49,33 @@ public enum CodeRepository {
 	//		
 	
 	public Code getCodeFromValue(String code, CodesetType codeType) {
+		logger.info("getCodeFromValue");
 //		This is calling the XML repository
-		Code c = codeMapper.getCodeForCodeset(codeType,  code);
+		Code c = this.getCodeMap().getCodeForCodeset(codeType,  code);
 		return c;
 	}
 
 	public Code getFirstRelatedCodeForCodeIn(CodesetType codeIn, String value, CodesetType codeOut) {
-	  	return this.codeMapper.getFirstRelatedCodeForCodeIn(codeIn, value, codeOut);
+		logger.info("getFirstRelatedCodeForCodeIn");
+	  	return this.getCodeMap().getFirstRelatedCodeForCodeIn(codeIn, value, codeOut);
 	}
 
 	public List<Code> getRelatedCodesForCodeIn(CodesetType codeIn, String value, CodesetType codeOut) {
-	  	return this.codeMapper.getRelatedCodesForCodeIn(codeIn, value, codeOut);
+	  	return this.getCodeMap().getRelatedCodesForCodeIn(codeIn, value, codeOut);
 	}
 
 	public String getRelatedValue(Code in, CodesetType desired) {
-		return this.codeMapper.getRelatedValue(in, desired);
+		return this.getCodeMap().getRelatedValue(in, desired);
 	}
 
 	public Code getMfrForCode(String manufacturerCode) {
 		//call the new XML based code repository
-		Code c = codeMapper.getCodeForCodeset(CodesetType.VACCINATION_MANUFACTURER_CODE, manufacturerCode);
+		Code c = this.getCodeMap().getCodeForCodeset(CodesetType.VACCINATION_MANUFACTURER_CODE, manufacturerCode);
 		return c;
 	}
 
 	public Code getVaccineProduct(String vaccineCvx, String vaccineMvx, String adminDate) {
-		return codeMapper.getProductFor(vaccineCvx, vaccineMvx, adminDate);
+		return this.getCodeMap().getProductFor(vaccineCvx, vaccineMvx, adminDate);
 	}
 
 	/**
@@ -73,6 +86,6 @@ public enum CodeRepository {
 	 * @return
 	 */
 	public boolean codeEquals(Code code1, Code code2) {
-		return codeMapper.codeEquals(code1, code2);
+		return this.getCodeMap().codeEquals(code1, code2);
 	}
 }

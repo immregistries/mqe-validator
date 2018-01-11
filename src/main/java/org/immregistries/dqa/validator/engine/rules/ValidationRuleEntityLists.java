@@ -13,7 +13,7 @@ import java.util.List;
 @SuppressWarnings("rawtypes")
 public enum ValidationRuleEntityLists {
 	PATIENT_RULES(
-			  new PatientAddressIsValid() 
+			  new PatientAddressIsValid()
 			, new PatientAliasIsValid() 
 			, new PatientBirthDateIsValid()
 			, new PatientBirthDateIsReasonable()

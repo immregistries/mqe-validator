@@ -57,12 +57,11 @@ public enum MessageTransformer {
     INSTANCE;
 
     private CodeRepository repo = CodeRepository.INSTANCE;
-    private RelatedCode codes = repo.getRelatedCodes();
 
     private static final Logger logger = LoggerFactory.getLogger(MessageTransformer.class);
 
     private DateUtility datr = DateUtility.INSTANCE;
-//	private AddressCleanser ac = AddressCleanserDefault.INSTANCE;
+    //	private AddressCleanser ac = AddressCleanserDefault.INSTANCE;
 
     //given an HL7 object model, put it into the VXU business object model.
     public DqaMessageReceived transform(DqaMessageReceived mr) {
@@ -84,16 +83,16 @@ public enum MessageTransformer {
             if (StringUtils.isNotBlank(v.getAdminNdc())) {
                 String ndc = v.getAdminNdc();
                 //lookup CVX:
-                cvxDerived = codes.getCvxValueFromNdcString(ndc);
+                cvxDerived = repo.getRelatedCodes().getCvxValueFromNdcString(ndc);
             } else if (StringUtils.isNotBlank(v.getAdminCvxCode())) {
                 cvxDerived = v.getAdminCvxCode();
             } else if (StringUtils.isNotBlank(v.getAdminCptCode())) {
                 //lookup CVX:
-                cvxDerived = codes.getCvxFromCptString(v.getAdminCptCode());
+                cvxDerived = repo.getRelatedCodes().getCvxFromCptString(v.getAdminCptCode());
             }
             v.setCvxDerived(cvxDerived);
             //calculate the vaccine groups for this vaccine based on the derived CVX:
-            v.setVaccineGroupsDerived(codes.getVaccineGroupLabelsFromCvx(cvxDerived));
+            v.setVaccineGroupsDerived(repo.getRelatedCodes().getVaccineGroupLabelsFromCvx(cvxDerived));
         }
     }
 

@@ -67,6 +67,8 @@ public enum ReportScorer {
 			report.appendScoreToReportScore(scoredSection.getSectionScore());
 		}
 
+		report.setCodes(measures.getCodes());
+
 		return report;
 	}
 	
@@ -106,7 +108,7 @@ public enum ReportScorer {
 			FieldIssueScore issueScore = scorePresent(counts, expectedFieldCount, fieldDef.getWeight());
 			int numMissing = issueScore.getIssueCount();
 			int numPresent = expectedFieldCount - numMissing;
-			logger.info("checking 'PRESENT' for " + fieldDef.getLabel() + " numMissing: " + issueScore.getIssueCount());
+			logger.debug("checking 'PRESENT' for " + fieldDef.getLabel() + " numMissing: " + issueScore.getIssueCount());
 			fieldScore.setPresentCount(numPresent);
 			if (numMissing > 0) {
 				issueScores.add(issueScore);
@@ -130,7 +132,7 @@ public enum ReportScorer {
 	protected int getIssueDemeritTotal(List<FieldIssueScore> issues, int maxDemerits) {
 		int scoreDemerit = 0;
 		for (FieldIssueScore fieldScore : issues) {
-			logger.info("getIssueDemeritTotal adding demerit: " + fieldScore.getIssueDemerit() );
+			logger.debug("getIssueDemeritTotal adding demerit: " + fieldScore.getIssueDemerit() );
 			scoreDemerit = scoreDemerit + fieldScore.getIssueDemerit();
 		}
 		
@@ -160,7 +162,7 @@ public enum ReportScorer {
 		for (ReportIssue issue : definition.getIssues()) {
 			IssueType type = issue.getType();
 			Integer issueCount = issueCounts.get(type);
-			logger.info("scoreField " + definition.getField() + " issue type: " + issue.getType() + " issue count: " + issueCount);
+			logger.debug("scoreField " + definition.getField() + " issue type: " + issue.getType() + " issue count: " + issueCount);
 			if (issueCount != null && issueCount > 0) {
 				FieldIssueScore scored = scoreIssue(issue, issueCount, fieldCount, baseScore);
 				scores.add(scored);
@@ -179,7 +181,7 @@ public enum ReportScorer {
 		double demeritPercent = scoreIssuePercent(issue, issueCount, fieldCount);
 		issueScore.setIssuePercentDemerit(demeritPercent);
 		int scoreDemerit = new Double(fieldPotentialScore * demeritPercent).intValue();
-		logger.info("Score demerit: " + scoreDemerit);
+		logger.debug("Score demerit: " + scoreDemerit);
 		issueScore.setIssueDemerit(scoreDemerit);
 		return issueScore;
 	}
@@ -248,7 +250,7 @@ public enum ReportScorer {
 					" calculated[%+2.2f]";
 			
 			String msg = String.format(format, issue.getType(), fieldCount, issueCount, factor, rootScore, rangeUpper, rangeLower, rangedScore, calculated);
-			logger.info(msg);
+			logger.debug(msg);
 		}
 		
 		return calculated;
@@ -270,7 +272,7 @@ public enum ReportScorer {
 			IssueType type = thisType.getType();
 			Detection attribute = Detection.get(field, type);
 			Integer countOfIssue = measures.get(attribute);
-			logger.info("getIssueCounts field: " + field + " type " + type + " attribute: " + attribute + " count: " + countOfIssue);
+			logger.debug("getIssueCounts field: " + field + " type " + type + " attribute: " + attribute + " count: " + countOfIssue);
 			if (countOfIssue != null) {
 				map.put(type, countOfIssue);
 			} else {

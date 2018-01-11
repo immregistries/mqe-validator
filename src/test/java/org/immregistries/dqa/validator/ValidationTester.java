@@ -10,8 +10,11 @@ import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.parse.HL7MessageParser;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ValidationTester {
+	private static final Logger logger = LoggerFactory.getLogger(ValidationTester.class);
 	private HL7MessageParser parser = HL7MessageParser.INSTANCE;
 	private MessageValidator validator = MessageValidator.INSTANCE;
 	
@@ -19,9 +22,14 @@ public class ValidationTester {
 	
 	@Test
 	public void test1() {
+		validateAndReport(genr.getAiraTestMsg());
+	}
+
+	@Test
+	public void test12() {
 		validateAndReport(genr.getExampleVXU_1());
 	}
-	
+
 	@Test
 	public void test2() {
 		validateAndReport(genr.getExampleVXU_2());
@@ -33,12 +41,14 @@ public class ValidationTester {
 	}
 	
 	private void validateAndReport(String message) {
+		System.out.println("MESSAGE: ***********************************************");
+		String[] lines = message.split("\\r");
+		for (String line : lines) {
+			System.out.println("         " + line);
+		}
+		System.out.println("********************************************************");
 		DqaMessageReceived mr = parser.extractMessageFromText(message);
 
-		System.out.println("MESSAGE: ***********************************************");
-		System.out.println(message);
-		System.out.println("********************************************************");
-		
 		long start = Calendar.getInstance().getTimeInMillis();
 		List<ValidationRuleResult> list = validator.validateMessage(mr);
 		long finish = Calendar.getInstance().getTimeInMillis();

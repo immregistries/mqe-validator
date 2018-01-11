@@ -1,10 +1,13 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
+import org.immregistries.dqa.validator.TestMessageGenerator;
+import org.immregistries.dqa.validator.engine.MessageValidator;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
+import org.immregistries.dqa.vxu.parse.HL7MessageParser;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -13,7 +16,9 @@ import org.slf4j.LoggerFactory;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -22,6 +27,9 @@ import static org.junit.Assert.assertTrue;
  */
 public class PatientDeathDateIsValidTester {
     private PatientDeathDateIsValid rule = new PatientDeathDateIsValid();
+    private HL7MessageParser parser = HL7MessageParser.INSTANCE;
+    private MessageValidator validator = MessageValidator.INSTANCE;
+    private TestMessageGenerator genr = new TestMessageGenerator();
 
     // Parts required for the test
     private DqaMessageHeader mh = new DqaMessageHeader();
@@ -31,19 +39,52 @@ public class PatientDeathDateIsValidTester {
     private static final Logger logger = LoggerFactory.getLogger(PatientDeathDateIsValidTester.class);
     private SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 
+    private final String yesterday = format.format(addDays(new Date(), -1));
+    private final String twoDaysAgo = format.format(addDays(new Date(), -2));
+    private final String today = format.format(new Date());
+
     /**
-     * Sets up the objects with valid information.
+     * Sets up the objects with valid information before EACH TEST.
      */
     @Before
     public void setUpTheObjects() {
-        String yesterday = format.format(addDays(new Date(), -1));
-        p.setBirthDateString(yesterday);
+        mh.setMessageDateString(today);
+        p.setBirthDateString(twoDaysAgo);
         p.setDeathDateString(yesterday);
         p.setDeathIndicator("Y");
-
-        mh.setMessageDate(new Date());
         mr.setMessageHeader(mh);
         mr.setPatient(p);
+    }
+
+    @Test
+    public void testFullMessage() {
+        String message = genr.getExampleVXU_1();
+        DqaMessageReceived received = parser.extractMessageFromText(message);
+        ValidationRuleResult r = rule.executeRule(received.getPatient(), received);
+        assertEquals("Should have one issue", 1 , r.getIssues().size());
+        assertEquals("Should be a specific issue. ", Detection.PatientDeathDateIsInvalid , r.getIssues().get(0).getIssue());
+    }
+
+    @Test
+    public void testFullMessageFullValidation() {
+        String message = genr.getExampleVXU_1();
+        DqaMessageReceived received = parser.extractMessageFromText(message);
+        List<ValidationRuleResult> list = validator.validateMessage(received);
+        boolean found = false;
+        for (ValidationRuleResult result : list) {
+            logger.info("rule: " + result.getRuleClass());
+            if (PatientDeathDateIsValid.class.equals(result.getRuleClass())) {
+                System.out.println("Should have an issue for this class");
+                System.out.println("Issues: " + result.getIssues());
+                found = true;
+                assertEquals("Should have an issue", 1, result.getIssues().size());
+                assertEquals("Should be a specific issue. ", Detection.PatientDeathDateIsInvalid , result.getIssues().get(0).getIssue());
+            }
+        }
+        assertTrue("Should be found!", found);
+        ValidationRuleResult r = rule.executeRule(received.getPatient(), received);
+        assertEquals("Should have one issue", 1 , r.getIssues().size());
+        assertEquals("Should be a specific issue. ", Detection.PatientDeathDateIsInvalid , r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -54,7 +95,8 @@ public class PatientDeathDateIsValidTester {
     public void testRule() {
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
-        assertTrue(r.isRulePassed());
+        assertEquals("Rule should not detect any problems", 0, r.getIssues().size());
+        assertEquals("Rule should pass", true, r.isRulePassed());
     }
 
     /**
@@ -63,11 +105,11 @@ public class PatientDeathDateIsValidTester {
     @Test
     public void testRuleNullDate() {
         p.setDeathDateString(null);
-
+        p.setDeathIndicator("Y");
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.PatientDeathDateIsMissing == r.getIssues().get(0).getIssue());
+        assertEquals("Should have one issue", 1 , r.getIssues().size());
+        assertEquals("Should be a specific issue. ", Detection.PatientDeathDateIsMissing , r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -77,13 +119,13 @@ public class PatientDeathDateIsValidTester {
     @Test
     public void testRuleDeathBeforeBirth() {
         // set the death date to before the birth date
-        String dateString = format.format(addDays(new Date(), -2));
-        p.setDeathDateString(dateString);
+        p.setDeathDateString(twoDaysAgo);
+        p.setBirthDateString(yesterday);
 
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.PatientDeathDateIsBeforeBirth == r.getIssues().get(0).getIssue());
+        assertEquals("should have one issue", 1, r.getIssues().size());
+        assertEquals(Detection.PatientDeathDateIsBeforeBirth, r.getIssues().get(0).getIssue());
     }
 
     /**
@@ -98,8 +140,24 @@ public class PatientDeathDateIsValidTester {
 
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.PatientDeathDateIsInFuture == r.getIssues().get(0).getIssue());
+        assertEquals("should have one issue", 1, r.getIssues().size());
+        assertEquals(Detection.PatientDeathDateIsInFuture, r.getIssues().get(0).getIssue());
+    }
+
+    /**
+     * Test an invalid date.
+     * (should be false)
+     */
+    @Test
+    public void testInvalidDate() {
+        // set the death date to tomorrow's date
+        String dateString = "NOTADATE";
+        p.setDeathDateString(dateString);
+
+        ValidationRuleResult r = rule.executeRule(p, mr);
+        logger.info(r.getIssues().toString());
+        assertEquals("should have one issue", 1, r.getIssues().size());
+        assertEquals("Issue should indicate an invalid death date string", Detection.PatientDeathDateIsInvalid, r.getIssues().get(0).getIssue());
     }
 
     /**

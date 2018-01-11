@@ -12,30 +12,6 @@ import java.util.List;
 
 public class PatientDeathIndicatorIsValid extends ValidationRule<DqaPatient> {
 
-//	if (notEmpty(patient.getDeathIndicator(), pi.PatientDeathIndicatorIsMissing))
-//    {
-//      if (patient.getDeathIndicator().equals("Y"))
-//      {
-//        if (notEmpty(patient.getDeathDate(), pi.PatientDeathDateIsMissing))
-//        {
-//          if (patient.getBirthDate() != null && patient.getDeathDate().before(trunc(patient.getBirthDate())))
-//          {
-//            registerIssue(pi.PatientDeathDateIsBeforeBirth);
-//          }
-//          if (message.getReceivedDate().before(trunc(patient.getDeathDate())))
-//          {
-//            registerIssue(pi.PatientDeathDateIsInFuture);
-//          }
-//        }
-//      } else
-//      {
-//        if (patient.getDeathDate() != null)
-//        {
-//          registerIssue(pi.PatientDeathIndicatorIsInconsistent);
-//        }
-//      }
-//    }
-
     @Override
     protected final Class[] getDependencies() {
         return new Class[]{PatientExists.class};
@@ -51,15 +27,14 @@ public class PatientDeathIndicatorIsValid extends ValidationRule<DqaPatient> {
         if (this.common.isEmpty(dInd)) {
             issues.add(this.util.createIssue(Detection.PatientDeathIndicatorIsMissing, dInd));
             passed = false; //should this be a pass???
-        }
-
-        if (!"Y".equals(dInd)) {
+        } else if (!"Y".equals(dInd)) {
             if (target.getDeathDate() != null || target.getDeathDateString() != null) {
-                issues.add(this.util.createIssue(Detection.PatientDeathIndicatorIsInconsistent, target.getDeathDate().toString()));
+                String deathDate = target.getDeathDate() != null ? target.getDeathDate().toString() : target.getDeathDateString();
+                ValidationIssue issue = this.util.createIssue(Detection.PatientDeathIndicatorIsInconsistent, deathDate);
+                issues.add(issue);
                 passed = false;
             }
         }
-
         //what's considered a pass here?
 //			1. not inconsistent...  that's a non-passing problem. but it might be a passing issue on the message as a whole.  
         return buildResults(issues, passed);

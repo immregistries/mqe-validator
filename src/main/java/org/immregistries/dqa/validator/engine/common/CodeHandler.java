@@ -32,6 +32,13 @@ public enum CodeHandler {
 	public List<ValidationIssue> handleCode(String value, VxuField field) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 		//LOGGER.info("value:" + value + " field: " + field);
+	public List<Detection> getDetectionsForField(VxuField field) {
+		List<Detection> fieldDetections = new ArrayList<>();
+		for (IssueType type : IssueType.values()) {
+			fieldDetections.add(Detection.get(field, type));
+		}
+		return fieldDetections;
+	}
 
 		if (StringUtils.isBlank(value)) {
 			issues.add(issueForField(field, IssueType.MISSING));

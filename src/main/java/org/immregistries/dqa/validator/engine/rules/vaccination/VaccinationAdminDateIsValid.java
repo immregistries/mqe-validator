@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -13,6 +14,10 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 public class VaccinationAdminDateIsValid extends ValidationRule<DqaVaccination> {
+
+	public VaccinationAdminDateIsValid() {
+		this.ruleDetections.add(Detection.VaccinationAdminDateIsMissing);
+	}
 
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,
@@ -101,7 +106,7 @@ public class VaccinationAdminDateIsValid extends ValidationRule<DqaVaccination> 
 
 		passed = (issues.size() == 0);
 
-		return buildResults(issues, passed);
+		return buildResults(issues, passed, this.ruleDetections);
 
 	}
 }

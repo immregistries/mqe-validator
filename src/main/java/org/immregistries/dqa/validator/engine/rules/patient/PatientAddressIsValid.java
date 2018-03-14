@@ -12,6 +12,7 @@ import org.immregistries.dqa.vxu.DqaPatient;
 import org.immregistries.dqa.vxu.DqaAddress;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PatientAddressIsValid extends ValidationRule<DqaPatient> {
@@ -35,6 +36,19 @@ public class PatientAddressIsValid extends ValidationRule<DqaPatient> {
                 PatientExists.class,
         };
     }
+    
+	public PatientAddressIsValid() {
+		this.ruleDetections.addAll(Arrays.asList(Detection.PatientAddressTypeIsValuedBadAddress));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STREET));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STREET2));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_CITY));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STATE));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_COUNTY));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_COUNTRY));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_ZIP));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_TYPE));
+	}
 
     @Override
     protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {

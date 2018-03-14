@@ -19,6 +19,10 @@ public class VaccinationAdministeredAmountIsReasonable extends ValidationRule<Dq
 		return new Class[] {VaccinationAdministeredAmtIsValid.class, VaccinationIsAdministered.class};
 	}
 	
+	public VaccinationAdministeredAmountIsReasonable() {
+		ruleDetections.add(Detection.VaccinationAdministeredAmountIsInvalid);
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {

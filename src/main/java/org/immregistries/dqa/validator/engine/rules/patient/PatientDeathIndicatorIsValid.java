@@ -8,6 +8,7 @@ import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PatientDeathIndicatorIsValid extends ValidationRule<DqaPatient> {
@@ -16,6 +17,13 @@ public class PatientDeathIndicatorIsValid extends ValidationRule<DqaPatient> {
     protected final Class[] getDependencies() {
         return new Class[]{PatientExists.class};
     }
+    
+    public PatientDeathIndicatorIsValid() {
+    	ruleDetections.addAll(Arrays.asList(
+    			Detection.PatientDeathIndicatorIsMissing,
+    			Detection.PatientDeathIndicatorIsInconsistent
+    	));
+	}
 
     @Override
     protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived message) {

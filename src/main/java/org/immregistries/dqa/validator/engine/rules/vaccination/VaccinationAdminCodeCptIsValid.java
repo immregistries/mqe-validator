@@ -17,6 +17,10 @@ public class VaccinationAdminCodeCptIsValid extends ValidationRule<DqaVaccinatio
 		return new Class[] {VaccinationUseCptInsteadOfCvx.class};
 	}
 
+	public VaccinationAdminCodeCptIsValid() {
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_ADMIN_CODE));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination v, DqaMessageReceived m) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();

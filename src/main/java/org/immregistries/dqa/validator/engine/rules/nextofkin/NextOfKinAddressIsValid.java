@@ -12,6 +12,7 @@ import org.immregistries.dqa.vxu.DqaNextOfKin;
 import org.immregistries.dqa.vxu.DqaAddress;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NextOfKinAddressIsValid extends ValidationRule<DqaNextOfKin> {
@@ -29,6 +30,19 @@ public class NextOfKinAddressIsValid extends ValidationRule<DqaNextOfKin> {
 
     private AddressValidator addressValidator = AddressValidator.INSTANCE;
 
+	public NextOfKinAddressIsValid() {
+		this.ruleDetections.addAll(Arrays.asList
+				(Detection.NextOfKinAddressIsDifferentFromPatientAddress,
+				Detection.NextOfKinAddressTypeIsValuedBadAddress));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET2));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTY));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTRY));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_ZIP));
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_TYPE));
+	}
+	
     @Override
     protected ValidationRuleResult executeRule(DqaNextOfKin target,
                                                DqaMessageReceived m) {

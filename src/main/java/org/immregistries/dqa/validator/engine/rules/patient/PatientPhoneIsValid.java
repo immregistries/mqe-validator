@@ -16,6 +16,12 @@ public class PatientPhoneIsValid extends ValidationRule<DqaPatient> {
 
 	private PhoneValidator phValr = PhoneValidator.INSTANCE;
 	
+	public PatientPhoneIsValid() {
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_PHONE));
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_PHONE_TEL_USE_CODE));
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_PHONE_TEL_EQUIP_CODE));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();

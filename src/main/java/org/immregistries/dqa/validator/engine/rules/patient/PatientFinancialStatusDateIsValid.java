@@ -8,6 +8,7 @@ import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +19,14 @@ public class PatientFinancialStatusDateIsValid extends ValidationRule<DqaPatient
                 PatientFinancialStatusCheckTrue.class,
                 PatientBirthDateIsValid.class};
     }
+    
+    public PatientFinancialStatusDateIsValid() {
+    	this.ruleDetections.addAll(Arrays.asList(
+    			Detection.PatientVfcEffectiveDateIsBeforeBirth,
+    			Detection.PatientVfcEffectiveDateIsInFuture,
+    			Detection.PatientVfcEffectiveDateIsMissing
+    	));
+	}
 
     @Override
     protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {

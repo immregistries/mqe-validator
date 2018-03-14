@@ -16,7 +16,19 @@ import org.joda.time.LocalDate;
 public class VaccinationAdminDateIsValid extends ValidationRule<DqaVaccination> {
 
 	public VaccinationAdminDateIsValid() {
-		this.ruleDetections.add(Detection.VaccinationAdminDateIsMissing);
+		this.ruleDetections.addAll(Arrays.asList(Detection.VaccinationAdminDateIsMissing, 
+				Detection.VaccinationAdminDateIsInvalid,
+				Detection.VaccinationAdminDateIsAfterMessageSubmitted,
+				Detection.VaccinationAdminDateIsOnFirstDayOfMonth,
+				Detection.VaccinationAdminDateIsOn15ThDayOfMonth,
+				Detection.VaccinationAdminDateIsOnLastDayOfMonth,
+				Detection.VaccinationAdminDateIsAfterLotExpirationDate,
+				Detection.VaccinationAdminDateIsAfterPatientDeathDate,
+				Detection.VaccinationAdminDateIsBeforeBirth,
+				Detection.VaccinationAdminDateIsAfterSystemEntryDate,
+				Detection.VaccinationAdminDateEndIsMissing,
+				Detection.VaccinationAdminDateEndIsDifferentFromStartDate
+		));
 	}
 
 	@Override

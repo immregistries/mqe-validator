@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.codebase.client.generated.Code;
@@ -20,6 +21,15 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<DqaVaccination> 
 	@Override
 	protected final Class[] getDependencies() {
 		return new Class[] { VaccinationCvxIsValid.class };
+	}
+	
+	public VaccinationAdminCodeIsValid() {
+		ruleDetections.addAll(Arrays.asList(
+				Detection.VaccinationAdminCodeIsNotSpecific,
+				Detection.VaccinationAdminCodeIsValuedAsNotAdministered,
+				Detection.VaccinationAdminCodeIsValuedAsUnknown,
+				Detection.VaccinationAdminCodeIsNotVaccine
+		));
 	}
 	
 	@Override

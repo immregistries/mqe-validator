@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -17,6 +18,10 @@ public class PatientBirthPlaceIsValid extends ValidationRule<DqaPatient> {
 		return new Class[] {
 			PatientExists.class, 
 		};
+	}
+	
+	public PatientBirthPlaceIsValid() {
+		this.ruleDetections.addAll(Arrays.asList(Detection.PatientBirthPlaceIsMissing));
 	}
 	
 	@Override

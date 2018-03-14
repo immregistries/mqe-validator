@@ -15,6 +15,10 @@ public class NextOfKinPhoneIsValid extends ValidationRule<DqaNextOfKin> {
 
 	private PhoneValidator phoneValidator = PhoneValidator.INSTANCE;
 	
+	public NextOfKinPhoneIsValid() {
+		this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_PHONE_NUMBER));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaNextOfKin target, DqaMessageReceived m) {
 

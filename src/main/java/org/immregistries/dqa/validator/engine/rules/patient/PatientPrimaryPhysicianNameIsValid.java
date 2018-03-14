@@ -13,6 +13,11 @@ import org.immregistries.dqa.vxu.hl7.Id;
 
 public class PatientPrimaryPhysicianNameIsValid extends ValidationRule<DqaPatient> {
 
+	
+	public PatientPrimaryPhysicianNameIsValid() {
+		ruleDetections.add(Detection.PatientPrimaryPhysicianNameIsMissing);
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();

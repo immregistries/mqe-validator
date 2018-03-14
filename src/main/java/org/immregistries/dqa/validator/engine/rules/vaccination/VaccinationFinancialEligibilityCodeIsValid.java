@@ -19,6 +19,11 @@ public class VaccinationFinancialEligibilityCodeIsValid extends
 	protected final Class[] getDependencies() {
 		return new Class[] { VaccinationIsAdministered.class };
 	}
+	
+	public VaccinationFinancialEligibilityCodeIsValid() {
+		ruleDetections.add(Detection.VaccinationFinancialEligibilityCodeIsMissing);
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE));
+	}
 
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,

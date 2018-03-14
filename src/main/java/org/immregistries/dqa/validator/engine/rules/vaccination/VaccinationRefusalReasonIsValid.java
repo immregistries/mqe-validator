@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -17,6 +18,16 @@ public class VaccinationRefusalReasonIsValid extends
 	@Override
 	protected final Class[] getDependencies() {
 		return new Class[] { VaccinationIsAdministered.class };
+	}
+	
+	public VaccinationRefusalReasonIsValid() {
+		ruleDetections.addAll(
+				Arrays.asList(
+						Detection.VaccinationRefusalReasonConflictsCompletionStatus,
+						Detection.VaccinationRefusalReasonIsMissing
+				)
+		);
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_REFUSAL_REASON));
 	}
 
 	@Override

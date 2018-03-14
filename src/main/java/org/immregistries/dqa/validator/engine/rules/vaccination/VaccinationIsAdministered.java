@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -15,6 +16,13 @@ public class VaccinationIsAdministered extends ValidationRule<DqaVaccination> {
 
 	AdministeredLikelihood confidenceCalculator = AdministeredLikelihood.INSTANCE;
 
+	public VaccinationIsAdministered() {
+		ruleDetections.addAll(Arrays.asList(
+				Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical,
+				Detection.VaccinationInformationSourceIsHistoricalButAppearsToBeAdministered
+		));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {

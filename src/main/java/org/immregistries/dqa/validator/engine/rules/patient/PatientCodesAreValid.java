@@ -10,12 +10,28 @@ import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * Covers several cases. Replaces patient ethnicity, gender, and name type validation classes.
  */
 public class PatientCodesAreValid extends ValidationRule<DqaPatient> {
+	
+	public PatientCodesAreValid() {
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_ETHNICITY));
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_GENDER));
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_NAME_TYPE_CODE));
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_PRIMARY_LANGUAGE));
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_PUBLICITY_CODE));
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_RACE));
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_VFC_STATUS));
+		ruleDetections.addAll(Arrays.asList(
+				Detection.PatientNameTypeCodeIsNotValuedLegal,
+				Detection.PatientPrimaryFacilityIdIsMissing,
+				Detection.PatientPrimaryFacilityNameIsMissing));
+	}
+	
     @Override
     protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
         List<ValidationIssue> issues = new ArrayList<>();

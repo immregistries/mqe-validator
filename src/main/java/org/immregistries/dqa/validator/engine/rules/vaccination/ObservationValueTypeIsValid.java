@@ -15,6 +15,11 @@ import java.util.List;
  * Created by Allison on 5/9/2017.
  */
 public class ObservationValueTypeIsValid extends ValidationRule<DqaVaccination> {
+	
+	public ObservationValueTypeIsValid() {
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.OBSERVATION_VALUE_TYPE));
+	}
+	
     @Override
     protected ValidationRuleResult executeRule(DqaVaccination target, DqaMessageReceived m) {
         List<ValidationIssue> issues = new ArrayList<>();

@@ -9,6 +9,7 @@ import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PatientMultipleBirthsValid extends ValidationRule<DqaPatient> {
@@ -18,6 +19,16 @@ public class PatientMultipleBirthsValid extends ValidationRule<DqaPatient> {
         return new Class[]{PatientExists.class};
     }
 
+    public PatientMultipleBirthsValid() {
+    	ruleDetections.addAll(Arrays.asList(
+    			Detection.PatientBirthIndicatorIsMissing,
+    			Detection.PatientBirthOrderIsMissingAndMultipleBirthIndicated,
+    			Detection.PatientBirthOrderIsInvalid,
+    			Detection.PatientBirthIndicatorIsInvalid
+    	));
+    	ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_BIRTH_ORDER));
+	}
+    
     @Override
     protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived message) {
         List<ValidationIssue> issues = new ArrayList<>();

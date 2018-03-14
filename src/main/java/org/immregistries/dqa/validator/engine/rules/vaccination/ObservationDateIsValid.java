@@ -16,6 +16,11 @@ import java.util.List;
  * Currently only checks if the date is present or missing. Created by Allison on 5/9/2017.
  */
 public class ObservationDateIsValid extends ValidationRule<DqaVaccination> {
+	
+	public ObservationDateIsValid() {
+		ruleDetections.add(Detection.ObservationDateTimeOfObservationIsMissing);
+	}
+	
     @Override
     protected ValidationRuleResult executeRule(DqaVaccination target, DqaMessageReceived m) {
         List<ValidationIssue> issues = new ArrayList<>();

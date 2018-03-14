@@ -17,6 +17,11 @@ public class VaccinationBodyRouteAndSiteAreValid extends ValidationRule<DqaVacci
 		return new Class[] {VaccinationIsAdministered.class};
 	}
 	
+	public VaccinationBodyRouteAndSiteAreValid() {
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_BODY_ROUTE));
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_BODY_SITE));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination vaccination, DqaMessageReceived m) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();

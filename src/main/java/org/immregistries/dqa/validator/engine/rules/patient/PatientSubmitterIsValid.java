@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -14,6 +15,16 @@ import org.immregistries.dqa.vxu.DqaPatient;
 
 public class PatientSubmitterIsValid extends ValidationRule<DqaPatient> {
 
+	public PatientSubmitterIsValid() {
+		ruleDetections.addAll(
+				Arrays.asList(
+						Detection.get(VxuField.PATIENT_SUBMITTER_ID, IssueType.MISSING),
+						Detection.get(VxuField.PATIENT_SUBMITTER_ID_AUTHORITY, IssueType.MISSING),
+						Detection.get(VxuField.PATIENT_SUBMITTER_ID_TYPE_CODE, IssueType.MISSING)
+				)
+		);
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();

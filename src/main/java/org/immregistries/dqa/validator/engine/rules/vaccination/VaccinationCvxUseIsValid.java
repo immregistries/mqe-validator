@@ -25,6 +25,10 @@ public class VaccinationCvxUseIsValid extends ValidationRule<DqaVaccination> {
 		return new Class[] { VaccinationCvxIsValid.class };
 	}
 	
+	public VaccinationCvxUseIsValid() {
+		
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {

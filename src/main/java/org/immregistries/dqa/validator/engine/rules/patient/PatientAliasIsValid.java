@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -19,6 +20,10 @@ public class PatientAliasIsValid extends ValidationRule<DqaPatient> {
 		return new Class[] {
 			PatientExists.class, 
 		};
+	}
+	
+	public PatientAliasIsValid() {
+		this.ruleDetections.add(Detection.buildIssue(VxuField.PATIENT_ALIAS, IssueType.MISSING).getIssue());
 	}
 	
 	@Override

@@ -15,6 +15,12 @@ import org.immregistries.dqa.vxu.DqaVaccination;
 
 public class VaccinationCptIsValid extends ValidationRule<DqaVaccination> {
 
+	
+	public VaccinationCptIsValid() {
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_CPT_CODE));
+		ruleDetections.add(Detection.VaccinationCptCodeIsInvalidForDateAdministered);
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {

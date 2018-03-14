@@ -22,6 +22,10 @@ public class VaccinationAdminCodeCvxIsValid extends ValidationRule<DqaVaccinatio
 	protected final Class[] getDependencies() {
 		return new Class[] {VaccinationUseCvx.class};
 	}
+	
+	public VaccinationAdminCodeCvxIsValid() {
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_ADMIN_CODE));
+	}
 
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target, DqaMessageReceived m) {

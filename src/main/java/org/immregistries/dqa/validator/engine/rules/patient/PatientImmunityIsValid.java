@@ -19,6 +19,10 @@ public class PatientImmunityIsValid extends ValidationRule<DqaPatient> {
 				};
 	}
 
+	public PatientImmunityIsValid() {
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_IMMUNITY_CODE));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();

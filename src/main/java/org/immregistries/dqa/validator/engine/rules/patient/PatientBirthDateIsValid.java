@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -16,6 +17,13 @@ public class PatientBirthDateIsValid extends ValidationRule<DqaPatient> {
 	@Override
 	protected final Class[] getDependencies() {
 		return new Class[] {PatientExists.class};
+	}
+
+	public PatientBirthDateIsValid(){
+		this.ruleDetections.addAll(Arrays.asList(Detection.PatientBirthDateIsMissing,
+				Detection.PatientBirthDateIsInvalid,
+				Detection.PatientBirthDateIsInFuture,
+				Detection.PatientBirthDateIsAfterSubmission));
 	}
 
 	@Override

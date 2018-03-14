@@ -12,6 +12,10 @@ import org.immregistries.dqa.vxu.DqaVaccination;
 
 public class VaccinationCvxIsValid extends ValidationRule<DqaVaccination> {
 
+	public VaccinationCvxIsValid() {
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_CVX_CODE));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {

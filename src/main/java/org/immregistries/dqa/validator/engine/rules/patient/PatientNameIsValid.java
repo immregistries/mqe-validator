@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +18,23 @@ import org.immregistries.dqa.vxu.DqaPatient;
 public class PatientNameIsValid extends ValidationRule<DqaPatient> {
 
 	private KnowNameList listr = KnowNameList.INSTANCE;
+	
+	public PatientNameIsValid() {
+		ruleDetections.addAll(
+				Arrays.asList(
+						Detection.PatientNameFirstIsMissing,
+						Detection.PatientNameFirstIsInvalid,
+						Detection.PatientNameFirstMayIncludeMiddleInitial,
+						Detection.PatientNameLastIsMissing,
+						Detection.PatientNameLastIsInvalid,
+						Detection.PatientNameMayBeTemporaryNewbornName,
+						Detection.PatientNameMayBeTestName,
+						Detection.PatientNameHasJunkName
+				)
+		);
+	}
+	
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();

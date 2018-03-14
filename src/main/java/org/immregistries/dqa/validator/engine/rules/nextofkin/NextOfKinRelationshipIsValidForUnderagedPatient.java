@@ -6,11 +6,13 @@ import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientIsUnderage;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
 import org.immregistries.dqa.vxu.code.NokRelationship;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationRule<DqaNextOfKin> {
@@ -21,6 +23,13 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
         return new Class[]{PatientIsUnderage.class};
     }
 
+	public NextOfKinRelationshipIsValidForUnderagedPatient() {
+		this.ruleDetections.addAll(Arrays.asList(Detection.NextOfKinRelationshipIsUnexpected,
+				Detection.NextOfKinRelationshipIsUnrecognized,
+				Detection.NextOfKinRelationshipIsNotResponsibleParty,
+				Detection.NextOfKinRelationshipIsMissing));
+	}
+	
     @Override
     protected ValidationRuleResult executeRule(DqaNextOfKin target, DqaMessageReceived m) {
         List<ValidationIssue> issues = new ArrayList<>();

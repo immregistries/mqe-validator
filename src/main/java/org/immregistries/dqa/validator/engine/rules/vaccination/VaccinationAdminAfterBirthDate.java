@@ -18,6 +18,10 @@ public class VaccinationAdminAfterBirthDate extends ValidationRule<DqaVaccinatio
 	protected final Class[] getDependencies() {
 		return new Class[] {PatientBirthDateIsValid.class, VaccinationAdminDateIsValid.class};
 	}
+	
+	public VaccinationAdminAfterBirthDate() {
+		ruleDetections.add(Detection.VaccinationAdminDateIsBeforeBirth);
+	}
 
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination v, DqaMessageReceived m) {

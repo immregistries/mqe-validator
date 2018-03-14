@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +18,22 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<DqaN
 	@Override
 	protected final Class[] getDependencies() {
 		return new Class[] {MessageHasResponsibleParty.class};
+	}
+	
+	public PatientResponsiblePartyIsProperlyFormed() {
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_STATE));
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_CITY));
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_ZIP));
+		
+		ruleDetections.addAll(Arrays.asList(
+				Detection.PatientGuardianNameFirstIsMissing,
+				Detection.PatientGuardianNameLastIsMissing,
+				Detection.PatientGuardianNameIsMissing,
+				Detection.PatientGuardianNameIsSameAsUnderagePatient,
+				Detection.PatientGuardianPhoneIsMissing,
+				Detection.PatientGuardianRelationshipIsMissing,
+				Detection.PatientGuardianResponsiblePartyIsMissing
+		));
 	}
 	
 	@Override

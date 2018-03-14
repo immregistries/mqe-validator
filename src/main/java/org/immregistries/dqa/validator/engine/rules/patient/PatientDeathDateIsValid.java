@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,15 @@ public class PatientDeathDateIsValid extends ValidationRule<DqaPatient> {
         return new Class[] { PatientExists.class};
     }
 
+    public PatientDeathDateIsValid() {
+    	ruleDetections.addAll(Arrays.asList(
+    			Detection.PatientDeathDateIsMissing,
+    			Detection.PatientDeathDateIsInvalid,
+    			Detection.PatientDeathDateIsInFuture,
+    			Detection.PatientDeathDateIsBeforeBirth
+    	));
+	}
+    
     @Override protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived message) {
         List<ValidationIssue> issues = new ArrayList<>();
 

@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.nextofkin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -19,6 +20,11 @@ public class NextOfKinAddressIsSameAsPatientAddress extends ValidationRule<DqaNe
 		return new Class[] { PatientExists.class, NextOfKinAddressIsValid.class };
 	}
 
+	public NextOfKinAddressIsSameAsPatientAddress() {
+		this.ruleDetections.addAll(Arrays.asList(Detection.NextOfKinAddressIsDifferentFromPatientAddress));
+	}
+	
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaNextOfKin target, DqaMessageReceived message) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();

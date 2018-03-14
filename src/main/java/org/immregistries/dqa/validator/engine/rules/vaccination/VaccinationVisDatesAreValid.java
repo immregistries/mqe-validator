@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,18 @@ public class VaccinationVisDatesAreValid extends
 	@Override
 	protected final Class[] getDependencies() {
 		return new Class[] {VaccinationVisIsPresent.class, VaccinationIsAdministered.class };
+	}
+	
+	public VaccinationVisDatesAreValid() {
+		ruleDetections.addAll(Arrays.asList(
+				Detection.VaccinationVisPublishedDateIsMissing,
+				Detection.VaccinationVisPresentedDateIsInvalid,
+				Detection.VaccinationVisPresentedDateIsMissing,
+				Detection.VaccinationVisPublishedDateIsInvalid,
+				Detection.VaccinationVisPresentedDateIsAfterAdminDate,
+				Detection.VaccinationVisPresentedDateIsNotAdminDate,
+				Detection.VaccinationVisPresentedDateIsBeforePublishedDate
+		));
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.header;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -17,6 +18,15 @@ public class MessageHeaderFieldsArePresent extends ValidationRule<DqaMessageHead
 		return new Class[] {
 //			PatientExists.class, 
 		};
+	}
+	
+	public MessageHeaderFieldsArePresent() {
+		this.ruleDetections.addAll(Arrays.asList(Detection.MessageReceivingApplicationIsMissing,
+				Detection.MessageReceivingFacilityIsMissing,
+				Detection.MessageSendingApplicationIsMissing,
+				Detection.MessageMessageControlIdIsMissing,
+				Detection.MessageAcceptAckTypeIsMissing,
+				Detection.MessageAppAckTypeIsMissing));
 	}
 	
 	@Override

@@ -26,6 +26,11 @@ public class PatientIsUnderage extends ValidationRule<DqaPatient> {
 		};
 	}
 	
+	public PatientIsUnderage() {
+		this.ruleDetections.add(Detection.PatientBirthDateIsUnderage);
+	}
+	
+	
 	/*
 	 * This is the money: 
 	 */

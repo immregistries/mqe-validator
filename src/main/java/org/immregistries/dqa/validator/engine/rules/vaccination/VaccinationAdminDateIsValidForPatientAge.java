@@ -22,6 +22,10 @@ public class VaccinationAdminDateIsValidForPatientAge extends ValidationRule<Dqa
 		return new Class[] { VaccinationCvxIsValid.class };
 	}
 	
+	public VaccinationAdminDateIsValidForPatientAge() {
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_ADMIN_DATE));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {

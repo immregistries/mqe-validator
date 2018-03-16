@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.transform;
 
 import org.apache.commons.lang3.StringUtils;
+import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
 import org.immregistries.dqa.vxu.*;
@@ -91,6 +92,18 @@ public enum MessageTransformer {
             v.setCvxDerived(cvxDerived);
             //calculate the vaccine groups for this vaccine based on the derived CVX:
             v.setVaccineGroupsDerived(repo.getRelatedCodes().getVaccineGroupLabelsFromCvx(cvxDerived));
+
+
+            String mvxCode = v.getManufacturerCode();
+            String cvxCode = v.getCvxDerived();
+            String adminDate = v.getAdminDateString();
+
+            Code product = this.repo.getVaccineProduct(cvxCode, mvxCode, adminDate);
+
+            if (product != null) {
+                String productCode = product.getValue();
+                v.setProduct(productCode);
+            }
         }
     }
 

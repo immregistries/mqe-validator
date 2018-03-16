@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import org.immregistries.dqa.codebase.client.generated.Code;
+import org.immregistries.dqa.codebase.client.reference.CodesetType;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.Detection;
@@ -24,9 +25,7 @@ public class VaccinationProductIsValid extends ValidationRule<DqaVaccination> {
 	}
 	
 	public VaccinationProductIsValid() {
-		ruleDetections.addAll(Arrays.asList(
-				Detection.VaccinationProductIsMissing
-		));
+		ruleDetections.add(Detection.VaccinationProductIsMissing);
 		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_PRODUCT));
 	}
 	
@@ -36,21 +35,16 @@ public class VaccinationProductIsValid extends ValidationRule<DqaVaccination> {
 
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 		boolean passed = true;
+		String product = target.getProduct();
 
-		String mvxCode = target.getManufacturerCode();
-		String cvxCode = target.getAdminCvxCode();
-		String adminDate = target.getAdminDateString();
-
-		Code product = this.repo.getVaccineProduct(cvxCode, mvxCode, adminDate);
-
-//		if (target.isAdministered()) { //This check is not necessary because of the class dependency. 
 		if (product != null) {
-			issues.addAll(codr.handleCode(target.getProduct(), VxuField.VACCINATION_PRODUCT, target));
-			codr.handleUseDate(product, adminDate, VxuField.VACCINATION_PRODUCT, target);
+			Code productCode = this.repo.getCodeFromValue(product, CodesetType.VACCINE_PRODUCT);
+			String adminDate = target.getAdminDateString();
+			issues.addAll(codr.handleCode(productCode, VxuField.VACCINATION_PRODUCT, product, target));
+			codr.handleUseDate(productCode, adminDate, VxuField.VACCINATION_PRODUCT, target);
 		} else {
 			issues.add(Detection.VaccinationProductIsMissing.build(target));
 		}
-//		}
 
 		passed = (issues.size() == 0);
 

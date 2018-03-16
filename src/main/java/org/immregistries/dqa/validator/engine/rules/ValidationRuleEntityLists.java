@@ -27,6 +27,7 @@ public enum ValidationRuleEntityLists {
 			, new PatientGenderIsValid()
 			, new PatientIsUnderage()
 			, new PatientMedicaidNumberIsValid()
+			, new PatientMiddleNameIsPresent()
 			, new PatientMiddleNameIsValid()
 			, new PatientMothersMaidenNameIsValid()
 			, new PatientMultipleBirthsValid()

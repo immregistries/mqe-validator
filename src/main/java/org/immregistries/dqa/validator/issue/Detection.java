@@ -18,6 +18,7 @@ public enum Detection {
 	GeneralConfigurationException(IssueObject.GENERAL, IssueType.EXCEPTION, VxuField.CONFIGURATION, "", SeverityLevel.ACCEPT, "207", null, ErrorCode.MQE0003, ""),
 	GeneralParseException(IssueObject.GENERAL, IssueType.EXCEPTION, VxuField.PARSE, "", SeverityLevel.ACCEPT, "207", null, ErrorCode.MQE0004, ""),
 	GeneralProcessingException(IssueObject.GENERAL, IssueType.EXCEPTION, VxuField.PROCESSING, "", SeverityLevel.ACCEPT, "207", null, ErrorCode.MQE0005, ""),
+	UnknownDetection(IssueObject.GENERAL, IssueType.EXCEPTION, VxuField.PROCESSING, "", SeverityLevel.ACCEPT, "207", null, ErrorCode.MQE0558, ""),
 
 	//These might be validated from NIST validations. 
 	//Maybe we have an entry for Hl7StructureWarning, Hl7StructureError...
@@ -148,6 +149,7 @@ public enum Detection {
 	PatientBirthDateIsVeryLongAgo(IssueObject.PATIENT, IssueType.VERY_LONG_AGO, VxuField.PATIENT_BIRTH_DATE, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0120, "PID-7"),
 	PatientBirthIndicatorIsInvalid(IssueObject.PATIENT, IssueType.INVALID, VxuField.PATIENT_BIRTH_INDICATOR, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0121, "PID-24"),
 	PatientBirthIndicatorIsMissing(IssueObject.PATIENT, IssueType.MISSING, VxuField.PATIENT_BIRTH_INDICATOR, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.MQE0122, "PID-24"),
+	PatientBirthOrderIsUnknown(IssueObject.PATIENT, IssueType.UNRECOGNIZED, VxuField.PATIENT_BIRTH_ORDER, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0557, "PID-25"),
 	PatientBirthOrderIsInvalid(IssueObject.PATIENT, IssueType.INVALID, VxuField.PATIENT_BIRTH_ORDER, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0123, "PID-25"),
 	PatientBirthOrderIsMissing(IssueObject.PATIENT, IssueType.MISSING, VxuField.PATIENT_BIRTH_ORDER, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.MQE0124, "PID-25"),
 	PatientBirthOrderIsMissingAndMultipleBirthIndicated(IssueObject.PATIENT, IssueType.MISSING_AND_MULTIPLE_BIRTH_INDICATED, VxuField.PATIENT_BIRTH_ORDER, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0125, "PID-25"),

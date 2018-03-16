@@ -58,9 +58,6 @@ private static final Logger logger = LoggerFactory
   {
     this.valueReceived = valueReceived;
   }
-  public String getHl7Reference() {
-	  return String.valueOf(this.detection.getHl7Locations());
-  }
 
   public boolean isError()
   {

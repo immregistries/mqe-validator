@@ -39,16 +39,23 @@ public enum CodeHandler {
 	  return fieldDetections;
 	}
 
+
+
 	public List<ValidationIssue> handleCode(String value, VxuField field, MetaFieldInfoData meta) {
-		List<ValidationIssue> issues = new ArrayList<>();
-		//LOGGER.info("value:" + value + " field: " + field);
+      List<ValidationIssue> issues = new ArrayList<>();
+      //LOGGER.info("value:" + value + " field: " + field);
 
-		if (StringUtils.isBlank(value)) {
-			issues.add(issueForField(field, IssueType.MISSING, meta));
-			return issues;
-		}
+      if (StringUtils.isBlank(value)) {
+          issues.add(issueForField(field, IssueType.MISSING, meta));
+          return issues;
+      }
 
-		Code c = repo.getCodeFromValue(value, field.getCodesetType());
+      Code c = repo.getCodeFromValue(value, field.getCodesetType());
+      return handleCode(c, field, value, meta);
+  }
+
+  public List<ValidationIssue> handleCode(Code c, VxuField field, String value, MetaFieldInfoData meta) {
+    List<ValidationIssue> issues = new ArrayList<>();
 		LOGGER.info("handleCode - Code " + value + " for field " + field + " found? " + (c != null));
 		if (c!=null) {
 			CodeStatus status = c.getCodeStatus();

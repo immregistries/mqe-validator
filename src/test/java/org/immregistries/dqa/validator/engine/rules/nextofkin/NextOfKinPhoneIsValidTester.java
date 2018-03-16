@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -79,8 +80,8 @@ public class NextOfKinPhoneIsValidTester {
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
         logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinPhoneNumberIsMissing == r.getIssues().get(0).getIssue());
+        assertEquals("should get one issue", 1, r.getIssues().size());
+        assertEquals("Should get phone number missing", Detection.NextOfKinPhoneNumberIsMissing , r.getIssues().get(0).getIssue());
     }
 
     /**

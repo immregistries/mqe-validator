@@ -159,6 +159,6 @@ public class PatientMultipleBirthsValidTester {
 
         ValidationRuleResult r = rule.executeRule(p, mr);
         assertEquals("should have one issue", 1, r.getIssues().size());
-        assertEquals("the issue should be this one: ", Detection.PatientBirthOrderIsInvalid, r.getIssues().get(0).getIssue());
+        assertEquals("the issue should be this one: ", Detection.PatientBirthOrderIsUnknown, r.getIssues().get(0).getIssue());
     }
 }

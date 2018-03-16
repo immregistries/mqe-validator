@@ -31,7 +31,7 @@ public class CollectionBucket {
     }
 
     @Override public String toString() {
-        return "CollectionBucket{" + type + " - " + getAttribute() + " / " + getValue() + " : " + getCount() + "}";
+        return "CollectionBucket{type:" + type + " attribute:" + getAttribute() + " /value: " + getValue() + " /count: " + getCount() + "}";
     }
 
     @Override public boolean equals(Object o) {

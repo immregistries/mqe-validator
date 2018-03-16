@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.immregistries.dqa.validator.issue.IssueObject;
 import org.immregistries.dqa.validator.issue.IssueType;
-import org.immregistries.dqa.validator.issue.VxuField;
+import org.immregistries.dqa.vxu.VxuField;
 
 /**
  * The goal of this class is to generate a report definition
@@ -141,7 +141,7 @@ public enum ReportDefinitionBuilder {
 
 		//expected
 		//middle name
-		fields.add(generateFieldDefinition("Middle Name", Requirement.EXPECTED, VxuField.PATIENT_MIDDLE_NAME, 20, checkForMissing, getDefaultFieldIssues()));
+		fields.add(generateFieldDefinition("Middle Name", Requirement.EXPECTED, VxuField.PATIENT_NAME_MIDDLE, 20, checkForMissing, getDefaultFieldIssues()));
 		//phone
 		fields.add(generateFieldDefinition("Phone", Requirement.EXPECTED, VxuField.PATIENT_PHONE, 20, checkForMissing, getDefaultFieldIssues()));
 		//mother's maiden

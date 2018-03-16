@@ -63,13 +63,15 @@ public class VaccinationCodeGroupsMatch extends ValidationRule<DqaVaccination> {
 				CodesetType.VACCINATION_CPT_CODE, cptCvxCode,
 				CodesetType.VACCINE_GROUP);
 
-		for (Code cvxGroup : cvxVaccineGroups) {
-			for (Code cptGroup : cptVaccineGroups) {
-				if (repo.codeEquals(cvxGroup,  cptGroup)) {
-					return true;
-				}
-			}
-		}
+        if (cptVaccineGroups != null && cvxVaccineGroups != null) {
+          for (Code cvxGroup : cvxVaccineGroups) {
+            for (Code cptGroup : cptVaccineGroups) {
+              if (repo.codeEquals(cvxGroup, cptGroup)) {
+                return true;
+              }
+            }
+          }
+        }
 		
 		return false;
 		// CPT doesn't map to CVX, so need to check if it's in the same family

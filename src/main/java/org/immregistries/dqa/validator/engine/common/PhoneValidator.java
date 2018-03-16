@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
-import org.immregistries.dqa.validator.issue.VxuField;
+import org.immregistries.dqa.vxu.VxuField;
 import org.immregistries.dqa.vxu.DqaPhoneNumber;
 
 import java.util.ArrayList;

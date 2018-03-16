@@ -12,7 +12,7 @@ import org.immregistries.dqa.codebase.client.generated.UseDate;
 import org.immregistries.dqa.codebase.client.reference.CodeStatusValue;
 import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
-import org.immregistries.dqa.validator.issue.VxuField;
+import org.immregistries.dqa.vxu.VxuField;
 import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;

@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.IssueObject;
-import org.immregistries.dqa.validator.issue.VxuField;
+import org.immregistries.dqa.vxu.VxuField;
 
 public class GenerateDetectionWiki {
   public static void main(String[] args) throws Exception {
@@ -39,8 +39,8 @@ public class GenerateDetectionWiki {
           if (found) {
             out.println("## " + vxuField.getFieldDescription());
             out.println();
-            if (vxuField.getHl7Field() != null) {
-              out.println("HL7 Field: " + vxuField.getHl7Field());
+            if (vxuField.getHl7Locator() != null) {
+              out.println("HL7 Field: " + vxuField.getHl7Locator());
             }
             if (vxuField.getCodesetType() != null) {
               out.println("Codest Type: " + vxuField.getCodesetType().getDescription());

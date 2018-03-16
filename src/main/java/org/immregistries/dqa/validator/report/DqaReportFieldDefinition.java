@@ -3,7 +3,7 @@ package org.immregistries.dqa.validator.report;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.immregistries.dqa.validator.issue.VxuField;
+import org.immregistries.dqa.vxu.VxuField;
 
 public class DqaReportFieldDefinition {
 	private VxuField field;
@@ -50,6 +50,6 @@ public class DqaReportFieldDefinition {
 		this.requirement = requirement;
 	}
 	public String getHl7Field() {
-		return this.field.getHl7Field();
+		return this.field.getHl7Locator();
 	}
 }

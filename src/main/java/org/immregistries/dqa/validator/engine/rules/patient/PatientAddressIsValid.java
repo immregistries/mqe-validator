@@ -6,7 +6,7 @@ import org.immregistries.dqa.validator.engine.common.AddressFields;
 import org.immregistries.dqa.validator.engine.common.AddressValidator;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
-import org.immregistries.dqa.validator.issue.VxuField;
+import org.immregistries.dqa.vxu.VxuField;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 import org.immregistries.dqa.vxu.DqaAddress;
@@ -55,7 +55,7 @@ public class PatientAddressIsValid extends ValidationRule<DqaPatient> {
         List<ValidationIssue> issues = new ArrayList<>();
         boolean passed;
 
-        DqaAddress a = target.getPatientAddressList().get(0);
+        DqaAddress a = target.getPatientAddress();
 
         ValidationRuleResult result = addressValidator.getAddressIssuesFor(fields, a);
         issues.addAll(result.getIssues());

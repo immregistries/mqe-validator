@@ -1,11 +1,11 @@
 package org.immregistries.dqa.validator.report;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.immregistries.dqa.validator.issue.IssueObject;
 import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.vxu.VxuField;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The goal of this class is to generate a report definition

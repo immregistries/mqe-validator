@@ -1,15 +1,11 @@
 package org.immregistries.dqa.validator.report;
 
-import org.immregistries.dqa.validator.engine.codes.CodeReceived;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.IssueObject;
 import org.immregistries.dqa.validator.report.codes.CodeCollection;
-import org.immregistries.dqa.validator.report.codes.CollectionBucket;
 import org.joda.time.DateTime;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DqaMessageMetrics {

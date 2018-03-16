@@ -1,17 +1,14 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.vxu.VxuField;
-import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PatientAliasIsValid extends ValidationRule<DqaPatient> {
 
@@ -23,7 +20,9 @@ public class PatientAliasIsValid extends ValidationRule<DqaPatient> {
 	}
 	
 	public PatientAliasIsValid() {
-		this.ruleDetections.add(Detection.buildIssue(VxuField.PATIENT_ALIAS, IssueType.MISSING).getIssue());
+		this.ruleDetections.add(
+			Detection.PatientAliasIsMissing
+		);
 	}
 	
 	@Override
@@ -35,8 +34,8 @@ public class PatientAliasIsValid extends ValidationRule<DqaPatient> {
 		String aliasFirst = target.getAliasFirst();
 		String aliasLast = target.getAliasLast();
 		
-		if (common.isEmpty(aliasLast + aliasFirst)) {
-			issues.add(Detection.buildIssue(VxuField.PATIENT_ALIAS, IssueType.MISSING));
+		if (this.common.isEmpty(aliasLast + aliasFirst)) {
+			issues.add(Detection.PatientAliasIsMissing.build(target));
 			passed = false;
 		}
 		

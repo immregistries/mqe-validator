@@ -1,6 +1,5 @@
 package org.immregistries.dqa.validator.report.codes;
 
-import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.codebase.client.reference.CodesetType;
 
 import java.util.Objects;

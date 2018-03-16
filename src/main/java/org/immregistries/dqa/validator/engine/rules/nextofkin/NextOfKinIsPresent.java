@@ -1,13 +1,13 @@
 package org.immregistries.dqa.validator.engine.rules.nextofkin;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NextOfKinIsPresent extends ValidationRule<DqaNextOfKin> {
 

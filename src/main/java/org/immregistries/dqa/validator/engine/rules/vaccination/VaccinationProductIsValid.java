@@ -1,17 +1,17 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.vxu.VxuField;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
+import org.immregistries.dqa.vxu.VxuField;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class VaccinationProductIsValid extends ValidationRule<DqaVaccination> {
 
@@ -45,10 +45,10 @@ public class VaccinationProductIsValid extends ValidationRule<DqaVaccination> {
 
 //		if (target.isAdministered()) { //This check is not necessary because of the class dependency. 
 		if (product != null) {
-			issues.addAll(codr.handleCode(target.getProduct(), VxuField.VACCINATION_PRODUCT));
-			codr.handleUseDate(product, adminDate, VxuField.VACCINATION_PRODUCT);
+			issues.addAll(codr.handleCode(target.getProduct(), VxuField.VACCINATION_PRODUCT, target));
+			codr.handleUseDate(product, adminDate, VxuField.VACCINATION_PRODUCT, target);
 		} else {
-			issues.add(Detection.VaccinationProductIsMissing.build());
+			issues.add(Detection.VaccinationProductIsMissing.build(target));
 		}
 //		}
 

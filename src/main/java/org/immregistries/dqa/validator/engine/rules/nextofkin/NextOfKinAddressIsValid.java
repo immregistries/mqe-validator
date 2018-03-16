@@ -6,10 +6,10 @@ import org.immregistries.dqa.validator.engine.common.AddressFields;
 import org.immregistries.dqa.validator.engine.common.AddressValidator;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
-import org.immregistries.dqa.vxu.VxuField;
+import org.immregistries.dqa.vxu.DqaAddress;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
-import org.immregistries.dqa.vxu.DqaAddress;
+import org.immregistries.dqa.vxu.VxuField;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,20 +52,20 @@ public class NextOfKinAddressIsValid extends ValidationRule<DqaNextOfKin> {
         DqaAddress nokAddress = target.getAddress();
         DqaAddress p = m.getPatient().getPatientAddress();
 
-        ValidationRuleResult addrResult = addressValidator.getAddressIssuesFor(fields, nokAddress);
+        ValidationRuleResult addrResult = addressValidator.getAddressIssuesFor(fields, nokAddress, target);
         issues.addAll(addrResult.getIssues());
 
         if (nokAddress != null) {
             if (!nokAddress.equals(p)) {
                 //TODO this functionality is also in NextOfKinAddressIsSameAsPatientAddress, which should we use?
-                issues.add(Detection.NextOfKinAddressIsDifferentFromPatientAddress.build(nokAddress.toString()));
+                issues.add(Detection.NextOfKinAddressIsDifferentFromPatientAddress.build(nokAddress.toString(), target));
             }
 
             if (nokAddress.getTypeCode() != null && "BA".equals(nokAddress.getTypeCode())) {
-                issues.add(Detection.NextOfKinAddressTypeIsValuedBadAddress.build(nokAddress.toString()));
+                issues.add(Detection.NextOfKinAddressTypeIsValuedBadAddress.build(nokAddress.toString(), target));
             }
 
-            issues.addAll(this.codr.handleCode(nokAddress.getTypeCode(), VxuField.NEXT_OF_KIN_ADDRESS_TYPE));
+            issues.addAll(this.codr.handleCode(nokAddress.getTypeCode(), VxuField.NEXT_OF_KIN_ADDRESS_TYPE, target));
         }
 
         passed = issues.size() == 0;

@@ -1,11 +1,11 @@
 package org.immregistries.dqa.validator.report;
 
+import org.immregistries.dqa.validator.issue.IssueObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.immregistries.dqa.validator.issue.IssueObject;
 
 public class VxuCompletenessSectionScore {
 	private String label;

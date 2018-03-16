@@ -1,19 +1,19 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
 import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.codebase.client.generated.UseDate;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.vxu.VxuField;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
+import org.immregistries.dqa.vxu.VxuField;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 public class VaccinationMfrIsValid extends ValidationRule<DqaVaccination> {
 
@@ -35,7 +35,7 @@ public class VaccinationMfrIsValid extends ValidationRule<DqaVaccination> {
 		boolean passed = true;
 
 		if (target.isAdministered()) {
-			issues.addAll(codr.handleCode(target.getManufacturer(), VxuField.VACCINATION_MANUFACTURER_CODE));
+			issues.addAll(codr.handleCode(target.getManufacturer(), VxuField.VACCINATION_MANUFACTURER_CODE, target));
 			passed = (issues.size() == 0);
 		}
 
@@ -60,12 +60,14 @@ public class VaccinationMfrIsValid extends ValidationRule<DqaVaccination> {
 					if (datr.isAfterDate(target.getAdminDate(), notAfterDate) 
 					 || datr.isBeforeDate(target.getAdminDate(), notBeforeDate)) {
 						
-						issues.add(Detection.VaccinationManufacturerCodeIsInvalidForDateAdministered.build(target.getManufacturer()));
+						issues.add(Detection.VaccinationManufacturerCodeIsInvalidForDateAdministered.build(
+							target.getManufacturer(), target));
 						passed = false;
 						
 					} else if (datr.isAfterDate(target.getAdminDate(), notExpectedAfterDate) 
 						    || datr.isBeforeDate(target.getAdminDate(), notExpectedBeforeDate)) {
-						issues.add(Detection.VaccinationManufacturerCodeIsUnexpectedForDateAdministered.build(target.getManufacturer()));
+						issues.add(Detection.VaccinationManufacturerCodeIsUnexpectedForDateAdministered.build(
+							target.getManufacturer(), target));
 					}
 			}
 		}

@@ -1,10 +1,5 @@
 package org.immregistries.dqa.validator.report;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.immregistries.dqa.validator.DqaMessageService;
 import org.immregistries.dqa.validator.DqaMessageServiceResponse;
 import org.immregistries.dqa.validator.issue.Detection;
@@ -14,6 +9,11 @@ import org.immregistries.dqa.validator.report.codes.CodeCollection;
 import org.immregistries.dqa.vxu.VxuField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public enum ReportScorer {
 	INSTANCE;

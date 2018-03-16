@@ -7,10 +7,10 @@
  */
 package org.immregistries.dqa.validator.engine.codes;
 
+import org.immregistries.dqa.vxu.hl7.Name;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import org.immregistries.dqa.vxu.hl7.Name;
 
 public class KnownName
 {

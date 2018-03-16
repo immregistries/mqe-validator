@@ -1,14 +1,17 @@
 package org.immregistries.dqa.validator.issue;
 
+import org.apache.commons.lang3.StringUtils;
+import org.immregistries.dqa.hl7util.ApplicationErrorCode;
+import org.immregistries.dqa.hl7util.SeverityLevel;
+import org.immregistries.dqa.hl7util.model.Hl7Location;
+import org.immregistries.dqa.hl7util.model.MetaFieldInfo;
+import org.immregistries.dqa.vxu.MetaFieldInfoData;
+import org.immregistries.dqa.vxu.VxuField;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
-import org.immregistries.dqa.hl7util.ApplicationErrorCode;
-import org.immregistries.dqa.hl7util.SeverityLevel;
-import org.immregistries.dqa.vxu.VxuField;
 
 public enum Detection {
 	GeneralAuthorizationException(IssueObject.GENERAL, IssueType.EXCEPTION, VxuField.AUTHORIZATION, "", SeverityLevel.ACCEPT, "207", null, ErrorCode.MQE0002, ""),
@@ -791,28 +794,44 @@ public enum Detection {
     return targetObject;
   }
 
-  public ValidationIssue build(String value) {
-	  	ValidationIssue found = build();
-	  	found.setValueReceived(value);
+	public ValidationIssue build(String value, MetaFieldInfoData meta) {
+		ValidationIssue found = build(meta);
+		found.setValueReceived(value);
 		return found;
+	}
+
+  public ValidationIssue build(MetaFieldInfoData meta) {
+	  Hl7Location loc = null;
+	  if (meta != null) {
+			MetaFieldInfo mfi = meta.getMetaFieldInfo(this.fieldRef);
+			if (mfi != null) {
+				loc = mfi.getHl7Location();
+			}
+		}
+		return build(loc);
   }
-  
-  public ValidationIssue build() {
+
+	public ValidationIssue build(Hl7Location loc) {
 		ValidationIssue found = new ValidationIssue();
+		if (loc != null) {
+			found.getHl7LocationList().add(loc);
+		}
 		found.setDetection(this);
 		return found;
-  }
-  
-  public static ValidationIssue buildIssue(VxuField field, IssueType type) {
-	  Detection issue = get(field, type);
-	  return issue.build();
-  }
-  
-  public static ValidationIssue buildIssue(VxuField field, IssueType type, String value) {
-	  Detection issue = get(field, type);
-	  return issue.build(value);
-  }
-  
+	}
+
+
+//
+//  public static ValidationIssue buildIssue(VxuField field, IssueType type, MetaFieldInfoData meta) {
+//	  Detection issue = get(field, type);
+//	  return issue.build(meta);
+//  }
+//
+//  public static ValidationIssue buildIssue(VxuField field, IssueType type, String value, MetaFieldInfoData meta) {
+//	  Detection issue = get(field, type);
+//	  return issue.build(value, meta);
+//  }
+//
   public static Detection getByDqaErrorCode(ErrorCode code) {
 	  return errorCodeAttributeMap.get(code);
   }

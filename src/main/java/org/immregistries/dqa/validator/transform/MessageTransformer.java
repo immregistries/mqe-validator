@@ -1,12 +1,10 @@
 package org.immregistries.dqa.validator.transform;
 
 import org.apache.commons.lang3.StringUtils;
-import org.immregistries.dqa.codebase.client.RelatedCode;
 import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
 import org.immregistries.dqa.vxu.*;
 import org.immregistries.dqa.vxu.hl7.Observation;
-import org.immregistries.dqa.vxu.PatientImmunity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

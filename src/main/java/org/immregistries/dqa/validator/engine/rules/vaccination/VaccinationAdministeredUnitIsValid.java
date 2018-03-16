@@ -1,14 +1,14 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.vxu.VxuField;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
+import org.immregistries.dqa.vxu.VxuField;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class VaccinationAdministeredUnitIsValid extends ValidationRule<DqaVaccination> {
 
@@ -28,7 +28,7 @@ public class VaccinationAdministeredUnitIsValid extends ValidationRule<DqaVaccin
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 		boolean passed = false;
 
-		issues.addAll(codr.handleCode(target.getAmountUnit(), VxuField.VACCINATION_ADMINISTERED_UNIT));
+		issues.addAll(codr.handleCode(target.getAmountUnit(), VxuField.VACCINATION_ADMINISTERED_UNIT, target));
 
 		passed = (issues.size() == 0);
 		return buildResults(issues, passed);

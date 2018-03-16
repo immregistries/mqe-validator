@@ -39,16 +39,16 @@ public class PatientFinancialStatusDateIsValid extends ValidationRule<DqaPatient
 
         if (finEligDte != null) {
             if (this.datr.isBeforeDate(finEligDte, birthDate)) {
-                issues.add(Detection.PatientVfcEffectiveDateIsBeforeBirth.build());
+                issues.add(Detection.PatientVfcEffectiveDateIsBeforeBirth.build(target));
                 passed = false;
             }
 
             if (this.datr.isBeforeDate(recDate, finEligDte)) {
-                issues.add(Detection.PatientVfcEffectiveDateIsInFuture.build());
+                issues.add(Detection.PatientVfcEffectiveDateIsInFuture.build(target));
                 passed = false;
             }
         } else {
-            issues.add(Detection.PatientVfcEffectiveDateIsMissing.build());
+            issues.add(Detection.PatientVfcEffectiveDateIsMissing.build(target));
             passed = false;
         }
 

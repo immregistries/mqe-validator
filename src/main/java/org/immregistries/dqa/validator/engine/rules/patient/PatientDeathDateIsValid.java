@@ -7,12 +7,9 @@ import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 public class PatientDeathDateIsValid extends ValidationRule<DqaPatient> {
@@ -36,11 +33,11 @@ public class PatientDeathDateIsValid extends ValidationRule<DqaPatient> {
 
         // if the death date is empty, but the indicator says "Y", that means the date is missing.
         if ("Y".equals(target.getDeathIndicator()) && this.common.isEmpty(deathDateString)) {
-            issues.add(Detection.PatientDeathDateIsMissing.build(deathDateString));
+            issues.add(Detection.PatientDeathDateIsMissing.build((deathDateString), target));
         } else if (!this.common.isEmpty(deathDateString)){
             if (!this.common.isValidDate(deathDateString)) {
                 //Invalid date string.
-                issues.add(Detection.PatientDeathDateIsInvalid.build(deathDateString));
+                issues.add(Detection.PatientDeathDateIsInvalid.build((deathDateString), target));
             } else {
                 //make sure it's before the message date, and after the birth date.
                 DateTime deathDate = this.common.parseDateTimeFrom(deathDateString);
@@ -49,12 +46,12 @@ public class PatientDeathDateIsValid extends ValidationRule<DqaPatient> {
 
                 // if the death date is after the date the message was received
                 if (receivedDate.isBefore(deathDate)) {
-                    issues.add(Detection.PatientDeathDateIsInFuture.build(deathDateString));
+                    issues.add(Detection.PatientDeathDateIsInFuture.build((deathDateString), target));
                 }
 
                 // if the death date is before the birth date
                 if (deathDate.isBefore(birthDate)) {
-                    issues.add(Detection.PatientDeathDateIsBeforeBirth.build(deathDateString));
+                    issues.add(Detection.PatientDeathDateIsBeforeBirth.build((deathDateString), target));
                 }
             }
         }

@@ -1,9 +1,5 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientBirthDateIsValid;
@@ -11,6 +7,10 @@ import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class VaccinationAdminAfterBirthDate extends ValidationRule<DqaVaccination> {
 

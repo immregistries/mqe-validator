@@ -38,8 +38,7 @@ public class PatientDeathIndicatorIsValid extends ValidationRule<DqaPatient> {
         } else if (!"Y".equals(dInd)) {
             if (target.getDeathDate() != null || target.getDeathDateString() != null) {
                 String deathDate = target.getDeathDate() != null ? target.getDeathDate().toString() : target.getDeathDateString();
-                ValidationIssue issue = this.util.createIssue(Detection.PatientDeathIndicatorIsInconsistent, deathDate);
-                issues.add(issue);
+                issues.add(Detection.PatientDeathIndicatorIsInconsistent.build(dInd, target));
                 passed = false;
             }
         }

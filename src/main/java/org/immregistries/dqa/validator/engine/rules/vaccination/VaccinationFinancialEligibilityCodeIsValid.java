@@ -1,16 +1,15 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.vxu.VxuField;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
-import org.immregistries.dqa.vxu.hl7.CodedEntity;
+import org.immregistries.dqa.vxu.VxuField;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class VaccinationFinancialEligibilityCodeIsValid extends
 		ValidationRule<DqaVaccination> {
@@ -35,11 +34,11 @@ public class VaccinationFinancialEligibilityCodeIsValid extends
 		String financialEligibilityCode = target.getFinancialEligibilityCode();
 		
 		if (target.isAdministered()) {
-		   if (common.isEmpty(financialEligibilityCode))
+		   if (this.common.isEmpty(financialEligibilityCode))
 		      {
-		        issues.add(Detection.VaccinationFinancialEligibilityCodeIsMissing.build());
+		        issues.add(Detection.VaccinationFinancialEligibilityCodeIsMissing.build(target));
 		      } else {
-		      issues.addAll(codr.handleCode(financialEligibilityCode, VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE));
+		      issues.addAll(codr.handleCode(financialEligibilityCode, VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE, target));
 		    }
 		}
 

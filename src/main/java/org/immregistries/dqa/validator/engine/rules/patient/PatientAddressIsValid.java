@@ -6,10 +6,10 @@ import org.immregistries.dqa.validator.engine.common.AddressFields;
 import org.immregistries.dqa.validator.engine.common.AddressValidator;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
-import org.immregistries.dqa.vxu.VxuField;
+import org.immregistries.dqa.vxu.DqaAddress;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
-import org.immregistries.dqa.vxu.DqaAddress;
+import org.immregistries.dqa.vxu.VxuField;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,15 +57,15 @@ public class PatientAddressIsValid extends ValidationRule<DqaPatient> {
 
         DqaAddress a = target.getPatientAddress();
 
-        ValidationRuleResult result = addressValidator.getAddressIssuesFor(fields, a);
+        ValidationRuleResult result = addressValidator.getAddressIssuesFor(fields, a, target);
         issues.addAll(result.getIssues());
 
         if (a != null) {
             if (a.getTypeCode() != null && "BA".equals(a.getTypeCode())) {
-                issues.add(Detection.PatientAddressTypeIsValuedBadAddress.build(a.toString()));
+                issues.add(Detection.PatientAddressTypeIsValuedBadAddress.build(a.toString(), target));
             }
 
-            issues.addAll(this.codr.handleCode(a.getTypeCode(), VxuField.PATIENT_ADDRESS_TYPE));
+            issues.addAll(this.codr.handleCode(a.getTypeCode(), VxuField.PATIENT_ADDRESS_TYPE, target));
         }
 
         passed = issues.size() == 0;

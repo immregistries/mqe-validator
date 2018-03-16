@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -110,8 +111,8 @@ public class PatientAddressIsValidTester {
 
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.PatientAddressCityIsMissing == r.getIssues().get(0).getIssue());
+        assertTrue(r.getIssues().size() > 0);
+        assertEquals(Detection.PatientAddressCityIsMissing , r.getIssues().get(0).getIssue());
     }
 
     /**

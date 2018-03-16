@@ -1,16 +1,16 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.vxu.VxuField;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
+import org.immregistries.dqa.vxu.VxuField;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class VaccinationActionCodeIsValid extends ValidationRule<DqaVaccination> {
 
@@ -35,20 +35,20 @@ public class VaccinationActionCodeIsValid extends ValidationRule<DqaVaccination>
 		boolean passed = true;
 		
 		
-		issues.addAll(this.codr.handleCode(target.getAction(), VxuField.VACCINATION_ACTION_CODE));
+		issues.addAll(this.codr.handleCode(target.getAction(), VxuField.VACCINATION_ACTION_CODE, target));
 
 		if (issues.size() > 0) {
 			passed = false;
 		} else {
 			String actionCode = target.getActionCode();
 			if (target.isActionAdd()) {
-				issues.add(Detection.VaccinationActionCodeIsValuedAsAdd.build(actionCode));
-				issues.add(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate.build(actionCode));
+				issues.add(Detection.VaccinationActionCodeIsValuedAsAdd.build((actionCode), target));
+				issues.add(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate.build((actionCode), target));
 			} else if (target.isActionUpdate()) {
-				issues.add(Detection.VaccinationActionCodeIsValuedAsUpdate.build(actionCode));
-				issues.add(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate.build(actionCode));
+				issues.add(Detection.VaccinationActionCodeIsValuedAsUpdate.build((actionCode), target));
+				issues.add(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate.build((actionCode), target));
 			} else if (target.isActionDelete()) {
-				issues.add(Detection.VaccinationActionCodeIsValuedAsDelete.build(actionCode));
+				issues.add(Detection.VaccinationActionCodeIsValuedAsDelete.build((actionCode), target));
 			}
 		}
 		

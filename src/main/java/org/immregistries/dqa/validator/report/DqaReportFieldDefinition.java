@@ -1,9 +1,9 @@
 package org.immregistries.dqa.validator.report;
 
+import org.immregistries.dqa.vxu.VxuField;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.immregistries.dqa.vxu.VxuField;
 
 public class DqaReportFieldDefinition {
 	private VxuField field;

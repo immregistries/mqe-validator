@@ -48,7 +48,8 @@ public abstract class ValidationRule<T> {
 			 return executeRule(target, m);
 		} catch (Exception e) {
 			LOGGER.error("Error running rule - " + this.getClass() + " problem: " + e.getMessage(), e);
-			ValidationIssue[] issues = new ValidationIssue[]{Detection.GeneralProcessingException.build(this.getClass().getName())};
+			ValidationIssue[] issues = new ValidationIssue[]{
+				Detection.GeneralProcessingException.build(this.getClass().getName(), null)};
 			return buildResults(Arrays.asList(issues), false);
 		}
 	}

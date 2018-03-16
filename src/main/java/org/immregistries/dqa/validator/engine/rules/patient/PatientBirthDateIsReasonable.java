@@ -1,8 +1,5 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.Detection;
@@ -10,6 +7,9 @@ import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 import org.joda.time.DateTime;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PatientBirthDateIsReasonable extends ValidationRule<DqaPatient> {
 
@@ -33,7 +33,7 @@ public class PatientBirthDateIsReasonable extends ValidationRule<DqaPatient> {
 		//This is not an error condition...  the birthdate can still be valid.  it's just wierd. 
 		int age = this.datr.getAge(birthDate);
 		if (age > 120) {
-			issues.add(Detection.PatientBirthDateIsVeryLongAgo.build(birthDateString));
+			issues.add(Detection.PatientBirthDateIsVeryLongAgo.build((birthDateString), target));
 		}
 			
 		return buildResults(issues, passed);

@@ -1,8 +1,5 @@
 package org.immregistries.dqa.validator.issue;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.hl7util.Reportable;
 import org.immregistries.dqa.hl7util.ReportableSource;
@@ -11,6 +8,9 @@ import org.immregistries.dqa.hl7util.model.CodedWithExceptions;
 import org.immregistries.dqa.hl7util.model.Hl7Location;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ValidationIssue implements Reportable
 {
@@ -21,7 +21,8 @@ private static final Logger logger = LoggerFactory
   private Detection detection = null;//should this be a String?
   private int positionId = 0;//This says where in the ACK to put it. 
   private SeverityLevel severityLevel = null; //this is how bad it is. 
-  private String valueReceived = null;//This is the related value. 
+  private String valueReceived = null;//This is the related value.
+  private List<Hl7Location> hl7LocationList = new ArrayList<>();
   
   public Detection getIssue()
   {
@@ -82,7 +83,7 @@ public String toString() {
 
 @Override
 public SeverityLevel getSeverity() {
-	if (this.severityLevel == null) {
+	if (this.severityLevel == null && this.detection != null) {
 		return this.detection.getSeverity();
 	}
 	return this.severityLevel;
@@ -97,13 +98,7 @@ public CodedWithExceptions getHl7ErrorCode() {
 
 @Override
 public List<Hl7Location> getHl7LocationList() {
-	List<Hl7Location> list = new ArrayList<Hl7Location>();
-	for (String loc : this.detection.getHl7Locations()) {
-		logger.info("Adding : " + loc);
-		Hl7Location el = new Hl7Location(loc);
-		list.add(el);
-	}
-	return list;
+	return this.hl7LocationList;
 }
 
 @Override

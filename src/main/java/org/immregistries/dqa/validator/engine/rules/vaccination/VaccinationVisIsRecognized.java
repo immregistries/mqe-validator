@@ -1,17 +1,15 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.vxu.VxuField;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
 import org.immregistries.dqa.vxu.VaccinationVIS;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class VaccinationVisIsRecognized extends
 		ValidationRule<DqaVaccination> {
@@ -35,8 +33,8 @@ public class VaccinationVisIsRecognized extends
 		VaccinationVIS vis = target.getVaccinationVis();
 		String visCvx = vis.getCvxCode();
 			
-		if (common.isEmpty(vis.getDocumentCode()) && (common.isEmpty(visCvx) && vis.getPublishedDate() == null)) {
-				issues.add(Detection.VaccinationVisIsMissing.build());
+		if (this.common.isEmpty(vis.getDocumentCode()) && (this.common.isEmpty(visCvx) && vis.getPublishedDate() == null)) {
+				issues.add(Detection.VaccinationVisIsMissing.build(target));
 		}
 		
 		passed = issues.isEmpty();

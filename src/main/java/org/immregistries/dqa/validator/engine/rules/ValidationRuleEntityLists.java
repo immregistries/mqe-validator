@@ -2,7 +2,8 @@ package org.immregistries.dqa.validator.engine.rules;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.rules.header.*;
-import org.immregistries.dqa.validator.engine.rules.nextofkin.*;
+import org.immregistries.dqa.validator.engine.rules.nextofkin.NextOfKinAddressIsSameAsPatientAddress;
+import org.immregistries.dqa.validator.engine.rules.nextofkin.NextOfKinIsPresent;
 import org.immregistries.dqa.validator.engine.rules.patient.*;
 import org.immregistries.dqa.validator.engine.rules.vaccination.*;
 
@@ -40,7 +41,8 @@ public enum ValidationRuleEntityLists {
 			, new PatientSubmitterIsValid()
 			, new PatientSystemCreationDateIsValid()
 			, new PatientImmunityIsValid()
-			, new MessageHasResponsibleParty()
+			, new PatientHasResponsibleParty()
+			, new PatientResponsiblePartyIsProperlyFormed()
 			), 
 	VACCINATION_RULES(
 			    new VaccinationIsPresent()
@@ -89,6 +91,7 @@ public enum ValidationRuleEntityLists {
 	NEXT_OF_KIN_RULES(
 			  new NextOfKinIsPresent()
 			, new NextOfKinAddressIsSameAsPatientAddress()
+
 			),
 	;
 	

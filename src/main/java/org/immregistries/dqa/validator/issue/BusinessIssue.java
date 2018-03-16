@@ -1,13 +1,13 @@
 package org.immregistries.dqa.validator.issue;
 
-import java.util.List;
-
 import org.immregistries.dqa.hl7util.Reportable;
 import org.immregistries.dqa.hl7util.ReportableSource;
 import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.hl7util.builder.AckERRCode;
 import org.immregistries.dqa.hl7util.model.CodedWithExceptions;
 import org.immregistries.dqa.hl7util.model.Hl7Location;
+
+import java.util.List;
 
 public class BusinessIssue implements Reportable {
 

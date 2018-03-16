@@ -1,13 +1,12 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
-import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
-import org.immregistries.dqa.vxu.VxuField;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
+import org.immregistries.dqa.vxu.VxuField;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,44 +40,44 @@ public class PatientCodesAreValid extends ValidationRule<DqaPatient> {
             return buildResults(issues, false);
         }
 
-        issues.addAll(this.codr.handleCode(target.getEthnicity(), VxuField.PATIENT_ETHNICITY));
-        issues.addAll(this.codr.handleCode(target.getSex(), VxuField.PATIENT_GENDER));
+        issues.addAll(this.codr.handleCode(target.getEthnicity(), VxuField.PATIENT_ETHNICITY, target));
+        issues.addAll(this.codr.handleCode(target.getSex(), VxuField.PATIENT_GENDER, target));
 
         // name type
-        issues.addAll(this.codr.handleCode(target.getName().getType(), VxuField.PATIENT_NAME_TYPE_CODE));
+        issues.addAll(this.codr.handleCode(target.getName().getType(), VxuField.PATIENT_NAME_TYPE_CODE, target));
 
         // name code is supposed to be L for legal
         if (!"L".equals(target.getNameTypeCode())) {
-            issues.add(Detection.PatientNameTypeCodeIsNotValuedLegal.build());
+            issues.add(Detection.PatientNameTypeCodeIsNotValuedLegal.build(target));
         }
 
         // facility
         String facilityId = target.getFacilityIdNumber();
         String facilityName = target.getFacilityName();
 
-        if (StringUtils.isBlank(facilityId)) {
-            issues.add(Detection.PatientPrimaryFacilityIdIsMissing.build(facilityId));
+        if (this.common.isEmpty(facilityId)) {
+            issues.add(Detection.PatientPrimaryFacilityIdIsMissing.build((facilityId), target));
         }
 
-        if (StringUtils.isBlank(facilityName)) {
-            issues.add(Detection.PatientPrimaryFacilityNameIsMissing.build(facilityName));
+        if (this.common.isEmpty(facilityName)) {
+            issues.add(Detection.PatientPrimaryFacilityNameIsMissing.build((facilityName), target));
         }
 
         // language
-        issues.addAll(this.codr.handleCode(target.getPrimaryLanguage(), VxuField.PATIENT_PRIMARY_LANGUAGE));
+        issues.addAll(this.codr.handleCode(target.getPrimaryLanguage(), VxuField.PATIENT_PRIMARY_LANGUAGE, target));
 
         // physician
         // TODO: primary physician isn't in the list of validation rules at all...
-//        issues.addAll(this.codr.handleCode(target.getPhysician().getNumber(), VxuField.PATIENT_PRIMARY_PHYSICIAN_ID));
+//        issues.addAll(this.codr.handleCode(target.getPhysician().getNumber(), VxuField.PATIENT_PRIMARY_PHYSICIAN_ID, target));
 
         // publicity code
-        issues.addAll(this.codr.handleCode(target.getPublicity(), VxuField.PATIENT_PUBLICITY_CODE));
+        issues.addAll(this.codr.handleCode(target.getPublicity(), VxuField.PATIENT_PUBLICITY_CODE, target));
 
         // race
-        issues.addAll(this.codr.handleCode(target.getRace(), VxuField.PATIENT_RACE));
+        issues.addAll(this.codr.handleCode(target.getRace(), VxuField.PATIENT_RACE, target));
 
         // VFC/financial eligibility status
-        issues.addAll(this.codr.handleCode(target.getFinancialEligibility(), VxuField.PATIENT_VFC_STATUS));
+        issues.addAll(this.codr.handleCode(target.getFinancialEligibility(), VxuField.PATIENT_VFC_STATUS, target));
 
         // mark passed if there's no issues
         passed = (issues.size() == 0);

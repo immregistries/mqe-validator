@@ -1,6 +1,5 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
-import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.Detection;
@@ -28,8 +27,8 @@ public class ObservationDateIsValid extends ValidationRule<DqaVaccination> {
 
         for (Observation o : target.getObservations()) {
             String observationDateString = o.getObservationDateString();
-            if (StringUtils.isEmpty(observationDateString)) {
-                issues.add(Detection.ObservationDateTimeOfObservationIsMissing.build(observationDateString));
+            if (this.common.isEmpty(observationDateString)) {
+                issues.add(Detection.ObservationDateTimeOfObservationIsMissing.build((observationDateString), target));
             }
         }
 

@@ -6,7 +6,6 @@ import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientIsUnderage;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
-import org.immregistries.dqa.vxu.VxuField;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
 import org.immregistries.dqa.vxu.code.NokRelationship;
@@ -43,15 +42,15 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
                     // In most situations, an underage patient would not have a child, so this is unexpected (and
                     // probably indicates the relationship was entered backwards). However, it's not impossible, so
                     // it's just a warning.
-                    issues.add(Detection.NextOfKinRelationshipIsUnexpected.build(relationship));
+                    issues.add(Detection.NextOfKinRelationshipIsUnexpected.build((relationship), target));
                 } else if (NokRelationship.get(relationship) == NokRelationship.UNKNOWN) {
-                    issues.add(Detection.NextOfKinRelationshipIsUnrecognized.build(relationship));
+                    issues.add(Detection.NextOfKinRelationshipIsUnrecognized.build((relationship), target));
                 } else {
-                    issues.add(Detection.NextOfKinRelationshipIsNotResponsibleParty.build(relationship));
+                    issues.add(Detection.NextOfKinRelationshipIsNotResponsibleParty.build((relationship), target));
                 }
             }
         } else {
-            issues.add(Detection.NextOfKinRelationshipIsMissing.build(relationship));
+            issues.add(Detection.NextOfKinRelationshipIsMissing.build((relationship), target));
         }
 
         passed = issues.size() == 0;

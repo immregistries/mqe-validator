@@ -1,16 +1,16 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.vxu.VxuField;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
+import org.immregistries.dqa.vxu.VxuField;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class VaccinationRefusalReasonIsValid extends
 		ValidationRule<DqaVaccination> {
@@ -38,15 +38,15 @@ public class VaccinationRefusalReasonIsValid extends
 		
 		boolean passed = true;
 		
-		if (target.isCompletionCompleted() && !common.isEmpty(target.getRefusalCode())) {
-			issues.add(Detection.VaccinationRefusalReasonConflictsCompletionStatus.build());
+		if (target.isCompletionCompleted() && !this.common.isEmpty(target.getRefusalCode())) {
+			issues.add(Detection.VaccinationRefusalReasonConflictsCompletionStatus.build(target));
 		}
 
 		if (target.isCompletionRefused()) {
-			if (common.isEmpty(target.getRefusalCode())) {
-				issues.add(Detection.VaccinationRefusalReasonIsMissing.build());
+			if (this.common.isEmpty(target.getRefusalCode())) {
+				issues.add(Detection.VaccinationRefusalReasonIsMissing.build(target));
 			} else {
-				issues.addAll(codr.handleCode(target.getRefusal(), VxuField.VACCINATION_REFUSAL_REASON));
+				issues.addAll(codr.handleCode(target.getRefusal(), VxuField.VACCINATION_REFUSAL_REASON, target));
 			}
 		}
 

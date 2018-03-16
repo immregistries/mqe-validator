@@ -55,7 +55,7 @@ public class PatientAddressIsValid extends ValidationRule<DqaPatient> {
         List<ValidationIssue> issues = new ArrayList<>();
         boolean passed;
 
-        DqaAddress a = target.getAddress();
+        DqaAddress a = target.getPatientAddressList().get(0);
 
         ValidationRuleResult result = addressValidator.getAddressIssuesFor(fields, a);
         issues.addAll(result.getIssues());

@@ -30,7 +30,7 @@ public class NextOfKinAddressIsSameAsPatientAddress extends ValidationRule<DqaNe
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 		boolean passed = true;
 
-		DqaAddress p = message.getPatient().getAddress();
+		DqaAddress p = message.getPatient().getPatientAddressList().get(0);
 		DqaAddress n = target.getAddress();
 		if (!p.getCity().equals(n.getCity())
 				|| !p.getState().equals(n.getState())

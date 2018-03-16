@@ -50,7 +50,7 @@ public class NextOfKinAddressIsValid extends ValidationRule<DqaNextOfKin> {
         boolean passed;
 
         DqaAddress nokAddress = target.getAddress();
-        DqaAddress p = m.getPatient().getAddress();
+        DqaAddress p = m.getPatient().getPatientAddressList().get(0);
 
         ValidationRuleResult addrResult = addressValidator.getAddressIssuesFor(fields, nokAddress);
         issues.addAll(addrResult.getIssues());

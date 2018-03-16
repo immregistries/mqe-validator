@@ -80,7 +80,7 @@ public class PatientAddressIsValidTester {
      */
     @Test
     public void testRuleNullStreet() {
-        p.getAddress().setStreet(null);
+        p.getPatientAddressList().get(0).setStreet(null);
 
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
@@ -93,7 +93,7 @@ public class PatientAddressIsValidTester {
      */
     @Test
     public void testRuleNullStreet2() {
-        p.getAddress().setStreet2(null);
+        p.getPatientAddressList().get(0).setStreet2(null);
 
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
@@ -106,7 +106,7 @@ public class PatientAddressIsValidTester {
      */
     @Test
     public void testRuleMissingCity() {
-        p.getAddress().setCity(null);
+        p.getPatientAddressList().get(0).setCity(null);
 
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
@@ -119,7 +119,7 @@ public class PatientAddressIsValidTester {
      */
     @Test
     public void testRuleNullState() {
-        p.getAddress().setStateCode(null);
+        p.getPatientAddressList().get(0).setStateCode(null);
 
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
@@ -132,7 +132,7 @@ public class PatientAddressIsValidTester {
      */
     @Test
     public void testRuleMissingZip() {
-        p.getAddress().setZip(null);
+        p.getPatientAddressList().get(0).setZip(null);
 
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
@@ -145,7 +145,7 @@ public class PatientAddressIsValidTester {
      */
     @Test
     public void testRuleInvalidZip() {
-        p.getAddress().setZip("abc");
+        p.getPatientAddressList().get(0).setZip("abc");
 
         // TODO this invalidates Canadian zipcodes too :/
 
@@ -160,7 +160,7 @@ public class PatientAddressIsValidTester {
      */
     @Test
     public void testRuleNullCountry() {
-        p.getAddress().setCountryCode(null);
+        p.getPatientAddressList().get(0).setCountryCode(null);
 
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
@@ -173,7 +173,7 @@ public class PatientAddressIsValidTester {
      */
     @Test
     public void testRuleNullCounty() {
-        p.getAddress().setCountyParishCode(null);
+        p.getPatientAddressList().get(0).setCountyParishCode(null);
 
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
@@ -186,7 +186,7 @@ public class PatientAddressIsValidTester {
      */
     @Test
     public void testRuleBadAddressType() {
-        p.getAddress().setTypeCode("BA");
+        p.getPatientAddressList().get(0).setTypeCode("BA");
 
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
@@ -199,7 +199,7 @@ public class PatientAddressIsValidTester {
      */
     @Test
     public void testRuleUnrecognizedAddressType() {
-        p.getAddress().setTypeCode("abc");
+        p.getPatientAddressList().get(0).setTypeCode("abc");
 
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());
@@ -212,7 +212,7 @@ public class PatientAddressIsValidTester {
      */
     @Test
     public void testRuleNullAddressType() {
-        p.getAddress().setTypeCode(null);
+        p.getPatientAddressList().get(0).setTypeCode(null);
 
         ValidationRuleResult r = rule.executeRule(p, mr);
         logger.info(r.getIssues().toString());

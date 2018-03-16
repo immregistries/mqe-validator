@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.header;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -18,6 +19,13 @@ public class MessageHeaderDateIsValid extends ValidationRule<DqaMessageHeader> {
 		// PatientExists.class,
 		};
 	}
+	
+	public MessageHeaderDateIsValid() {
+		this.ruleDetections.addAll(Arrays.asList(Detection.MessageMessageDateIsMissing,
+				Detection.MessageMessageDateIsInFuture,
+				Detection.MessageMessageDateIsMissingTimezone));
+	}
+
 
 	@Override
 	protected ValidationRuleResult executeRule(DqaMessageHeader target,

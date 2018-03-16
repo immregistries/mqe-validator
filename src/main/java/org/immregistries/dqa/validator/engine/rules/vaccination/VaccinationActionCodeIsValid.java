@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -13,6 +14,20 @@ import org.immregistries.dqa.vxu.DqaVaccination;
 
 public class VaccinationActionCodeIsValid extends ValidationRule<DqaVaccination> {
 
+	public VaccinationActionCodeIsValid() {
+		ruleDetections.addAll(
+				Arrays.asList(
+						Detection.VaccinationActionCodeIsValuedAsAdd,
+						Detection.VaccinationActionCodeIsValuedAsAddOrUpdate,
+						Detection.VaccinationActionCodeIsValuedAsUpdate,
+						Detection.VaccinationActionCodeIsValuedAsAddOrUpdate,
+						Detection.VaccinationActionCodeIsValuedAsDelete
+				)
+		);
+		
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_ACTION_CODE));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target, DqaMessageReceived m) {
 		

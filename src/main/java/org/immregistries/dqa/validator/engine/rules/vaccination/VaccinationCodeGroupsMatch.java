@@ -14,6 +14,10 @@ import org.immregistries.dqa.vxu.DqaVaccination;
 
 public class VaccinationCodeGroupsMatch extends ValidationRule<DqaVaccination> {
 
+	public VaccinationCodeGroupsMatch() {
+		ruleDetections.add(Detection.VaccinationCvxCodeAndCptCodeAreInconsistent);
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target, DqaMessageReceived m) {
 

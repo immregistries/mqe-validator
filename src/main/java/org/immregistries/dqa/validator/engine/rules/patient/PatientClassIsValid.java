@@ -14,6 +14,11 @@ import java.util.List;
  * Created by Allison on 5/9/2017.
  */
 public class PatientClassIsValid extends ValidationRule<DqaPatient> {
+	
+	public PatientClassIsValid() {
+		ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_CLASS));
+	}
+	
     @Override
     protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
         List<ValidationIssue> issues = new ArrayList<>();

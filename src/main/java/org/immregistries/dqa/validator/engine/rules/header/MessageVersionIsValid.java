@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.header;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -25,6 +26,11 @@ public class MessageVersionIsValid extends ValidationRule<DqaMessageHeader> {
 		};
 	}
 
+	public MessageVersionIsValid() {
+		this.ruleDetections.addAll(Arrays.asList(Detection.MessageVersionIsMissing,
+				Detection.MessageVersionIsUnrecognized));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaMessageHeader target,
 			DqaMessageReceived mr) {

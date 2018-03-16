@@ -19,6 +19,11 @@ public class VaccinationConfidentialityCodeIsValid extends
 	protected final Class[] getDependencies() {
 		return new Class[] { VaccinationAdministeredAmtIsValid.class };
 	}
+	
+	public VaccinationConfidentialityCodeIsValid() {
+		ruleDetections.add(Detection.VaccinationConfidentialityCodeIsValuedAsRestricted);
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_CONFIDENTIALITY_CODE));
+	}
 
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,

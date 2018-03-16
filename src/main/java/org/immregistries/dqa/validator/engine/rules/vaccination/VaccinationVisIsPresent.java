@@ -21,6 +21,10 @@ public class VaccinationVisIsPresent extends
 		};
 	}
 
+	public VaccinationVisIsPresent() {
+		ruleDetections.add(Detection.VaccinationVisIsMissing);
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {

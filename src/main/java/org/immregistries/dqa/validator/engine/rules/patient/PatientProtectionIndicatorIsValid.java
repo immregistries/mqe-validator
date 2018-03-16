@@ -9,10 +9,20 @@ import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PatientProtectionIndicatorIsValid extends ValidationRule<DqaPatient> {
 
+	public PatientProtectionIndicatorIsValid() {
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_PROTECTION_INDICATOR));
+		ruleDetections.addAll(Arrays.asList(
+					Detection.PatientProtectionIndicatorIsValuedAsYes,
+					Detection.PatientProtectionIndicatorIsValuedAsNo
+				)
+		);
+	}
+	
     @Override
     protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
         List<ValidationIssue> issues = new ArrayList<>();

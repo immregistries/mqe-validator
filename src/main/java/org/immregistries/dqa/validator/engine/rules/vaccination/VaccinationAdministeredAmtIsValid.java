@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -12,6 +13,15 @@ import org.immregistries.dqa.vxu.DqaVaccination;
 
 public class VaccinationAdministeredAmtIsValid extends ValidationRule<DqaVaccination> {
 
+	public VaccinationAdministeredAmtIsValid() {
+		ruleDetections.addAll(Arrays.asList(
+				Detection.VaccinationAdministeredAmountIsMissing,
+				Detection.VaccinationAdministeredAmountIsValuedAsUnknown,
+				Detection.VaccinationAdministeredAmountIsValuedAsZero,
+				Detection.VaccinationAdministeredAmountIsInvalid
+		));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {

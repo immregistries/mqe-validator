@@ -21,6 +21,11 @@ public class VaccinationVisCvxIsValid extends
 		return new Class[] {VaccinationVisIsPresent.class, VaccinationIsAdministered.class };
 	}
 
+	public VaccinationVisCvxIsValid() {
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_VIS_CVX_CODE));
+	}
+	
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {

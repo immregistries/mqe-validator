@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -13,6 +14,16 @@ import org.immregistries.dqa.vxu.DqaVaccination;
 
 public class VaccinationCompletionStatusIsValid extends ValidationRule<DqaVaccination> {
 
+	public VaccinationCompletionStatusIsValid() {
+		ruleDetections.addAll(Arrays.asList(
+				Detection.VaccinationCompletionStatusIsValuedAsCompleted,
+				Detection.VaccinationCompletionStatusIsValuedAsRefused,
+				Detection.VaccinationCompletionStatusIsValuedAsNotAdministered,
+				Detection.VaccinationCompletionStatusIsValuedAsPartiallyAdministered
+		));
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_COMPLETION_STATUS));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target, DqaMessageReceived m) {
 		

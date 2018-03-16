@@ -9,10 +9,20 @@ import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NextOfKinNameIsValid extends ValidationRule<DqaNextOfKin> {
 
+	public NextOfKinNameIsValid() {
+		this.ruleDetections.addAll(Arrays.asList
+				(
+						Detection.NextOfKinNameIsMissing,
+						Detection.NextOfKinNameFirstIsMissing,
+						Detection.NextOfKinNameLastIsMissing
+				));
+	}
+	
     @Override
     protected ValidationRuleResult executeRule(DqaNextOfKin target, DqaMessageReceived m) {
 

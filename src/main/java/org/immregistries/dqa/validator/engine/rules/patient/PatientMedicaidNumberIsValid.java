@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -19,7 +20,12 @@ public class PatientMedicaidNumberIsValid extends ValidationRule<DqaPatient> {
 		return new Class[] {PatientExists.class};
 	}
 	
-	
+	public PatientMedicaidNumberIsValid() {
+		ruleDetections.addAll(Arrays.asList(
+				Detection.PatientMedicaidNumberIsMissing,
+				Detection.PatientMedicaidNumberIsInvalid
+		));
+	}
 	/*
 	 * This is the money: 
 	 */

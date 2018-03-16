@@ -17,6 +17,10 @@ public class PatientBirthDateIsReasonable extends ValidationRule<DqaPatient> {
 	protected final Class[] getDependencies() {
 		return new Class[] {PatientExists.class, PatientBirthDateIsValid.class};
 	}
+	
+	public PatientBirthDateIsReasonable(){
+		this.ruleDetections.add(Detection.PatientBirthDateIsVeryLongAgo);
+	}
 
 	@Override
 	protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived message) {

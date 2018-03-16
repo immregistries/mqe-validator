@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -18,6 +19,16 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<DqaVacci
 		return new Class[] {
 			VaccinationIsAdministeredOrHistorical.class
 		};
+	}
+	
+	public VaccinationInformationSourceIsValid() {
+		ruleDetections.addAll(Arrays.asList(
+				Detection.VaccinationInformationSourceIsMissing,
+				Detection.VaccinationInformationSourceIsValuedAsAdministered,
+				Detection.VaccinationInformationSourceIsValuedAsHistorical
+		));
+		
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_INFORMATION_SOURCE));
 	}
 	
 	/*

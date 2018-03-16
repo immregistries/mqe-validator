@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +19,14 @@ public class VaccinationMfrIsValid extends ValidationRule<DqaVaccination> {
 
 	// dependency: VaccinationIsAdministered
 
+	public VaccinationMfrIsValid() {
+		ruleDetections.addAll(Arrays.asList(
+				Detection.VaccinationManufacturerCodeIsInvalidForDateAdministered,
+				Detection.VaccinationManufacturerCodeIsUnexpectedForDateAdministered
+		));
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_MANUFACTURER_CODE));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {

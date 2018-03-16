@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -15,6 +16,15 @@ public class VaccinationAdministeredRequiredFieldsArePresent extends ValidationR
 	@Override
 	protected final Class[] getDependencies() {
 		return new Class[] {VaccinationIsAdministered.class};
+	}
+	
+	public VaccinationAdministeredRequiredFieldsArePresent() {
+		ruleDetections.addAll(Arrays.asList(
+				Detection.VaccinationFacilityNameIsMissing,
+				Detection.VaccinationLotExpirationDateIsMissing,
+				Detection.VaccinationLotNumberIsMissing,
+				Detection.VaccinationLotNumberIsInvalid
+		));
 	}
 	
 	@Override

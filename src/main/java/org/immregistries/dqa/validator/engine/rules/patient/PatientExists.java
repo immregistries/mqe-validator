@@ -12,6 +12,10 @@ import org.immregistries.dqa.vxu.DqaPatient;
 
 public class PatientExists extends ValidationRule<DqaPatient> {
 
+	public PatientExists() {
+		ruleDetections.add(Detection.PatientObjectIsMissing);
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived mr) {
 		

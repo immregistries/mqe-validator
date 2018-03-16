@@ -17,6 +17,10 @@ public class VaccinationAdministeredUnitIsValid extends ValidationRule<DqaVaccin
 		return new Class[] {VaccinationAdministeredAmtIsValid.class, VaccinationIsAdministered.class};
 	}
 	
+	public VaccinationAdministeredUnitIsValid() {
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_ADMINISTERED_UNIT));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {

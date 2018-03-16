@@ -18,6 +18,11 @@ public class VaccinationOrdererIsValid extends ValidationRule<DqaVaccination> {
 		return new Class[] { VaccinationIsAdministered.class };
 	}
 	
+	public VaccinationOrdererIsValid() {
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_ORDERED_BY));
+		ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_RECORDED_BY));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination vaccination, DqaMessageReceived m) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();

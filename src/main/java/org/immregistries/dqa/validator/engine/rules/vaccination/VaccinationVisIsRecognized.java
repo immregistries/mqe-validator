@@ -21,6 +21,10 @@ public class VaccinationVisIsRecognized extends
 		return new Class[] {VaccinationVisIsPresent.class, VaccinationIsAdministered.class};
 	}
 
+	public VaccinationVisIsRecognized() {
+		ruleDetections.add(Detection.VaccinationVisIsMissing);
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {

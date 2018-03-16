@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.immregistries.dqa.codebase.client.generated.Code;
@@ -18,6 +19,15 @@ public class VaccinationIsForeign extends ValidationRule<DqaVaccination> {
 
 	AdministeredLikelihood confidenceCalculator = AdministeredLikelihood.INSTANCE;
 
+	public VaccinationIsForeign() {
+		ruleDetections.addAll(
+				Arrays.asList(
+						Detection.VaccinationAdministeredCodeIsForiegn,
+						Detection.VaccinationHistoricalCodeIsForeign
+				)
+		);
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {

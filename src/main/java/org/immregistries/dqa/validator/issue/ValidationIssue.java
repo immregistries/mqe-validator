@@ -8,7 +8,7 @@ import org.immregistries.dqa.hl7util.Reportable;
 import org.immregistries.dqa.hl7util.ReportableSource;
 import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.hl7util.model.CodedWithExceptions;
-import org.immregistries.dqa.hl7util.model.ErrorLocation;
+import org.immregistries.dqa.hl7util.model.Hl7Location;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -96,11 +96,11 @@ public CodedWithExceptions getHl7ErrorCode() {
 }
 
 @Override
-public List<ErrorLocation> getHl7LocationList() {
-	List<ErrorLocation> list = new ArrayList<ErrorLocation>();
+public List<Hl7Location> getHl7LocationList() {
+	List<Hl7Location> list = new ArrayList<Hl7Location>();
 	for (String loc : this.detection.getHl7Locations()) {
 		logger.info("Adding : " + loc);
-		ErrorLocation el = new ErrorLocation(loc);
+		Hl7Location el = new Hl7Location(loc);
 		list.add(el);
 	}
 	return list;

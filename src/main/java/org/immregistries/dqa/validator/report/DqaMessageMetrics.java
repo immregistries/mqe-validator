@@ -3,17 +3,30 @@ package org.immregistries.dqa.validator.report;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.IssueObject;
 import org.immregistries.dqa.validator.report.codes.CodeCollection;
+import org.immregistries.dqa.validator.report.codes.VaccineCollection;
 import org.joda.time.DateTime;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class DqaMessageMetrics {
+
 	private Map<IssueObject, Integer> objectCounts = new HashMap<>();
 	private Map<Detection, Integer> attributeCounts = new HashMap<>();
 	private CodeCollection codes = new CodeCollection();
+	private VaccineCollection vaccinations = new VaccineCollection();
 	private DateTime firstMessageReceived;
 	private DateTime lastMessageReceived;
+
+	public VaccineCollection getVaccinations() {
+		return vaccinations;
+	}
+
+	public void setVaccinations(VaccineCollection vaccinations) {
+		this.vaccinations = vaccinations;
+	}
+
+	/* Getters and setters: */
 	public CodeCollection getCodes() {
 		return codes;
 	}

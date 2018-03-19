@@ -6,6 +6,7 @@ import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.IssueObject;
 import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.report.codes.CodeCollection;
+import org.immregistries.dqa.validator.report.codes.VaccineCollection;
 import org.immregistries.dqa.vxu.VxuField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +44,8 @@ public enum ReportScorer {
 		DqaMessageMetrics msgMetrics = eval.toMetrics(validationResults.getValidationResults());
 		CodeCollection cc = new CodeCollection(validationResults.getMessageObjects());
 		msgMetrics.setCodes(cc);
+		VaccineCollection vc = new VaccineCollection(validationResults.getMessageObjects());
+		msgMetrics.setVaccinations(vc);
 		return msgMetrics;
 	}
 	

@@ -144,7 +144,7 @@ public class CodeCollection {
         	addCounts(CodesetType.PERSON_RELATIONSHIP,   "", k.getRelationshipCode(), bucketList);
         }
         
-        addCounts(CodesetType.ADDRESS_TYPE,   "", patient.getAddressTypeCode(), bucketList);
+        addCounts(CodesetType.ADDRESS_TYPE,   "", patient.getPatientAddress().getTypeCode(), bucketList);
         addCounts(CodesetType.BIRTH_ORDER,   "", patient.getBirthOrder(), bucketList);
         addCounts(CodesetType.PATIENT_CLASS,   "", patient.getPatientClassCode(), bucketList);
         addCounts(CodesetType.PATIENT_ETHNICITY,   "", patient.getEthnicityCode(), bucketList);

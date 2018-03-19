@@ -92,80 +92,85 @@ public class CodeCollection {
     }
     
     public CodeCollection(DqaMessageReceived message) {
-    	 List<CollectionBucket> bucketList = new ArrayList<>();
-        //from the message, count the types of codes.
-        DateTime birthDate = DateUtility.INSTANCE.parseDateTime(message.getPatient().getBirthDateString());
-        List<DqaVaccination> vaccineList = message.getVaccinations();
-        // merge vaccine list with message header list
-       DqaMessageHeader dqaMessageHeader = message.getMessageHeader();
-        // merge vaccine and message header list with next of kin list
-       List<DqaNextOfKin> kinList = message.getNextOfKins();
-        // merge vaccine, message header, and next of kin list with patient list
-        DqaPatient patient = message.getPatient();
-        
-       
-        for (DqaVaccination v : vaccineList) {
-            //calculate the vaccine admin date - birth date to get a year.
-            DateTime adminDate = DateUtility.INSTANCE.parseDateTime(v.getAdminDateString());
-            Integer adminAge = DateUtility.INSTANCE.getYearsBetween(birthDate, adminDate);
-            String adminAgeString = String.valueOf(adminAge);
-            //find the admin type.
-            String adminType = "Historical";
-
-            if (v.isAdministered()) {
-                adminType = "Administered";
-//                for (String group : v.getVaccineGroupsDerived()) {
-//                    addCounts(CodesetType.VACCINE_GROUP, adminAgeString, group, bucketList);
-//                }
-            }
-            addCounts(CodesetType.VACCINATION_ACTION_CODE,   adminType, v.getActionCode(), bucketList);
-            addCounts(CodesetType.VACCINATION_CVX_CODE,  v.getInformationSource(), v.getAdminCvxCode(), bucketList);
-            addCounts(CodesetType.ADMINISTRATION_UNIT,   adminType, v.getAmountUnit(), bucketList);
-            addCounts(CodesetType.BODY_ROUTE,   adminType, v.getBodyRouteCode(), bucketList);
-            addCounts(CodesetType.BODY_SITE,   adminType, v.getBodySiteCode(), bucketList);
-            addCounts(CodesetType.VACCINATION_COMPLETION,   adminType, v.getCompletionCode(), bucketList);
-            addCounts(CodesetType.VACCINATION_CONFIDENTIALITY,   adminType, v.getConfidentialityCode(), bucketList);
-            addCounts(CodesetType.VACCINATION_CVX_CODE,  adminType, v.getAdminCvxCode(), bucketList);
-            addCounts(CodesetType.VACCINATION_CPT_CODE,  adminType, v.getAdminCptCode(), bucketList);
-            addCounts(CodesetType.FINANCIAL_STATUS_CODE,  adminType, v.getFinancialEligibilityCode(), bucketList);
-            addCounts(CodesetType.VACCINATION_INFORMATION_SOURCE, "RXA-9",  v.getInformationSource(), bucketList);
-            addCounts(CodesetType.VACCINATION_MANUFACTURER_CODE, adminType,  v.getManufacturerCode(), bucketList);
-            addCounts(CodesetType.VACCINE_PRODUCT, adminType,  v.getProduct(), bucketList);
-            addCounts(CodesetType.VACCINATION_REFUSAL, adminType,  v.getRefusalCode(), bucketList);
-            addCounts(CodesetType.VACCINATION_NDC_CODE,  adminType, v.getAdminNdc(), bucketList);
-            
-        }
-        
-        addCounts(CodesetType.ACKNOWLEDGEMENT_TYPE,   "", dqaMessageHeader.getAckTypeAcceptCode(), bucketList);
-        addCounts(CodesetType.ACKNOWLEDGEMENT_TYPE,   "", dqaMessageHeader.getAckTypeApplicationCode(), bucketList);
-        
-        for (DqaNextOfKin k : kinList) {
-        	addCounts(CodesetType.ADDRESS_TYPE,   "", k.getAddress().getTypeCode(), bucketList);
-        	addCounts(CodesetType.PERSON_RELATIONSHIP,   "", k.getRelationshipCode(), bucketList);
-        }
-        
-        addCounts(CodesetType.ADDRESS_TYPE,   "", patient.getPatientAddress().getTypeCode(), bucketList);
-        addCounts(CodesetType.BIRTH_ORDER,   "", patient.getBirthOrder(), bucketList);
-        addCounts(CodesetType.PATIENT_CLASS,   "", patient.getPatientClassCode(), bucketList);
-        addCounts(CodesetType.PATIENT_ETHNICITY,   "", patient.getEthnicityCode(), bucketList);
-        addCounts(CodesetType.PATIENT_SEX,   "", patient.getSexCode(), bucketList);
-        
-        for (PatientImmunity p : patient.getPatientImmunityList()) {
-        	addCounts(CodesetType.EVIDENCE_OF_IMMUNITY,   "", p.getImmunityCode(), bucketList);
-        }
-        
-        addCounts(CodesetType.PERSON_NAME_TYPE,   "", patient.getNameTypeCode(), bucketList);
-        addCounts(CodesetType.TELECOMMUNICATION_USE,   "", patient.getPhone().getTelUseCode(), bucketList);
-        addCounts(CodesetType.TELECOMMUNICATION_EQUIPMENT,   "", patient.getPhone().getTelEquipCode(), bucketList);
-        addCounts(CodesetType.PERSON_LANGUAGE,   "", patient.getPrimaryLanguageCode(), bucketList);
-        addCounts(CodesetType.PHYSICIAN_NUMBER,   "", patient.getPhysicianNumber(), bucketList);
-        addCounts(CodesetType.PATIENT_PROTECTION,   "", patient.getProtectionCode(), bucketList);
-        addCounts(CodesetType.PATIENT_PUBLICITY,   "", patient.getPublicityCode(), bucketList);
-        addCounts(CodesetType.PATIENT_RACE,   "", patient.getRaceCode(), bucketList);
-        addCounts(CodesetType.FINANCIAL_STATUS_CODE,   "", patient.getFinancialEligibilityCode(), bucketList);
-        
-       this.codeCountList = bucketList;
+       this.codeCountList = collectMessageCodesNew(message);
     }
+    
+	List<CollectionBucket> collectMessageCodesNew(DqaMessageReceived message) {
+		List<CollectionBucket> bucketList = new ArrayList<>();
+
+		// from the message, count the types of codes.
+		DateTime birthDate = DateUtility.INSTANCE.parseDateTime(message.getPatient().getBirthDateString());
+		List<DqaVaccination> vaccineList = message.getVaccinations();
+		// merge vaccine list with message header list
+		DqaMessageHeader dqaMessageHeader = message.getMessageHeader();
+		// merge vaccine and message header list with next of kin list
+		List<DqaNextOfKin> kinList = message.getNextOfKins();
+		// merge vaccine, message header, and next of kin list with patient list
+		DqaPatient patient = message.getPatient();
+
+		for (DqaVaccination v : vaccineList) {
+			// calculate the vaccine admin date - birth date to get a year.
+			DateTime adminDate = DateUtility.INSTANCE.parseDateTime(v.getAdminDateString());
+			Integer adminAge = DateUtility.INSTANCE.getYearsBetween(birthDate, adminDate);
+			String adminAgeString = String.valueOf(adminAge);
+			// find the admin type.
+			String adminType = "Historical";
+
+			if (v.isAdministered()) {
+				adminType = "Administered";
+				// for (String group : v.getVaccineGroupsDerived()) {
+				// addCounts(CodesetType.VACCINE_GROUP, adminAgeString, group,
+				// bucketList);
+				// }
+			}
+			addCounts(CodesetType.VACCINATION_ACTION_CODE, adminType, v.getActionCode(), bucketList);
+			addCounts(CodesetType.VACCINATION_CVX_CODE, v.getInformationSource(), v.getAdminCvxCode(), bucketList);
+			addCounts(CodesetType.ADMINISTRATION_UNIT, adminType, v.getAmountUnit(), bucketList);
+			addCounts(CodesetType.BODY_ROUTE, adminType, v.getBodyRouteCode(), bucketList);
+			addCounts(CodesetType.BODY_SITE, adminType, v.getBodySiteCode(), bucketList);
+			addCounts(CodesetType.VACCINATION_COMPLETION, adminType, v.getCompletionCode(), bucketList);
+			addCounts(CodesetType.VACCINATION_CONFIDENTIALITY, adminType, v.getConfidentialityCode(), bucketList);
+			addCounts(CodesetType.VACCINATION_CVX_CODE, adminType, v.getAdminCvxCode(), bucketList);
+			addCounts(CodesetType.VACCINATION_CPT_CODE, adminType, v.getAdminCptCode(), bucketList);
+			addCounts(CodesetType.FINANCIAL_STATUS_CODE, adminType, v.getFinancialEligibilityCode(), bucketList);
+			addCounts(CodesetType.VACCINATION_INFORMATION_SOURCE, "RXA-9", v.getInformationSource(), bucketList);
+			addCounts(CodesetType.VACCINATION_MANUFACTURER_CODE, adminType, v.getManufacturerCode(), bucketList);
+			addCounts(CodesetType.VACCINE_PRODUCT, adminType, v.getProduct(), bucketList);
+			addCounts(CodesetType.VACCINATION_REFUSAL, adminType, v.getRefusalCode(), bucketList);
+			addCounts(CodesetType.VACCINATION_NDC_CODE, adminType, v.getAdminNdc(), bucketList);
+
+		}
+
+		addCounts(CodesetType.ACKNOWLEDGEMENT_TYPE, "", dqaMessageHeader.getAckTypeAcceptCode(), bucketList);
+		addCounts(CodesetType.ACKNOWLEDGEMENT_TYPE, "", dqaMessageHeader.getAckTypeApplicationCode(), bucketList);
+
+		for (DqaNextOfKin k : kinList) {
+			addCounts(CodesetType.ADDRESS_TYPE, "", k.getAddress().getTypeCode(), bucketList);
+			addCounts(CodesetType.PERSON_RELATIONSHIP, "", k.getRelationshipCode(), bucketList);
+		}
+
+		addCounts(CodesetType.ADDRESS_TYPE, "", patient.getPatientAddress().getTypeCode(), bucketList);
+		addCounts(CodesetType.BIRTH_ORDER, "", patient.getBirthOrder(), bucketList);
+		addCounts(CodesetType.PATIENT_CLASS, "", patient.getPatientClassCode(), bucketList);
+		addCounts(CodesetType.PATIENT_ETHNICITY, "", patient.getEthnicityCode(), bucketList);
+		addCounts(CodesetType.PATIENT_SEX, "", patient.getSexCode(), bucketList);
+
+		for (PatientImmunity p : patient.getPatientImmunityList()) {
+			addCounts(CodesetType.EVIDENCE_OF_IMMUNITY, "", p.getImmunityCode(), bucketList);
+		}
+
+		addCounts(CodesetType.PERSON_NAME_TYPE, "", patient.getNameTypeCode(), bucketList);
+		addCounts(CodesetType.TELECOMMUNICATION_USE, "", patient.getPhone().getTelUseCode(), bucketList);
+		addCounts(CodesetType.TELECOMMUNICATION_EQUIPMENT, "", patient.getPhone().getTelEquipCode(), bucketList);
+		addCounts(CodesetType.PERSON_LANGUAGE, "", patient.getPrimaryLanguageCode(), bucketList);
+		addCounts(CodesetType.PHYSICIAN_NUMBER, "", patient.getPhysicianNumber(), bucketList);
+		addCounts(CodesetType.PATIENT_PROTECTION, "", patient.getProtectionCode(), bucketList);
+		addCounts(CodesetType.PATIENT_PUBLICITY, "", patient.getPublicityCode(), bucketList);
+		addCounts(CodesetType.PATIENT_RACE, "", patient.getRaceCode(), bucketList);
+		addCounts(CodesetType.FINANCIAL_STATUS_CODE, "", patient.getFinancialEligibilityCode(), bucketList);
+
+		return bucketList;
+	}
 
     void addCounts(CodesetType ct, String attribute, String value, List<CollectionBucket> existing) {
         if (StringUtils.isBlank(value)) {

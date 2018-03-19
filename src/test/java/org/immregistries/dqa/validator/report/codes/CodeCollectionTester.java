@@ -44,7 +44,7 @@ public class CodeCollectionTester {
 
         CodeCollection ccQuad = ccDouble.combine(ccDouble);
 
-        logger.warn("got here");
+        logger.warn("test merging");
 
         reportCounts(ccQuad);
     }
@@ -59,6 +59,7 @@ public class CodeCollectionTester {
     public void testCollecting() {
         DqaMessageReceived msg = tmg.getMsg1();
         CodeCollection cc = new CodeCollection(msg);
+        logger.warn("test collecting");
         reportCounts(cc);
 
         List<CollectionBucket> groupCounts = cc.getByType(CodesetType.VACCINE_GROUP);

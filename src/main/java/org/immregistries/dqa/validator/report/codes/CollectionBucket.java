@@ -1,9 +1,8 @@
 package org.immregistries.dqa.validator.report.codes;
 
-import org.apache.commons.lang3.StringUtils;
-import org.immregistries.dqa.codebase.client.reference.CodesetType;
-
 import java.util.Objects;
+
+import org.immregistries.dqa.codebase.client.reference.CodesetType;
 
 public class CollectionBucket {
 
@@ -11,8 +10,26 @@ public class CollectionBucket {
     String attribute;
     String value;
     int count;
+    private String status;
+    private String label;
 
-    public CollectionBucket(CodesetType type, String attribute, String value) {
+    public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public CollectionBucket(CodesetType type, String attribute, String value) {
         this.type = type.getType();
         this.attribute = attribute;
         this.value = value;

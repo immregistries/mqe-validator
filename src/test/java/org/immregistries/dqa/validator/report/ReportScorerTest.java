@@ -12,7 +12,7 @@ import org.immregistries.dqa.validator.DqaMessageService;
 import org.immregistries.dqa.validator.DqaMessageServiceResponse;
 import org.immregistries.dqa.validator.issue.IssueObject;
 import org.immregistries.dqa.validator.issue.IssueType;
-import org.immregistries.dqa.validator.issue.VxuField;
+import org.immregistries.dqa.vxu.VxuField;
 import org.junit.Test;
 
 public class ReportScorerTest {
@@ -85,7 +85,7 @@ public class ReportScorerTest {
 	
 	public DqaReportFieldDefinition generateReportFieldMiddle() {
 		DqaReportFieldDefinition def = new DqaReportFieldDefinition();
-		def.setField(VxuField.PATIENT_MIDDLE_NAME);
+		def.setField(VxuField.PATIENT_NAME_MIDDLE);
 		def.setWeight(50);
 		def.getIssues().addAll(getDefaultIssueList());
 		return def;

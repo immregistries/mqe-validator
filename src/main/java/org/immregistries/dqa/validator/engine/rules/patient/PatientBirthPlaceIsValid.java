@@ -1,14 +1,15 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class PatientBirthPlaceIsValid extends ValidationRule<DqaPatient> {
 
@@ -19,6 +20,10 @@ public class PatientBirthPlaceIsValid extends ValidationRule<DqaPatient> {
 		};
 	}
 	
+	public PatientBirthPlaceIsValid() {
+		this.ruleDetections.addAll(Arrays.asList(Detection.PatientBirthPlaceIsMissing));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived mr) {
 		
@@ -27,8 +32,8 @@ public class PatientBirthPlaceIsValid extends ValidationRule<DqaPatient> {
 		
 		String place = target.getBirthPlace();
 		
-		if (common.isEmpty(place)) {
-			issues.add(Detection.PatientBirthPlaceIsMissing.build());
+		if (this.common.isEmpty(place)) {
+			issues.add(Detection.PatientBirthPlaceIsMissing.build(target));
 		}
 		
 		return buildResults(issues, passed);

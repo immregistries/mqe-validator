@@ -480,6 +480,8 @@ public enum ErrorCode {
   MQE0554,
   MQE0555,
   MQE0556,
+  MQE0557,
+  MQE0558,
   // Add new codes here below in ascending order
   ;
   

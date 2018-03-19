@@ -24,6 +24,9 @@ public class TestMessageGenerator {
 	private static String EXAMPLE_VXU;
 	
 	private static String EXAMPLE_VXU_II = MSH + PID2 + NK1 + ORC + RXA + RXR + OBX;
+
+	private static String EXAMPLE_VXU_III = MSH + PID2 + NK1 + ORC + RXA + RXR + OBX + ORC + RXA + RXR + OBX;
+
 	
 	private static final Map<String,String> SEG_MAP = new LinkedHashMap<String,String>();
 	private static final List<String> SEG_LIST = new LinkedList<String>();
@@ -90,6 +93,10 @@ public class TestMessageGenerator {
 		return EXAMPLE_VXU_II;
 	}
 	
+    public String getExampleVXU_3() {
+      return EXAMPLE_VXU_III;
+  }
+  
 	public String getImmunityMessage() {
 		return IMMUNITY_MSG;
 	}

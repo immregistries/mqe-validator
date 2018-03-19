@@ -3,11 +3,12 @@ package org.immregistries.dqa.validator.engine.common;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.Detection;
+import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
-import org.immregistries.dqa.validator.issue.VxuField;
 import org.immregistries.dqa.vxu.DqaPhoneNumber;
+import org.immregistries.dqa.vxu.MetaFieldInfoData;
+import org.immregistries.dqa.vxu.VxuField;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,16 +25,16 @@ import java.util.Locale;
 public enum PhoneValidator {
     INSTANCE;
 
-    private CodeHandler coder = CodeHandler.INSTANCE;
+    private CodeHandler codr = CodeHandler.INSTANCE;
 
-    public List<ValidationIssue> validatePhone(DqaPhoneNumber phone, VxuField piPhone) {
-        return validatePhone(phone, piPhone, null, null);
+    public List<ValidationIssue> validatePhone(DqaPhoneNumber phone, VxuField piPhone, MetaFieldInfoData meta) {
+        return validatePhone(phone, piPhone, null, null, meta);
     }
 
     public List<ValidationIssue> validatePhone(DqaPhoneNumber phone,
                                                VxuField piPhone,
                                                VxuField piPhoneTelUse,
-                                               VxuField piPhoneTelEquip) {
+                                               VxuField piPhoneTelEquip, MetaFieldInfoData meta) {
 
         List<ValidationIssue> issues = new ArrayList<>();
 
@@ -41,30 +42,30 @@ public enum PhoneValidator {
             if (StringUtils.isEmpty(phone.getAreaCode()) || StringUtils.isEmpty(phone.getLocalNumber())) {
                 Detection attr = Detection.get(piPhone, IssueType.INCOMPLETE);
                 if (attr != null) {
-                    issues.add(attr.build(phone.getNumber()));
+                    issues.add(attr.build(phone.getNumber(), meta));
                 }
             }
 
             //If there's a use code, make sure it's proper.
             if (piPhoneTelUse != null) {
-                issues.addAll(coder.handleCode(phone.getTelUse(), piPhoneTelUse));
+                issues.addAll(codr.handleCode(phone.getTelUse(), piPhoneTelUse, meta));
             }
 
             //If it's got a code, make sure it's legit.
             if (piPhoneTelEquip != null) {
-                issues.addAll(coder.handleCode(phone.getTelEquip(), piPhoneTelEquip));
+                issues.addAll(codr.handleCode(phone.getTelEquip(), piPhoneTelEquip, meta));
             }
 
             //Invalid phone number format.
             if (!isValidPhone(phone)) {
                 Detection attr = Detection.get(piPhone, IssueType.INVALID);
                 if (attr != null) {
-                    issues.add(attr.build(phone.getNumber()));
+                    issues.add(attr.build(phone.getNumber(), meta));
                 }
             }
 
         } else {
-            issues.add(Detection.get(piPhone, IssueType.MISSING).build());
+            issues.add(Detection.get(piPhone, IssueType.MISSING).build(meta));
         }
         return issues;
     }

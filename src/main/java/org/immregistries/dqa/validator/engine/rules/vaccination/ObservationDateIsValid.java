@@ -1,6 +1,5 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
-import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.Detection;
@@ -16,6 +15,11 @@ import java.util.List;
  * Currently only checks if the date is present or missing. Created by Allison on 5/9/2017.
  */
 public class ObservationDateIsValid extends ValidationRule<DqaVaccination> {
+	
+	public ObservationDateIsValid() {
+		ruleDetections.add(Detection.ObservationDateTimeOfObservationIsMissing);
+	}
+	
     @Override
     protected ValidationRuleResult executeRule(DqaVaccination target, DqaMessageReceived m) {
         List<ValidationIssue> issues = new ArrayList<>();
@@ -23,8 +27,8 @@ public class ObservationDateIsValid extends ValidationRule<DqaVaccination> {
 
         for (Observation o : target.getObservations()) {
             String observationDateString = o.getObservationDateString();
-            if (StringUtils.isEmpty(observationDateString)) {
-                issues.add(Detection.ObservationDateTimeOfObservationIsMissing.build(observationDateString));
+            if (this.common.isEmpty(observationDateString)) {
+                issues.add(Detection.ObservationDateTimeOfObservationIsMissing.build((observationDateString), target));
             }
         }
 

@@ -1,19 +1,24 @@
 package org.immregistries.dqa.validator.issue;
 
+import org.apache.commons.lang3.StringUtils;
+import org.immregistries.dqa.hl7util.ApplicationErrorCode;
+import org.immregistries.dqa.hl7util.SeverityLevel;
+import org.immregistries.dqa.hl7util.model.Hl7Location;
+import org.immregistries.dqa.hl7util.model.MetaFieldInfo;
+import org.immregistries.dqa.vxu.MetaFieldInfoData;
+import org.immregistries.dqa.vxu.VxuField;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
-import org.immregistries.dqa.hl7util.ApplicationErrorCode;
-import org.immregistries.dqa.hl7util.SeverityLevel;
 
 public enum Detection {
 	GeneralAuthorizationException(IssueObject.GENERAL, IssueType.EXCEPTION, VxuField.AUTHORIZATION, "", SeverityLevel.ACCEPT, "207", null, ErrorCode.MQE0002, ""),
 	GeneralConfigurationException(IssueObject.GENERAL, IssueType.EXCEPTION, VxuField.CONFIGURATION, "", SeverityLevel.ACCEPT, "207", null, ErrorCode.MQE0003, ""),
 	GeneralParseException(IssueObject.GENERAL, IssueType.EXCEPTION, VxuField.PARSE, "", SeverityLevel.ACCEPT, "207", null, ErrorCode.MQE0004, ""),
 	GeneralProcessingException(IssueObject.GENERAL, IssueType.EXCEPTION, VxuField.PROCESSING, "", SeverityLevel.ACCEPT, "207", null, ErrorCode.MQE0005, ""),
+	UnknownDetection(IssueObject.GENERAL, IssueType.EXCEPTION, VxuField.PROCESSING, "", SeverityLevel.ACCEPT, "207", null, ErrorCode.MQE0558, ""),
 
 	//These might be validated from NIST validations. 
 	//Maybe we have an entry for Hl7StructureWarning, Hl7StructureError...
@@ -81,9 +86,9 @@ public enum Detection {
 	NextOfKinNameIsMissing(IssueObject.NEXT_OF_KIN, IssueType.MISSING, VxuField.NEXT_OF_KIN_NAME, "", SeverityLevel.WARN, "101", null, ErrorCode.MQE0079, "NK1-2"),
 	NextOfKinNameFirstIsMissing(IssueObject.NEXT_OF_KIN, IssueType.MISSING, VxuField.NEXT_OF_KIN_NAME_FIRST, "", SeverityLevel.WARN, "101", null, ErrorCode.MQE0080, "NK1-2.1"),
 	NextOfKinNameLastIsMissing(IssueObject.NEXT_OF_KIN, IssueType.MISSING, VxuField.NEXT_OF_KIN_NAME_LAST, "", SeverityLevel.WARN, "101", null, ErrorCode.MQE0081, "NK1-2.2"),
-	NextOfKinPhoneNumberIsIncomplete(IssueObject.NEXT_OF_KIN, IssueType.INCOMPLETE, VxuField.NEXT_OF_KIN_PHONE_NUMBER, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0082, "NK1-5"),
-	NextOfKinPhoneNumberIsInvalid(IssueObject.NEXT_OF_KIN, IssueType.INVALID, VxuField.NEXT_OF_KIN_PHONE_NUMBER, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0083, "NK1-5"),
-	NextOfKinPhoneNumberIsMissing(IssueObject.NEXT_OF_KIN, IssueType.MISSING, VxuField.NEXT_OF_KIN_PHONE_NUMBER, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.MQE0084, "NK1-5"),
+	NextOfKinPhoneNumberIsIncomplete(IssueObject.NEXT_OF_KIN, IssueType.INCOMPLETE, VxuField.NEXT_OF_KIN_PHONE, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0082, "NK1-5"),
+	NextOfKinPhoneNumberIsInvalid(IssueObject.NEXT_OF_KIN, IssueType.INVALID, VxuField.NEXT_OF_KIN_PHONE, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0083, "NK1-5"),
+	NextOfKinPhoneNumberIsMissing(IssueObject.NEXT_OF_KIN, IssueType.MISSING, VxuField.NEXT_OF_KIN_PHONE, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.MQE0084, "NK1-5"),
 	NextOfKinRelationshipIsDeprecated(IssueObject.NEXT_OF_KIN, IssueType.DEPRECATED, VxuField.NEXT_OF_KIN_RELATIONSHIP, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0085, "NK1-3"),
 	NextOfKinRelationshipIsIgnored(IssueObject.NEXT_OF_KIN, IssueType.IGNORED, VxuField.NEXT_OF_KIN_RELATIONSHIP, "", SeverityLevel.INFO, "102", null, ErrorCode.MQE0086, "NK1-3"),
 	NextOfKinRelationshipIsInvalid(IssueObject.NEXT_OF_KIN, IssueType.INVALID, VxuField.NEXT_OF_KIN_RELATIONSHIP, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0087, "NK1-3"),
@@ -144,6 +149,7 @@ public enum Detection {
 	PatientBirthDateIsVeryLongAgo(IssueObject.PATIENT, IssueType.VERY_LONG_AGO, VxuField.PATIENT_BIRTH_DATE, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0120, "PID-7"),
 	PatientBirthIndicatorIsInvalid(IssueObject.PATIENT, IssueType.INVALID, VxuField.PATIENT_BIRTH_INDICATOR, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0121, "PID-24"),
 	PatientBirthIndicatorIsMissing(IssueObject.PATIENT, IssueType.MISSING, VxuField.PATIENT_BIRTH_INDICATOR, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.MQE0122, "PID-24"),
+	PatientBirthOrderIsUnknown(IssueObject.PATIENT, IssueType.UNRECOGNIZED, VxuField.PATIENT_BIRTH_ORDER, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0557, "PID-25"),
 	PatientBirthOrderIsInvalid(IssueObject.PATIENT, IssueType.INVALID, VxuField.PATIENT_BIRTH_ORDER, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0123, "PID-25"),
 	PatientBirthOrderIsMissing(IssueObject.PATIENT, IssueType.MISSING, VxuField.PATIENT_BIRTH_ORDER, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.MQE0124, "PID-25"),
 	PatientBirthOrderIsMissingAndMultipleBirthIndicated(IssueObject.PATIENT, IssueType.MISSING_AND_MULTIPLE_BIRTH_INDICATED, VxuField.PATIENT_BIRTH_ORDER, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0125, "PID-25"),
@@ -190,9 +196,9 @@ public enum Detection {
 	PatientImmunizationRegistryStatusIsUnrecognized(IssueObject.PATIENT, IssueType.UNRECOGNIZED, VxuField.PATIENT_IMMUNIZATION_REGISTRY_STATUS, "", SeverityLevel.WARN, "103", null, ErrorCode.MQE0164, "PD1-16"),
 	PatientMedicaidNumberIsInvalid(IssueObject.PATIENT, IssueType.INVALID, VxuField.PATIENT_MEDICAID_NUMBER, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0167, "PID-3"),
 	PatientMedicaidNumberIsMissing(IssueObject.PATIENT, IssueType.MISSING, VxuField.PATIENT_MEDICAID_NUMBER, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.MQE0168, "PID-3"),
-	PatientMiddleNameIsMissing(IssueObject.PATIENT, IssueType.MISSING, VxuField.PATIENT_MIDDLE_NAME, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.MQE0169, "PID-5.3"),
-	PatientMiddleNameIsInvalid(IssueObject.PATIENT, IssueType.INVALID, VxuField.PATIENT_MIDDLE_NAME,"", SeverityLevel.ACCEPT, "101", null, ErrorCode.MQE0546, "PID-5.3"),
-	PatientMiddleNameMayBeInitial(IssueObject.PATIENT, IssueType.MAY_BE_AN_INITIAL, VxuField.PATIENT_MIDDLE_NAME, "", SeverityLevel.ACCEPT, "102", null, ErrorCode.MQE0170, "PID-5.3"),
+	PatientMiddleNameIsMissing(IssueObject.PATIENT, IssueType.MISSING, VxuField.PATIENT_NAME_MIDDLE, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.MQE0169, "PID-5.3"),
+	PatientMiddleNameIsInvalid(IssueObject.PATIENT, IssueType.INVALID, VxuField.PATIENT_NAME_MIDDLE,"", SeverityLevel.ACCEPT, "101", null, ErrorCode.MQE0546, "PID-5.3"),
+	PatientMiddleNameMayBeInitial(IssueObject.PATIENT, IssueType.MAY_BE_AN_INITIAL, VxuField.PATIENT_NAME_MIDDLE, "", SeverityLevel.ACCEPT, "102", null, ErrorCode.MQE0170, "PID-5.3"),
 	//Some of these weren't represented in the XLS file. 
 	PatientMotherSMaidenNameIsMissing(IssueObject.PATIENT, IssueType.MISSING, VxuField.PATIENT_MOTHERS_MAIDEN_NAME, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.MQE0171, "PID-6.1"),
 	PatientMothersMaidenNameIsInvalid(IssueObject.PATIENT, IssueType.INVALID, VxuField.PATIENT_MOTHERS_MAIDEN_NAME, "", SeverityLevel.ACCEPT, "101", null, ErrorCode.MQE0547, "PID-6.1"), 
@@ -208,8 +214,8 @@ public enum Detection {
 	PatientNameFirstMayIncludeMiddleInitial(IssueObject.PATIENT, IssueType.MAY_INCLUDE_MIDDLE_INITIAL, VxuField.PATIENT_NAME_FIRST, "", SeverityLevel.ACCEPT, "102", null, ErrorCode.MQE0142, "PID-5.2"),
 	PatientNameLastIsInvalid(IssueObject.PATIENT, IssueType.INVALID, VxuField.PATIENT_NAME_LAST, "", SeverityLevel.ERROR, "102", null, ErrorCode.MQE0165, "PID-5.1"),
 	PatientNameLastIsMissing(IssueObject.PATIENT, IssueType.MISSING, VxuField.PATIENT_NAME_LAST, "", SeverityLevel.ERROR, "101", null, ErrorCode.MQE0166, "PID-5.1"),
-	PatientNameMiddleIsInvalid(IssueObject.PATIENT, IssueType.INVALID, VxuField.PATIENT_MIDDLE_NAME, "", SeverityLevel.ERROR, "", null, ErrorCode.MQE0528, ""),
-	PatientNameMiddleIsMissing(IssueObject.PATIENT, IssueType.MISSING, VxuField.PATIENT_MIDDLE_NAME, "", SeverityLevel.ERROR, "", null, ErrorCode.MQE0529, ""),
+	PatientNameMiddleIsInvalid(IssueObject.PATIENT, IssueType.INVALID, VxuField.PATIENT_NAME_MIDDLE, "", SeverityLevel.ERROR, "", null, ErrorCode.MQE0528, ""),
+	PatientNameMiddleIsMissing(IssueObject.PATIENT, IssueType.MISSING, VxuField.PATIENT_NAME_MIDDLE, "", SeverityLevel.ERROR, "", null, ErrorCode.MQE0529, ""),
 	PatientNameTypeCodeIsDeprecated(IssueObject.PATIENT, IssueType.DEPRECATED, VxuField.PATIENT_NAME_TYPE_CODE, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0405, "PID-5.7"),
 	PatientNameTypeCodeIsIgnored(IssueObject.PATIENT, IssueType.IGNORED, VxuField.PATIENT_NAME_TYPE_CODE, "", SeverityLevel.INFO, "102", null, ErrorCode.MQE0406, "PID-5.7"),
 	PatientNameTypeCodeIsInvalid(IssueObject.PATIENT, IssueType.INVALID, VxuField.PATIENT_NAME_TYPE_CODE, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0407, "PID-5.7"),
@@ -790,28 +796,44 @@ public enum Detection {
     return targetObject;
   }
 
-  public ValidationIssue build(String value) {
-	  	ValidationIssue found = build();
-	  	found.setValueReceived(value);
+	public ValidationIssue build(String value, MetaFieldInfoData meta) {
+		ValidationIssue found = build(meta);
+		found.setValueReceived(value);
 		return found;
+	}
+
+  public ValidationIssue build(MetaFieldInfoData meta) {
+	  Hl7Location loc = null;
+	  if (meta != null) {
+			MetaFieldInfo mfi = meta.getMetaFieldInfo(this.fieldRef);
+			if (mfi != null) {
+				loc = mfi.getHl7Location();
+			}
+		}
+		return build(loc);
   }
-  
-  public ValidationIssue build() {
+
+	public ValidationIssue build(Hl7Location loc) {
 		ValidationIssue found = new ValidationIssue();
+		if (loc != null) {
+			found.getHl7LocationList().add(loc);
+		}
 		found.setDetection(this);
 		return found;
-  }
-  
-  public static ValidationIssue buildIssue(VxuField field, IssueType type) {
-	  Detection issue = get(field, type);
-	  return issue.build();
-  }
-  
-  public static ValidationIssue buildIssue(VxuField field, IssueType type, String value) {
-	  Detection issue = get(field, type);
-	  return issue.build(value);
-  }
-  
+	}
+
+
+//
+//  public static ValidationIssue buildIssue(VxuField field, IssueType type, MetaFieldInfoData meta) {
+//	  Detection issue = get(field, type);
+//	  return issue.build(meta);
+//  }
+//
+//  public static ValidationIssue buildIssue(VxuField field, IssueType type, String value, MetaFieldInfoData meta) {
+//	  Detection issue = get(field, type);
+//	  return issue.build(value, meta);
+//  }
+//
   public static Detection getByDqaErrorCode(ErrorCode code) {
 	  return errorCodeAttributeMap.get(code);
   }

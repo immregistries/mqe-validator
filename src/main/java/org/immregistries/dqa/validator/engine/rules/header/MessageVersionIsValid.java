@@ -1,17 +1,17 @@
 package org.immregistries.dqa.validator.engine.rules.header;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.rules.patient.PatientIsUnderage;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MessageVersionIsValid extends ValidationRule<DqaMessageHeader> {
 
@@ -25,6 +25,11 @@ public class MessageVersionIsValid extends ValidationRule<DqaMessageHeader> {
 		};
 	}
 
+	public MessageVersionIsValid() {
+		this.ruleDetections.addAll(Arrays.asList(Detection.MessageVersionIsMissing,
+				Detection.MessageVersionIsUnrecognized));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaMessageHeader target,
 			DqaMessageReceived mr) {
@@ -34,8 +39,8 @@ public class MessageVersionIsValid extends ValidationRule<DqaMessageHeader> {
 		
 		String version = target.getMessageVersion();
 		
-		if (common.isEmpty(version)) {
-			issues.add(Detection.MessageVersionIsMissing.build());
+		if (this.common.isEmpty(version)) {
+			issues.add(Detection.MessageVersionIsMissing.build(target));
 		} else {
 			//We want to evaluate the starting three characters...  2.5.1 should evaluate as 2.5, etc. 
 			String evalVersion = version;
@@ -50,7 +55,7 @@ public class MessageVersionIsValid extends ValidationRule<DqaMessageHeader> {
 					passed = true;
 					break;
 				default:
-					issues.add(Detection.MessageVersionIsUnrecognized.build(version));
+					issues.add(Detection.MessageVersionIsUnrecognized.build((version), target));
 			}
 		}
 

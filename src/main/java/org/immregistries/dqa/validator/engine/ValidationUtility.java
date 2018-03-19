@@ -1,16 +1,14 @@
 package org.immregistries.dqa.validator.engine;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.common.CommonRules;
-import org.immregistries.dqa.validator.issue.VxuField;
-import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.slf4j.Logger;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @SuppressWarnings("rawtypes")
 public enum ValidationUtility {
@@ -43,20 +41,7 @@ public enum ValidationUtility {
 		
 		return true;
 	}
-	
-	public boolean addToListIfEmpty(String value, Detection issue, List<ValidationIssue> toList) {
-		if (this.common.isEmpty(value)) {
-			toList.add(issue.build(value));
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean addToListIfEmpty(String value, VxuField field, List<ValidationIssue> toList) {
-		Detection issue = Detection.get(field, IssueType.MISSING);
-		return addToListIfEmpty(value, issue, toList);
-	}
-	
+
 	public List<Class<? extends ValidationRule>> makeRuleList(Class<? extends ValidationRule>... classes) {
 		return Arrays.asList(classes);
 	};

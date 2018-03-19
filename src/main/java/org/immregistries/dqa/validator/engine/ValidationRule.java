@@ -10,6 +10,7 @@ import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,16 +28,17 @@ public abstract class ValidationRule<T> {
 	 * because I know I'll have tons of rule objects floating around
 	 * and I wanted to limit the number of util objects.
 	 */
+	protected final List<Detection> ruleDetections = new ArrayList<>();
 	protected final ValidationUtility util = ValidationUtility.INSTANCE;
 	protected final CommonRules common = CommonRules.INSTANCE;
 	protected final CodeHandler codr = CodeHandler.INSTANCE;
 	protected final DateUtility datr = DateUtility.INSTANCE;
 	protected final CodeRepository repo = CodeRepository.INSTANCE;
-	
+
 	protected Class[] getDependencies() {
 		return new Class[] {};
 	}
-	
+
 	/**
 	 * This is the primary method to call for this class from a validation driver. 
 	 * @return
@@ -46,7 +48,8 @@ public abstract class ValidationRule<T> {
 			 return executeRule(target, m);
 		} catch (Exception e) {
 			LOGGER.error("Error running rule - " + this.getClass() + " problem: " + e.getMessage(), e);
-			ValidationIssue[] issues = new ValidationIssue[]{Detection.GeneralProcessingException.build(this.getClass().getName())};
+			ValidationIssue[] issues = new ValidationIssue[]{
+				Detection.GeneralProcessingException.build(this.getClass().getName(), null)};
 			return buildResults(Arrays.asList(issues), false);
 		}
 	}
@@ -72,6 +75,18 @@ public abstract class ValidationRule<T> {
 		result.setRuleClass(this.getClass());
 		result.setIssues(issues);
 		result.setRulePassed(passed);
+		return result;
+	}
+
+	/**
+	 * This builds a results object and determines if issues
+	 * represent a failure or a pass.
+	 * @param issues
+	 * @return
+	 */
+	protected ValidationRuleResult buildResults(List<ValidationIssue> issues, boolean passed, List<Detection> possibleDetections) {
+		ValidationRuleResult result = buildResults(issues, passed);
+		result.getPossible().addAll(possibleDetections);
 		return result;
 	}
 	

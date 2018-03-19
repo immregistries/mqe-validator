@@ -1,19 +1,27 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.VxuField;
-import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.Detection;
+import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
+import org.immregistries.dqa.vxu.VxuField;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class PatientSsnIsValid extends ValidationRule<DqaPatient> {
 
+	public PatientSsnIsValid() {
+		ruleDetections.addAll(Arrays.asList(
+				Detection.get(VxuField.PATIENT_SSN,  IssueType.MISSING),
+				Detection.get(VxuField.PATIENT_SSN,  IssueType.INVALID)
+		));
+	}
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
@@ -21,11 +29,11 @@ public class PatientSsnIsValid extends ValidationRule<DqaPatient> {
 		
 		String ssn = target.getIdSsnNumber();
 		
-		if (common.isEmpty(ssn)) {
-			issues.add(Detection.get(VxuField.PATIENT_SSN,  IssueType.MISSING).build());
+		if (this.common.isEmpty(ssn)) {
+			issues.add(Detection.get(VxuField.PATIENT_SSN,  IssueType.MISSING).build(target));
 			passed = false;
 		} else if (!isSsnPattern(ssn)) {
-			issues.add(Detection.get(VxuField.PATIENT_SSN,  IssueType.INVALID).build());
+			issues.add(Detection.get(VxuField.PATIENT_SSN,  IssueType.INVALID).build(target));
 			passed = false;
 		}
 		

@@ -1,6 +1,5 @@
 package org.immregistries.dqa.validator.engine.rules.nextofkin;
 
-import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.Detection;
@@ -9,10 +8,20 @@ import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NextOfKinNameIsValid extends ValidationRule<DqaNextOfKin> {
 
+	public NextOfKinNameIsValid() {
+		this.ruleDetections.addAll(Arrays.asList
+				(
+						Detection.NextOfKinNameIsMissing,
+						Detection.NextOfKinNameFirstIsMissing,
+						Detection.NextOfKinNameLastIsMissing
+				));
+	}
+	
     @Override
     protected ValidationRuleResult executeRule(DqaNextOfKin target, DqaMessageReceived m) {
 
@@ -22,15 +31,15 @@ public class NextOfKinNameIsValid extends ValidationRule<DqaNextOfKin> {
         String first = target.getNameFirst();
         String last = target.getNameLast();
 
-        if (StringUtils.isEmpty(first) && StringUtils.isEmpty(last)) {
-            issues.add(Detection.NextOfKinNameIsMissing.build(first + " " + last));
+        if (this.common.isEmpty(first) && this.common.isEmpty(last)) {
+            issues.add(Detection.NextOfKinNameIsMissing.build(first + " " + last, target));
         } else {
-            if (StringUtils.isEmpty(first)) {
-                issues.add(Detection.NextOfKinNameFirstIsMissing.build(first));
+            if (this.common.isEmpty(first)) {
+                issues.add(Detection.NextOfKinNameFirstIsMissing.build((first), target));
             }
 
-            if (StringUtils.isEmpty(last)) {
-                issues.add(Detection.NextOfKinNameLastIsMissing.build(last));
+            if (this.common.isEmpty(last)) {
+                issues.add(Detection.NextOfKinNameLastIsMissing.build((last), target));
             }
         }
 

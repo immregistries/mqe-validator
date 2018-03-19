@@ -1,8 +1,5 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.Detection;
@@ -10,11 +7,24 @@ import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class VaccinationAdministeredRequiredFieldsArePresent extends ValidationRule<DqaVaccination> {
 
 	@Override
 	protected final Class[] getDependencies() {
 		return new Class[] {VaccinationIsAdministered.class};
+	}
+	
+	public VaccinationAdministeredRequiredFieldsArePresent() {
+		ruleDetections.addAll(Arrays.asList(
+				Detection.VaccinationFacilityNameIsMissing,
+				Detection.VaccinationLotExpirationDateIsMissing,
+				Detection.VaccinationLotNumberIsMissing,
+				Detection.VaccinationLotNumberIsInvalid
+		));
 	}
 	
 	@Override
@@ -29,21 +39,21 @@ public class VaccinationAdministeredRequiredFieldsArePresent extends ValidationR
 	    // indicate that the vaccination is historical or administered.
 	    // By default we assume that the vaccination was completed.
 
-	      if (common.isEmpty(target.getFacilityName())) {
-	    	  issues.add(Detection.VaccinationFacilityNameIsMissing.build());
+	      if (this.common.isEmpty(target.getFacilityName())) {
+	    	  issues.add(Detection.VaccinationFacilityNameIsMissing.build(target));
 	      }
 	    	  
 	      if (target.getExpirationDate() == null) {
-	    	  issues.add(Detection.VaccinationLotExpirationDateIsMissing.build());
+	    	  issues.add(Detection.VaccinationLotExpirationDateIsMissing.build(target));
 	      }
 	      
-	      if (common.isEmpty(target.getLotNumber())) {
-	    	  issues.add(Detection.VaccinationLotNumberIsMissing.build());
+	      if (this.common.isEmpty(target.getLotNumber())) {
+	    	  issues.add(Detection.VaccinationLotNumberIsMissing.build(target));
 	      } else {
 	        String lotNumber = target.getLotNumber();
 	        if (lotNumber.startsWith("LOT") || lotNumber.length() <= 4)
 	        {
-	          issues.add(Detection.VaccinationLotNumberIsInvalid.build());
+	          issues.add(Detection.VaccinationLotNumberIsInvalid.build(target));
 	        }
 	      }
 	    

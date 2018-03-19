@@ -1,14 +1,10 @@
 package org.immregistries.dqa.validator.engine;
 
+import org.immregistries.dqa.validator.engine.rules.ValidationRuleEntityLists;
+import org.immregistries.dqa.vxu.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.immregistries.dqa.validator.engine.rules.ValidationRuleEntityLists;
-import org.immregistries.dqa.vxu.DqaMessageHeader;
-import org.immregistries.dqa.vxu.DqaMessageReceived;
-import org.immregistries.dqa.vxu.DqaNextOfKin;
-import org.immregistries.dqa.vxu.DqaPatient;
-import org.immregistries.dqa.vxu.DqaVaccination;
 
 public enum RulePairBuilder {
 	INSTANCE;

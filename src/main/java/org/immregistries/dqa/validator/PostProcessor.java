@@ -1,11 +1,11 @@
 package org.immregistries.dqa.validator;
 
-import java.util.List;
-import java.util.Map;
-
 import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.validator.issue.Detection;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * The intention of this class is to operate on the list of Issues

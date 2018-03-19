@@ -1,13 +1,13 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class VaccinationIsAdministeredOrHistorical extends
 		ValidationRule<DqaVaccination> {
@@ -19,7 +19,7 @@ public class VaccinationIsAdministeredOrHistorical extends
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 		boolean passed = true;
 
-		passed = (target.getCompletion() != null && (target.getCompletion().isEmpty() 
+		passed = (target.getCompletion() != null && (target.getCompletion().isEmpty()
 				  || target.isCompletionCompletedOrPartiallyAdministered())
 			  && (target.getAdminCvxCode() != null 
 		  	  	  && !target.getAdminCvxCode().equals("998")));

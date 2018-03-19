@@ -8,7 +8,7 @@ import org.immregistries.dqa.hl7util.ReportableSource;
 import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.hl7util.builder.HL7Util;
 import org.immregistries.dqa.hl7util.model.CodedWithExceptions;
-import org.immregistries.dqa.hl7util.model.ErrorLocation;
+import org.immregistries.dqa.hl7util.model.Hl7Location;
 import org.immregistries.dqa.validator.issue.Detection;
 
 public class DetectionExporter {
@@ -27,13 +27,13 @@ public class DetectionExporter {
         }
 
         @Override
-        public List<ErrorLocation> getHl7LocationList() {
-          List<ErrorLocation> errorLocationList = new ArrayList<>();
+        public List<Hl7Location> getHl7LocationList() {
+          List<Hl7Location> hl7LocationList = new ArrayList<>();
           for (String loc : ma.getHl7Locations()) {
-            ErrorLocation el = new ErrorLocation(loc);
-            errorLocationList.add(el);
+            Hl7Location el = new Hl7Location(loc);
+            hl7LocationList.add(el);
           }
-          return errorLocationList;
+          return hl7LocationList;
         }
 
         @Override

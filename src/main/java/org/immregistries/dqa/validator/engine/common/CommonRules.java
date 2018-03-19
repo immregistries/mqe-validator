@@ -1,12 +1,12 @@
 package org.immregistries.dqa.validator.engine.common;
 
-import java.util.Date;
-
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.vxu.hl7.Name;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
+
+import java.util.Date;
 
 public enum CommonRules {
 	INSTANCE;
@@ -14,9 +14,16 @@ public enum CommonRules {
 	private static final DateUtility datr = DateUtility.INSTANCE;
 	private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(CommonRules.class);
 
-	
+	/**
+	 * isEmpty(null)      = true
+	 * isEmpty("")        = true
+	 * isEmpty(" ")       = true
+	 * isEmpty("bob")     = false
+	 * isEmpty("  bob  ") = false
+	 * @param value
+	 * @return
+	 */
 	public boolean isEmpty(String value) {
-		//LOGGER.debug("Evaluating: evaluateIsMissing for value: [" + value + "]");
 		return StringUtils.isBlank(value);
 	}
 	

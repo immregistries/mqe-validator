@@ -1,6 +1,6 @@
 package org.immregistries.dqa.validator.engine.common;
 
-import org.immregistries.dqa.validator.issue.VxuField;
+import org.immregistries.dqa.vxu.VxuField;
 
 public class AddressFields {
 

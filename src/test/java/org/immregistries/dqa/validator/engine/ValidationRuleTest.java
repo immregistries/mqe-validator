@@ -181,10 +181,12 @@ public class ValidationRuleTest {
 			}
 		}	
 		System.out.println("Issues.size(): " + issues.size());
+
 		for (ValidationIssue issue : issues) {
 			System.out.println("ISSUE: " + issue.getIssue());
 		}
-		assertEquals("should be some issues", 16, issues.size());
+
+		assertEquals("should be some issues", 15, issues.size());
 	}
 	
 	@Test

@@ -1,10 +1,10 @@
 package org.immregistries.dqa.validator;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This will contain the results of this process.

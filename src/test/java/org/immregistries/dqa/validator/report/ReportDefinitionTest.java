@@ -2,7 +2,7 @@ package org.immregistries.dqa.validator.report;
 
 import java.util.List;
 
-import org.immregistries.dqa.validator.issue.VxuField;
+import org.immregistries.dqa.vxu.VxuField;
 import org.immregistries.dqa.validator.issue.IssueObject;
 import org.junit.Before;
 import org.junit.Test;

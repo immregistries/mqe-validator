@@ -1,15 +1,17 @@
 package org.immregistries.dqa.validator.engine.common;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
+import org.immregistries.dqa.hl7util.model.Hl7Location;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.VxuField;
-import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.Detection;
+import org.immregistries.dqa.validator.issue.IssueType;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaAddress;
+import org.immregistries.dqa.vxu.MetaFieldInfoData;
+import org.immregistries.dqa.vxu.VxuField;
+
+import java.util.ArrayList;
+import java.util.List;
  
 /**
  * This is to evaluate the basic expectations for an address in the system
@@ -22,26 +24,25 @@ public enum AddressValidator {
 	INSTANCE;
 	private CommonRules common = CommonRules.INSTANCE;
 	
-	public ValidationRuleResult getAddressIssuesFor(AddressFields fields, DqaAddress a) {
+	public ValidationRuleResult getAddressIssuesFor(AddressFields fields, DqaAddress a, MetaFieldInfoData meta) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
 		boolean passed = true;
 		
 		if (a == null) {
-			issues.add(Detection.buildIssue(fields.getAddress(),
-					IssueType.MISSING));
+			issues.add(makeIssue(fields.getAddress(), IssueType.MISSING, meta));
 			passed = false;
 		} else {
-			addStreetIssues(a.getStreet2(), fields.getStreet2Field(), issues);
+			addStreetIssues(a.getStreet2(), fields.getStreet2Field(), issues, meta);
 			//Don't care about street 2 issues for "passed".
 			int baseline = issues.size();
 
 			//Do care about the rest of the issues for the "passed" designation. 
-			addStreetIssues(a.getStreet(), fields.getStreetField(), issues);
-			addCityIssues(a.getCity(), fields.getCityField(), issues);
-			addStateIssues(a.getStateCode(), fields.getStateField(), issues);
-			addZipIssues(a.getZip(), fields.getZipField(), issues);
-			addCountyIssues(a.getCountyParishCode(), fields.getCountyField(),issues);
-			addCountryIssues(a.getCountryCode(), fields.getCountryField(),issues);
+			addStreetIssues(a.getStreet(), fields.getStreetField(), issues, meta);
+			addCityIssues(a.getCity(), fields.getCityField(), issues, meta);
+			addStateIssues(a.getStateCode(), fields.getStateField(), issues, meta);
+			addZipIssues(a.getZip(), fields.getZipField(), issues, meta);
+			addCountyIssues(a.getCountyParishCode(), fields.getCountyField(),issues, meta);
+			addCountryIssues(a.getCountryCode(), fields.getCountryField(),issues, meta);
 
 			if (issues.size() > baseline) {
 				passed = false;
@@ -54,65 +55,76 @@ public enum AddressValidator {
 		return result;
 	}
 
-	protected void addStreetIssues(String street, VxuField field, List<ValidationIssue> issues) {
+	protected void addStreetIssues(String street, VxuField field, List<ValidationIssue> issues, MetaFieldInfoData meta) {
 		if (common.isEmpty(street)) {
-			issues.add(Detection.buildIssue(field, IssueType.MISSING));
+			issues.add(makeIssue(field, IssueType.MISSING, meta));
 		} else {
 			if (!validCity(street)) {
-				issues.add(Detection.buildIssue(field, IssueType.INVALID, street));
+				issues.add(makeIssue(field, IssueType.INVALID, street, meta));
 			}
 		}
 	}
 	
-	protected void addCityIssues(String city, VxuField field, List<ValidationIssue> issues) {
+	protected void addCityIssues(String city, VxuField field, List<ValidationIssue> issues, MetaFieldInfoData meta) {
 		if (common.isEmpty(city)) {
-			issues.add(Detection.buildIssue(field, IssueType.MISSING));
+			issues.add(makeIssue(field, IssueType.MISSING, meta));
+			issues.add(makeIssue(field, IssueType.MISSING, meta));
 		} else {
 			if (!validCity(city)) {
-				issues.add(Detection.buildIssue(field, IssueType.INVALID, city));
+			    issues.add(makeIssue(field, IssueType.INVALID, city, meta));
 			}
 		}
 	}
+
+	protected ValidationIssue makeIssue(VxuField field, IssueType type, String value, MetaFieldInfoData meta) {
+      Detection detection = Detection.get(field, type);
+      return detection.build(value, meta);
+  }
+
+    protected ValidationIssue makeIssue(VxuField field, IssueType type, MetaFieldInfoData meta) {
+        Detection detection = Detection.get(field, type);
+        return detection.build(meta);
+    }
 	
-	protected void addStateIssues(String state, VxuField field, List<ValidationIssue> issues) {
+	protected void addStateIssues(String state, VxuField field, List<ValidationIssue> issues, MetaFieldInfoData meta) {
 		if (common.isEmpty(state)) {
-			issues.add(Detection.buildIssue(field, IssueType.MISSING));
+			issues.add(makeIssue(field, IssueType.MISSING, meta));
 		} else {
 			if (!validState(state)) {
-				issues.add(Detection.buildIssue(field, IssueType.INVALID, state));
+				issues.add(makeIssue(field, IssueType.INVALID, state, meta));
 			}
 		}
 	}
 	
-	protected void addZipIssues(String zip, VxuField field, List<ValidationIssue> issues) {
+	protected void addZipIssues(String zip, VxuField field, List<ValidationIssue> issues, MetaFieldInfoData meta) {
 		if (common.isEmpty(zip)) {
-			issues.add(Detection.buildIssue(field,  IssueType.MISSING));
+			issues.add(makeIssue(field,  IssueType.MISSING, meta));
 		} else {
 			if (!isValidZip(zip)) {
-				issues.add(Detection.buildIssue(field, IssueType.INVALID, zip));
+				issues.add(makeIssue(field, IssueType.INVALID, zip, meta));
 			}
 		}
 	}
 	
-	protected void addCountyIssues(String county, VxuField field, List<ValidationIssue> issues) {
+	protected void addCountyIssues(String county, VxuField field, List<ValidationIssue> issues, MetaFieldInfoData meta) {
 		if (common.isEmpty(county)) {
-			issues.add(Detection.buildIssue(field,  IssueType.MISSING));
+			issues.add(makeIssue(field,  IssueType.MISSING, meta));
 		} 
 	}
 	
-	protected void addCountryIssues(String country, VxuField field, List<ValidationIssue> issues) {
+	protected void addCountryIssues(String country, VxuField field, List<ValidationIssue> issues, MetaFieldInfoData meta) {
 		if (common.isEmpty(country)) {
-			issues.add(Detection.buildIssue(field,  IssueType.MISSING));
+			issues.add(makeIssue(field,  IssueType.MISSING, meta));
 		} else {
 			if (!validCountryCode(country)) {
-				issues.add(Detection.buildIssue(field, IssueType.INVALID, country));
+				issues.add(makeIssue(field, IssueType.INVALID, country, meta));
 			}
 		}
 	}
 	
 	protected boolean validCity(String city) {
 	      return 
-	     	   !common.isEmpty(city) 
+	     	   StringUtils.isNotBlank(city) 
 	    	&& !city.equalsIgnoreCase("ANYTOWN") 
 	    	&& city.length() > 1
 	    	;
@@ -120,7 +132,7 @@ public enum AddressValidator {
 	
 	protected boolean validState(String state) {
 	      return 
-	     	   !common.isEmpty(state) 
+	     	   StringUtils.isNotBlank(state) 
 	    	&& state.length() > 1
 	    	;
 	}

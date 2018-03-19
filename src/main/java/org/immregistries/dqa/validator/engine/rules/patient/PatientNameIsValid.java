@@ -1,9 +1,5 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.codes.KnowNameList;
@@ -14,9 +10,30 @@ import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class PatientNameIsValid extends ValidationRule<DqaPatient> {
 
 	private KnowNameList listr = KnowNameList.INSTANCE;
+	
+	public PatientNameIsValid() {
+		ruleDetections.addAll(
+				Arrays.asList(
+						Detection.PatientNameFirstIsMissing,
+						Detection.PatientNameFirstIsInvalid,
+						Detection.PatientNameFirstMayIncludeMiddleInitial,
+						Detection.PatientNameLastIsMissing,
+						Detection.PatientNameLastIsInvalid,
+						Detection.PatientNameMayBeTemporaryNewbornName,
+						Detection.PatientNameMayBeTestName,
+						Detection.PatientNameHasJunkName
+				)
+		);
+	}
+	
+	
 	@Override
 	protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
 		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
@@ -29,57 +46,57 @@ public class PatientNameIsValid extends ValidationRule<DqaPatient> {
 		List<KnownName> invalidNames = KnowNameList.INSTANCE.getKnownNames(NameType.INVALID_NAME);
 		
 //		First Name Issues:
-		if (common.isEmpty(first)) {
-			issues.add(Detection.PatientNameFirstIsMissing.build(first));
+		if (this.common.isEmpty(first)) {
+			issues.add(Detection.PatientNameFirstIsMissing.build(first, target));
 			passed = false;
 		} else {
 			if (listr.firstNameOnlyMatch(NameType.INVALID_NAME, first)) {
-				issues.add(Detection.PatientNameFirstIsInvalid.build(first));
+				issues.add(Detection.PatientNameFirstIsInvalid.build(first, target));
 				passed = false;
 			}
 
 			if (!common.isValidNameChars(first)) {
 				issues.add(Detection.PatientNameFirstIsInvalid
-						.build(first));
+						.build(first, target));
 				passed = false;
 			}
 
 			if (first.length() > 3
-					&& StringUtils.isEmpty(target.getNameMiddle())) {
+					&& this.common.isEmpty(target.getNameMiddle())) {
 				int pos = first.lastIndexOf(' ');
 				if (pos > -1 && pos == first.length() - 2) {
 					issues.add(Detection.PatientNameFirstMayIncludeMiddleInitial
-							.build(first));
+							.build(first, target));
 				}
 			}
 		}
 		
 //		Last Name Issues:
-		if (common.isEmpty(last)) {
-			issues.add(Detection.PatientNameLastIsMissing.build(last));
+		if (this.common.isEmpty(last)) {
+			issues.add(Detection.PatientNameLastIsMissing.build(last, target));
 			passed = false;
 		} else {
 			if (listr.lastNameOnlyMatch(NameType.INVALID_NAME, last)) {
-					issues.add(Detection.PatientNameLastIsInvalid.build());
+					issues.add(Detection.PatientNameLastIsInvalid.build(target));
 					passed = false;
 			}
 			
 			if (!common.isValidNameChars(last)) {
-				issues.add(Detection.PatientNameLastIsInvalid.build());
+				issues.add(Detection.PatientNameLastIsInvalid.build(target));
 			}
 				
 		}
 		
 		if (listr.matches(NameType.UNNAMED_NEWBORN, first, last, middle)) {
-			issues.add(Detection.PatientNameMayBeTemporaryNewbornName.build("first[" + first + "] middle[" + middle + "] last[" + last));
+			issues.add(Detection.PatientNameMayBeTemporaryNewbornName.build("first[" + first + "] middle[" + middle + "] last[" + last, target));
 		}
 
 		if (listr.matches(NameType.TEST_PATIENT, first, last, middle)) {
-			issues.add(Detection.PatientNameMayBeTestName.build());
+			issues.add(Detection.PatientNameMayBeTestName.build(target));
 	    }
 
 		if (listr.matches(NameType.JUNK_NAME, first, last, middle)) {
-			issues.add(Detection.PatientNameHasJunkName.build());
+			issues.add(Detection.PatientNameHasJunkName.build(target));
 	    }
 		
 //		 ALL OF THIS SHOULD BE IN THE EXTRACT/TRANSFORM LAYER:

@@ -11,6 +11,7 @@ import org.immregistries.dqa.vxu.DqaNextOfKin;
 import org.immregistries.dqa.vxu.code.NokRelationship;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationRule<DqaNextOfKin> {
@@ -21,6 +22,13 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
         return new Class[]{PatientIsUnderage.class};
     }
 
+	public NextOfKinRelationshipIsValidForUnderagedPatient() {
+		this.ruleDetections.addAll(Arrays.asList(Detection.NextOfKinRelationshipIsUnexpected,
+				Detection.NextOfKinRelationshipIsUnrecognized,
+				Detection.NextOfKinRelationshipIsNotResponsibleParty,
+				Detection.NextOfKinRelationshipIsMissing));
+	}
+	
     @Override
     protected ValidationRuleResult executeRule(DqaNextOfKin target, DqaMessageReceived m) {
         List<ValidationIssue> issues = new ArrayList<>();
@@ -34,15 +42,15 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
                     // In most situations, an underage patient would not have a child, so this is unexpected (and
                     // probably indicates the relationship was entered backwards). However, it's not impossible, so
                     // it's just a warning.
-                    issues.add(Detection.NextOfKinRelationshipIsUnexpected.build(relationship));
+                    issues.add(Detection.NextOfKinRelationshipIsUnexpected.build((relationship), target));
                 } else if (NokRelationship.get(relationship) == NokRelationship.UNKNOWN) {
-                    issues.add(Detection.NextOfKinRelationshipIsUnrecognized.build(relationship));
+                    issues.add(Detection.NextOfKinRelationshipIsUnrecognized.build((relationship), target));
                 } else {
-                    issues.add(Detection.NextOfKinRelationshipIsNotResponsibleParty.build(relationship));
+                    issues.add(Detection.NextOfKinRelationshipIsNotResponsibleParty.build((relationship), target));
                 }
             }
         } else {
-            issues.add(Detection.NextOfKinRelationshipIsMissing.build(relationship));
+            issues.add(Detection.NextOfKinRelationshipIsMissing.build((relationship), target));
         }
 
         passed = issues.size() == 0;

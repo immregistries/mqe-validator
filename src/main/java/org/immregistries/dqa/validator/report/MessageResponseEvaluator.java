@@ -1,17 +1,17 @@
 package org.immregistries.dqa.validator.report;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.rules.nextofkin.NextOfKinIsPresent;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationIsPresent;
-import org.immregistries.dqa.validator.issue.IssueObject;
 import org.immregistries.dqa.validator.issue.Detection;
+import org.immregistries.dqa.validator.issue.IssueObject;
 import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public enum MessageResponseEvaluator {
 	INSTANCE;

@@ -1,8 +1,5 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.Detection;
@@ -11,13 +8,20 @@ import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
 import org.immregistries.dqa.vxu.DqaPatient;
 
-public class MessageHasResponsibleParty extends ValidationRule<DqaPatient> {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class PatientHasResponsibleParty extends ValidationRule<DqaPatient> {
 
 	@Override
 	protected final Class[] getDependencies() {
 		return new Class[] {PatientExists.class};
 	}
 	
+	public PatientHasResponsibleParty() {
+		this.ruleDetections.addAll(Arrays.asList(Detection.PatientGuardianResponsiblePartyIsMissing));
+	}
 	
 	@Override
 	protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived mr) {
@@ -36,7 +40,7 @@ public class MessageHasResponsibleParty extends ValidationRule<DqaPatient> {
 		}
 		
 		if (!hasRespParty) {
-			issues.add(this.util.createIssue(Detection.PatientGuardianResponsiblePartyIsMissing, ""));
+			issues.add(Detection.PatientGuardianResponsiblePartyIsMissing.build(target));
 			passed = false;
 		}
 		

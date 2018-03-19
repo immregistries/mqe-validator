@@ -1,8 +1,5 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.issue.Detection;
@@ -11,11 +8,22 @@ import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 import org.joda.time.DateTime;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class PatientBirthDateIsValid extends ValidationRule<DqaPatient> {
 
 	@Override
 	protected final Class[] getDependencies() {
 		return new Class[] {PatientExists.class};
+	}
+
+	public PatientBirthDateIsValid(){
+		this.ruleDetections.addAll(Arrays.asList(Detection.PatientBirthDateIsMissing,
+				Detection.PatientBirthDateIsInvalid,
+				Detection.PatientBirthDateIsInFuture,
+				Detection.PatientBirthDateIsAfterSubmission));
 	}
 
 	@Override
@@ -26,12 +34,12 @@ public class PatientBirthDateIsValid extends ValidationRule<DqaPatient> {
 		String birthDateString = target.getBirthDateString();
 		
 		if (this.common.isEmpty(birthDateString)) {
-			issues.add(Detection.PatientBirthDateIsMissing.build(birthDateString));
+			issues.add(Detection.PatientBirthDateIsMissing.build((birthDateString), target));
 			passed = false;
 		}
 		
 		if (!this.common.isValidDate(birthDateString)) {
-			issues.add(Detection.PatientBirthDateIsInvalid.build(birthDateString));
+			issues.add(Detection.PatientBirthDateIsInvalid.build((birthDateString), target));
 			passed = false;
 		} else {
 			DateTime birthDate = this.common.parseDateTimeFrom(birthDateString);
@@ -41,14 +49,14 @@ public class PatientBirthDateIsValid extends ValidationRule<DqaPatient> {
 			DateTime receivedDate = new DateTime(message.getReceivedDate());
 			
 			if (receivedDate != null && receivedDate.isBefore(birthDate)) { 
-				issues.add(Detection.PatientBirthDateIsInFuture.build(birthDateString));
+				issues.add(Detection.PatientBirthDateIsInFuture.build((birthDateString), target));
 				passed = false;
 			}
 			
 			DateTime messageDate = new DateTime(message.getMessageHeader().getMessageDate());
 			
 			if (messageDate != null && messageDate.isBefore(birthDate)) {
-				issues.add(Detection.PatientBirthDateIsAfterSubmission.build(birthDateString));
+				issues.add(Detection.PatientBirthDateIsAfterSubmission.build((birthDateString), target));
 				passed = false;
 			}
 

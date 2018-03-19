@@ -4,11 +4,10 @@ import org.immregistries.dqa.hl7util.Reportable;
 import org.immregistries.dqa.hl7util.ReportableSource;
 import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.hl7util.model.CodedWithExceptions;
-import org.immregistries.dqa.hl7util.model.ErrorLocation;
+import org.immregistries.dqa.hl7util.model.Hl7Location;
 import org.immregistries.dqa.validator.issue.Detection;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The intention is to generalize
@@ -19,7 +18,7 @@ public class ScoreReportable implements Reportable {
 
 	private final SeverityLevel severity;
 	private final String reportedMessage;
-	private final ArrayList<ErrorLocation> hl7LocationList;
+	private final ArrayList<Hl7Location> hl7LocationList;
 	private final CodedWithExceptions hl7ErrorCode;
 	private final CodedWithExceptions applicationErrorCode;
 	private int reportedCount;
@@ -28,9 +27,9 @@ public class ScoreReportable implements Reportable {
   	this.reportedCount = count;
   	this.severity = d.getSeverity();
   	this.reportedMessage = d.getDisplayText();
-  	this.hl7LocationList = new ArrayList<ErrorLocation>();
+  	this.hl7LocationList = new ArrayList<Hl7Location>();
 	  for (String loc : d.getHl7Locations()) {
-		  ErrorLocation el = new ErrorLocation(loc);
+		  Hl7Location el = new Hl7Location(loc);
 		  hl7LocationList.add(el);
 	  }
 	  CodedWithExceptions cwe = new CodedWithExceptions();
@@ -59,7 +58,7 @@ public class ScoreReportable implements Reportable {
 		return "";
 	}
 
-	@Override public ArrayList<ErrorLocation> getHl7LocationList() {
+	@Override public ArrayList<Hl7Location> getHl7LocationList() {
 		return hl7LocationList;
 	}
 

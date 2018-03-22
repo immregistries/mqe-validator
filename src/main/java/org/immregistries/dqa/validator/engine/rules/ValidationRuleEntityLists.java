@@ -78,6 +78,7 @@ import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationVisIs
 
 @SuppressWarnings("rawtypes")
 public enum ValidationRuleEntityLists {
+  //@formatter:off
   PATIENT_RULES(
       new PatientAddressIsValid(),
       new PatientAliasIsValid(),
@@ -152,8 +153,8 @@ public enum ValidationRuleEntityLists {
       new MessageVersionIs25()),
   NEXT_OF_KIN_RULES(new NextOfKinIsPresent(),
       new NextOfKinAddressIsSameAsPatientAddress()
-
-  ),;
+  //@formatter:on
+  );
 
   private final List<ValidationRule> rules;
 
@@ -162,6 +163,7 @@ public enum ValidationRuleEntityLists {
   }
 
   public List<ValidationRule> getRules() {
-    return new ArrayList<>(this.rules);//It needs to be a new list.  then if it's modified, the enum's version doesn't change.
+    return new ArrayList<>(this.rules);
+    // It needs to be a new list. then if it's modified, the enum's version doesn't change.
   }
 }

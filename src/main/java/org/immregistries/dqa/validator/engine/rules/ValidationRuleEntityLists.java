@@ -151,7 +151,8 @@ public enum ValidationRuleEntityLists {
       new MessageHeaderDateIsExpectedFormat(),
       new MessageVersionIsValid(),
       new MessageVersionIs25()),
-  NEXT_OF_KIN_RULES(new NextOfKinIsPresent(),
+  NEXT_OF_KIN_RULES(
+      new NextOfKinIsPresent(),
       new NextOfKinAddressIsSameAsPatientAddress()
   //@formatter:on
   );

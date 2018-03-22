@@ -4,88 +4,94 @@ import java.util.Objects;
 
 public class VaccineBucket {
 
-    private String code;
-    private int age;
-    private int count;
-    private boolean administered = true;/* default to true. */
+  private String code;
+  private int age;
+  private int count;
+  private boolean administered = true;/* default to true. */
 
-    public VaccineBucket(VaccineBucket vb) {
-        this.code = vb.code;
-        this.age = vb.age;
-        this.count = vb.count;
-        this.administered = vb.administered;
+  public VaccineBucket(VaccineBucket vb) {
+    this.code = vb.code;
+    this.age = vb.age;
+    this.count = vb.count;
+    this.administered = vb.administered;
+  }
+
+  public VaccineBucket(String cvx, Integer age, boolean administered) {
+    this.code = cvx;
+    this.age = age;
+    this.count = 1;
+    this.administered = administered;
+  }
+
+  public VaccineBucket(String cvx, Integer age, boolean administered, Integer count) {
+    this.code = cvx;
+    this.age = age;
+    this.count = 1;
+    this.administered = administered;
+  }
+
+  public boolean isAdministered() {
+    return administered;
+  }
+
+  public void setAdministered(boolean administered) {
+    this.administered = administered;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    public VaccineBucket(String cvx, Integer age, boolean administered) {
-        this.code = cvx;
-        this.age = age;
-        this.count = 1;
-        this.administered = administered;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    VaccineBucket that = (VaccineBucket) o;
+    return age == that.age && administered == that.administered && Objects.equals(code, that.code);
+  }
 
-    public VaccineBucket(String cvx, Integer age, boolean administered, Integer count) {
-        this.code = cvx;
-        this.age = age;
-        this.count = 1;
-        this.administered = administered;
-    }
+  @Override
+  public int hashCode() {
 
-    public boolean isAdministered() {
-        return administered;
-    }
+    return Objects.hash(code, age, administered);
+  }
 
-    public void setAdministered(boolean administered) {
-        this.administered = administered;
-    }
+  @Override
+  public String toString() {
+    return "VaccineBucket{" + "code='" + code + '\'' + ", age=" + age + ", count=" + count
+        + ", administered=" + administered + '}';
+  }
 
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        VaccineBucket that = (VaccineBucket) o;
-        return age == that.age && administered == that.administered && Objects.equals(code, that.code);
-    }
+  public String getCode() {
+    return code;
+  }
 
-    @Override public int hashCode() {
+  public void setCode(String code) {
+    this.code = code;
+  }
 
-        return Objects.hash(code, age, administered);
-    }
+  public int getAge() {
+    return age;
+  }
 
-    @Override public String toString() {
-        return "VaccineBucket{" + "code='" + code + '\'' + ", age=" + age + ", count=" + count + ", administered=" + administered + '}';
-    }
+  public void setAge(int age) {
+    this.age = age;
+  }
 
-    public String getCode() {
-        return code;
-    }
+  public int getCount() {
+    return count;
+  }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+  public void setCount(int count) {
+    this.count = count;
+  }
 
-    public int getAge() {
-        return age;
-    }
+  public void increment() {
+    this.incrementBy(1);
+  }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public void increment() {
-        this.incrementBy(1);
-    }
-
-    public void incrementBy(int count) {
-        this.count+= count;
-    }
+  public void incrementBy(int count) {
+    this.count += count;
+  }
 
 }

@@ -4,32 +4,33 @@ import org.immregistries.dqa.codebase.client.generated.CodeStatus;
 import org.immregistries.dqa.codebase.client.reference.CodesetType;
 
 public class CodeReceived {
-	private CodesetType codeset = null;
-	private CodeStatus status;
-	private String value;
 
-	public CodesetType getCodeset() {
-		return codeset;
-	}
+  private CodesetType codeset = null;
+  private CodeStatus status;
+  private String value;
 
-	public void setCodeset(CodesetType codeset) {
-		this.codeset = codeset;
-	}
+  public CodesetType getCodeset() {
+    return codeset;
+  }
 
-	public String getValue() {
-		return value;
-	}
+  public void setCodeset(CodesetType codeset) {
+    this.codeset = codeset;
+  }
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+  public String getValue() {
+    return value;
+  }
 
-	public CodeStatus getStatus() {
-		return status;
-	}
+  public void setValue(String value) {
+    this.value = value;
+  }
 
-	public void setStatus(CodeStatus status) {
-		this.status = status;
-	}
+  public CodeStatus getStatus() {
+    return status;
+  }
+
+  public void setStatus(CodeStatus status) {
+    this.status = status;
+  }
 
 }

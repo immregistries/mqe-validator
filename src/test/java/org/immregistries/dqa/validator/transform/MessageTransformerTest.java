@@ -1,5 +1,9 @@
 package org.immregistries.dqa.validator.transform;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.List;
 import org.immregistries.dqa.validator.TestMessageGenerator;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -7,11 +11,6 @@ import org.immregistries.dqa.vxu.PatientImmunity;
 import org.immregistries.dqa.vxu.hl7.Observation;
 import org.immregistries.dqa.vxu.parse.HL7MessageParser;
 import org.junit.Test;
-
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class MessageTransformerTest {
 

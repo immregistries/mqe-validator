@@ -1,9 +1,8 @@
 package org.immregistries.dqa.validator.report;
 
 import java.util.List;
-
-import org.immregistries.dqa.vxu.VxuField;
 import org.immregistries.dqa.validator.detection.MessageObject;
+import org.immregistries.dqa.vxu.VxuField;
 import org.junit.Before;
 import org.junit.Test;
 

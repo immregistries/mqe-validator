@@ -1,7 +1,14 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
-import org.immregistries.dqa.validator.engine.ValidationRuleResult;
+import static org.junit.Assert.assertTrue;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -10,14 +17,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Allison on 5/9/2017.

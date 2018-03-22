@@ -5,16 +5,15 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 import java.util.List;
-
 import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.codebase.client.reference.CodesetType;
 import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.hl7util.model.MetaFieldInfo;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
 import org.immregistries.dqa.vxu.MetaFieldInfoData;
 import org.immregistries.dqa.vxu.VxuField;
-import org.immregistries.dqa.validator.detection.Detection;
-import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -43,7 +42,7 @@ public class CodeHandlerTest {
 	@Test
 	public void testUseDates() {
 		String adminDate = "20100101";
-		List<ValidationDetection> list = codr.handleUseDate(codeAnthrax, adminDate, VxuField.VACCINATION_ADMIN_DATE, meta);
+		List<ValidationReport> list = codr.handleUseDate(codeAnthrax, adminDate, VxuField.VACCINATION_ADMIN_DATE, meta);
 		assertEquals("Shouldn't have an issue with a current date, even though it doesn't have an end date", 0, list.size());
 		
 		adminDate = "19650101";
@@ -60,7 +59,7 @@ public class CodeHandlerTest {
 		Date birthDate = datr.parseDate("20160101");
 		Date adminDate = datr.parseDate("20160115");
 		//This should violate the age date, because its before month 1. 
-		List<ValidationDetection> list = codr.handleAgeDate(this.codeAdenovirus, birthDate, adminDate, VxuField.VACCINATION_ADMIN_DATE, meta);
+		List<ValidationReport> list = codr.handleAgeDate(this.codeAdenovirus, birthDate, adminDate, VxuField.VACCINATION_ADMIN_DATE, meta);
 		assertEquals("Should have an issue", 1, list.size());
 		
 		//This should violate the age date because its after month 1440
@@ -85,7 +84,7 @@ public class CodeHandlerTest {
 		Date birthDate = datr.parseDate("20160101");
 		Date adminDate = datr.parseDate("20160115");
 		
-		List<ValidationDetection> list = codr.handleAgeDate(this.codeAdenovirus, birthDate, null, VxuField.VACCINATION_ADMIN_DATE, meta);
+		List<ValidationReport> list = codr.handleAgeDate(this.codeAdenovirus, birthDate, null, VxuField.VACCINATION_ADMIN_DATE, meta);
 		assertEquals("Should not have an issue because admin date is null", 0, list.size());
 
 		//This should NOT violate the age date because birth date is null

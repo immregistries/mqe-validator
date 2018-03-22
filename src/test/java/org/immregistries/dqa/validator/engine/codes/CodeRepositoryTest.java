@@ -1,9 +1,9 @@
 package org.immregistries.dqa.validator.engine.codes;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.immregistries.dqa.codebase.client.generated.Code;
-import org.immregistries.dqa.validator.engine.codes.CodeRepository;
 import org.junit.Test;
 
 public class CodeRepositoryTest {

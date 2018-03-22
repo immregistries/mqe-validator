@@ -1,6 +1,7 @@
 package org.immregistries.dqa.validator.engine.common;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.immregistries.dqa.vxu.DqaPhoneNumber;
 import org.junit.Before;

@@ -1,17 +1,17 @@
 package org.immregistries.dqa.validator.report;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.MessageObject;
+import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientExists;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientNameIsValid;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationIsPresent;
-import org.immregistries.dqa.validator.detection.MessageObject;
-import org.immregistries.dqa.validator.detection.Detection;
-import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.junit.Test;
 
 public class MessageResponseEvaluatorTester {
@@ -35,31 +35,31 @@ public class MessageResponseEvaluatorTester {
 		
 		ValidationRuleResult result = new ValidationRuleResult();
 		result.setRuleClass(PatientExists.class);
-		result.setIssues(new ArrayList<ValidationDetection>());
+		result.setIssues(new ArrayList<ValidationReport>());
 		result.setRulePassed(true);
 		results.add(result);
 
 		ValidationRuleResult result2 = new ValidationRuleResult();
 		result2.setRuleClass(VaccinationIsPresent.class);
-		result2.setIssues(new ArrayList<ValidationDetection>());
+		result2.setIssues(new ArrayList<ValidationReport>());
 		result2.setRulePassed(true);
 		results.add(result2);
 		
 		ValidationRuleResult result21 = new ValidationRuleResult();
 		result21.setRuleClass(VaccinationIsPresent.class);
-		result21.setIssues(new ArrayList<ValidationDetection>());
+		result21.setIssues(new ArrayList<ValidationReport>());
 		result21.setRulePassed(true);
 		results.add(result21);
 		
 		ValidationRuleResult result22 = new ValidationRuleResult();
 		result22.setRuleClass(VaccinationIsPresent.class);
-		result22.setIssues(new ArrayList<ValidationDetection>());
+		result22.setIssues(new ArrayList<ValidationReport>());
 		result22.setRulePassed(true);
 		results.add(result22);
 
 		ValidationRuleResult result3 = new ValidationRuleResult();
 		result3.setRuleClass(PatientNameIsValid.class);
-		ValidationDetection issue = new ValidationDetection();
+		ValidationReport issue = new ValidationReport();
 		issue.setDetection(Detection.PatientMiddleNameIsMissing);
 		result3.getValidationDetections().add(issue);
 		result3.setRulePassed(false);

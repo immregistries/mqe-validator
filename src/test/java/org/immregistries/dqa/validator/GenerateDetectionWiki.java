@@ -3,7 +3,6 @@ package org.immregistries.dqa.validator;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-
 import org.immregistries.dqa.validator.detection.Detection;
 import org.immregistries.dqa.validator.detection.MessageObject;
 import org.immregistries.dqa.vxu.VxuField;

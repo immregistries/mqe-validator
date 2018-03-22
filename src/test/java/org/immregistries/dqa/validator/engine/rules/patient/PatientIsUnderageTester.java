@@ -1,9 +1,9 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
-
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;

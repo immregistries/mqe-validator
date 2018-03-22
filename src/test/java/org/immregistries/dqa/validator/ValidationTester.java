@@ -2,11 +2,10 @@ package org.immregistries.dqa.validator;
 
 import java.util.Calendar;
 import java.util.List;
-
 import org.immregistries.dqa.hl7util.SeverityLevel;
+import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.MessageValidator;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.parse.HL7MessageParser;
 import org.junit.Test;
@@ -82,7 +81,7 @@ public class ValidationTester {
 
   private void reportResults(List<ValidationRuleResult> list, SeverityLevel a) {
     for (ValidationRuleResult vrr : list) {
-      for (ValidationDetection i : vrr.getValidationDetections()) {
+      for (ValidationReport i : vrr.getValidationDetections()) {
         if (a == i.getSeverity()) {
           String s = "  - ";
           if (i.getHl7LocationList() != null && i.getHl7LocationList().size() > 0) {

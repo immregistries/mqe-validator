@@ -1,16 +1,14 @@
 package org.immregistries.dqa.validator.report.codes;
 
-import org.immregistries.dqa.codebase.client.reference.CodesetType;
+import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
+import java.util.List;
 import org.immregistries.dqa.validator.TestMessageGenerator;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 public class VaccineCollectionTester {
     private static final Logger logger = LoggerFactory.getLogger(VaccineCollectionTester.class);

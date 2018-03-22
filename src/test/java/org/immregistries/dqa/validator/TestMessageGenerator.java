@@ -1,12 +1,10 @@
 package org.immregistries.dqa.validator;
 
-import org.immregistries.dqa.vxu.DqaMessageReceived;
-import org.immregistries.dqa.vxu.parse.HL7MessageParser;
-
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import org.immregistries.dqa.vxu.DqaMessageReceived;
 
 public class TestMessageGenerator {
 	

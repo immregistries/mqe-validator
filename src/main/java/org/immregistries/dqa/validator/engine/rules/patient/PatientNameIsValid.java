@@ -5,8 +5,8 @@ import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.codes.KnowNameList;
 import org.immregistries.dqa.validator.engine.codes.KnownName;
 import org.immregistries.dqa.validator.engine.codes.KnownName.NameType;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 
@@ -36,7 +36,7 @@ public class PatientNameIsValid extends ValidationRule<DqaPatient> {
 	
 	@Override
 	protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
+		List<ValidationDetection> issues = new ArrayList<ValidationDetection>();
 		boolean passed = true;
 		
 		String first = target.getNameFirst();

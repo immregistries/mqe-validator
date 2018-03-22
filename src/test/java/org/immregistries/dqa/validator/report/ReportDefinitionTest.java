@@ -3,7 +3,7 @@ package org.immregistries.dqa.validator.report;
 import java.util.List;
 
 import org.immregistries.dqa.vxu.VxuField;
-import org.immregistries.dqa.validator.issue.IssueObject;
+import org.immregistries.dqa.validator.detection.MessageObject;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,7 +19,7 @@ public class ReportDefinitionTest {
 		
 		ReportCompletenessSectionDefinition s = new ReportCompletenessSectionDefinition();
 		s.setLabel("Patient");
-		s.setSectionObject(IssueObject.PATIENT);
+		s.setSectionObject(MessageObject.PATIENT);
 		sections.add(s);
 		
 		List<DqaReportFieldDefinition> scores = s.getReportFields();

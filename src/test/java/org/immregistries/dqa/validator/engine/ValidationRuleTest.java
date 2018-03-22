@@ -13,7 +13,7 @@ import org.immregistries.dqa.validator.engine.rules.patient.PatientExists;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientIsUnderage;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdminAfterBirthDate;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdminDateIsValid;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 import org.immregistries.dqa.vxu.DqaVaccination;
@@ -45,12 +45,12 @@ public class ValidationRuleTest {
 		
 		ValidationRule<DqaPatient> vr = new PatientBirthDateIsValid();
 		
-		List<ValidationIssue> issues = vr.executeRule(p, mr).getIssues();
+		List<ValidationDetection> issues = vr.executeRule(p, mr).getValidationDetections();
 		
 		assertEquals("should be zero issues", 0, issues.size());
 		
 		p.setBirthDateString("");
-		issues = vr.executeRule(p, mr).getIssues();
+		issues = vr.executeRule(p, mr).getValidationDetections();
 		assertEquals("should be two issues", 2, issues.size());
 		
 	}
@@ -161,32 +161,37 @@ public class ValidationRuleTest {
 		
 	}
 
+	/**
+	 * This test runs all the rules against an empty message to get
+	 * the full armament of detections.
+	 */
 	@Test 
-	public void patientRules() {
+	public void AllPatientRules() {
 		List<ValidationRule> patientRules = ValidationRuleEntityLists.PATIENT_RULES.getRules();
-		List<ValidationIssue> issues  = new ArrayList<ValidationIssue>();
+		List<ValidationDetection> validationDetections  = new ArrayList<ValidationDetection>();
 		
-		DqaMessageReceived mr = getFreshMessage();
+		DqaMessageReceived mr = getEmptyMessage();
 		
 		mr.getPatient().setBirthDateString("20160101");
-		
+
+		//This executes all the rules.  dependencies are not considered.
 		for (ValidationRule rule : patientRules) {
 			try {
-				List<ValidationIssue> ruleIissues  = rule.executeRule(mr.getPatient(), mr).getIssues();
-				issues.addAll(ruleIissues);
+				List<ValidationDetection> ruleDetections  = rule.executeRule(mr.getPatient(), mr).getValidationDetections();
+				validationDetections.addAll(ruleDetections);
 				
 			} catch (Exception e) {
 				System.out.println("Woah... nasty.  " + e.getLocalizedMessage());
 				assertTrue("oops.  exception in " + rule.getClass() + "  " + e.getLocalizedMessage(), false);
 			}
 		}	
-		System.out.println("Issues.size(): " + issues.size());
+		System.out.println("Issues.size(): " + validationDetections.size());
 
-		for (ValidationIssue issue : issues) {
-			System.out.println("ISSUE: " + issue.getIssue());
+		for (ValidationDetection validationDetection : validationDetections) {
+			System.out.println("Detection: " + validationDetection.getDetection());
 		}
 
-		assertEquals("should be some issues", 15, issues.size());
+		assertEquals("should be some issues", 23, validationDetections.size());
 	}
 	
 	@Test
@@ -195,9 +200,17 @@ public class ValidationRuleTest {
 		List<ValidationRule> vv = ValidationRuleEntityLists.VACCINATION_RULES.getRules();
 		for (ValidationRule<DqaVaccination> vr : vv) {
 			for (DqaVaccination v : mr.getVaccinations()) {
-				List<ValidationIssue> issues = vr.executeRule(v, mr).getIssues();
+				List<ValidationDetection> issues = vr.executeRule(v, mr).getValidationDetections();
 			}
 		}
+	}
+
+	private DqaMessageReceived getEmptyMessage() {
+		DqaMessageReceived mr = new DqaMessageReceived();
+		DqaPatient p = new DqaPatient();
+		mr.setPatient(p);
+
+		return mr;
 	}
 
 	private DqaMessageReceived getFreshMessage() {

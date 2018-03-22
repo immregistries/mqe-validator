@@ -1,4 +1,4 @@
-package org.immregistries.dqa.validator.issue;
+package org.immregistries.dqa.validator.detection;
 
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.hl7util.Reportable;
@@ -12,11 +12,11 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ValidationIssue implements Reportable
+public class ValidationDetection implements Reportable
 {
   
 private static final Logger logger = LoggerFactory
-		.getLogger(ValidationIssue.class);
+		.getLogger(ValidationDetection.class);
 
   private Detection detection = null;//should this be a String?
   private int positionId = 0;//This says where in the ACK to put it. 
@@ -24,7 +24,7 @@ private static final Logger logger = LoggerFactory
   private String valueReceived = null;//This is the related value.
   private List<Hl7Location> hl7LocationList = new ArrayList<>();
   
-  public Detection getIssue()
+  public Detection getDetection()
   {
     return detection;
   }

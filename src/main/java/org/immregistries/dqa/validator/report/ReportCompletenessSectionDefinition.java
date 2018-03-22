@@ -1,6 +1,6 @@
 package org.immregistries.dqa.validator.report;
 
-import org.immregistries.dqa.validator.issue.IssueObject;
+import org.immregistries.dqa.validator.detection.MessageObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public class ReportCompletenessSectionDefinition {
 	private String label;
 	private List<DqaReportFieldDefinition> scores = new ArrayList<>();
-	private IssueObject sectionObject;//(patient, vaccine...  this is the "Denominator") quality issues,
+	private MessageObject sectionObject;//(patient, vaccine...  this is the "Denominator") quality issues,
 	
 	public String getLabel() {
 		return label;
@@ -22,10 +22,10 @@ public class ReportCompletenessSectionDefinition {
 	public void setReportFields(List<DqaReportFieldDefinition> scores) {
 		this.scores = scores;
 	}
-	public IssueObject getSectionObject() {
+	public MessageObject getSectionObject() {
 		return sectionObject;
 	}
-	public void setSectionObject(IssueObject sectionObject) {
+	public void setSectionObject(MessageObject sectionObject) {
 		this.sectionObject = sectionObject;
 	}
 }

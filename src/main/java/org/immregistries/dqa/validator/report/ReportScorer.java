@@ -2,9 +2,9 @@ package org.immregistries.dqa.validator.report;
 
 import org.immregistries.dqa.validator.DqaMessageService;
 import org.immregistries.dqa.validator.DqaMessageServiceResponse;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.IssueObject;
-import org.immregistries.dqa.validator.issue.IssueType;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.DetectionType;
+import org.immregistries.dqa.validator.detection.MessageObject;
 import org.immregistries.dqa.validator.report.codes.CodeCollection;
 import org.immregistries.dqa.validator.report.codes.VaccineCollection;
 import org.immregistries.dqa.vxu.VxuField;
@@ -80,7 +80,7 @@ public enum ReportScorer {
 	protected VxuCompletenessSectionScore evaluateCompletenessSection(ReportCompletenessSectionDefinition section, DqaMessageMetrics measures) {
 		VxuCompletenessSectionScore reportSection = new VxuCompletenessSectionScore();
 		reportSection.setLabel(section.getLabel());
-		IssueObject sectionObject = section.getSectionObject();
+		MessageObject sectionObject = section.getSectionObject();
 		Integer denominator = measures.getObjectCounts().get(sectionObject);
 		
 		if (denominator == null) {
@@ -105,7 +105,7 @@ public enum ReportScorer {
 		fieldScore.getFieldScore().setPotential(fieldDef.getWeight());
 		fieldScore.setExpectedCount(expectedFieldCount);
 		
-		Map<IssueType, Integer> counts = getIssueCounts(fieldDef, evaluated);
+		Map<DetectionType, Integer> counts = getIssueCounts(fieldDef, evaluated);
 		List<FieldIssueScore> issueScores = scoreIssues(fieldDef, counts, expectedFieldCount);
 		
 		if (fieldDef.isCheckForPresent()) {
@@ -155,17 +155,17 @@ public enum ReportScorer {
 	private final ReportIssue missing = new ReportIssue();
 	
 	{ 
-		missing.setType(IssueType.MISSING);
+		missing.setType(DetectionType.MISSING);
 		missing.setMultiplierPercent(100);
 	}
 	
-	protected List<FieldIssueScore> scoreIssues(DqaReportFieldDefinition definition, Map<IssueType, Integer> issueCounts, Integer fieldCount) {
+	protected List<FieldIssueScore> scoreIssues(DqaReportFieldDefinition definition, Map<DetectionType, Integer> issueCounts, Integer fieldCount) {
 		List<FieldIssueScore> scores = new ArrayList<>();
 		//here, we're doing the math. we've got the issues.  we've got the definition. Now it's time for the business. 
 		int baseScore = definition.getWeight();
 		
 		for (ReportIssue issue : definition.getIssues()) {
-			IssueType type = issue.getType();
+			DetectionType type = issue.getType();
 			Integer issueCount = issueCounts.get(type);
 			logger.debug("scoreField " + definition.getField() + " issue type: " + issue.getType() + " issue count: " + issueCount);
 			if (issueCount != null && issueCount > 0) {
@@ -181,7 +181,7 @@ public enum ReportScorer {
 	
 	protected FieldIssueScore scoreIssue(ReportIssue issue, int issueCount, int fieldCount, int fieldPotentialScore) {
 		FieldIssueScore issueScore = new FieldIssueScore();
-		issueScore.setIssueType(issue.getType());
+		issueScore.setDetectionType(issue.getType());
 		issueScore.setIssueCount(issueCount);
 		double demeritPercent = scoreIssuePercent(issue, issueCount, fieldCount);
 		issueScore.setIssuePercentDemerit(demeritPercent);
@@ -191,7 +191,7 @@ public enum ReportScorer {
 		return issueScore;
 	}
 	
-	protected FieldIssueScore scorePresent(Map<IssueType, Integer> fieldIssues, int fieldCount, int fieldPotentialScore) {
+	protected FieldIssueScore scorePresent(Map<DetectionType, Integer> fieldIssues, int fieldCount, int fieldPotentialScore) {
 		Integer issueCount = fieldIssues.get(missing.getType());
 		if (issueCount == null) {
 			issueCount = new Integer(0);
@@ -262,9 +262,9 @@ public enum ReportScorer {
 		
 	}
 	
-	protected Map<IssueType, Integer> getIssueCounts(DqaReportFieldDefinition d, Map<Detection, Integer> measures) {
+	protected Map<DetectionType, Integer> getIssueCounts(DqaReportFieldDefinition d, Map<Detection, Integer> measures) {
 		
-		Map<IssueType, Integer> map = new HashMap<>();
+		Map<DetectionType, Integer> map = new HashMap<>();
 		
 		VxuField field = d.getField();
 		List<ReportIssue> lookfor = new ArrayList<>();
@@ -274,7 +274,7 @@ public enum ReportScorer {
 		}
 		
 		for (ReportIssue thisType : lookfor) {
-			IssueType type = thisType.getType();
+			DetectionType type = thisType.getType();
 			Detection attribute = Detection.get(field, type);
 			Integer countOfIssue = measures.get(attribute);
 			logger.debug("getIssueCounts field: " + field + " type " + type + " attribute: " + attribute + " count: " + countOfIssue);

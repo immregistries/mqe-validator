@@ -1,7 +1,7 @@
 package org.immregistries.dqa.validator.report;
 
-import org.immregistries.dqa.validator.issue.IssueObject;
-import org.immregistries.dqa.validator.issue.IssueType;
+import org.immregistries.dqa.validator.detection.DetectionType;
+import org.immregistries.dqa.validator.detection.MessageObject;
 import org.immregistries.dqa.vxu.VxuField;
 
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public enum ReportDefinitionBuilder {
 		//build a section for the patient. 
 				ReportCompletenessSectionDefinition section = new ReportCompletenessSectionDefinition();
 				section.setLabel("Vaccination");
-				section.setSectionObject(IssueObject.VACCINATION);
+				section.setSectionObject(MessageObject.VACCINATION);
 				section.setReportFields(getVaccinationReportFields());
 
 				return section;
@@ -44,7 +44,7 @@ public enum ReportDefinitionBuilder {
 		//build a section for the patient. 
 				ReportCompletenessSectionDefinition section = new ReportCompletenessSectionDefinition();
 				section.setLabel("Patient");
-				section.setSectionObject(IssueObject.PATIENT);
+				section.setSectionObject(MessageObject.PATIENT);
 				section.setReportFields(getPatientReportFields());
 
 				return section;
@@ -54,7 +54,7 @@ public enum ReportDefinitionBuilder {
 		//build a section for the patient.
 				ReportCompletenessSectionDefinition section = new ReportCompletenessSectionDefinition();
 				section.setLabel("Message Header");
-				section.setSectionObject(IssueObject.MESSAGE_HEADER);
+				section.setSectionObject(MessageObject.MESSAGE_HEADER);
 				section.setReportFields(getMessageReportFields());
 
 				return section;
@@ -184,13 +184,13 @@ public enum ReportDefinitionBuilder {
 	
 	public List<ReportIssue> getDefaultFieldIssues() {
 		List<ReportIssue> defaults = new ArrayList<>();
-		defaults.add(generateReportIssue(IssueType.INVALID, 100));
-		defaults.add(generateReportIssue(IssueType.UNRECOGNIZED, 100));
-		defaults.add(generateReportIssue(IssueType.DEPRECATED, 100));
+		defaults.add(generateReportIssue(DetectionType.INVALID, 100));
+		defaults.add(generateReportIssue(DetectionType.UNRECOGNIZED, 100));
+		defaults.add(generateReportIssue(DetectionType.DEPRECATED, 100));
 		return defaults;
 	}
 	
-	public ReportIssue generateReportIssue(IssueType type, int multiplier) {
+	public ReportIssue generateReportIssue(DetectionType type, int multiplier) {
 		ReportIssue ri = new ReportIssue();
 		ri.setMultiplierPercent(multiplier);
 		ri.setType(type);

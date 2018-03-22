@@ -1,7 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.nextofkin;
 
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.Detection;
+import org.immregistries.dqa.validator.detection.Detection;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
@@ -48,7 +48,7 @@ public class NextOfKinRelationshipIsValidTester {
     @Test
     public void testRule() {
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
+        logger.info(r.getValidationDetections().toString());
         assertTrue(r.isRulePassed());
     }
 
@@ -61,9 +61,9 @@ public class NextOfKinRelationshipIsValidTester {
         setNextOfKin();
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinRelationshipIsMissing == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinRelationshipIsMissing == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -75,9 +75,9 @@ public class NextOfKinRelationshipIsValidTester {
         setNextOfKin();
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinRelationshipIsMissing == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinRelationshipIsMissing == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -89,9 +89,9 @@ public class NextOfKinRelationshipIsValidTester {
         setNextOfKin();
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinRelationshipIsNotResponsibleParty == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinRelationshipIsNotResponsibleParty == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -103,9 +103,9 @@ public class NextOfKinRelationshipIsValidTester {
         setNextOfKin();
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinRelationshipIsUnexpected == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinRelationshipIsUnexpected == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -117,9 +117,9 @@ public class NextOfKinRelationshipIsValidTester {
         setNextOfKin();
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinRelationshipIsUnrecognized == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinRelationshipIsUnrecognized == r.getValidationDetections().get(0).getDetection());
     }
 
     /**

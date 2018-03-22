@@ -9,7 +9,7 @@ import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.hl7util.builder.HL7Util;
 import org.immregistries.dqa.hl7util.model.CodedWithExceptions;
 import org.immregistries.dqa.hl7util.model.Hl7Location;
-import org.immregistries.dqa.validator.issue.Detection;
+import org.immregistries.dqa.validator.detection.Detection;
 
 public class DetectionExporter {
   public static void main(String[] args) {

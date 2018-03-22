@@ -3,9 +3,9 @@ package org.immregistries.dqa.validator.engine.common;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.IssueType;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.DetectionType;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaPhoneNumber;
 import org.immregistries.dqa.vxu.MetaFieldInfoData;
 import org.immregistries.dqa.vxu.VxuField;
@@ -27,20 +27,20 @@ public enum PhoneValidator {
 
     private CodeHandler codr = CodeHandler.INSTANCE;
 
-    public List<ValidationIssue> validatePhone(DqaPhoneNumber phone, VxuField piPhone, MetaFieldInfoData meta) {
+    public List<ValidationDetection> validatePhone(DqaPhoneNumber phone, VxuField piPhone, MetaFieldInfoData meta) {
         return validatePhone(phone, piPhone, null, null, meta);
     }
 
-    public List<ValidationIssue> validatePhone(DqaPhoneNumber phone,
+    public List<ValidationDetection> validatePhone(DqaPhoneNumber phone,
                                                VxuField piPhone,
                                                VxuField piPhoneTelUse,
                                                VxuField piPhoneTelEquip, MetaFieldInfoData meta) {
 
-        List<ValidationIssue> issues = new ArrayList<>();
+        List<ValidationDetection> issues = new ArrayList<>();
 
         if (phone != null && StringUtils.isNotEmpty(phone.getNumber())) {
             if (StringUtils.isEmpty(phone.getAreaCode()) || StringUtils.isEmpty(phone.getLocalNumber())) {
-                Detection attr = Detection.get(piPhone, IssueType.INCOMPLETE);
+                Detection attr = Detection.get(piPhone, DetectionType.INCOMPLETE);
                 if (attr != null) {
                     issues.add(attr.build(phone.getNumber(), meta));
                 }
@@ -58,14 +58,14 @@ public enum PhoneValidator {
 
             //Invalid phone number format.
             if (!isValidPhone(phone)) {
-                Detection attr = Detection.get(piPhone, IssueType.INVALID);
+                Detection attr = Detection.get(piPhone, DetectionType.INVALID);
                 if (attr != null) {
                     issues.add(attr.build(phone.getNumber(), meta));
                 }
             }
 
         } else {
-            issues.add(Detection.get(piPhone, IssueType.MISSING).build(meta));
+            issues.add(Detection.get(piPhone, DetectionType.MISSING).build(meta));
         }
         return issues;
     }

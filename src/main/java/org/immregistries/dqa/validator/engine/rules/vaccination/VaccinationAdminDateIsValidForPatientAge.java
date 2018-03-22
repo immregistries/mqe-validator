@@ -4,7 +4,7 @@ import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.codebase.client.reference.CodesetType;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
 import org.immregistries.dqa.vxu.VxuField;
@@ -29,7 +29,7 @@ public class VaccinationAdminDateIsValidForPatientAge extends ValidationRule<Dqa
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {
 		LOGGER.info("VaccinationAdminDateIsValidForPatientAge - evaluating");
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
+		List<ValidationDetection> issues = new ArrayList<ValidationDetection>();
 		boolean passed = true;
 
 		String cvxCode = target.getAdminCvxCode();

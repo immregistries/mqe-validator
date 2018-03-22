@@ -4,8 +4,8 @@ import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.common.AddressFields;
 import org.immregistries.dqa.validator.engine.common.AddressValidator;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaAddress;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -52,13 +52,13 @@ public class PatientAddressIsValid extends ValidationRule<DqaPatient> {
 
     @Override
     protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
-        List<ValidationIssue> issues = new ArrayList<>();
+        List<ValidationDetection> issues = new ArrayList<>();
         boolean passed;
 
         DqaAddress a = target.getPatientAddress();
 
         ValidationRuleResult result = addressValidator.getAddressIssuesFor(fields, a, target);
-        issues.addAll(result.getIssues());
+        issues.addAll(result.getValidationDetections());
 
         if (a != null) {
             if (a.getTypeCode() != null && "BA".equals(a.getTypeCode())) {

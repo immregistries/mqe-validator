@@ -1,4 +1,4 @@
-package org.immregistries.dqa.validator.issue;
+package org.immregistries.dqa.validator.detection;
 
 import java.util.HashMap;
 import java.util.Map;

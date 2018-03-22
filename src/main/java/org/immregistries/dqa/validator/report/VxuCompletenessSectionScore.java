@@ -1,6 +1,6 @@
 package org.immregistries.dqa.validator.report;
 
-import org.immregistries.dqa.validator.issue.IssueObject;
+import org.immregistries.dqa.validator.detection.MessageObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ public class VxuCompletenessSectionScore {
 	private String label;
 	private List<VxuFieldScore>  scores = new ArrayList<>();
 	private int objectCount;//like patient count or vaccine count.
-	private IssueObject sectionObject;
+	private MessageObject sectionObject;
 	private Map<Requirement, DqaScore> requirementScores = new HashMap<>();
 	/**
 	 * this represents the score calculated for this whole group. 
@@ -43,11 +43,11 @@ public class VxuCompletenessSectionScore {
 		return this.objectCount;
 	}
 
-	public IssueObject getSectionObject() {
+	public MessageObject getSectionObject() {
 		return sectionObject;
 	}
 
-	public void setSectionObject(IssueObject sectionObject) {
+	public void setSectionObject(MessageObject sectionObject) {
 		this.sectionObject = sectionObject;
 	}
 

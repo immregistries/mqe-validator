@@ -1,4 +1,4 @@
-package org.immregistries.dqa.validator.issue;
+package org.immregistries.dqa.validator.detection;
 
 import org.immregistries.dqa.hl7util.Reportable;
 import org.immregistries.dqa.hl7util.ReportableSource;
@@ -7,17 +7,17 @@ import org.immregistries.dqa.hl7util.builder.AckERRCode;
 import org.immregistries.dqa.hl7util.model.CodedWithExceptions;
 import org.immregistries.dqa.hl7util.model.Hl7Location;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class BusinessIssue implements Reportable {
+public class ProcessReport implements Reportable {
 
 	private SeverityLevel severity;//expects I/W/E/A according to the IssueLevel.java class.
 	private CodedWithExceptions hl7ErrorCode = new CodedWithExceptions();//This is 0 for success, and there's a whole table for errors. General code
-	private List<Hl7Location> hl7LocationList;
+	private List<Hl7Location> hl7LocationList = new ArrayList<>();
 	private String reportedMessage; // ERR-8
 	private String diagnosticMessage; // ERR-7
 	private CodedWithExceptions applicationErrorCode; // Detailed code of the issue, CDC code & DQA Code
-       
 
 	@Override public SeverityLevel getSeverity() {
 		return severity;

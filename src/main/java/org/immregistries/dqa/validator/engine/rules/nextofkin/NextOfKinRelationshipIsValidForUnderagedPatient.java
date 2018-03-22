@@ -4,8 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientIsUnderage;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
 import org.immregistries.dqa.vxu.code.NokRelationship;
@@ -31,7 +31,7 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
 	
     @Override
     protected ValidationRuleResult executeRule(DqaNextOfKin target, DqaMessageReceived m) {
-        List<ValidationIssue> issues = new ArrayList<>();
+        List<ValidationDetection> issues = new ArrayList<>();
         boolean passed;
 
         String relationship = target.getRelationshipCode();

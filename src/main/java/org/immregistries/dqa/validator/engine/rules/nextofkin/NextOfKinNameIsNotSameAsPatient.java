@@ -4,8 +4,8 @@ import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientIsUnderage;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientNameIsValid;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -33,7 +33,7 @@ public class NextOfKinNameIsNotSameAsPatient extends ValidationRule<DqaNextOfKin
 	@Override
 	protected ValidationRuleResult executeRule(DqaNextOfKin target, DqaMessageReceived m) {
 
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
+		List<ValidationDetection> issues = new ArrayList<ValidationDetection>();
 		boolean passed = true;
 		
 		DqaPatient patient = m.getPatient();

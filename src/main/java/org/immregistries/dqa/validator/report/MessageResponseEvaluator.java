@@ -3,9 +3,9 @@ package org.immregistries.dqa.validator.report;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.rules.nextofkin.NextOfKinIsPresent;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationIsPresent;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.IssueObject;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.MessageObject;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,11 +26,11 @@ public enum MessageResponseEvaluator {
 		return metrics;
 	}
 	
-	protected Map<IssueObject, Integer>  makeObjectCounts(List<ValidationRuleResult> results) {
-		Map<IssueObject, Integer> objCounts = new HashMap<IssueObject, Integer>();
+	protected Map<MessageObject, Integer>  makeObjectCounts(List<ValidationRuleResult> results) {
+		Map<MessageObject, Integer> objCounts = new HashMap<MessageObject, Integer>();
 		
-		objCounts.put(IssueObject.PATIENT,  1);
-		objCounts.put(IssueObject.MESSAGE_HEADER,  1);		
+		objCounts.put(MessageObject.PATIENT,  1);
+		objCounts.put(MessageObject.MESSAGE_HEADER,  1);
 		
 		int vaccCount = 0;
 		int nokCount = 0;
@@ -51,17 +51,17 @@ public enum MessageResponseEvaluator {
 			
 		}
 		
-		objCounts.put(IssueObject.VACCINATION,  vaccCount);
-		objCounts.put(IssueObject.NEXT_OF_KIN,  nokCount);
+		objCounts.put(MessageObject.VACCINATION,  vaccCount);
+		objCounts.put(MessageObject.NEXT_OF_KIN,  nokCount);
 		return objCounts;
 	}
 	
 	protected Map<Detection, Integer> makeCountMap(List<ValidationRuleResult> results) {
 		Map<Detection, Integer> map = new HashMap<>();
 		for (ValidationRuleResult result : results) {
-			List<ValidationIssue> issues = result.getIssues();
-			for (ValidationIssue issue : issues) {
-				Detection attr = issue.getIssue();
+			List<ValidationDetection> issues = result.getValidationDetections();
+			for (ValidationDetection issue : issues) {
+				Detection attr = issue.getDetection();
 				Integer cnt = map.get(attr);
 				if (cnt == null) {
 					map.put(attr, 1);

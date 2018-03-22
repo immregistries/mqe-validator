@@ -3,8 +3,8 @@ package org.immregistries.dqa.validator.engine.rules.nextofkin;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientExists;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaAddress;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
@@ -27,7 +27,7 @@ public class NextOfKinAddressIsSameAsPatientAddress extends ValidationRule<DqaNe
 	
 	@Override
 	protected ValidationRuleResult executeRule(DqaNextOfKin target, DqaMessageReceived message) {
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
+		List<ValidationDetection> issues = new ArrayList<ValidationDetection>();
 		boolean passed = true;
 
 		DqaAddress p = message.getPatient().getPatientAddress();

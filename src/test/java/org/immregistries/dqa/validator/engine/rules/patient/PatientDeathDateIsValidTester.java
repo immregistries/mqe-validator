@@ -3,7 +3,7 @@ package org.immregistries.dqa.validator.engine.rules.patient;
 import org.immregistries.dqa.validator.TestMessageGenerator;
 import org.immregistries.dqa.validator.engine.MessageValidator;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.Detection;
+import org.immregistries.dqa.validator.detection.Detection;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -61,8 +61,8 @@ public class PatientDeathDateIsValidTester {
         String message = genr.getExampleVXU_1();
         DqaMessageReceived received = parser.extractMessageFromText(message);
         ValidationRuleResult r = rule.executeRule(received.getPatient(), received);
-        assertEquals("Should have one issue", 1 , r.getIssues().size());
-        assertEquals("Should be a specific issue. ", Detection.PatientDeathDateIsInvalid , r.getIssues().get(0).getIssue());
+        assertEquals("Should have one issue", 1 , r.getValidationDetections().size());
+        assertEquals("Should be a specific issue. ", Detection.PatientDeathDateIsInvalid , r.getValidationDetections().get(0).getDetection());
     }
 
     @Test
@@ -75,16 +75,16 @@ public class PatientDeathDateIsValidTester {
             logger.info("rule: " + result.getRuleClass());
             if (PatientDeathDateIsValid.class.equals(result.getRuleClass())) {
                 System.out.println("Should have an issue for this class");
-                System.out.println("Issues: " + result.getIssues());
+                System.out.println("Issues: " + result.getValidationDetections());
                 found = true;
-                assertEquals("Should have an issue", 1, result.getIssues().size());
-                assertEquals("Should be a specific issue. ", Detection.PatientDeathDateIsInvalid , result.getIssues().get(0).getIssue());
+                assertEquals("Should have an issue", 1, result.getValidationDetections().size());
+                assertEquals("Should be a specific issue. ", Detection.PatientDeathDateIsInvalid , result.getValidationDetections().get(0).getDetection());
             }
         }
         assertTrue("Should be found!", found);
         ValidationRuleResult r = rule.executeRule(received.getPatient(), received);
-        assertEquals("Should have one issue", 1 , r.getIssues().size());
-        assertEquals("Should be a specific issue. ", Detection.PatientDeathDateIsInvalid , r.getIssues().get(0).getIssue());
+        assertEquals("Should have one issue", 1 , r.getValidationDetections().size());
+        assertEquals("Should be a specific issue. ", Detection.PatientDeathDateIsInvalid , r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -94,8 +94,8 @@ public class PatientDeathDateIsValidTester {
     @Test
     public void testRule() {
         ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getIssues().toString());
-        assertEquals("Rule should not detect any problems", 0, r.getIssues().size());
+        logger.info(r.getValidationDetections().toString());
+        assertEquals("Rule should not detect any problems", 0, r.getValidationDetections().size());
         assertEquals("Rule should pass", true, r.isRulePassed());
     }
 
@@ -107,9 +107,9 @@ public class PatientDeathDateIsValidTester {
         p.setDeathDateString(null);
         p.setDeathIndicator("Y");
         ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getIssues().toString());
-        assertEquals("Should have one issue", 1 , r.getIssues().size());
-        assertEquals("Should be a specific issue. ", Detection.PatientDeathDateIsMissing , r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertEquals("Should have one issue", 1 , r.getValidationDetections().size());
+        assertEquals("Should be a specific issue. ", Detection.PatientDeathDateIsMissing , r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -123,9 +123,9 @@ public class PatientDeathDateIsValidTester {
         p.setBirthDateString(yesterday);
 
         ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getIssues().toString());
-        assertEquals("should have one issue", 1, r.getIssues().size());
-        assertEquals(Detection.PatientDeathDateIsBeforeBirth, r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertEquals("should have one issue", 1, r.getValidationDetections().size());
+        assertEquals(Detection.PatientDeathDateIsBeforeBirth, r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -139,9 +139,9 @@ public class PatientDeathDateIsValidTester {
         p.setDeathDateString(dateString);
 
         ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getIssues().toString());
-        assertEquals("should have one issue", 1, r.getIssues().size());
-        assertEquals(Detection.PatientDeathDateIsInFuture, r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertEquals("should have one issue", 1, r.getValidationDetections().size());
+        assertEquals(Detection.PatientDeathDateIsInFuture, r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -155,9 +155,9 @@ public class PatientDeathDateIsValidTester {
         p.setDeathDateString(dateString);
 
         ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getIssues().toString());
-        assertEquals("should have one issue", 1, r.getIssues().size());
-        assertEquals("Issue should indicate an invalid death date string", Detection.PatientDeathDateIsInvalid, r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertEquals("should have one issue", 1, r.getValidationDetections().size());
+        assertEquals("Issue should indicate an invalid death date string", Detection.PatientDeathDateIsInvalid, r.getValidationDetections().get(0).getDetection());
     }
 
     /**

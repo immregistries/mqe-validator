@@ -1,6 +1,6 @@
-package org.immregistries.dqa.validator.issue;
+package org.immregistries.dqa.validator.detection;
 
-public enum IssueType {
+public enum DetectionType {
 	 	 EXCEPTION("exception")
 	    ,BEFORE_BIRTH("is before birth")
 	    ,DEPRECATED("is deprecated")
@@ -94,7 +94,7 @@ public enum IssueType {
 	    ;
 	    
 	    private String wording;
-	    private IssueType (String wording) {
+	    private DetectionType(String wording) {
 	    	this.wording = wording;
 	    }
 	    

@@ -5,9 +5,8 @@ import org.immregistries.dqa.codebase.client.reference.CodesetType;
 import org.immregistries.dqa.codebase.client.reference.CvxConceptType;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.engine.codes.AdministeredLikelihood;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
 
@@ -30,7 +29,7 @@ public class VaccinationIsForeign extends ValidationRule<DqaVaccination> {
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {
 
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
+		List<ValidationDetection> issues = new ArrayList<ValidationDetection>();
 		boolean passed = false;
 		
 		String cvxCode 		 = target.getAdminCvxCode();

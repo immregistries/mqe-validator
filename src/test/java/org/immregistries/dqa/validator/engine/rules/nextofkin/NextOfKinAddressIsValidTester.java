@@ -1,7 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.nextofkin;
 
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.Detection;
+import org.immregistries.dqa.validator.detection.Detection;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
@@ -80,9 +80,9 @@ public class NextOfKinAddressIsValidTester {
         p.getPatientAddressList().clear();
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinAddressIsMissing == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinAddressIsMissing == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -98,9 +98,9 @@ public class NextOfKinAddressIsValidTester {
         p.getPatientAddressList().add(paddr);
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinAddressStreetIsMissing == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinAddressStreetIsMissing == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -116,9 +116,9 @@ public class NextOfKinAddressIsValidTester {
         p.getPatientAddressList().add(paddr);
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinAddressStreet2IsMissing == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinAddressStreet2IsMissing == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -134,9 +134,9 @@ public class NextOfKinAddressIsValidTester {
         p.getPatientAddressList().add(paddr);
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(r.getIssues().size() > 0);
-        assertEquals(Detection.NextOfKinAddressCityIsMissing , r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(r.getValidationDetections().size() > 0);
+        assertEquals(Detection.NextOfKinAddressCityIsMissing , r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -152,9 +152,9 @@ public class NextOfKinAddressIsValidTester {
         p.getPatientAddressList().add(paddr);
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinAddressStateIsMissing == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinAddressStateIsMissing == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -166,9 +166,9 @@ public class NextOfKinAddressIsValidTester {
         setNextOfKin();
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinAddressZipIsMissing == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinAddressZipIsMissing == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -182,9 +182,9 @@ public class NextOfKinAddressIsValidTester {
         // TODO this invalidates Canadian zipcodes too :/
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinAddressZipIsInvalid == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinAddressZipIsInvalid == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -196,9 +196,9 @@ public class NextOfKinAddressIsValidTester {
         setNextOfKin();
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinAddressCountryIsMissing == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinAddressCountryIsMissing == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -210,9 +210,9 @@ public class NextOfKinAddressIsValidTester {
         setNextOfKin();
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinAddressTypeIsValuedBadAddress == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinAddressTypeIsValuedBadAddress == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -224,9 +224,9 @@ public class NextOfKinAddressIsValidTester {
         setNextOfKin();
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinAddressTypeIsUnrecognized == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinAddressTypeIsUnrecognized == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -238,9 +238,9 @@ public class NextOfKinAddressIsValidTester {
         setNextOfKin();
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinAddressTypeIsMissing == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinAddressTypeIsMissing == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -253,9 +253,9 @@ public class NextOfKinAddressIsValidTester {
         setNextOfKin();
 
         ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.NextOfKinAddressIsDifferentFromPatientAddress == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.NextOfKinAddressIsDifferentFromPatientAddress == r.getValidationDetections().get(0).getDetection());
     }
 
     /**

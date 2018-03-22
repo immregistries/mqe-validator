@@ -1,7 +1,7 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.Detection;
+import org.immregistries.dqa.validator.detection.Detection;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
@@ -62,9 +62,9 @@ public class PatientFinancialStatusDateIsValidTester {
         p.setFinancialEligibilityDate(null);
 
         ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.PatientVfcEffectiveDateIsMissing == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.PatientVfcEffectiveDateIsMissing == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -77,9 +77,9 @@ public class PatientFinancialStatusDateIsValidTester {
         p.setFinancialEligibilityDate(addDays(p.getBirthDate(), -1));
 
         ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.PatientVfcEffectiveDateIsBeforeBirth == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.PatientVfcEffectiveDateIsBeforeBirth == r.getValidationDetections().get(0).getDetection());
     }
 
     /**
@@ -92,9 +92,9 @@ public class PatientFinancialStatusDateIsValidTester {
         p.setFinancialEligibilityDate(addDays(new Date(), 1));
 
         ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getIssues().toString());
-        assertTrue(1 == r.getIssues().size()
-                && Detection.PatientVfcEffectiveDateIsInFuture == r.getIssues().get(0).getIssue());
+        logger.info(r.getValidationDetections().toString());
+        assertTrue(1 == r.getValidationDetections().size()
+                && Detection.PatientVfcEffectiveDateIsInFuture == r.getValidationDetections().get(0).getDetection());
     }
 
     /**

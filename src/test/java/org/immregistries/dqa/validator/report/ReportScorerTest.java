@@ -10,8 +10,8 @@ import java.util.Map;
 
 import org.immregistries.dqa.validator.DqaMessageService;
 import org.immregistries.dqa.validator.DqaMessageServiceResponse;
-import org.immregistries.dqa.validator.issue.IssueObject;
-import org.immregistries.dqa.validator.issue.IssueType;
+import org.immregistries.dqa.validator.detection.DetectionType;
+import org.immregistries.dqa.validator.detection.MessageObject;
 import org.immregistries.dqa.vxu.VxuField;
 import org.junit.Test;
 
@@ -41,21 +41,21 @@ public class ReportScorerTest {
 	public ReportIssue generateReportIssueInvalid() {
 		ReportIssue ri = new ReportIssue();
 		ri.setMultiplierPercent(100);
-		ri.setType(IssueType.INVALID);
+		ri.setType(DetectionType.INVALID);
 		return ri;
 	}
 	
 	public ReportIssue generateReportIssueMissing() {
 		ReportIssue ri = new ReportIssue();
 		ri.setMultiplierPercent(100);
-		ri.setType(IssueType.MISSING);
+		ri.setType(DetectionType.MISSING);
 		return ri;
 	}
 	
 	public ReportIssue generateReportIssueUnrecognized() {
 		ReportIssue ri = new ReportIssue();
 		ri.setMultiplierPercent(100);
-		ri.setType(IssueType.UNRECOGNIZED);
+		ri.setType(DetectionType.UNRECOGNIZED);
 		return ri;
 	}
 	
@@ -104,7 +104,7 @@ public class ReportScorerTest {
 		r.setLabel("First Name Report");
 		ReportCompletenessSectionDefinition section = new ReportCompletenessSectionDefinition();
 		section.setLabel("Completeness");
-		section.setSectionObject(IssueObject.PATIENT);
+		section.setSectionObject(MessageObject.PATIENT);
 		section.getReportFields().add(generateReportFieldFirst());
 		r.getQualitySections().add(section);
 		return r;
@@ -115,7 +115,7 @@ public class ReportScorerTest {
 		r.setLabel("Patient Name Report");
 		ReportCompletenessSectionDefinition section = new ReportCompletenessSectionDefinition();
 		section.setLabel("Completeness");
-		section.setSectionObject(IssueObject.PATIENT);
+		section.setSectionObject(MessageObject.PATIENT);
 		section.getReportFields().addAll(getReportFieldList());
 		r.getQualitySections().add(section);
 		return r;
@@ -158,19 +158,19 @@ public class ReportScorerTest {
 		int totalFieldCount = 1000;
 		int potentialScore = def.getWeight();
 		//Perfect score...
-		Map<IssueType, Integer> issueCounts = new HashMap<>();
+		Map<DetectionType, Integer> issueCounts = new HashMap<>();
 		
 		int score = potentialScore - re.getIssueDemeritTotal(re.scoreIssues(def, issueCounts, totalFieldCount), 100);
 		assertEquals("Should be a 100 score", 100, score);
 		
 		//10% bad... 
-		issueCounts.put(IssueType.INVALID, new Integer(100));
+		issueCounts.put(DetectionType.INVALID, new Integer(100));
 		score = potentialScore - re.getIssueDemeritTotal(re.scoreIssues(def, issueCounts, totalFieldCount), 100);
 		
 		assertEquals("Should be a 90 score", 90, score);
 		
 		//100% bad... 
-		issueCounts.put(IssueType.INVALID, new Integer(totalFieldCount));
+		issueCounts.put(DetectionType.INVALID, new Integer(totalFieldCount));
 		score = potentialScore - re.getIssueDemeritTotal(re.scoreIssues(def, issueCounts, totalFieldCount), 100);
 				
 		assertEquals("Should be a 0 score", 0, score);
@@ -178,8 +178,8 @@ public class ReportScorerTest {
 		
 		//10% bad... twice 
 		totalFieldCount = 1000;
-		issueCounts.put(IssueType.INVALID, new Integer(100));
-		issueCounts.put(IssueType.UNRECOGNIZED, new Integer(100));
+		issueCounts.put(DetectionType.INVALID, new Integer(100));
+		issueCounts.put(DetectionType.UNRECOGNIZED, new Integer(100));
 		score = potentialScore - re.getIssueDemeritTotal(re.scoreIssues(def, issueCounts, totalFieldCount), 100);
 		
 		assertEquals("Should be a 80 score", 80, score);
@@ -187,9 +187,9 @@ public class ReportScorerTest {
 		
 		//10% bad... three times 
 		totalFieldCount = 1000;
-		issueCounts.put(IssueType.INVALID, new Integer(100));
-		issueCounts.put(IssueType.UNRECOGNIZED, new Integer(100));
-		issueCounts.put(IssueType.MISSING, new Integer(100));
+		issueCounts.put(DetectionType.INVALID, new Integer(100));
+		issueCounts.put(DetectionType.UNRECOGNIZED, new Integer(100));
+		issueCounts.put(DetectionType.MISSING, new Integer(100));
 		score = potentialScore - re.getIssueDemeritTotal(re.scoreIssues(def, issueCounts, totalFieldCount), 100);
 		
 		assertEquals("Should be a 70 score", 70, score);
@@ -201,9 +201,9 @@ public class ReportScorerTest {
 		}
 		
 		totalFieldCount = 1000;
-		issueCounts.put(IssueType.INVALID, new Integer(100));
-		issueCounts.put(IssueType.UNRECOGNIZED, new Integer(100));
-		issueCounts.put(IssueType.MISSING, new Integer(100));
+		issueCounts.put(DetectionType.INVALID, new Integer(100));
+		issueCounts.put(DetectionType.UNRECOGNIZED, new Integer(100));
+		issueCounts.put(DetectionType.MISSING, new Integer(100));
 		score = potentialScore - re.getIssueDemeritTotal(re.scoreIssues(def, issueCounts, totalFieldCount), 100);
 		
 		assertEquals("Should be a 85 score", 85, score);

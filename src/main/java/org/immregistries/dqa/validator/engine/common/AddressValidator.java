@@ -1,11 +1,10 @@
 package org.immregistries.dqa.validator.engine.common;
 
 import org.apache.commons.lang3.StringUtils;
-import org.immregistries.dqa.hl7util.model.Hl7Location;
+import org.immregistries.dqa.validator.detection.DetectionType;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.IssueType;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaAddress;
 import org.immregistries.dqa.vxu.MetaFieldInfoData;
 import org.immregistries.dqa.vxu.VxuField;
@@ -25,11 +24,11 @@ public enum AddressValidator {
 	private CommonRules common = CommonRules.INSTANCE;
 	
 	public ValidationRuleResult getAddressIssuesFor(AddressFields fields, DqaAddress a, MetaFieldInfoData meta) {
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
+		List<ValidationDetection> issues = new ArrayList<ValidationDetection>();
 		boolean passed = true;
 		
 		if (a == null) {
-			issues.add(makeIssue(fields.getAddress(), IssueType.MISSING, meta));
+			issues.add(makeIssue(fields.getAddress(), DetectionType.MISSING, meta));
 			passed = false;
 		} else {
 			addStreetIssues(a.getStreet2(), fields.getStreet2Field(), issues, meta);
@@ -55,69 +54,69 @@ public enum AddressValidator {
 		return result;
 	}
 
-	protected void addStreetIssues(String street, VxuField field, List<ValidationIssue> issues, MetaFieldInfoData meta) {
+	protected void addStreetIssues(String street, VxuField field, List<ValidationDetection> issues, MetaFieldInfoData meta) {
 		if (common.isEmpty(street)) {
-			issues.add(makeIssue(field, IssueType.MISSING, meta));
+			issues.add(makeIssue(field, DetectionType.MISSING, meta));
 		} else {
 			if (!validCity(street)) {
-				issues.add(makeIssue(field, IssueType.INVALID, street, meta));
+				issues.add(makeIssue(field, DetectionType.INVALID, street, meta));
 			}
 		}
 	}
 	
-	protected void addCityIssues(String city, VxuField field, List<ValidationIssue> issues, MetaFieldInfoData meta) {
+	protected void addCityIssues(String city, VxuField field, List<ValidationDetection> issues, MetaFieldInfoData meta) {
 		if (common.isEmpty(city)) {
-			issues.add(makeIssue(field, IssueType.MISSING, meta));
-			issues.add(makeIssue(field, IssueType.MISSING, meta));
+			issues.add(makeIssue(field, DetectionType.MISSING, meta));
+			issues.add(makeIssue(field, DetectionType.MISSING, meta));
 		} else {
 			if (!validCity(city)) {
-			    issues.add(makeIssue(field, IssueType.INVALID, city, meta));
+			    issues.add(makeIssue(field, DetectionType.INVALID, city, meta));
 			}
 		}
 	}
 
-	protected ValidationIssue makeIssue(VxuField field, IssueType type, String value, MetaFieldInfoData meta) {
+	protected ValidationDetection makeIssue(VxuField field, DetectionType type, String value, MetaFieldInfoData meta) {
       Detection detection = Detection.get(field, type);
       return detection.build(value, meta);
   }
 
-    protected ValidationIssue makeIssue(VxuField field, IssueType type, MetaFieldInfoData meta) {
+    protected ValidationDetection makeIssue(VxuField field, DetectionType type, MetaFieldInfoData meta) {
         Detection detection = Detection.get(field, type);
         return detection.build(meta);
     }
 	
-	protected void addStateIssues(String state, VxuField field, List<ValidationIssue> issues, MetaFieldInfoData meta) {
+	protected void addStateIssues(String state, VxuField field, List<ValidationDetection> issues, MetaFieldInfoData meta) {
 		if (common.isEmpty(state)) {
-			issues.add(makeIssue(field, IssueType.MISSING, meta));
+			issues.add(makeIssue(field, DetectionType.MISSING, meta));
 		} else {
 			if (!validState(state)) {
-				issues.add(makeIssue(field, IssueType.INVALID, state, meta));
+				issues.add(makeIssue(field, DetectionType.INVALID, state, meta));
 			}
 		}
 	}
 	
-	protected void addZipIssues(String zip, VxuField field, List<ValidationIssue> issues, MetaFieldInfoData meta) {
+	protected void addZipIssues(String zip, VxuField field, List<ValidationDetection> issues, MetaFieldInfoData meta) {
 		if (common.isEmpty(zip)) {
-			issues.add(makeIssue(field,  IssueType.MISSING, meta));
+			issues.add(makeIssue(field,  DetectionType.MISSING, meta));
 		} else {
 			if (!isValidZip(zip)) {
-				issues.add(makeIssue(field, IssueType.INVALID, zip, meta));
+				issues.add(makeIssue(field, DetectionType.INVALID, zip, meta));
 			}
 		}
 	}
 	
-	protected void addCountyIssues(String county, VxuField field, List<ValidationIssue> issues, MetaFieldInfoData meta) {
+	protected void addCountyIssues(String county, VxuField field, List<ValidationDetection> issues, MetaFieldInfoData meta) {
 		if (common.isEmpty(county)) {
-			issues.add(makeIssue(field,  IssueType.MISSING, meta));
+			issues.add(makeIssue(field,  DetectionType.MISSING, meta));
 		} 
 	}
 	
-	protected void addCountryIssues(String country, VxuField field, List<ValidationIssue> issues, MetaFieldInfoData meta) {
+	protected void addCountryIssues(String country, VxuField field, List<ValidationDetection> issues, MetaFieldInfoData meta) {
 		if (common.isEmpty(country)) {
-			issues.add(makeIssue(field,  IssueType.MISSING, meta));
+			issues.add(makeIssue(field,  DetectionType.MISSING, meta));
 		} else {
 			if (!validCountryCode(country)) {
-				issues.add(makeIssue(field, IssueType.INVALID, country, meta));
+				issues.add(makeIssue(field, DetectionType.INVALID, country, meta));
 			}
 		}
 	}

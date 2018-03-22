@@ -9,9 +9,9 @@ import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientExists;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientNameIsValid;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationIsPresent;
-import org.immregistries.dqa.validator.issue.IssueObject;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.MessageObject;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.junit.Test;
 
 public class MessageResponseEvaluatorTester {
@@ -23,9 +23,9 @@ public class MessageResponseEvaluatorTester {
 		assertNotNull(metrics);
 		assertEquals("should have the right number of object types represented", 4, metrics.getObjectCounts().size());
 		
-		assertEquals("Should have one patient: ", new Integer(1), metrics.getObjectCounts().get(IssueObject.PATIENT));
-		assertEquals("Should have three vaccination: ", new Integer(3), metrics.getObjectCounts().get(IssueObject.VACCINATION));
-		assertEquals("Should have zero of NOK: ", new Integer(0), metrics.getObjectCounts().get(IssueObject.NEXT_OF_KIN));
+		assertEquals("Should have one patient: ", new Integer(1), metrics.getObjectCounts().get(MessageObject.PATIENT));
+		assertEquals("Should have three vaccination: ", new Integer(3), metrics.getObjectCounts().get(MessageObject.VACCINATION));
+		assertEquals("Should have zero of NOK: ", new Integer(0), metrics.getObjectCounts().get(MessageObject.NEXT_OF_KIN));
 		assertEquals("Should have a count for patient middle name is misisng: ", new Integer(1), metrics.getAttributeCounts().get(Detection.PatientMiddleNameIsMissing));
 	}
 	
@@ -35,33 +35,33 @@ public class MessageResponseEvaluatorTester {
 		
 		ValidationRuleResult result = new ValidationRuleResult();
 		result.setRuleClass(PatientExists.class);
-		result.setIssues(new ArrayList<ValidationIssue>());
+		result.setIssues(new ArrayList<ValidationDetection>());
 		result.setRulePassed(true);
 		results.add(result);
 
 		ValidationRuleResult result2 = new ValidationRuleResult();
 		result2.setRuleClass(VaccinationIsPresent.class);
-		result2.setIssues(new ArrayList<ValidationIssue>());
+		result2.setIssues(new ArrayList<ValidationDetection>());
 		result2.setRulePassed(true);
 		results.add(result2);
 		
 		ValidationRuleResult result21 = new ValidationRuleResult();
 		result21.setRuleClass(VaccinationIsPresent.class);
-		result21.setIssues(new ArrayList<ValidationIssue>());
+		result21.setIssues(new ArrayList<ValidationDetection>());
 		result21.setRulePassed(true);
 		results.add(result21);
 		
 		ValidationRuleResult result22 = new ValidationRuleResult();
 		result22.setRuleClass(VaccinationIsPresent.class);
-		result22.setIssues(new ArrayList<ValidationIssue>());
+		result22.setIssues(new ArrayList<ValidationDetection>());
 		result22.setRulePassed(true);
 		results.add(result22);
 
 		ValidationRuleResult result3 = new ValidationRuleResult();
 		result3.setRuleClass(PatientNameIsValid.class);
-		ValidationIssue issue = new ValidationIssue();
+		ValidationDetection issue = new ValidationDetection();
 		issue.setDetection(Detection.PatientMiddleNameIsMissing);
-		result3.getIssues().add(issue);
+		result3.getValidationDetections().add(issue);
 		result3.setRulePassed(false);
 		results.add(result3);
 		

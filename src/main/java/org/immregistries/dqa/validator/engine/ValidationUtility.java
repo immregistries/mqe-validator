@@ -1,8 +1,8 @@
 package org.immregistries.dqa.validator.engine;
 
 import org.immregistries.dqa.validator.engine.common.CommonRules;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.slf4j.Logger;
 
@@ -17,8 +17,8 @@ public enum ValidationUtility {
 	private static final CommonRules common  = CommonRules.INSTANCE;
 	private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(ValidationUtility.class);
 	
-	public ValidationIssue createIssue(Detection attribute, String codedValue) {
-		ValidationIssue found = new ValidationIssue();
+	public ValidationDetection createIssue(Detection attribute, String codedValue) {
+		ValidationDetection found = new ValidationDetection();
 		found.setDetection(attribute);
 		found.setValueReceived(codedValue);
 		found.setSeverityLevel(attribute.getSeverity());//This needs to be equipped to be naunced. This will comes off a profile. 
@@ -30,9 +30,9 @@ public enum ValidationUtility {
 	 * @param issues
 	 * @return
 	 */
-	public boolean hasErrors(List<ValidationIssue> issues) {
+	public boolean hasErrors(List<ValidationDetection> issues) {
 		if (issues != null && issues.size() > 0) {
-			for (ValidationIssue issue : issues) {
+			for (ValidationDetection issue : issues) {
 				if (issue.isError()) {
 					return false;
 				}

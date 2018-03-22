@@ -46,7 +46,7 @@ public class PatientClassIsValidTester {
     @Test
     public void testRule() {
         ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getIssues().toString());
+        logger.info(r.getValidationDetections().toString());
         assertTrue(r.isRulePassed());
     }
 
@@ -59,7 +59,7 @@ public class PatientClassIsValidTester {
         p.setPatientClassCode(null);
 
         ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getIssues().toString());
+        logger.info(r.getValidationDetections().toString());
         assertFalse(r.isRulePassed());
     }
 
@@ -72,7 +72,7 @@ public class PatientClassIsValidTester {
         p.setPatientClassCode("");
 
         ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getIssues().toString());
+        logger.info(r.getValidationDetections().toString());
         assertFalse(r.isRulePassed());
     }
 
@@ -85,7 +85,7 @@ public class PatientClassIsValidTester {
         p.setPatientClassCode("abc");
 
         ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getIssues().toString());
+        logger.info(r.getValidationDetections().toString());
         assertFalse(r.isRulePassed());
     }
 }

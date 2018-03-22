@@ -3,6 +3,7 @@ package org.immregistries.dqa.validator.transform;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.core.util.DateUtility;
+import org.immregistries.dqa.hl7util.model.MetaFieldInfo;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
 import org.immregistries.dqa.vxu.*;
 import org.immregistries.dqa.vxu.hl7.Observation;
@@ -311,16 +312,24 @@ public enum MessageTransformer {
             }
         }
 
-
+        boolean guardianFound = false;
         //Need to pick one as the official "guardian"
-//		for (NextOfKin kin : mr.getNextOfKins()) {
-//			if (p.getResponsibleParty() == null) {
-//				if (kin.isResponsibleRelationship()) {
-//					p.setResponsibleParty(kin);
-//					break;
-//				}
-//			}
-//		}//NOPE:  Decided we don't need to make this pick in the DQA codes.
+        for (DqaNextOfKin kin : mr.getNextOfKins()) {
+            if (p.getResponsibleParty() == null) {
+                if (kin.isResponsibleRelationship()) {
+                    p.setResponsibleParty(kin);
+                    //set the meta field info...
+                    MetaFieldInfo mfi = new MetaFieldInfo("", VxuField.PATIENT_GUARDIAN_RESPONSIBLE_PARTY, kin.getPositionId(), kin.getMessageLineNumber());
+                    p.getMetaFieldInfoMap().put(VxuField.PATIENT_GUARDIAN_RESPONSIBLE_PARTY, mfi);
+                    guardianFound = true;
+                    break;
+                }
+            }
+        }
+        if (!guardianFound) {
+            MetaFieldInfo mfi = new MetaFieldInfo("", VxuField.PATIENT_GUARDIAN_RESPONSIBLE_PARTY, 0, 0);
+            p.getMetaFieldInfoMap().put(VxuField.PATIENT_GUARDIAN_RESPONSIBLE_PARTY, mfi);
+        }
     }
 
     protected void transformNextOfKinData(DqaMessageReceived mr) {

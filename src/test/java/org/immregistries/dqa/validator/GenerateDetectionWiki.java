@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.IssueObject;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.MessageObject;
 import org.immregistries.dqa.vxu.VxuField;
 
 public class GenerateDetectionWiki {
@@ -15,22 +15,22 @@ public class GenerateDetectionWiki {
     }
     File file = new File(args[0]);
     PrintWriter out = new PrintWriter(new FileWriter(file));
-    for (IssueObject issueObject : IssueObject.values()) {
+    for (MessageObject messageObject : MessageObject.values()) {
       boolean found = false;
       for (Detection detection : Detection.values()) {
-        if (detection.getTargetObject() == issueObject) {
+        if (detection.getTargetObject() == messageObject) {
           found = true;
           break;
         }
       }
       if (found) {
-        out.println("# " + issueObject.getDescription());
+        out.println("# " + messageObject.getDescription());
         out.println();
-        out.println("Location: " + issueObject.getLocation());
+        out.println("Location: " + messageObject.getLocation());
         for (VxuField vxuField : VxuField.values()) {
           found = false;
           for (Detection detection : Detection.values()) {
-            if (detection.getTargetObject() == issueObject
+            if (detection.getTargetObject() == messageObject
                 && detection.getTargetField() == vxuField) {
               found = true;
               break;
@@ -48,7 +48,7 @@ public class GenerateDetectionWiki {
             out.println("");
             out.println("Detections: ");
             for (Detection detection : Detection.values()) {
-              if (detection.getTargetObject() == issueObject
+              if (detection.getTargetObject() == messageObject
                   && detection.getTargetField() == vxuField) {
                 out.println("* " + detection.getDqaErrorCode() + ": " + detection.getDisplayText());
               }

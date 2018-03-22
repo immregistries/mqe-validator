@@ -1,12 +1,12 @@
 package org.immregistries.dqa.validator.report;
 
-import org.immregistries.dqa.validator.issue.IssueType;
+import org.immregistries.dqa.validator.detection.DetectionType;
 
 public class FieldIssueScore {
 	private int issueCount = 0;
 	private double issuePercentDemerit;
 	private int issueDemerit = 0;
-	private IssueType issueType;
+	private DetectionType detectionType;
 	
 	
 	
@@ -28,11 +28,11 @@ public class FieldIssueScore {
 	public void setIssuePercentDemerit(double issuePercentDemerit) {
 		this.issuePercentDemerit = issuePercentDemerit;
 	}
-	public IssueType getIssueType() {
-		return issueType;
+	public DetectionType getDetectionType() {
+		return detectionType;
 	}
-	public void setIssueType(IssueType issueType) {
-		this.issueType = issueType;
+	public void setDetectionType(DetectionType detectionType) {
+		this.detectionType = detectionType;
 	}
 	
 }

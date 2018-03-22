@@ -63,20 +63,17 @@ public class CodeCollectionTester {
         reportCounts(cc);
 
         List<CollectionBucket> groupCounts = cc.getByType(CodesetType.VACCINE_GROUP);
-        assertEquals("Should be three entries, one for each group", 3, groupCounts.size());
-        assertEquals("Should be three groups represented", 3, groupCounts.size());
-        for (CollectionBucket cb : groupCounts) {
-            assertEquals("Should be age 4", "4", cb.getAttribute());
-        }
+        assertEquals("Should be zero entries, we aren't collecting this", 0, groupCounts.size());
+
         msg = tmg.getMsg2();
         cc = new CodeCollection(msg);
         groupCounts = cc.getByType(CodesetType.VACCINE_GROUP);
-        assertEquals("Should be one group age", 1, groupCounts.size());
+        assertEquals("Should be zero entries, we aren't collecting this", 0, groupCounts.size());
 
         msg = tmg.getMsg3();
         cc = new CodeCollection(msg);
         groupCounts = cc.getByType(CodesetType.VACCINE_GROUP);
-        assertEquals("Should be one group age", 1, groupCounts.size());
+        assertEquals("Should be zero entries, we aren't collecting this", 0, groupCounts.size());
     }
 
 }

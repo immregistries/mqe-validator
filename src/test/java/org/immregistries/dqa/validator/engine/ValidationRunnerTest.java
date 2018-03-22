@@ -9,7 +9,7 @@ import org.immregistries.dqa.validator.TestMessageGenerator;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientBirthDateIsValid;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientExists;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientIsUnderage;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.parse.HL7MessageParser;
 import org.junit.Test;
@@ -81,12 +81,12 @@ public class ValidationRunnerTest {
 			if (vrr.isRulePassed()) {
 //				System.out.println("PASSED!" + vrr.getRuleClass());
 			} else {
-				System.out.println("RULE: " + vrr.getRuleClass() + " ISSUEs " + vrr.getIssues().size());
-				for (ValidationIssue f: vrr.getIssues()) {
+				System.out.println("RULE: " + vrr.getRuleClass() + " ISSUEs " + vrr.getValidationDetections().size());
+				for (ValidationDetection f: vrr.getValidationDetections()) {
 					if (f.isError()) {
-						System.out.println("     ERROR Issue: " + f.getIssue());
+						System.out.println("     ERROR Issue: " + f.getDetection());
 					} else {
-						System.out.println("     WARN  Issue: " + f.getIssue());
+						System.out.println("     WARN  Issue: " + f.getDetection());
 					}
 				}
 			}

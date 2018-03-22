@@ -5,7 +5,7 @@ import static org.junit.Assert.assertFalse;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.immregistries.dqa.validator.issue.Detection;
+import org.immregistries.dqa.validator.detection.Detection;
 import org.junit.Test;
 
 public class MessageAttributeTest {

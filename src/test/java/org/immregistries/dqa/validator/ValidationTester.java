@@ -6,7 +6,7 @@ import java.util.List;
 import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.validator.engine.MessageValidator;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.parse.HL7MessageParser;
 import org.junit.Test;
@@ -82,7 +82,7 @@ public class ValidationTester {
 
   private void reportResults(List<ValidationRuleResult> list, SeverityLevel a) {
     for (ValidationRuleResult vrr : list) {
-      for (ValidationIssue i : vrr.getIssues()) {
+      for (ValidationDetection i : vrr.getValidationDetections()) {
         if (a == i.getSeverity()) {
           String s = "  - ";
           if (i.getHl7LocationList() != null && i.getHl7LocationList().size() > 0) {
@@ -92,7 +92,7 @@ public class ValidationTester {
           if (s.length() > 10) {
             s = s.substring(0, 18);
           }
-          System.out.println(s + ": " + i.getIssue() + "[" + i.getValueReceived() + "]");
+          System.out.println(s + ": " + i.getDetection() + "[" + i.getValueReceived() + "]");
         }
       }
     }

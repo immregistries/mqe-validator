@@ -1,10 +1,10 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
+import org.immregistries.dqa.validator.detection.DetectionType;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.IssueType;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
 import org.immregistries.dqa.vxu.VxuField;
@@ -17,23 +17,23 @@ public class PatientSsnIsValid extends ValidationRule<DqaPatient> {
 
 	public PatientSsnIsValid() {
 		ruleDetections.addAll(Arrays.asList(
-				Detection.get(VxuField.PATIENT_SSN,  IssueType.MISSING),
-				Detection.get(VxuField.PATIENT_SSN,  IssueType.INVALID)
+				Detection.get(VxuField.PATIENT_SSN,  DetectionType.MISSING),
+				Detection.get(VxuField.PATIENT_SSN,  DetectionType.INVALID)
 		));
 	}
 	
 	@Override
 	protected ValidationRuleResult executeRule(DqaPatient target, DqaMessageReceived m) {
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
+		List<ValidationDetection> issues = new ArrayList<ValidationDetection>();
 		boolean passed = true;
 		
 		String ssn = target.getIdSsnNumber();
 		
 		if (this.common.isEmpty(ssn)) {
-			issues.add(Detection.get(VxuField.PATIENT_SSN,  IssueType.MISSING).build(target));
+			issues.add(Detection.get(VxuField.PATIENT_SSN,  DetectionType.MISSING).build(target));
 			passed = false;
 		} else if (!isSsnPattern(ssn)) {
-			issues.add(Detection.get(VxuField.PATIENT_SSN,  IssueType.INVALID).build(target));
+			issues.add(Detection.get(VxuField.PATIENT_SSN,  DetectionType.INVALID).build(target));
 			passed = false;
 		}
 		

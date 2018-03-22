@@ -5,7 +5,7 @@ import org.immregistries.dqa.codebase.client.reference.CodeStatusValue;
 import org.immregistries.dqa.codebase.client.reference.CodesetType;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
 
@@ -18,7 +18,7 @@ public class VaccinationUseCvx extends ValidationRule<DqaVaccination> {
 	protected ValidationRuleResult executeRule(DqaVaccination target,
 			DqaMessageReceived m) {
 
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
+		List<ValidationDetection> issues = new ArrayList<ValidationDetection>();
 		boolean passed = true;
 
 		String cvxString = target.getAdminCvxCode();

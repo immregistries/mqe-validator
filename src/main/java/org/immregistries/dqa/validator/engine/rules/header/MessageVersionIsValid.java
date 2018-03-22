@@ -2,8 +2,8 @@ package org.immregistries.dqa.validator.engine.rules.header;
 
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.slf4j.Logger;
@@ -34,7 +34,7 @@ public class MessageVersionIsValid extends ValidationRule<DqaMessageHeader> {
 	protected ValidationRuleResult executeRule(DqaMessageHeader target,
 			DqaMessageReceived mr) {
 
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
+		List<ValidationDetection> issues = new ArrayList<ValidationDetection>();
 		boolean passed = false;
 		
 		String version = target.getMessageVersion();

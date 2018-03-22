@@ -4,8 +4,8 @@ import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
 import org.immregistries.dqa.validator.engine.common.CodeHandler;
 import org.immregistries.dqa.validator.engine.common.CommonRules;
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +48,7 @@ public abstract class ValidationRule<T> {
 			 return executeRule(target, m);
 		} catch (Exception e) {
 			LOGGER.error("Error running rule - " + this.getClass() + " problem: " + e.getMessage(), e);
-			ValidationIssue[] issues = new ValidationIssue[]{
+			ValidationDetection[] issues = new ValidationDetection[]{
 				Detection.GeneralProcessingException.build(this.getClass().getName(), null)};
 			return buildResults(Arrays.asList(issues), false);
 		}
@@ -60,7 +60,7 @@ public abstract class ValidationRule<T> {
 	 * @param issues
 	 * @return
 	 */
-	protected ValidationRuleResult buildResults(List<ValidationIssue> issues) {
+	protected ValidationRuleResult buildResults(List<ValidationDetection> issues) {
 		return buildResults(issues, this.util.hasErrors(issues));
 	}
 
@@ -70,7 +70,7 @@ public abstract class ValidationRule<T> {
 	 * @param issues
 	 * @return
 	 */
-	protected ValidationRuleResult buildResults(List<ValidationIssue> issues, boolean passed) {
+	protected ValidationRuleResult buildResults(List<ValidationDetection> issues, boolean passed) {
 		ValidationRuleResult result = new ValidationRuleResult();
 		result.setRuleClass(this.getClass());
 		result.setIssues(issues);
@@ -84,7 +84,7 @@ public abstract class ValidationRule<T> {
 	 * @param issues
 	 * @return
 	 */
-	protected ValidationRuleResult buildResults(List<ValidationIssue> issues, boolean passed, List<Detection> possibleDetections) {
+	protected ValidationRuleResult buildResults(List<ValidationDetection> issues, boolean passed, List<Detection> possibleDetections) {
 		ValidationRuleResult result = buildResults(issues, passed);
 		result.getPossible().addAll(possibleDetections);
 		return result;

@@ -1,13 +1,13 @@
 package org.immregistries.dqa.validator.engine;
 
-import org.immregistries.dqa.validator.issue.Detection;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationDetection;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ValidationRuleResult {
-	private List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
+	private List<ValidationDetection> issues = new ArrayList<ValidationDetection>();
 	private boolean rulePassed = false;
 	private List<Detection> possible = new ArrayList<>();
 	private Class<? extends ValidationRule> ruleClass;
@@ -16,11 +16,11 @@ public class ValidationRuleResult {
 		return possible;
 	}
 
-	public List<ValidationIssue> getIssues() {
+	public List<ValidationDetection> getValidationDetections() {
 		return issues;
 	}
 	
-	public void setIssues(List<ValidationIssue> issues) {
+	public void setIssues(List<ValidationDetection> issues) {
 		this.issues = issues;
 	}
 	

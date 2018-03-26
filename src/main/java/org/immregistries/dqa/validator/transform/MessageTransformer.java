@@ -199,19 +199,19 @@ public enum MessageTransformer {
     }
   }
 
-  protected boolean isSingleSubIdList(List<Observation> obxList) {
-    String subId = (obxList != null && obxList.size() > 0 ? obxList.get(0).getSubId() : "");
-    String nextSubId = subId;
-    for (Observation o : obxList) {
-      subId = o.getSubId();
-      if (!subId.equals(nextSubId)) {
-        return false;
-      } else {
-        nextSubId = subId;
-      }
-    }
-    return true;
-  }
+//  protected boolean isSingleSubIdList(List<Observation> obxList) {
+//    String subId = (obxList != null && obxList.size() > 0 ? obxList.get(0).getSubId() : "");
+//    String nextSubId = subId;
+//    for (Observation o : obxList) {
+//      subId = o.getSubId();
+//      if (!subId.equals(nextSubId)) {
+//        return false;
+//      } else {
+//        nextSubId = subId;
+//      }
+//    }
+//    return true;
+//  }
 
   protected String getVfcCodeFromObxSet(List<Observation> obxList) {
 
@@ -224,8 +224,7 @@ public enum MessageTransformer {
       // We really only accept a few kinds of observations:
       switch (o.getIdentifierCode()) {
         case OBX_VACCINE_FUNDING:
-          String eligibilityCode = o.getValue();
-          return eligibilityCode;
+          return o.getValue();
         default:
           // don't use it... it's not a VFC observation.
           break;
@@ -316,57 +315,8 @@ public enum MessageTransformer {
       }
     }
 
-    boolean guardianFound = false;
-    // Need to pick one as the official "guardian"
-    for (DqaNextOfKin kin : mr.getNextOfKins()) {
-      if (p.getResponsibleParty() == null) {
-        if (kin.isResponsibleRelationship()) {
-          p.setResponsibleParty(kin);
-          // set the meta field info...
-          MetaFieldInfo mfi =
-              new MetaFieldInfo("", VxuField.PATIENT_GUARDIAN_RESPONSIBLE_PARTY,
-                  kin.getPositionId(), kin.getMessageLineNumber());
-          p.getMetaFieldInfoMap().put(VxuField.PATIENT_GUARDIAN_RESPONSIBLE_PARTY, mfi);
-          guardianFound = true;
-          break;
-        }
-      }
-    }
-    if (!guardianFound) {
-      MetaFieldInfo mfi = new MetaFieldInfo("", VxuField.PATIENT_GUARDIAN_RESPONSIBLE_PARTY, 0, 0);
-      p.getMetaFieldInfoMap().put(VxuField.PATIENT_GUARDIAN_RESPONSIBLE_PARTY, mfi);
-    }
   }
 
-  protected void transformNextOfKinData(DqaMessageReceived mr) {
-    List<DqaNextOfKin> kinList = mr.getNextOfKins();
-    for (DqaNextOfKin kin : kinList) {
-      // 1. Clean the address
-      // transformAddress(kin.getAddress());
-    }
-  }
-
-  // protected void transformAddress(Address a) {
-  // ac.cleanThisAddress(a);
-  // //gather all the addresses and send them in one REST request;
-  // }
-
-
-  /*
-   * I need to create a set of methods that will transform an observation into a business object.
-   */
-  // if (observation.getObservationIdentifierCode().equals(OBX_DISEASE_WITH_PRESUMED_IMMUNITY))
-  public PatientImmunity toPatientImmunity(Observation ob) {
-
-    PatientImmunity patientImmunity = new PatientImmunity();
-    patientImmunity.setImmunityCode(ob.getValue());
-    // patient.getPatientImmunityList().add(patientImmunity);
-    // handleCodeReceived(patientImmunity.getImmunity(),
-    // PotentialIssues.Field.PATIENT_IMMUNITY_CODE);
-
-    return new PatientImmunity();
-
-  }
   // From Validation.java
   // for (Observation observation : vaccination.getObservations())
   // {

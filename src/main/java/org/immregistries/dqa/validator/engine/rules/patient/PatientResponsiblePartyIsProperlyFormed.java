@@ -16,16 +16,20 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<DqaP
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {PatientHasResponsibleParty.class};
+    return new Class[]{PatientHasResponsibleParty.class};
   }
 
   public PatientResponsiblePartyIsProperlyFormed() {
-    ruleDetections.addAll(Arrays.asList(Detection.PatientGuardianAddressStateIsMissing,
+    ruleDetections.addAll(Arrays.asList(
+        Detection.PatientGuardianAddressStateIsMissing,
         Detection.PatientGuardianAddressCityIsMissing,
-        Detection.PatientGuardianAddressZipIsMissing, Detection.PatientGuardianNameFirstIsMissing,
-        Detection.PatientGuardianNameLastIsMissing, Detection.PatientGuardianNameIsMissing,
+        Detection.PatientGuardianAddressZipIsMissing,
+        Detection.PatientGuardianNameFirstIsMissing,
+        Detection.PatientGuardianNameLastIsMissing,
+        Detection.PatientGuardianNameIsMissing,
         Detection.PatientGuardianNameIsSameAsUnderagePatient,
-        Detection.PatientGuardianPhoneIsMissing, Detection.PatientGuardianRelationshipIsMissing,
+        Detection.PatientGuardianPhoneIsMissing,
+        Detection.PatientGuardianRelationshipIsMissing,
         Detection.PatientGuardianResponsiblePartyIsMissing));
   }
 
@@ -70,19 +74,13 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<DqaP
       if (this.common.isEmpty(guardian.getPhoneNumber())) {
         issues.add(Detection.PatientGuardianPhoneIsMissing.build(target));
       }
-      if (this.common.isEmpty(guardian.getRelationshipCode())) {
+      if (this.common.isEmpty(guardian.getRelationshipCode())) {//This shouldn't be possible...
         issues.add(Detection.PatientGuardianRelationshipIsMissing.build(target));
       }
 
       passed = (issues.size() == 0);
 
     }
-    // else {
-    // // Shouldn't the responsible party be present??? This didn't raise any issues in the original
-    // code. I'm not sure why.
-    // issues.add(Detection.PatientGuardianResponsiblePartyIsMissing.build(target));
-    // passed = false;
-    // }
 
     return buildResults(issues, passed);
   }

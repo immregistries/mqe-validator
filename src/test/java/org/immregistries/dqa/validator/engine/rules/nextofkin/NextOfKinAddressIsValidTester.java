@@ -23,246 +23,258 @@ import org.slf4j.LoggerFactory;
  * Created by Allison on 5/4/2017.
  */
 public class NextOfKinAddressIsValidTester {
-    private NextOfKinAddressIsValid rule = new NextOfKinAddressIsValid();
 
-    // Parts required for the test
-    private DqaMessageHeader mh = new DqaMessageHeader();
-    private DqaMessageReceived mr = new DqaMessageReceived();
-    private DqaNextOfKin nok = new DqaNextOfKin();
-    private DqaPatient p = new DqaPatient();
+  private NextOfKinAddressIsValid rule = new NextOfKinAddressIsValid();
 
-    private static final Logger logger = LoggerFactory.getLogger(NextOfKinAddressIsValidTester.class);
+  // Parts required for the test
+  private DqaMessageHeader mh = new DqaMessageHeader();
+  private DqaMessageReceived mr = new DqaMessageReceived();
+  private DqaNextOfKin nok = new DqaNextOfKin();
+  private DqaPatient p = new DqaPatient();
 
-    /**
-     * Sets up the objects needed for the test. Next of kin and patient need the same address.
-     */
-    @Before
-    public void setUpTheObjects() {
-        DqaAddress addr = new DqaAddress();
-        addr.setStreet("233 Cherokee Ln");
-        addr.setStreet2("Apt 106");
-        addr.setCity("Flint");
-        addr.setStateCode("MI");
-        addr.setZip("49501");
-        addr.setCountryCode("USA");
-        addr.setCountyParishCode("73");
-        addr.setTypeCode("P");
+  private static final Logger logger = LoggerFactory.getLogger(NextOfKinAddressIsValidTester.class);
 
-        nok.setAddress(addr);
-        setNextOfKin();
+  /**
+   * Sets up the objects needed for the test. Next of kin and patient need the same address.
+   */
+  @Before
+  public void setUpTheObjects() {
+    DqaAddress addr = new DqaAddress();
+    addr.setStreet("233 Cherokee Ln");
+    addr.setStreet2("Apt 106");
+    addr.setCity("Flint");
+    addr.setStateCode("MI");
+    addr.setZip("49501");
+    addr.setCountryCode("USA");
+    addr.setCountyParishCode("73");
+    addr.setTypeCode("P");
 
-        p.getPatientAddressList().add(new DqaPatientAddress(addr));
+    nok.setAddress(addr);
+    setNextOfKin();
 
-        mh.setMessageDate(new Date());
-        mr.setMessageHeader(mh);
-        mr.setPatient(p);
-    }
+    p.getPatientAddressList().add(new DqaPatientAddress(addr));
 
-    /**
-     * Test the basic rule with a valid address.
-     * (should be true)
-     */
-    @Test
-    public void testRule() {
-        ValidationRuleResult r = rule.executeRule(nok, mr);
-        assertTrue(r.isRulePassed());
-    }
+    mh.setMessageDate(new Date());
+    mr.setMessageHeader(mh);
+    mr.setPatient(p);
+  }
 
-    /**
-     * Test with a null (missing) address.
-     */
-    @Test
-    public void testRuleNullAddress() {
-        nok.setAddress(null);
-        setNextOfKin();
+  /**
+   * Test the basic rule with a valid address. (should be true)
+   */
+  @Test
+  public void testRule() {
+    ValidationRuleResult r = rule.executeRule(nok, mr);
+    assertTrue(r.isRulePassed());
+  }
 
-        p.getPatientAddressList().clear();
+  /**
+   * Test with a null (missing) address.
+   */
+  @Test
+  public void testRuleNullAddress() {
+    nok.setAddress(null);
+    setNextOfKin();
 
-        ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.NextOfKinAddressIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+    p.getPatientAddressList().clear();
 
-    /**
-     * Test with missing (null) street 1.
-     */
-    @Test
-    public void testRuleNullStreet() {
-        nok.getAddress().setStreet(null);
-        setNextOfKin();
+    ValidationRuleResult r = rule.executeRule(nok, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.NextOfKinAddressIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
-        p.getPatientAddressList().clear();
-        p.getPatientAddressList().add(paddr);
+  /**
+   * Test with missing (null) street 1.
+   */
+  @Test
+  public void testRuleNullStreet() {
+    nok.getAddress().setStreet(null);
+    setNextOfKin();
 
-        ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.NextOfKinAddressStreetIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+    DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
+    p.getPatientAddressList().clear();
+    p.getPatientAddressList().add(paddr);
 
-    /**
-     * Test with missing (null) street 2.
-     */
-    @Test
-    public void testRuleNullStreet2() {
-        nok.getAddress().setStreet2(null);
-        setNextOfKin();
+    ValidationRuleResult r = rule.executeRule(nok, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.NextOfKinAddressStreetIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
-        p.getPatientAddressList().clear();
-        p.getPatientAddressList().add(paddr);
+  /**
+   * Test with missing (null) street 2.
+   */
+  @Test
+  public void testRuleNullStreet2() {
+    nok.getAddress().setStreet2(null);
+    setNextOfKin();
 
-        ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.NextOfKinAddressStreet2IsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+    DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
+    p.getPatientAddressList().clear();
+    p.getPatientAddressList().add(paddr);
 
-    /**
-     * Test with missing city.
-     */
-    @Test
-    public void testRuleMissingCity() {
-        nok.getAddress().setCity(null);
-        setNextOfKin();
+    ValidationRuleResult r = rule.executeRule(nok, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.NextOfKinAddressStreet2IsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
-        p.getPatientAddressList().clear();
-        p.getPatientAddressList().add(paddr);
+  /**
+   * Test with missing city.
+   */
+  @Test
+  public void testRuleMissingCity() {
+    nok.getAddress().setCity(null);
+    setNextOfKin();
 
-        ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(r.getValidationDetections().size() > 0);
-        assertEquals(Detection.NextOfKinAddressCityIsMissing , r.getValidationDetections().get(0).getDetection());
-    }
+    DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
+    p.getPatientAddressList().clear();
+    p.getPatientAddressList().add(paddr);
 
-    /**
-     * Test with missing (null) state.
-     */
-    @Test
-    public void testRuleNullState() {
-        nok.getAddress().setStateCode(null);
-        setNextOfKin();
+    ValidationRuleResult r = rule.executeRule(nok, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertTrue(r.getValidationDetections().size() > 0);
+    assertEquals(Detection.NextOfKinAddressCityIsMissing, r.getValidationDetections().get(0).getDetection());
+  }
 
-        DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
-        p.getPatientAddressList().clear();
-        p.getPatientAddressList().add(paddr);
+  /**
+   * Test with missing (null) state.
+   */
+  @Test
+  public void testRuleNullState() {
+    nok.getAddress().setStateCode(null);
+    setNextOfKin();
 
-        ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.NextOfKinAddressStateIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+    DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
+    p.getPatientAddressList().clear();
+    p.getPatientAddressList().add(paddr);
 
-    /**
-     * Test with missing zip.
-     */
-    @Test
-    public void testRuleMissingZip() {
-        nok.getAddress().setZip(null);
-        setNextOfKin();
+    ValidationRuleResult r = rule.executeRule(nok, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.NextOfKinAddressStateIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.NextOfKinAddressZipIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with missing zip.
+   */
+  @Test
+  public void testRuleMissingZip() {
+    nok.getAddress().setZip(null);
+    setNextOfKin();
 
-    /**
-     * Test with invalid zip.
-     */
-    @Test
-    public void testRuleInvalidZip() {
-        nok.getAddress().setZip("abc");
-        setNextOfKin();
+    ValidationRuleResult r = rule.executeRule(nok, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.NextOfKinAddressZipIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        // TODO this invalidates Canadian zipcodes too :/
+  /**
+   * Test with invalid zip.
+   */
+  @Test
+  public void testRuleInvalidZip() {
+    nok.getAddress().setZip("abc");
+    setNextOfKin();
 
-        ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.NextOfKinAddressZipIsInvalid == r.getValidationDetections().get(0).getDetection());
-    }
+    // TODO this invalidates Canadian zipcodes too :/
 
-    /**
-     * Test with missing (null) country.
-     */
-    @Test
-    public void testRuleNullCountry() {
-        nok.getAddress().setCountryCode(null);
-        setNextOfKin();
+    ValidationRuleResult r = rule.executeRule(nok, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.NextOfKinAddressZipIsInvalid,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.NextOfKinAddressCountryIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with missing (null) country.
+   */
+  @Test
+  public void testRuleNullCountry() {
+    nok.getAddress().setCountryCode(null);
+    setNextOfKin();
 
-    /**
-     * Test with "bad address" address type.
-     */
-    @Test
-    public void testRuleBadAddressType() {
-        nok.getAddress().setTypeCode("BA");
-        setNextOfKin();
+    ValidationRuleResult r = rule.executeRule(nok, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.NextOfKinAddressCountryIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+    ;
+  }
 
-        ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.NextOfKinAddressTypeIsValuedBadAddress == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with "bad address" address type.
+   */
+  @Test
+  public void testRuleBadAddressType() {
+    nok.getAddress().setTypeCode("BA");
+    setNextOfKin();
 
-    /**
-     * Test with unrecognized address type.
-     */
-    @Test
-    public void testRuleUnrecognizedAddressType() {
-        nok.getAddress().setTypeCode("abc");
-        setNextOfKin();
+    ValidationRuleResult r = rule.executeRule(nok, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.NextOfKinAddressTypeIsValuedBadAddress,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.NextOfKinAddressTypeIsUnrecognized == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with unrecognized address type.
+   */
+  @Test
+  public void testRuleUnrecognizedAddressType() {
+    nok.getAddress().setTypeCode("abc");
+    setNextOfKin();
 
-    /**
-     * Test with missing (null) address type.
-     */
-    @Test
-    public void testRuleNullAddressType() {
-        nok.getAddress().setTypeCode(null);
-        setNextOfKin();
+    ValidationRuleResult r = rule.executeRule(nok, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.NextOfKinAddressTypeIsUnrecognized,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.NextOfKinAddressTypeIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with missing (null) address type.
+   */
+  @Test
+  public void testRuleNullAddressType() {
+    nok.getAddress().setTypeCode(null);
+    setNextOfKin();
 
-    /**
-     * Test with address different from patient address.
-     * ("different" is defined as city, state, street, or street 2 being different)
-     */
-    @Test
-    public void testRuleDifferentFromPatient() {
-        nok.getAddress().setStreet("123 Main St.");
-        setNextOfKin();
+    ValidationRuleResult r = rule.executeRule(nok, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.NextOfKinAddressTypeIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(nok, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.NextOfKinAddressIsDifferentFromPatientAddress == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with address different from patient address. ("different" is defined as city, state,
+   * street, or street 2 being different)
+   */
+  @Test
+  public void testRuleDifferentFromPatient() {
+    nok.getAddress().setStreet("123 Main St.");
+    setNextOfKin();
 
-    /**
-     * Set the next-of-kin in the message.
-     */
-    private void setNextOfKin() {
-        List<DqaNextOfKin> noks = new ArrayList<>();
-        noks.add(nok);
-        mr.setNextOfKins(noks);
-    }
+    ValidationRuleResult r = rule.executeRule(nok, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.NextOfKinAddressIsDifferentFromPatientAddress,
+        r.getValidationDetections().get(0).getDetection());
+  }
+
+  /**
+   * Set the next-of-kin in the message.
+   */
+  private void setNextOfKin() {
+    List<DqaNextOfKin> noks = new ArrayList<>();
+    noks.add(nok);
+    mr.setNextOfKins(noks);
+  }
 }

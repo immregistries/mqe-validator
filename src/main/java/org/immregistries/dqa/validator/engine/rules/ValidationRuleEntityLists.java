@@ -76,7 +76,6 @@ import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationVisDa
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationVisIsPresent;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationVisIsRecognized;
 
-@SuppressWarnings("rawtypes")
 public enum ValidationRuleEntityLists {
   //@formatter:off
   PATIENT_RULES(

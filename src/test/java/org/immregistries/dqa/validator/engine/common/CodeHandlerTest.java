@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Date;
 import java.util.List;
 import org.immregistries.dqa.codebase.client.generated.Code;
+import org.immregistries.dqa.codebase.client.generated.UseDate;
 import org.immregistries.dqa.codebase.client.reference.CodesetType;
 import org.immregistries.dqa.core.util.DateUtility;
 import org.immregistries.dqa.hl7util.model.MetaFieldInfo;
@@ -14,6 +15,7 @@ import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
 import org.immregistries.dqa.vxu.MetaFieldInfoData;
 import org.immregistries.dqa.vxu.VxuField;
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,16 +43,18 @@ public class CodeHandlerTest {
 	
 	@Test
 	public void testUseDates() {
-		String adminDate = "20100101";
+		UseDate ud = this.codeAnthrax.getUseDate();
+		String beforeDateString = ud.getNotBefore();
+		DateTime dt = datr.parseDateTime(beforeDateString);
+		DateTime valid = dt.plusDays(30);
+		String adminDate = datr.toString(valid);
 		List<ValidationReport> list = codr.handleUseDate(codeAnthrax, adminDate, VxuField.VACCINATION_ADMIN_DATE, meta);
 		assertEquals("Shouldn't have an issue with a current date, even though it doesn't have an end date", 0, list.size());
-		
+
 		adminDate = "19650101";
 		list = codr.handleUseDate(codeAnthrax, adminDate, VxuField.VACCINATION_ADMIN_DATE, meta);
 		assertEquals("Should have an issue with adminDate of " + adminDate, 1, list.size());
-		
-		boolean theIssueIsCorrect = Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange == list.get(0).getDetection();
-		assertTrue("the one issue should be VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange", theIssueIsCorrect);
+		assertEquals(Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange, list.get(0).getDetection());
 	}
 	
 	@Test

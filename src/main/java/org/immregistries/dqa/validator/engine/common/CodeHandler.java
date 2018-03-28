@@ -10,7 +10,6 @@ import org.immregistries.dqa.codebase.client.generated.UseAge;
 import org.immregistries.dqa.codebase.client.generated.UseDate;
 import org.immregistries.dqa.codebase.client.reference.CodeStatusValue;
 import org.immregistries.dqa.core.util.DateUtility;
-import org.immregistries.dqa.hl7util.model.MetaFieldInfo;
 import org.immregistries.dqa.validator.detection.Detection;
 import org.immregistries.dqa.validator.detection.DetectionType;
 import org.immregistries.dqa.validator.detection.ValidationReport;
@@ -108,21 +107,16 @@ public enum CodeHandler {
       LOGGER.debug("Dont use Dates: notBeforeDateString[" + notBeforeDateString
           + "] notAfterDateString[" + notAfterDateString + "]");
       if (datr.isOutsideOfRange(usedDateString, notBeforeDateString, notAfterDateString)) {
-        LOGGER.info("Adding issue for: " + field + " - "
-            + DetectionType.BEFORE_OR_AFTER_USAGE_DATE_RANGE + " - " + issues);
-        issues.add(issueForField(field, DetectionType.BEFORE_OR_AFTER_USAGE_DATE_RANGE,
-            new MetaFieldInfoData() {
-
-              @Override
-              public MetaFieldInfo getMetaFieldInfo(VxuField vxuField) {
-                return null;
-              }
-            }));
+        LOGGER.info(
+            "Adding issue for: " + field + " - " + DetectionType.BEFORE_OR_AFTER_LICENSED_DATE_RANGE
+                + " - " + issues);
+        issues.add(issueForField(field, DetectionType.BEFORE_OR_AFTER_LICENSED_DATE_RANGE, meta));
       } else if (datr.isOutsideOfRange(usedDateString, notExpectedBeforeDateString,
           notExpectedAfterDateString)) {
-        LOGGER.info("Adding issue for: " + field + " - "
-            + DetectionType.BEFORE_OR_AFTER_LICENSED_DATE_RANGE + " - " + issues);
-        issues.add(issueForField(field, DetectionType.BEFORE_OR_AFTER_LICENSED_DATE_RANGE, meta));
+        LOGGER.info(
+            "Adding issue for: " + field + " - " + DetectionType.BEFORE_OR_AFTER_EXPECTED_DATE_RANGE
+                + " - " + issues);
+        issues.add(issueForField(field, DetectionType.BEFORE_OR_AFTER_EXPECTED_DATE_RANGE, meta));
       } else {
         LOGGER.info("NO useDate issues for: " + field);
       }
@@ -175,7 +169,7 @@ public enum CodeHandler {
       return issue.build(receivedValue, meta);
     } else {
       LOGGER.warn("Checking for a condition that has no corresponding PotentialIssue. Field: "
-          + field + " IssueType: " + DetectionType.BEFORE_OR_AFTER_VALID_DATE_FOR_AGE);
+          + field + " IssueType: " + type);
       return Detection.GeneralProcessingException.build(meta);
     }
   }

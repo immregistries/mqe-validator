@@ -282,9 +282,6 @@ public enum Detection {
   PatientSubmitterIdTypeCodeIsInvalid(MessageObject.PATIENT, DetectionType.INVALID, VxuField.PATIENT_SUBMITTER_ID_TYPE_CODE, "", SeverityLevel.ERROR, "", null, ErrorCode.MQE0513, ""),
   PatientSubmitterIdTypeCodeIsUnrecognized(MessageObject.PATIENT, DetectionType.UNRECOGNIZED, VxuField.PATIENT_SUBMITTER_ID_TYPE_CODE, "", SeverityLevel.WARN, "", null, ErrorCode.MQE0514, ""),
   PatientSubmitterIdTypeCodeIsIgnored(MessageObject.PATIENT, DetectionType.IGNORED, VxuField.PATIENT_SUBMITTER_ID_TYPE_CODE, "", SeverityLevel.INFO, "", null, ErrorCode.MQE0515, ""),
-  PatientSystemCreationDateIsMissing(MessageObject.PATIENT, DetectionType.MISSING, VxuField.PATIENT_SYSTEM_CREATION_DATE, "", SeverityLevel.ACCEPT, "", null, ErrorCode.MQE0530, "?-?"),
-  PatientSystemCreationDateIsInFuture(MessageObject.PATIENT, DetectionType.IN_FUTURE, VxuField.PATIENT_SYSTEM_CREATION_DATE, "", SeverityLevel.ERROR, "", null, ErrorCode.MQE0552, ""),
-  PatientSystemCreationDateIsBeforeBirth(MessageObject.PATIENT, DetectionType.BEFORE_BIRTH, VxuField.PATIENT_SYSTEM_CREATION_DATE, "", SeverityLevel.ERROR, "", null, ErrorCode.MQE0533, ""),
   PatientVfcEffectiveDateIsBeforeBirth(MessageObject.PATIENT, DetectionType.BEFORE_BIRTH, VxuField.PATIENT_VFC_EFFECTIVE_DATE, "", SeverityLevel.ACCEPT, "102", null, ErrorCode.MQE0221, "PV1-20.2"),
   PatientVfcEffectiveDateIsInFuture(MessageObject.PATIENT, DetectionType.IN_FUTURE, VxuField.PATIENT_VFC_EFFECTIVE_DATE, "", SeverityLevel.ACCEPT, "102", null, ErrorCode.MQE0222, "PV1-20.2"),
   PatientVfcEffectiveDateIsInvalid(MessageObject.PATIENT, DetectionType.INVALID, VxuField.PATIENT_VFC_EFFECTIVE_DATE, "", SeverityLevel.ACCEPT, "102", null, ErrorCode.MQE0223, "PV1-20.2"),
@@ -324,7 +321,7 @@ public enum Detection {
   VaccinationAdminDateIsAfterPatientDeathDate(MessageObject.VACCINATION, DetectionType.AFTER_PATIENT_DEATH_DATE, VxuField.VACCINATION_ADMIN_DATE, "", SeverityLevel.ERROR, "102", null, ErrorCode.MQE0253, "RXA-3"),
   VaccinationAdminDateIsAfterSystemEntryDate(MessageObject.VACCINATION, DetectionType.AFTER_SYSTEM_ENTRY_DATE, VxuField.VACCINATION_ADMIN_DATE, "", SeverityLevel.ERROR, "102", null, ErrorCode.MQE0254, "RXA-3"),
   VaccinationAdminDateIsBeforeBirth(MessageObject.VACCINATION, DetectionType.BEFORE_BIRTH, VxuField.VACCINATION_ADMIN_DATE, "", SeverityLevel.ERROR, "102", null, ErrorCode.MQE0255, "RXA-3"),
-  VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange(MessageObject.VACCINATION, DetectionType.BEFORE_OR_AFTER_USAGE_DATE_RANGE, VxuField.VACCINATION_ADMIN_DATE, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0256, "RXA-3"),
+  VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange(MessageObject.VACCINATION, DetectionType.BEFORE_OR_AFTER_EXPECTED_DATE_RANGE, VxuField.VACCINATION_ADMIN_DATE, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0256, "RXA-3"),
   VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange(MessageObject.VACCINATION, DetectionType.BEFORE_OR_AFTER_LICENSED_DATE_RANGE, VxuField.VACCINATION_ADMIN_DATE, "", SeverityLevel.ERROR, "102", null, ErrorCode.MQE0257, "RXA-3"),
   VaccinationAdminDateIsBeforeOrAfterWhenExpectedForPatientAge(MessageObject.VACCINATION, DetectionType.BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE, VxuField.VACCINATION_ADMIN_DATE, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0258, "RXA-3"),
   VaccinationAdminDateIsBeforeOrAfterWhenValidForPatientAge(MessageObject.VACCINATION, DetectionType.BEFORE_OR_AFTER_VALID_DATE_FOR_AGE, VxuField.VACCINATION_ADMIN_DATE, "", SeverityLevel.ERROR, "102", null, ErrorCode.MQE0259, "RXA-3"),
@@ -389,6 +386,8 @@ public enum Detection {
   VaccinationCvxCodeIsUnexpectedForDateAdministered(MessageObject.VACCINATION, DetectionType.UNEXPECTED_FOR_DATE_ADMINISTERED, VxuField.VACCINATION_CVX_CODE, "", SeverityLevel.ACCEPT, "102", null, ErrorCode.MQE0486, "RXA-5"),
   VaccinationCvxCodeIsUnrecognized(MessageObject.VACCINATION, DetectionType.UNRECOGNIZED, VxuField.VACCINATION_CVX_CODE, "", SeverityLevel.WARN, "103", null, ErrorCode.MQE0309, "RXA-5"),
   VaccinationCvxCodeAndCptCodeAreInconsistent(MessageObject.VACCINATION, DetectionType.ARE_INCONSISTENT, VxuField.VACCINATION_CVX_CODE_AND_CPT_CODE, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0310, "RXA-5"),
+  VaccinationNDCCodeIsUnrecognized(MessageObject.VACCINATION, DetectionType.UNRECOGNIZED, VxuField.VACCINATION_NDC_CODE, "", SeverityLevel.WARN, "103", null, ErrorCode.MQE0559, "RXA-5"),
+  VaccinationNDCCodeIsMissing(MessageObject.VACCINATION, DetectionType.MISSING, VxuField.VACCINATION_NDC_CODE, "", SeverityLevel.INFO, "103", null, ErrorCode.MQE0560, "RXA-5"),
   VaccinationFacilityIdIsDeprecated(MessageObject.VACCINATION, DetectionType.DEPRECATED, VxuField.VACCINATION_FACILITY_ID, "", SeverityLevel.WARN, "102", null, ErrorCode.MQE0311, "RXA-11.4"),
   VaccinationFacilityIdIsIgnored(MessageObject.VACCINATION, DetectionType.IGNORED, VxuField.VACCINATION_FACILITY_ID, "", SeverityLevel.INFO, "102", null, ErrorCode.MQE0312, "RXA-11.4"),
   VaccinationFacilityIdIsInvalid(MessageObject.VACCINATION, DetectionType.INVALID, VxuField.VACCINATION_FACILITY_ID, "", SeverityLevel.ACCEPT, "102", null, ErrorCode.MQE0313, "RXA-11.4"),
@@ -583,7 +582,7 @@ public enum Detection {
           return ApplicationErrorCode.ILLOGICAL_VALUE_ERROR;
         case BEFORE_OR_AFTER_LICENSED_DATE_RANGE:
           return ApplicationErrorCode.ILLOGICAL_VALUE_ERROR;
-        case BEFORE_OR_AFTER_USAGE_DATE_RANGE:
+        case BEFORE_OR_AFTER_EXPECTED_DATE_RANGE:
           return ApplicationErrorCode.ILLOGICAL_VALUE_ERROR;
         case BEFORE_OR_AFTER_VALID_DATE_FOR_AGE:
           return ApplicationErrorCode.ILLOGICAL_VALUE_ERROR;

@@ -190,7 +190,7 @@ public class ValidationRuleTest {
 			System.out.println("Detection: " + validationReport.getDetection());
 		}
 
-		assertEquals("should be some issues", 36, validationReports.size());
+		assertEquals("should be some issues", 35, validationReports.size());
 	}
 	
 	@Test

@@ -65,7 +65,7 @@ public enum DetectionType {
   BEFORE_OR_AFTER_VALID_DATE_FOR_AGE("is before or after when valid for patient age"),
   BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE("is before or after when expected for patient age"),
   BEFORE_OR_AFTER_LICENSED_DATE_RANGE("is before or after licensed vaccine range"),
-  BEFORE_OR_AFTER_USAGE_DATE_RANGE("is before or after expected vaccine usage range"),
+  BEFORE_OR_AFTER_EXPECTED_DATE_RANGE("is before or after expected vaccine usage range"),
   VALUED_BAD_ADDRESS("is valued bad address"),
   AFTER_SYSTEM_ENTRY_DATE("is after system entry date"),
   AFTER_PATIENT_DEATH_DATE("is after patient death date"),

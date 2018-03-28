@@ -10,11 +10,12 @@ import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
 
-public class VaccinationAdministeredRequiredFieldsArePresent extends ValidationRule<DqaVaccination> {
+public class VaccinationAdministeredRequiredFieldsArePresent extends
+    ValidationRule<DqaVaccination> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationIsAdministered.class};
+    return new Class[]{VaccinationIsAdministered.class};
   }
 
   public VaccinationAdministeredRequiredFieldsArePresent() {

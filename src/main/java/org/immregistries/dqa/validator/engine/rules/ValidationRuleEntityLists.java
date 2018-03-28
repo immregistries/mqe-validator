@@ -40,7 +40,6 @@ import org.immregistries.dqa.validator.engine.rules.patient.PatientProtectionInd
 import org.immregistries.dqa.validator.engine.rules.patient.PatientRegistryIdIsValid;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientResponsiblePartyIsProperlyFormed;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientSubmitterIsValid;
-import org.immregistries.dqa.validator.engine.rules.patient.PatientSystemCreationDateIsValid;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationActionCodeIsValid;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdminAfterBirthDate;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdminCodeCptIsValid;
@@ -65,6 +64,7 @@ import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationIsAdm
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationIsForeign;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationIsPresent;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationMfrIsValid;
+import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationNdcIsValid;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationOrdererIsValid;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationProductIsValid;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationRefusalReasonIsValid;
@@ -104,7 +104,6 @@ public enum ValidationRuleEntityLists {
       new PatientProtectionIndicatorIsValid(),
       new PatientRegistryIdIsValid(),
       new PatientSubmitterIsValid(),
-      new PatientSystemCreationDateIsValid(),
       new PatientImmunityIsValid(),
       new PatientHasResponsibleParty(),
       new PatientResponsiblePartyIsProperlyFormed()),
@@ -125,6 +124,7 @@ public enum ValidationRuleEntityLists {
       new VaccinationConfidentialityCodeIsValid(),
       new VaccinationCptIsValid(),
       new VaccinationCvxIsValid(),
+      new VaccinationNdcIsValid(),
       new VaccinationCvxUseIsValid(),
       new VaccinationFinancialEligibilityCodeIsValid(),
       new VaccinationInformationSourceIsValid(),

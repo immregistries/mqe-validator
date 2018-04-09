@@ -11,6 +11,7 @@ import org.immregistries.dqa.hl7util.model.Hl7Location;
 import org.immregistries.dqa.validator.detection.Detection;
 
 public class DetectionExporter {
+
   public static void main(String[] args) {
     for (final Detection detection : Detection.values()) {
       Reportable reportable = new ExporterReportable(detection);
@@ -20,10 +21,13 @@ public class DetectionExporter {
   }
 
   private static class ExporterReportable implements Reportable {
+
     Detection detection;
+
     ExporterReportable(Detection d) {
       this.detection = d;
     }
+
     @Override
     public SeverityLevel getSeverity() {
       return SeverityLevel.INFO;
@@ -70,5 +74,7 @@ public class DetectionExporter {
     public ReportableSource getSource() {
       return ReportableSource.DQA;
     }
-  };
+  }
+
+  ;
 }

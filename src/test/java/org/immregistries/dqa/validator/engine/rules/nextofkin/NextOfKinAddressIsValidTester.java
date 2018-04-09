@@ -136,7 +136,8 @@ public class NextOfKinAddressIsValidTester {
     ValidationRuleResult r = nextOfKinAddressIsValid.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
     assertTrue(r.getValidationDetections().size() > 0);
-    assertEquals(Detection.NextOfKinAddressCityIsMissing, r.getValidationDetections().get(0).getDetection());
+    assertEquals(Detection.NextOfKinAddressCityIsMissing,
+        r.getValidationDetections().get(0).getDetection());
   }
 
   /**
@@ -184,7 +185,7 @@ public class NextOfKinAddressIsValidTester {
     ValidationRuleResult r = nextOfKinAddressIsValid.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.NextOfKinAddressZipIsInvalid,
+    assertEquals(Detection.NextOfKinAddressZipIsMissing,
         r.getValidationDetections().get(0).getDetection());
   }
 

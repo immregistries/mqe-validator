@@ -96,7 +96,8 @@ public class VaccinationAdminCodeIsValidTester {
     logger.warn("Detections: " + r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(false, r.isRulePassed());
-    assertEquals(Detection.VaccinationAdminCodeIsForiegn, r.getValidationDetections().get(0).getDetection());
+    assertEquals(Detection.VaccinationAdminCodeIsForiegn,
+        r.getValidationDetections().get(0).getDetection());
   }
 
   /**
@@ -109,7 +110,8 @@ public class VaccinationAdminCodeIsValidTester {
     logger.warn("Detections: " + r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(false, r.isRulePassed());
-    assertEquals(Detection.VaccinationAdminCodeIsNotSpecific, r.getValidationDetections().get(0).getDetection());
+    assertEquals(Detection.VaccinationAdminCodeIsNotSpecific,
+        r.getValidationDetections().get(0).getDetection());
   }
 
   /**
@@ -123,9 +125,9 @@ public class VaccinationAdminCodeIsValidTester {
     logger.warn("Detections: " + r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(false, r.isRulePassed());
-    assertEquals(Detection.VaccinationAdminCodeIsValuedAsNotAdministered, r.getValidationDetections().get(0).getDetection());
+    assertEquals(Detection.VaccinationAdminCodeIsValuedAsNotAdministered,
+        r.getValidationDetections().get(0).getDetection());
   }
-
 
 
   /**
@@ -139,8 +141,10 @@ public class VaccinationAdminCodeIsValidTester {
     logger.warn("Detections: " + r.getValidationDetections().toString());
     assertEquals(2, r.getValidationDetections().size());
     assertEquals(false, r.isRulePassed());
-    assertEquals(Detection.VaccinationAdminCodeIsNotVaccine, r.getValidationDetections().get(0).getDetection());
-    assertEquals(Detection.VaccinationAdminCodeIsValuedAsNotAdministered, r.getValidationDetections().get(1).getDetection());
+    assertEquals(Detection.VaccinationAdminCodeIsNotVaccine,
+        r.getValidationDetections().get(0).getDetection());
+    assertEquals(Detection.VaccinationAdminCodeIsValuedAsNotAdministered,
+        r.getValidationDetections().get(1).getDetection());
   }
 
   /**
@@ -154,8 +158,10 @@ public class VaccinationAdminCodeIsValidTester {
     logger.warn("Detections: " + r.getValidationDetections().toString());
     assertEquals(2, r.getValidationDetections().size());
     assertEquals(false, r.isRulePassed());
-    assertEquals(Detection.VaccinationAdminCodeIsNotVaccine, r.getValidationDetections().get(0).getDetection());
-    assertEquals(Detection.VaccinationAdminCodeIsValuedAsUnknown, r.getValidationDetections().get(1).getDetection());
+    assertEquals(Detection.VaccinationAdminCodeIsNotVaccine,
+        r.getValidationDetections().get(0).getDetection());
+    assertEquals(Detection.VaccinationAdminCodeIsValuedAsUnknown,
+        r.getValidationDetections().get(1).getDetection());
   }
 
   /**
@@ -169,7 +175,8 @@ public class VaccinationAdminCodeIsValidTester {
     logger.warn("Detections: " + r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(false, r.isRulePassed());
-    assertEquals(Detection.VaccinationAdminCodeIsValuedAsUnknown, r.getValidationDetections().get(0).getDetection());
+    assertEquals(Detection.VaccinationAdminCodeIsValuedAsUnknown,
+        r.getValidationDetections().get(0).getDetection());
   }
 
   /**
@@ -217,7 +224,8 @@ public class VaccinationAdminCodeIsValidTester {
     ValidationRuleResult r = vaccAdminCodeIsValidRule.executeRule(v, mr);
     logger.warn("Detections: " + r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.VaccinationAdminCodeIsUnrecognized, r.getValidationDetections().get(0).getDetection());
+    assertEquals(Detection.VaccinationAdminCodeIsUnrecognized,
+        r.getValidationDetections().get(0).getDetection());
   }
 
   /**
@@ -229,7 +237,8 @@ public class VaccinationAdminCodeIsValidTester {
     ValidationRuleResult r = vaccAdminCodeIsValidRule.executeRule(v, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.VaccinationAdminCodeIsUnrecognized, r.getValidationDetections().get(0).getDetection());
+    assertEquals(Detection.VaccinationAdminCodeIsUnrecognized,
+        r.getValidationDetections().get(0).getDetection());
   }
 }
 

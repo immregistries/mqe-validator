@@ -2,194 +2,90 @@ package org.immregistries.dqa.validator.engine.common;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.DetectionType;
+import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.VxuField;
-import org.immregistries.dqa.validator.issue.IssueType;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
-import org.immregistries.dqa.vxu.hl7.Address;
- 
+import org.immregistries.dqa.vxu.DqaAddress;
+import org.immregistries.dqa.vxu.MetaFieldInfoData;
+import org.immregistries.dqa.vxu.VxuField;
+
 /**
- * This is to evaluate the basic expectations for an address in the system
- * this does not guarantee that the address is real or that the street address is properly formatted.
- * this evaluates the very minimum required for the address to be evaluated. 
- * @author Josh Hull
+ * This is to evaluate the basic expectations for an address in the system this does not guarantee
+ * that the address is real or that the street address is properly formatted. this evaluates the
+ * very minimum required for the address to be evaluated.
  *
+ * @author Josh Hull
  */
 public enum AddressValidator {
-	INSTANCE;
-	private CommonRules common = CommonRules.INSTANCE;
-	
-	public ValidationRuleResult getAddressIssuesFor(AddressFields fields, Address a) {
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
-		boolean passed = true;
-		
-		if (a == null) {
-			issues.add(MessageAttribute.buildIssue(fields.getAddress(),
-					IssueType.MISSING));
-			passed = false;
-		} else {
-			addStreetIssues(a.getStreet2(), fields.getStreet2Field(), issues);
-			//Don't care about street 2 issues for "passed".
-			int baseline = issues.size();
+  INSTANCE;
+  private CommonRules common = CommonRules.INSTANCE;
 
-			//Do care about the rest of the issues for the "passed" designation. 
-			addStreetIssues(a.getStreet(), fields.getStreetField(), issues);
-			addCityIssues(a.getCity(), fields.getCityField(), issues);
-			addStateIssues(a.getStateCode(), fields.getStateField(), issues);
-			addZipIssues(a.getZip(), fields.getZipField(), issues);
-			addCountyIssues(a.getCountyParishCode(), fields.getCountyField(),issues);
-			addCountryIssues(a.getCountryCode(), fields.getCountryField(),issues);
+  private List<ValidationReport> buildMissing(VxuField f, MetaFieldInfoData meta) {
+    List<ValidationReport> vr = new ArrayList<>();
+    Detection d = Detection.get(f, DetectionType.MISSING);
+    if (d!=null) {
+      vr.add(d.build(meta));
+    }
+    return vr;
+  }
+  private List<ValidationReport> buildIncomplete(VxuField f, MetaFieldInfoData meta) {
+    List<ValidationReport> vr = new ArrayList<>();
+    Detection d = Detection.get(f, DetectionType.INCOMPLETE);
+    if (d!=null) {
+      vr.add(d.build(meta));
+    }
+    return vr;
+  }
 
-			if (issues.size() > baseline) {
-				passed = false;
-			}
-		}
-		
-		ValidationRuleResult result = new ValidationRuleResult();
-		result.setIssues(issues);
-		result.setRulePassed(passed);
-		return result;
-	}
+  public ValidationRuleResult getAddressIssuesFor(AddressFields fields, DqaAddress a, MetaFieldInfoData meta) {
+    List<ValidationReport> issues = new ArrayList<ValidationReport>();
+    boolean passed = true;
 
-	protected void addStreetIssues(String street, VxuField field, List<ValidationIssue> issues) {
-		if (common.isEmpty(street)) {
-			issues.add(MessageAttribute.buildIssue(field, IssueType.MISSING));
-		} else {
-			if (!validCity(street)) {
-				issues.add(MessageAttribute.buildIssue(field, IssueType.INVALID, street));
-			}
-		}
-	}
-	
-	protected void addCityIssues(String city, VxuField field, List<ValidationIssue> issues) {
-		if (common.isEmpty(city)) {
-			issues.add(MessageAttribute.buildIssue(field, IssueType.MISSING));
-		} else {
-			if (!validCity(city)) {
-				issues.add(MessageAttribute.buildIssue(field, IssueType.INVALID, city));
-			}
-		}
-	}
-	
-	protected void addStateIssues(String state, VxuField field, List<ValidationIssue> issues) {
-		if (common.isEmpty(state)) {
-			issues.add(MessageAttribute.buildIssue(field, IssueType.MISSING));
-		} else {
-			if (!validState(state)) {
-				issues.add(MessageAttribute.buildIssue(field, IssueType.INVALID, state));
-			}
-		}
-	}
-	
-	protected void addZipIssues(String zip, VxuField field, List<ValidationIssue> issues) {
-		if (common.isEmpty(zip)) {
-			issues.add(MessageAttribute.buildIssue(field,  IssueType.MISSING));
-		} else {
-			if (!isValidZip(zip)) {
-				issues.add(MessageAttribute.buildIssue(field, IssueType.INVALID, zip));
-			}
-		}
-	}
-	
-	protected void addCountyIssues(String county, VxuField field, List<ValidationIssue> issues) {
-		if (common.isEmpty(county)) {
-			issues.add(MessageAttribute.buildIssue(field,  IssueType.MISSING));
-		} 
-	}
-	
-	protected void addCountryIssues(String country, VxuField field, List<ValidationIssue> issues) {
-		if (common.isEmpty(country)) {
-			issues.add(MessageAttribute.buildIssue(field,  IssueType.MISSING));
-		} else {
-			if (!validCountryCode(country)) {
-				issues.add(MessageAttribute.buildIssue(field, IssueType.INVALID, country));
-			}
-		}
-	}
-	
-	protected boolean validCity(String city) {
-	      return 
-	     	   !common.isEmpty(city) 
-	    	&& !city.equalsIgnoreCase("ANYTOWN") 
-	    	&& city.length() > 1
-	    	;
-	}
-	
-	protected boolean validState(String state) {
-	      return 
-	     	   !common.isEmpty(state) 
-	    	&& state.length() > 1
-	    	;
-	}
+    if (a == null) {
+        issues.addAll(buildMissing(fields.getAddress(), meta));
+        passed = false;
+    } else {
+      if (common.isEmpty(a.getStreet())) {
+        issues.addAll(buildMissing(fields.getStreetField(), meta));
+      }
+      if (common.isEmpty(a.getCity())) {
+        issues.addAll(buildMissing(fields.getCityField(), meta));
+      }
+      if (common.isEmpty(a.getStateCode())) {
+        issues.addAll(buildMissing(fields.getStateField(), meta));
+      }
+      if (common.isEmpty(a.getZip())) {
+        issues.addAll(buildMissing(fields.getZipField(), meta));
+      }
 
-	public boolean isValid(Address a) {
-		boolean valid = 
-				validCity(a.getCity())
-				&& validState(a.getStateCode())
-				&& (validCountryCode(a.getCountryCode())|| validCountryCode(a.getCountryCode()))
-				&& validStreetAddress(a.getStreet());
-				
-		if (!valid) {
-			return false;
-		}
-		
-		//now evaluate conditional stuff. 
-		
-		//only evalutes if the previous was true. 
-		if ("USA".equals(a.getCountryCode())) {
-			valid = isValidZip(a.getZip());
-		}
-		
-		if (!valid) {
-			return false;
-		}
-		
-		return valid;
-	}
-	
-	protected boolean validCountryCode(String countryCode) {
-		return "USA".equalsIgnoreCase(countryCode) ||  "us".equalsIgnoreCase(countryCode)
-			|| "mx".equalsIgnoreCase(countryCode) || "mex".equalsIgnoreCase(countryCode);
-	}
-	
-	protected boolean validStreetAddress(String street) {
-		return StringUtils.isNotEmpty(street);
-	}
+      if (issues.size() > 0) {
+        passed = false;
+        issues.addAll(buildIncomplete(fields.getAddress(), meta));
+        //it can pass if it has the four basic ingredients.
+      }
 
-	protected boolean isValidZip(String zip) {
-	        int dash = zip.indexOf('-');
-	        boolean valid = true;
-	        if (dash == -1)
-	        {
-	          if (zip.length() != 5)
-	          {
-	            valid = false;
-	          }
-	        } else if (dash != 5)
-	        {
-	          valid = false;
-	        }
-	        if (valid && zip.length() >= 5)
-	        {
-	          for (int i = 0; i < zip.length(); i++)
-	          {
-	            if (i == 5)
-	            {
-	              continue;
-	            }
-	            char c = zip.charAt(i);
-	            if (c < '0' || c > '9')
-	            {
-	              valid = false;
-	              break;
-	            }
-	          }
-	        }
-	        
-	        return valid;
-	}
-	
+      if (common.isEmpty(a.getCountyParishCode())) {
+        issues.addAll(buildMissing(fields.getCountyField(), meta));
+      }
+      if (common.isEmpty(a.getCountryCode())) {
+        issues.addAll(buildMissing(fields.getCountryField(), meta));
+      }
+    }
+
+    ValidationRuleResult result = new ValidationRuleResult();
+    result.setValidationDetections(issues);
+    result.setRulePassed(passed);
+    return result;
+  }
+
+  public boolean isValid(DqaAddress a) {
+    return
+           StringUtils.isNotBlank(a.getStateCode())
+        && StringUtils.isNotBlank(a.getCity())
+        && StringUtils.isNotBlank(a.getStreet())
+        && StringUtils.isNotBlank(a.getZip());
+  }
+
 }

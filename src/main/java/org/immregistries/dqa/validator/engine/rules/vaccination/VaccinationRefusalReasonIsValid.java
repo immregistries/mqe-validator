@@ -1,47 +1,53 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.VxuField;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
+import org.immregistries.dqa.vxu.VxuField;
 
-public class VaccinationRefusalReasonIsValid extends
-		ValidationRule<DqaVaccination> {
+public class VaccinationRefusalReasonIsValid extends ValidationRule<DqaVaccination> {
 
-	@Override
-	protected final Class[] getDependencies() {
-		return new Class[] { VaccinationIsAdministered.class };
-	}
+  @Override
+  protected final Class[] getDependencies() {
+    return new Class[] {VaccinationIsAdministered.class};
+  }
 
-	@Override
-	protected ValidationRuleResult executeRule(DqaVaccination target,
-			DqaMessageReceived m) {
+  public VaccinationRefusalReasonIsValid() {
+    ruleDetections.addAll(Arrays.asList(
+        Detection.VaccinationRefusalReasonConflictsCompletionStatus,
+        Detection.VaccinationRefusalReasonIsMissing));
+    ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_REFUSAL_REASON));
+  }
 
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
-		
-		boolean passed = true;
-		
-		if (target.isCompletionCompleted() && !common.isEmpty(target.getRefusalCode())) {
-			issues.add(MessageAttribute.VaccinationRefusalReasonConflictsCompletionStatus.build());
-		}
+  @Override
+  protected ValidationRuleResult executeRule(DqaVaccination target, DqaMessageReceived m) {
 
-		if (target.isCompletionRefused()) {
-			if (common.isEmpty(target.getRefusalCode())) {
-				issues.add(MessageAttribute.VaccinationRefusalReasonIsMissing.build());
-			} else {
-				issues.addAll(codr.handleCode(target.getRefusal(), VxuField.VACCINATION_REFUSAL_REASON));
-			}
-		}
+    List<ValidationReport> issues = new ArrayList<ValidationReport>();
 
-		passed = (issues.size() == 0);
+    boolean passed = true;
 
-		return buildResults(issues, passed);
+    if (target.isCompletionCompleted() && !this.common.isEmpty(target.getRefusalCode())) {
+      issues.add(Detection.VaccinationRefusalReasonConflictsCompletionStatus.build(target));
+    }
 
-	}
+    if (target.isCompletionRefused()) {
+      if (this.common.isEmpty(target.getRefusalCode())) {
+        issues.add(Detection.VaccinationRefusalReasonIsMissing.build(target));
+      } else {
+        issues.addAll(codr.handleCode(target.getRefusal(), VxuField.VACCINATION_REFUSAL_REASON,
+            target));
+      }
+    }
+
+    passed = (issues.size() == 0);
+
+    return buildResults(issues, passed);
+
+  }
 }

@@ -4,8 +4,7 @@ import static org.junit.Assert.assertFalse;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import org.immregistries.dqa.validator.issue.MessageAttribute;
+import org.immregistries.dqa.validator.detection.Detection;
 import org.junit.Test;
 
 public class MessageAttributeTest {
@@ -14,12 +13,12 @@ public class MessageAttributeTest {
   public void test() {
     Set<String> set = new HashSet<>();
     boolean foundAtLeastOneDuplicated = false;
-    for (MessageAttribute ma : MessageAttribute.values()) {
-      if (set.contains(ma.getDqaErrorCode())) {
-        System.err.println("Duplicate DQA code: " + ma.getDqaErrorCode());
+    for (Detection ma : Detection.values()) {
+      if (set.contains(ma.getDqaMqeCode())) {
+        System.err.println("Duplicate DQA code: " + ma.getDqaMqeCode());
         foundAtLeastOneDuplicated = true;
       }
-      set.add(ma.getDqaErrorCode());
+      set.add(ma.getDqaMqeCode());
     }
     assertFalse(
         "At least one DQA code duplicate was found in the MessageAttribute enum. DQA code must be unique. ",

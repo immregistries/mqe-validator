@@ -1,12 +1,12 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
 import org.joda.time.DateTime;
@@ -14,94 +14,107 @@ import org.joda.time.LocalDate;
 
 public class VaccinationAdminDateIsValid extends ValidationRule<DqaVaccination> {
 
-	@Override
-	protected ValidationRuleResult executeRule(DqaVaccination target,
-			DqaMessageReceived m) {
+  public VaccinationAdminDateIsValid() {
+    this.ruleDetections.addAll(Arrays.asList(Detection.VaccinationAdminDateIsMissing,
+        Detection.VaccinationAdminDateIsInvalid,
+        Detection.VaccinationAdminDateIsAfterMessageSubmitted,
+        Detection.VaccinationAdminDateIsOnFirstDayOfMonth,
+        Detection.VaccinationAdminDateIsOn15ThDayOfMonth,
+        Detection.VaccinationAdminDateIsOnLastDayOfMonth,
+        Detection.VaccinationAdminDateIsAfterLotExpirationDate,
+        Detection.VaccinationAdminDateIsAfterPatientDeathDate,
+        Detection.VaccinationAdminDateIsBeforeBirth,
+        Detection.VaccinationAdminDateIsAfterSystemEntryDate,
+        Detection.VaccinationAdminDateEndIsMissing,
+        Detection.VaccinationAdminDateEndIsDifferentFromStartDate));
+  }
 
-		String dateString = target.getAdminDateString();
+  @Override
+  protected ValidationRuleResult executeRule(DqaVaccination target, DqaMessageReceived m) {
 
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
-		boolean passed = true;
+    String dateString = target.getAdminDateString();
 
-		if (this.common.isEmpty(dateString)) {
-			issues.add(MessageAttribute.VaccinationAdminDateIsMissing.build());
-			passed = false;
+    List<ValidationReport> issues = new ArrayList<ValidationReport>();
+    boolean passed = true;
 
-			return buildResults(issues, passed);
-		}
+    if (this.common.isEmpty(dateString)) {
+      issues.add(Detection.VaccinationAdminDateIsMissing.build(target));
+      passed = false;
 
-		if (!this.common.isValidDate(dateString)) {
-			LOGGER.info("Date is not valid: " + dateString);
-			issues.add(MessageAttribute.VaccinationAdminDateIsInvalid.build(dateString));
-			passed = false;
-			return buildResults(issues, passed);
-		}
-		;
+      return buildResults(issues, passed);
+    }
 
-		DateTime adminDate = this.datr.parseDateTime(dateString);
+    if (!this.common.isValidDate(dateString)) {
+      LOGGER.info("Date is not valid: " + dateString);
+      issues.add(Detection.VaccinationAdminDateIsInvalid.build((dateString), target));
+      passed = false;
+      return buildResults(issues, passed);
+    };
 
-		if (this.datr.isAfterDate(adminDate.toDate(), m.getMessageHeader().getMessageDate())) {
-			LOGGER.info("Date is not valid: " + dateString);
-			issues.add(MessageAttribute.VaccinationAdminDateIsAfterMessageSubmitted.build(dateString));
-			passed = false;
-		}
+    DateTime adminDate = this.datr.parseDateTime(dateString);
 
-		// After this, we have a date.
-		int month = adminDate.getDayOfMonth();
-		
-		LocalDate lastDayOfMonth = adminDate.toLocalDate().dayOfMonth().withMaximumValue();
-		
-		int lastDay = lastDayOfMonth.getDayOfMonth();
-		
-		if (month == 1) {
-			issues.add(MessageAttribute.VaccinationAdminDateIsOnFirstDayOfMonth.build(dateString));
-		} else if (month == 15) {
-			issues.add(MessageAttribute.VaccinationAdminDateIsOn15ThDayOfMonth.build(dateString));
-		} else if (month == lastDay) {
-			issues.add(MessageAttribute.VaccinationAdminDateIsOnLastDayOfMonth.build(dateString));
-		}
+    if (this.datr.isAfterDate(adminDate.toDate(), m.getMessageHeader().getMessageDate())) {
+      LOGGER.info("Date is not valid: " + dateString);
+      issues.add(Detection.VaccinationAdminDateIsAfterMessageSubmitted.build((dateString), target));
+      passed = false;
+    }
 
-		if (target.isAdministered()) {
-			if (target.getExpirationDate() != null) {
-				if (datr.isAfterDate(target.getAdminDate(), target.getExpirationDate())) {
-					issues.add(MessageAttribute.VaccinationAdminDateIsAfterLotExpirationDate.build());
-				}
-			}
-		}
+    // After this, we have a date.
+    int dayOfMonth = adminDate.getDayOfMonth();
 
-		if (datr.isAfterDate(target.getAdminDate(), m.getReceivedDate())) {
-			issues.add(MessageAttribute.VaccinationAdminDateIsAfterMessageSubmitted.build());
-		}
+    LocalDate lastDayOfMonth = adminDate.toLocalDate().dayOfMonth().withMaximumValue();
 
-		if (m.getPatient().getDeathDate() != null) {
-			if (datr.isAfterDate(target.getAdminDate(), m.getPatient().getDeathDate())) {
-				issues.add(MessageAttribute.VaccinationAdminDateIsAfterPatientDeathDate.build());
-			}
-		}
+    int lastDay = lastDayOfMonth.getDayOfMonth();
 
-		if (m.getPatient().getBirthDate() != null) {
-			if (datr.isBeforeDate(target.getAdminDate(), m.getPatient().getBirthDate())) {
-				issues.add(MessageAttribute.VaccinationAdminDateIsBeforeBirth.build());
-			}
-		}
+    if (dayOfMonth == 1) {
+      issues.add(Detection.VaccinationAdminDateIsOnFirstDayOfMonth.build((dateString), target));
+    } else if (dayOfMonth == 15) {
+      issues.add(Detection.VaccinationAdminDateIsOn15ThDayOfMonth.build((dateString), target));
+    } else if (dayOfMonth == lastDay) {
+      issues.add(Detection.VaccinationAdminDateIsOnLastDayOfMonth.build((dateString), target));
+    }
 
-		if (target.getSystemEntryDate() != null) {
-			if (datr.isAfterDate(target.getAdminDate(), target.getSystemEntryDate())) {
-				issues.add(MessageAttribute.VaccinationAdminDateIsAfterSystemEntryDate.build());
-			}
-		}
+    if (target.isAdministered()) {
+      if (target.getExpirationDate() != null) {
+        if (datr.isAfterDate(target.getAdminDate(), target.getExpirationDate())) {
+          issues.add(Detection.VaccinationAdminDateIsAfterLotExpirationDate.build(target));
+        }
+      }
+    }
 
-		if (target.getAdminDateEnd() == null) {
-			issues.add(MessageAttribute.VaccinationAdminDateEndIsMissing.build());
-		} else {
-			if (!target.getAdminDateEnd().equals(target.getAdminDate())) {
-				issues.add(MessageAttribute.VaccinationAdminDateEndIsDifferentFromStartDate.build());
-			}
-		}
+    if (datr.isAfterDate(target.getAdminDate(), m.getReceivedDate())) {
+      issues.add(Detection.VaccinationAdminDateIsAfterMessageSubmitted.build(target));
+    }
 
-		passed = (issues.size() == 0);
+    if (m.getPatient().getDeathDate() != null) {
+      if (datr.isAfterDate(target.getAdminDate(), m.getPatient().getDeathDate())) {
+        issues.add(Detection.VaccinationAdminDateIsAfterPatientDeathDate.build(target));
+      }
+    }
 
-		return buildResults(issues, passed);
+    if (m.getPatient().getBirthDate() != null) {
+      if (datr.isBeforeDate(target.getAdminDate(), m.getPatient().getBirthDate())) {
+        issues.add(Detection.VaccinationAdminDateIsBeforeBirth.build(target));
+      }
+    }
 
-	}
+    if (target.getSystemEntryDate() != null) {
+      if (datr.isAfterDate(target.getAdminDate(), target.getSystemEntryDate())) {
+        issues.add(Detection.VaccinationAdminDateIsAfterSystemEntryDate.build(target));
+      }
+    }
+
+    if (target.getAdminDateEnd() == null) {
+      issues.add(Detection.VaccinationAdminDateEndIsMissing.build(target));
+    } else {
+      if (!target.getAdminDateEnd().equals(target.getAdminDate())) {
+        issues.add(Detection.VaccinationAdminDateEndIsDifferentFromStartDate.build(target));
+      }
+    }
+
+    passed = (issues.size() == 0);
+
+    return buildResults(issues, passed);
+
+  }
 }

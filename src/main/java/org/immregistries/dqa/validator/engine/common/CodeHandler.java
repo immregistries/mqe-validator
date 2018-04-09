@@ -3,7 +3,6 @@ package org.immregistries.dqa.validator.engine.common;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.codebase.client.generated.CodeStatus;
@@ -11,136 +10,167 @@ import org.immregistries.dqa.codebase.client.generated.UseAge;
 import org.immregistries.dqa.codebase.client.generated.UseDate;
 import org.immregistries.dqa.codebase.client.reference.CodeStatusValue;
 import org.immregistries.dqa.core.util.DateUtility;
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.DetectionType;
+import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
-import org.immregistries.dqa.validator.issue.VxuField;
-import org.immregistries.dqa.validator.issue.IssueType;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
+import org.immregistries.dqa.vxu.MetaFieldInfoData;
+import org.immregistries.dqa.vxu.VxuField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public enum CodeHandler {
-		INSTANCE;
+  INSTANCE;
 
-	/**
-	 * This codemap object will get all the information we know about a code.
-	 */
-	private static final Logger LOGGER = LoggerFactory.getLogger(CodeHandler.class);
-	protected final DateUtility datr = DateUtility.INSTANCE;
-	protected final CodeRepository repo = CodeRepository.INSTANCE;
+  /**
+   * This codemap object will get all the information we know about a code.
+   */
+  private static final Logger LOGGER = LoggerFactory.getLogger(CodeHandler.class);
+  protected final DateUtility datr = DateUtility.INSTANCE;
+  protected final CodeRepository repo = CodeRepository.INSTANCE;
 
-	public List<ValidationIssue> handleCode(String value, VxuField field) {
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
-		//LOGGER.info("value:" + value + " field: " + field);
+  public List<Detection> getDetectionsForField(VxuField field) {
+    List<Detection> fieldDetections = new ArrayList<>();
+    for (DetectionType type : DetectionType.values()) {
+      fieldDetections.add(Detection.get(field, type));
+    }
+    return fieldDetections;
+  }
 
-		if (StringUtils.isBlank(value)) {
-			issues.add(issueForField(field, IssueType.MISSING));
-			return issues;
-		}
 
-		Code c = repo.getCodeFromValue(value, field.getCodesetType());
-		LOGGER.info("handleCode - Code " + value + " for field " + field + " found? " + (c != null));
-		if (c!=null) {
-			CodeStatus status = c.getCodeStatus();
-			String statusValue = status.getStatus();
-			CodeStatusValue csVal = CodeStatusValue.getBy(statusValue);
-			switch (csVal) {
-				case VALID:
-					break;
-				case INVALID:
-					issues.add(issueForField(field, IssueType.INVALID, value));
-					break;
-				case DEPRECATED:
-					issues.add(issueForField(field, IssueType.DEPRECATED, value));
-					break;
-				case IGNORED:
-					issues.add(issueForField(field, IssueType.IGNORED, value));
-					break;
-				case UNRECOGNIZED:
-					issues.add(issueForField(field, IssueType.UNRECOGNIZED, value));
-					break;
-				default:
-					issues.add(issueForField(field, IssueType.UNRECOGNIZED, value));
-					break;
-			}
-		} else {
-			issues.add(issueForField(field, IssueType.UNRECOGNIZED, value));
-		}
+  public List<ValidationReport> handleCode(String value, VxuField field, MetaFieldInfoData meta) {
+    List<ValidationReport> issues = new ArrayList<>();
+    // LOGGER.info("value:" + value + " field: " + field);
 
-		return issues;
-	}
+    if (StringUtils.isBlank(value)) {
+      issues.add(issueForField(field, DetectionType.MISSING, meta));
+      return issues;
+    }
 
-	public List<ValidationIssue> handleUseDate(Code codedValue, String usedDateString, VxuField field) {
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
+    Code c = repo.getCodeFromValue(value, field.getCodesetType());
+    return handleCode(c, field, value, meta);
+  }
 
-		if (codedValue == null || StringUtils.isEmpty(usedDateString)) {
-			return issues;
-		}
+  public List<ValidationReport> handleCode(Code c, VxuField field, String value,
+      MetaFieldInfoData meta) {
+    List<ValidationReport> issues = new ArrayList<>();
+    LOGGER.info("handleCode - Code " + value + " for field " + field + " found? " + (c != null));
+    if (c != null) {
+      CodeStatus status = c.getCodeStatus();
+      String statusValue = status.getStatus();
+      CodeStatusValue csVal = CodeStatusValue.getBy(statusValue);
+      switch (csVal) {
+        case VALID:
+          break;
+        case INVALID:
+          issues.add(issueForField(field, DetectionType.INVALID, value, meta));
+          break;
+        case DEPRECATED:
+          issues.add(issueForField(field, DetectionType.DEPRECATED, value, meta));
+          break;
+        case IGNORED:
+          issues.add(issueForField(field, DetectionType.IGNORED, value, meta));
+          break;
+        case UNRECOGNIZED:
+          issues.add(issueForField(field, DetectionType.UNRECOGNIZED, value, meta));
+          break;
+        default:
+          issues.add(issueForField(field, DetectionType.UNRECOGNIZED, value, meta));
+          break;
+      }
+    } else {
+      issues.add(issueForField(field, DetectionType.UNRECOGNIZED, value, meta));
+    }
 
-		UseDate useDate = codedValue.getUseDate();
+    return issues;
+  }
 
-		if (useDate != null) {
+  public List<ValidationReport> handleUseDate(Code codedValue, String usedDateString,
+      VxuField field, MetaFieldInfoData meta) {
+    List<ValidationReport> issues = new ArrayList<ValidationReport>();
 
-			String notExpectedAfterDateString = useDate.getNotExpectedAfter();
-			String notExpectedBeforeDateString = useDate.getNotExpectedBefore();
+    if (codedValue == null || StringUtils.isBlank(usedDateString)) {
+      return issues;
+    }
 
-			String notBeforeDateString = useDate.getNotBefore();
-			String notAfterDateString = useDate.getNotAfter();
-			LOGGER.debug("Expected Dates: notExpectedAfterDateString["+notExpectedAfterDateString+"] notExpectedBeforeDateString[" + notExpectedBeforeDateString + "]");
-			LOGGER.debug("Dont use Dates: notBeforeDateString["+notBeforeDateString+"] notAfterDateString[" + notAfterDateString + "]");
-			if (datr.isOutsideOfRange(usedDateString, notBeforeDateString, notAfterDateString)) {
-				LOGGER.info("Adding issue for: " + field + " - " + IssueType.BEFORE_OR_AFTER_USAGE_DATE_RANGE + " - " + issues);
-				issues.add(issueForField(field, IssueType.BEFORE_OR_AFTER_USAGE_DATE_RANGE));
-			} else if (datr.isOutsideOfRange(usedDateString, notExpectedBeforeDateString, notExpectedAfterDateString)) {
-				LOGGER.info("Adding issue for: " + field + " - " + IssueType.BEFORE_OR_AFTER_LICENSED_DATE_RANGE + " - " + issues);
-				issues.add(issueForField(field, IssueType.BEFORE_OR_AFTER_LICENSED_DATE_RANGE));
-			}  else {
-				LOGGER.info("NO useDate issues for: " + field);
-			}
-		}
-		return issues;
-	}
+    UseDate useDate = codedValue.getUseDate();
 
-	public List<ValidationIssue> handleAgeDate(Code codedValue, Date birthDate, Date adminDate, VxuField field) {
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
+    if (useDate != null) {
 
-		if (codedValue == null || birthDate == null || adminDate == null) {
-			LOGGER.debug("One of the inputs is null.  returning no issues: code[" + codedValue+"] startDate["+birthDate+"] endDate["+adminDate+"]");
-			return issues;
-		}
+      String notExpectedAfterDateString = useDate.getNotExpectedAfter();
+      String notExpectedBeforeDateString = useDate.getNotExpectedBefore();
 
-		UseAge useAge = codedValue.getUseAge();
+      String notBeforeDateString = useDate.getNotBefore();
+      String notAfterDateString = useDate.getNotAfter();
+      LOGGER.debug("Expected Dates: notExpectedAfterDateString[" + notExpectedAfterDateString
+          + "] notExpectedBeforeDateString[" + notExpectedBeforeDateString + "]");
+      LOGGER.debug("Dont use Dates: notBeforeDateString[" + notBeforeDateString
+          + "] notAfterDateString[" + notAfterDateString + "]");
+      if (datr.isOutsideOfRange(usedDateString, notBeforeDateString, notAfterDateString)) {
+        LOGGER.info(
+            "Adding issue for: " + field + " - " + DetectionType.BEFORE_OR_AFTER_LICENSED_DATE_RANGE
+                + " - " + issues);
+        issues.add(issueForField(field, DetectionType.BEFORE_OR_AFTER_LICENSED_DATE_RANGE, meta));
+      } else if (datr.isOutsideOfRange(usedDateString, notExpectedBeforeDateString,
+          notExpectedAfterDateString)) {
+        LOGGER.info(
+            "Adding issue for: " + field + " - " + DetectionType.BEFORE_OR_AFTER_EXPECTED_DATE_RANGE
+                + " - " + issues);
+        issues.add(issueForField(field, DetectionType.BEFORE_OR_AFTER_EXPECTED_DATE_RANGE, meta));
+      } else {
+        LOGGER.info("NO useDate issues for: " + field);
+      }
+    }
+    return issues;
+  }
 
-		if (useAge != null) {
-			int ageInMonths = datr.monthsBetween(birthDate, adminDate);
-//			LOGGER.info("age in months: " + ageInMonths);
-			int notBeforeMonthByte = useAge.getNotBeforeMonth();
-			int notNotAfterMonthByte = useAge.getNotAfterMonth();
-//			LOGGER.info("notBeforeMonthByte["+notBeforeMonthByte+"] notNotAfterMonthByte["+notNotAfterMonthByte+"]");
-			
-			if (ageInMonths > notNotAfterMonthByte || ageInMonths < notBeforeMonthByte) {
-//				LOGGER.info("Adding issue for: " + field + " - " + IssueType.BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE + " - " + issues);
-				ValidationIssue vi = issueForField(field, IssueType.BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE);
-				LOGGER.info("validation issue: " + vi);
-				issues.add(vi);
-			}
-		}
-		return issues;
-	}
+  public List<ValidationReport> handleAgeDate(Code codedValue, Date birthDate, Date adminDate,
+      VxuField field, MetaFieldInfoData meta) {
+    List<ValidationReport> issues = new ArrayList<ValidationReport>();
 
-	protected ValidationIssue issueForField(VxuField field, IssueType type) {
-		return issueForField(field, type, null);
-	}
-	
-	protected ValidationIssue issueForField(VxuField field, IssueType type, String receivedValue) {
+    if (codedValue == null || birthDate == null || adminDate == null) {
+      LOGGER.debug("One of the inputs is null.  returning no issues: code[" + codedValue
+          + "] startDate[" + birthDate + "] endDate[" + adminDate + "]");
+      return issues;
+    }
 
-		MessageAttribute issue = MessageAttribute.get(field, type);
-		
-		if (issue != null) {
-			return issue.build(receivedValue);
-		} else {
-			LOGGER.warn("Checking for a condition that has no corresponding PotentialIssue. Field: " + field + " IssueType: "+ IssueType.BEFORE_OR_AFTER_VALID_DATE_FOR_AGE);
-			return MessageAttribute.GeneralProcessingException.build();
-		}
-	}
+    UseAge useAge = codedValue.getUseAge();
+
+    if (useAge != null) {
+      int ageInMonths = datr.monthsBetween(birthDate, adminDate);
+      // LOGGER.info("age in months: " + ageInMonths);
+      int notBeforeMonthByte = useAge.getNotBeforeMonth();
+      int notNotAfterMonthByte = useAge.getNotAfterMonth();
+      // LOGGER.info("notBeforeMonthByte["+notBeforeMonthByte+"] notNotAfterMonthByte["+notNotAfterMonthByte+"]");
+
+      if (ageInMonths > notNotAfterMonthByte || ageInMonths < notBeforeMonthByte) {
+        // LOGGER.info("Adding issue for: " + field + " - " +
+        // IssueType.BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE + " - " + issues);
+        ValidationReport vi =
+            issueForField(field, DetectionType.BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE, meta);
+        LOGGER.info("validation issue: " + vi);
+        issues.add(vi);
+      }
+    }
+    return issues;
+  }
+
+  protected ValidationReport issueForField(VxuField field, DetectionType type,
+      MetaFieldInfoData meta) {
+    return issueForField(field, type, null, meta);
+  }
+
+  protected ValidationReport issueForField(VxuField field, DetectionType type,
+      String receivedValue, MetaFieldInfoData meta) {
+
+    Detection issue = Detection.get(field, type);
+
+    if (issue != null) {
+      return issue.build(receivedValue, meta);
+    } else {
+      LOGGER.warn("Checking for a condition that has no corresponding PotentialIssue. Field: "
+          + field + " IssueType: " + type);
+      return Detection.UnknownValidationIssue.build(meta);
+    }
+  }
 }

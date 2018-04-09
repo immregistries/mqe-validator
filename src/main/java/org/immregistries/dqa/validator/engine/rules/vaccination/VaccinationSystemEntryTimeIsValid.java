@@ -1,35 +1,38 @@
 package org.immregistries.dqa.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
+import org.immregistries.dqa.validator.detection.Detection;
+import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.ValidationRule;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
-import org.immregistries.dqa.validator.issue.MessageAttribute;
-import org.immregistries.dqa.validator.issue.ValidationIssue;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaVaccination;
 
-public class VaccinationSystemEntryTimeIsValid extends
-		ValidationRule<DqaVaccination> {
+public class VaccinationSystemEntryTimeIsValid extends ValidationRule<DqaVaccination> {
 
-	// dependency: VaccinationIsAdministered
+  // dependency: VaccinationIsAdministered
 
-	@Override
-	protected ValidationRuleResult executeRule(DqaVaccination target,
-			DqaMessageReceived m) {
+  public VaccinationSystemEntryTimeIsValid() {
+    ruleDetections.addAll(Arrays.asList(Detection.VaccinationSystemEntryTimeIsMissing,
+        Detection.VaccinationSystemEntryTimeIsInFuture));
+  }
 
-		List<ValidationIssue> issues = new ArrayList<ValidationIssue>();
-		boolean passed = true;
+  @Override
+  protected ValidationRuleResult executeRule(DqaVaccination target, DqaMessageReceived m) {
 
-		if (target.getSystemEntryDate() == null) {
-			issues.add(MessageAttribute.VaccinationSystemEntryTimeIsMissing.build());
-		} else if (datr.isBeforeDate(m.getReceivedDate(),target.getSystemEntryDate())) {
-			issues.add(MessageAttribute.VaccinationSystemEntryTimeIsInFuture.build());
-		}
+    List<ValidationReport> issues = new ArrayList<ValidationReport>();
+    boolean passed = true;
 
-		passed = (issues.size() == 0);
+    if (target.getSystemEntryDate() == null) {
+      issues.add(Detection.VaccinationSystemEntryTimeIsMissing.build(target));
+    } else if (datr.isBeforeDate(m.getReceivedDate(), target.getSystemEntryDate())) {
+      issues.add(Detection.VaccinationSystemEntryTimeIsInFuture.build(target));
+    }
 
-		return buildResults(issues, passed);
-	}
+    passed = (issues.size() == 0);
+
+    return buildResults(issues, passed);
+  }
 }

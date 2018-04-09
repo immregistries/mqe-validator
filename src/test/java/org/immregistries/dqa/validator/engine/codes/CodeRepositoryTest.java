@@ -1,35 +1,36 @@
 package org.immregistries.dqa.validator.engine.codes;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.immregistries.dqa.codebase.client.generated.Code;
-import org.immregistries.dqa.validator.engine.codes.CodeRepository;
 import org.junit.Test;
 
 public class CodeRepositoryTest {
 
-	CodeRepository repo = CodeRepository.INSTANCE;
-	
-	@Test
-	public void testGetProductCode() {
-		Code product = repo.getVaccineProduct("113","PMC", "20160101");
-		assertNotNull("Should have found a DECAVAC product for 20160101", product);
-		assertEquals("Should be DECAVAC for 20160101", "DECAVAC", product.getValue());
-		
-		product = repo.getVaccineProduct("113","PMC", "19500101");
-		assertNotNull("Should have found a product for 19500101", product);
-		assertEquals("Should be TENIVAC for 19500101. It is the closest", "TENIVAC", product.getValue());
-		
-		product = repo.getVaccineProduct("113","PMC", "19840101");
-		assertNotNull("Should have found a TENVAC product", product);
-		assertEquals("Should be TENIVAC for 19840101", "TENIVAC", product.getValue());
-		
-		product = repo.getVaccineProduct("113","PMC", "20030101");
-		assertNotNull("Should have found a DECAVAC product for 20030101", product);
-		assertEquals("Should be DECAVAC for 20030101", "DECAVAC", product.getValue());
-		
-		
-	}
+  CodeRepository repo = CodeRepository.INSTANCE;
+
+  @Test
+  public void testGetProductCode() {
+    Code product = repo.getVaccineProduct("113", "PMC", "20160101");
+    assertNotNull("Should have found a DECAVAC product for 20160101", product);
+    assertEquals("Should be DECAVAC for 20160101", "DECAVAC", product.getValue());
+
+    product = repo.getVaccineProduct("113", "PMC", "19500101");
+    assertNotNull("Should have found a product for 19500101", product);
+    assertEquals("Should be TENIVAC for 19500101. It is the closest", "TENIVAC",
+        product.getValue());
+
+    product = repo.getVaccineProduct("113", "PMC", "19840101");
+    assertNotNull("Should have found a TENVAC product", product);
+    assertEquals("Should be TENIVAC for 19840101", "TENIVAC", product.getValue());
+
+    product = repo.getVaccineProduct("113", "PMC", "20030101");
+    assertNotNull("Should have found a DECAVAC product for 20030101", product);
+    assertEquals("Should be DECAVAC for 20030101", "DECAVAC", product.getValue());
+
+
+  }
 }
 
 /*

@@ -3,14 +3,14 @@ package org.immregistries.dqa.validator.report;
 import java.util.HashMap;
 import java.util.Map;
 import org.immregistries.dqa.validator.detection.Detection;
-import org.immregistries.dqa.validator.detection.MessageObject;
+import org.immregistries.dqa.vxu.VxuObject;
 import org.immregistries.dqa.validator.report.codes.CodeCollection;
 import org.immregistries.dqa.validator.report.codes.VaccineCollection;
 import org.joda.time.DateTime;
 
 public class DqaMessageMetrics {
 
-  private Map<MessageObject, Integer> objectCounts = new HashMap<>();
+  private Map<VxuObject, Integer> objectCounts = new HashMap<>();
   private Map<Detection, Integer> attributeCounts = new HashMap<>();
   private CodeCollection codes = new CodeCollection();
   private VaccineCollection vaccinations = new VaccineCollection();
@@ -34,11 +34,11 @@ public class DqaMessageMetrics {
     this.codes = codes;
   }
 
-  public Map<MessageObject, Integer> getObjectCounts() {
+  public Map<VxuObject, Integer> getObjectCounts() {
     return objectCounts;
   }
 
-  public void setObjectCounts(Map<MessageObject, Integer> objectCounts) {
+  public void setObjectCounts(Map<VxuObject, Integer> objectCounts) {
     this.objectCounts = objectCounts;
   }
 

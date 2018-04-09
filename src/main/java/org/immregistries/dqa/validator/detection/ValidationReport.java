@@ -8,6 +8,8 @@ import org.immregistries.dqa.hl7util.ReportableSource;
 import org.immregistries.dqa.hl7util.SeverityLevel;
 import org.immregistries.dqa.hl7util.model.CodedWithExceptions;
 import org.immregistries.dqa.hl7util.model.Hl7Location;
+import org.immregistries.dqa.vxu.MetaFieldInfoData;
+import org.immregistries.dqa.vxu.VxuField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +22,27 @@ public class ValidationReport implements Reportable {
   private SeverityLevel severityLevel = null; // this is how bad it is.
   private String valueReceived = null;// This is the related value.
   private List<Hl7Location> hl7LocationList = new ArrayList<>();
+
+  public ValidationReport() {
+  }
+
+  public ValidationReport(VxuField field, DetectionType type, MetaFieldInfoData meta) {
+    this.detection = Detection.get(field, type);
+    if (detection != null) {
+      this.severityLevel = this.detection.getSeverity();
+    }
+    if (meta != null && meta.getMetaFieldInfo(field) != null) {
+      this.hl7LocationList.add(meta.getMetaFieldInfo(field).getHl7Location());
+    }
+  }
+
+  public ValidationReport(String value, VxuField field, DetectionType type,
+      MetaFieldInfoData meta) {
+    this.detection = Detection.get(field, type);
+    this.severityLevel = this.detection.getSeverity();
+    this.hl7LocationList.add(meta.getMetaFieldInfo(field).getHl7Location());
+    this.valueReceived = value;
+  }
 
   public Detection getDetection() {
     return detection;
@@ -81,7 +104,7 @@ public class ValidationReport implements Reportable {
   @Override
   public CodedWithExceptions getHl7ErrorCode() {
     CodedWithExceptions cwe = new CodedWithExceptions();
-    cwe.setIdentifier(this.detection.getHl7ErrorCode());
+    cwe.setIdentifier(this.detection.getHl7ErrorCode().getIdentifier());
     return cwe;
   }
 
@@ -110,7 +133,7 @@ public class ValidationReport implements Reportable {
       cwe.setIdentifier(this.detection.getApplicationErrorCode().getId());
       cwe.setText(this.detection.getApplicationErrorCode().getText());
       cwe.setNameOfCodingSystem("HL70533");
-      cwe.setAlternateIdentifier(this.detection.getDqaErrorCode());
+      cwe.setAlternateIdentifier(this.detection.getDqaMqeCode());
       cwe.setAlternateText(this.detection.getDisplayText());
       cwe.setNameOfAlternateCodingSystem("L");
     }

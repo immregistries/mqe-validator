@@ -17,12 +17,10 @@ public class VaccinationNdcIsValid extends ValidationRule<DqaVaccination> {
 
   @Override
   protected ValidationRuleResult executeRule(DqaVaccination target, DqaMessageReceived m) {
-    List<ValidationReport> issues = new ArrayList<>();
-    issues.addAll(this.codr.handleCode(target.getAdminNdc(), VxuField.VACCINATION_NDC_CODE, target));
+    List<ValidationReport> issues = new ArrayList<>(this.codr.handleCode(target.getAdminNdc(), VxuField.VACCINATION_NDC_CODE, target));
+
     LOGGER.info("issues: " + issues);
-
     boolean passed = issues.isEmpty();
-
     return buildResults(issues, passed);
   }
 }

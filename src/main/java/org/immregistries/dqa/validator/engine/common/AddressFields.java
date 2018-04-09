@@ -5,9 +5,9 @@ import org.immregistries.dqa.vxu.VxuField;
 public class AddressFields {
 
   private VxuField address;
+  private VxuField streetField;
   private VxuField street2Field;
   private VxuField cityField;
-  private VxuField streetField;
   private VxuField countryField;
   private VxuField countyField;
   private VxuField stateField;

@@ -3,7 +3,7 @@ package org.immregistries.dqa.validator.detection;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum ErrorCode {
+public enum MqeCode {
   MQE0000,
   MQE0002,
   MQE0003,
@@ -484,18 +484,19 @@ public enum ErrorCode {
   MQE0558,
   MQE0559,
   MQE0560,
+  MQE0561,
   // Add new codes here below in ascending order
   ;
 
-  private static Map<String, ErrorCode> errorCodeStringMap = new HashMap<>();
+  private static Map<String, MqeCode> errorCodeStringMap = new HashMap<>();
 
   static {
-    for (ErrorCode c : ErrorCode.values()) {
+    for (MqeCode c : MqeCode.values()) {
       errorCodeStringMap.put(c.name(), c);
     }
   }
 
-  public static ErrorCode getByCodeString(String code) {
+  public static MqeCode getByCodeString(String code) {
     return errorCodeStringMap.get(code);
   }
 }

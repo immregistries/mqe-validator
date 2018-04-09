@@ -14,15 +14,18 @@ public class MessageHeaderFieldsArePresent extends ValidationRule<DqaMessageHead
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {
-    // PatientExists.class,
+    return new Class[]{
+        // PatientExists.class,
     };
   }
 
   public MessageHeaderFieldsArePresent() {
-    this.ruleDetections.addAll(Arrays.asList(Detection.MessageReceivingApplicationIsMissing,
-        Detection.MessageReceivingFacilityIsMissing, Detection.MessageSendingApplicationIsMissing,
-        Detection.MessageMessageControlIdIsMissing, Detection.MessageAcceptAckTypeIsMissing,
+    this.ruleDetections.addAll(Arrays.asList(
+        Detection.MessageReceivingApplicationIsMissing,
+        Detection.MessageReceivingFacilityIsMissing,
+        Detection.MessageSendingApplicationIsMissing,
+        Detection.MessageMessageControlIdIsMissing,
+        Detection.MessageAcceptAckTypeIsMissing,
         Detection.MessageAppAckTypeIsMissing));
   }
 

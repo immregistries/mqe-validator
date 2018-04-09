@@ -8,7 +8,7 @@ import org.immregistries.dqa.validator.DqaMessageService;
 import org.immregistries.dqa.validator.DqaMessageServiceResponse;
 import org.immregistries.dqa.validator.detection.Detection;
 import org.immregistries.dqa.validator.detection.DetectionType;
-import org.immregistries.dqa.validator.detection.MessageObject;
+import org.immregistries.dqa.vxu.VxuObject;
 import org.immregistries.dqa.validator.report.codes.CodeCollection;
 import org.immregistries.dqa.validator.report.codes.VaccineCollection;
 import org.immregistries.dqa.vxu.VxuField;
@@ -81,7 +81,7 @@ public enum ReportScorer {
       ReportCompletenessSectionDefinition section, DqaMessageMetrics measures) {
     VxuCompletenessSectionScore reportSection = new VxuCompletenessSectionScore();
     reportSection.setLabel(section.getLabel());
-    MessageObject sectionObject = section.getSectionObject();
+    VxuObject sectionObject = section.getSectionObject();
     Integer denominator = measures.getObjectCounts().get(sectionObject);
 
     if (denominator == null) {

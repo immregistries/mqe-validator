@@ -14,7 +14,7 @@ public class PatientDeathIndicatorIsValid extends ValidationRule<DqaPatient> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {PatientExists.class};
+    return new Class[]{PatientExists.class};
   }
 
   public PatientDeathIndicatorIsValid() {
@@ -28,15 +28,13 @@ public class PatientDeathIndicatorIsValid extends ValidationRule<DqaPatient> {
     boolean passed = true;
 
     String dInd = target.getDeathIndicator();
+    String deathDate = target.getDeathDateString();
 
-    if (this.common.isEmpty(dInd)) {
-      issues.add(this.util.createIssue(Detection.PatientDeathIndicatorIsMissing, dInd));
+    if (!this.common.isEmpty(deathDate) && this.common.isEmpty(dInd)) {
+      issues.add(Detection.PatientDeathIndicatorIsMissing.build(target));
       passed = false; // should this be a pass???
     } else if (!"Y".equals(dInd)) {
-      if (target.getDeathDate() != null || target.getDeathDateString() != null) {
-        String deathDate =
-            target.getDeathDate() != null ? target.getDeathDate().toString() : target
-                .getDeathDateString();
+      if (this.common.isNotEmpty(target.getDeathDateString())) {
         issues.add(Detection.PatientDeathIndicatorIsInconsistent.build(dInd, target));
         passed = false;
       }

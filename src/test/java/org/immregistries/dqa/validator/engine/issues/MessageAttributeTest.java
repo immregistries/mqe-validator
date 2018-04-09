@@ -14,11 +14,11 @@ public class MessageAttributeTest {
     Set<String> set = new HashSet<>();
     boolean foundAtLeastOneDuplicated = false;
     for (Detection ma : Detection.values()) {
-      if (set.contains(ma.getDqaErrorCode())) {
-        System.err.println("Duplicate DQA code: " + ma.getDqaErrorCode());
+      if (set.contains(ma.getDqaMqeCode())) {
+        System.err.println("Duplicate DQA code: " + ma.getDqaMqeCode());
         foundAtLeastOneDuplicated = true;
       }
-      set.add(ma.getDqaErrorCode());
+      set.add(ma.getDqaMqeCode());
     }
     assertFalse(
         "At least one DQA code duplicate was found in the MessageAttribute enum. DQA code must be unique. ",

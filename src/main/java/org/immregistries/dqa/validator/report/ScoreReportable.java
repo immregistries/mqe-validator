@@ -24,25 +24,28 @@ public class ScoreReportable implements Reportable {
 
   public ScoreReportable(Detection d, int count) {
     this.reportedCount = count;
-    this.severity = d.getSeverity();
-    this.reportedMessage = d.getDisplayText();
-    this.hl7LocationList = new ArrayList<Hl7Location>();
-    for (String loc : d.getHl7Locations()) {
-      Hl7Location el = new Hl7Location(loc);
-      hl7LocationList.add(el);
-    }
+    this.hl7LocationList = new ArrayList<>();
     CodedWithExceptions cwe = new CodedWithExceptions();
-    cwe.setIdentifier(d.getHl7ErrorCode());
     this.hl7ErrorCode = cwe;
-
     CodedWithExceptions aec = new CodedWithExceptions();
-    aec.setIdentifier(d.getApplicationErrorCode().getId());
-    aec.setText(d.getApplicationErrorCode().getText());
-    aec.setNameOfCodingSystem("HL70533");
-    aec.setAlternateIdentifier(d.getDqaErrorCode());
-    aec.setAlternateText(d.getDisplayText());
-    aec.setNameOfAlternateCodingSystem("L");
     this.applicationErrorCode = aec;
+
+    if (d != null) {
+      this.severity = d.getSeverity();
+      this.reportedMessage = d.getDisplayText();
+      Hl7Location el = new Hl7Location(d.getTargetField().getHl7Locator());
+      aec.setIdentifier(d.getApplicationErrorCode().getId());
+      aec.setText(d.getApplicationErrorCode().getText());
+      aec.setNameOfCodingSystem("HL70533");
+      aec.setAlternateIdentifier(d.getDqaMqeCode());
+      aec.setAlternateText(d.getDisplayText());
+      aec.setNameOfAlternateCodingSystem("L");
+      hl7LocationList.add(el);
+      cwe.setIdentifier(d.getHl7ErrorCode().getIdentifier());
+    } else {
+      this.severity = SeverityLevel.INFO;
+      this.reportedMessage = "Undetected";
+    }
   }
 
   @Override

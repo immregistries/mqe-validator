@@ -52,7 +52,7 @@ public class MessageVersionIsValid extends ValidationRule<DqaMessageHeader> {
           passed = true;
           break;
         default:
-          issues.add(Detection.MessageVersionIsUnrecognized.build((version), target));
+          issues.add(Detection.MessageVersionIsUnrecognized.build(version, target));
       }
     }
 

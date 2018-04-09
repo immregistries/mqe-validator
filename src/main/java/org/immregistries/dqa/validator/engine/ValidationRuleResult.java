@@ -20,7 +20,7 @@ public class ValidationRuleResult {
     return issues;
   }
 
-  public void setIssues(List<ValidationReport> issues) {
+  public void setValidationDetections(List<ValidationReport> issues) {
     this.issues = issues;
   }
 

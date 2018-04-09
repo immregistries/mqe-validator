@@ -35,7 +35,7 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
 
     String relationship = target.getRelationshipCode();
 
-    if (StringUtils.isNotEmpty(relationship)) {
+    if (StringUtils.isNotBlank(relationship)) {
       if (!target.isResponsibleRelationship()) {
         if (target.isChildRelationship()) {
           // In most situations, an underage patient would not have a child, so this is unexpected

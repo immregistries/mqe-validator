@@ -40,20 +40,6 @@ public enum RulePairBuilder {
    */
 
   /**
-   * This builds a list of rules for all of the higher-order entities. These are entities that are
-   * not in a list, and who's validations matter down the line for other entities, like the
-   * Vaccinations and NOK's.
-   */
-  public List<ValidationRulePair> buildHeaderAndPatientRuleList(DqaMessageReceived m) {
-
-    List<ValidationRulePair> headerAndPatientRules =
-        this.buildMessageHeaderRulePairs(m.getMessageHeader(), m);
-    headerAndPatientRules.addAll(this.buildPatientRulePairs(m.getPatient(), m));
-
-    return headerAndPatientRules;
-  }
-
-  /**
    * This builds list of lists of rules for the list-item (secondary order) entities. These are
    * things like a Vaccination, for which we do not want cross-dependency fulfillment. If a
    * vaccination's rules are fulfilled, we intend for that pass to fulfill only dependencies for the

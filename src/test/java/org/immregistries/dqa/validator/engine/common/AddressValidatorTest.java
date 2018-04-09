@@ -34,13 +34,4 @@ public class AddressValidatorTest {
 		
 		assertEquals("it's crappy!", false, av.isValid(address));
 	}
-
-	@Test
-	public void testValidCity() {
-		boolean validCity = av.validCity(address.getCity());
-		assertTrue("Should be a valid city", validCity);
-		
-		boolean validcity2 = av.validCity("X");
-		assertFalse("Should not be valid", validcity2);
-	}
 }

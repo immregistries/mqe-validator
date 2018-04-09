@@ -2,13 +2,13 @@ package org.immregistries.dqa.validator.report;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.immregistries.dqa.validator.detection.MessageObject;
+import org.immregistries.dqa.vxu.VxuObject;
 
 public class ReportCompletenessSectionDefinition {
 
   private String label;
   private List<DqaReportFieldDefinition> scores = new ArrayList<>();
-  private MessageObject sectionObject;// (patient, vaccine... this is the "Denominator") quality
+  private VxuObject sectionObject;// (patient, vaccine... this is the "Denominator") quality
                                       // issues,
 
   public String getLabel() {
@@ -27,11 +27,11 @@ public class ReportCompletenessSectionDefinition {
     this.scores = scores;
   }
 
-  public MessageObject getSectionObject() {
+  public VxuObject getSectionObject() {
     return sectionObject;
   }
 
-  public void setSectionObject(MessageObject sectionObject) {
+  public void setSectionObject(VxuObject sectionObject) {
     this.sectionObject = sectionObject;
   }
 }

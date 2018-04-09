@@ -18,30 +18,38 @@ public enum MessageValidator {
    * @return a list of validation results.
    */
   public List<ValidationRuleResult> validateMessage(DqaMessageReceived m) {
-
     // first validate the high order elements of the message:
-    List<ValidationRuleResult> headerAndPatientResults = validateHighOrderElements(m);
-
+    List<ValidationRuleResult> headerResults = validateMessageHeader(m);
     // Generate a list of passed classes from the results:
-    List<Class> headerAndPatientPassed = util.getPassedFromResults(headerAndPatientResults);
+    List<Class> headerPassed = util.getPassedFromResults(headerResults);
 
-    // Then validate the list items. The resons they are treated separately is desribed elsewhere.
-    List<ValidationRuleResult> listEntityResults = validateListItems(m, headerAndPatientPassed);
+    List<Class> allPassed = new ArrayList<>(headerPassed);
+    // first validate the high order elements of the message:
+    List<ValidationRuleResult> patientResults = validatePatient(m, headerPassed);
+    // Generate a list of passed classes from the results:
+    List<Class> patientPassed = util.getPassedFromResults(patientResults);
+    allPassed.addAll(patientPassed);
+
+    // Then validate the list items. The reasons they are treated separately is described elsewhere.
+    List<ValidationRuleResult> listEntityResults = validateListItems(m, allPassed);
 
     // Then add them all together.
     List<ValidationRuleResult> validationResults = new ArrayList<ValidationRuleResult>();
-    validationResults.addAll(headerAndPatientResults);
+    validationResults.addAll(headerResults);
+    validationResults.addAll(patientResults);
     validationResults.addAll(listEntityResults);
 
     return validationResults;
   }
 
-  protected List<ValidationRuleResult> validateHighOrderElements(DqaMessageReceived m) {
-    List<ValidationRulePair> headerAndPatientRules = builder.buildHeaderAndPatientRuleList(m);
-    List<ValidationRuleResult> headerAndPatientResults =
-        runner.processValidationRules(headerAndPatientRules, new ArrayList<Class>());
+  protected List<ValidationRuleResult> validateMessageHeader(DqaMessageReceived m) {
+    List<ValidationRulePair> headerRules = builder.buildMessageHeaderRulePairs(m.getMessageHeader(), m);
+    return runner.processValidationRules(headerRules, new ArrayList<Class>());
+  }
 
-    return headerAndPatientResults;
+  protected List<ValidationRuleResult> validatePatient(DqaMessageReceived m, List<Class> passedPreviously) {
+    List<ValidationRulePair> headerRules = builder.buildPatientRulePairs(m.getPatient(), m);
+    return runner.processValidationRules(headerRules, passedPreviously);
   }
 
   protected List<ValidationRuleResult> validateListItems(DqaMessageReceived m,

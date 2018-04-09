@@ -4,32 +4,33 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import org.immregistries.dqa.validator.detection.Detection;
-import org.immregistries.dqa.validator.detection.MessageObject;
 import org.immregistries.dqa.vxu.VxuField;
+import org.immregistries.dqa.vxu.VxuObject;
 
 public class GenerateDetectionWiki {
+
   public static void main(String[] args) throws Exception {
     if (args.length == 0) {
       System.err.println("usage: java org.immregistries.dqa.validator.GenerateWiki [file-name]");
     }
     File file = new File(args[0]);
     PrintWriter out = new PrintWriter(new FileWriter(file));
-    for (MessageObject messageObject : MessageObject.values()) {
+    for (VxuObject vxuObject : VxuObject.values()) {
       boolean found = false;
       for (Detection detection : Detection.values()) {
-        if (detection.getTargetObject() == messageObject) {
+        if (detection.getTargetObject() == vxuObject) {
           found = true;
           break;
         }
       }
       if (found) {
-        out.println("# " + messageObject.getDescription());
+        out.println("# " + vxuObject.getDescription());
         out.println();
-        out.println("Location: " + messageObject.getLocation());
+        out.println("Location: " + vxuObject.getLocation());
         for (VxuField vxuField : VxuField.values()) {
           found = false;
           for (Detection detection : Detection.values()) {
-            if (detection.getTargetObject() == messageObject
+            if (detection.getTargetObject() == vxuObject
                 && detection.getTargetField() == vxuField) {
               found = true;
               break;
@@ -47,9 +48,9 @@ public class GenerateDetectionWiki {
             out.println("");
             out.println("Detections: ");
             for (Detection detection : Detection.values()) {
-              if (detection.getTargetObject() == messageObject
+              if (detection.getTargetObject() == vxuObject
                   && detection.getTargetField() == vxuField) {
-                out.println("* " + detection.getDqaErrorCode() + ": " + detection.getDisplayText());
+                out.println("* " + detection.getDqaMqeCode() + ": " + detection.getDisplayText());
               }
             }
           }

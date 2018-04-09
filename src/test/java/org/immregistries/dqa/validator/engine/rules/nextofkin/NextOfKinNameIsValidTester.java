@@ -1,5 +1,6 @@
 package org.immregistries.dqa.validator.engine.rules.nextofkin;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -61,8 +62,8 @@ public class NextOfKinNameIsValidTester {
 
     ValidationRuleResult r = rule.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
-    assertTrue(1 == r.getValidationDetections().size()
-        && Detection.NextOfKinNameFirstIsMissing == r.getValidationDetections().get(0)
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.NextOfKinNameFirstIsMissing, r.getValidationDetections().get(0)
         .getDetection());
   }
 
@@ -76,8 +77,8 @@ public class NextOfKinNameIsValidTester {
 
     ValidationRuleResult r = rule.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
-    assertTrue(1 == r.getValidationDetections().size()
-        && Detection.NextOfKinNameLastIsMissing == r.getValidationDetections().get(0)
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.NextOfKinNameLastIsMissing, r.getValidationDetections().get(0)
         .getDetection());
   }
 
@@ -92,8 +93,9 @@ public class NextOfKinNameIsValidTester {
 
     ValidationRuleResult r = rule.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
-    assertTrue(1 == r.getValidationDetections().size()
-        && Detection.NextOfKinNameIsMissing == r.getValidationDetections().get(0).getDetection());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.NextOfKinNameIsMissing,
+        r.getValidationDetections().get(0).getDetection());
   }
 
   /**

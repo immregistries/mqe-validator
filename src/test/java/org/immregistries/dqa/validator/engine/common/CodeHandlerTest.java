@@ -3,6 +3,7 @@ package org.immregistries.dqa.validator.engine.common;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.immregistries.dqa.codebase.client.generated.Code;
@@ -13,6 +14,7 @@ import org.immregistries.dqa.hl7util.model.MetaFieldInfo;
 import org.immregistries.dqa.validator.detection.Detection;
 import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
+import org.immregistries.dqa.vxu.DetectionInfo;
 import org.immregistries.dqa.vxu.MetaFieldInfoData;
 import org.immregistries.dqa.vxu.VxuField;
 import org.joda.time.DateTime;
@@ -38,6 +40,9 @@ public class CodeHandlerTest {
 			MetaFieldInfo mfi = new MetaFieldInfo();
 			mfi.setVxuField(vxuField);
 			return null;
+		}
+		@Override public List<DetectionInfo> getDetectionList() {
+			return new ArrayList<>();
 		}
 	};
 	

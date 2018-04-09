@@ -4,45 +4,44 @@ import org.junit.Test;
 
 public class PatternMatcherTester {
 
-	@Test
-	public void test() {
-		
-		String[] segs = { 
-			"ISA", 
-			"GS", 
-			"ST", 
-			"BPR", 
-			"NTE", 
-			"TRN", 
-			"CUR", 
-			"REF",
-			"DTM", 
-			"N1", 
-			"N3", 
-			"N4", 
-			"REF", 
-			"PER",
-			"N1",
-			"N3",
-			"N4",
-			"REF",
-			"REF",
-			"RDM"
-		};
-		
-		
-		
-	}
-	
-	//so basically, it needs to run the first lsit against expected lists...
-	//you need something to read and execute the expectations. 
-	
-	//Expected first segment: ISA.  Expected MIN: 1 MAX: 1...
-	//So the first thing it should check is whether that's there. 
-	//YUP...  okay.  
-	//The harder ones are the zero or one... 
-	//Like the CUR segment...  okay.  is it there?  Yes.  if not. okay. but it can't be anywhere else. 
-	//
+  @Test
+  public void test() {
+
+    String[] segs = {
+        "ISA",
+        "GS",
+        "ST",
+        "BPR",
+        "NTE",
+        "TRN",
+        "CUR",
+        "REF",
+        "DTM",
+        "N1",
+        "N3",
+        "N4",
+        "REF",
+        "PER",
+        "N1",
+        "N3",
+        "N4",
+        "REF",
+        "REF",
+        "RDM"
+    };
+
+
+  }
+
+  //so basically, it needs to run the first lsit against expected lists...
+  //you need something to read and execute the expectations.
+
+  //Expected first segment: ISA.  Expected MIN: 1 MAX: 1...
+  //So the first thing it should check is whether that's there.
+  //YUP...  okay.
+  //The harder ones are the zero or one...
+  //Like the CUR segment...  okay.  is it there?  Yes.  if not. okay. but it can't be anywhere else.
+  //
 
 		
 

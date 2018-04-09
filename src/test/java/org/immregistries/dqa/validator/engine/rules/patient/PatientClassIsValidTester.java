@@ -17,74 +17,75 @@ import org.slf4j.LoggerFactory;
  * Created by Allison on 5/9/2017.
  */
 public class PatientClassIsValidTester {
-    private PatientClassIsValid rule = new PatientClassIsValid();
 
-    // Parts required for the test
-    private DqaMessageHeader mh = new DqaMessageHeader();
-    private DqaMessageReceived mr = new DqaMessageReceived();
-    private DqaPatient p = new DqaPatient();
+  private PatientClassIsValid rule = new PatientClassIsValid();
 
-    private static final Logger logger = LoggerFactory.getLogger(PatientClassIsValidTester.class);
+  // Parts required for the test
+  private DqaMessageHeader mh = new DqaMessageHeader();
+  private DqaMessageReceived mr = new DqaMessageReceived();
+  private DqaPatient p = new DqaPatient();
 
-    /**
-     * Sets up the objects needed for the test.
-     */
-    @Before
-    public void setUpTheObjects() {
-        p.setPatientClassCode("R"); // R = recurring
+  private static final Logger logger = LoggerFactory.getLogger(PatientClassIsValidTester.class);
 
-        mh.setMessageDate(new Date());
-        mr.setMessageHeader(mh);
-        mr.setPatient(p);
-    }
+  /**
+   * Sets up the objects needed for the test.
+   */
+  @Before
+  public void setUpTheObjects() {
+    p.setPatientClassCode("R"); // R = recurring
 
-    /**
-     * Test the basic rule, with a valid class code
-     * (should be true)
-     */
-    @Test
-    public void testRule() {
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(r.isRulePassed());
-    }
+    mh.setMessageDate(new Date());
+    mr.setMessageHeader(mh);
+    mr.setPatient(p);
+  }
 
-    /**
-     * Test with null class code
-     * (should be false)
-     */
-    @Test
-    public void testRuleNullCode() {
-        p.setPatientClassCode(null);
+  /**
+   * Test the basic rule, with a valid class code
+   * (should be true)
+   */
+  @Test
+  public void testRule() {
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertTrue(r.isRulePassed());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertFalse(r.isRulePassed());
-    }
+  /**
+   * Test with null class code
+   * (should be false)
+   */
+  @Test
+  public void testRuleNullCode() {
+    p.setPatientClassCode(null);
 
-    /**
-     * Test with empty class code
-     * (should be false)
-     */
-    @Test
-    public void testRuleEmptyCode() {
-        p.setPatientClassCode("");
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertFalse(r.isRulePassed());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertFalse(r.isRulePassed());
-    }
+  /**
+   * Test with empty class code
+   * (should be false)
+   */
+  @Test
+  public void testRuleEmptyCode() {
+    p.setPatientClassCode("");
 
-    /**
-     * Test with unrecognized class code
-     * (should be false)
-     */
-    @Test
-    public void testRuleUnrecognizedCode() {
-        p.setPatientClassCode("abc");
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertFalse(r.isRulePassed());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertFalse(r.isRulePassed());
-    }
+  /**
+   * Test with unrecognized class code
+   * (should be false)
+   */
+  @Test
+  public void testRuleUnrecognizedCode() {
+    p.setPatientClassCode("abc");
+
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertFalse(r.isRulePassed());
+  }
 }

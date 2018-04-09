@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.immregistries.dqa.validator.detection.Detection;
-import org.immregistries.dqa.validator.detection.MessageObject;
+import org.immregistries.dqa.vxu.VxuObject;
 import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.validator.engine.rules.nextofkin.NextOfKinIsPresent;
@@ -25,11 +25,11 @@ public enum MessageResponseEvaluator {
     return metrics;
   }
 
-  protected Map<MessageObject, Integer> makeObjectCounts(List<ValidationRuleResult> results) {
-    Map<MessageObject, Integer> objCounts = new HashMap<MessageObject, Integer>();
+  protected Map<VxuObject, Integer> makeObjectCounts(List<ValidationRuleResult> results) {
+    Map<VxuObject, Integer> objCounts = new HashMap<VxuObject, Integer>();
 
-    objCounts.put(MessageObject.PATIENT, 1);
-    objCounts.put(MessageObject.MESSAGE_HEADER, 1);
+    objCounts.put(VxuObject.PATIENT, 1);
+    objCounts.put(VxuObject.MESSAGE_HEADER, 1);
 
     int vaccCount = 0;
     int nokCount = 0;
@@ -50,8 +50,8 @@ public enum MessageResponseEvaluator {
 
     }
 
-    objCounts.put(MessageObject.VACCINATION, vaccCount);
-    objCounts.put(MessageObject.NEXT_OF_KIN, nokCount);
+    objCounts.put(VxuObject.VACCINATION, vaccCount);
+    objCounts.put(VxuObject.NEXT_OF_KIN, nokCount);
     return objCounts;
   }
 

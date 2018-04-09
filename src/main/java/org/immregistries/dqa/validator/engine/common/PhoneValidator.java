@@ -35,8 +35,8 @@ public enum PhoneValidator {
 
     List<ValidationReport> issues = new ArrayList<>();
 
-    if (phone != null && StringUtils.isNotEmpty(phone.getNumber())) {
-      if (StringUtils.isEmpty(phone.getAreaCode()) || StringUtils.isEmpty(phone.getLocalNumber())) {
+    if (phone != null && StringUtils.isNotBlank(phone.getNumber())) {
+      if (StringUtils.isBlank(phone.getAreaCode()) || StringUtils.isBlank(phone.getLocalNumber())) {
         Detection attr = Detection.get(piPhone, DetectionType.INCOMPLETE);
         if (attr != null) {
           issues.add(attr.build(phone.getNumber(), meta));
@@ -70,13 +70,13 @@ public enum PhoneValidator {
   private PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
 
   protected boolean isValidPhone(DqaPhoneNumber phone) {
-    if (StringUtils.isEmpty(phone.getCountryCode()) || phone.getCountryCode().equals("1")
+    if (StringUtils.isBlank(phone.getCountryCode()) || phone.getCountryCode().equals("1")
         || phone.getCountryCode().equals("+1")) {
       // Validating all phone numbers using the North American Numbering
       // Plan
       // (NANP)
 
-      if (StringUtils.isNotEmpty(phone.getAreaCode())) {
+      if (StringUtils.isNotBlank(phone.getAreaCode())) {
         if (!validPhone3Digit(phone.getAreaCode())) {
           return false;
         }

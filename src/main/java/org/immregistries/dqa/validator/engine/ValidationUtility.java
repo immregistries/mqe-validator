@@ -16,15 +16,6 @@ public enum ValidationUtility {
   private static final CommonRules common = CommonRules.INSTANCE;
   private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(ValidationUtility.class);
 
-  public ValidationReport createIssue(Detection attribute, String codedValue) {
-    ValidationReport found = new ValidationReport();
-    found.setDetection(attribute);
-    found.setValueReceived(codedValue);
-    found.setSeverityLevel(attribute.getSeverity());// This needs to be equipped to be naunced. This
-                                                    // will comes off a profile.
-    return found;
-  }
-
   /**
    * This method determines if the rule has passed, based on if any of the issues are at the error
    * level.

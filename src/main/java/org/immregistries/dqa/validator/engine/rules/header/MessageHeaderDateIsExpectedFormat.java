@@ -14,8 +14,7 @@ import org.joda.time.format.DateTimeFormatter;
 
 public class MessageHeaderDateIsExpectedFormat extends ValidationRule<DqaMessageHeader> {
 
-  private final String expected = "yyyyMMddHHmmssZ";
-  private final DateTimeFormatter expectedFormat = DateTimeFormat.forPattern(expected);
+  private final DateTimeFormatter expectedFormat = DateTimeFormat.forPattern("yyyyMMddHHmmssZ");
 
   @Override
   protected final Class[] getDependencies() {
@@ -25,7 +24,7 @@ public class MessageHeaderDateIsExpectedFormat extends ValidationRule<DqaMessage
   }
 
   public MessageHeaderDateIsExpectedFormat() {
-    this.ruleDetections.addAll(Arrays.asList(Detection.MessageMessageDateIsUnexpectedFormat));
+    this.ruleDetections.add(Detection.MessageMessageDateIsUnexpectedFormat);
   }
 
   @Override

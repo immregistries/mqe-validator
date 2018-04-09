@@ -31,8 +31,7 @@ public class VaccinationAdminAfterBirthDate extends ValidationRule<DqaVaccinatio
     Date birthDate = m.getPatient().getBirthDate();
 
     if (adminDate.before(birthDate)) {
-      issues.add(this.util.createIssue(Detection.VaccinationAdminDateIsBeforeBirth,
-          adminDate.toString()));
+      issues.add(Detection.VaccinationAdminDateIsBeforeBirth.build(adminDate.toString(), v));
       passed = false;
     }
 

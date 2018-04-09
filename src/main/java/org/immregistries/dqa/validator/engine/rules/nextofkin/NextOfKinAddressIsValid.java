@@ -3,6 +3,7 @@ package org.immregistries.dqa.validator.engine.rules.nextofkin;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.validator.detection.Detection;
 import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -25,18 +26,20 @@ public class NextOfKinAddressIsValid extends ValidationRule<DqaNextOfKin> {
   private AddressValidator addressValidator = AddressValidator.INSTANCE;
 
   public NextOfKinAddressIsValid() {
+
     this.ruleDetections.addAll(Arrays.asList(
         Detection.NextOfKinAddressIsDifferentFromPatientAddress,
         Detection.NextOfKinAddressTypeIsValuedBadAddress));
+
     this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS));
     this.ruleDetections
         .addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET));
-    this.ruleDetections.addAll(this.codr
-        .getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET2));
+    this.ruleDetections
+        .addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET2));
     this.ruleDetections
         .addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTY));
-    this.ruleDetections.addAll(this.codr
-        .getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTRY));
+    this.ruleDetections
+        .addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTRY));
     this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_ZIP));
     this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_TYPE));
   }
@@ -49,8 +52,9 @@ public class NextOfKinAddressIsValid extends ValidationRule<DqaNextOfKin> {
     DqaAddress nokAddress = target.getAddress();
     DqaAddress p = m.getPatient().getPatientAddress();
 
-    ValidationRuleResult addrResult =
-        addressValidator.getAddressIssuesFor(fields, nokAddress, target);
+    ValidationRuleResult addrResult = addressValidator
+        .getAddressIssuesFor(fields, nokAddress, target);
+
     issues.addAll(addrResult.getValidationDetections());
 
     if (nokAddress != null) {
@@ -66,8 +70,12 @@ public class NextOfKinAddressIsValid extends ValidationRule<DqaNextOfKin> {
             target));
       }
 
-      issues.addAll(this.codr.handleCode(nokAddress.getTypeCode(),
-          VxuField.NEXT_OF_KIN_ADDRESS_TYPE, target));
+      if (StringUtils.isBlank(nokAddress.getTypeCode())) {
+        issues.add(Detection.NextOfKinAddressTypeIsMissing.build(target));
+      } else {
+        issues.addAll(this.codr
+            .handleCode(nokAddress.getTypeCode(), VxuField.NEXT_OF_KIN_ADDRESS_TYPE, target));
+      }
     }
 
     passed = issues.size() == 0;

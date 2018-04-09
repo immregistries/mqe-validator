@@ -1,5 +1,6 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
@@ -18,94 +19,99 @@ import org.slf4j.LoggerFactory;
  * Created by Allison on 5/3/2017.
  */
 public class PatientFinancialStatusDateIsValidTester {
-    private PatientFinancialStatusDateIsValid rule = new PatientFinancialStatusDateIsValid();
 
-    // Parts required for the test
-    private DqaMessageHeader mh = new DqaMessageHeader();
-    private DqaMessageReceived mr = new DqaMessageReceived();
-    private DqaPatient p = new DqaPatient();
+  private PatientFinancialStatusDateIsValid rule = new PatientFinancialStatusDateIsValid();
 
-    private static final Logger logger = LoggerFactory.getLogger(PatientFinancialStatusDateIsValidTester.class);
+  // Parts required for the test
+  private DqaMessageHeader mh = new DqaMessageHeader();
+  private DqaMessageReceived mr = new DqaMessageReceived();
+  private DqaPatient p = new DqaPatient();
 
-    /**
-     * Sets up the objects with a valid VFC effective date (yesterday's date) and a message date of today.
-     */
-    @Before
-    public void setUpTheObjects() {
-        Date yesterday = addDays(new Date(), -1);
+  private static final Logger logger = LoggerFactory
+      .getLogger(PatientFinancialStatusDateIsValidTester.class);
 
-        p.setBirthDate(yesterday);
-        p.setFinancialEligibilityDate(yesterday);
+  /**
+   * Sets up the objects with a valid VFC effective date (yesterday's date) and a message date of today.
+   */
+  @Before
+  public void setUpTheObjects() {
+    Date yesterday = addDays(new Date(), -1);
 
-        mh.setMessageDate(new Date());
-        mr.setMessageHeader(mh);
-        mr.setPatient(p);
-    }
+    p.setBirthDate(yesterday);
+    p.setFinancialEligibilityDate(yesterday);
 
-    /**
-     * Test the basic rule with a valid eligibility date.
-     * (should be true)
-     */
-    @Test
-    public void testRule() {
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        assertTrue(r.isRulePassed());
-    }
+    mh.setMessageDate(new Date());
+    mr.setMessageHeader(mh);
+    mr.setPatient(p);
+  }
 
-    /**
-     * Test a null eligibility date.
-     */
-    @Test
-    public void testRuleNullDate() {
-        p.setFinancialEligibilityDate(null);
+  /**
+   * Test the basic rule with a valid eligibility date.
+   * (should be true)
+   */
+  @Test
+  public void testRule() {
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    assertTrue(r.isRulePassed());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientVfcEffectiveDateIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test a null eligibility date.
+   */
+  @Test
+  public void testRuleNullDate() {
+    p.setFinancialEligibilityDate(null);
 
-    /**
-     * Test an eligibility date before the birth date.
-     * (should be false)
-     */
-    @Test
-    public void testRuleDateBeforeBirth() {
-        // set the eligibility date to the day before the birth date
-        p.setFinancialEligibilityDate(addDays(p.getBirthDate(), -1));
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientVfcEffectiveDateIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientVfcEffectiveDateIsBeforeBirth == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test an eligibility date before the birth date.
+   * (should be false)
+   */
+  @Test
+  public void testRuleDateBeforeBirth() {
+    // set the eligibility date to the day before the birth date
+    p.setFinancialEligibilityDate(addDays(p.getBirthDate(), -1));
 
-    /**
-     * Test a future date.
-     * (should be false)
-     */
-    @Test
-    public void testRuleFutureDate() {
-        // set the eligibility date to tomorrow's date
-        p.setFinancialEligibilityDate(addDays(new Date(), 1));
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientVfcEffectiveDateIsBeforeBirth,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientVfcEffectiveDateIsInFuture == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test a future date.
+   * (should be false)
+   */
+  @Test
+  public void testRuleFutureDate() {
+    // set the eligibility date to tomorrow's date
+    p.setFinancialEligibilityDate(addDays(new Date(), 1));
 
-    /**
-     * Conveniently add or subtract days from a date.
-     *
-     * @param d         date we're currently messing with
-     * @param daysToAdd number of days to add (can be positive or negative)
-     * @return original date, plus or minus whatever we wanted to add to it
-     */
-    private Date addDays(Date d, Integer daysToAdd) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(d);
-        cal.add(Calendar.DAY_OF_YEAR, daysToAdd);
-        return cal.getTime();
-    }
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientVfcEffectiveDateIsInFuture,
+        r.getValidationDetections().get(0).getDetection());
+  }
+
+  /**
+   * Conveniently add or subtract days from a date.
+   *
+   * @param d         date we're currently messing with
+   * @param daysToAdd number of days to add (can be positive or negative)
+   * @return original date, plus or minus whatever we wanted to add to it
+   */
+  private Date addDays(Date d, Integer daysToAdd) {
+    Calendar cal = Calendar.getInstance();
+    cal.setTime(d);
+    cal.add(Calendar.DAY_OF_YEAR, daysToAdd);
+    return cal.getTime();
+  }
 }

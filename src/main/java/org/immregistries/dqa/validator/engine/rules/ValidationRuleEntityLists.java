@@ -11,6 +11,7 @@ import org.immregistries.dqa.validator.engine.rules.header.MessageHeaderFieldsAr
 import org.immregistries.dqa.validator.engine.rules.header.MessageVersionIs25;
 import org.immregistries.dqa.validator.engine.rules.header.MessageVersionIsValid;
 import org.immregistries.dqa.validator.engine.rules.nextofkin.NextOfKinAddressIsSameAsPatientAddress;
+import org.immregistries.dqa.validator.engine.rules.nextofkin.NextOfKinAddressIsValid;
 import org.immregistries.dqa.validator.engine.rules.nextofkin.NextOfKinIsPresent;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientAddressIsValid;
 import org.immregistries.dqa.validator.engine.rules.patient.PatientAliasIsValid;
@@ -43,7 +44,8 @@ import org.immregistries.dqa.validator.engine.rules.patient.PatientSubmitterIsVa
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationActionCodeIsValid;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdminAfterBirthDate;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdminCodeCptIsValid;
-import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdminCodeCvxIsValid;
+import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdminCodeIsUsable;
+import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdminCodeIsPresent;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdminCodeIsValid;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdminDateIsValid;
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdminDateIsValidForPatientAge;
@@ -112,7 +114,6 @@ public enum ValidationRuleEntityLists {
       new VaccinationActionCodeIsValid(),
       new VaccinationAdminAfterBirthDate(),
       new VaccinationAdminCodeCptIsValid(),
-      new VaccinationAdminCodeCvxIsValid(),
       new VaccinationAdminCodeIsValid(),
       new VaccinationAdminDateIsValid(),
       new VaccinationAdminDateIsValidForPatientAge(),
@@ -142,6 +143,8 @@ public enum ValidationRuleEntityLists {
       new VaccinationVisCvxIsValid(),
       new VaccinationVisDatesAreValid(),
       new VaccinationVisIsPresent(),
+      new VaccinationAdminCodeIsPresent(),
+      new VaccinationAdminCodeIsUsable(),
       new VaccinationVisIsRecognized()),
   MESSAGE_HEADER_RULES(
       new MessageHeaderCodesAreValid(),
@@ -152,7 +155,8 @@ public enum ValidationRuleEntityLists {
       new MessageVersionIs25()),
   NEXT_OF_KIN_RULES(
       new NextOfKinIsPresent(),
-      new NextOfKinAddressIsSameAsPatientAddress()
+      new NextOfKinAddressIsSameAsPatientAddress(),
+      new NextOfKinAddressIsValid()
   //@formatter:on
   );
 

@@ -17,7 +17,7 @@ public enum CodeRepository {
   /**
    * This codemap object will get all the information we know about a code.
    */
-  private CodeMap codeMapper;
+  private CodeMap codeMapper = CodeMapBuilder.INSTANCE.getDefaultCodeMap();
   private RelatedCode related;
 
   CodeRepository() {
@@ -25,12 +25,6 @@ public enum CodeRepository {
   }
 
   public CodeMap getCodeMap() {
-    if (this.codeMapper == null) {
-      logger.info("Building code map!");
-      this.codeMapper =
-          CodeMapBuilder.INSTANCE.getCodeMap(Thread.currentThread().getContextClassLoader()
-              .getResourceAsStream("Compiled.xml"));
-    }
     return this.codeMapper;
   }
 

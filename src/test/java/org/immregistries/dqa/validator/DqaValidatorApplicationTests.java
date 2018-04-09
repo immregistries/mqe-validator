@@ -6,8 +6,8 @@ import org.junit.Test;
 //@SpringApplicationConfiguration(classes = DqaValidatorApplication.class)
 public class DqaValidatorApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+  @Test
+  public void contextLoads() {
+  }
 
 }

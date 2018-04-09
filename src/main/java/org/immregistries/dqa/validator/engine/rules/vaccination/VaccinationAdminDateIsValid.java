@@ -114,7 +114,7 @@ public class VaccinationAdminDateIsValid extends ValidationRule<DqaVaccination> 
 
     passed = (issues.size() == 0);
 
-    return buildResults(issues, passed, this.ruleDetections);
+    return buildResults(issues, passed);
 
   }
 }

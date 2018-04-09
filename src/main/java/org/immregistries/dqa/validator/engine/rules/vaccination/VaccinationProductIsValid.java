@@ -17,7 +17,7 @@ public class VaccinationProductIsValid extends ValidationRule<DqaVaccination> {
   // dependency: VaccinationIsAdministered
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationIsAdministered.class,};
+    return new Class[] {VaccinationIsAdministered.class,VaccinationAdminCodeIsValid.class};
   }
 
   public VaccinationProductIsValid() {

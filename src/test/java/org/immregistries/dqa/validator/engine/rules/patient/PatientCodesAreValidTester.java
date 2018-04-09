@@ -1,5 +1,6 @@
 package org.immregistries.dqa.validator.engine.rules.patient;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
@@ -27,352 +28,371 @@ import org.slf4j.LoggerFactory;
  * Created by Allison on 5/10/2017.
  */
 public class PatientCodesAreValidTester {
-    private PatientCodesAreValid rule = new PatientCodesAreValid();
 
-    // TODO: deprecated/invalid values come up as "unrecognized" instead
+  private PatientCodesAreValid rule = new PatientCodesAreValid();
 
-    /*
-     * Parts required for the test:
-     */
-    private DqaMessageHeader mh = new DqaMessageHeader();
-    private DqaMessageReceived mr = new DqaMessageReceived();
-    private DqaPatient p = new DqaPatient();
+  // TODO: deprecated/invalid values come up as "unrecognized" instead
 
-    private static final Logger logger = LoggerFactory.getLogger(PatientCodesAreValidTester.class);
+  /*
+   * Parts required for the test:
+   */
+  private DqaMessageHeader mh = new DqaMessageHeader();
+  private DqaMessageReceived mr = new DqaMessageReceived();
+  private DqaPatient p = new DqaPatient();
 
-    /**
-     * Sets up the objects with valid codes.
-     */
-    @Before
-    public void setUpTheObjects() {
-        p.setEthnicity("2186-5");               // "not Hispanic or Latino"
-        p.setSexCode("M");                      // "male"
-        p.setNameTypeCode("L");                 // "legal name"
-        p.setFacilityIdNumber("123");           // probably not a real facility ID...
-        p.setFacilityName("abc");               // DEFINITELY not a real facility name
-        p.setPrimaryLanguageCode("eng");        // "English"
-        p.setPublicityCode("01");               // "No reminder/recall"
-        p.setRaceCode("1002-5");                // "American Indian or Alaska Native"
-        p.setFinancialEligibilityCode("MIA14"); // VFC status; "Medicaid-Non VFC"
+  private static final Logger logger = LoggerFactory.getLogger(PatientCodesAreValidTester.class);
 
-        mh.setMessageDate(new Date());          // today's date.
-        mr.setMessageHeader(mh);
-        mr.setPatient(p);
-    }
+  /**
+   * Sets up the objects with valid codes.
+   */
+  @Before
+  public void setUpTheObjects() {
+    p.setEthnicity("2186-5");               // "not Hispanic or Latino"
+    p.setSexCode("M");                      // "male"
+    p.setNameTypeCode("L");                 // "legal name"
+    p.setFacilityIdNumber("123");           // probably not a real facility ID...
+    p.setFacilityName("abc");               // DEFINITELY not a real facility name
+    p.setPrimaryLanguageCode("eng");        // "English"
+    p.setPublicityCode("01");               // "No reminder/recall"
+    p.setRaceCode("1002-5");                // "American Indian or Alaska Native"
+    p.setFinancialEligibilityCode("MIA14"); // VFC status; "Medicaid-Non VFC"
 
-    /**
-     * Tests the basic rule with valid data.
-     * (should be true)
-     */
-    @Test
-    public void testRule() {
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(r.isRulePassed());
-    }
+    mh.setMessageDate(new Date());          // today's date.
+    mr.setMessageHeader(mh);
+    mr.setPatient(p);
+  }
 
-    // PATIENT_ETHNICITY
+  /**
+   * Tests the basic rule with valid data.
+   * (should be true)
+   */
+  @Test
+  public void testRule() {
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertTrue(r.isRulePassed());
+  }
 
-    /**
-     * Tests a null ethnicity code.
-     */
-    @Test
-    public void testRuleNullEthnicity() {
-        p.setEthnicity(null);
+  // PATIENT_ETHNICITY
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientEthnicityIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Tests a null ethnicity code.
+   */
+  @Test
+  public void testRuleNullEthnicity() {
+    p.setEthnicity(null);
 
-    /**
-     * Tests an unrecognized ethnicity code.
-     */
-    @Test
-    public void testRuleUnrecognizedEthnicity() {
-        p.setEthnicity("abc");
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientEthnicityIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientEthnicityIsUnrecognized == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Tests an unrecognized ethnicity code.
+   */
+  @Test
+  public void testRuleUnrecognizedEthnicity() {
+    p.setEthnicity("abc");
 
-    /**
-     * Tests a deprecated ethnicity code.
-     */
-    @Test
-    public void testRuleDeprecatedEthnicity() {
-        p.setEthnicity("H");    // "Hispanic"
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientEthnicityIsUnrecognized,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientEthnicityIsDeprecated == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Tests a deprecated ethnicity code.
+   */
+  @Test
+  public void testRuleDeprecatedEthnicity() {
+    p.setEthnicity("H");    // "Hispanic"
 
-    // PATIENT_GENDER
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientEthnicityIsDeprecated,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-    /**
-     * Tests an unrecognized sex/gender code.
-     */
-    @Test
-    public void testRuleUnrecognizedSexCode() {
-        p.setSexCode("Q");
+  // PATIENT_GENDER
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientGenderIsUnrecognized == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Tests an unrecognized sex/gender code.
+   */
+  @Test
+  public void testRuleUnrecognizedSexCode() {
+    p.setSexCode("Q");
 
-    /**
-     * Tests a null sex/gender code.
-     */
-    @Test
-    public void testRuleNullSexCode() {
-        p.setSexCode(null);
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientGenderIsUnrecognized,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientGenderIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Tests a null sex/gender code.
+   */
+  @Test
+  public void testRuleNullSexCode() {
+    p.setSexCode(null);
 
-    // PATIENT_NAME_TYPE_CODE
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientGenderIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-    /**
-     * Test with the type code set to something other than "legal".
-     */
-    @Test
-    public void testRuleNameTypeNotLegal() {
-        p.setNameTypeCode("D"); // D means "display name"
+  // PATIENT_NAME_TYPE_CODE
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientNameTypeCodeIsNotValuedLegal == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with the type code set to something other than "legal".
+   */
+  @Test
+  public void testRuleNameTypeNotLegal() {
+    p.setNameTypeCode("D"); // D means "display name"
 
-    /**
-     * Test with the type code null.
-     */
-    @Test
-    public void testRuleNullNameType() {
-        p.setNameTypeCode(null);
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientNameTypeCodeIsNotValuedLegal,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(2 == r.getValidationDetections().size());
-        // PatientNameTypeCodeIsMissing and PatientNameTypeCodeIsNotValuedLegal
-    }
+  /**
+   * Test with the type code null.
+   */
+  @Test
+  public void testRuleNullNameType() {
+    p.setNameTypeCode(null);
 
-    /**
-     * Test with the type code empty.
-     */
-    @Test
-    public void testRuleEmptyNameType() {
-        p.setNameTypeCode("");
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(2, r.getValidationDetections().size());
+    // PatientNameTypeCodeIsMissing and PatientNameTypeCodeIsNotValuedLegal
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(2 == r.getValidationDetections().size());
-        // PatientNameTypeCodeIsMissing and PatientNameTypeCodeIsNotValuedLegal
-    }
+  /**
+   * Test with the type code empty.
+   */
+  @Test
+  public void testRuleEmptyNameType() {
+    p.setNameTypeCode("");
 
-    /**
-     * Test with the type code set to an unrecognized value.
-     */
-    @Test
-    public void testRuleUnrecognizedNameType() {
-        p.setNameTypeCode("Q");
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(2, r.getValidationDetections().size());
+    // PatientNameTypeCodeIsMissing and PatientNameTypeCodeIsNotValuedLegal
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(2 == r.getValidationDetections().size());
-        // PatientNameTypeCodeIsUnrecognized and PatientNameTypeCodeIsNotValuedLegal
-    }
+  /**
+   * Test with the type code set to an unrecognized value.
+   */
+  @Test
+  public void testRuleUnrecognizedNameType() {
+    p.setNameTypeCode("Q");
 
-    // PATIENT_PRIMARY_FACILITY_ID and PATIENT_PRIMARY_FACILITY_NAME
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(2, r.getValidationDetections().size());
+    // PatientNameTypeCodeIsUnrecognized and PatientNameTypeCodeIsNotValuedLegal
+  }
 
-    /**
-     * Test with null facility ID.
-     * (should be false)
-     */
-    @Test
-    public void testRuleNullFacilityId() {
-        p.setFacilityIdNumber(null);
+  // PATIENT_PRIMARY_FACILITY_ID and PATIENT_PRIMARY_FACILITY_NAME
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientPrimaryFacilityIdIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with null facility ID.
+   * (should be false)
+   */
+  @Test
+  public void testRuleNullFacilityId() {
+    p.setFacilityIdNumber(null);
 
-    /**
-     * Test with null facility name.
-     * (should be false)
-     */
-    @Test
-    public void testRuleNullFacilityName() {
-        p.setFacilityName(null);
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientPrimaryFacilityIdIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientPrimaryFacilityNameIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with null facility name.
+   * (should be false)
+   */
+  @Test
+  public void testRuleNullFacilityName() {
+    p.setFacilityName(null);
 
-    // PATIENT_PRIMARY_LANGUAGE
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientPrimaryFacilityNameIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-    /**
-     * Test with deprecated language code.
-     */
-    @Test
-    public void testRuleDeprecatedLanguage() {
-        p.setPrimaryLanguage("Ar"); // "Arabic"; current code is "ara"
+  // PATIENT_PRIMARY_LANGUAGE
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientPrimaryLanguageIsDeprecated == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with deprecated language code.
+   */
+  @Test
+  public void testRuleDeprecatedLanguage() {
+    p.setPrimaryLanguage("Ar"); // "Arabic"; current code is "ara"
 
-    /**
-     * Test with unrecognized language code.
-     */
-    @Test
-    public void testRuleUnrecognizedLanguage() {
-        p.setPrimaryLanguage("abc");
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientPrimaryLanguageIsDeprecated,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientPrimaryLanguageIsUnrecognized == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with unrecognized language code.
+   */
+  @Test
+  public void testRuleUnrecognizedLanguage() {
+    p.setPrimaryLanguage("abc");
 
-    /**
-     * Test with missing language code.
-     */
-    @Test
-    public void testRuleNullLanguage() {
-        p.setPrimaryLanguage(null);
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientPrimaryLanguageIsUnrecognized,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientPrimaryLanguageIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with missing language code.
+   */
+  @Test
+  public void testRuleNullLanguage() {
+    p.setPrimaryLanguage(null);
 
-    // PATIENT_PUBLICITY_CODE
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientPrimaryLanguageIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-    /**
-     * Test with unrecognized publicity code.
-     */
-    @Test
-    public void testRuleUnrecognizedPublicity() {
-        p.setPublicityCode("abc");
+  // PATIENT_PUBLICITY_CODE
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientPublicityCodeIsUnrecognized == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with unrecognized publicity code.
+   */
+  @Test
+  public void testRuleUnrecognizedPublicity() {
+    p.setPublicityCode("abc");
 
-    /**
-     * Test with null publicity code.
-     */
-    @Test
-    public void testRuleNullPublicity() {
-        p.setPublicityCode(null);
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientPublicityCodeIsUnrecognized,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientPublicityCodeIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with null publicity code.
+   */
+  @Test
+  public void testRuleNullPublicity() {
+    p.setPublicityCode(null);
 
-    // PATIENT_RACE
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientPublicityCodeIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-    /**
-     * Test a deprecated race code.
-     */
-    @Test
-    public void testRuleDeprecatedRace() {
-        p.setRaceCode("I"); // "American Indian or Alaska Native"; the current one is "1002-5"
+  // PATIENT_RACE
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientRaceIsDeprecated == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test a deprecated race code.
+   */
+  @Test
+  public void testRuleDeprecatedRace() {
+    p.setRaceCode("I"); // "American Indian or Alaska Native"; the current one is "1002-5"
 
-    /**
-     * Test a null race code.
-     */
-    @Test
-    public void testRuleNullRace() {
-        p.setRaceCode(null);
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientRaceIsDeprecated,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientRaceIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test a null race code.
+   */
+  @Test
+  public void testRuleNullRace() {
+    p.setRaceCode(null);
 
-    /**
-     * Test an unrecognized race code.
-     */
-    @Test
-    public void testRuleUnrecognizedRace() {
-        p.setRaceCode("abc");
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientRaceIsMissing, r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientRaceIsUnrecognized == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test an unrecognized race code.
+   */
+  @Test
+  public void testRuleUnrecognizedRace() {
+    p.setRaceCode("abc");
 
-    // PATIENT_VFC_STATUS
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientRaceIsUnrecognized,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-    /**
-     * Test an invalid eligibility code.
-     * (should be false)
-     */
-    @Test
-    public void testRuleInvalidEligibility() {
-        p.setFinancialEligibilityCode("V00");   // "VFC eligibility unknown"
+  // PATIENT_VFC_STATUS
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientVfcStatusIsInvalid == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test an invalid eligibility code.
+   * (should be false)
+   */
+  @Test
+  public void testRuleInvalidEligibility() {
+    p.setFinancialEligibilityCode("V00");   // "VFC eligibility unknown"
 
-    /**
-     * Test an unrecognized eligibility code.
-     */
-    @Test
-    public void testRuleUnrecognizedEligibility() {
-        p.setFinancialEligibilityCode("abc");
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientVfcStatusIsInvalid,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientVfcStatusIsUnrecognized == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test an unrecognized eligibility code.
+   */
+  @Test
+  public void testRuleUnrecognizedEligibility() {
+    p.setFinancialEligibilityCode("abc");
 
-    /**
-     * Test a null eligibility code.
-     */
-    @Test
-    public void testRuleNullEligibility() {
-        p.setFinancialEligibilityCode(null);
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientVfcStatusIsUnrecognized,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientVfcStatusIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test a null eligibility code.
+   */
+  @Test
+  public void testRuleNullEligibility() {
+    p.setFinancialEligibilityCode(null);
+
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientVfcStatusIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 }

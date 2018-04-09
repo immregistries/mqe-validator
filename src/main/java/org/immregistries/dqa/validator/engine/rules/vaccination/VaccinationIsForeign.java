@@ -16,7 +16,7 @@ import org.immregistries.dqa.vxu.DqaVaccination;
 public class VaccinationIsForeign extends ValidationRule<DqaVaccination> {
 
   public VaccinationIsForeign() {
-    ruleDetections.addAll(Arrays.asList(Detection.VaccinationAdministeredCodeIsForiegn,
+    ruleDetections.addAll(Arrays.asList(Detection.VaccinationAdminCodeIsForiegn,
         Detection.VaccinationHistoricalCodeIsForeign));
   }
 
@@ -35,7 +35,7 @@ public class VaccinationIsForeign extends ValidationRule<DqaVaccination> {
 
       if (CvxConceptType.FOREIGN_VACCINE == concept) {
         if (administered) {
-          issues.add(Detection.VaccinationAdministeredCodeIsForiegn.build(target));
+          issues.add(Detection.VaccinationAdminCodeIsForiegn.build(target));
         } else {
           issues.add(Detection.VaccinationHistoricalCodeIsForeign.build(target));
         }

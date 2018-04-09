@@ -21,6 +21,10 @@ public enum CommonRules {
     return StringUtils.isBlank(value);
   }
 
+  public boolean isNotEmpty(String value) {
+    return StringUtils.isNotBlank(value);
+  }
+
   public boolean isValidDate(String dateString) {
     // LOGGER.debug("Evaluating: evaluateIsValidDate for value: [" + dateString + "]");
     return datr.isDate(dateString);

@@ -62,7 +62,9 @@ public class CollectionBucket {
       return false;
     }
     CollectionBucket that = (CollectionBucket) o;
-    return type == that.type && Objects.equals(attribute, that.attribute)
+
+    return Objects.equals(type, that.type)
+        && Objects.equals(attribute, that.attribute)
         && Objects.equals(value, that.value);
   }
 

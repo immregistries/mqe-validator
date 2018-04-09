@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.immregistries.dqa.validator.detection.MessageObject;
+import org.immregistries.dqa.vxu.VxuObject;
 
 public class VxuCompletenessSectionScore {
 
   private String label;
   private List<VxuFieldScore> scores = new ArrayList<>();
   private int objectCount;// like patient count or vaccine count.
-  private MessageObject sectionObject;
+  private VxuObject sectionObject;
   private Map<Requirement, DqaScore> requirementScores = new HashMap<>();
   /**
    * this represents the score calculated for this whole group.
@@ -43,11 +43,11 @@ public class VxuCompletenessSectionScore {
     return this.objectCount;
   }
 
-  public MessageObject getSectionObject() {
+  public VxuObject getSectionObject() {
     return sectionObject;
   }
 
-  public void setSectionObject(MessageObject sectionObject) {
+  public void setSectionObject(VxuObject sectionObject) {
     this.sectionObject = sectionObject;
   }
 

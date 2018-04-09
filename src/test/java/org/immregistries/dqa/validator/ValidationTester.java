@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ValidationTester {
+
   private static final Logger logger = LoggerFactory.getLogger(ValidationTester.class);
   private HL7MessageParser parser = HL7MessageParser.INSTANCE;
   private MessageValidator validator = MessageValidator.INSTANCE;

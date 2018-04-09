@@ -12,60 +12,63 @@ import org.immregistries.dqa.validator.detection.Detection;
 
 public class DetectionExporter {
   public static void main(String[] args) {
-    for (final Detection ma : Detection.values()) {
-      StringBuilder errSegment = new StringBuilder();
-      Reportable reportable = new Reportable() {
-        @Override
-        public SeverityLevel getSeverity() {
-          return SeverityLevel.INFO;
-        }
-
-        @Override
-        public String getReportedMessage() {
-          return ma.getDisplayText();
-        }
-
-        @Override
-        public List<Hl7Location> getHl7LocationList() {
-          List<Hl7Location> hl7LocationList = new ArrayList<>();
-          for (String loc : ma.getHl7Locations()) {
-            Hl7Location el = new Hl7Location(loc);
-            hl7LocationList.add(el);
-          }
-          return hl7LocationList;
-        }
-
-        @Override
-        public CodedWithExceptions getHl7ErrorCode() {
-          CodedWithExceptions cwe = new CodedWithExceptions();
-          cwe.setIdentifier(ma.getHl7ErrorCode());
-          return cwe;
-        }
-
-        @Override
-        public String getDiagnosticMessage() {
-          return null;
-        }
-
-        @Override
-        public CodedWithExceptions getApplicationErrorCode() {
-          CodedWithExceptions cwe = new CodedWithExceptions();
-          cwe.setIdentifier(ma.getApplicationErrorCode().getId());
-          cwe.setText(ma.getApplicationErrorCode().getText());
-          cwe.setNameOfCodingSystem("HL70533");
-          cwe.setAlternateIdentifier(ma.getDqaErrorCode());
-          cwe.setAlternateText(ma.getDisplayText());
-          cwe.setNameOfAlternateCodingSystem("L");
-          return cwe;
-        }
-
-        @Override
-        public ReportableSource getSource() {
-          return ReportableSource.DQA;
-        }
-      };
-      HL7Util.makeERRSegment(errSegment, reportable, true);
-      System.out.print(errSegment);
+    for (final Detection detection : Detection.values()) {
+      Reportable reportable = new ExporterReportable(detection);
+      String errseg = HL7Util.makeERRSegment(reportable, true);
+      System.out.print(errseg);
     }
   }
+
+  private static class ExporterReportable implements Reportable {
+    Detection detection;
+    ExporterReportable(Detection d) {
+      this.detection = d;
+    }
+    @Override
+    public SeverityLevel getSeverity() {
+      return SeverityLevel.INFO;
+    }
+
+    @Override
+    public String getReportedMessage() {
+      return detection.getDisplayText();
+    }
+
+    @Override
+    public List<Hl7Location> getHl7LocationList() {
+      List<Hl7Location> hl7LocationList = new ArrayList<>();
+      Hl7Location el = new Hl7Location(detection.getTargetField().getHl7Locator());
+      hl7LocationList.add(el);
+      return hl7LocationList;
+    }
+
+    @Override
+    public CodedWithExceptions getHl7ErrorCode() {
+      CodedWithExceptions cwe = new CodedWithExceptions();
+      cwe.setIdentifier(detection.getHl7ErrorCode().getIdentifier());
+      return cwe;
+    }
+
+    @Override
+    public String getDiagnosticMessage() {
+      return null;
+    }
+
+    @Override
+    public CodedWithExceptions getApplicationErrorCode() {
+      CodedWithExceptions cwe = new CodedWithExceptions();
+      cwe.setIdentifier(detection.getApplicationErrorCode().getId());
+      cwe.setText(detection.getApplicationErrorCode().getText());
+      cwe.setNameOfCodingSystem("HL70533");
+      cwe.setAlternateIdentifier(detection.getDqaMqeCode());
+      cwe.setAlternateText(detection.getDisplayText());
+      cwe.setNameOfAlternateCodingSystem("L");
+      return cwe;
+    }
+
+    @Override
+    public ReportableSource getSource() {
+      return ReportableSource.DQA;
+    }
+  };
 }

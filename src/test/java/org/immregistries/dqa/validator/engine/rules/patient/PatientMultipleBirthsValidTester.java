@@ -18,147 +18,154 @@ import org.slf4j.LoggerFactory;
  * Created by Allison on 5/9/2017.
  */
 public class PatientMultipleBirthsValidTester {
-    private PatientMultipleBirthsValid rule = new PatientMultipleBirthsValid();
 
-    // Parts required for the test
-    private DqaMessageHeader mh = new DqaMessageHeader();
-    private DqaMessageReceived mr = new DqaMessageReceived();
-    private DqaPatient p = new DqaPatient();
+  private PatientMultipleBirthsValid rule = new PatientMultipleBirthsValid();
 
-    private static final Logger logger = LoggerFactory.getLogger(PatientMultipleBirthsValidTester.class);
+  // Parts required for the test
+  private DqaMessageHeader mh = new DqaMessageHeader();
+  private DqaMessageReceived mr = new DqaMessageReceived();
+  private DqaPatient p = new DqaPatient();
 
-    /**
-     * Sets up the objects needed for the test.
-     */
-    @Before
-    public void setUpTheObjects() {
-        p.setBirthMultipleIndicator("N");
+  private static final Logger logger = LoggerFactory
+      .getLogger(PatientMultipleBirthsValidTester.class);
 
-        mh.setMessageDate(new Date());
-        mr.setMessageHeader(mh);
-        mr.setPatient(p);
-    }
+  /**
+   * Sets up the objects needed for the test.
+   */
+  @Before
+  public void setUpTheObjects() {
+    p.setBirthMultipleIndicator("N");
 
-    /**
-     * Test the basic rule, with a valid multiple birth indicator (N indicator + no birth order)
-     * (should be true)
-     */
-    @Test
-    public void testRule() {
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(r.isRulePassed());
-    }
+    mh.setMessageDate(new Date());
+    mr.setMessageHeader(mh);
+    mr.setPatient(p);
+  }
 
-    /**
-     * Test the basic rule, with a valid multiple birth indicator (Y indicator + birth order)
-     * (should be true)
-     */
-    @Test
-    public void testRuleIfMultiple() {
-        p.setBirthMultipleIndicator("Y");
-        p.setBirthOrderNumber("2");
+  /**
+   * Test the basic rule, with a valid multiple birth indicator (N indicator + no birth order)
+   * (should be true)
+   */
+  @Test
+  public void testRule() {
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertTrue(r.isRulePassed());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(r.isRulePassed());
-    }
+  /**
+   * Test the basic rule, with a valid multiple birth indicator (Y indicator + birth order)
+   * (should be true)
+   */
+  @Test
+  public void testRuleIfMultiple() {
+    p.setBirthMultipleIndicator("Y");
+    p.setBirthOrderNumber("2");
 
-    /**
-     * Test without multiple birth (N indicator) BUT with the birth order set to 1
-     * (should be true)
-     */
-    @Test
-    public void testRuleIfFirstChild() {
-        p.setBirthOrderNumber("1");
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertTrue(r.isRulePassed());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(r.isRulePassed());
-    }
+  /**
+   * Test without multiple birth (N indicator) BUT with the birth order set to 1
+   * (should be true)
+   */
+  @Test
+  public void testRuleIfFirstChild() {
+    p.setBirthOrderNumber("1");
 
-    /**
-     * Test with birth order but multiple birth indicator = N
-     * (should be false)
-     */
-    @Test
-    public void testRuleIfNoIndicator() {
-        p.setBirthOrderNumber("2");
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertTrue(r.isRulePassed());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientBirthOrderIsInvalid == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with birth order but multiple birth indicator = N
+   * (should be false)
+   */
+  @Test
+  public void testRuleIfNoIndicator() {
+    p.setBirthOrderNumber("2");
 
-    /**
-     * Test with multiple birth indicator but no order
-     * (should be false)
-     */
-    @Test
-    public void testRuleIfNoOrder() {
-        p.setBirthMultipleIndicator("Y");
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientBirthOrderIsInvalid,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(2 == r.getValidationDetections().size());
-        // should be both PatientBirthOrderIsMissing and PatientBirthOrderIsMissingAndMultipleBirthIndicated
-    }
+  /**
+   * Test with multiple birth indicator but no order
+   * (should be false)
+   */
+  @Test
+  public void testRuleIfNoOrder() {
+    p.setBirthMultipleIndicator("Y");
 
-    /**
-     * Test with birth order but null multiple birth indicator
-     * (should be false)
-     */
-    @Test
-    public void testRuleIfNullIndicator() {
-        p.setBirthMultipleIndicator(null);
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(2, r.getValidationDetections().size());
+    // should be both PatientBirthOrderIsMissing and PatientBirthOrderIsMissingAndMultipleBirthIndicated
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientBirthIndicatorIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with birth order but null multiple birth indicator
+   * (should be false)
+   */
+  @Test
+  public void testRuleIfNullIndicator() {
+    p.setBirthMultipleIndicator(null);
 
-    /**
-     * Test with birth order but empty multiple birth indicator
-     * (should be false)
-     */
-    @Test
-    public void testRuleIfEmptyIndicator() {
-        p.setBirthMultipleIndicator("");
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientBirthIndicatorIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientBirthIndicatorIsMissing == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with birth order but empty multiple birth indicator
+   * (should be false)
+   */
+  @Test
+  public void testRuleIfEmptyIndicator() {
+    p.setBirthMultipleIndicator("");
 
-    /**
-     * Test with invalid multiple birth indicator
-     * (should be false)
-     */
-    @Test
-    public void testRuleIfInvalidIndicator() {
-        p.setBirthMultipleIndicator("abc");
-        p.setBirthOrderNumber("abc");
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientBirthIndicatorIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        logger.info(r.getValidationDetections().toString());
-        assertTrue(1 == r.getValidationDetections().size()
-                && Detection.PatientBirthIndicatorIsInvalid == r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with invalid multiple birth indicator
+   * (should be false)
+   */
+  @Test
+  public void testRuleIfInvalidIndicator() {
+    p.setBirthMultipleIndicator("abc");
+    p.setBirthOrderNumber("abc");
 
-    /**
-     * Test with invalid birth order number
-     * (should be false)
-     */
-    @Test
-    public void testRuleIfInvalidOrder() {
-        p.setBirthMultipleIndicator("Y");
-        p.setBirthOrderNumber("abc");
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.PatientBirthIndicatorIsInvalid,
+        r.getValidationDetections().get(0).getDetection());
+  }
 
-        ValidationRuleResult r = rule.executeRule(p, mr);
-        assertEquals("should have one issue", 1, r.getValidationDetections().size());
-        assertEquals("the issue should be this one: ", Detection.PatientBirthOrderIsUnknown, r.getValidationDetections().get(0).getDetection());
-    }
+  /**
+   * Test with invalid birth order number
+   * (should be false)
+   */
+  @Test
+  public void testRuleIfInvalidOrder() {
+    p.setBirthMultipleIndicator("Y");
+    p.setBirthOrderNumber("abc");
+
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    assertEquals("should have one issue", 1, r.getValidationDetections().size());
+    assertEquals("the issue should be this one: ", Detection.PatientBirthOrderIsUnknown,
+        r.getValidationDetections().get(0).getDetection());
+  }
 }

@@ -31,8 +31,7 @@ public enum DqaMessageService {
    */
   public DqaMessageServiceResponse processMessage(String messageText) {
     DqaMessageReceived mr = this.extractMessageFromText(messageText);
-    DqaMessageServiceResponse msr = validateData(mr);
-    return msr;
+    return validateData(mr);
   }
 
   public DqaMessageReceived extractMessageFromText(String messageText) {

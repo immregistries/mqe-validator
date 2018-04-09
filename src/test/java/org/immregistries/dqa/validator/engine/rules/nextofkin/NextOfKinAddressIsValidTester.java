@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
  */
 public class NextOfKinAddressIsValidTester {
 
-  private NextOfKinAddressIsValid rule = new NextOfKinAddressIsValid();
+  private NextOfKinAddressIsValid nextOfKinAddressIsValid = new NextOfKinAddressIsValid();
 
   // Parts required for the test
   private DqaMessageHeader mh = new DqaMessageHeader();
@@ -60,11 +60,11 @@ public class NextOfKinAddressIsValidTester {
   }
 
   /**
-   * Test the basic rule with a valid address. (should be true)
+   * Test the basic nextOfKinAddressIsValid with a valid address. (should be true)
    */
   @Test
   public void testRule() {
-    ValidationRuleResult r = rule.executeRule(nok, mr);
+    ValidationRuleResult r = nextOfKinAddressIsValid.executeRule(nok, mr);
     assertTrue(r.isRulePassed());
   }
 
@@ -78,7 +78,7 @@ public class NextOfKinAddressIsValidTester {
 
     p.getPatientAddressList().clear();
 
-    ValidationRuleResult r = rule.executeRule(nok, mr);
+    ValidationRuleResult r = nextOfKinAddressIsValid.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(Detection.NextOfKinAddressIsMissing,
@@ -97,7 +97,7 @@ public class NextOfKinAddressIsValidTester {
     p.getPatientAddressList().clear();
     p.getPatientAddressList().add(paddr);
 
-    ValidationRuleResult r = rule.executeRule(nok, mr);
+    ValidationRuleResult r = nextOfKinAddressIsValid.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(Detection.NextOfKinAddressStreetIsMissing,
@@ -116,11 +116,9 @@ public class NextOfKinAddressIsValidTester {
     p.getPatientAddressList().clear();
     p.getPatientAddressList().add(paddr);
 
-    ValidationRuleResult r = rule.executeRule(nok, mr);
+    ValidationRuleResult r = nextOfKinAddressIsValid.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
-    assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.NextOfKinAddressStreet2IsMissing,
-        r.getValidationDetections().get(0).getDetection());
+    assertEquals(0, r.getValidationDetections().size());
   }
 
   /**
@@ -135,7 +133,7 @@ public class NextOfKinAddressIsValidTester {
     p.getPatientAddressList().clear();
     p.getPatientAddressList().add(paddr);
 
-    ValidationRuleResult r = rule.executeRule(nok, mr);
+    ValidationRuleResult r = nextOfKinAddressIsValid.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
     assertTrue(r.getValidationDetections().size() > 0);
     assertEquals(Detection.NextOfKinAddressCityIsMissing, r.getValidationDetections().get(0).getDetection());
@@ -153,7 +151,7 @@ public class NextOfKinAddressIsValidTester {
     p.getPatientAddressList().clear();
     p.getPatientAddressList().add(paddr);
 
-    ValidationRuleResult r = rule.executeRule(nok, mr);
+    ValidationRuleResult r = nextOfKinAddressIsValid.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(Detection.NextOfKinAddressStateIsMissing,
@@ -168,7 +166,7 @@ public class NextOfKinAddressIsValidTester {
     nok.getAddress().setZip(null);
     setNextOfKin();
 
-    ValidationRuleResult r = rule.executeRule(nok, mr);
+    ValidationRuleResult r = nextOfKinAddressIsValid.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(Detection.NextOfKinAddressZipIsMissing,
@@ -180,12 +178,10 @@ public class NextOfKinAddressIsValidTester {
    */
   @Test
   public void testRuleInvalidZip() {
-    nok.getAddress().setZip("abc");
+    nok.getAddress().setZip("");
     setNextOfKin();
 
-    // TODO this invalidates Canadian zipcodes too :/
-
-    ValidationRuleResult r = rule.executeRule(nok, mr);
+    ValidationRuleResult r = nextOfKinAddressIsValid.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(Detection.NextOfKinAddressZipIsInvalid,
@@ -200,7 +196,7 @@ public class NextOfKinAddressIsValidTester {
     nok.getAddress().setCountryCode(null);
     setNextOfKin();
 
-    ValidationRuleResult r = rule.executeRule(nok, mr);
+    ValidationRuleResult r = nextOfKinAddressIsValid.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(Detection.NextOfKinAddressCountryIsMissing,
@@ -216,7 +212,7 @@ public class NextOfKinAddressIsValidTester {
     nok.getAddress().setTypeCode("BA");
     setNextOfKin();
 
-    ValidationRuleResult r = rule.executeRule(nok, mr);
+    ValidationRuleResult r = nextOfKinAddressIsValid.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(Detection.NextOfKinAddressTypeIsValuedBadAddress,
@@ -231,7 +227,7 @@ public class NextOfKinAddressIsValidTester {
     nok.getAddress().setTypeCode("abc");
     setNextOfKin();
 
-    ValidationRuleResult r = rule.executeRule(nok, mr);
+    ValidationRuleResult r = nextOfKinAddressIsValid.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(Detection.NextOfKinAddressTypeIsUnrecognized,
@@ -246,7 +242,7 @@ public class NextOfKinAddressIsValidTester {
     nok.getAddress().setTypeCode(null);
     setNextOfKin();
 
-    ValidationRuleResult r = rule.executeRule(nok, mr);
+    ValidationRuleResult r = nextOfKinAddressIsValid.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(Detection.NextOfKinAddressTypeIsMissing,
@@ -262,7 +258,7 @@ public class NextOfKinAddressIsValidTester {
     nok.getAddress().setStreet("123 Main St.");
     setNextOfKin();
 
-    ValidationRuleResult r = rule.executeRule(nok, mr);
+    ValidationRuleResult r = nextOfKinAddressIsValid.executeRule(nok, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(Detection.NextOfKinAddressIsDifferentFromPatientAddress,

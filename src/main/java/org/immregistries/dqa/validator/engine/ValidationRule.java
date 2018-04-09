@@ -55,28 +55,11 @@ public abstract class ValidationRule<T> {
   /**
    * This builds a results object and determines if issues represent a failure or a pass.
    */
-  protected ValidationRuleResult buildResults(List<ValidationReport> issues) {
-    return buildResults(issues, this.util.hasErrors(issues));
-  }
-
-  /**
-   * This builds a results object and determines if issues represent a failure or a pass.
-   */
   protected ValidationRuleResult buildResults(List<ValidationReport> issues, boolean passed) {
     ValidationRuleResult result = new ValidationRuleResult();
     result.setRuleClass(this.getClass());
-    result.setIssues(issues);
+    result.setValidationDetections(issues);
     result.setRulePassed(passed);
-    return result;
-  }
-
-  /**
-   * This builds a results object and determines if issues represent a failure or a pass.
-   */
-  protected ValidationRuleResult buildResults(List<ValidationReport> issues, boolean passed,
-      List<Detection> possibleDetections) {
-    ValidationRuleResult result = buildResults(issues, passed);
-    result.getPossible().addAll(possibleDetections);
     return result;
   }
 

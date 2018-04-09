@@ -89,7 +89,7 @@ public enum CodeHandler {
       VxuField field, MetaFieldInfoData meta) {
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
 
-    if (codedValue == null || StringUtils.isEmpty(usedDateString)) {
+    if (codedValue == null || StringUtils.isBlank(usedDateString)) {
       return issues;
     }
 
@@ -170,7 +170,7 @@ public enum CodeHandler {
     } else {
       LOGGER.warn("Checking for a condition that has no corresponding PotentialIssue. Field: "
           + field + " IssueType: " + type);
-      return Detection.GeneralProcessingException.build(meta);
+      return Detection.UnknownValidationIssue.build(meta);
     }
   }
 }

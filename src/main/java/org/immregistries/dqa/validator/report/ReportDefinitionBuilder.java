@@ -3,7 +3,7 @@ package org.immregistries.dqa.validator.report;
 import java.util.ArrayList;
 import java.util.List;
 import org.immregistries.dqa.validator.detection.DetectionType;
-import org.immregistries.dqa.validator.detection.MessageObject;
+import org.immregistries.dqa.vxu.VxuObject;
 import org.immregistries.dqa.vxu.VxuField;
 
 /**
@@ -32,7 +32,7 @@ public enum ReportDefinitionBuilder {
     // build a section for the patient.
     ReportCompletenessSectionDefinition section = new ReportCompletenessSectionDefinition();
     section.setLabel("Vaccination");
-    section.setSectionObject(MessageObject.VACCINATION);
+    section.setSectionObject(VxuObject.VACCINATION);
     section.setReportFields(getVaccinationReportFields());
 
     return section;
@@ -42,7 +42,7 @@ public enum ReportDefinitionBuilder {
     // build a section for the patient.
     ReportCompletenessSectionDefinition section = new ReportCompletenessSectionDefinition();
     section.setLabel("Patient");
-    section.setSectionObject(MessageObject.PATIENT);
+    section.setSectionObject(VxuObject.PATIENT);
     section.setReportFields(getPatientReportFields());
 
     return section;
@@ -52,7 +52,7 @@ public enum ReportDefinitionBuilder {
     // build a section for the patient.
     ReportCompletenessSectionDefinition section = new ReportCompletenessSectionDefinition();
     section.setLabel("Message Header");
-    section.setSectionObject(MessageObject.MESSAGE_HEADER);
+    section.setSectionObject(VxuObject.MESSAGE_HEADER);
     section.setReportFields(getMessageReportFields());
 
     return section;

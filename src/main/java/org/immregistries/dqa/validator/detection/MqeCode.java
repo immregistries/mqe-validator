@@ -486,6 +486,7 @@ public enum MqeCode {
   MQE0560,
   MQE0561,
   MQE0562,
+  MQE0563,
   // Add new codes here below in ascending order
   ;
 

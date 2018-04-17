@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
+import org.immregistries.dqa.validator.address.SmartyStreetResponse;
 import org.immregistries.dqa.validator.detection.Detection;
 import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -31,6 +32,10 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<DqaP
         Detection.PatientGuardianPhoneIsMissing,
         Detection.PatientGuardianRelationshipIsMissing,
         Detection.PatientGuardianResponsiblePartyIsMissing));
+
+    if (props.isAddressCleanserEnabled()) {
+      ruleDetections.add(Detection.PatientGuardianAddressIsInvalid);
+    }
   }
 
   @Override
@@ -45,6 +50,22 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<DqaP
       String tLast = guardian.getNameLast();
       String pFirst = target.getNameFirst();
       String pLast = target.getNameLast();
+
+      if (props.isAddressCleanserEnabled()) {
+        if (guardian.getAddress() != null && !guardian.getAddress().isClean()) {
+          ValidationReport r = Detection.PatientGuardianAddressIsInvalid.build(target);
+          List<SmartyStreetResponse> rList = SmartyStreetResponse
+              .codesFromDpv(guardian.getAddress().getCleansingResultCode());
+          if (rList.size() > 0) {
+            StringBuilder b = new StringBuilder(":");
+            for (SmartyStreetResponse rz : rList) {
+              b.append(" ").append(rz.title);
+            }
+            r.setAdditionalMessage(b.toString());
+          }
+          issues.add(r);
+        }
+      }
 
       if (this.common.isEmpty(guardian.getAddress().getStateCode())) {
         issues.add(Detection.PatientGuardianAddressStateIsMissing.build(target));

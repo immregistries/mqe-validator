@@ -84,10 +84,22 @@ public enum MessageTransformer {
   }
 
   protected void transformAddesses(DqaMessageReceived mr) {
+    if (mr == null) {
+      return;
+    }
+
 //  Build a list of addresses to clean.
     List<DqaAddress> list = new ArrayList<>();
-    if (mr != null && mr.getPatient() != null) {
-      list.addAll(mr.getPatient().getPatientAddressList());
+    DqaPatient p = mr.getPatient();
+
+    if (p != null) {
+      list.addAll(p.getPatientAddressList());
+      if (p.getResponsibleParty() != null) {
+        list.add(p.getResponsibleParty().getAddress());
+      }
+    }
+
+    if (mr.getNextOfKins() != null) {
       for (DqaNextOfKin dq : mr.getNextOfKins()) {
         list.add(dq.getAddress());
       }
@@ -96,6 +108,7 @@ public enum MessageTransformer {
     if (logger.isInfoEnabled()) {
       logger.info("Starting address cleansing request");
     }
+
     //Then clean them.
     Map<DqaAddress, DqaAddress> cleanMap = ac.cleanThese(list.toArray(new DqaAddress[]{}));
     if (logger.isInfoEnabled()) {
@@ -104,34 +117,42 @@ public enum MessageTransformer {
 
     //Then set them back to their original spots.
     List<DqaAddress> cleanAddresses = new ArrayList<>();
-    if (mr != null && mr.getPatient() != null) {
-      for (DqaAddress a : mr.getPatient().getPatientAddressList()) {
+
+    if (p != null) {
+
+      for (DqaAddress a : p.getPatientAddressList()) {
         DqaAddress aClean = cleanMap.get(a);
         cleanAddresses.add(aClean);
       }
 
-      mr.getPatient().getPatientAddressList().clear();
-      mr.getPatient().getPatientAddressList().addAll(cleanAddresses);
-      if (mr.getPatient() != null) {
-        if (logger.isInfoEnabled()) {
-          logger.info("Patient Address: " + mr.getPatient().getPatientAddress());
-        }
-        if (mr.getPatient().getPatientAddress() != null && !mr.getPatient().getPatientAddress().isClean()) {
-          logger.warn("Patient Address not clean: " + mr.getPatient().getPatientAddress().getCleansingResultCode());
-        }
+      p.getPatientAddressList().clear();
+      p.getPatientAddressList().addAll(cleanAddresses);
+      if (logger.isInfoEnabled()) {
+        logger.info("Patient Address: " + p.getPatientAddress());
+      }
+      if (p.getPatientAddress() != null && !p.getPatientAddress()
+          .isClean()) {
+        logger.warn("Patient Address not clean: " + p.getPatientAddress()
+            .getCleansingResultCode());
+      }
+      if (p.getResponsibleParty() != null) {
+        DqaAddress aClean = cleanMap.get(p.getResponsibleParty().getAddress());
+        p.getResponsibleParty().setAddress(aClean);
       }
     }
 
-    for (DqaNextOfKin dq : mr.getNextOfKins()) {
-      DqaAddress a = dq.getAddress();
-      DqaAddress clean = cleanMap.get(a);
-      dq.setAddress(clean);
+    if (mr.getNextOfKins() != null) {
+      for (DqaNextOfKin dq : mr.getNextOfKins()) {
+        DqaAddress a = dq.getAddress();
+        DqaAddress clean = cleanMap.get(a);
+        dq.setAddress(clean);
+      }
     }
   }
 
   protected void transformVaccinations(List<DqaVaccination> vaccinations) {
     for (DqaVaccination v : vaccinations) {
-      // transform information source into boolean for adminsitered:
+      // transform information source into boolean for administered:
       v.setAdministered("00".equals(v.getInformationSource()));
 
       // calculate the derived CVX:

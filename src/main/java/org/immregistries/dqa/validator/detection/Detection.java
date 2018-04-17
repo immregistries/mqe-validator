@@ -182,6 +182,7 @@ public enum Detection implements DetectionInfo {
   PatientGenderIsMissing(PATIENT_GENDER, MISSING, ACCEPT, MQE0146),
   PatientGenderIsUnrecognized(PATIENT_GENDER, UNRECOGNIZED, ACCEPT, MQE0147),
   PatientGuardianAddressIsMissing(PATIENT_GUARDIAN_ADDRESS, MISSING, ACCEPT, MQE0148),
+  PatientGuardianAddressIsInvalid(PATIENT_GUARDIAN_ADDRESS, INVALID, ACCEPT, MQE0563),
   PatientGuardianAddressCityIsMissing(PATIENT_GUARDIAN_ADDRESS_CITY, MISSING, ACCEPT, MQE0149),
   PatientGuardianAddressStateIsMissing(PATIENT_GUARDIAN_ADDRESS_STATE, MISSING, ACCEPT, MQE0150),
   PatientGuardianAddressStreetIsMissing(PATIENT_GUARDIAN_ADDRESS_STREET, MISSING, ACCEPT, MQE0151),

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
+import org.immregistries.dqa.validator.address.SmartyStreetResponse;
 import org.immregistries.dqa.validator.detection.Detection;
 import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -42,6 +43,10 @@ public class NextOfKinAddressIsValid extends ValidationRule<DqaNextOfKin> {
         .addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTRY));
     this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_ZIP));
     this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_TYPE));
+
+    if (props.isAddressCleanserEnabled()) {
+      this.ruleDetections.add(Detection.NextOfKinAddressIsInvalid);
+    }
   }
 
   @Override
@@ -58,12 +63,29 @@ public class NextOfKinAddressIsValid extends ValidationRule<DqaNextOfKin> {
     issues.addAll(addrResult.getValidationDetections());
 
     if (nokAddress != null) {
-      if (!nokAddress.equals(p)) {
-        // TODO this functionality is also in NextOfKinAddressIsSameAsPatientAddress, which should
-        // we use?
-        issues.add(Detection.NextOfKinAddressIsDifferentFromPatientAddress.build(
-            nokAddress.toString(), target));
+
+      if (props.isAddressCleanserEnabled()) {
+        if (nokAddress != null && !nokAddress.isClean()) {
+          ValidationReport r = Detection.PatientGuardianAddressIsInvalid.build(target);
+          List<SmartyStreetResponse> rList = SmartyStreetResponse
+              .codesFromDpv(nokAddress.getCleansingResultCode());
+          if (rList.size() > 0) {
+            StringBuilder b = new StringBuilder(":");
+            for (SmartyStreetResponse rz : rList) {
+              b.append(" ").append(rz.title);
+            }
+            r.setAdditionalMessage(b.toString());
+          }
+          issues.add(r);
+        }
       }
+
+//TODO: this functionality is also in NextOfKinAddressIsSameAsPatientAddress, which should
+//      if (!nokAddress.equals(p)) {
+//        // we use?
+//        issues.add(Detection.NextOfKinAddressIsDifferentFromPatientAddress.build(
+//            nokAddress.toString(), target));
+//      }
 
       if (nokAddress.getTypeCode() != null && "BA".equals(nokAddress.getTypeCode())) {
         issues.add(Detection.NextOfKinAddressTypeIsValuedBadAddress.build(nokAddress.toString(),

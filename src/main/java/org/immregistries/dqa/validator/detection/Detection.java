@@ -59,6 +59,7 @@ public enum Detection implements DetectionInfo {
 
   NextOfKinAddressIsDifferentFromPatientAddress(NEXT_OF_KIN_ADDRESS, DIFFERENT_FROM_PATIENT_ADDRESS, ACCEPT, MQE0056),
   NextOfKinAddressIsMissing(NEXT_OF_KIN_ADDRESS, MISSING, ACCEPT, MQE0057),
+  NextOfKinAddressIsInvalid(NEXT_OF_KIN_ADDRESS, INVALID, ACCEPT, MQE0564),
   NextOfKinAddressCityIsInvalid(NEXT_OF_KIN_ADDRESS_CITY, INVALID, WARN, MQE0058),
   NextOfKinAddressCityIsMissing(NEXT_OF_KIN_ADDRESS_CITY, MISSING, ACCEPT, MQE0059),
   NextOfKinAddressCountryIsDeprecated(NEXT_OF_KIN_ADDRESS_COUNTRY, DEPRECATED, WARN, MQE0060),

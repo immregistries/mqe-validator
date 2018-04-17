@@ -116,6 +116,7 @@ public enum Detection implements DetectionInfo {
   ObservationDateTimeOfObservationIsInvalid(OBSERVATION_DATE_TIME_OF_OBSERVATION, INVALID, WARN, MQE0482),
   PatientObjectIsMissing(NONE, MISSING, ACCEPT, MQE0545),
   PatientAddressIsMissing(PATIENT_ADDRESS, MISSING, ACCEPT, MQE0092),
+  PatientAddressIsInvalid(PATIENT_ADDRESS, INVALID, WARN, MQE0562),
   PatientAddressCityIsInvalid(PATIENT_ADDRESS_CITY, INVALID, ACCEPT, MQE0093),
   PatientAddressCityIsMissing(PATIENT_ADDRESS_CITY, MISSING, ACCEPT, MQE0094),
   PatientAddressCountryIsDeprecated(PATIENT_ADDRESS_COUNTRY, DEPRECATED, WARN, MQE0095),

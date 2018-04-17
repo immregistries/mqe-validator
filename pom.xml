@@ -29,6 +29,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.smartystreets.api</groupId>
+			<artifactId>smartystreets-java-sdk</artifactId>
+			<version>1.0.7</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.21</version>

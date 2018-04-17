@@ -13,7 +13,7 @@ import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
 import org.immregistries.dqa.vxu.DqaPatient;
-import org.immregistries.dqa.vxu.DqaPatientAddress;
+import org.immregistries.dqa.vxu.DqaAddress;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -52,7 +52,7 @@ public class NextOfKinAddressIsValidTester {
     nok.setAddress(addr);
     setNextOfKin();
 
-    p.getPatientAddressList().add(new DqaPatientAddress(addr));
+    p.getPatientAddressList().add(new DqaAddress(addr));
 
     mh.setMessageDate(new Date());
     mr.setMessageHeader(mh);
@@ -93,7 +93,7 @@ public class NextOfKinAddressIsValidTester {
     nok.getAddress().setStreet(null);
     setNextOfKin();
 
-    DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
+    DqaAddress paddr = new DqaAddress(nok.getAddress());
     p.getPatientAddressList().clear();
     p.getPatientAddressList().add(paddr);
 
@@ -112,7 +112,7 @@ public class NextOfKinAddressIsValidTester {
     nok.getAddress().setStreet2(null);
     setNextOfKin();
 
-    DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
+    DqaAddress paddr = new DqaAddress(nok.getAddress());
     p.getPatientAddressList().clear();
     p.getPatientAddressList().add(paddr);
 
@@ -129,7 +129,7 @@ public class NextOfKinAddressIsValidTester {
     nok.getAddress().setCity(null);
     setNextOfKin();
 
-    DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
+    DqaAddress paddr = new DqaAddress(nok.getAddress());
     p.getPatientAddressList().clear();
     p.getPatientAddressList().add(paddr);
 
@@ -148,7 +148,7 @@ public class NextOfKinAddressIsValidTester {
     nok.getAddress().setStateCode(null);
     setNextOfKin();
 
-    DqaPatientAddress paddr = new DqaPatientAddress(nok.getAddress());
+    DqaAddress paddr = new DqaAddress(nok.getAddress());
     p.getPatientAddressList().clear();
     p.getPatientAddressList().add(paddr);
 
@@ -202,7 +202,7 @@ public class NextOfKinAddressIsValidTester {
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(Detection.NextOfKinAddressCountryIsMissing,
         r.getValidationDetections().get(0).getDetection());
-    ;
+
   }
 
   /**

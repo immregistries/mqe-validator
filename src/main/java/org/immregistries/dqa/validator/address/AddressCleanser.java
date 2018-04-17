@@ -1,5 +1,6 @@
 package org.immregistries.dqa.validator.address;
 
+import java.util.Map;
 import org.immregistries.dqa.vxu.DqaAddress;
 
 /**
@@ -15,5 +16,5 @@ public interface AddressCleanser {
    * 
    * PASS (Info, warning) FAIL (error)
    */
-  public void cleanThisAddress(DqaAddress a);
+  public Map<DqaAddress, DqaAddress> cleanThese(DqaAddress ... list);
 }

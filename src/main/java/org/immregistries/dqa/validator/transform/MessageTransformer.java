@@ -8,8 +8,10 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.dqa.codebase.client.generated.Code;
 import org.immregistries.dqa.core.util.DateUtility;
-import org.immregistries.dqa.hl7util.model.MetaFieldInfo;
+import org.immregistries.dqa.validator.address.AddressCleanser;
+import org.immregistries.dqa.validator.address.AddressCleanserFactory;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
+import org.immregistries.dqa.vxu.DqaAddress;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaNextOfKin;
@@ -17,7 +19,6 @@ import org.immregistries.dqa.vxu.DqaPatient;
 import org.immregistries.dqa.vxu.DqaVaccination;
 import org.immregistries.dqa.vxu.PatientImmunity;
 import org.immregistries.dqa.vxu.VaccinationVIS;
-import org.immregistries.dqa.vxu.VxuField;
 import org.immregistries.dqa.vxu.hl7.Observation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,35 +33,36 @@ import org.slf4j.LoggerFactory;
 //
 /*
  * //General principle:
- * 
+ *
  * PRE-transform, we want to count up all the codes they sent in. This will be cool. We'll actually
  * go through the object model and list out all the stuff they sent. Then we can save that at the
  * end if we want.
- * 
+ *
  * Transform step , we interpret what's there , and pick certain pieces out , but we generally don't
  * change anything, or add anything.
- * 
- * 
+ *
+ *
  * DO we need to be able to preserve what came in v.s. what we changed it to in the transform?
- * 
+ *
  * We don't want to say "your cvx is not right for your mvx" if we derived the cvx
- * 
+ *
  * We want to be able to report "We decided to make this change to your message" We Do want to say
  * "You put this crazy CVX, and we opted to use this other one" How do I do that?
- * 
- * 
+ *
+ *
  * So I think perhaps I should use the same pattern here, where I can report what's happening. call
  * it a "Reportable" or something.
- * 
+ *
  * every method should report what it did. Picked the first address only? Say it. pick a guardian
  * out of the list of next of kins? yup. put it on a reportable.
- * 
+ *
  * there really shouldn't be a lot of stuff in the MCIR specific one.
  */
 
 public enum MessageTransformer {
   INSTANCE;
 
+  private AddressCleanser ac = AddressCleanserFactory.INSTANCE.getAddressCleanser();
   private CodeRepository repo = CodeRepository.INSTANCE;
 
   private static final Logger logger = LoggerFactory.getLogger(MessageTransformer.class);
@@ -76,10 +78,58 @@ public enum MessageTransformer {
     transformPatient(mr);
     transformObservations(mr);
     transformVaccinations(mr.getVaccinations());
+    transformAddesses(mr);
+
     return mr;
   }
 
-  private void transformVaccinations(List<DqaVaccination> vaccinations) {
+  protected void transformAddesses(DqaMessageReceived mr) {
+//  Build a list of addresses to clean.
+    List<DqaAddress> list = new ArrayList<>();
+    if (mr != null && mr.getPatient() != null) {
+      list.addAll(mr.getPatient().getPatientAddressList());
+      for (DqaNextOfKin dq : mr.getNextOfKins()) {
+        list.add(dq.getAddress());
+      }
+    }
+
+    if (logger.isInfoEnabled()) {
+      logger.info("Starting address cleansing request");
+    }
+    //Then clean them.
+    Map<DqaAddress, DqaAddress> cleanMap = ac.cleanThese(list.toArray(new DqaAddress[]{}));
+    if (logger.isInfoEnabled()) {
+      logger.info("Finished address cleansing request");
+    }
+
+    //Then set them back to their original spots.
+    List<DqaAddress> cleanAddresses = new ArrayList<>();
+    if (mr != null && mr.getPatient() != null) {
+      for (DqaAddress a : mr.getPatient().getPatientAddressList()) {
+        DqaAddress aClean = cleanMap.get(a);
+        cleanAddresses.add(aClean);
+      }
+
+      mr.getPatient().getPatientAddressList().clear();
+      mr.getPatient().getPatientAddressList().addAll(cleanAddresses);
+      if (mr.getPatient() != null) {
+        if (logger.isInfoEnabled()) {
+          logger.info("Patient Address: " + mr.getPatient().getPatientAddress());
+        }
+        if (mr.getPatient().getPatientAddress() != null && !mr.getPatient().getPatientAddress().isClean()) {
+          logger.warn("Patient Address not clean: " + mr.getPatient().getPatientAddress().getCleansingResultCode());
+        }
+      }
+    }
+
+    for (DqaNextOfKin dq : mr.getNextOfKins()) {
+      DqaAddress a = dq.getAddress();
+      DqaAddress clean = cleanMap.get(a);
+      dq.setAddress(clean);
+    }
+  }
+
+  protected void transformVaccinations(List<DqaVaccination> vaccinations) {
     for (DqaVaccination v : vaccinations) {
       // transform information source into boolean for adminsitered:
       v.setAdministered("00".equals(v.getInformationSource()));

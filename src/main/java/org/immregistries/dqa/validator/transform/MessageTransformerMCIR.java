@@ -79,8 +79,8 @@ public class MessageTransformerMCIR {
 
   }
 
-  protected void transformAddress(DqaAddress a) {
-    ac.cleanThisAddress(a);
+  protected void transformAddress(DqaAddress... a) {
+    ac.cleanThese(a);
   }
 
   /*

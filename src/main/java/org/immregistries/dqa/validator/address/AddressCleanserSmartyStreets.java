@@ -77,6 +77,9 @@ public enum AddressCleanserSmartyStreets implements AddressCleanser {
 
     try {
       for (DqaAddress addr : addressList) {
+        if (addr.getStreet() == null) {
+          continue;//if there's no street, SS will throw an exception for the whole batch.
+        }
         Lookup lookup = this.createLookup(addr);
         batch.add(lookup);
         if (batch.size() > 99) {

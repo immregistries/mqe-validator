@@ -66,15 +66,18 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<DqaP
           issues.add(r);
         }
       }
-
-      if (this.common.isEmpty(guardian.getAddress().getStateCode())) {
-        issues.add(Detection.PatientGuardianAddressStateIsMissing.build(target));
-      }
-      if (this.common.isEmpty(guardian.getAddress().getCity())) {
-        issues.add(Detection.PatientGuardianAddressCityIsMissing.build(target));
-      }
-      if (this.common.isEmpty(guardian.getAddress().getZip())) {
-        issues.add(Detection.PatientGuardianAddressZipIsMissing.build(target));
+      if (guardian.getAddress() != null) {
+        if (this.common.isEmpty(guardian.getAddress().getStateCode())) {
+          issues.add(Detection.PatientGuardianAddressStateIsMissing.build(target));
+        }
+        if (this.common.isEmpty(guardian.getAddress().getCity())) {
+          issues.add(Detection.PatientGuardianAddressCityIsMissing.build(target));
+        }
+        if (this.common.isEmpty(guardian.getAddress().getZip())) {
+          issues.add(Detection.PatientGuardianAddressZipIsMissing.build(target));
+        }
+      } else {
+        issues.add(Detection.PatientGuardianAddressIsMissing.build(target));
       }
       if (this.common.isEmpty(tFirst)) {
         issues.add(Detection.PatientGuardianNameFirstIsMissing.build(target));

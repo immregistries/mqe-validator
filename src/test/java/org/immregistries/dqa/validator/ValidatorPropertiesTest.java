@@ -1,7 +1,6 @@
 package org.immregistries.dqa.validator;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -17,6 +16,6 @@ public class ValidatorPropertiesTest {
     ValidatorProperties props = ValidatorProperties.INSTANCE;
     assertNotNull("properties shouldn't be null", props);
     //2. let's read some stuff...
-    assertTrue("AC should be enabled", props.isAddressCleanserEnabled());
+    assertNotNull("Should have a value ", props.getSsApiAuthId());
   }
 }

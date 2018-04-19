@@ -155,11 +155,17 @@ public class CodeCollection {
         bucketList);
 
     for (DqaNextOfKin k : kinList) {
-      addCounts(CodesetType.ADDRESS_TYPE, "", k.getAddress().getTypeCode(), bucketList);
+      if (k.getAddress() != null) {
+        addCounts(CodesetType.ADDRESS_TYPE, "", k.getAddress().getTypeCode(), bucketList);
+      }
       addCounts(CodesetType.PERSON_RELATIONSHIP, "", k.getRelationshipCode(), bucketList);
     }
 
-    addCounts(CodesetType.ADDRESS_TYPE, "", patient.getPatientAddress().getTypeCode(), bucketList);
+    if (patient.getPatientAddress() != null) {
+      addCounts(CodesetType.ADDRESS_TYPE, "", patient.getPatientAddress().getTypeCode(),
+          bucketList);
+    }
+
     addCounts(CodesetType.BIRTH_ORDER, "", patient.getBirthOrder(), bucketList);
     addCounts(CodesetType.PATIENT_CLASS, "", patient.getPatientClassCode(), bucketList);
     addCounts(CodesetType.PATIENT_ETHNICITY, "", patient.getEthnicityCode(), bucketList);
@@ -170,9 +176,12 @@ public class CodeCollection {
     }
 
     addCounts(CodesetType.PERSON_NAME_TYPE, "", patient.getNameTypeCode(), bucketList);
-    addCounts(CodesetType.TELECOMMUNICATION_USE, "", patient.getPhone().getTelUseCode(), bucketList);
-    addCounts(CodesetType.TELECOMMUNICATION_EQUIPMENT, "", patient.getPhone().getTelEquipCode(),
-        bucketList);
+    if (patient.getPhone() != null) {
+      addCounts(CodesetType.TELECOMMUNICATION_USE, "", patient.getPhone().getTelUseCode(),
+          bucketList);
+      addCounts(CodesetType.TELECOMMUNICATION_EQUIPMENT, "", patient.getPhone().getTelEquipCode(),
+          bucketList);
+    }
     addCounts(CodesetType.PERSON_LANGUAGE, "", patient.getPrimaryLanguageCode(), bucketList);
     addCounts(CodesetType.PHYSICIAN_NUMBER, "", patient.getPhysicianNumber(), bucketList);
     addCounts(CodesetType.PATIENT_PROTECTION, "", patient.getProtectionCode(), bucketList);

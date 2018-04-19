@@ -3,6 +3,7 @@ package org.immregistries.dqa.validator.engine.rules.patient;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.immregistries.dqa.validator.address.SmartyStreetResponse;
 import org.immregistries.dqa.validator.detection.Detection;
 import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.ValidationRule;
@@ -26,7 +27,7 @@ public class PatientAddressIsValid extends ValidationRule<DqaPatient> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {PatientExists.class,};
+    return new Class[]{PatientExists.class,};
   }
 
   public PatientAddressIsValid() {
@@ -40,6 +41,10 @@ public class PatientAddressIsValid extends ValidationRule<DqaPatient> {
     this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_COUNTRY));
     this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_ZIP));
     this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_TYPE));
+
+    if (props.isAddressCleanserEnabled()) {
+      this.ruleDetections.add(Detection.PatientAddressIsInvalid);
+    }
   }
 
   @Override
@@ -53,6 +58,23 @@ public class PatientAddressIsValid extends ValidationRule<DqaPatient> {
     issues.addAll(result.getValidationDetections());
 
     if (a != null) {
+
+      if (props.isAddressCleanserEnabled()) {
+        if (!a.isClean()) {
+          ValidationReport r = Detection.PatientAddressIsInvalid.build(target);
+          List<SmartyStreetResponse> rList = SmartyStreetResponse
+              .codesFromDpv(a.getCleansingResultCode());
+          if (rList.size() > 0) {
+            StringBuilder b = new StringBuilder(":");
+            for (SmartyStreetResponse rz : rList) {
+              b.append(" ").append(rz.title);
+            }
+            r.setAdditionalMessage(b.toString());
+          }
+          issues.add(r);
+        }
+      }
+
       if (a.getTypeCode() != null && "BA".equals(a.getTypeCode())) {
         issues.add(Detection.PatientAddressTypeIsValuedBadAddress.build(a.toString(), target));
       }

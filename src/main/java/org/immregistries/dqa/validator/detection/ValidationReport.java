@@ -18,6 +18,7 @@ public class ValidationReport implements Reportable {
   private static final Logger logger = LoggerFactory.getLogger(ValidationReport.class);
 
   private Detection detection = null;// should this be a String?
+  private String additionalMessage;
   private int positionId = 0;// This says where in the ACK to put it.
   private SeverityLevel severityLevel = null; // this is how bad it is.
   private String valueReceived = null;// This is the related value.
@@ -113,9 +114,13 @@ public class ValidationReport implements Reportable {
     return this.hl7LocationList;
   }
 
+  public void setAdditionalMessage(String message) {
+    this.additionalMessage = message;
+  }
+
   @Override
   public String getReportedMessage() {
-    return this.detection.getDisplayText();
+    return this.detection.getDisplayText() + " " + this.additionalMessage;
   }
 
   @Override

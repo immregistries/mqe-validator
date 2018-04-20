@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.immregistries.dqa.core.util.DateUtility;
+import org.immregistries.dqa.validator.ValidatorProperties;
 import org.immregistries.dqa.validator.detection.Detection;
 import org.immregistries.dqa.validator.detection.ValidationReport;
 import org.immregistries.dqa.validator.engine.codes.CodeRepository;
@@ -32,6 +33,7 @@ public abstract class ValidationRule<T> {
   protected final CodeHandler codr = CodeHandler.INSTANCE;
   protected final DateUtility datr = DateUtility.INSTANCE;
   protected final CodeRepository repo = CodeRepository.INSTANCE;
+  protected final ValidatorProperties props = ValidatorProperties.INSTANCE;
 
   protected Class[] getDependencies() {
     return new Class[] {};

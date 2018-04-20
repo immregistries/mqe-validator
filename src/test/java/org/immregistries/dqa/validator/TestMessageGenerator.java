@@ -46,6 +46,7 @@ public class TestMessageGenerator {
   private static final String IMMUNITY_MSG =
       "MSH|^~\\&|||||20160413161526-0400||VXU^V04^VXU_V04|2bK5-B.07.14.1Nx|P|2.5.1|\r"
           + "PID|||2bK5-B.07.14^^^AIRA-TEST^MR||Powell^Diarmid^T^^^^L||20030415|M||2106-3^White^HL70005|215 Armstrong Cir^^Brethren^MI^49619^USA^P||^PRN^PH^^^231^4238012|||||||||2186-5^not Hispanic or Latino^HL70005|\r"
+          + NK1
           + "ORC|RE||N54R81.2^AIRA|\r"
           + "RXA|0|1|20140420||998^No vaccine administered^CVX|999|||||||||||||||A|\r"
           + "OBX|1|CE|59784-9^Disease with presumed immunity^LN|1|23511006^Meningococcal infectious disease (disorder)^SCT||||||F|\r"

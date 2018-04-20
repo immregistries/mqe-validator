@@ -9,7 +9,7 @@ import org.immregistries.dqa.validator.engine.ValidationRuleResult;
 import org.immregistries.dqa.vxu.DqaMessageHeader;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
-import org.immregistries.dqa.vxu.DqaPatientAddress;
+import org.immregistries.dqa.vxu.DqaAddress;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -34,7 +34,7 @@ public class PatientAddressIsValidTester {
    */
   @Before
   public void setUpTheObjects() {
-    DqaPatientAddress addr = new DqaPatientAddress();
+    DqaAddress addr = new DqaAddress();
     addr.setStreet("233 Cherokee Ln");
     addr.setStreet2("Apt 106");
     addr.setCity("Flint");

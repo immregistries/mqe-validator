@@ -16,7 +16,7 @@ public class NextOfKinAddressIsSameAsPatientAddress extends ValidationRule<DqaNe
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {PatientExists.class, NextOfKinAddressIsValid.class};
+    return new Class[]{PatientExists.class, NextOfKinAddressIsValid.class};
   }
 
   public NextOfKinAddressIsSameAsPatientAddress() {
@@ -32,11 +32,9 @@ public class NextOfKinAddressIsSameAsPatientAddress extends ValidationRule<DqaNe
 
     DqaAddress p = message.getPatient().getPatientAddress();
     DqaAddress n = target.getAddress();
-    if (!p.getCity().equals(n.getCity()) || !p.getState().equals(n.getState())
-        || !p.getStreet().equals(n.getStreet()) || !p.getStreet2().equals(p.getStreet2())) {
 
-      issues
-          .add(Detection.NextOfKinAddressIsDifferentFromPatientAddress.build(n.toString(), target));
+    if ((p != null && n != null) && !p.equals(n)) {
+      issues.add(Detection.NextOfKinAddressIsDifferentFromPatientAddress.build(n.toString(), target));
       passed = false;
     }
 

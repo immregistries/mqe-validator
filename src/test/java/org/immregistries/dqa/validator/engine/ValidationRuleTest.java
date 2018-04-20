@@ -15,7 +15,7 @@ import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdmin
 import org.immregistries.dqa.validator.engine.rules.vaccination.VaccinationAdminDateIsValid;
 import org.immregistries.dqa.vxu.DqaMessageReceived;
 import org.immregistries.dqa.vxu.DqaPatient;
-import org.immregistries.dqa.vxu.DqaPatientAddress;
+import org.immregistries.dqa.vxu.DqaAddress;
 import org.immregistries.dqa.vxu.DqaVaccination;
 import org.junit.Test;
 
@@ -232,7 +232,7 @@ public class ValidationRuleTest {
     p.setAliasFirst("John");
     p.setNameTypeCode("Superhero");
     p.setMotherMaidenName("Cobbler");
-    DqaPatientAddress a = new DqaPatientAddress();
+    DqaAddress a = new DqaAddress();
     p.getPatientAddressList().add(a);
     a.setCity("Lansing");
     a.setStreet("121 Main");

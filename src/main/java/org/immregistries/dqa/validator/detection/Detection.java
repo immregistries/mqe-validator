@@ -59,6 +59,7 @@ public enum Detection implements DetectionInfo {
 
   NextOfKinAddressIsDifferentFromPatientAddress(NEXT_OF_KIN_ADDRESS, DIFFERENT_FROM_PATIENT_ADDRESS, ACCEPT, MQE0056),
   NextOfKinAddressIsMissing(NEXT_OF_KIN_ADDRESS, MISSING, ACCEPT, MQE0057),
+  NextOfKinAddressIsInvalid(NEXT_OF_KIN_ADDRESS, INVALID, ACCEPT, MQE0564),
   NextOfKinAddressCityIsInvalid(NEXT_OF_KIN_ADDRESS_CITY, INVALID, WARN, MQE0058),
   NextOfKinAddressCityIsMissing(NEXT_OF_KIN_ADDRESS_CITY, MISSING, ACCEPT, MQE0059),
   NextOfKinAddressCountryIsDeprecated(NEXT_OF_KIN_ADDRESS_COUNTRY, DEPRECATED, WARN, MQE0060),
@@ -116,6 +117,7 @@ public enum Detection implements DetectionInfo {
   ObservationDateTimeOfObservationIsInvalid(OBSERVATION_DATE_TIME_OF_OBSERVATION, INVALID, WARN, MQE0482),
   PatientObjectIsMissing(NONE, MISSING, ACCEPT, MQE0545),
   PatientAddressIsMissing(PATIENT_ADDRESS, MISSING, ACCEPT, MQE0092),
+  PatientAddressIsInvalid(PATIENT_ADDRESS, INVALID, WARN, MQE0562),
   PatientAddressCityIsInvalid(PATIENT_ADDRESS_CITY, INVALID, ACCEPT, MQE0093),
   PatientAddressCityIsMissing(PATIENT_ADDRESS_CITY, MISSING, ACCEPT, MQE0094),
   PatientAddressCountryIsDeprecated(PATIENT_ADDRESS_COUNTRY, DEPRECATED, WARN, MQE0095),
@@ -181,6 +183,7 @@ public enum Detection implements DetectionInfo {
   PatientGenderIsMissing(PATIENT_GENDER, MISSING, ACCEPT, MQE0146),
   PatientGenderIsUnrecognized(PATIENT_GENDER, UNRECOGNIZED, ACCEPT, MQE0147),
   PatientGuardianAddressIsMissing(PATIENT_GUARDIAN_ADDRESS, MISSING, ACCEPT, MQE0148),
+  PatientGuardianAddressIsInvalid(PATIENT_GUARDIAN_ADDRESS, INVALID, ACCEPT, MQE0563),
   PatientGuardianAddressCityIsMissing(PATIENT_GUARDIAN_ADDRESS_CITY, MISSING, ACCEPT, MQE0149),
   PatientGuardianAddressStateIsMissing(PATIENT_GUARDIAN_ADDRESS_STATE, MISSING, ACCEPT, MQE0150),
   PatientGuardianAddressStreetIsMissing(PATIENT_GUARDIAN_ADDRESS_STREET, MISSING, ACCEPT, MQE0151),

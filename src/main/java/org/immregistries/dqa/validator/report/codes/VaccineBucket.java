@@ -10,23 +10,17 @@ public class VaccineBucket {
   private boolean administered = true;/* default to true. */
 
   public VaccineBucket(VaccineBucket vb) {
-    this.code = vb.code;
-    this.age = vb.age;
-    this.count = vb.count;
-    this.administered = vb.administered;
+	this(vb.code, vb.age, vb.administered, vb.count);
   }
 
   public VaccineBucket(String cvx, Integer age, boolean administered) {
-    this.code = cvx;
-    this.age = age;
-    this.count = 1;
-    this.administered = administered;
+	this(cvx, age, administered, 1);
   }
 
   public VaccineBucket(String cvx, Integer age, boolean administered, Integer count) {
     this.code = cvx;
     this.age = age;
-    this.count = 1;
+    this.count = count;
     this.administered = administered;
   }
 

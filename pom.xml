@@ -4,19 +4,29 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.immregistries</groupId>
+<<<<<<< Updated upstream
 	<artifactId>dqa-validator</artifactId>
 	<version>2018.4-BETA</version>
+=======
+	<artifactId>mqe-validator</artifactId>
+	<version>2018.6-BETA</version>
+>>>>>>> Stashed changes
 	<packaging>jar</packaging>
 
-	<name>dqa-validator</name>
-	<description>DQA Validation Core</description>
+	<name>mqe-validator</name>
+	<description>MQE Validation Core</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
    		<maven.compiler.target>1.7</maven.compiler.target>
+<<<<<<< Updated upstream
 		<mqe.version>2018.4</mqe.version>
+=======
+		<mqe.version>2018.6-BETA</mqe.version>
+		<codebase.version>2.2</codebase.version>
+>>>>>>> Stashed changes
 	</properties>
 
 	<dependencies>
@@ -62,14 +72,14 @@
 		
 		<dependency>
 			<groupId>org.immregistries</groupId>
-			<artifactId>dqa-hl7-utility</artifactId>
+			<artifactId>mqe-hl7-utility</artifactId>
 			<version>${mqe.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.immregistries</groupId>
-			<artifactId>dqa-codebase-client</artifactId>
-			<version>2.1</version>
+			<artifactId>codebase-client</artifactId>
+			<version>${codebase.version}</version>
 		</dependency>
 	
 		<dependency>
@@ -78,5 +88,4 @@
 			<version>8.2.0</version>
 		</dependency>
 	</dependencies>
-
 </project>

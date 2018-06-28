@@ -21,13 +21,7 @@ public class VaccinationNdcIsValid extends ValidationRule<MqeVaccination> {
   @Override
   protected ValidationRuleResult executeRule(MqeVaccination target, MqeMessageReceived m) {
 
-    List<ValidationReport> issues = new ArrayList<>();
-
-    if (StringUtils.isNotBlank(target.getAdminNdc())) {
-      issues.addAll(this.codr.handleCode(target.getAdminNdc(), VxuField.VACCINATION_NDC_CODE, target));
-    } else {
-      issues.add(Detection.get(VxuField.VACCINATION_NDC_CODE, DetectionType.MISSING).build(target));
-    }
+    List<ValidationReport> issues = new ArrayList<>(this.codr.handleCodeOrMissing(target.getAdminNdc(), VxuField.VACCINATION_NDC_CODE, target));
 
     LOGGER.info("issues: " + issues);
     boolean passed = issues.isEmpty();

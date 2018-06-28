@@ -38,13 +38,23 @@ public enum CodeHandler {
   }
 
 
+  public List<ValidationReport> handleCodeOrMissing(String value, VxuField field, MetaFieldInfoData meta) {
+      if (StringUtils.isNotBlank(value)) {
+          return handleCode(value, field, meta);
+      } else {
+        List<ValidationReport> r = new ArrayList<>();
+        r.add(Detection.get(field, DetectionType.MISSING).build(meta));
+        return r;
+      }
+  }
   public List<ValidationReport> handleCode(String value, VxuField field, MetaFieldInfoData meta) {
-    List<ValidationReport> issues = new ArrayList<>();
+
     // LOGGER.info("value:" + value + " field: " + field);
 
     if (StringUtils.isBlank(value)) {
-      issues.add(issueForField(field, DetectionType.MISSING, meta));
-      return issues;
+      return new ArrayList<>();
+//      issues.add(issueForField(field, DetectionType.MISSING, meta));
+//      return issues;
     }
 
     Code c = repo.getCodeFromValue(value, field.getCodesetType());

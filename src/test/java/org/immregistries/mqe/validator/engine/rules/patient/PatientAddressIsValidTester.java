@@ -71,7 +71,7 @@ public class PatientAddressIsValidTester {
     p.getPatientAddressList().add(null);
 
     ValidationRuleResult r = rule.executeRule(p, mr);
-    logger.info(r.getValidationDetections().toString());
+    System.out.println(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(Detection.PatientAddressIsMissing,
         r.getValidationDetections().get(0).getDetection());

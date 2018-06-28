@@ -27,7 +27,6 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
         Detection.PatientGuardianAddressZipIsMissing,
         Detection.PatientGuardianNameFirstIsMissing,
         Detection.PatientGuardianNameLastIsMissing,
-        Detection.PatientGuardianNameIsMissing,
         Detection.PatientGuardianNameIsSameAsUnderagePatient,
         Detection.PatientGuardianPhoneIsMissing,
         Detection.PatientGuardianRelationshipIsMissing,
@@ -79,15 +78,12 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
       } else {
         issues.add(Detection.PatientGuardianAddressIsMissing.build(target));
       }
+
       if (this.common.isEmpty(tFirst)) {
         issues.add(Detection.PatientGuardianNameFirstIsMissing.build(target));
       }
       if (this.common.isEmpty(tLast)) {
         issues.add(Detection.PatientGuardianNameLastIsMissing.build(target));
-      }
-
-      if (this.common.isEmpty(tFirst) || this.common.isEmpty(tLast)) {
-        issues.add(Detection.PatientGuardianNameIsMissing.build(target));
       }
 
       if (StringUtils.isNotBlank(pFirst) && StringUtils.isNotBlank(pLast) && pFirst.equals(tFirst)

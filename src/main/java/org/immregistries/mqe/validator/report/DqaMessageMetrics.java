@@ -1,11 +1,11 @@
-package org.immregistries.dqa.validator.report;
+package org.immregistries.mqe.validator.report;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.immregistries.dqa.validator.detection.Detection;
-import org.immregistries.dqa.vxu.VxuObject;
-import org.immregistries.dqa.validator.report.codes.CodeCollection;
-import org.immregistries.dqa.validator.report.codes.VaccineCollection;
+import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.vxu.VxuObject;
+import org.immregistries.mqe.validator.report.codes.CodeCollection;
+import org.immregistries.mqe.validator.report.codes.VaccineCollection;
 import org.joda.time.DateTime;
 
 public class DqaMessageMetrics {

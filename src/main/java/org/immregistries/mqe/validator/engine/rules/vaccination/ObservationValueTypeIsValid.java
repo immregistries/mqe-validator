@@ -25,7 +25,7 @@ public class ObservationValueTypeIsValid extends ValidationRule<MqeVaccination> 
     boolean passed;
 
     for (Observation o : target.getObservations()) {
-      issues.addAll(codr.handleCode(o.getValueTypeCode(), VxuField.OBSERVATION_VALUE_TYPE, target));
+      issues.addAll(codr.handleCodeOrMissing(o.getValueTypeCode(), VxuField.OBSERVATION_VALUE_TYPE, target));
     }
 
     passed = issues.size() == 0;

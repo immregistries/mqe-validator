@@ -2,6 +2,8 @@ package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
+import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -9,24 +11,21 @@ import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
 import org.immregistries.mqe.vxu.VxuField;
 
-/**
- * Created by Allison on 5/9/2017.
- */
-public class PatientClassIsValid extends ValidationRule<MqePatient> {
+public class PatientRegistryIdIsPresent extends ValidationRule<MqePatient> {
 
-  public PatientClassIsValid() {
-    ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_CLASS));
+  public PatientRegistryIdIsPresent() {
+    ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_REGISTRY_ID));
   }
 
   @Override
   protected ValidationRuleResult executeRule(MqePatient target, MqeMessageReceived m) {
     List<ValidationReport> issues = new ArrayList<>();
-    boolean passed;
-
-    issues.addAll(codr.handleCodeOrMissing(target.getPatientClass(), VxuField.PATIENT_CLASS, target));
-
-    passed = (issues.size() == 0);
-
+    String regNum = target.getIdRegistryNumber();
+    if (StringUtils.isEmpty(regNum)) {
+      issues.add(Detection.PatientRegistryIdIsMissing.build(target));
+    }
+    boolean passed = issues.size() == 0;
     return buildResults(issues, passed);
   }
+
 }

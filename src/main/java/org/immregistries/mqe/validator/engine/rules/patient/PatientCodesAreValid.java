@@ -39,11 +39,11 @@ public class PatientCodesAreValid extends ValidationRule<MqePatient> {
       return buildResults(issues, false);
     }
 
-    issues.addAll(this.codr.handleCode(target.getEthnicity(), VxuField.PATIENT_ETHNICITY, target));
-    issues.addAll(this.codr.handleCode(target.getSex(), VxuField.PATIENT_GENDER, target));
+    issues.addAll(this.codr.handleCodeOrMissing(target.getEthnicity(), VxuField.PATIENT_ETHNICITY, target));
+    issues.addAll(this.codr.handleCodeOrMissing(target.getSex(), VxuField.PATIENT_GENDER, target));
 
     // name type
-    issues.addAll(this.codr.handleCode(target.getName().getType(), VxuField.PATIENT_NAME_TYPE_CODE,
+    issues.addAll(this.codr.handleCodeOrMissing(target.getName().getType(), VxuField.PATIENT_NAME_TYPE_CODE,
         target));
 
     // name code is supposed to be L for legal
@@ -64,7 +64,7 @@ public class PatientCodesAreValid extends ValidationRule<MqePatient> {
     }
 
     // language
-    issues.addAll(this.codr.handleCode(target.getPrimaryLanguage(),
+    issues.addAll(this.codr.handleCodeOrMissing(target.getPrimaryLanguage(),
         VxuField.PATIENT_PRIMARY_LANGUAGE, target));
 
     // physician
@@ -73,14 +73,14 @@ public class PatientCodesAreValid extends ValidationRule<MqePatient> {
     // VxuField.PATIENT_PRIMARY_PHYSICIAN_ID, target));
 
     // publicity code
-    issues.addAll(this.codr.handleCode(target.getPublicity(), VxuField.PATIENT_PUBLICITY_CODE,
+    issues.addAll(this.codr.handleCodeOrMissing(target.getPublicity(), VxuField.PATIENT_PUBLICITY_CODE,
         target));
 
     // race
-    issues.addAll(this.codr.handleCode(target.getRace(), VxuField.PATIENT_RACE, target));
+    issues.addAll(this.codr.handleCodeOrMissing(target.getRace(), VxuField.PATIENT_RACE, target));
 
     // VFC/financial eligibility status
-    issues.addAll(this.codr.handleCode(target.getFinancialEligibility(),
+    issues.addAll(this.codr.handleCodeOrMissing(target.getFinancialEligibility(),
         VxuField.PATIENT_VFC_STATUS, target));
 
     // mark passed if there's no issues

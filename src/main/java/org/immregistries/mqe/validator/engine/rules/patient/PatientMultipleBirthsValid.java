@@ -19,9 +19,11 @@ public class PatientMultipleBirthsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientMultipleBirthsValid() {
-    ruleDetections.addAll(Arrays.asList(Detection.PatientBirthIndicatorIsMissing,
+    ruleDetections.addAll(Arrays.asList(
+        Detection.PatientBirthIndicatorIsMissing,
         Detection.PatientBirthOrderIsMissingAndMultipleBirthIndicated,
-        Detection.PatientBirthOrderIsInvalid, Detection.PatientBirthIndicatorIsInvalid));
+        Detection.PatientBirthOrderIsInvalid,
+        Detection.PatientBirthIndicatorIsInvalid));
     ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_BIRTH_ORDER));
   }
 
@@ -40,7 +42,7 @@ public class PatientMultipleBirthsValid extends ValidationRule<MqePatient> {
       if ("Y".equals(multipleBirthInd)) {
         // TODO: birth order codes aren't working for some reason
         issues
-            .addAll(codr.handleCode(target.getBirthOrder(), VxuField.PATIENT_BIRTH_ORDER, target));
+            .addAll(codr.handleCodeOrMissing(target.getBirthOrder(), VxuField.PATIENT_BIRTH_ORDER, target));
 
         if (this.common.isEmpty(birthOrder)) {
           issues.add(Detection.PatientBirthOrderIsMissingAndMultipleBirthIndicated.build(target));

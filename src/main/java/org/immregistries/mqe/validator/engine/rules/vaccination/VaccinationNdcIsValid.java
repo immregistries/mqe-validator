@@ -2,6 +2,9 @@ package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
+import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.DetectionType;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -17,7 +20,14 @@ public class VaccinationNdcIsValid extends ValidationRule<MqeVaccination> {
 
   @Override
   protected ValidationRuleResult executeRule(MqeVaccination target, MqeMessageReceived m) {
-    List<ValidationReport> issues = new ArrayList<>(this.codr.handleCode(target.getAdminNdc(), VxuField.VACCINATION_NDC_CODE, target));
+
+    List<ValidationReport> issues = new ArrayList<>();
+
+    if (StringUtils.isNotBlank(target.getAdminNdc())) {
+      issues.addAll(this.codr.handleCode(target.getAdminNdc(), VxuField.VACCINATION_NDC_CODE, target));
+    } else {
+      issues.add(Detection.get(VxuField.VACCINATION_NDC_CODE, DetectionType.MISSING).build(target));
+    }
 
     LOGGER.info("issues: " + issues);
     boolean passed = issues.isEmpty();

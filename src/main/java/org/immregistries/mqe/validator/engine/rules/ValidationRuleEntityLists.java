@@ -38,6 +38,7 @@ import org.immregistries.mqe.validator.engine.rules.patient.PatientNameTypeIsVal
 import org.immregistries.mqe.validator.engine.rules.patient.PatientPhoneIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientPrimaryPhysicianNameIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientProtectionIndicatorIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientRegistryIdIsPresent;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientRegistryIdIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientResponsiblePartyIsProperlyFormed;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientSubmitterIsValid;
@@ -105,6 +106,7 @@ public enum ValidationRuleEntityLists {
       new PatientPrimaryPhysicianNameIsValid(),
       new PatientProtectionIndicatorIsValid(),
       new PatientRegistryIdIsValid(),
+      new PatientRegistryIdIsPresent(),
       new PatientSubmitterIsValid(),
       new PatientImmunityIsValid(),
       new PatientHasResponsibleParty(),

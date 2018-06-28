@@ -40,7 +40,7 @@ public class MessageHeaderCodesAreValidTester {
     mh.setAckTypeApplicationCode(SUCCESS);
     ValidationRuleResult r = rule.executeRule(mh, mr);
     logger.info(r.getValidationDetections().toString());
-    assertFalse(r.isRulePassed());
+    assertTrue(r.isRulePassed());
   }
   
   @Test
@@ -49,6 +49,6 @@ public class MessageHeaderCodesAreValidTester {
     mh.setAckTypeApplicationCode(null);
     ValidationRuleResult r = rule.executeRule(mh, mr);
     logger.info(r.getValidationDetections().toString());
-    assertFalse(r.isRulePassed());
+    assertTrue(r.isRulePassed());
   }
 }

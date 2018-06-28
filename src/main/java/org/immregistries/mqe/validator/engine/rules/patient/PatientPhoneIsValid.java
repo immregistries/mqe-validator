@@ -27,8 +27,12 @@ public class PatientPhoneIsValid extends ValidationRule<MqePatient> {
     boolean passed = true;
     MqePhoneNumber phone = target.getPhone();
 
-    issues.addAll(phValr.validatePhone(phone, VxuField.PATIENT_PHONE,
-        VxuField.PATIENT_PHONE_TEL_USE_CODE, VxuField.PATIENT_PHONE_TEL_EQUIP_CODE, target));
+    issues.addAll(phValr.validatePhone(
+                    phone,
+                    VxuField.PATIENT_PHONE,
+                    VxuField.PATIENT_PHONE_TEL_USE_CODE,
+                    VxuField.PATIENT_PHONE_TEL_EQUIP_CODE,
+                    target));
 
     if (issues.size() > 0) {
       passed = false;

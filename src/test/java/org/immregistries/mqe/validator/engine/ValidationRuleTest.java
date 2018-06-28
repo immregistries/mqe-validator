@@ -5,7 +5,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.DetectionType;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntityLists;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsValid;
@@ -50,7 +54,7 @@ public class ValidationRuleTest {
 
     p.setBirthDateString("");
     issues = vr.executeRule(p, mr).getValidationDetections();
-    assertEquals("should be two issues", 2, issues.size());
+    assertEquals("should be just one issue for missing the birthdate. ", 1, issues.size());
 
   }
 
@@ -175,11 +179,26 @@ public class ValidationRuleTest {
   @Test
   public void AllPatientRules() {
     List<ValidationRule> patientRules = ValidationRuleEntityLists.PATIENT_RULES.getRules();
+
+    Map<Detection, String> expectedMissingDetections = new HashMap<>();
+    //then get the list of everything that can be raised, and pick out the types that are MISSING.
+    for (ValidationRule r : patientRules) {
+      List<Detection> ruleDetections = r.ruleDetections;
+      for (Detection d : ruleDetections) {
+        if (d != null && DetectionType.MISSING == d.getDetectionType()) {
+          expectedMissingDetections.put(d, r.getClass().getSimpleName());
+          System.out.println("Expected: " + d + " -> " + r.getClass().getSimpleName());
+        };
+      }
+    }
+
+    System.out.println("Expected Detections: " + expectedMissingDetections.size());
+
     List<ValidationReport> validationReports = new ArrayList<ValidationReport>();
 
     MqeMessageReceived mr = getEmptyMessage();
 
-    mr.getPatient().setBirthDateString("20160101");
+//    mr.getPatient().setBirthDateString("20160101");
 
     //This executes all the rules.  dependencies are not considered.
     for (ValidationRule rule : patientRules) {
@@ -196,11 +215,49 @@ public class ValidationRuleTest {
     }
     System.out.println("Issues.size(): " + validationReports.size());
 
+    Map<Detection, String> reduce = new HashMap<>(expectedMissingDetections);
+
+    List<Detection> extras = new ArrayList<>();
     for (ValidationReport validationReport : validationReports) {
-      System.out.println("Detection: " + validationReport.getDetection());
+      System.out.println("Detection: " + validationReport.getDetection() + " --> " + validationReport.getHl7LocationList());
+      if (!reduce.containsKey(validationReport.getDetection())) {
+        extras.add(validationReport.getDetection());
+      } else {
+        reduce.remove(validationReport.getDetection());
+      }
     }
 
-    assertEquals("should be some issues", 32, validationReports.size());
+    System.out.println("\nNot Detected:");
+    for (Detection d : reduce.keySet()) {
+      System.out.println("----: " + d + " --> " + reduce.get(d));
+    }
+
+    System.out.println("\nExtra Detections:");
+    for (Detection d : extras) {
+      System.out.println("----: " + d + " --> " + reduce.get(d));
+    }
+
+
+    int excludedCount = 0;
+//    We expect not to detect the following:
+//          PatientPhoneTelUseCodeIsMissing (phone is missing.  this won't trigger. )
+    excludedCount++;
+//          PatientDeathDateIsMissing (only raised if a death flag is present)
+    excludedCount++;
+//          PatientAddressTypeIsMissing (can't be missing if the whole address is missing)
+    excludedCount++;
+//          PatientPhoneTelUseCodeIsMissing (the whole phone is missing, so it doesn't check this)
+    excludedCount++;
+//          PatientPhoneTelEquipCodeIsMissing (the whole phone is missing so it doesn't check this)
+    excludedCount++;
+//          PatientBirthOrderIsMissing (this won't be missing unless there's a birth order)
+    excludedCount++;
+//          PatientObjectIsMissing (we have to have an object to run these tests)
+    excludedCount++;
+
+    assertEquals("should be some issues",
+        expectedMissingDetections.size() - excludedCount,
+        validationReports.size());
   }
 
   @Test

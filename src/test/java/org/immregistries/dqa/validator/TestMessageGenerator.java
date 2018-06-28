@@ -4,7 +4,9 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import org.immregistries.dqa.vxu.DqaMessageReceived;
+import org.immregistries.mqe.vxu.MqeMessageReceived;
+import org.immregistries.mqe.validator.MqeMessageService;
+import org.immregistries.mqe.vxu.MqeMessageReceived;
 
 public class TestMessageGenerator {
 
@@ -108,21 +110,21 @@ public class TestMessageGenerator {
     return AIRA_TEST_MSG;
   }
 
-  private DqaMessageService service = DqaMessageService.INSTANCE;
+  private MqeMessageService service = MqeMessageService.INSTANCE;
 
-  public DqaMessageReceived getMsg1() {
+  public MqeMessageReceived getMsg1() {
     return service.extractMessageFromText(this.getExampleVXU_1());
   }
 
-  public DqaMessageReceived getMsg2() {
+  public MqeMessageReceived getMsg2() {
     return service.extractMessageFromText(this.getExampleVXU_2());
   }
 
-  public DqaMessageReceived getMsg3() {
+  public MqeMessageReceived getMsg3() {
     return service.extractMessageFromText(this.getImmunityMessage());
   }
 
-  public DqaMessageReceived getMsg4() {
+  public MqeMessageReceived getMsg4() {
     return service.extractMessageFromText(this.getAiraTestMsg());
   }
 

@@ -18,7 +18,7 @@ public class VaccinationCvxIsValid extends ValidationRule<MqeVaccination> {
   @Override
   protected ValidationRuleResult executeRule(MqeVaccination target, MqeMessageReceived m) {
     List<ValidationReport> issues = new ArrayList<>(
-        this.codr.handleCode(target.getAdminCvxCode(), VxuField.VACCINATION_CVX_CODE, target));
+        this.codr.handleCodeOrMissing(target.getAdminCvxCode(), VxuField.VACCINATION_CVX_CODE, target));
     LOGGER.info("issues: " + issues);
 
     boolean passed = issues.isEmpty();

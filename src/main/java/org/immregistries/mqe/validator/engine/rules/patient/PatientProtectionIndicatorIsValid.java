@@ -3,6 +3,7 @@ package org.immregistries.mqe.validator.engine.rules.patient;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
@@ -21,22 +22,24 @@ public class PatientProtectionIndicatorIsValid extends ValidationRule<MqePatient
 
   @Override
   protected ValidationRuleResult executeRule(MqePatient target, MqeMessageReceived m) {
+    // TODO: need to create test for protection indicator
     List<ValidationReport> issues = new ArrayList<>();
     boolean passed;
 
     String protectionCode = target.getProtectionCode();
 
-    // TODO: QUESTION: Should "Missing" be handled here, or in the codeHandler?
-    // I'm thinking... here. No compelling reason yet. just a feeling.
-    // TODO: need to create test for protection indicator
+    if (StringUtils.isEmpty(protectionCode)) {
+      issues.add(Detection.PatientProtectionIndicatorIsMissing.build(target));
+    } else {
 
-    issues.addAll(this.codr.handleCode(protectionCode, VxuField.PATIENT_PROTECTION_INDICATOR,
+      issues.addAll(this.codr.handleCode(protectionCode, VxuField.PATIENT_PROTECTION_INDICATOR,
         target));
 
-    if ("Y".equals(protectionCode)) {
-      issues.add(Detection.PatientProtectionIndicatorIsValuedAsYes.build((protectionCode), target));
-    } else if ("N".equals(protectionCode)) {
-      issues.add(Detection.PatientProtectionIndicatorIsValuedAsNo.build((protectionCode), target));
+      if ("Y".equals(protectionCode)) {
+        issues.add(Detection.PatientProtectionIndicatorIsValuedAsYes.build((protectionCode), target));
+      } else if ("N".equals(protectionCode)) {
+        issues.add(Detection.PatientProtectionIndicatorIsValuedAsNo.build((protectionCode), target));
+      }
     }
 
     passed = (issues.size() == 0);

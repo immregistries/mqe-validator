@@ -45,12 +45,12 @@ public enum PhoneValidator {
 
       // If there's a use code, make sure it's proper.
       if (piPhoneTelUse != null) {
-        issues.addAll(codr.handleCode(phone.getTelUse(), piPhoneTelUse, meta));
+        issues.addAll(codr.handleCodeOrMissing(phone.getTelUse(), piPhoneTelUse, meta));
       }
 
       // If it's got a code, make sure it's legit.
       if (piPhoneTelEquip != null) {
-        issues.addAll(codr.handleCode(phone.getTelEquip(), piPhoneTelEquip, meta));
+        issues.addAll(codr.handleCodeOrMissing(phone.getTelEquip(), piPhoneTelEquip, meta));
       }
 
       // Invalid phone number format.

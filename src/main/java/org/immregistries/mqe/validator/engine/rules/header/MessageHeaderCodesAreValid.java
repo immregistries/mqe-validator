@@ -7,6 +7,7 @@ import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageHeader;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
+import org.immregistries.mqe.vxu.VxuField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,14 +28,15 @@ public class MessageHeaderCodesAreValid extends ValidationRule<MqeMessageHeader>
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
     boolean passed = true;
 
-    // String ackTypeAccept = target.getAckTypeAcceptCode();
-    // logger.info("getAckTypeAcceptCode:"+ackTypeAccept);
-    // issues.addAll(codr.handleCode(ackTypeAccept, IssueField.MESSAGE_ACCEPT_ACK_TYPE, target));
-    //
-    // String ackTypeApp = target.getAckTypeApplicationCode();
-    // logger.info("getAckTypeApplicationCode:"+ackTypeApp);
-    // issues.addAll(codr.handleCode(ackTypeApp, IssueField.MESSAGE_APP_ACK_TYPE, target));
+     String ackTypeAccept = target.getAckTypeAcceptCode();
+     logger.info("getAckTypeAcceptCode:"+ackTypeAccept);
+     issues.addAll(codr.handleCode(ackTypeAccept, VxuField.MESSAGE_ACCEPT_ACK_TYPE, target));
 
+     String ackTypeApp = target.getAckTypeApplicationCode();
+     logger.info("getAckTypeApplicationCode:"+ackTypeApp);
+     issues.addAll(codr.handleCode(ackTypeApp, VxuField.MESSAGE_APP_ACK_TYPE, target));
+
+    passed = issues.size() == 0;
     return buildResults(issues, passed);
   }
 

@@ -26,7 +26,7 @@ public enum MessageResponseEvaluator {
     Map<Detection, Integer> attributeCounts = makeCountMap(ruleResults);
     metrics.setAttributeCounts(attributeCounts);
     metrics.getObjectCounts().putAll(makeObjectCounts(ruleResults));
-    metrics.getPatientAgeCounts().put(makePatientAgeCounts(validationResults), 1);
+    metrics.getPatientAgeCounts().put(getPatientAgeForMessage(validationResults), 1);
     logger.info(metrics.toString());
     return metrics;
   }
@@ -61,19 +61,21 @@ public enum MessageResponseEvaluator {
     return objCounts;
   }
 
-  protected Integer makePatientAgeCounts(
+  protected Integer getPatientAgeForMessage(
       MqeMessageServiceResponse validationResults) {
 
-    MqePatient patient = validationResults.getMessageObjects().getPatient();
-    if (patient.getBirthDate() != null
-        && validationResults.getMessageObjects().getReceivedDate() != null) {
-      LocalDate birthDate = new LocalDate(patient.getBirthDate());
-      LocalDate recDate = new LocalDate(validationResults.getMessageObjects().getReceivedDate());
-      Period period = new Period(recDate, birthDate);
-      Integer age = new Integer(Math.abs(period.getYears()));
-      return age;
+    if (validationResults != null && validationResults.getMessageObjects() != null) {
+      MqePatient patient = validationResults.getMessageObjects().getPatient();
+      if (patient.getBirthDate() != null
+          && validationResults.getMessageObjects().getReceivedDate() != null) {
+        LocalDate birthDate = new LocalDate(patient.getBirthDate());
+        LocalDate recDate = new LocalDate(validationResults.getMessageObjects().getReceivedDate());
+        Period period = new Period(recDate, birthDate);
+        Integer age = new Integer(Math.abs(period.getYears()));
+        return age;
+      }
     }
-    return -1;
+    return -1;//we don't have an age to report.
   }
 
   protected Map<Detection, Integer> makeCountMap(List<ValidationRuleResult> results) {

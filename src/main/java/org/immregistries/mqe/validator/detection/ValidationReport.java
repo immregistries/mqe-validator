@@ -120,7 +120,7 @@ public class ValidationReport implements Reportable {
 
   @Override
   public String getReportedMessage() {
-    return this.detection.getDisplayText() + " " + this.additionalMessage;
+    return this.detection.getDisplayText() + " " + (this.additionalMessage != null ? this.additionalMessage : "");
   }
 
   @Override

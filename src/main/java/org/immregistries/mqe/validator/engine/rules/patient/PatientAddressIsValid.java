@@ -3,6 +3,7 @@ package org.immregistries.mqe.validator.engine.rules.patient;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.validator.address.SmartyStreetResponse;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
@@ -34,7 +35,6 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
     this.ruleDetections.addAll(Arrays.asList(Detection.PatientAddressTypeIsValuedBadAddress));
     this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS));
     this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STREET));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STREET2));
     this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_CITY));
     this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STATE));
     this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_COUNTY));
@@ -54,32 +54,42 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
 
     MqeAddress a = target.getPatientAddress();
 
-    ValidationRuleResult result = addressValidator.getAddressIssuesFor(fields, a, target);
-    issues.addAll(result.getValidationDetections());
 
     if (a != null) {
+      ValidationRuleResult result = addressValidator.getAddressIssuesFor(fields, a, target);
+      issues.addAll(result.getValidationDetections());
 
-      if (props.isAddressCleanserEnabled()) {
-        if (!a.isClean()) {
-          ValidationReport r = Detection.PatientAddressIsInvalid.build(target);
-          List<SmartyStreetResponse> rList = SmartyStreetResponse
-              .codesFromDpv(a.getCleansingResultCode());
-          if (rList.size() > 0) {
-            StringBuilder b = new StringBuilder(":");
-            for (SmartyStreetResponse rz : rList) {
-              b.append(" ").append(rz.title);
+      if (!a.isEmpty()) {
+        if (props.isAddressCleanserEnabled()) {
+          if (!a.isClean()) {
+            ValidationReport r = Detection.PatientAddressIsInvalid.build(target);
+            List<SmartyStreetResponse> rList = SmartyStreetResponse
+                .codesFromDpv(a.getCleansingResultCode());
+            if (rList.size() > 0) {
+              StringBuilder b = new StringBuilder(":");
+              for (SmartyStreetResponse rz : rList) {
+                b.append(" ").append(rz.title);
+              }
+              r.setAdditionalMessage(b.toString());
             }
-            r.setAdditionalMessage(b.toString());
+            issues.add(r);
           }
-          issues.add(r);
         }
-      }
 
-      if (a.getTypeCode() != null && "BA".equals(a.getTypeCode())) {
-        issues.add(Detection.PatientAddressTypeIsValuedBadAddress.build(a.toString(), target));
-      }
+        if (a.getTypeCode() != null && "BA".equals(a.getTypeCode())) {
+          issues.add(Detection.PatientAddressTypeIsValuedBadAddress.build(a.toString(), target));
+        }
 
-      issues.addAll(this.codr.handleCode(a.getTypeCode(), VxuField.PATIENT_ADDRESS_TYPE, target));
+        if (StringUtils.isBlank(a.getTypeCode())) {
+          issues.add(Detection.PatientAddressTypeIsMissing.build(target));
+        } else {
+          issues.addAll(this.codr.handleCode(a.getTypeCode(), VxuField.PATIENT_ADDRESS_TYPE, target));
+        }
+      } else {
+        issues.add(Detection.PatientAddressIsMissing.build(target));
+      }
+    } else {
+      issues.add(Detection.PatientAddressIsMissing.build(target));
     }
 
     passed = issues.size() == 0;

@@ -4345,7 +4345,7 @@
         <label>Potential Issue</label>
         <type>POTENTIAL_ISSUE</type>
         <code>
-            <value>DQA0002</value>
+            <value>MQE0002</value>
             <label>General authorization exception</label>
             <description></description>
             <code-status>
@@ -4353,7 +4353,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0003</value>
+            <value>MQE0003</value>
             <label>General configuration exception</label>
             <description></description>
             <code-status>
@@ -4361,7 +4361,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0004</value>
+            <value>MQE0004</value>
             <label>General parse exception</label>
             <description></description>
             <code-status>
@@ -4369,7 +4369,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0005</value>
+            <value>MQE0005</value>
             <label>General processing exception</label>
             <description></description>
             <code-status>
@@ -4377,7 +4377,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0415</value>
+            <value>MQE0415</value>
             <label>HL7 MSH accept ack type is deprecated</label>
             <description></description>
             <code-status>
@@ -4385,7 +4385,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0417</value>
+            <value>MQE0417</value>
             <label>HL7 MSH accept ack type is ignored</label>
             <description></description>
             <code-status>
@@ -4393,7 +4393,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0416</value>
+            <value>MQE0416</value>
             <label>HL7 MSH accept ack type is invalid</label>
             <description></description>
             <code-status>
@@ -4401,7 +4401,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0006</value>
+            <value>MQE0006</value>
             <label>HL7 MSH accept ack type is missing</label>
             <description></description>
             <code-status>
@@ -4409,7 +4409,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0007</value>
+            <value>MQE0007</value>
             <label>HL7 MSH accept ack type is unrecognized</label>
             <description></description>
             <code-status>
@@ -4417,7 +4417,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0008</value>
+            <value>MQE0008</value>
             <label>HL7 MSH accept ack type is valued as always</label>
             <description></description>
             <code-status>
@@ -4425,7 +4425,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0009</value>
+            <value>MQE0009</value>
             <label>HL7 MSH accept ack type is valued as never</label>
             <description></description>
             <code-status>
@@ -4433,7 +4433,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0010</value>
+            <value>MQE0010</value>
             <label>HL7 MSH accept ack type is valued as only on errors</label>
             <description></description>
             <code-status>
@@ -4441,7 +4441,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0431</value>
+            <value>MQE0431</value>
             <label>HL7 MSH alt character set is deprecated</label>
             <description></description>
             <code-status>
@@ -4449,7 +4449,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0432</value>
+            <value>MQE0432</value>
             <label>HL7 MSH alt character set is ignored</label>
             <description></description>
             <code-status>
@@ -4457,7 +4457,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0433</value>
+            <value>MQE0433</value>
             <label>HL7 MSH alt character set is invalid</label>
             <description></description>
             <code-status>
@@ -4465,7 +4465,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0434</value>
+            <value>MQE0434</value>
             <label>HL7 MSH alt character set is missing</label>
             <description></description>
             <code-status>
@@ -4473,7 +4473,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0435</value>
+            <value>MQE0435</value>
             <label>HL7 MSH alt character set is unrecognized</label>
             <description></description>
             <code-status>
@@ -4481,7 +4481,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0418</value>
+            <value>MQE0418</value>
             <label>HL7 MSH app ack type is deprecated</label>
             <description></description>
             <code-status>
@@ -4489,7 +4489,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0420</value>
+            <value>MQE0420</value>
             <label>HL7 MSH app ack type is ignored</label>
             <description></description>
             <code-status>
@@ -4497,7 +4497,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0419</value>
+            <value>MQE0419</value>
             <label>HL7 MSH app ack type is invalid</label>
             <description></description>
             <code-status>
@@ -4505,7 +4505,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0410</value>
+            <value>MQE0410</value>
             <label>HL7 MSH app ack type is missing</label>
             <description></description>
             <code-status>
@@ -4513,7 +4513,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0411</value>
+            <value>MQE0411</value>
             <label>HL7 MSH app ack type is unrecognized</label>
             <description></description>
             <code-status>
@@ -4521,7 +4521,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0412</value>
+            <value>MQE0412</value>
             <label>HL7 MSH app ack type is valued as always</label>
             <description></description>
             <code-status>
@@ -4529,7 +4529,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0413</value>
+            <value>MQE0413</value>
             <label>HL7 MSH app ack type is valued as never</label>
             <description></description>
             <code-status>
@@ -4537,7 +4537,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0414</value>
+            <value>MQE0414</value>
             <label>HL7 MSH app ack type is valued as only on errors</label>
             <description></description>
             <code-status>
@@ -4545,7 +4545,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0426</value>
+            <value>MQE0426</value>
             <label>HL7 MSH character set is deprecated</label>
             <description></description>
             <code-status>
@@ -4553,7 +4553,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0427</value>
+            <value>MQE0427</value>
             <label>HL7 MSH character set is ignored</label>
             <description></description>
             <code-status>
@@ -4561,7 +4561,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0428</value>
+            <value>MQE0428</value>
             <label>HL7 MSH character set is invalid</label>
             <description></description>
             <code-status>
@@ -4569,7 +4569,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0429</value>
+            <value>MQE0429</value>
             <label>HL7 MSH character set is missing</label>
             <description></description>
             <code-status>
@@ -4577,7 +4577,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0430</value>
+            <value>MQE0430</value>
             <label>HL7 MSH character set is unrecognized</label>
             <description></description>
             <code-status>
@@ -4585,7 +4585,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0421</value>
+            <value>MQE0421</value>
             <label>HL7 MSH country code is deprecated</label>
             <description></description>
             <code-status>
@@ -4593,7 +4593,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0422</value>
+            <value>MQE0422</value>
             <label>HL7 MSH country code is ignored</label>
             <description></description>
             <code-status>
@@ -4601,7 +4601,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0423</value>
+            <value>MQE0423</value>
             <label>HL7 MSH country code is invalid</label>
             <description></description>
             <code-status>
@@ -4609,7 +4609,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0424</value>
+            <value>MQE0424</value>
             <label>HL7 MSH country code is missing</label>
             <description></description>
             <code-status>
@@ -4617,7 +4617,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0425</value>
+            <value>MQE0425</value>
             <label>HL7 MSH country code is unrecognized</label>
             <description></description>
             <code-status>
@@ -4625,7 +4625,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0011</value>
+            <value>MQE0011</value>
             <label>HL7 MSH encoding character is invalid</label>
             <description></description>
             <code-status>
@@ -4633,7 +4633,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0012</value>
+            <value>MQE0012</value>
             <label>HL7 MSH encoding character is missing</label>
             <description></description>
             <code-status>
@@ -4641,7 +4641,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0013</value>
+            <value>MQE0013</value>
             <label>HL7 MSH encoding character is non-standard</label>
             <description></description>
             <code-status>
@@ -4649,7 +4649,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0014</value>
+            <value>MQE0014</value>
             <label>HL7 MSH message control id is missing</label>
             <description></description>
             <code-status>
@@ -4657,7 +4657,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0015</value>
+            <value>MQE0015</value>
             <label>HL7 MSH message date is in future</label>
             <description></description>
             <code-status>
@@ -4665,7 +4665,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0016</value>
+            <value>MQE0016</value>
             <label>HL7 MSH message date is invalid</label>
             <description></description>
             <code-status>
@@ -4673,7 +4673,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0017</value>
+            <value>MQE0017</value>
             <label>HL7 MSH message date is missing</label>
             <description></description>
             <code-status>
@@ -4681,7 +4681,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0527</value>
+            <value>MQE0527</value>
             <label>HL7 MSH message date is missing timezone</label>
             <description></description>
             <code-status>
@@ -4689,7 +4689,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0526</value>
+            <value>MQE0526</value>
             <label>HL7 MSH message date is not precise</label>
             <description></description>
             <code-status>
@@ -4697,7 +4697,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0436</value>
+            <value>MQE0436</value>
             <label>HL7 MSH message profile id is deprecated</label>
             <description></description>
             <code-status>
@@ -4705,7 +4705,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0437</value>
+            <value>MQE0437</value>
             <label>HL7 MSH message profile id is ignored</label>
             <description></description>
             <code-status>
@@ -4713,7 +4713,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0438</value>
+            <value>MQE0438</value>
             <label>HL7 MSH message profile id is invalid</label>
             <description></description>
             <code-status>
@@ -4721,7 +4721,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0439</value>
+            <value>MQE0439</value>
             <label>HL7 MSH message profile id is missing</label>
             <description></description>
             <code-status>
@@ -4729,7 +4729,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0440</value>
+            <value>MQE0440</value>
             <label>HL7 MSH message profile id is unrecognized</label>
             <description></description>
             <code-status>
@@ -4737,7 +4737,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0391</value>
+            <value>MQE0391</value>
             <label>HL7 MSH message structure is missing</label>
             <description></description>
             <code-status>
@@ -4745,7 +4745,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0392</value>
+            <value>MQE0392</value>
             <label>HL7 MSH message structure is unrecognized</label>
             <description></description>
             <code-status>
@@ -4753,7 +4753,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0018</value>
+            <value>MQE0018</value>
             <label>HL7 MSH message trigger is missing</label>
             <description></description>
             <code-status>
@@ -4761,7 +4761,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0019</value>
+            <value>MQE0019</value>
             <label>HL7 MSH message trigger is unrecognized</label>
             <description></description>
             <code-status>
@@ -4769,7 +4769,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0525</value>
+            <value>MQE0525</value>
             <label>HL7 MSH message trigger is unsupported</label>
             <description></description>
             <code-status>
@@ -4777,7 +4777,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0020</value>
+            <value>MQE0020</value>
             <label>HL7 MSH message type is missing</label>
             <description></description>
             <code-status>
@@ -4785,7 +4785,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0021</value>
+            <value>MQE0021</value>
             <label>HL7 MSH message type is unrecognized</label>
             <description></description>
             <code-status>
@@ -4793,7 +4793,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0022</value>
+            <value>MQE0022</value>
             <label>HL7 MSH message type is unsupported</label>
             <description></description>
             <code-status>
@@ -4801,7 +4801,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0403</value>
+            <value>MQE0403</value>
             <label>HL7 MSH processing id is deprecated</label>
             <description></description>
             <code-status>
@@ -4809,7 +4809,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0404</value>
+            <value>MQE0404</value>
             <label>HL7 MSH processing id is ignored</label>
             <description></description>
             <code-status>
@@ -4817,7 +4817,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0402</value>
+            <value>MQE0402</value>
             <label>HL7 MSH processing id is invalid</label>
             <description></description>
             <code-status>
@@ -4825,7 +4825,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0023</value>
+            <value>MQE0023</value>
             <label>HL7 MSH processing id is missing</label>
             <description></description>
             <code-status>
@@ -4833,7 +4833,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0401</value>
+            <value>MQE0401</value>
             <label>HL7 MSH processing id is unrecognized</label>
             <description></description>
             <code-status>
@@ -4841,7 +4841,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0524</value>
+            <value>MQE0524</value>
             <label>HL7 MSH processing id is unsupported</label>
             <description></description>
             <code-status>
@@ -4849,7 +4849,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0024</value>
+            <value>MQE0024</value>
             <label>HL7 MSH processing id is valued as debug</label>
             <description></description>
             <code-status>
@@ -4857,7 +4857,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0025</value>
+            <value>MQE0025</value>
             <label>HL7 MSH processing id is valued as production</label>
             <description></description>
             <code-status>
@@ -4865,7 +4865,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0026</value>
+            <value>MQE0026</value>
             <label>HL7 MSH processing id is valued as training</label>
             <description></description>
             <code-status>
@@ -4873,7 +4873,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0029</value>
+            <value>MQE0029</value>
             <label>HL7 MSH receiving application is invalid</label>
             <description></description>
             <code-status>
@@ -4881,7 +4881,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0030</value>
+            <value>MQE0030</value>
             <label>HL7 MSH receiving application is missing</label>
             <description></description>
             <code-status>
@@ -4889,7 +4889,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0031</value>
+            <value>MQE0031</value>
             <label>HL7 MSH receiving facility is invalid</label>
             <description></description>
             <code-status>
@@ -4897,7 +4897,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0032</value>
+            <value>MQE0032</value>
             <label>HL7 MSH receiving facility is missing</label>
             <description></description>
             <code-status>
@@ -4905,7 +4905,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0033</value>
+            <value>MQE0033</value>
             <label>HL7 MSH segment is missing</label>
             <description></description>
             <code-status>
@@ -4913,7 +4913,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0034</value>
+            <value>MQE0034</value>
             <label>HL7 MSH sending application is invalid</label>
             <description></description>
             <code-status>
@@ -4921,7 +4921,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0035</value>
+            <value>MQE0035</value>
             <label>HL7 MSH sending application is missing</label>
             <description></description>
             <code-status>
@@ -4929,7 +4929,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0036</value>
+            <value>MQE0036</value>
             <label>HL7 MSH sending facility is invalid</label>
             <description></description>
             <code-status>
@@ -4937,7 +4937,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0037</value>
+            <value>MQE0037</value>
             <label>HL7 MSH sending facility is missing</label>
             <description></description>
             <code-status>
@@ -4945,7 +4945,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0523</value>
+            <value>MQE0523</value>
             <label>HL7 MSH version is invalid</label>
             <description></description>
             <code-status>
@@ -4953,7 +4953,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0038</value>
+            <value>MQE0038</value>
             <label>HL7 MSH version is missing</label>
             <description></description>
             <code-status>
@@ -4961,7 +4961,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0039</value>
+            <value>MQE0039</value>
             <label>HL7 MSH version is unrecognized</label>
             <description></description>
             <code-status>
@@ -4969,7 +4969,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0040</value>
+            <value>MQE0040</value>
             <label>HL7 MSH version is valued as 2.3.1</label>
             <description></description>
             <code-status>
@@ -4977,7 +4977,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0041</value>
+            <value>MQE0041</value>
             <label>HL7 MSH version is valued as 2.4</label>
             <description></description>
             <code-status>
@@ -4985,7 +4985,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0042</value>
+            <value>MQE0042</value>
             <label>HL7 MSH version is valued as 2.5</label>
             <description></description>
             <code-status>
@@ -4993,7 +4993,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0043</value>
+            <value>MQE0043</value>
             <label>HL7 NK1 segment is missing</label>
             <description></description>
             <code-status>
@@ -5001,7 +5001,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0044</value>
+            <value>MQE0044</value>
             <label>HL7 NK1 segment is repeated</label>
             <description></description>
             <code-status>
@@ -5009,7 +5009,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0368</value>
+            <value>MQE0368</value>
             <label>HL7 NK1 set id is missing</label>
             <description></description>
             <code-status>
@@ -5017,7 +5017,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0045</value>
+            <value>MQE0045</value>
             <label>HL7 OBX segment is missing</label>
             <description></description>
             <code-status>
@@ -5025,7 +5025,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0046</value>
+            <value>MQE0046</value>
             <label>HL7 ORC segment is missing</label>
             <description></description>
             <code-status>
@@ -5033,7 +5033,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0047</value>
+            <value>MQE0047</value>
             <label>HL7 ORC segment is repeated</label>
             <description></description>
             <code-status>
@@ -5041,7 +5041,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0048</value>
+            <value>MQE0048</value>
             <label>HL7 PD1 segment is missing</label>
             <description></description>
             <code-status>
@@ -5049,7 +5049,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0049</value>
+            <value>MQE0049</value>
             <label>HL7 PID segment is missing</label>
             <description></description>
             <code-status>
@@ -5057,7 +5057,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0050</value>
+            <value>MQE0050</value>
             <label>HL7 PID segment is repeated</label>
             <description></description>
             <code-status>
@@ -5065,7 +5065,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0051</value>
+            <value>MQE0051</value>
             <label>HL7 PV1 segment is missing</label>
             <description></description>
             <code-status>
@@ -5073,7 +5073,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0400</value>
+            <value>MQE0400</value>
             <label>HL7 PV1 segment is repeated</label>
             <description></description>
             <code-status>
@@ -5081,7 +5081,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0390</value>
+            <value>MQE0390</value>
             <label>HL7 RXA admin sub id counter is missing</label>
             <description></description>
             <code-status>
@@ -5089,7 +5089,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0389</value>
+            <value>MQE0389</value>
             <label>HL7 RXA give sub id is missing</label>
             <description></description>
             <code-status>
@@ -5097,7 +5097,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0052</value>
+            <value>MQE0052</value>
             <label>HL7 RXA segment is missing</label>
             <description></description>
             <code-status>
@@ -5105,7 +5105,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0053</value>
+            <value>MQE0053</value>
             <label>HL7 RXA segment is repeated</label>
             <description></description>
             <code-status>
@@ -5113,7 +5113,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0054</value>
+            <value>MQE0054</value>
             <label>HL7 RXR segment is missing</label>
             <description></description>
             <code-status>
@@ -5121,7 +5121,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0055</value>
+            <value>MQE0055</value>
             <label>HL7 RXR segment is repeated</label>
             <description></description>
             <code-status>
@@ -5129,7 +5129,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0464</value>
+            <value>MQE0464</value>
             <label>HL7 segment is invalid</label>
             <description></description>
             <code-status>
@@ -5137,7 +5137,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0463</value>
+            <value>MQE0463</value>
             <label>HL7 segment is unrecognized</label>
             <description></description>
             <code-status>
@@ -5145,7 +5145,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0452</value>
+            <value>MQE0452</value>
             <label>HL7 segments out of order</label>
             <description></description>
             <code-status>
@@ -5153,7 +5153,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0058</value>
+            <value>MQE0058</value>
             <label>Next-of-kin address city is invalid</label>
             <description></description>
             <code-status>
@@ -5161,7 +5161,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0059</value>
+            <value>MQE0059</value>
             <label>Next-of-kin address city is missing</label>
             <description></description>
             <code-status>
@@ -5169,7 +5169,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0572</value>
+            <value>MQE0572</value>
             <label>Next-of-kin address city is too long</label>
             <description></description>
             <code-status>
@@ -5177,7 +5177,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0569</value>
+            <value>MQE0569</value>
             <label>Next-of-kin address city is too short</label>
             <description></description>
             <code-status>
@@ -5185,7 +5185,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0571</value>
+            <value>MQE0571</value>
             <label>Next-of-kin address city is unexpectedly long</label>
             <description></description>
             <code-status>
@@ -5193,7 +5193,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0570</value>
+            <value>MQE0570</value>
             <label>Next-of-kin address city is unexpectedly short</label>
             <description></description>
             <code-status>
@@ -5201,7 +5201,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0060</value>
+            <value>MQE0060</value>
             <label>Next-of-kin address country is deprecated</label>
             <description></description>
             <code-status>
@@ -5209,7 +5209,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0061</value>
+            <value>MQE0061</value>
             <label>Next-of-kin address country is ignored</label>
             <description></description>
             <code-status>
@@ -5217,7 +5217,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0062</value>
+            <value>MQE0062</value>
             <label>Next-of-kin address country is invalid</label>
             <description></description>
             <code-status>
@@ -5225,7 +5225,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0063</value>
+            <value>MQE0063</value>
             <label>Next-of-kin address country is missing</label>
             <description></description>
             <code-status>
@@ -5233,7 +5233,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0064</value>
+            <value>MQE0064</value>
             <label>Next-of-kin address country is unrecognized</label>
             <description></description>
             <code-status>
@@ -5241,7 +5241,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0065</value>
+            <value>MQE0065</value>
             <label>Next-of-kin address county is deprecated</label>
             <description></description>
             <code-status>
@@ -5249,7 +5249,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0066</value>
+            <value>MQE0066</value>
             <label>Next-of-kin address county is ignored</label>
             <description></description>
             <code-status>
@@ -5257,7 +5257,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0067</value>
+            <value>MQE0067</value>
             <label>Next-of-kin address county is invalid</label>
             <description></description>
             <code-status>
@@ -5265,7 +5265,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0068</value>
+            <value>MQE0068</value>
             <label>Next-of-kin address county is missing</label>
             <description></description>
             <code-status>
@@ -5273,7 +5273,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0069</value>
+            <value>MQE0069</value>
             <label>Next-of-kin address county is unrecognized</label>
             <description></description>
             <code-status>
@@ -5281,7 +5281,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0056</value>
+            <value>MQE0056</value>
             <label>Next-of-kin address is different from patient address</label>
             <description></description>
             <code-status>
@@ -5289,7 +5289,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0057</value>
+            <value>MQE0057</value>
             <label>Next-of-kin address is missing</label>
             <description></description>
             <code-status>
@@ -5297,7 +5297,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0070</value>
+            <value>MQE0070</value>
             <label>Next-of-kin address state is deprecated</label>
             <description></description>
             <code-status>
@@ -5305,7 +5305,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0071</value>
+            <value>MQE0071</value>
             <label>Next-of-kin address state is ignored</label>
             <description></description>
             <code-status>
@@ -5313,7 +5313,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0072</value>
+            <value>MQE0072</value>
             <label>Next-of-kin address state is invalid</label>
             <description></description>
             <code-status>
@@ -5321,7 +5321,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0073</value>
+            <value>MQE0073</value>
             <label>Next-of-kin address state is missing</label>
             <description></description>
             <code-status>
@@ -5329,7 +5329,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0074</value>
+            <value>MQE0074</value>
             <label>Next-of-kin address state is unrecognized</label>
             <description></description>
             <code-status>
@@ -5337,7 +5337,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0075</value>
+            <value>MQE0075</value>
             <label>Next-of-kin address street is missing</label>
             <description></description>
             <code-status>
@@ -5345,7 +5345,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0076</value>
+            <value>MQE0076</value>
             <label>Next-of-kin address street2 is missing</label>
             <description></description>
             <code-status>
@@ -5353,7 +5353,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0395</value>
+            <value>MQE0395</value>
             <label>Next-of-kin address type is deprecated</label>
             <description></description>
             <code-status>
@@ -5361,7 +5361,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0396</value>
+            <value>MQE0396</value>
             <label>Next-of-kin address type is ignored</label>
             <description></description>
             <code-status>
@@ -5369,7 +5369,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0397</value>
+            <value>MQE0397</value>
             <label>Next-of-kin address type is invalid</label>
             <description></description>
             <code-status>
@@ -5377,7 +5377,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0398</value>
+            <value>MQE0398</value>
             <label>Next-of-kin address type is missing</label>
             <description></description>
             <code-status>
@@ -5385,7 +5385,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0399</value>
+            <value>MQE0399</value>
             <label>Next-of-kin address type is unrecognized</label>
             <description></description>
             <code-status>
@@ -5393,7 +5393,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0522</value>
+            <value>MQE0522</value>
             <label>Next-of-kin address type is valued bad address</label>
             <description></description>
             <code-status>
@@ -5401,7 +5401,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0077</value>
+            <value>MQE0077</value>
             <label>Next-of-kin address zip is invalid</label>
             <description></description>
             <code-status>
@@ -5409,7 +5409,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0078</value>
+            <value>MQE0078</value>
             <label>Next-of-kin address zip is missing</label>
             <description></description>
             <code-status>
@@ -5417,7 +5417,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0080</value>
+            <value>MQE0080</value>
             <label>Next-of-kin name first is missing</label>
             <description></description>
             <code-status>
@@ -5425,7 +5425,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0568</value>
+            <value>MQE0568</value>
             <label>Next-of-kin name first is too long</label>
             <description></description>
             <code-status>
@@ -5433,7 +5433,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0565</value>
+            <value>MQE0565</value>
             <label>Next-of-kin name first is too short</label>
             <description></description>
             <code-status>
@@ -5441,7 +5441,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0567</value>
+            <value>MQE0567</value>
             <label>Next-of-kin name first is unexpectedly long</label>
             <description></description>
             <code-status>
@@ -5449,7 +5449,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0566</value>
+            <value>MQE0566</value>
             <label>Next-of-kin name first is unexpectedly short</label>
             <description></description>
             <code-status>
@@ -5457,7 +5457,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0079</value>
+            <value>MQE0079</value>
             <label>Next-of-kin name is missing</label>
             <description></description>
             <code-status>
@@ -5465,7 +5465,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0081</value>
+            <value>MQE0081</value>
             <label>Next-of-kin name last is missing</label>
             <description></description>
             <code-status>
@@ -5473,7 +5473,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0564</value>
+            <value>MQE0564</value>
             <label>Next-of-kin name last is too long</label>
             <description></description>
             <code-status>
@@ -5481,7 +5481,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0561</value>
+            <value>MQE0561</value>
             <label>Next-of-kin name last is too short</label>
             <description></description>
             <code-status>
@@ -5489,7 +5489,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0563</value>
+            <value>MQE0563</value>
             <label>Next-of-kin name last is unexpectedly long</label>
             <description></description>
             <code-status>
@@ -5497,7 +5497,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0562</value>
+            <value>MQE0562</value>
             <label>Next-of-kin name last is unexpectedly short</label>
             <description></description>
             <code-status>
@@ -5505,7 +5505,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0082</value>
+            <value>MQE0082</value>
             <label>Next-of-kin phone number is incomplete</label>
             <description></description>
             <code-status>
@@ -5513,7 +5513,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0083</value>
+            <value>MQE0083</value>
             <label>Next-of-kin phone number is invalid</label>
             <description></description>
             <code-status>
@@ -5521,7 +5521,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0084</value>
+            <value>MQE0084</value>
             <label>Next-of-kin phone number is missing</label>
             <description></description>
             <code-status>
@@ -5529,7 +5529,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0085</value>
+            <value>MQE0085</value>
             <label>Next-of-kin relationship is deprecated</label>
             <description></description>
             <code-status>
@@ -5537,7 +5537,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0086</value>
+            <value>MQE0086</value>
             <label>Next-of-kin relationship is ignored</label>
             <description></description>
             <code-status>
@@ -5545,7 +5545,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0087</value>
+            <value>MQE0087</value>
             <label>Next-of-kin relationship is invalid</label>
             <description></description>
             <code-status>
@@ -5553,7 +5553,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0088</value>
+            <value>MQE0088</value>
             <label>Next-of-kin relationship is missing</label>
             <description></description>
             <code-status>
@@ -5561,7 +5561,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0089</value>
+            <value>MQE0089</value>
             <label>Next-of-kin relationship is not responsible party</label>
             <description></description>
             <code-status>
@@ -5569,7 +5569,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0485</value>
+            <value>MQE0485</value>
             <label>Next-of-kin relationship is unexpected</label>
             <description></description>
             <code-status>
@@ -5577,7 +5577,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0090</value>
+            <value>MQE0090</value>
             <label>Next-of-kin relationship is unrecognized</label>
             <description></description>
             <code-status>
@@ -5585,7 +5585,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0091</value>
+            <value>MQE0091</value>
             <label>Next-of-kin SSN is missing</label>
             <description></description>
             <code-status>
@@ -5593,7 +5593,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0482</value>
+            <value>MQE0482</value>
             <label>Observation date time of observation is invalid</label>
             <description></description>
             <code-status>
@@ -5601,7 +5601,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0481</value>
+            <value>MQE0481</value>
             <label>Observation date time of observation is missing</label>
             <description></description>
             <code-status>
@@ -5609,7 +5609,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0475</value>
+            <value>MQE0475</value>
             <label>Observation observation identifier code is deprecated</label>
             <description></description>
             <code-status>
@@ -5617,7 +5617,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0476</value>
+            <value>MQE0476</value>
             <label>Observation observation identifier code is ignored</label>
             <description></description>
             <code-status>
@@ -5625,7 +5625,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0477</value>
+            <value>MQE0477</value>
             <label>Observation observation identifier code is invalid</label>
             <description></description>
             <code-status>
@@ -5633,7 +5633,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0478</value>
+            <value>MQE0478</value>
             <label>Observation observation identifier code is missing</label>
             <description></description>
             <code-status>
@@ -5641,7 +5641,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0479</value>
+            <value>MQE0479</value>
             <label>Observation observation identifier code is unrecognized</label>
             <description></description>
             <code-status>
@@ -5649,7 +5649,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0480</value>
+            <value>MQE0480</value>
             <label>Observation observation value is missing</label>
             <description></description>
             <code-status>
@@ -5657,7 +5657,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0470</value>
+            <value>MQE0470</value>
             <label>Observation value type is deprecated</label>
             <description></description>
             <code-status>
@@ -5665,7 +5665,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0471</value>
+            <value>MQE0471</value>
             <label>Observation value type is ignored</label>
             <description></description>
             <code-status>
@@ -5673,7 +5673,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0472</value>
+            <value>MQE0472</value>
             <label>Observation value type is invalid</label>
             <description></description>
             <code-status>
@@ -5681,7 +5681,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0473</value>
+            <value>MQE0473</value>
             <label>Observation value type is missing</label>
             <description></description>
             <code-status>
@@ -5689,7 +5689,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0474</value>
+            <value>MQE0474</value>
             <label>Observation value type is unrecognized</label>
             <description></description>
             <code-status>
@@ -5697,7 +5697,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0093</value>
+            <value>MQE0093</value>
             <label>Patient address city is invalid</label>
             <description></description>
             <code-status>
@@ -5705,7 +5705,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0094</value>
+            <value>MQE0094</value>
             <label>Patient address city is missing</label>
             <description></description>
             <code-status>
@@ -5713,7 +5713,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0560</value>
+            <value>MQE0560</value>
             <label>Patient address city is too long</label>
             <description></description>
             <code-status>
@@ -5721,7 +5721,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0557</value>
+            <value>MQE0557</value>
             <label>Patient address city is too short</label>
             <description></description>
             <code-status>
@@ -5729,7 +5729,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0559</value>
+            <value>MQE0559</value>
             <label>Patient address city is unexpectedly long</label>
             <description></description>
             <code-status>
@@ -5737,7 +5737,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0558</value>
+            <value>MQE0558</value>
             <label>Patient address city is unexpectedly short</label>
             <description></description>
             <code-status>
@@ -5745,7 +5745,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0095</value>
+            <value>MQE0095</value>
             <label>Patient address country is deprecated</label>
             <description></description>
             <code-status>
@@ -5753,7 +5753,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0096</value>
+            <value>MQE0096</value>
             <label>Patient address country is ignored</label>
             <description></description>
             <code-status>
@@ -5761,7 +5761,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0097</value>
+            <value>MQE0097</value>
             <label>Patient address country is invalid</label>
             <description></description>
             <code-status>
@@ -5769,7 +5769,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0098</value>
+            <value>MQE0098</value>
             <label>Patient address country is missing</label>
             <description></description>
             <code-status>
@@ -5777,7 +5777,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0099</value>
+            <value>MQE0099</value>
             <label>Patient address country is unrecognized</label>
             <description></description>
             <code-status>
@@ -5785,7 +5785,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0100</value>
+            <value>MQE0100</value>
             <label>Patient address county is deprecated</label>
             <description></description>
             <code-status>
@@ -5793,7 +5793,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0101</value>
+            <value>MQE0101</value>
             <label>Patient address county is ignored</label>
             <description></description>
             <code-status>
@@ -5801,7 +5801,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0102</value>
+            <value>MQE0102</value>
             <label>Patient address county is invalid</label>
             <description></description>
             <code-status>
@@ -5809,7 +5809,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0103</value>
+            <value>MQE0103</value>
             <label>Patient address county is missing</label>
             <description></description>
             <code-status>
@@ -5817,7 +5817,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0104</value>
+            <value>MQE0104</value>
             <label>Patient address county is unrecognized</label>
             <description></description>
             <code-status>
@@ -5825,7 +5825,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0092</value>
+            <value>MQE0092</value>
             <label>Patient address is missing</label>
             <description></description>
             <code-status>
@@ -5833,7 +5833,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0105</value>
+            <value>MQE0105</value>
             <label>Patient address state is deprecated</label>
             <description></description>
             <code-status>
@@ -5841,7 +5841,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0106</value>
+            <value>MQE0106</value>
             <label>Patient address state is ignored</label>
             <description></description>
             <code-status>
@@ -5849,7 +5849,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0107</value>
+            <value>MQE0107</value>
             <label>Patient address state is invalid</label>
             <description></description>
             <code-status>
@@ -5857,7 +5857,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0108</value>
+            <value>MQE0108</value>
             <label>Patient address state is missing</label>
             <description></description>
             <code-status>
@@ -5865,7 +5865,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0109</value>
+            <value>MQE0109</value>
             <label>Patient address state is unrecognized</label>
             <description></description>
             <code-status>
@@ -5873,7 +5873,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0110</value>
+            <value>MQE0110</value>
             <label>Patient address street is missing</label>
             <description></description>
             <code-status>
@@ -5881,7 +5881,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0111</value>
+            <value>MQE0111</value>
             <label>Patient address street2 is missing</label>
             <description></description>
             <code-status>
@@ -5889,7 +5889,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0517</value>
+            <value>MQE0517</value>
             <label>Patient address type is deprecated</label>
             <description></description>
             <code-status>
@@ -5897,7 +5897,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0518</value>
+            <value>MQE0518</value>
             <label>Patient address type is ignored</label>
             <description></description>
             <code-status>
@@ -5905,7 +5905,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0519</value>
+            <value>MQE0519</value>
             <label>Patient address type is invalid</label>
             <description></description>
             <code-status>
@@ -5913,7 +5913,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0451</value>
+            <value>MQE0451</value>
             <label>Patient address type is missing</label>
             <description></description>
             <code-status>
@@ -5921,7 +5921,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0520</value>
+            <value>MQE0520</value>
             <label>Patient address type is unrecognized</label>
             <description></description>
             <code-status>
@@ -5929,7 +5929,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0521</value>
+            <value>MQE0521</value>
             <label>Patient address type is valued bad address</label>
             <description></description>
             <code-status>
@@ -5937,7 +5937,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0112</value>
+            <value>MQE0112</value>
             <label>Patient address zip is invalid</label>
             <description></description>
             <code-status>
@@ -5945,7 +5945,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0113</value>
+            <value>MQE0113</value>
             <label>Patient address zip is missing</label>
             <description></description>
             <code-status>
@@ -5953,7 +5953,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0114</value>
+            <value>MQE0114</value>
             <label>Patient alias is missing</label>
             <description></description>
             <code-status>
@@ -5961,7 +5961,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0115</value>
+            <value>MQE0115</value>
             <label>Patient birth date is after submission</label>
             <description></description>
             <code-status>
@@ -5969,7 +5969,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0116</value>
+            <value>MQE0116</value>
             <label>Patient birth date is in future</label>
             <description></description>
             <code-status>
@@ -5977,7 +5977,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0117</value>
+            <value>MQE0117</value>
             <label>Patient birth date is invalid</label>
             <description></description>
             <code-status>
@@ -5985,7 +5985,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0118</value>
+            <value>MQE0118</value>
             <label>Patient birth date is missing</label>
             <description></description>
             <code-status>
@@ -5993,7 +5993,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0119</value>
+            <value>MQE0119</value>
             <label>Patient birth date is underage</label>
             <description></description>
             <code-status>
@@ -6001,7 +6001,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0120</value>
+            <value>MQE0120</value>
             <label>Patient birth date is very long ago</label>
             <description></description>
             <code-status>
@@ -6009,7 +6009,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0121</value>
+            <value>MQE0121</value>
             <label>Patient birth indicator is invalid</label>
             <description></description>
             <code-status>
@@ -6017,7 +6017,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0122</value>
+            <value>MQE0122</value>
             <label>Patient birth indicator is missing</label>
             <description></description>
             <code-status>
@@ -6025,7 +6025,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0123</value>
+            <value>MQE0123</value>
             <label>Patient birth order is invalid</label>
             <description></description>
             <code-status>
@@ -6033,7 +6033,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0124</value>
+            <value>MQE0124</value>
             <label>Patient birth order is missing</label>
             <description></description>
             <code-status>
@@ -6041,7 +6041,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0125</value>
+            <value>MQE0125</value>
             <label>Patient birth order is missing and multiple birth indicated</label>
             <description></description>
             <code-status>
@@ -6049,7 +6049,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0126</value>
+            <value>MQE0126</value>
             <label>Patient birth place is missing</label>
             <description></description>
             <code-status>
@@ -6057,7 +6057,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0556</value>
+            <value>MQE0556</value>
             <label>Patient birth place is too long</label>
             <description></description>
             <code-status>
@@ -6065,7 +6065,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0553</value>
+            <value>MQE0553</value>
             <label>Patient birth place is too short</label>
             <description></description>
             <code-status>
@@ -6073,7 +6073,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0555</value>
+            <value>MQE0555</value>
             <label>Patient birth place is unexpectedly long</label>
             <description></description>
             <code-status>
@@ -6081,7 +6081,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0554</value>
+            <value>MQE0554</value>
             <label>Patient birth place is unexpectedly short</label>
             <description></description>
             <code-status>
@@ -6089,7 +6089,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0127</value>
+            <value>MQE0127</value>
             <label>Patient birth registry id is invalid</label>
             <description></description>
             <code-status>
@@ -6097,7 +6097,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0128</value>
+            <value>MQE0128</value>
             <label>Patient birth registry id is missing</label>
             <description></description>
             <code-status>
@@ -6105,7 +6105,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0374</value>
+            <value>MQE0374</value>
             <label>Patient class is deprecated</label>
             <description></description>
             <code-status>
@@ -6113,7 +6113,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0375</value>
+            <value>MQE0375</value>
             <label>Patient class is ignored</label>
             <description></description>
             <code-status>
@@ -6121,7 +6121,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0376</value>
+            <value>MQE0376</value>
             <label>Patient class is invalid</label>
             <description></description>
             <code-status>
@@ -6129,7 +6129,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0377</value>
+            <value>MQE0377</value>
             <label>Patient class is missing</label>
             <description></description>
             <code-status>
@@ -6137,7 +6137,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0378</value>
+            <value>MQE0378</value>
             <label>Patient class is unrecognized</label>
             <description></description>
             <code-status>
@@ -6145,7 +6145,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0129</value>
+            <value>MQE0129</value>
             <label>Patient death date is before birth</label>
             <description></description>
             <code-status>
@@ -6153,7 +6153,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0130</value>
+            <value>MQE0130</value>
             <label>Patient death date is in future</label>
             <description></description>
             <code-status>
@@ -6161,7 +6161,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0131</value>
+            <value>MQE0131</value>
             <label>Patient death date is invalid</label>
             <description></description>
             <code-status>
@@ -6169,7 +6169,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0132</value>
+            <value>MQE0132</value>
             <label>Patient death date is missing</label>
             <description></description>
             <code-status>
@@ -6177,7 +6177,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0133</value>
+            <value>MQE0133</value>
             <label>Patient death indicator is inconsistent</label>
             <description></description>
             <code-status>
@@ -6185,7 +6185,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0134</value>
+            <value>MQE0134</value>
             <label>Patient death indicator is missing</label>
             <description></description>
             <code-status>
@@ -6193,7 +6193,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0135</value>
+            <value>MQE0135</value>
             <label>Patient ethnicity is deprecated</label>
             <description></description>
             <code-status>
@@ -6201,7 +6201,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0136</value>
+            <value>MQE0136</value>
             <label>Patient ethnicity is ignored</label>
             <description></description>
             <code-status>
@@ -6209,7 +6209,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0137</value>
+            <value>MQE0137</value>
             <label>Patient ethnicity is invalid</label>
             <description></description>
             <code-status>
@@ -6217,7 +6217,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0138</value>
+            <value>MQE0138</value>
             <label>Patient ethnicity is missing</label>
             <description></description>
             <code-status>
@@ -6225,7 +6225,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0139</value>
+            <value>MQE0139</value>
             <label>Patient ethnicity is unrecognized</label>
             <description></description>
             <code-status>
@@ -6233,7 +6233,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0143</value>
+            <value>MQE0143</value>
             <label>Patient gender is deprecated</label>
             <description></description>
             <code-status>
@@ -6241,7 +6241,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0144</value>
+            <value>MQE0144</value>
             <label>Patient gender is ignored</label>
             <description></description>
             <code-status>
@@ -6249,7 +6249,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0145</value>
+            <value>MQE0145</value>
             <label>Patient gender is invalid</label>
             <description></description>
             <code-status>
@@ -6257,7 +6257,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0146</value>
+            <value>MQE0146</value>
             <label>Patient gender is missing</label>
             <description></description>
             <code-status>
@@ -6265,7 +6265,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0147</value>
+            <value>MQE0147</value>
             <label>Patient gender is unrecognized</label>
             <description></description>
             <code-status>
@@ -6273,7 +6273,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0149</value>
+            <value>MQE0149</value>
             <label>Patient guardian address city is missing</label>
             <description></description>
             <code-status>
@@ -6281,7 +6281,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0148</value>
+            <value>MQE0148</value>
             <label>Patient guardian address is missing</label>
             <description></description>
             <code-status>
@@ -6289,7 +6289,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0150</value>
+            <value>MQE0150</value>
             <label>Patient guardian address state is missing</label>
             <description></description>
             <code-status>
@@ -6297,7 +6297,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0151</value>
+            <value>MQE0151</value>
             <label>Patient guardian address street is missing</label>
             <description></description>
             <code-status>
@@ -6305,7 +6305,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0152</value>
+            <value>MQE0152</value>
             <label>Patient guardian address zip is missing</label>
             <description></description>
             <code-status>
@@ -6313,7 +6313,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0153</value>
+            <value>MQE0153</value>
             <label>Patient guardian name first is missing</label>
             <description></description>
             <code-status>
@@ -6321,7 +6321,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0583</value>
+            <value>MQE0583</value>
             <label>Patient guardian name has junk name</label>
             <description></description>
             <code-status>
@@ -6329,7 +6329,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0155</value>
+            <value>MQE0155</value>
             <label>Patient guardian name is missing</label>
             <description></description>
             <code-status>
@@ -6337,7 +6337,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0156</value>
+            <value>MQE0156</value>
             <label>Patient guardian name is same as underage patient</label>
             <description></description>
             <code-status>
@@ -6345,7 +6345,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0154</value>
+            <value>MQE0154</value>
             <label>Patient guardian name last is missing</label>
             <description></description>
             <code-status>
@@ -6353,7 +6353,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0158</value>
+            <value>MQE0158</value>
             <label>Patient guardian phone is missing</label>
             <description></description>
             <code-status>
@@ -6361,7 +6361,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0159</value>
+            <value>MQE0159</value>
             <label>Patient guardian relationship is missing</label>
             <description></description>
             <code-status>
@@ -6369,7 +6369,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0157</value>
+            <value>MQE0157</value>
             <label>Patient guardian responsible party is missing</label>
             <description></description>
             <code-status>
@@ -6377,7 +6377,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0573</value>
+            <value>MQE0573</value>
             <label>Patient immunity code is deprecated</label>
             <description></description>
             <code-status>
@@ -6385,7 +6385,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0574</value>
+            <value>MQE0574</value>
             <label>Patient immunity code is ignored</label>
             <description></description>
             <code-status>
@@ -6393,7 +6393,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0575</value>
+            <value>MQE0575</value>
             <label>Patient immunity code is invalid</label>
             <description></description>
             <code-status>
@@ -6401,7 +6401,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0576</value>
+            <value>MQE0576</value>
             <label>Patient immunity code is missing</label>
             <description></description>
             <code-status>
@@ -6409,7 +6409,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0577</value>
+            <value>MQE0577</value>
             <label>Patient immunity code is unrecognized</label>
             <description></description>
             <code-status>
@@ -6417,7 +6417,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0160</value>
+            <value>MQE0160</value>
             <label>Patient immunization registry status is deprecated</label>
             <description></description>
             <code-status>
@@ -6425,7 +6425,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0161</value>
+            <value>MQE0161</value>
             <label>Patient immunization registry status is ignored</label>
             <description></description>
             <code-status>
@@ -6433,7 +6433,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0162</value>
+            <value>MQE0162</value>
             <label>Patient immunization registry status is invalid</label>
             <description></description>
             <code-status>
@@ -6441,7 +6441,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0163</value>
+            <value>MQE0163</value>
             <label>Patient immunization registry status is missing</label>
             <description></description>
             <code-status>
@@ -6449,7 +6449,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0164</value>
+            <value>MQE0164</value>
             <label>Patient immunization registry status is unrecognized</label>
             <description></description>
             <code-status>
@@ -6457,7 +6457,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0167</value>
+            <value>MQE0167</value>
             <label>Patient Medicaid number is invalid</label>
             <description></description>
             <code-status>
@@ -6465,7 +6465,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0168</value>
+            <value>MQE0168</value>
             <label>Patient Medicaid number is missing</label>
             <description></description>
             <code-status>
@@ -6473,7 +6473,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0582</value>
+            <value>MQE0582</value>
             <label>Patient middle name is invalid</label>
             <description></description>
             <code-status>
@@ -6481,7 +6481,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0169</value>
+            <value>MQE0169</value>
             <label>Patient middle name is missing</label>
             <description></description>
             <code-status>
@@ -6489,7 +6489,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0552</value>
+            <value>MQE0552</value>
             <label>Patient middle name is too long</label>
             <description></description>
             <code-status>
@@ -6497,7 +6497,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0549</value>
+            <value>MQE0549</value>
             <label>Patient middle name is too short</label>
             <description></description>
             <code-status>
@@ -6505,7 +6505,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0551</value>
+            <value>MQE0551</value>
             <label>Patient middle name is unexpectedly long</label>
             <description></description>
             <code-status>
@@ -6513,7 +6513,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0550</value>
+            <value>MQE0550</value>
             <label>Patient middle name is unexpectedly short</label>
             <description></description>
             <code-status>
@@ -6521,7 +6521,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0170</value>
+            <value>MQE0170</value>
             <label>Patient middle name may be initial</label>
             <description></description>
             <code-status>
@@ -6529,7 +6529,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0581</value>
+            <value>MQE0581</value>
             <label>Patient mother's maiden name has invalid prefixes</label>
             <description></description>
             <code-status>
@@ -6537,7 +6537,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0580</value>
+            <value>MQE0580</value>
             <label>Patient mother's maiden name has junk name</label>
             <description></description>
             <code-status>
@@ -6545,7 +6545,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0579</value>
+            <value>MQE0579</value>
             <label>Patient mother's maiden name is invalid</label>
             <description></description>
             <code-status>
@@ -6553,7 +6553,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0171</value>
+            <value>MQE0171</value>
             <label>Patient mother's maiden name is missing</label>
             <description></description>
             <code-status>
@@ -6561,7 +6561,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0548</value>
+            <value>MQE0548</value>
             <label>Patient mother's maiden name is too long</label>
             <description></description>
             <code-status>
@@ -6569,7 +6569,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0545</value>
+            <value>MQE0545</value>
             <label>Patient mother's maiden name is too short</label>
             <description></description>
             <code-status>
@@ -6577,7 +6577,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0547</value>
+            <value>MQE0547</value>
             <label>Patient mother's maiden name is unexpectedly long</label>
             <description></description>
             <code-status>
@@ -6585,7 +6585,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0546</value>
+            <value>MQE0546</value>
             <label>Patient mother's maiden name is unexpectedly short</label>
             <description></description>
             <code-status>
@@ -6593,7 +6593,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0140</value>
+            <value>MQE0140</value>
             <label>Patient name first is invalid</label>
             <description></description>
             <code-status>
@@ -6601,7 +6601,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0141</value>
+            <value>MQE0141</value>
             <label>Patient name first is missing</label>
             <description></description>
             <code-status>
@@ -6609,7 +6609,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0543</value>
+            <value>MQE0543</value>
             <label>Patient name first is too long</label>
             <description></description>
             <code-status>
@@ -6617,7 +6617,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0540</value>
+            <value>MQE0540</value>
             <label>Patient name first is too short</label>
             <description></description>
             <code-status>
@@ -6625,7 +6625,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0542</value>
+            <value>MQE0542</value>
             <label>Patient name first is unexpectedly long</label>
             <description></description>
             <code-status>
@@ -6633,7 +6633,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0541</value>
+            <value>MQE0541</value>
             <label>Patient name first is unexpectedly short</label>
             <description></description>
             <code-status>
@@ -6641,7 +6641,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0142</value>
+            <value>MQE0142</value>
             <label>Patient name first may include middle initial</label>
             <description></description>
             <code-status>
@@ -6649,7 +6649,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0578</value>
+            <value>MQE0578</value>
             <label>Patient name has junk name</label>
             <description></description>
             <code-status>
@@ -6657,7 +6657,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0544</value>
+            <value>MQE0544</value>
             <label>Patient name is a known test name</label>
             <description></description>
             <code-status>
@@ -6665,7 +6665,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0165</value>
+            <value>MQE0165</value>
             <label>Patient name last is invalid</label>
             <description></description>
             <code-status>
@@ -6673,7 +6673,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0166</value>
+            <value>MQE0166</value>
             <label>Patient name last is missing</label>
             <description></description>
             <code-status>
@@ -6681,7 +6681,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0539</value>
+            <value>MQE0539</value>
             <label>Patient name last is too long</label>
             <description></description>
             <code-status>
@@ -6689,7 +6689,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0536</value>
+            <value>MQE0536</value>
             <label>Patient name last is too short</label>
             <description></description>
             <code-status>
@@ -6697,7 +6697,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0538</value>
+            <value>MQE0538</value>
             <label>Patient name last is unexpectedly long</label>
             <description></description>
             <code-status>
@@ -6705,7 +6705,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0537</value>
+            <value>MQE0537</value>
             <label>Patient name last is unexpectedly short</label>
             <description></description>
             <code-status>
@@ -6713,7 +6713,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0172</value>
+            <value>MQE0172</value>
             <label>Patient name may be temporary newborn name</label>
             <description></description>
             <code-status>
@@ -6721,7 +6721,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0173</value>
+            <value>MQE0173</value>
             <label>Patient name may be test name</label>
             <description></description>
             <code-status>
@@ -6729,7 +6729,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0405</value>
+            <value>MQE0405</value>
             <label>Patient name type code is deprecated</label>
             <description></description>
             <code-status>
@@ -6737,7 +6737,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0406</value>
+            <value>MQE0406</value>
             <label>Patient name type code is ignored</label>
             <description></description>
             <code-status>
@@ -6745,7 +6745,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0407</value>
+            <value>MQE0407</value>
             <label>Patient name type code is invalid</label>
             <description></description>
             <code-status>
@@ -6753,7 +6753,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0408</value>
+            <value>MQE0408</value>
             <label>Patient name type code is missing</label>
             <description></description>
             <code-status>
@@ -6761,7 +6761,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0516</value>
+            <value>MQE0516</value>
             <label>Patient name type code is not valued legal</label>
             <description></description>
             <code-status>
@@ -6769,7 +6769,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0409</value>
+            <value>MQE0409</value>
             <label>Patient name type code is unrecognized</label>
             <description></description>
             <code-status>
@@ -6777,7 +6777,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0174</value>
+            <value>MQE0174</value>
             <label>Patient phone is incomplete</label>
             <description></description>
             <code-status>
@@ -6785,7 +6785,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0175</value>
+            <value>MQE0175</value>
             <label>Patient phone is invalid</label>
             <description></description>
             <code-status>
@@ -6793,7 +6793,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0176</value>
+            <value>MQE0176</value>
             <label>Patient phone is missing</label>
             <description></description>
             <code-status>
@@ -6801,7 +6801,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0458</value>
+            <value>MQE0458</value>
             <label>Patient phone tel equip code is deprecated</label>
             <description></description>
             <code-status>
@@ -6809,7 +6809,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0459</value>
+            <value>MQE0459</value>
             <label>Patient phone tel equip code is ignored</label>
             <description></description>
             <code-status>
@@ -6817,7 +6817,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0460</value>
+            <value>MQE0460</value>
             <label>Patient phone tel equip code is invalid</label>
             <description></description>
             <code-status>
@@ -6825,7 +6825,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0461</value>
+            <value>MQE0461</value>
             <label>Patient phone tel equip code is missing</label>
             <description></description>
             <code-status>
@@ -6833,7 +6833,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0462</value>
+            <value>MQE0462</value>
             <label>Patient phone tel equip code is unrecognized</label>
             <description></description>
             <code-status>
@@ -6841,7 +6841,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0453</value>
+            <value>MQE0453</value>
             <label>Patient phone tel use code is deprecated</label>
             <description></description>
             <code-status>
@@ -6849,7 +6849,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0454</value>
+            <value>MQE0454</value>
             <label>Patient phone tel use code is ignored</label>
             <description></description>
             <code-status>
@@ -6857,7 +6857,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0455</value>
+            <value>MQE0455</value>
             <label>Patient phone tel use code is invalid</label>
             <description></description>
             <code-status>
@@ -6865,7 +6865,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0456</value>
+            <value>MQE0456</value>
             <label>Patient phone tel use code is missing</label>
             <description></description>
             <code-status>
@@ -6873,7 +6873,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0457</value>
+            <value>MQE0457</value>
             <label>Patient phone tel use code is unrecognized</label>
             <description></description>
             <code-status>
@@ -6881,7 +6881,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0177</value>
+            <value>MQE0177</value>
             <label>Patient primary facility id is deprecated</label>
             <description></description>
             <code-status>
@@ -6889,7 +6889,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0178</value>
+            <value>MQE0178</value>
             <label>Patient primary facility id is ignored</label>
             <description></description>
             <code-status>
@@ -6897,7 +6897,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0179</value>
+            <value>MQE0179</value>
             <label>Patient primary facility id is invalid</label>
             <description></description>
             <code-status>
@@ -6905,7 +6905,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0180</value>
+            <value>MQE0180</value>
             <label>Patient primary facility id is missing</label>
             <description></description>
             <code-status>
@@ -6913,7 +6913,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0181</value>
+            <value>MQE0181</value>
             <label>Patient primary facility id is unrecognized</label>
             <description></description>
             <code-status>
@@ -6921,7 +6921,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0182</value>
+            <value>MQE0182</value>
             <label>Patient primary facility name is missing</label>
             <description></description>
             <code-status>
@@ -6929,7 +6929,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0183</value>
+            <value>MQE0183</value>
             <label>Patient primary language is deprecated</label>
             <description></description>
             <code-status>
@@ -6937,7 +6937,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0184</value>
+            <value>MQE0184</value>
             <label>Patient primary language is ignored</label>
             <description></description>
             <code-status>
@@ -6945,7 +6945,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0185</value>
+            <value>MQE0185</value>
             <label>Patient primary language is invalid</label>
             <description></description>
             <code-status>
@@ -6953,7 +6953,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0186</value>
+            <value>MQE0186</value>
             <label>Patient primary language is missing</label>
             <description></description>
             <code-status>
@@ -6961,7 +6961,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0187</value>
+            <value>MQE0187</value>
             <label>Patient primary language is unrecognized</label>
             <description></description>
             <code-status>
@@ -6969,7 +6969,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0188</value>
+            <value>MQE0188</value>
             <label>Patient primary physician id is deprecated</label>
             <description></description>
             <code-status>
@@ -6977,7 +6977,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0189</value>
+            <value>MQE0189</value>
             <label>Patient primary physician id is ignored</label>
             <description></description>
             <code-status>
@@ -6985,7 +6985,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0190</value>
+            <value>MQE0190</value>
             <label>Patient primary physician id is invalid</label>
             <description></description>
             <code-status>
@@ -6993,7 +6993,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0191</value>
+            <value>MQE0191</value>
             <label>Patient primary physician id is missing</label>
             <description></description>
             <code-status>
@@ -7001,7 +7001,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0192</value>
+            <value>MQE0192</value>
             <label>Patient primary physician id is unrecognized</label>
             <description></description>
             <code-status>
@@ -7009,7 +7009,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0193</value>
+            <value>MQE0193</value>
             <label>Patient primary physician name is missing</label>
             <description></description>
             <code-status>
@@ -7017,7 +7017,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0194</value>
+            <value>MQE0194</value>
             <label>Patient protection indicator is deprecated</label>
             <description></description>
             <code-status>
@@ -7025,7 +7025,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0195</value>
+            <value>MQE0195</value>
             <label>Patient protection indicator is ignored</label>
             <description></description>
             <code-status>
@@ -7033,7 +7033,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0196</value>
+            <value>MQE0196</value>
             <label>Patient protection indicator is invalid</label>
             <description></description>
             <code-status>
@@ -7041,7 +7041,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0197</value>
+            <value>MQE0197</value>
             <label>Patient protection indicator is missing</label>
             <description></description>
             <code-status>
@@ -7049,7 +7049,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0198</value>
+            <value>MQE0198</value>
             <label>Patient protection indicator is unrecognized</label>
             <description></description>
             <code-status>
@@ -7057,7 +7057,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0199</value>
+            <value>MQE0199</value>
             <label>Patient protection indicator is valued as no</label>
             <description></description>
             <code-status>
@@ -7065,7 +7065,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0200</value>
+            <value>MQE0200</value>
             <label>Patient protection indicator is valued as yes</label>
             <description></description>
             <code-status>
@@ -7073,7 +7073,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0201</value>
+            <value>MQE0201</value>
             <label>Patient publicity code is deprecated</label>
             <description></description>
             <code-status>
@@ -7081,7 +7081,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0202</value>
+            <value>MQE0202</value>
             <label>Patient publicity code is ignored</label>
             <description></description>
             <code-status>
@@ -7089,7 +7089,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0203</value>
+            <value>MQE0203</value>
             <label>Patient publicity code is invalid</label>
             <description></description>
             <code-status>
@@ -7097,7 +7097,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0204</value>
+            <value>MQE0204</value>
             <label>Patient publicity code is missing</label>
             <description></description>
             <code-status>
@@ -7105,7 +7105,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0205</value>
+            <value>MQE0205</value>
             <label>Patient publicity code is unrecognized</label>
             <description></description>
             <code-status>
@@ -7113,7 +7113,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0206</value>
+            <value>MQE0206</value>
             <label>Patient race is deprecated</label>
             <description></description>
             <code-status>
@@ -7121,7 +7121,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0207</value>
+            <value>MQE0207</value>
             <label>Patient race is ignored</label>
             <description></description>
             <code-status>
@@ -7129,7 +7129,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0208</value>
+            <value>MQE0208</value>
             <label>Patient race is invalid</label>
             <description></description>
             <code-status>
@@ -7137,7 +7137,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0209</value>
+            <value>MQE0209</value>
             <label>Patient race is missing</label>
             <description></description>
             <code-status>
@@ -7145,7 +7145,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0210</value>
+            <value>MQE0210</value>
             <label>Patient race is unrecognized</label>
             <description></description>
             <code-status>
@@ -7153,7 +7153,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0211</value>
+            <value>MQE0211</value>
             <label>Patient registry id is missing</label>
             <description></description>
             <code-status>
@@ -7161,7 +7161,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0212</value>
+            <value>MQE0212</value>
             <label>Patient registry id is unrecognized</label>
             <description></description>
             <code-status>
@@ -7169,7 +7169,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0213</value>
+            <value>MQE0213</value>
             <label>Patient registry status is deprecated</label>
             <description></description>
             <code-status>
@@ -7177,7 +7177,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0214</value>
+            <value>MQE0214</value>
             <label>Patient registry status is ignored</label>
             <description></description>
             <code-status>
@@ -7185,7 +7185,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0215</value>
+            <value>MQE0215</value>
             <label>Patient registry status is invalid</label>
             <description></description>
             <code-status>
@@ -7193,7 +7193,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0216</value>
+            <value>MQE0216</value>
             <label>Patient registry status is missing</label>
             <description></description>
             <code-status>
@@ -7201,7 +7201,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0217</value>
+            <value>MQE0217</value>
             <label>Patient registry status is unrecognized</label>
             <description></description>
             <code-status>
@@ -7209,7 +7209,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0218</value>
+            <value>MQE0218</value>
             <label>Patient SSN is invalid</label>
             <description></description>
             <code-status>
@@ -7217,7 +7217,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0219</value>
+            <value>MQE0219</value>
             <label>Patient SSN is missing</label>
             <description></description>
             <code-status>
@@ -7225,7 +7225,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0393</value>
+            <value>MQE0393</value>
             <label>Patient submitter id authority is missing</label>
             <description></description>
             <code-status>
@@ -7233,7 +7233,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0220</value>
+            <value>MQE0220</value>
             <label>Patient submitter id is missing</label>
             <description></description>
             <code-status>
@@ -7241,7 +7241,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0512</value>
+            <value>MQE0512</value>
             <label>Patient submitter id type code is deprecated</label>
             <description></description>
             <code-status>
@@ -7249,7 +7249,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0515</value>
+            <value>MQE0515</value>
             <label>Patient submitter id type code is ignored</label>
             <description></description>
             <code-status>
@@ -7257,7 +7257,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0513</value>
+            <value>MQE0513</value>
             <label>Patient submitter id type code is invalid</label>
             <description></description>
             <code-status>
@@ -7265,7 +7265,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0394</value>
+            <value>MQE0394</value>
             <label>Patient submitter id type code is missing</label>
             <description></description>
             <code-status>
@@ -7273,7 +7273,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0514</value>
+            <value>MQE0514</value>
             <label>Patient submitter id type code is unrecognized</label>
             <description></description>
             <code-status>
@@ -7281,7 +7281,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0586</value>
+            <value>MQE0586</value>
             <label>Patient system creation date is before birth</label>
             <description></description>
             <code-status>
@@ -7289,7 +7289,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0587</value>
+            <value>MQE0587</value>
             <label>Patient system creation date is in future</label>
             <description></description>
             <code-status>
@@ -7297,7 +7297,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0585</value>
+            <value>MQE0585</value>
             <label>Patient system creation date is invalid</label>
             <description></description>
             <code-status>
@@ -7305,7 +7305,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0584</value>
+            <value>MQE0584</value>
             <label>Patient system creation date is missing</label>
             <description></description>
             <code-status>
@@ -7313,7 +7313,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0221</value>
+            <value>MQE0221</value>
             <label>Patient VFC effective date is before birth</label>
             <description></description>
             <code-status>
@@ -7321,7 +7321,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0222</value>
+            <value>MQE0222</value>
             <label>Patient VFC effective date is in future</label>
             <description></description>
             <code-status>
@@ -7329,7 +7329,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0223</value>
+            <value>MQE0223</value>
             <label>Patient VFC effective date is invalid</label>
             <description></description>
             <code-status>
@@ -7337,7 +7337,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0224</value>
+            <value>MQE0224</value>
             <label>Patient VFC effective date is missing</label>
             <description></description>
             <code-status>
@@ -7345,7 +7345,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0225</value>
+            <value>MQE0225</value>
             <label>Patient VFC status is deprecated</label>
             <description></description>
             <code-status>
@@ -7353,7 +7353,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0226</value>
+            <value>MQE0226</value>
             <label>Patient VFC status is ignored</label>
             <description></description>
             <code-status>
@@ -7361,7 +7361,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0227</value>
+            <value>MQE0227</value>
             <label>Patient VFC status is invalid</label>
             <description></description>
             <code-status>
@@ -7369,7 +7369,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0228</value>
+            <value>MQE0228</value>
             <label>Patient VFC status is missing</label>
             <description></description>
             <code-status>
@@ -7377,7 +7377,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0229</value>
+            <value>MQE0229</value>
             <label>Patient VFC status is unrecognized</label>
             <description></description>
             <code-status>
@@ -7385,7 +7385,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0230</value>
+            <value>MQE0230</value>
             <label>Patient WIC id is invalid</label>
             <description></description>
             <code-status>
@@ -7393,7 +7393,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0231</value>
+            <value>MQE0231</value>
             <label>Patient WIC id is missing</label>
             <description></description>
             <code-status>
@@ -7401,7 +7401,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0232</value>
+            <value>MQE0232</value>
             <label>Vaccination action code is deprecated</label>
             <description></description>
             <code-status>
@@ -7409,7 +7409,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0233</value>
+            <value>MQE0233</value>
             <label>Vaccination action code is ignored</label>
             <description></description>
             <code-status>
@@ -7417,7 +7417,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0234</value>
+            <value>MQE0234</value>
             <label>Vaccination action code is invalid</label>
             <description></description>
             <code-status>
@@ -7425,7 +7425,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0235</value>
+            <value>MQE0235</value>
             <label>Vaccination action code is missing</label>
             <description></description>
             <code-status>
@@ -7433,7 +7433,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0236</value>
+            <value>MQE0236</value>
             <label>Vaccination action code is unrecognized</label>
             <description></description>
             <code-status>
@@ -7441,7 +7441,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0237</value>
+            <value>MQE0237</value>
             <label>Vaccination action code is valued as add</label>
             <description></description>
             <code-status>
@@ -7449,7 +7449,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0238</value>
+            <value>MQE0238</value>
             <label>Vaccination action code is valued as add or update</label>
             <description></description>
             <code-status>
@@ -7457,7 +7457,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0239</value>
+            <value>MQE0239</value>
             <label>Vaccination action code is valued as delete</label>
             <description></description>
             <code-status>
@@ -7465,7 +7465,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0240</value>
+            <value>MQE0240</value>
             <label>Vaccination action code is valued as update</label>
             <description></description>
             <code-status>
@@ -7473,7 +7473,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0241</value>
+            <value>MQE0241</value>
             <label>Vaccination admin code is deprecated</label>
             <description></description>
             <code-status>
@@ -7481,7 +7481,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0242</value>
+            <value>MQE0242</value>
             <label>Vaccination admin code is ignored</label>
             <description></description>
             <code-status>
@@ -7489,7 +7489,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0243</value>
+            <value>MQE0243</value>
             <label>Vaccination admin code is invalid</label>
             <description></description>
             <code-status>
@@ -7497,7 +7497,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0491</value>
+            <value>MQE0491</value>
             <label>Vaccination admin code is invalid for date administered</label>
             <description></description>
             <code-status>
@@ -7505,7 +7505,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0244</value>
+            <value>MQE0244</value>
             <label>Vaccination admin code is missing</label>
             <description></description>
             <code-status>
@@ -7513,7 +7513,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0245</value>
+            <value>MQE0245</value>
             <label>Vaccination admin code is not specific</label>
             <description></description>
             <code-status>
@@ -7521,7 +7521,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0246</value>
+            <value>MQE0246</value>
             <label>Vaccination admin code is not vaccine</label>
             <description></description>
             <code-status>
@@ -7529,7 +7529,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0490</value>
+            <value>MQE0490</value>
             <label>Vaccination admin code is unexpected for date administered</label>
             <description></description>
             <code-status>
@@ -7537,7 +7537,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0247</value>
+            <value>MQE0247</value>
             <label>Vaccination admin code is unrecognized</label>
             <description></description>
             <code-status>
@@ -7545,7 +7545,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0248</value>
+            <value>MQE0248</value>
             <label>Vaccination admin code is valued as not administered</label>
             <description></description>
             <code-status>
@@ -7553,7 +7553,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0249</value>
+            <value>MQE0249</value>
             <label>Vaccination admin code is valued as unknown</label>
             <description></description>
             <code-status>
@@ -7561,7 +7561,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0250</value>
+            <value>MQE0250</value>
             <label>Vaccination admin code may be variation of previously reported codes</label>
             <description></description>
             <code-status>
@@ -7569,7 +7569,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0484</value>
+            <value>MQE0484</value>
             <label>Vaccination admin code table is invalid</label>
             <description></description>
             <code-status>
@@ -7577,7 +7577,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0483</value>
+            <value>MQE0483</value>
             <label>Vaccination admin code table is missing</label>
             <description></description>
             <code-status>
@@ -7585,7 +7585,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0266</value>
+            <value>MQE0266</value>
             <label>Vaccination admin date end is different from start date</label>
             <description></description>
             <code-status>
@@ -7593,7 +7593,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0267</value>
+            <value>MQE0267</value>
             <label>Vaccination admin date end is missing</label>
             <description></description>
             <code-status>
@@ -7601,7 +7601,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0251</value>
+            <value>MQE0251</value>
             <label>Vaccination admin date is after lot expiration date</label>
             <description></description>
             <code-status>
@@ -7609,7 +7609,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0252</value>
+            <value>MQE0252</value>
             <label>Vaccination admin date is after message submitted</label>
             <description></description>
             <code-status>
@@ -7617,7 +7617,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0253</value>
+            <value>MQE0253</value>
             <label>Vaccination admin date is after patient death date</label>
             <description></description>
             <code-status>
@@ -7625,7 +7625,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0254</value>
+            <value>MQE0254</value>
             <label>Vaccination admin date is after system entry date</label>
             <description></description>
             <code-status>
@@ -7633,7 +7633,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0255</value>
+            <value>MQE0255</value>
             <label>Vaccination admin date is before birth</label>
             <description></description>
             <code-status>
@@ -7641,7 +7641,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0256</value>
+            <value>MQE0256</value>
             <label>Vaccination admin date is before or after expected vaccine usage range</label>
             <description></description>
             <code-status>
@@ -7649,7 +7649,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0257</value>
+            <value>MQE0257</value>
             <label>Vaccination admin date is before or after licensed vaccine range</label>
             <description></description>
             <code-status>
@@ -7657,7 +7657,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0258</value>
+            <value>MQE0258</value>
             <label>Vaccination admin date is before or after when expected for patient age</label>
             <description></description>
             <code-status>
@@ -7665,7 +7665,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0259</value>
+            <value>MQE0259</value>
             <label>Vaccination admin date is before or after when valid for patient age</label>
             <description></description>
             <code-status>
@@ -7673,7 +7673,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0260</value>
+            <value>MQE0260</value>
             <label>Vaccination admin date is invalid</label>
             <description></description>
             <code-status>
@@ -7681,7 +7681,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0261</value>
+            <value>MQE0261</value>
             <label>Vaccination admin date is missing</label>
             <description></description>
             <code-status>
@@ -7689,7 +7689,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0262</value>
+            <value>MQE0262</value>
             <label>Vaccination admin date is on 15th day of month</label>
             <description></description>
             <code-status>
@@ -7697,7 +7697,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0263</value>
+            <value>MQE0263</value>
             <label>Vaccination admin date is on first day of month</label>
             <description></description>
             <code-status>
@@ -7705,7 +7705,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0264</value>
+            <value>MQE0264</value>
             <label>Vaccination admin date is on last day of month</label>
             <description></description>
             <code-status>
@@ -7713,7 +7713,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0265</value>
+            <value>MQE0265</value>
             <label>Vaccination admin date is reported late</label>
             <description></description>
             <code-status>
@@ -7721,7 +7721,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0268</value>
+            <value>MQE0268</value>
             <label>Vaccination administered amount is invalid</label>
             <description></description>
             <code-status>
@@ -7729,7 +7729,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0269</value>
+            <value>MQE0269</value>
             <label>Vaccination administered amount is missing</label>
             <description></description>
             <code-status>
@@ -7737,7 +7737,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0271</value>
+            <value>MQE0271</value>
             <label>Vaccination administered amount is valued as unknown</label>
             <description></description>
             <code-status>
@@ -7745,7 +7745,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0270</value>
+            <value>MQE0270</value>
             <label>Vaccination administered amount is valued as zero</label>
             <description></description>
             <code-status>
@@ -7753,7 +7753,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0447</value>
+            <value>MQE0447</value>
             <label>Vaccination administered unit is deprecated</label>
             <description></description>
             <code-status>
@@ -7761,7 +7761,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0448</value>
+            <value>MQE0448</value>
             <label>Vaccination administered unit is ignored</label>
             <description></description>
             <code-status>
@@ -7769,7 +7769,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0449</value>
+            <value>MQE0449</value>
             <label>Vaccination administered unit is invalid</label>
             <description></description>
             <code-status>
@@ -7777,7 +7777,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0272</value>
+            <value>MQE0272</value>
             <label>Vaccination administered unit is missing</label>
             <description></description>
             <code-status>
@@ -7785,7 +7785,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0450</value>
+            <value>MQE0450</value>
             <label>Vaccination administered unit is unrecognized</label>
             <description></description>
             <code-status>
@@ -7793,7 +7793,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0273</value>
+            <value>MQE0273</value>
             <label>Vaccination body route is deprecated</label>
             <description></description>
             <code-status>
@@ -7801,7 +7801,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0274</value>
+            <value>MQE0274</value>
             <label>Vaccination body route is ignored</label>
             <description></description>
             <code-status>
@@ -7809,7 +7809,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0275</value>
+            <value>MQE0275</value>
             <label>Vaccination body route is invalid</label>
             <description></description>
             <code-status>
@@ -7817,7 +7817,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0610</value>
+            <value>MQE0610</value>
             <label>Vaccination body route is invalid for body site indicated</label>
             <description></description>
             <code-status>
@@ -7825,7 +7825,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0276</value>
+            <value>MQE0276</value>
             <label>Vaccination body route is invalid for vaccine indicated</label>
             <description></description>
             <code-status>
@@ -7833,7 +7833,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0277</value>
+            <value>MQE0277</value>
             <label>Vaccination body route is missing</label>
             <description></description>
             <code-status>
@@ -7841,7 +7841,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0278</value>
+            <value>MQE0278</value>
             <label>Vaccination body route is unrecognized</label>
             <description></description>
             <code-status>
@@ -7849,7 +7849,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0279</value>
+            <value>MQE0279</value>
             <label>Vaccination body site is deprecated</label>
             <description></description>
             <code-status>
@@ -7857,7 +7857,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0280</value>
+            <value>MQE0280</value>
             <label>Vaccination body site is ignored</label>
             <description></description>
             <code-status>
@@ -7865,7 +7865,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0281</value>
+            <value>MQE0281</value>
             <label>Vaccination body site is invalid</label>
             <description></description>
             <code-status>
@@ -7873,7 +7873,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0282</value>
+            <value>MQE0282</value>
             <label>Vaccination body site is invalid for vaccine indicated</label>
             <description></description>
             <code-status>
@@ -7881,7 +7881,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0283</value>
+            <value>MQE0283</value>
             <label>Vaccination body site is missing</label>
             <description></description>
             <code-status>
@@ -7889,7 +7889,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0284</value>
+            <value>MQE0284</value>
             <label>Vaccination body site is unrecognized</label>
             <description></description>
             <code-status>
@@ -7897,7 +7897,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0285</value>
+            <value>MQE0285</value>
             <label>Vaccination completion status is deprecated</label>
             <description></description>
             <code-status>
@@ -7905,7 +7905,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0286</value>
+            <value>MQE0286</value>
             <label>Vaccination completion status is ignored</label>
             <description></description>
             <code-status>
@@ -7913,7 +7913,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0287</value>
+            <value>MQE0287</value>
             <label>Vaccination completion status is invalid</label>
             <description></description>
             <code-status>
@@ -7921,7 +7921,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0288</value>
+            <value>MQE0288</value>
             <label>Vaccination completion status is missing</label>
             <description></description>
             <code-status>
@@ -7929,7 +7929,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0289</value>
+            <value>MQE0289</value>
             <label>Vaccination completion status is unrecognized</label>
             <description></description>
             <code-status>
@@ -7937,7 +7937,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0290</value>
+            <value>MQE0290</value>
             <label>Vaccination completion status is valued as completed</label>
             <description></description>
             <code-status>
@@ -7945,7 +7945,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0291</value>
+            <value>MQE0291</value>
             <label>Vaccination completion status is valued as not administered</label>
             <description></description>
             <code-status>
@@ -7953,7 +7953,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0292</value>
+            <value>MQE0292</value>
             <label>Vaccination completion status is valued as partially administered</label>
             <description></description>
             <code-status>
@@ -7961,7 +7961,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0293</value>
+            <value>MQE0293</value>
             <label>Vaccination completion status is valued as refused</label>
             <description></description>
             <code-status>
@@ -7969,7 +7969,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0294</value>
+            <value>MQE0294</value>
             <label>Vaccination confidentiality code is deprecated</label>
             <description></description>
             <code-status>
@@ -7977,7 +7977,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0295</value>
+            <value>MQE0295</value>
             <label>Vaccination confidentiality code is ignored</label>
             <description></description>
             <code-status>
@@ -7985,7 +7985,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0296</value>
+            <value>MQE0296</value>
             <label>Vaccination confidentiality code is invalid</label>
             <description></description>
             <code-status>
@@ -7993,7 +7993,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0297</value>
+            <value>MQE0297</value>
             <label>Vaccination confidentiality code is missing</label>
             <description></description>
             <code-status>
@@ -8001,7 +8001,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0298</value>
+            <value>MQE0298</value>
             <label>Vaccination confidentiality code is unrecognized</label>
             <description></description>
             <code-status>
@@ -8009,7 +8009,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0299</value>
+            <value>MQE0299</value>
             <label>Vaccination confidentiality code is valued as restricted</label>
             <description></description>
             <code-status>
@@ -8017,7 +8017,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0300</value>
+            <value>MQE0300</value>
             <label>Vaccination CPT code is deprecated</label>
             <description></description>
             <code-status>
@@ -8025,7 +8025,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0301</value>
+            <value>MQE0301</value>
             <label>Vaccination CPT code is ignored</label>
             <description></description>
             <code-status>
@@ -8033,7 +8033,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0302</value>
+            <value>MQE0302</value>
             <label>Vaccination CPT code is invalid</label>
             <description></description>
             <code-status>
@@ -8041,7 +8041,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0489</value>
+            <value>MQE0489</value>
             <label>Vaccination CPT code is invalid for date administered</label>
             <description></description>
             <code-status>
@@ -8049,7 +8049,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0303</value>
+            <value>MQE0303</value>
             <label>Vaccination CPT code is missing</label>
             <description></description>
             <code-status>
@@ -8057,7 +8057,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0488</value>
+            <value>MQE0488</value>
             <label>Vaccination CPT code is unexpected for date administered</label>
             <description></description>
             <code-status>
@@ -8065,7 +8065,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0304</value>
+            <value>MQE0304</value>
             <label>Vaccination CPT code is unrecognized</label>
             <description></description>
             <code-status>
@@ -8073,7 +8073,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0310</value>
+            <value>MQE0310</value>
             <label>Vaccination CVX code and CPT code are inconsistent</label>
             <description></description>
             <code-status>
@@ -8081,7 +8081,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0305</value>
+            <value>MQE0305</value>
             <label>Vaccination CVX code is deprecated</label>
             <description></description>
             <code-status>
@@ -8089,7 +8089,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0306</value>
+            <value>MQE0306</value>
             <label>Vaccination CVX code is ignored</label>
             <description></description>
             <code-status>
@@ -8097,7 +8097,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0307</value>
+            <value>MQE0307</value>
             <label>Vaccination CVX code is invalid</label>
             <description></description>
             <code-status>
@@ -8105,7 +8105,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0487</value>
+            <value>MQE0487</value>
             <label>Vaccination CVX code is invalid for date administered</label>
             <description></description>
             <code-status>
@@ -8113,7 +8113,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0308</value>
+            <value>MQE0308</value>
             <label>Vaccination CVX code is missing</label>
             <description></description>
             <code-status>
@@ -8121,7 +8121,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0486</value>
+            <value>MQE0486</value>
             <label>Vaccination CVX code is unexpected for date administered</label>
             <description></description>
             <code-status>
@@ -8129,7 +8129,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0309</value>
+            <value>MQE0309</value>
             <label>Vaccination CVX code is unrecognized</label>
             <description></description>
             <code-status>
@@ -8137,7 +8137,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0311</value>
+            <value>MQE0311</value>
             <label>Vaccination facility id is deprecated</label>
             <description></description>
             <code-status>
@@ -8145,7 +8145,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0312</value>
+            <value>MQE0312</value>
             <label>Vaccination facility id is ignored</label>
             <description></description>
             <code-status>
@@ -8153,7 +8153,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0313</value>
+            <value>MQE0313</value>
             <label>Vaccination facility id is invalid</label>
             <description></description>
             <code-status>
@@ -8161,7 +8161,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0314</value>
+            <value>MQE0314</value>
             <label>Vaccination facility id is missing</label>
             <description></description>
             <code-status>
@@ -8169,7 +8169,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0315</value>
+            <value>MQE0315</value>
             <label>Vaccination facility id is unrecognized</label>
             <description></description>
             <code-status>
@@ -8177,7 +8177,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0316</value>
+            <value>MQE0316</value>
             <label>Vaccination facility name is missing</label>
             <description></description>
             <code-status>
@@ -8185,7 +8185,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0588</value>
+            <value>MQE0588</value>
             <label>Vaccination facility type is deprecated</label>
             <description></description>
             <code-status>
@@ -8193,7 +8193,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0589</value>
+            <value>MQE0589</value>
             <label>Vaccination facility type is ignored</label>
             <description></description>
             <code-status>
@@ -8201,7 +8201,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0590</value>
+            <value>MQE0590</value>
             <label>Vaccination facility type is invalid</label>
             <description></description>
             <code-status>
@@ -8209,7 +8209,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0591</value>
+            <value>MQE0591</value>
             <label>Vaccination facility type is missing</label>
             <description></description>
             <code-status>
@@ -8217,7 +8217,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0592</value>
+            <value>MQE0592</value>
             <label>Vaccination facility type is unrecognized</label>
             <description></description>
             <code-status>
@@ -8225,7 +8225,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0594</value>
+            <value>MQE0594</value>
             <label>Vaccination facility type is valued as private</label>
             <description></description>
             <code-status>
@@ -8233,7 +8233,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0593</value>
+            <value>MQE0593</value>
             <label>Vaccination facility type is valued as public</label>
             <description></description>
             <code-status>
@@ -8241,7 +8241,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0379</value>
+            <value>MQE0379</value>
             <label>Vaccination filler order number is deprecated</label>
             <description></description>
             <code-status>
@@ -8249,7 +8249,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0380</value>
+            <value>MQE0380</value>
             <label>Vaccination filler order number is ignored</label>
             <description></description>
             <code-status>
@@ -8257,7 +8257,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0381</value>
+            <value>MQE0381</value>
             <label>Vaccination filler order number is invalid</label>
             <description></description>
             <code-status>
@@ -8265,7 +8265,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0382</value>
+            <value>MQE0382</value>
             <label>Vaccination filler order number is missing</label>
             <description></description>
             <code-status>
@@ -8273,7 +8273,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0383</value>
+            <value>MQE0383</value>
             <label>Vaccination filler order number is unrecognized</label>
             <description></description>
             <code-status>
@@ -8281,7 +8281,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0465</value>
+            <value>MQE0465</value>
             <label>Vaccination financial eligibility code is deprecated</label>
             <description></description>
             <code-status>
@@ -8289,7 +8289,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0466</value>
+            <value>MQE0466</value>
             <label>Vaccination financial eligibility code is ignored</label>
             <description></description>
             <code-status>
@@ -8297,7 +8297,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0467</value>
+            <value>MQE0467</value>
             <label>Vaccination financial eligibility code is invalid</label>
             <description></description>
             <code-status>
@@ -8305,7 +8305,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0468</value>
+            <value>MQE0468</value>
             <label>Vaccination financial eligibility code is missing</label>
             <description></description>
             <code-status>
@@ -8313,7 +8313,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0469</value>
+            <value>MQE0469</value>
             <label>Vaccination financial eligibility code is unrecognized</label>
             <description></description>
             <code-status>
@@ -8321,7 +8321,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0317</value>
+            <value>MQE0317</value>
             <label>Vaccination given by is deprecated</label>
             <description></description>
             <code-status>
@@ -8329,7 +8329,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0318</value>
+            <value>MQE0318</value>
             <label>Vaccination given by is ignored</label>
             <description></description>
             <code-status>
@@ -8337,7 +8337,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0319</value>
+            <value>MQE0319</value>
             <label>Vaccination given by is invalid</label>
             <description></description>
             <code-status>
@@ -8345,7 +8345,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0320</value>
+            <value>MQE0320</value>
             <label>Vaccination given by is missing</label>
             <description></description>
             <code-status>
@@ -8353,7 +8353,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0321</value>
+            <value>MQE0321</value>
             <label>Vaccination given by is unrecognized</label>
             <description></description>
             <code-status>
@@ -8361,7 +8361,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0322</value>
+            <value>MQE0322</value>
             <label>Vaccination id is missing</label>
             <description></description>
             <code-status>
@@ -8369,7 +8369,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0323</value>
+            <value>MQE0323</value>
             <label>Vaccination id of receiver is missing</label>
             <description></description>
             <code-status>
@@ -8377,7 +8377,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0324</value>
+            <value>MQE0324</value>
             <label>Vaccination id of receiver is unrecognized</label>
             <description></description>
             <code-status>
@@ -8385,7 +8385,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0325</value>
+            <value>MQE0325</value>
             <label>Vaccination id of sender is missing</label>
             <description></description>
             <code-status>
@@ -8393,7 +8393,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0326</value>
+            <value>MQE0326</value>
             <label>Vaccination id of sender is unrecognized</label>
             <description></description>
             <code-status>
@@ -8401,7 +8401,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0327</value>
+            <value>MQE0327</value>
             <label>Vaccination information source is administered but appears to historical</label>
             <description></description>
             <code-status>
@@ -8409,7 +8409,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0328</value>
+            <value>MQE0328</value>
             <label>Vaccination information source is deprecated</label>
             <description></description>
             <code-status>
@@ -8417,7 +8417,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0329</value>
+            <value>MQE0329</value>
             <label>Vaccination information source is historical but appears to be administered</label>
             <description></description>
             <code-status>
@@ -8425,7 +8425,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0330</value>
+            <value>MQE0330</value>
             <label>Vaccination information source is ignored</label>
             <description></description>
             <code-status>
@@ -8433,7 +8433,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0331</value>
+            <value>MQE0331</value>
             <label>Vaccination information source is invalid</label>
             <description></description>
             <code-status>
@@ -8441,7 +8441,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0332</value>
+            <value>MQE0332</value>
             <label>Vaccination information source is missing</label>
             <description></description>
             <code-status>
@@ -8449,7 +8449,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0333</value>
+            <value>MQE0333</value>
             <label>Vaccination information source is unrecognized</label>
             <description></description>
             <code-status>
@@ -8457,7 +8457,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0334</value>
+            <value>MQE0334</value>
             <label>Vaccination information source is valued as administered</label>
             <description></description>
             <code-status>
@@ -8465,7 +8465,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0335</value>
+            <value>MQE0335</value>
             <label>Vaccination information source is valued as historical</label>
             <description></description>
             <code-status>
@@ -8473,7 +8473,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0336</value>
+            <value>MQE0336</value>
             <label>Vaccination lot expiration date is invalid</label>
             <description></description>
             <code-status>
@@ -8481,7 +8481,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0337</value>
+            <value>MQE0337</value>
             <label>Vaccination lot expiration date is missing</label>
             <description></description>
             <code-status>
@@ -8489,7 +8489,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0338</value>
+            <value>MQE0338</value>
             <label>Vaccination lot number is invalid</label>
             <description></description>
             <code-status>
@@ -8497,7 +8497,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0339</value>
+            <value>MQE0339</value>
             <label>Vaccination lot number is missing</label>
             <description></description>
             <code-status>
@@ -8505,7 +8505,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0340</value>
+            <value>MQE0340</value>
             <label>Vaccination manufacturer code is deprecated</label>
             <description></description>
             <code-status>
@@ -8513,7 +8513,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0341</value>
+            <value>MQE0341</value>
             <label>Vaccination manufacturer code is ignored</label>
             <description></description>
             <code-status>
@@ -8521,7 +8521,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0342</value>
+            <value>MQE0342</value>
             <label>Vaccination manufacturer code is invalid</label>
             <description></description>
             <code-status>
@@ -8529,7 +8529,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0495</value>
+            <value>MQE0495</value>
             <label>Vaccination manufacturer code is invalid for date administered</label>
             <description></description>
             <code-status>
@@ -8537,7 +8537,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0343</value>
+            <value>MQE0343</value>
             <label>Vaccination manufacturer code is missing</label>
             <description></description>
             <code-status>
@@ -8545,7 +8545,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0494</value>
+            <value>MQE0494</value>
             <label>Vaccination manufacturer code is unexpected for date administered</label>
             <description></description>
             <code-status>
@@ -8553,7 +8553,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0344</value>
+            <value>MQE0344</value>
             <label>Vaccination manufacturer code is unrecognized</label>
             <description></description>
             <code-status>
@@ -8561,7 +8561,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0373</value>
+            <value>MQE0373</value>
             <label>Vaccination order control code is deprecated</label>
             <description></description>
             <code-status>
@@ -8569,7 +8569,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0369</value>
+            <value>MQE0369</value>
             <label>Vaccination order control code is ignored</label>
             <description></description>
             <code-status>
@@ -8577,7 +8577,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0370</value>
+            <value>MQE0370</value>
             <label>Vaccination order control code is invalid</label>
             <description></description>
             <code-status>
@@ -8585,7 +8585,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0371</value>
+            <value>MQE0371</value>
             <label>Vaccination order control code is missing</label>
             <description></description>
             <code-status>
@@ -8593,7 +8593,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0372</value>
+            <value>MQE0372</value>
             <label>Vaccination order control code is unrecognized</label>
             <description></description>
             <code-status>
@@ -8601,7 +8601,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0442</value>
+            <value>MQE0442</value>
             <label>Vaccination order facility id is deprecated</label>
             <description></description>
             <code-status>
@@ -8609,7 +8609,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0443</value>
+            <value>MQE0443</value>
             <label>Vaccination order facility id is ignored</label>
             <description></description>
             <code-status>
@@ -8617,7 +8617,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0444</value>
+            <value>MQE0444</value>
             <label>Vaccination order facility id is invalid</label>
             <description></description>
             <code-status>
@@ -8625,7 +8625,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0445</value>
+            <value>MQE0445</value>
             <label>Vaccination order facility id is missing</label>
             <description></description>
             <code-status>
@@ -8633,7 +8633,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0446</value>
+            <value>MQE0446</value>
             <label>Vaccination order facility id is unrecognized</label>
             <description></description>
             <code-status>
@@ -8641,7 +8641,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0441</value>
+            <value>MQE0441</value>
             <label>Vaccination order facility name is missing</label>
             <description></description>
             <code-status>
@@ -8649,7 +8649,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0345</value>
+            <value>MQE0345</value>
             <label>Vaccination ordered by is deprecated</label>
             <description></description>
             <code-status>
@@ -8657,7 +8657,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0346</value>
+            <value>MQE0346</value>
             <label>Vaccination ordered by is ignored</label>
             <description></description>
             <code-status>
@@ -8665,7 +8665,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0347</value>
+            <value>MQE0347</value>
             <label>Vaccination ordered by is invalid</label>
             <description></description>
             <code-status>
@@ -8673,7 +8673,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0348</value>
+            <value>MQE0348</value>
             <label>Vaccination ordered by is missing</label>
             <description></description>
             <code-status>
@@ -8681,7 +8681,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0349</value>
+            <value>MQE0349</value>
             <label>Vaccination ordered by is unrecognized</label>
             <description></description>
             <code-status>
@@ -8689,7 +8689,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0384</value>
+            <value>MQE0384</value>
             <label>Vaccination placer order number is deprecated</label>
             <description></description>
             <code-status>
@@ -8697,7 +8697,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0385</value>
+            <value>MQE0385</value>
             <label>Vaccination placer order number is ignored</label>
             <description></description>
             <code-status>
@@ -8705,7 +8705,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0386</value>
+            <value>MQE0386</value>
             <label>Vaccination placer order number is invalid</label>
             <description></description>
             <code-status>
@@ -8713,7 +8713,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0387</value>
+            <value>MQE0387</value>
             <label>Vaccination placer order number is missing</label>
             <description></description>
             <code-status>
@@ -8721,7 +8721,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0388</value>
+            <value>MQE0388</value>
             <label>Vaccination placer order number is unrecognized</label>
             <description></description>
             <code-status>
@@ -8729,7 +8729,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0350</value>
+            <value>MQE0350</value>
             <label>Vaccination product is deprecated</label>
             <description></description>
             <code-status>
@@ -8737,7 +8737,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0351</value>
+            <value>MQE0351</value>
             <label>Vaccination product is invalid</label>
             <description></description>
             <code-status>
@@ -8745,7 +8745,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0493</value>
+            <value>MQE0493</value>
             <label>Vaccination product is invalid for date administered</label>
             <description></description>
             <code-status>
@@ -8753,7 +8753,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0352</value>
+            <value>MQE0352</value>
             <label>Vaccination product is missing</label>
             <description></description>
             <code-status>
@@ -8761,7 +8761,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0492</value>
+            <value>MQE0492</value>
             <label>Vaccination product is unexpected for date administered</label>
             <description></description>
             <code-status>
@@ -8769,7 +8769,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0353</value>
+            <value>MQE0353</value>
             <label>Vaccination product is unrecognized</label>
             <description></description>
             <code-status>
@@ -8777,7 +8777,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0354</value>
+            <value>MQE0354</value>
             <label>Vaccination recorded by is deprecated</label>
             <description></description>
             <code-status>
@@ -8785,7 +8785,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0355</value>
+            <value>MQE0355</value>
             <label>Vaccination recorded by is ignored</label>
             <description></description>
             <code-status>
@@ -8793,7 +8793,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0356</value>
+            <value>MQE0356</value>
             <label>Vaccination recorded by is invalid</label>
             <description></description>
             <code-status>
@@ -8801,7 +8801,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0357</value>
+            <value>MQE0357</value>
             <label>Vaccination recorded by is missing</label>
             <description></description>
             <code-status>
@@ -8809,7 +8809,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0358</value>
+            <value>MQE0358</value>
             <label>Vaccination recorded by is unrecognized</label>
             <description></description>
             <code-status>
@@ -8817,7 +8817,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0359</value>
+            <value>MQE0359</value>
             <label>Vaccination refusal reason conflicts completion status</label>
             <description></description>
             <code-status>
@@ -8825,7 +8825,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0360</value>
+            <value>MQE0360</value>
             <label>Vaccination refusal reason is deprecated</label>
             <description></description>
             <code-status>
@@ -8833,7 +8833,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0361</value>
+            <value>MQE0361</value>
             <label>Vaccination refusal reason is ignored</label>
             <description></description>
             <code-status>
@@ -8841,7 +8841,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0362</value>
+            <value>MQE0362</value>
             <label>Vaccination refusal reason is invalid</label>
             <description></description>
             <code-status>
@@ -8849,7 +8849,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0363</value>
+            <value>MQE0363</value>
             <label>Vaccination refusal reason is missing</label>
             <description></description>
             <code-status>
@@ -8857,7 +8857,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0364</value>
+            <value>MQE0364</value>
             <label>Vaccination refusal reason is unrecognized</label>
             <description></description>
             <code-status>
@@ -8865,7 +8865,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0365</value>
+            <value>MQE0365</value>
             <label>Vaccination system entry time is in future</label>
             <description></description>
             <code-status>
@@ -8873,7 +8873,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0366</value>
+            <value>MQE0366</value>
             <label>Vaccination system entry time is invalid</label>
             <description></description>
             <code-status>
@@ -8881,7 +8881,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0367</value>
+            <value>MQE0367</value>
             <label>Vaccination system entry time is missing</label>
             <description></description>
             <code-status>
@@ -8889,7 +8889,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0601</value>
+            <value>MQE0601</value>
             <label>Vaccination trade name and manufacturer are inconsistent</label>
             <description></description>
             <code-status>
@@ -8897,7 +8897,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0600</value>
+            <value>MQE0600</value>
             <label>Vaccination trade name and vaccine are inconsistent</label>
             <description></description>
             <code-status>
@@ -8905,7 +8905,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0595</value>
+            <value>MQE0595</value>
             <label>Vaccination trade name is deprecated</label>
             <description></description>
             <code-status>
@@ -8913,7 +8913,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0596</value>
+            <value>MQE0596</value>
             <label>Vaccination trade name is ignored</label>
             <description></description>
             <code-status>
@@ -8921,7 +8921,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0597</value>
+            <value>MQE0597</value>
             <label>Vaccination trade name is invalid</label>
             <description></description>
             <code-status>
@@ -8929,7 +8929,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0598</value>
+            <value>MQE0598</value>
             <label>Vaccination trade name is missing</label>
             <description></description>
             <code-status>
@@ -8937,7 +8937,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0599</value>
+            <value>MQE0599</value>
             <label>Vaccination trade name is unrecognized</label>
             <description></description>
             <code-status>
@@ -8945,7 +8945,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0604</value>
+            <value>MQE0604</value>
             <label>Vaccination validity code is deprecated</label>
             <description></description>
             <code-status>
@@ -8953,7 +8953,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0605</value>
+            <value>MQE0605</value>
             <label>Vaccination validity code is ignored</label>
             <description></description>
             <code-status>
@@ -8961,7 +8961,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0603</value>
+            <value>MQE0603</value>
             <label>Vaccination validity code is invalid</label>
             <description></description>
             <code-status>
@@ -8969,7 +8969,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0606</value>
+            <value>MQE0606</value>
             <label>Vaccination validity code is missing</label>
             <description></description>
             <code-status>
@@ -8977,7 +8977,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0607</value>
+            <value>MQE0607</value>
             <label>Vaccination validity code is unrecognized</label>
             <description></description>
             <code-status>
@@ -8985,7 +8985,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0609</value>
+            <value>MQE0609</value>
             <label>Vaccination validity code is valued as invalid</label>
             <description></description>
             <code-status>
@@ -8993,7 +8993,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0608</value>
+            <value>MQE0608</value>
             <label>Vaccination validity code is valued as valid</label>
             <description></description>
             <code-status>
@@ -9001,7 +9001,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0531</value>
+            <value>MQE0531</value>
             <label>Vaccination VIS CVX Code is deprecated</label>
             <description></description>
             <code-status>
@@ -9009,7 +9009,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0532</value>
+            <value>MQE0532</value>
             <label>Vaccination VIS CVX Code is ignored</label>
             <description></description>
             <code-status>
@@ -9017,7 +9017,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0533</value>
+            <value>MQE0533</value>
             <label>Vaccination VIS CVX Code is invalid</label>
             <description></description>
             <code-status>
@@ -9025,7 +9025,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0534</value>
+            <value>MQE0534</value>
             <label>Vaccination VIS CVX Code is missing</label>
             <description></description>
             <code-status>
@@ -9033,7 +9033,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0535</value>
+            <value>MQE0535</value>
             <label>Vaccination VIS CVX Code is unrecognized</label>
             <description></description>
             <code-status>
@@ -9041,7 +9041,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0496</value>
+            <value>MQE0496</value>
             <label>Vaccination VIS document type is deprecated</label>
             <description></description>
             <code-status>
@@ -9049,7 +9049,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0497</value>
+            <value>MQE0497</value>
             <label>Vaccination VIS document type is ignored</label>
             <description></description>
             <code-status>
@@ -9057,7 +9057,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0498</value>
+            <value>MQE0498</value>
             <label>Vaccination VIS document type is incorrect</label>
             <description></description>
             <code-status>
@@ -9065,7 +9065,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0499</value>
+            <value>MQE0499</value>
             <label>Vaccination VIS document type is invalid</label>
             <description></description>
             <code-status>
@@ -9073,7 +9073,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0500</value>
+            <value>MQE0500</value>
             <label>Vaccination VIS document type is missing</label>
             <description></description>
             <code-status>
@@ -9081,7 +9081,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0502</value>
+            <value>MQE0502</value>
             <label>Vaccination VIS document type is out-of-date</label>
             <description></description>
             <code-status>
@@ -9089,7 +9089,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0501</value>
+            <value>MQE0501</value>
             <label>Vaccination VIS document type is unrecognized</label>
             <description></description>
             <code-status>
@@ -9097,7 +9097,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0530</value>
+            <value>MQE0530</value>
             <label>Vaccination VIS is deprecated</label>
             <description></description>
             <code-status>
@@ -9105,7 +9105,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0528</value>
+            <value>MQE0528</value>
             <label>Vaccination VIS is missing</label>
             <description></description>
             <code-status>
@@ -9113,7 +9113,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0529</value>
+            <value>MQE0529</value>
             <label>Vaccination VIS is unrecognized</label>
             <description></description>
             <code-status>
@@ -9121,7 +9121,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0511</value>
+            <value>MQE0511</value>
             <label>Vaccination VIS presented date is after admin date</label>
             <description></description>
             <code-status>
@@ -9129,7 +9129,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0510</value>
+            <value>MQE0510</value>
             <label>Vaccination VIS presented date is before published date</label>
             <description></description>
             <code-status>
@@ -9137,7 +9137,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0507</value>
+            <value>MQE0507</value>
             <label>Vaccination VIS presented date is invalid</label>
             <description></description>
             <code-status>
@@ -9145,7 +9145,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0508</value>
+            <value>MQE0508</value>
             <label>Vaccination VIS presented date is missing</label>
             <description></description>
             <code-status>
@@ -9153,7 +9153,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0509</value>
+            <value>MQE0509</value>
             <label>Vaccination VIS presented date is not admin date</label>
             <description></description>
             <code-status>
@@ -9161,7 +9161,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0506</value>
+            <value>MQE0506</value>
             <label>Vaccination VIS published date is in future</label>
             <description></description>
             <code-status>
@@ -9169,7 +9169,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0503</value>
+            <value>MQE0503</value>
             <label>Vaccination VIS published date is invalid</label>
             <description></description>
             <code-status>
@@ -9177,7 +9177,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0504</value>
+            <value>MQE0504</value>
             <label>Vaccination VIS published date is missing</label>
             <description></description>
             <code-status>
@@ -9185,7 +9185,7 @@
             </code-status>
         </code>
         <code>
-            <value>DQA0505</value>
+            <value>MQE0505</value>
             <label>Vaccination VIS published date is unrecognized</label>
             <description></description>
             <code-status>

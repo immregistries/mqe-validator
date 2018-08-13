@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
+import org.immregistries.mqe.validator.domain.TargetType;
 
 public class ValidationRuleResult {
 
@@ -11,7 +12,9 @@ public class ValidationRuleResult {
   private boolean rulePassed = false;
   private List<Detection> possible = new ArrayList<>();
   private Class<? extends ValidationRule> ruleClass;
-
+  private String targetId;
+  private TargetType targetType;
+  
   public List<Detection> getPossible() {
     return possible;
   }
@@ -39,5 +42,35 @@ public class ValidationRuleResult {
   public void setRuleClass(Class<? extends ValidationRule> ruleClass) {
     this.ruleClass = ruleClass;
   }
+
+	public List<ValidationReport> getIssues() {
+		return issues;
+	}
+	
+	public void setIssues(List<ValidationReport> issues) {
+		this.issues = issues;
+	}
+	
+	public String getTargetId() {
+		return targetId;
+	}
+	
+	public void setTargetId(String targetId) {
+		this.targetId = targetId;
+	}
+	
+	public TargetType getTargetType() {
+		return targetType;
+	}
+	
+	public void setTargetType(TargetType targetType) {
+		this.targetType = targetType;
+	}
+	
+	public void setPossible(List<Detection> possible) {
+		this.possible = possible;
+	}
+  
+  
 
 }

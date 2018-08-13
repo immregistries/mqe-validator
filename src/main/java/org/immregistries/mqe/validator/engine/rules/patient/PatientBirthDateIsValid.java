@@ -10,6 +10,7 @@ import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 public class PatientBirthDateIsValid extends ValidationRule<MqePatient> {
 
@@ -21,6 +22,8 @@ public class PatientBirthDateIsValid extends ValidationRule<MqePatient> {
   public PatientBirthDateIsValid() {
     this.ruleDetections.addAll(Arrays.asList(Detection.PatientBirthDateIsMissing,
         Detection.PatientBirthDateIsInvalid, Detection.PatientBirthDateIsInFuture,
+        Detection.PatientBirthDateIsOn15ThDayOfMonth, Detection.PatientBirthDateIsOnFirstDayOfMonth,
+        Detection.PatientBirthDateIsOnLastDayOfMonth,
         Detection.PatientBirthDateIsAfterSubmission));
   }
 
@@ -54,6 +57,21 @@ public class PatientBirthDateIsValid extends ValidationRule<MqePatient> {
       if (messageDate != null && messageDate.isBefore(birthDate)) {
         issues.add(Detection.PatientBirthDateIsAfterSubmission.build((birthDateString), target));
         passed = false;
+      }
+      
+   // After this, we have a date.
+      int dayOfMonth = birthDate.getDayOfMonth();
+
+      LocalDate lastDayOfMonth = birthDate.toLocalDate().dayOfMonth().withMaximumValue();
+
+      int lastDay = lastDayOfMonth.getDayOfMonth();
+
+      if (dayOfMonth == 1) {
+        issues.add(Detection.PatientBirthDateIsOnFirstDayOfMonth.build((birthDateString), target));
+      } else if (dayOfMonth == 15) {
+        issues.add(Detection.PatientBirthDateIsOn15ThDayOfMonth.build((birthDateString), target));
+      } else if (dayOfMonth == lastDay) {
+        issues.add(Detection.PatientBirthDateIsOnLastDayOfMonth.build((birthDateString), target));
       }
 
     }

@@ -27,7 +27,8 @@ public class VaccinationAdminAfterBirthDate extends ValidationRule<MqeVaccinatio
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
     boolean passed = true;
 
-    Date adminDate = v.getAdminDate();
+    
+    Date adminDate = datr.parseDate(v.getAdminDateString());
     Date birthDate = m.getPatient().getBirthDate();
 
     if (adminDate.before(birthDate)) {

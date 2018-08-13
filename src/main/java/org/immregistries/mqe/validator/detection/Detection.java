@@ -174,6 +174,8 @@ public enum Detection implements DetectionInfo {
   PatientDeathDateIsMissing(PATIENT_DEATH_DATE, MISSING, WARN, MQE0132),
   PatientDeathIndicatorIsInconsistent(PATIENT_DEATH_INDICATOR, INCONSISTENT, WARN, MQE0133),
   PatientDeathIndicatorIsMissing(PATIENT_DEATH_INDICATOR, MISSING, ACCEPT, MQE0134),
+  PatientEmailIsInvalid(PATIENT_EMAIL, MISSING, ACCEPT, MQE0588),
+  PatientEmailIsMissing(PATIENT_EMAIL, MISSING, ACCEPT, MQE0589),
   PatientEthnicityIsDeprecated(PATIENT_ETHNICITY, DEPRECATED, WARN, MQE0135),
   PatientEthnicityIsIgnored(PATIENT_ETHNICITY, IGNORED, INFO, MQE0136),
   PatientEthnicityIsInvalid(PATIENT_ETHNICITY, INVALID, WARN, MQE0137),

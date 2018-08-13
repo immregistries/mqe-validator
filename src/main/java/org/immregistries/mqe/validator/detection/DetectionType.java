@@ -100,7 +100,13 @@ public enum DetectionType {
   MAY_BE_TEMPORARY_NEWBORN_NAME("may be temporary newborn name"),
   SAME_AS_UNDERAGE_PATIENT("is same as underage patient"),
   VACCINATION_COUNT_EXCEEDS_EXPECTATIONS("has more vaccinations than expected"),
-  MISSING_AND_MULTIPLE_BIRTH_INDICATED("is missing and multiple birth indicated");
+  MISSING_AND_MULTIPLE_BIRTH_INDICATED("is missing and multiple birth indicated"),
+  
+  IS_ON_TIME("is on time"),
+  IS_LATE("is late"),
+  IS_VERY_LATE("is very late"),
+  IS_TOO_LATE("is too late");
+
 
   private String wording;
 

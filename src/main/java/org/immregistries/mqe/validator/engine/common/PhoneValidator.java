@@ -80,6 +80,11 @@ public enum PhoneValidator {
         if (!validPhone3Digit(phone.getAreaCode())) {
           return false;
         }
+        
+        // Check if Area Code contains 11
+        if (phone.getAreaCode().substring(1, 3).equals("11")) {
+        	return false;
+        }
       }
 
       if (!StringUtils.isBlank(phone.getLocalNumber())) {
@@ -102,6 +107,11 @@ public enum PhoneValidator {
 
         if (num.substring(1, 3).equals("11")) {
           return false;
+        }
+        
+        // Check if first three numbers in the local number are equal to 555
+        if (num.substring(0, 3).equals("555")) {
+        	return false;
         }
       } else {
         return false;

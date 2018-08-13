@@ -17,13 +17,13 @@ public class PhoneValidatorTest {
   public void buildNewCode() {
     this.pn = new MqePhoneNumber();
     pn.setCountryCode("+1");
-    pn.setAreaCode("517");
-    pn.setLocalNumber("5555555");
+    pn.setAreaCode("511");
+    pn.setLocalNumber("5445555");
   }
 
   @Test
   public void testGoodPhoneFormats() {
-    assertTrue(pd.isValidPhone(this.pn));
+    assertFalse("Should be false since Area Code contains 11", pd.isValidPhone(this.pn));
     assertTrue(pd.isValidPhoneAccordingToGoogle(this.pn));
 
     pn.setAreaCode("");

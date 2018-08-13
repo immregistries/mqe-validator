@@ -12,7 +12,7 @@ import org.immregistries.mqe.vxu.MqePatient;
 public class PatientMiddleNameIsPresent extends ValidationRule<MqePatient> {
 
   public PatientMiddleNameIsPresent() {
-    ruleDetections.add(Detection.PatientMiddleNameIsMissing);
+    ruleDetections.add(Detection.PatientNameMiddleIsMissing);
   }
 
   @Override
@@ -23,7 +23,7 @@ public class PatientMiddleNameIsPresent extends ValidationRule<MqePatient> {
     String middleName = target.getNameMiddle();
 
     if (common.isEmpty(middleName)) {
-      issues.add(Detection.PatientMiddleNameIsMissing.build(target));
+      issues.add(Detection.PatientNameMiddleIsMissing.build(target));
       passed = false;
     }
     return buildResults(issues, passed);

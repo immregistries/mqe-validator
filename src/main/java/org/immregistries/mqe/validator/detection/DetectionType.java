@@ -99,6 +99,7 @@ public enum DetectionType {
   NOT_VALUED_LEGAL("is not valued legal"),
   MAY_BE_TEMPORARY_NEWBORN_NAME("may be temporary newborn name"),
   SAME_AS_UNDERAGE_PATIENT("is same as underage patient"),
+  VACCINATION_COUNT_EXCEEDS_EXPECTATIONS("has more vaccinations than expected"),
   MISSING_AND_MULTIPLE_BIRTH_INDICATED("is missing and multiple birth indicated");
 
   private String wording;

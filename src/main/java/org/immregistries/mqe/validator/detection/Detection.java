@@ -305,6 +305,8 @@ public enum Detection implements DetectionInfo {
   PatientVfcStatusIsUnrecognized(PATIENT_VFC_STATUS, UNRECOGNIZED, WARN, MQE0229),
   PatientWicIdIsInvalid(PATIENT_WIC_ID, INVALID, ACCEPT, MQE0230),
   PatientWicIdIsMissing(PATIENT_WIC_ID, MISSING, ACCEPT, MQE0231),
+  
+  AdministredVaccinationsCountIsLargerThanExpected(PATIENT_LEVEL, VACCINATION_COUNT_EXCEEDS_EXPECTATIONS, WARN, MQE0568),
   VaccinationActionCodeIsDeprecated(VACCINATION_ACTION_CODE, DEPRECATED, WARN, MQE0232),
   VaccinationActionCodeIsIgnored(VACCINATION_ACTION_CODE, IGNORED, INFO, MQE0233),
   VaccinationActionCodeIsInvalid(VACCINATION_ACTION_CODE, INVALID, ACCEPT, MQE0234),

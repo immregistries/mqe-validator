@@ -8,6 +8,7 @@ import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsValid;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
 import org.immregistries.mqe.vxu.VxuField;
@@ -17,7 +18,7 @@ public class VaccinationAdminDateIsValidForPatientAge extends ValidationRule<Mqe
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationCvxIsValid.class};
+    return new Class[] {PatientBirthDateIsValid.class, VaccinationAdminDateIsValid.class, VaccinationCvxIsValid.class};
   }
 
   public VaccinationAdminDateIsValidForPatientAge() {

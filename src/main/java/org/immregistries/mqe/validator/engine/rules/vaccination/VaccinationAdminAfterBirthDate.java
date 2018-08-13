@@ -15,7 +15,7 @@ public class VaccinationAdminAfterBirthDate extends ValidationRule<MqeVaccinatio
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {PatientBirthDateIsValid.class, VaccinationAdminDateIsValid.class};
+	  return new Class[] {PatientBirthDateIsValid.class, VaccinationAdminDateIsValid.class};
   }
 
   public VaccinationAdminAfterBirthDate() {

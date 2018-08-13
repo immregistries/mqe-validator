@@ -2,6 +2,8 @@ package org.immregistries.mqe.validator.engine.rules.header;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
@@ -34,21 +36,26 @@ public class MessageHeaderDateIsValid extends ValidationRule<MqeMessageHeader> {
     String messageDateString = target.getMessageDateString();
     if (this.common.isEmpty(messageDateString)) {
       issues.add(Detection.MessageMessageDateIsMissing.build(target));
+      passed = false;
     } else {
       LOGGER.info("messageDate: " + target.getMessageDate());
       LOGGER.info("receivedDate: " + mr.getReceivedDate());
-      if (datr.isAfterDate(target.getMessageDate(), mr.getReceivedDate())) {
+      Date t = target.getMessageDate();
+      Calendar cal = Calendar.getInstance(); // creates calendar
+      cal.setTime(t); // sets calendar time/date
+      cal.add(Calendar.HOUR_OF_DAY, 2); // adds one hour to account for system time
+      Date modifiedMessageDate = cal.getTime();
+      if (datr.isAfterDate(modifiedMessageDate, mr.getReceivedDate())) {
         issues.add(Detection.MessageMessageDateIsInFuture.build((messageDateString), target));
+        passed = false;
       }
 
       // Need to do the timezone validation.
       if (!datr.hasTimezone(messageDateString)) {
-        issues
-            .add(Detection.MessageMessageDateIsMissingTimezone.build((messageDateString), target));
+        issues.add(Detection.MessageMessageDateIsMissingTimezone.build((messageDateString), target));
+        //doesn't fail. we can still use it.
       }
     }
-
-    passed = issues.isEmpty();
 
     return buildResults(issues, passed);
   }

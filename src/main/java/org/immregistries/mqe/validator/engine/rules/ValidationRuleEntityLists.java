@@ -19,6 +19,7 @@ import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsRe
 import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientDeathDateIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientDeathIndicatorIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientEmailIsPresent;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientEthnicityIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientExists;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientFinancialStatusCheckTrue;
@@ -88,6 +89,7 @@ public enum ValidationRuleEntityLists {
       new PatientBirthDateIsReasonable(),
       new PatientDeathDateIsValid(),
       new PatientDeathIndicatorIsValid(),
+      new PatientEmailIsPresent(),
       new PatientEthnicityIsValid(),
       new PatientExists(),
       new PatientFinancialStatusCheckTrue(),

@@ -16,7 +16,7 @@ public enum AddressCleanserDefault implements AddressCleanser {
   private static final Logger LOGGER = LoggerFactory.getLogger(AddressCleanserDefault.class);
 
   public Map<MqeAddress, MqeAddress> cleanThese(MqeAddress ... list) {
-    LOGGER.info("AddressCleansing not implemented. ");
+    LOGGER.info("AddressCleansing not enabled. ");
 
     Map<MqeAddress, MqeAddress> results = new HashMap<>();
 

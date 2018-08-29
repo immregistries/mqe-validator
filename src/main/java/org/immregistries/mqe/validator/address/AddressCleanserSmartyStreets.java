@@ -1,6 +1,7 @@
 package org.immregistries.mqe.validator.address;
 
 import com.smartystreets.api.StaticCredentials;
+import com.smartystreets.api.exceptions.BadCredentialsException;
 import com.smartystreets.api.exceptions.SmartyException;
 import com.smartystreets.api.us_street.Batch;
 import com.smartystreets.api.us_street.Candidate;
@@ -26,6 +27,7 @@ public enum AddressCleanserSmartyStreets implements AddressCleanser {
 
   @Override
   public Map<MqeAddress, MqeAddress> cleanThese(MqeAddress ... addresses) {
+    logger.info("ADDRESS CLEANSING ENABLED: SmartyStreets");
     Map<MqeAddress, MqeAddress> results = new HashMap<>();
     List<Candidate> candidates = getSSResults(addresses);
 
@@ -89,6 +91,9 @@ public enum AddressCleanserSmartyStreets implements AddressCleanser {
       if (batch.size() > 0) {
         results.addAll(this.sendBatch(client, batch));
       }
+    } catch (BadCredentialsException bce) {
+      logger.error("Error connecting to SmartyStreets. Bad credentials: ", bce);
+      appProps.setAddressCleanserEnabled(false);
     } catch (SmartyException ex) {
       System.out.println(ex.getMessage());
       ex.printStackTrace();

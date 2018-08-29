@@ -37,7 +37,6 @@ public class NextOfKinNameIsNotSameAsPatient extends ValidationRule<MqeNextOfKin
     if (target.isResponsibleRelationship() && areEqual(target.getNameLast(), patient.getNameLast())
         && areEqual(target.getNameFirst(), patient.getNameFirst())
         && areEqual(target.getNameMiddle(), patient.getNameMiddle())
-        && areEqual(target.getNameSuffix(), patient.getNameMiddle())
         && areEqual(target.getNameSuffix(), patient.getNameSuffix())) {
 
       issues.add(Detection.PatientGuardianNameIsSameAsUnderagePatient.build(target));

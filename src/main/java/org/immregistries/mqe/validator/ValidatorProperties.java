@@ -79,4 +79,16 @@ public enum ValidatorProperties {
   public boolean isAddressCleanserEnabled() {
     return addressCleanserEnabled;
   }
+
+  public void setSsApiAuthId(String ssApiAuthId) {
+    this.ssApiAuthId = ssApiAuthId;
+  }
+
+  public void setSsApiAuthToken(String ssApiAuthToken) {
+    this.ssApiAuthToken = ssApiAuthToken;
+  }
+
+  public void setAddressCleanserEnabled(boolean addressCleanserEnabled) {
+    this.addressCleanserEnabled = addressCleanserEnabled;
+  }
 }

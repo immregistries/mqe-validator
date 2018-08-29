@@ -1,0 +1,42 @@
+package org.immregistries.mqe.validator.engine.rules.vaccination;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
+import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ValidationReport;
+import org.immregistries.mqe.validator.engine.ValidationRule;
+import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.vxu.MqeMessageReceived;
+import org.immregistries.mqe.vxu.MqeVaccination;
+
+public class VaccinationAdminDateIsBeforeLotExpirationDate extends ValidationRule<MqeVaccination> {
+
+	@Override
+	protected final Class[] getDependencies() {
+		return new Class[] { VaccinationAdminDateIsValid.class };
+	}
+
+	public VaccinationAdminDateIsBeforeLotExpirationDate() {
+		ruleDetections.addAll(Arrays.asList(Detection.VaccinationAdminDateIsAfterLotExpirationDate));
+	}
+
+	@Override
+	protected ValidationRuleResult executeRule(MqeVaccination target, MqeMessageReceived m) {
+		List<ValidationReport> issues = new ArrayList<ValidationReport>();
+	    boolean passed = true;
+
+	    Date adminDate = target.getAdminDate();
+	    Date lotExpirationDate = target.getExpirationDate();
+
+	    if (!adminDate.before(lotExpirationDate)) {
+	      issues.add(Detection.VaccinationAdminDateIsAfterLotExpirationDate.build(adminDate.toString(), target));
+	      passed = false;
+	    }
+
+	    return buildResults(issues, passed);
+	}
+
+}

@@ -9,14 +9,14 @@ import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
 
-public class PatientAliasIsValid extends ValidationRule<MqePatient> {
+public class PatientAliasIsPresent extends ValidationRule<MqePatient> {
 
   @Override
   protected final Class[] getDependencies() {
     return new Class[] {PatientExists.class,};
   }
 
-  public PatientAliasIsValid() {
+  public PatientAliasIsPresent() {
     this.ruleDetections.add(Detection.PatientAliasIsMissing);
   }
 

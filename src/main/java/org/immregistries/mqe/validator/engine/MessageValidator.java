@@ -2,6 +2,8 @@ package org.immregistries.mqe.validator.engine;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.immregistries.mqe.validator.engine.ValidationRulePair;
+import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 
 public enum MessageValidator {
@@ -65,5 +67,29 @@ public enum MessageValidator {
 
     return listRuleResults;
   }
+  
+	protected List<ValidationRuleResult> validatePatient(MqeMessageReceived m) {
+		List<ValidationRulePair> patientRules = builder.buildPatientRulePairs(m.getPatient(), m);
+		List<ValidationRuleResult> headerAndPatientResults = runner.processValidationRules(patientRules, new ArrayList<Class>());
+	
+		return headerAndPatientResults;
+	}
+  
+	public List<ValidationRuleResult> validateMessageNIST(MqeMessageReceived m) {
+		
+		//first validate the high order elements of the message: 
+		List<ValidationRuleResult> headerAndPatientResults = validatePatient(m);
+		//Generate a list of passed classes from the results: 
+		List<Class> headerAndPatientPassed = util.getPassedFromResults(headerAndPatientResults);
+		
+		//Then validate the list items.  The resons they are treated separately is desribed elsewhere.  
+		List<ValidationRuleResult> listEntityResults = validateListItems(m, headerAndPatientPassed);
+		//Then add them all together.
+		List<ValidationRuleResult> validationResults = new ArrayList<ValidationRuleResult>();
+		validationResults.addAll(headerAndPatientResults);
+		validationResults.addAll(listEntityResults);
+		
+		return validationResults;
+	}
 
 }

@@ -35,7 +35,7 @@ public class MessageResponseEvaluatorTester {
     assertEquals("Should have zero of NOK: ", new Integer(0), metrics.getObjectCounts().get(
         VxuObject.NEXT_OF_KIN));
     assertEquals("Should have a count for patient middle name is misisng: ", new Integer(1),
-        metrics.getAttributeCounts().get(Detection.PatientMiddleNameIsMissing));
+        metrics.getAttributeCounts().get(Detection.PatientNameMiddleIsMissing));
   }
 
   public List<ValidationRuleResult> generateTestSubject() {
@@ -69,7 +69,7 @@ public class MessageResponseEvaluatorTester {
     ValidationRuleResult result3 = new ValidationRuleResult();
     result3.setRuleClass(PatientNameIsValid.class);
     ValidationReport issue = new ValidationReport();
-    issue.setDetection(Detection.PatientMiddleNameIsMissing);
+    issue.setDetection(Detection.PatientNameMiddleIsMissing);
     result3.getValidationDetections().add(issue);
     result3.setRulePassed(false);
     results.add(result3);

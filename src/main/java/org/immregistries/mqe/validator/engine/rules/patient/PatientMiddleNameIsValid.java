@@ -21,8 +21,8 @@ public class PatientMiddleNameIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientMiddleNameIsValid() {
-    ruleDetections.addAll(Arrays.asList(Detection.PatientMiddleNameIsInvalid,
-        Detection.PatientMiddleNameMayBeInitial, Detection.PatientMiddleNameIsInvalid));
+    ruleDetections.addAll(Arrays.asList(Detection.PatientNameMiddleIsInvalid,
+        Detection.PatientMiddleNameMayBeInitial, Detection.PatientNameMiddleIsInvalid));
   }
 
   @Override
@@ -39,7 +39,7 @@ public class PatientMiddleNameIsValid extends ValidationRule<MqePatient> {
         if (invalidName.onlyNameMiddle()
             && middleName.equalsIgnoreCase(invalidName.getNameMiddle())) {
 
-          issues.add(Detection.PatientMiddleNameIsInvalid.build(target));
+          issues.add(Detection.PatientNameMiddleIsInvalid.build(target));
           break;// this gets out of the for loop.
         }
       }
@@ -52,7 +52,7 @@ public class PatientMiddleNameIsValid extends ValidationRule<MqePatient> {
         String moddedMiddle = middleName.substring(0, middleName.length() - 1);
 
         if (!common.isValidNameChars(moddedMiddle)) {
-          issues.add(Detection.PatientMiddleNameIsInvalid.build(target));
+          issues.add(Detection.PatientNameMiddleIsInvalid.build(target));
           passed = false;
         }
       }

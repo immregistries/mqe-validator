@@ -15,7 +15,7 @@ public class VaccinationAdminAfterBirthDate extends ValidationRule<MqeVaccinatio
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {PatientBirthDateIsValid.class, VaccinationAdminDateIsValid.class};
+	  return new Class[] {PatientBirthDateIsValid.class, VaccinationAdminDateIsValid.class};
   }
 
   public VaccinationAdminAfterBirthDate() {
@@ -27,7 +27,8 @@ public class VaccinationAdminAfterBirthDate extends ValidationRule<MqeVaccinatio
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
     boolean passed = true;
 
-    Date adminDate = v.getAdminDate();
+    
+    Date adminDate = datr.parseDate(v.getAdminDateString());
     Date birthDate = m.getPatient().getBirthDate();
 
     if (adminDate.before(birthDate)) {

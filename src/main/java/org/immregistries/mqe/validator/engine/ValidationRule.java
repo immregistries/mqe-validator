@@ -62,6 +62,7 @@ public abstract class ValidationRule<T> {
     result.setRuleClass(this.getClass());
     result.setValidationDetections(issues);
     result.setRulePassed(passed);
+    result.getPossible().addAll(ruleDetections);
     return result;
   }
 

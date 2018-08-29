@@ -14,11 +14,12 @@ import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinAddressIs
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinAddressIsValid;
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinIsPresent;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientAddressIsValid;
-import org.immregistries.mqe.validator.engine.rules.patient.PatientAliasIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientAliasIsPresent;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsReasonable;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientDeathDateIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientDeathIndicatorIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientEmailIsPresent;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientEthnicityIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientExists;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientFinancialStatusCheckTrue;
@@ -83,11 +84,12 @@ public enum ValidationRuleEntityLists {
   //@formatter:off
   PATIENT_RULES(
       new PatientAddressIsValid(),
-      new PatientAliasIsValid(),
+      new PatientAliasIsPresent(),
       new PatientBirthDateIsValid(),
       new PatientBirthDateIsReasonable(),
       new PatientDeathDateIsValid(),
       new PatientDeathIndicatorIsValid(),
+      new PatientEmailIsPresent(),
       new PatientEthnicityIsValid(),
       new PatientExists(),
       new PatientFinancialStatusCheckTrue(),

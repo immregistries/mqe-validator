@@ -2,7 +2,11 @@ package org.immregistries.mqe.validator.engine.rules;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.rules.header.MessageHeaderCodesAreValid;
 import org.immregistries.mqe.validator.engine.rules.header.MessageHeaderDateIsExpectedFormat;
@@ -169,6 +173,21 @@ public enum ValidationRuleEntityLists {
   ValidationRuleEntityLists(ValidationRule... rulesIn) {
     this.rules = Arrays.asList(rulesIn);
   }
+  
+	public static Set<Detection> activeDetections(){
+		Set<Detection> dets = new HashSet<Detection>();
+    	for(ValidationRule rule : ValidationRuleEntityLists.PATIENT_RULES.getRules()){
+    		dets.addAll(rule.getRuleDetections());
+    	}
+    	for(ValidationRule rule : ValidationRuleEntityLists.VACCINATION_RULES.getRules()){
+    		dets.addAll(rule.getRuleDetections());
+    	}
+    	for(ValidationRule rule : ValidationRuleEntityLists.NEXT_OF_KIN_RULES.getRules()){
+    		dets.addAll(rule.getRuleDetections());
+    	}
+    	return dets;
+	}
+	
 
   public List<ValidationRule> getRules() {
     return new ArrayList<>(this.rules);

@@ -2,6 +2,7 @@ package org.immregistries.mqe.validator.engine;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import org.immregistries.mqe.core.util.DateUtility;
 import org.immregistries.mqe.validator.ValidatorProperties;
@@ -38,6 +39,7 @@ public abstract class ValidationRule<T> {
   protected Class[] getDependencies() {
     return new Class[] {};
   }
+  
 
   /**
    * This is the primary method to call for this class from a validation driver.
@@ -95,4 +97,10 @@ public abstract class ValidationRule<T> {
     // At this point, none are missing! Dependencies are met!
     return true;
   }
+
+	public List<Detection> getRuleDetections() {
+		return ruleDetections;
+	}
+  
+  
 }

@@ -64,6 +64,8 @@ import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCptIs
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCvxIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCvxUseIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFinancialEligibilityCodeIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFundingAndEligibilityConflict;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFundingSourceCodeIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationInformationSourceIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationIsAdministered;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationIsAdministeredOrHistorical;
@@ -134,6 +136,8 @@ public enum ValidationRuleEntityLists {
       new VaccinationNdcIsValid(),
       new VaccinationCvxUseIsValid(),
       new VaccinationFinancialEligibilityCodeIsValid(),
+      new VaccinationFundingSourceCodeIsValid(),
+      new VaccinationFundingAndEligibilityConflict(),
       new VaccinationInformationSourceIsValid(),
       new VaccinationIsAdministered(),
       new VaccinationIsAdministeredOrHistorical(),

@@ -151,8 +151,6 @@ public enum MessageTransformer {
   protected void transformVaccinations(List<MqeVaccination> vaccinations) {
     for (MqeVaccination v : vaccinations) {
       // transform information source into boolean for administered:
-      System.out.println("--> setting administered: " + v.getInformationSource() + " "
-          + ("00".equals(v.getInformationSource())));
       v.setAdministered("00".equals(v.getInformationSource()));
 
       // calculate the derived CVX:

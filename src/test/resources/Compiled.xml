@@ -1037,6 +1037,25 @@
         <label>Financial Status Code</label>
         <type>FINANCIAL_STATUS_CODE</type>
         <code>
+            <value>V23</value>
+            <label>317</label>
+            <description></description>
+            <code-status>
+                <status>Valid</status>
+            </code-status>
+            <reference>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC1</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">PHC68</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">OTH</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC50</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC52</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC51</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC2</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC3</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">UNK</link-to>
+            </reference>
+        </code>
+        <code>
             <value>MIA10</value>
             <label>All Hazard eligible -Public Purchase</label>
             <description></description>
@@ -1045,12 +1064,50 @@
             </code-status>
         </code>
         <code>
+            <value>V22</value>
+            <label>CHIP</label>
+            <description></description>
+            <code-status>
+                <status>Valid</status>
+            </code-status>
+            <reference>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC1</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">PHC68</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">OTH</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC50</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC52</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC51</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC2</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC3</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">UNK</link-to>
+            </reference>
+        </code>
+        <code>
             <value>MIA14</value>
             <label>Medicaid-Non VFC</label>
             <description></description>
             <code-status>
                 <status>Valid</status>
             </code-status>
+        </code>
+        <code>
+            <value>V24</value>
+            <label>Medicare</label>
+            <description></description>
+            <code-status>
+                <status>Valid</status>
+            </code-status>
+            <reference>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC1</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">PHC68</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">OTH</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC50</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC52</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC51</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC2</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC3</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">UNK</link-to>
+            </reference>
         </code>
         <code>
             <value>MIA05</value>
@@ -1067,6 +1124,15 @@
             <code-status>
                 <status>Valid</status>
             </code-status>
+            <reference>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC1</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">PHC68</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">OTH</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">PHC70</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC2</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC3</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">UNK</link-to>
+            </reference>
         </code>
         <code>
             <value>V08</value>
@@ -1086,7 +1152,8 @@
         </code>
         <code>
             <value>MIA04</value>
-            <label>Public vaccine - MI-VRP (Michigan Vaccine Replacement Program)</label>
+            <label>Public vaccine - MI-VRP (Michigan Vaccine Replacement Program)
+    		</label>
             <description></description>
             <code-status>
                 <status>Valid</status>
@@ -1099,6 +1166,25 @@
             <code-status>
                 <status>Valid</status>
             </code-status>
+        </code>
+        <code>
+            <value>V25</value>
+            <label>Sate program eligibility</label>
+            <description></description>
+            <code-status>
+                <status>Valid</status>
+            </code-status>
+            <reference>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC1</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">PHC68</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">OTH</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC50</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC52</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC51</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC2</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC3</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">UNK</link-to>
+            </reference>
         </code>
         <code>
             <value>V00</value>
@@ -1123,10 +1209,22 @@
             <code-status>
                 <status>Valid</status>
             </code-status>
+            <reference>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC1</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">PHC68</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">OTH</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC2</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC3</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC50</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC51</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC52</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">UNK</link-to>
+            </reference>
         </code>
         <code>
             <value>V06</value>
-            <label>VFC eligible- State specific eligibility (e.g. S-CHIP plan)</label>
+            <label>VFC eligible- State specific eligibility (e.g. S-CHIP plan)
+    		</label>
             <description></description>
             <code-status>
                 <status>Valid</status>
@@ -1134,11 +1232,23 @@
         </code>
         <code>
             <value>V05</value>
-            <label>VFC eligible-Federally Qualified Health Center Patient (under-insured)</label>
+            <label>VFC eligible-Federally Qualified Health Center Patient
+    			(under-insured)</label>
             <description></description>
             <code-status>
                 <status>Valid</status>
             </code-status>
+            <reference>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC1</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">PHC68</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">OTH</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC2</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC3</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC50</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC51</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC52</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">UNK</link-to>
+            </reference>
         </code>
         <code>
             <value>V02</value>
@@ -1147,6 +1257,17 @@
             <code-status>
                 <status>Valid</status>
             </code-status>
+            <reference>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC1</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">PHC68</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">OTH</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC2</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC3</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC50</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC51</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC52</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">UNK</link-to>
+            </reference>
         </code>
         <code>
             <value>V03</value>
@@ -1155,6 +1276,17 @@
             <code-status>
                 <status>Valid</status>
             </code-status>
+            <reference>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC1</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">PHC68</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">OTH</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC2</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC3</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC50</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC51</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">VXC52</link-to>
+                <link-to codeset="VACCINATION_FUNDING_SOURCE">UNK</link-to>
+            </reference>
         </code>
     </codeset>
     <codeset>
@@ -15904,6 +16036,17 @@
             <code-status>
                 <status>Valid</status>
             </code-status>
+            <reference>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V01</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V02</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V03</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V04</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V05</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V22</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V23</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V24</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V25</link-to>
+            </reference>
         </code>
         <code>
             <value>PHC68</value>
@@ -15912,6 +16055,17 @@
             <code-status>
                 <status>Valid</status>
             </code-status>
+            <reference>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V01</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V02</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V03</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V04</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V05</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V22</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V23</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V24</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V25</link-to>
+            </reference>
         </code>
         <code>
             <value>OTH</value>
@@ -15920,6 +16074,17 @@
             <code-status>
                 <status>Valid</status>
             </code-status>
+            <reference>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V01</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V02</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V03</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V04</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V05</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V22</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V23</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V24</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V25</link-to>
+            </reference>
         </code>
         <code>
             <value>PHC70</value>
@@ -15928,6 +16093,63 @@
             <code-status>
                 <status>Valid</status>
             </code-status>
+            <reference>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V01</link-to>
+            </reference>
+        </code>
+        <code>
+            <value>VXC50</value>
+            <label>Public</label>
+            <description></description>
+            <code-status>
+                <status>Valid</status>
+            </code-status>
+            <reference>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V02</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V03</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V04</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V05</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V22</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V23</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V24</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V25</link-to>
+            </reference>
+        </code>
+        <code>
+            <value>VXC52</value>
+            <label>Public non-VFC</label>
+            <description></description>
+            <code-status>
+                <status>Valid</status>
+            </code-status>
+            <reference>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V02</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V03</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V04</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V05</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V22</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V23</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V24</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V25</link-to>
+            </reference>
+        </code>
+        <code>
+            <value>VXC51</value>
+            <label>Public VFC</label>
+            <description></description>
+            <code-status>
+                <status>Valid</status>
+            </code-status>
+            <reference>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V02</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V03</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V04</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V05</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V22</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V23</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V24</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V25</link-to>
+            </reference>
         </code>
         <code>
             <value>VXC2</value>
@@ -15936,6 +16158,17 @@
             <code-status>
                 <status>Valid</status>
             </code-status>
+            <reference>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V01</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V02</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V03</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V04</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V05</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V22</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V23</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V24</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V25</link-to>
+            </reference>
         </code>
         <code>
             <value>VXC3</value>
@@ -15944,6 +16177,17 @@
             <code-status>
                 <status>Valid</status>
             </code-status>
+            <reference>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V01</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V02</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V03</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V04</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V05</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V22</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V23</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V24</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V25</link-to>
+            </reference>
         </code>
         <code>
             <value>UNK</value>
@@ -15952,6 +16196,17 @@
             <code-status>
                 <status>Valid</status>
             </code-status>
+            <reference>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V01</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V02</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V03</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V04</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V05</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V22</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V23</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V24</link-to>
+                <link-to codeset="FINANCIAL_STATUS_CODE">V25</link-to>
+            </reference>
         </code>
     </codeset>
     <codeset>
@@ -17555,7 +17810,6 @@
                 <link-to codeset="VACCINATION_NDC_CODE_UNIT_OF_SALE">76420-0483-01</link-to>
                 <link-to codeset="VACCINATION_NDC_CODE_UNIT_OF_SALE">76420-0482-01</link-to>
                 <link-to codeset="VACCINATION_NDC_CODE_UNIT_OF_SALE">49281-0913-01</link-to>
-                <link-to codeset="VACCINATION_LOT_NUMBER_PATTERN">A-Z][0-9]{4,4}'-'[0-9]$</link-to>
                 <link-to codeset="VACCINATION_LOT_NUMBER_PATTERN">^[A-Z][0-9]{5,5}$</link-to>
                 <link-to codeset="VACCINATION_LOT_NUMBER_PATTERN">^[A-Z][0-9]{5,5}[A-Z]$</link-to>
                 <link-to codeset="VACCINATION_LOT_NUMBER_PATTERN">^[A-Z]{2,2}[0-9]{3,3}[A-Z]{2,2}$</link-to>
@@ -17573,6 +17827,7 @@
                 <link-to codeset="VACCINATION_NDC_CODE_UNIT_OF_SALE">49281-0629-15</link-to>
                 <link-to codeset="VACCINATION_NDC_CODE_UNIT_OF_SALE">49281-0518-25</link-to>
                 <link-to codeset="VACCINATION_NDC_CODE_UNIT_OF_SALE">50090-1693-09</link-to>
+                <link-to codeset="VACCINATION_LOT_NUMBER_PATTERN">^[A-Z][0-9]{4,4}'-'[0-9]$</link-to>
             </reference>
             <use-date>
                 <not-before>20100528</not-before>

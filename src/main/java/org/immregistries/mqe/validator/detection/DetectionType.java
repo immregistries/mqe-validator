@@ -71,6 +71,7 @@ public enum DetectionType {
   ARE_INCONSISTENT("are inconsistent"),
   CONFLICTS_COMPLETION_STATUS("conflicts completion status"),
   UNEXPECTED_FOR_DATE_ADMINISTERED("is unexpected for date administered"),
+  UNEXPECTED_FOR_FINANCIAL_ELIGIBILITY("is unexpected for financial eligibility"),
   INVALID_FOR_DATE_ADMINISTERED("is invalid for date administered"),
   AFTER_ADMIN_DATE("is after admin date"),
   NOT_SAME_AS_ADMIN_DATE("is not admin date"),

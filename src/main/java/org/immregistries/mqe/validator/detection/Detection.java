@@ -451,6 +451,7 @@ public enum Detection implements DetectionInfo {
   VaccinationFundingSourceCodeIsInvalid(VACCINATION_FUNDING_SOURCE_CODE, INVALID, ACCEPT, MQE0585),
   VaccinationFundingSourceCodeIsMissing(VACCINATION_FUNDING_SOURCE_CODE, MISSING, ACCEPT, MQE0586),
   VaccinationFundingSourceCodeIsUnrecognized(VACCINATION_FUNDING_SOURCE_CODE, UNRECOGNIZED, ACCEPT, MQE0587),
+  VaccinationFundingSourceCodeIsUnexpectedForFinancialEligibility(VACCINATION_FUNDING_SOURCE_CODE, UNEXPECTED_FOR_FINANCIAL_ELIGIBILITY, WARN, MQE0596),
   
 
   VaccinationGivenByIsDeprecated(VACCINATION_GIVEN_BY, DEPRECATED, WARN, MQE0317),

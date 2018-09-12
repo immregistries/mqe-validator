@@ -14,16 +14,16 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class VaccineProductIsValidTester {
+public class VaccinationAdministeredAmountIsReasonableTester {
 
-  private VaccinationProductIsValid rule = new VaccinationProductIsValid();
+  private VaccinationAdministeredAmountIsReasonable rule = new VaccinationAdministeredAmountIsReasonable();
 
   // Parts required for the test
   private MqeMessageHeader mh = new MqeMessageHeader();
   private MqeMessageReceived mr = new MqeMessageReceived();
   private MqeVaccination v = new MqeVaccination();
 
-  private static final Logger logger = LoggerFactory.getLogger(VaccineProductIsValidTester.class);
+  private static final Logger logger = LoggerFactory.getLogger(VaccinationAdministeredAmountIsReasonableTester.class);
 
   /**
    * Sets up the objects needed for the test.
@@ -33,6 +33,8 @@ public class VaccineProductIsValidTester {
     mh.setMessageDate(new Date());
     mr.setMessageHeader(mh);
     mr.getVaccinations().add(v);
+    v.setAdministered(true);
+    v.setAdminCvxCode("21"); 
   }
 
   /**
@@ -40,10 +42,11 @@ public class VaccineProductIsValidTester {
    * (should be true)
    */
   @Test
-  public void testRule() {
-    v.setProduct("KINRIX");
+  public void testPass() {
+    v.setAmount("0.5");
     ValidationRuleResult r = rule.executeRule(v, mr);
     logger.info(r.getValidationDetections().toString());
+    assertEquals(0, r.getValidationDetections().size());
     assertTrue(r.isRulePassed());
   }
 
@@ -51,28 +54,30 @@ public class VaccineProductIsValidTester {
    * Test the rule with a null type code.
    */
   @Test
-  public void testRuleNullType() {
-    v.setProduct(null);
+  public void testRuleUnReasonable() {
+	v.setAmount("1024");
     ValidationRuleResult r = rule.executeRule(v, mr);
     logger.info(r.getValidationDetections().toString());
-    assertEquals("Should be one issue when value is invalid"
-        , 1, r.getValidationDetections().size());
-    assertEquals("Should be Unrecognized", Detection.VaccinationProductIsMissing,
-        r.getValidationDetections().get(0).getDetection());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.VaccinationAdministeredAmountIsInvalid,
+            r.getValidationDetections().get(0).getDetection());
+    
+	v.setAmount("-10");
+    r = rule.executeRule(v, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.VaccinationAdministeredAmountIsInvalid,
+            r.getValidationDetections().get(0).getDetection());
+    
+    // Varicella amount is always 0.5
+	v.setAmount("1.0");
+    r = rule.executeRule(v, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.VaccinationAdministeredAmountIsInvalid,
+            r.getValidationDetections().get(0).getDetection());
   }
 
-  /**
-   * Test the rule with a null type code.
-   */
-  @Test
-  public void testRuleInvalidValue() {
-    v.setProduct("KINRIXOS");
-    ValidationRuleResult r = rule.executeRule(v, mr);
-    logger.info(r.getValidationDetections().toString());
-    assertEquals("Should be one issue when value is invalid"
-        , 1, r.getValidationDetections().size());
-    assertEquals("Should be Unrecognized", Detection.VaccinationProductIsUnrecognized,
-        r.getValidationDetections().get(0).getDetection());
-  }
+
 }
 

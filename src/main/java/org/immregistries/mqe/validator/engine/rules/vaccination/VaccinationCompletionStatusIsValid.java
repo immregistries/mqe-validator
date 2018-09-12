@@ -34,30 +34,36 @@ public class VaccinationCompletionStatusIsValid extends ValidationRule<MqeVaccin
     // By default we assume that the vaccination was completed.
 
     String completion = target.getCompletion();
+    
+    if (this.common.isEmpty(completion)) {
+    	passed = false;
+    	issues.add(Detection.VaccinationCompletionStatusIsMissing.build(target));
+    } else {
 
-    issues.addAll(this.codr.handleCode(completion, VxuField.VACCINATION_COMPLETION_STATUS, target));
-    if (issues.size() > 0) {
-      passed = false;
+	    issues.addAll(this.codr.handleCode(completion, VxuField.VACCINATION_COMPLETION_STATUS, target));
+	    if (issues.size() > 0) {
+	      passed = false;
+	    }
+	    String completionCode = target.getCompletionCode();
+	    Detection detection;
+	    switch (completionCode) {
+	      case MqeVaccination.COMPLETION_COMPLETED:
+	        detection = Detection.VaccinationCompletionStatusIsValuedAsCompleted;
+	        break;
+	      case MqeVaccination.COMPLETION_REFUSED:
+	        detection = Detection.VaccinationCompletionStatusIsValuedAsRefused;
+	        break;
+	      case MqeVaccination.COMPLETION_NOT_ADMINISTERED:
+	        detection = Detection.VaccinationCompletionStatusIsValuedAsNotAdministered;
+	        break;
+	      case MqeVaccination.COMPLETION_PARTIALLY_ADMINISTERED:
+	        detection = Detection.VaccinationCompletionStatusIsValuedAsPartiallyAdministered;
+	        break;
+	      default:
+	        detection = Detection.VaccinationCompletionStatusIsUnrecognized;
+	    }
+	    issues.add(detection.build(completionCode, target));
     }
-    String completionCode = target.getCompletionCode();
-    Detection detection;
-    switch (completionCode) {
-      case MqeVaccination.COMPLETION_COMPLETED:
-        detection = Detection.VaccinationCompletionStatusIsValuedAsCompleted;
-        break;
-      case MqeVaccination.COMPLETION_REFUSED:
-        detection = Detection.VaccinationCompletionStatusIsValuedAsRefused;
-        break;
-      case MqeVaccination.COMPLETION_NOT_ADMINISTERED:
-        detection = Detection.VaccinationCompletionStatusIsValuedAsNotAdministered;
-        break;
-      case MqeVaccination.COMPLETION_PARTIALLY_ADMINISTERED:
-        detection = Detection.VaccinationCompletionStatusIsValuedAsPartiallyAdministered;
-        break;
-      default:
-        detection = Detection.VaccinationCompletionStatusIsUnrecognized;
-    }
-    issues.add(detection.build(completionCode, target));
     return buildResults(issues, passed);
 
   }

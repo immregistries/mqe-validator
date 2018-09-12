@@ -2,6 +2,7 @@ package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -23,6 +24,7 @@ public class VaccinationAdminAfterBirthDateTester {
 	private MqeMessageHeader mh = new MqeMessageHeader();
 	private MqeMessageReceived mr = new MqeMessageReceived();
 	private MqeVaccination v = new MqeVaccination();
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
   private static final Logger logger = LoggerFactory
 	      .getLogger(VaccinationAdminAfterBirthDateTester.class);
@@ -48,7 +50,7 @@ public class VaccinationAdminAfterBirthDateTester {
 	public void isAdminAfterBirthDate() {
 		Calendar cal = Calendar.getInstance(); 
 		cal.add(Calendar.MONTH, 1);
-		v.setAdminDate(cal.getTime());
+		v.setAdminDateString(dateFormat.format(cal.getTime()));
 
 		// admin after - pass
 		ValidationRuleResult r = vaccinationAdminAfterBirthDate.executeRule(v, mr);
@@ -58,7 +60,7 @@ public class VaccinationAdminAfterBirthDateTester {
 		// admin before - fail
 		cal = Calendar.getInstance(); 
 		cal.add(Calendar.MONTH, -1);
-		v.setAdminDate(cal.getTime());
+		v.setAdminDateString(dateFormat.format(cal.getTime()));
 
 		r = vaccinationAdminAfterBirthDate.executeRule(v, mr);
 		logger.info(r.getValidationDetections().toString());
@@ -72,7 +74,7 @@ public class VaccinationAdminAfterBirthDateTester {
 		cal.set(Calendar.MINUTE, 0);
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MILLISECOND, 0);
-		v.setAdminDate(cal.getTime());
+		v.setAdminDateString(dateFormat.format(cal.getTime()));
 
 		ValidationRuleResult r = vaccinationAdminAfterBirthDate.executeRule(v, mr);
 		logger.info(r.getValidationDetections().toString());

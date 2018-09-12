@@ -11,6 +11,11 @@ import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
 
 public class VaccinationAdministeredAmtIsValid extends ValidationRule<MqeVaccination> {
+	
+  @Override
+  protected final Class[] getDependencies() {
+    return new Class[] {VaccinationIsAdministered.class};
+  }
 
   public VaccinationAdministeredAmtIsValid() {
     ruleDetections.addAll(Arrays.asList(Detection.VaccinationAdministeredAmountIsMissing,
@@ -36,9 +41,6 @@ public class VaccinationAdministeredAmtIsValid extends ValidationRule<MqeVaccina
           float amount = Float.parseFloat(target.getAmount());
           if (amount == 0) {
             issues.add(Detection.VaccinationAdministeredAmountIsValuedAsZero.build(target));
-          } else if (amount > 999) {
-            issues.add(Detection.VaccinationAdministeredAmountIsInvalid.build(target.getAmount(),
-                target));
           } else {
             passed = true;
           }

@@ -2,6 +2,8 @@ package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -25,10 +27,14 @@ public class VaccinationAdministeredUnitIsValid extends ValidationRule<MqeVaccin
 
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
     boolean passed = false;
-
-    issues.addAll(codr.handleCode(target.getAmountUnit(), VxuField.VACCINATION_ADMINISTERED_UNIT,
-        target));
-
+    
+    if (this.common.isEmpty(target.getAmountUnit())) {
+        issues.add(Detection.VaccinationAdministeredUnitIsMissing.build(target));
+      } else {
+    	  issues.addAll(codr.handleCode(target.getAmountUnit(), VxuField.VACCINATION_ADMINISTERED_UNIT,
+    		        target));
+      }
+    
     passed = (issues.size() == 0);
     return buildResults(issues, passed);
 

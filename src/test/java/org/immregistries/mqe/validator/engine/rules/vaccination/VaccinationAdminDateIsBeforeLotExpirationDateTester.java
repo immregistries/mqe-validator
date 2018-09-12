@@ -24,7 +24,7 @@ public class VaccinationAdminDateIsBeforeLotExpirationDateTester {
 	private MqeMessageReceived mr = new MqeMessageReceived();
 	private MqeVaccination v = new MqeVaccination();
 
-	private static final Logger logger = LoggerFactory.getLogger(VaccineProductIsValidTester.class);
+	private static final Logger logger = LoggerFactory.getLogger(VaccinationAdminDateIsBeforeLotExpirationDateTester.class);
 
 	/**
 	 * Sets up the objects needed for the test.

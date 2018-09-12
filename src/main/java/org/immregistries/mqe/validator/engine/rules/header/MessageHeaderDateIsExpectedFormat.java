@@ -14,12 +14,14 @@ import org.joda.time.format.DateTimeFormatter;
 
 public class MessageHeaderDateIsExpectedFormat extends ValidationRule<MqeMessageHeader> {
 
-  private final DateTimeFormatter expectedFormat = DateTimeFormat.forPattern("yyyyMMddHHmmssZ");
+  private final DateTimeFormatter[] expectedFormats =
+      new DateTimeFormatter[] {DateTimeFormat.forPattern("yyyyMMddHHmmssZ"),
+          DateTimeFormat.forPattern("yyyyMMddHHmmss.SSSZ")};
 
   @Override
   protected final Class[] getDependencies() {
     return new Class[] {
-    // PatientExists.class,
+        // PatientExists.class,
     };
   }
 
@@ -34,10 +36,18 @@ public class MessageHeaderDateIsExpectedFormat extends ValidationRule<MqeMessage
     boolean passed = true;
 
     if (!this.common.isEmpty(target.getMessageDateString())) {
-      if (!datr.isExpectedDateFormat(target.getMessageDateString(), expectedFormat)) {
-        issues.add(Detection.MessageMessageDateIsUnexpectedFormat.build(
-            target.getMessageDateString(), target));
+      boolean badFormat = true;
+      for (DateTimeFormatter expectedFormat : expectedFormats) {
+        if (datr.isExpectedDateFormat(target.getMessageDateString(), expectedFormat)) {
+          badFormat = false;
+          break;
+        }
       }
+      if (badFormat) {
+        issues.add(Detection.MessageMessageDateIsUnexpectedFormat
+            .build(target.getMessageDateString(), target));
+      }
+
     }
 
     passed = issues.isEmpty();

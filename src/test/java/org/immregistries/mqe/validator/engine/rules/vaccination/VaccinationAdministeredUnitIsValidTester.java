@@ -3,6 +3,7 @@ package org.immregistries.mqe.validator.engine.rules.vaccination;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Calendar;
 import java.util.Date;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -14,16 +15,16 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class VaccineProductIsValidTester {
+public class VaccinationAdministeredUnitIsValidTester {
 
-  private VaccinationProductIsValid rule = new VaccinationProductIsValid();
+  private VaccinationAdministeredUnitIsValid rule = new VaccinationAdministeredUnitIsValid();
 
   // Parts required for the test
   private MqeMessageHeader mh = new MqeMessageHeader();
   private MqeMessageReceived mr = new MqeMessageReceived();
   private MqeVaccination v = new MqeVaccination();
 
-  private static final Logger logger = LoggerFactory.getLogger(VaccineProductIsValidTester.class);
+  private static final Logger logger = LoggerFactory.getLogger(VaccinationAdministeredUnitIsValidTester.class);
 
   /**
    * Sets up the objects needed for the test.
@@ -33,6 +34,7 @@ public class VaccineProductIsValidTester {
     mh.setMessageDate(new Date());
     mr.setMessageHeader(mh);
     mr.getVaccinations().add(v);
+    v.setAdministered(true);    
   }
 
   /**
@@ -40,39 +42,39 @@ public class VaccineProductIsValidTester {
    * (should be true)
    */
   @Test
-  public void testRule() {
-    v.setProduct("KINRIX");
+  public void testPass() {
+	v.setAmountUnitCode("mL");
     ValidationRuleResult r = rule.executeRule(v, mr);
     logger.info(r.getValidationDetections().toString());
+    assertEquals(0, r.getValidationDetections().size());
     assertTrue(r.isRulePassed());
   }
 
-  /**
-   * Test the rule with a null type code.
-   */
+
   @Test
-  public void testRuleNullType() {
-    v.setProduct(null);
+  public void testRuleFail() {
+	v.setAmountUnitCode("CC");
     ValidationRuleResult r = rule.executeRule(v, mr);
     logger.info(r.getValidationDetections().toString());
-    assertEquals("Should be one issue when value is invalid"
-        , 1, r.getValidationDetections().size());
-    assertEquals("Should be Unrecognized", Detection.VaccinationProductIsMissing,
-        r.getValidationDetections().get(0).getDetection());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.VaccinationAdministeredUnitIsDeprecated,
+            r.getValidationDetections().get(0).getDetection());
+    
+	v.setAmountUnitCode("123");
+    r = rule.executeRule(v, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.VaccinationAdministeredUnitIsUnrecognized,
+            r.getValidationDetections().get(0).getDetection());
+    
+	v.setAmountUnitCode(null);
+    r = rule.executeRule(v, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.VaccinationAdministeredUnitIsMissing,
+            r.getValidationDetections().get(0).getDetection());
   }
 
-  /**
-   * Test the rule with a null type code.
-   */
-  @Test
-  public void testRuleInvalidValue() {
-    v.setProduct("KINRIXOS");
-    ValidationRuleResult r = rule.executeRule(v, mr);
-    logger.info(r.getValidationDetections().toString());
-    assertEquals("Should be one issue when value is invalid"
-        , 1, r.getValidationDetections().size());
-    assertEquals("Should be Unrecognized", Detection.VaccinationProductIsUnrecognized,
-        r.getValidationDetections().get(0).getDetection());
-  }
+
 }
 

@@ -50,12 +50,14 @@ import org.immregistries.mqe.validator.engine.rules.patient.PatientSubmitterIsVa
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationActionCodeIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminAfterBirthDate;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeCptIsValid;
-import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsUsable;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsPresent;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsUsable;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminDateIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminDateIsValidForPatientAge;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredAmtIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredLotNumberIsPresent;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredLotNumberIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredRequiredFieldsArePresent;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredUnitIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationBodyRouteAndSiteAreValid;
@@ -66,6 +68,8 @@ import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCptIs
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCvxIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCvxUseIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFinancialEligibilityCodeIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFundingAndEligibilityConflict;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFundingSourceCodeIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationInformationSourceIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationIsAdministered;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationIsAdministeredOrHistorical;
@@ -136,10 +140,14 @@ public enum ValidationRuleEntityLists {
       new VaccinationNdcIsValid(),
       new VaccinationCvxUseIsValid(),
       new VaccinationFinancialEligibilityCodeIsValid(),
+      new VaccinationFundingSourceCodeIsValid(),
+      new VaccinationFundingAndEligibilityConflict(),
       new VaccinationInformationSourceIsValid(),
       new VaccinationIsAdministered(),
       new VaccinationIsAdministeredOrHistorical(),
       new VaccinationIsForeign(),
+      new VaccinationAdministeredLotNumberIsValid(),
+      new VaccinationAdministeredLotNumberIsPresent(),
       new VaccinationMfrIsValid(),
       new VaccinationOrdererIsValid(),
       new VaccinationProductIsValid(),

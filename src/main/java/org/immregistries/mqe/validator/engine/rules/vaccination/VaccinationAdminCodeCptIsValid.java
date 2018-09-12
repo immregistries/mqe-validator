@@ -17,7 +17,7 @@ public class VaccinationAdminCodeCptIsValid extends ValidationRule<MqeVaccinatio
   }
 
   public VaccinationAdminCodeCptIsValid() {
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_ADMIN_CODE));
+    ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_CPT_CODE));
   }
 
   @Override
@@ -27,7 +27,7 @@ public class VaccinationAdminCodeCptIsValid extends ValidationRule<MqeVaccinatio
 
     String cpt = target.getAdminCptCode();
 
-    issues.addAll(codr.handleCode(cpt, VxuField.VACCINATION_ADMIN_CODE, target));
+    issues.addAll(codr.handleCode(cpt, VxuField.VACCINATION_CPT_CODE, target));
 
     passed = (issues.size() == 0);
 

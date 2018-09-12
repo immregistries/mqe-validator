@@ -13,13 +13,8 @@ import org.immregistries.mqe.vxu.VxuField;
 
 public class VaccinationActionCodeIsValid extends ValidationRule<MqeVaccination> {
 
-  public VaccinationActionCodeIsValid() {
-    ruleDetections.addAll(Arrays.asList(Detection.VaccinationActionCodeIsValuedAsAdd,
-        Detection.VaccinationActionCodeIsValuedAsAddOrUpdate,
-        Detection.VaccinationActionCodeIsValuedAsUpdate,
-        Detection.VaccinationActionCodeIsValuedAsAddOrUpdate,
-        Detection.VaccinationActionCodeIsValuedAsDelete));
 
+  public VaccinationActionCodeIsValid() {
     ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_ACTION_CODE));
   }
 
@@ -36,17 +31,26 @@ public class VaccinationActionCodeIsValid extends ValidationRule<MqeVaccination>
       passed = false;
     } else {
       String actionCode = target.getActionCode();
-      if (target.isActionAdd()) {
-        issues.add(Detection.VaccinationActionCodeIsValuedAsAdd.build((actionCode), target));
-        issues
-            .add(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate.build((actionCode), target));
-      } else if (target.isActionUpdate()) {
-        issues.add(Detection.VaccinationActionCodeIsValuedAsUpdate.build((actionCode), target));
-        issues
-            .add(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate.build((actionCode), target));
-      } else if (target.isActionDelete()) {
-        issues.add(Detection.VaccinationActionCodeIsValuedAsDelete.build((actionCode), target));
-      }
+      
+	     if (this.common.isEmpty(actionCode)) {
+	    	 issues.add(Detection.VaccinationActionCodeIsMissing.build(target));
+	    	 passed = false;
+	     } else {
+		      if (target.isActionAdd()) {
+		        issues.add(Detection.VaccinationActionCodeIsValuedAsAdd.build((actionCode), target));
+		        issues
+		            .add(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate.build((actionCode), target));
+		      } else if (target.isActionUpdate()) {
+		        issues.add(Detection.VaccinationActionCodeIsValuedAsUpdate.build((actionCode), target));
+		        issues
+		            .add(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate.build((actionCode), target));
+		      } else if (target.isActionDelete()) {
+		        issues.add(Detection.VaccinationActionCodeIsValuedAsDelete.build((actionCode), target));
+		      } else {
+		    	  issues.add(Detection.VaccinationActionCodeIsInvalid.build(target));
+		    	  passed = false;
+		      }
+	     }
     }
 
     return buildResults(issues, passed);

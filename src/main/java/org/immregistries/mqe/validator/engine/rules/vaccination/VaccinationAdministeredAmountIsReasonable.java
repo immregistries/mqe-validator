@@ -27,7 +27,7 @@ public class VaccinationAdministeredAmountIsReasonable extends ValidationRule<Mq
     boolean passed = false;
     String amount = target.getAmount();
     Double d = Double.parseDouble(amount);
-    if (d > 999) {
+    if (d > 999 || d < 0) {
       issues.add(Detection.VaccinationAdministeredAmountIsInvalid.build(amount, target));
     }
 

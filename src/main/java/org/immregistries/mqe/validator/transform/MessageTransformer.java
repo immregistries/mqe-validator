@@ -60,7 +60,7 @@ import org.slf4j.LoggerFactory;
  */
 
 public enum MessageTransformer {
-  INSTANCE;
+                                INSTANCE;
 
   private CodeRepository repo = CodeRepository.INSTANCE;
 
@@ -87,7 +87,7 @@ public enum MessageTransformer {
       return;
     }
 
-//  Build a list of addresses to clean.
+    //  Build a list of addresses to clean.
     List<MqeAddress> list = new ArrayList<>();
     MqePatient p = mr.getPatient();
 
@@ -110,7 +110,7 @@ public enum MessageTransformer {
 
     //Then clean them. Get the cleanser every time.
     AddressCleanser ac = AddressCleanserFactory.INSTANCE.getAddressCleanser();
-    Map<MqeAddress, MqeAddress> cleanMap = ac.cleanThese(list.toArray(new MqeAddress[]{}));
+    Map<MqeAddress, MqeAddress> cleanMap = ac.cleanThese(list.toArray(new MqeAddress[] {}));
     if (logger.isInfoEnabled()) {
       logger.info("Finished address cleansing request");
     }
@@ -130,10 +130,8 @@ public enum MessageTransformer {
       if (logger.isInfoEnabled()) {
         logger.info("Patient Address: " + p.getPatientAddress());
       }
-      if (p.getPatientAddress() != null && !p.getPatientAddress()
-          .isClean()) {
-        logger.warn("Patient Address not clean: " + p.getPatientAddress()
-            .getCleansingResultCode());
+      if (p.getPatientAddress() != null && !p.getPatientAddress().isClean()) {
+        logger.warn("Patient Address not clean: " + p.getPatientAddress().getCleansingResultCode());
       }
       if (p.getResponsibleParty() != null) {
         MqeAddress aClean = cleanMap.get(p.getResponsibleParty().getAddress());
@@ -270,19 +268,19 @@ public enum MessageTransformer {
     }
   }
 
-//  protected boolean isSingleSubIdList(List<Observation> obxList) {
-//    String subId = (obxList != null && obxList.size() > 0 ? obxList.get(0).getSubId() : "");
-//    String nextSubId = subId;
-//    for (Observation o : obxList) {
-//      subId = o.getSubId();
-//      if (!subId.equals(nextSubId)) {
-//        return false;
-//      } else {
-//        nextSubId = subId;
-//      }
-//    }
-//    return true;
-//  }
+  //  protected boolean isSingleSubIdList(List<Observation> obxList) {
+  //    String subId = (obxList != null && obxList.size() > 0 ? obxList.get(0).getSubId() : "");
+  //    String nextSubId = subId;
+  //    for (Observation o : obxList) {
+  //      subId = o.getSubId();
+  //      if (!subId.equals(nextSubId)) {
+  //        return false;
+  //      } else {
+  //        nextSubId = subId;
+  //      }
+  //    }
+  //    return true;
+  //  }
 
   protected String getVfcCodeFromObxSet(List<Observation> obxList) {
 

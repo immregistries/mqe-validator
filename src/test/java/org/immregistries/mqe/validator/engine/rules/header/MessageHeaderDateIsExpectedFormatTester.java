@@ -32,6 +32,33 @@ public class MessageHeaderDateIsExpectedFormatTester {
     assertTrue(r.isRulePassed());
   }
   
+
+  @Test
+  public void testRuleFromNist() {
+    String dateTime = "20150624073733.994-0500";
+    mh.setMessageDateString(dateTime);
+    ValidationRuleResult r = rule.executeRule(mh, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertTrue(r.isRulePassed());
+  }
+  
+  @Test
+  public void testRuleOther2() {
+    String dateTime = "20150624073733.99-0500";
+    mh.setMessageDateString(dateTime);
+    ValidationRuleResult r = rule.executeRule(mh, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertTrue(r.isRulePassed());
+  }
+  
+  @Test
+  public void testRuleOther1() {
+    String dateTime = "20150624073733.9-0500";
+    mh.setMessageDateString(dateTime);
+    ValidationRuleResult r = rule.executeRule(mh, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertTrue(r.isRulePassed());
+  }
   
   @Test
   public void testRuleDateWrongFormat() {

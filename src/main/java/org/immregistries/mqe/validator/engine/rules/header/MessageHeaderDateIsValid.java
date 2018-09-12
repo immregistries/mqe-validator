@@ -17,7 +17,7 @@ public class MessageHeaderDateIsValid extends ValidationRule<MqeMessageHeader> {
   @Override
   protected final Class[] getDependencies() {
     return new Class[] {
-    // PatientExists.class,
+        // PatientExists.class,
     };
   }
 
@@ -42,7 +42,9 @@ public class MessageHeaderDateIsValid extends ValidationRule<MqeMessageHeader> {
       LOGGER.info("receivedDate: " + mr.getReceivedDate());
       Date t = target.getMessageDate();
       Calendar cal = Calendar.getInstance(); // creates calendar
-      cal.setTime(t); // sets calendar time/date
+      if (t != null) {
+        cal.setTime(t); // sets calendar time/date
+      }
       cal.add(Calendar.HOUR_OF_DAY, 2); // adds one hour to account for system time
       Date modifiedMessageDate = cal.getTime();
       if (datr.isAfterDate(modifiedMessageDate, mr.getReceivedDate())) {
@@ -52,7 +54,8 @@ public class MessageHeaderDateIsValid extends ValidationRule<MqeMessageHeader> {
 
       // Need to do the timezone validation.
       if (!datr.hasTimezone(messageDateString)) {
-        issues.add(Detection.MessageMessageDateIsMissingTimezone.build((messageDateString), target));
+        issues
+            .add(Detection.MessageMessageDateIsMissingTimezone.build((messageDateString), target));
         //doesn't fail. we can still use it.
       }
     }

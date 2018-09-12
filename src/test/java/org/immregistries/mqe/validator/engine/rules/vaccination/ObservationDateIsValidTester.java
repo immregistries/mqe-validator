@@ -63,7 +63,7 @@ public class ObservationDateIsValidTester {
    * (should be false)
    */
   @Test
-  public void testRuleNullDate() {
+  public void testRuleMissingDate() {
     o.setObservationDateString(null);
 
     ValidationRuleResult r = rule.executeRule(v, mr);
@@ -71,20 +71,19 @@ public class ObservationDateIsValidTester {
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(Detection.ObservationDateTimeOfObservationIsMissing,
         r.getValidationDetections().get(0).getDetection());
-  }
 
-  /**
-   * Test the rule with a null date
-   * (should be false)
-   */
-  @Test
-  public void testRuleEmptyDate() {
     o.setObservationDateString("");
-
-    ValidationRuleResult r = rule.executeRule(v, mr);
+    r = rule.executeRule(v, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(Detection.ObservationDateTimeOfObservationIsMissing,
+        r.getValidationDetections().get(0).getDetection());
+    
+    o.setObservationDateString("absd");
+    r = rule.executeRule(v, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertEquals(1, r.getValidationDetections().size());
+    assertEquals(Detection.ObservationDateTimeOfObservationIsInvalid,
         r.getValidationDetections().get(0).getDetection());
   }
 

@@ -66,6 +66,8 @@ public enum DetectionType {
   MAY_BE_TEST_NAME("may be test name"),
   KNOWN_TEST_NAME("is a known test name"),
   INVALID_PREFIXES("has invalid prefixes"),
+  INVALID_SUFFIXES("has invalid suffixes"),
+  INVALID_INFIXES("has invalid infixes"),
   ARE_INCONSISTENT("are inconsistent"),
   CONFLICTS_COMPLETION_STATUS("conflicts completion status"),
   UNEXPECTED_FOR_DATE_ADMINISTERED("is unexpected for date administered"),
@@ -101,6 +103,12 @@ public enum DetectionType {
   SAME_AS_UNDERAGE_PATIENT("is same as underage patient"),
   VACCINATION_COUNT_EXCEEDS_EXPECTATIONS("has more vaccinations than expected"),
   MISSING_AND_MULTIPLE_BIRTH_INDICATED("is missing and multiple birth indicated"),
+  MUTLIPLES("has multiples"),
+  
+//  VaccinationLotNumberHasInvalidCharacters(VACCINATION_LOT_NUMBER, INVALID, WARN, MQE0592),
+//  VaccinationLotNumberHasInvalidStartCharacters(VACCINATION_LOT_NUMBER, INVALID, WARN, MQE0593),
+//  VaccinationLotNumberHasInvalidMiddleCharacters(VACCINATION_LOT_NUMBER, INVALID, WARN, MQE0594),
+//  VaccinationLotNumberHasInvalidEndCharacters(VACCINATION_LOT_NUMBER, INVALID, WARN, MQE0595),
   
   IS_ON_TIME("is on time"),
   IS_LATE("is late"),

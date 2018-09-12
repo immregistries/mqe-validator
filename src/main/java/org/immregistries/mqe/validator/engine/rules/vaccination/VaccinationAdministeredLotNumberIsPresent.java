@@ -10,17 +10,17 @@ import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
 
-public class VaccinationAdministeredRequiredFieldsArePresent
-    extends ValidationRule<MqeVaccination> {
+public class VaccinationAdministeredLotNumberIsPresent extends
+    ValidationRule<MqeVaccination> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationAdministeredLotNumberIsPresent.class};
+    return new Class[]{VaccinationIsAdministered.class};
   }
 
-  public VaccinationAdministeredRequiredFieldsArePresent() {
-    ruleDetections.addAll(Arrays.asList(Detection.VaccinationFacilityNameIsMissing,
-        Detection.VaccinationLotExpirationDateIsMissing));
+  public VaccinationAdministeredLotNumberIsPresent() {
+    ruleDetections.addAll(Arrays.asList( Detection.VaccinationLotNumberIsMissing
+        ));
   }
 
   @Override
@@ -34,13 +34,9 @@ public class VaccinationAdministeredRequiredFieldsArePresent
     // indicate that the vaccination is historical or administered.
     // By default we assume that the vaccination was completed.
 
-    if (this.common.isEmpty(target.getFacilityName())) {
-      issues.add(Detection.VaccinationFacilityNameIsMissing.build(target));
-    }
-
-    if (target.getExpirationDate() == null) {
-      issues.add(Detection.VaccinationLotExpirationDateIsMissing.build(target));
-    }
+    if (this.common.isEmpty(target.getLotNumber())) {
+      issues.add(Detection.VaccinationLotNumberIsMissing.build(target));
+    } 
 
     passed = (issues.size() == 0);
 

@@ -506,6 +506,12 @@ public enum Detection implements DetectionInfo {
 
   VaccinationLotExpirationDateIsInvalid(VACCINATION_LOT_EXPIRATION_DATE, INVALID, WARN, MQE0336),
   VaccinationLotExpirationDateIsMissing(VACCINATION_LOT_EXPIRATION_DATE, MISSING, ACCEPT, MQE0337),
+  VaccinationLotNumberFormatIsUnrecognized(VACCINATION_LOT_NUMBER, UNRECOGNIZED, WARN, MQE0590),
+  VaccinationLotNumberHasMultiple(VACCINATION_LOT_NUMBER, MUTLIPLES, WARN, MQE0591),
+  VaccinationLotNumberHasInvalidPrefixes(VACCINATION_LOT_NUMBER, INVALID_PREFIXES, WARN, MQE0592),
+  VaccinationLotNumberHasInvalidSuffixes(VACCINATION_LOT_NUMBER, INVALID_SUFFIXES, WARN, MQE0593),
+  VaccinationLotNumberHasInvalidInfixes(VACCINATION_LOT_NUMBER, INVALID_INFIXES, WARN, MQE0594),
+  VaccinationLotNumberIsTooShort(VACCINATION_LOT_NUMBER, TOO_SHORT, WARN, MQE0595),
   VaccinationLotNumberIsInvalid(VACCINATION_LOT_NUMBER, INVALID, WARN, MQE0338),
   VaccinationLotNumberIsMissing(VACCINATION_LOT_NUMBER, MISSING, WARN, MQE0339),
   VaccinationManufacturerCodeIsDeprecated(VACCINATION_MANUFACTURER_CODE, DEPRECATED, WARN, MQE0340),

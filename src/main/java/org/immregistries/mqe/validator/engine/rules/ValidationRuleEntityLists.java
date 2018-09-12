@@ -46,12 +46,14 @@ import org.immregistries.mqe.validator.engine.rules.patient.PatientSubmitterIsVa
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationActionCodeIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminAfterBirthDate;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeCptIsValid;
-import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsUsable;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsPresent;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsUsable;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminDateIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminDateIsValidForPatientAge;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredAmtIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredLotNumberIsPresent;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredLotNumberIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredRequiredFieldsArePresent;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredUnitIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationBodyRouteAndSiteAreValid;
@@ -136,6 +138,8 @@ public enum ValidationRuleEntityLists {
       new VaccinationIsAdministered(),
       new VaccinationIsAdministeredOrHistorical(),
       new VaccinationIsForeign(),
+      new VaccinationAdministeredLotNumberIsValid(),
+      new VaccinationAdministeredLotNumberIsPresent(),
       new VaccinationMfrIsValid(),
       new VaccinationOrdererIsValid(),
       new VaccinationProductIsValid(),

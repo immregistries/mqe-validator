@@ -22,9 +22,13 @@ import org.immregistries.mqe.vxu.MqePatient;
 import org.immregistries.mqe.vxu.MqeAddress;
 import org.immregistries.mqe.vxu.MqeVaccination;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class ValidationRuleTest {
+  
+  private static final Logger logger = LoggerFactory.getLogger(ValidationRuleTest.class);
 
   private static final ValidationUtility util = ValidationUtility.INSTANCE;
   private static final ValidationRunner runner = ValidationRunner.INSTANCE;
@@ -208,7 +212,7 @@ public class ValidationRuleTest {
         validationReports.addAll(ruleDetections);
 
       } catch (Exception e) {
-        System.out.println("Woah... nasty.  " + e.getLocalizedMessage());
+        logger.error("Woah... nasty.  " + e.getLocalizedMessage(), e);
         assertTrue("oops.  exception in " + rule.getClass() + "  " + e.getLocalizedMessage(),
             false);
       }

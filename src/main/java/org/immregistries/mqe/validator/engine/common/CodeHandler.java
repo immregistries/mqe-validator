@@ -9,6 +9,7 @@ import org.immregistries.codebase.client.generated.CodeStatus;
 import org.immregistries.codebase.client.generated.UseAge;
 import org.immregistries.codebase.client.generated.UseDate;
 import org.immregistries.codebase.client.reference.CodeStatusValue;
+import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.mqe.core.util.DateUtility;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.DetectionType;
@@ -38,15 +39,17 @@ public enum CodeHandler {
   }
 
 
-  public List<ValidationReport> handleCodeOrMissing(String value, VxuField field, MetaFieldInfoData meta) {
-      if (StringUtils.isNotBlank(value)) {
-          return handleCode(value, field, meta);
-      } else {
-        List<ValidationReport> r = new ArrayList<>();
-        r.add(Detection.get(field, DetectionType.MISSING).build(meta));
-        return r;
-      }
+  public List<ValidationReport> handleCodeOrMissing(String value, VxuField field,
+      MetaFieldInfoData meta) {
+    if (StringUtils.isNotBlank(value)) {
+      return handleCode(value, field, meta);
+    } else {
+      List<ValidationReport> r = new ArrayList<>();
+      r.add(Detection.get(field, DetectionType.MISSING).build(meta));
+      return r;
+    }
   }
+
   public List<ValidationReport> handleCode(String value, VxuField field, MetaFieldInfoData meta) {
 
     // LOGGER.info("value:" + value + " field: " + field);
@@ -136,6 +139,13 @@ public enum CodeHandler {
 
   public List<ValidationReport> handleAgeDate(Code codedValue, Date birthDate, Date adminDate,
       VxuField field, MetaFieldInfoData meta) {
+    return handleAgeDate(CodesetType.VACCINATION_CVX_CODE, codedValue, birthDate, adminDate, field,
+        meta);
+  }
+
+  public List<ValidationReport> handleAgeDate(CodesetType codeType, Code codedValue, Date birthDate,
+      Date adminDate,
+      VxuField field, MetaFieldInfoData meta) {
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
 
     if (codedValue == null || birthDate == null || adminDate == null) {
@@ -156,8 +166,14 @@ public enum CodeHandler {
       if (ageInMonths > notNotAfterMonthByte || ageInMonths < notBeforeMonthByte) {
         // LOGGER.info("Adding issue for: " + field + " - " +
         // IssueType.BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE + " - " + issues);
+        String additionalMessage =
+            "(" + codeType + ": " + codedValue.getValue() + " Not before month["
+                + notBeforeMonthByte + "] and not after month[" + notNotAfterMonthByte
+                + "] age in months at admin[" + ageInMonths + "])";
+        LOGGER.info(additionalMessage);
         ValidationReport vi =
             issueForField(field, DetectionType.BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE, meta);
+        vi.setAdditionalMessage(additionalMessage);
         LOGGER.info("validation issue: " + vi);
         issues.add(vi);
       }

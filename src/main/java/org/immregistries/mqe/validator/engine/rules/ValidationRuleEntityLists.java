@@ -9,7 +9,6 @@ import java.util.Set;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.rules.header.MessageHeaderCodesAreValid;
-import org.immregistries.mqe.validator.engine.rules.header.MessageHeaderDateIsExpectedFormat;
 import org.immregistries.mqe.validator.engine.rules.header.MessageHeaderDateIsValid;
 import org.immregistries.mqe.validator.engine.rules.header.MessageHeaderFieldsArePresent;
 import org.immregistries.mqe.validator.engine.rules.header.MessageVersionIs25;
@@ -166,7 +165,6 @@ public enum ValidationRuleEntityLists {
       new MessageHeaderCodesAreValid(),
       new MessageHeaderFieldsArePresent(),
       new MessageHeaderDateIsValid(),
-      new MessageHeaderDateIsExpectedFormat(),
       new MessageVersionIsValid(),
       new MessageVersionIs25()),
   NEXT_OF_KIN_RULES(

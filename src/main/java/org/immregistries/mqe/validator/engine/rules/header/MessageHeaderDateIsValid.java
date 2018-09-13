@@ -16,14 +16,17 @@ public class MessageHeaderDateIsValid extends ValidationRule<MqeMessageHeader> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {
+    return new Class[]{
         // PatientExists.class,
     };
   }
 
   public MessageHeaderDateIsValid() {
-    this.ruleDetections.addAll(Arrays.asList(Detection.MessageMessageDateIsMissing,
-        Detection.MessageMessageDateIsInFuture, Detection.MessageMessageDateIsMissingTimezone));
+    this.ruleDetections.addAll(Arrays.asList(
+        Detection.MessageMessageDateIsUnexpectedFormat,
+        Detection.MessageMessageDateIsMissing,
+        Detection.MessageMessageDateIsInFuture,
+        Detection.MessageMessageDateIsMissingTimezone));
   }
 
 
@@ -39,24 +42,29 @@ public class MessageHeaderDateIsValid extends ValidationRule<MqeMessageHeader> {
       passed = false;
     } else {
       LOGGER.info("messageDate: " + target.getMessageDate());
+      LOGGER.info("messageDateString: " + target.getMessageDateString());
       LOGGER.info("receivedDate: " + mr.getReceivedDate());
-      Date t = target.getMessageDate();
-      Calendar cal = Calendar.getInstance(); // creates calendar
-      if (t != null) {
-        cal.setTime(t); // sets calendar time/date
-      }
-      cal.add(Calendar.HOUR_OF_DAY, 2); // adds one hour to account for system time
-      Date modifiedMessageDate = cal.getTime();
-      if (datr.isAfterDate(modifiedMessageDate, mr.getReceivedDate())) {
-        issues.add(Detection.MessageMessageDateIsInFuture.build((messageDateString), target));
+      if (target.getMessageDate() == null) {
+        //must have failed parsing, so add a detection saying its not valid.
+        issues.add(Detection.MessageMessageDateIsUnexpectedFormat.build((messageDateString), target));
         passed = false;
-      }
+      } else {
+        Date t = target.getMessageDate();
+        Calendar cal = Calendar.getInstance(); // creates calendar
+        cal.setTime(t); // sets calendar time/date
+        cal.add(Calendar.HOUR_OF_DAY, 2); // adds one hour to account for system time
+        Date modifiedMessageDate = cal.getTime();
+        if (datr.isAfterDate(modifiedMessageDate, mr.getReceivedDate())) {
+          issues.add(Detection.MessageMessageDateIsInFuture.build((messageDateString), target));
+          passed = false;
+        }
 
-      // Need to do the timezone validation.
-      if (!datr.hasTimezone(messageDateString)) {
-        issues
-            .add(Detection.MessageMessageDateIsMissingTimezone.build((messageDateString), target));
-        //doesn't fail. we can still use it.
+        // Need to do the timezone validation.
+        if (!datr.hasTimezone(messageDateString)) {
+          issues.add(
+              Detection.MessageMessageDateIsMissingTimezone.build((messageDateString), target));
+          //doesn't fail. we can still use it.
+        }
       }
     }
 

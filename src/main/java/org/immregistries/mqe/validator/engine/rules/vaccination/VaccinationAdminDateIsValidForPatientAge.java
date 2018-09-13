@@ -44,8 +44,7 @@ public class VaccinationAdminDateIsValidForPatientAge extends ValidationRule<Mqe
       Date birthDate = datr.parseDate(m.getPatient().getBirthDateString());
 
       if (birthDate != null) {
-        issues.addAll(codr.handleAgeDate(vaccineCode, adminDate, birthDate,
-            VxuField.VACCINATION_ADMIN_DATE, target));
+        issues.addAll(codr.handleAgeDate(CodesetType.VACCINATION_CVX_CODE, vaccineCode, adminDate, birthDate, VxuField.VACCINATION_ADMIN_DATE, target));
       }
 
       passed = (issues.size() == 0);

@@ -183,12 +183,9 @@ public enum MessageTransformer {
   }
 
   protected void transformHeaderData(MqeMessageHeader mh) {
-    if (mh != null) {
-      // if (mh.getMessageDate() == null) {
-      // //
-      // }
-      // TODO: deal with this.
-      mh.setMessageDate(datr.parseDate(mh.getMessageDateString()));
+    if (mh != null && StringUtils.isNotEmpty(mh.getMessageDateString())) {
+      Date d = datr.parseDate(mh.getMessageDateString());
+      mh.setMessageDate(d);
     }
   }
 

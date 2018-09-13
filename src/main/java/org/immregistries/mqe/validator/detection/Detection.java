@@ -36,12 +36,12 @@ public enum Detection implements DetectionInfo {
   MessageMessageControlIdIsMissing(MESSAGE_CONTROL_ID, MISSING, WARN, MQE0014),
 
   //This we validate against other stuff.
-  MessageMessageDateIsInFuture(MESSAGE_DATE, IN_FUTURE, ACCEPT, MQE0015),
-  MessageMessageDateIsInvalid(MESSAGE_DATE, INVALID, ACCEPT, MQE0016),
-  MessageMessageDateIsMissing(MESSAGE_DATE, MISSING, ACCEPT, MQE0017),
-  MessageMessageDateIsNotPrecise(MESSAGE_DATE, NOT_PRECISE, ACCEPT, MQE0526),
-  MessageMessageDateIsMissingTimezone(MESSAGE_DATE, MISSING_TIMEZONE, INFO, MQE0527),
-  MessageMessageDateIsUnexpectedFormat(MESSAGE_DATE, UNEXPECTED_FORMAT, INFO, MQE0531),
+  MessageMessageDateIsInFuture(MESSAGE_DATE, IN_FUTURE, ERROR, MQE0015),
+//  MessageMessageDateIsInvalid(MESSAGE_DATE, INVALID, ACCEPT, MQE0016),  /* Decided this is covered by more specific detections. NB and JH */
+  MessageMessageDateIsMissing(MESSAGE_DATE, MISSING, ERROR, MQE0017),
+  MessageMessageDateIsNotPrecise(MESSAGE_DATE, NOT_PRECISE, WARN, MQE0526),
+  MessageMessageDateIsMissingTimezone(MESSAGE_DATE, MISSING_TIMEZONE, WARN, MQE0527),
+  MessageMessageDateIsUnexpectedFormat(MESSAGE_DATE, UNEXPECTED_FORMAT, ERROR, MQE0531),
 
   MessageMessageProfileIdIsMissing(MESSAGE_PROFILE_ID, MISSING, ACCEPT, MQE0439),
   MessageMessageTriggerIsMissing(MESSAGE_TRIGGER, MISSING, WARN, MQE0018),

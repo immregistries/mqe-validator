@@ -12,7 +12,7 @@ public enum MqeCode {
   MQE0006,
   MQE0014,
   MQE0015,
-  MQE0016,
+//  MQE0016, /* this was removed b/c the detection is no longer used. See Detection.java */
   MQE0017,
   MQE0018,
   MQE0020,

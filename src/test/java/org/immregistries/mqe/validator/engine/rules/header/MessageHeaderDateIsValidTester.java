@@ -28,9 +28,20 @@ public class MessageHeaderDateIsValidTester {
   
   private static final Logger logger = LoggerFactory.getLogger(MessageHeaderDateIsValidTester.class);
 
-  
+  private DateUtility datr = DateUtility.INSTANCE;
+
   @Test
-  public void testRule() {
+  public void testValidDateTime() {
+    String dateTime = "20180514105605-0400";
+    mh.setMessageDateString(dateTime);
+    mh.setMessageDate(datr.parseDate(dateTime));
+    ValidationRuleResult r = rule.executeRule(mh, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertTrue(r.isRulePassed());
+  }
+
+  @Test
+  public void testValidDateTime2() {
     String today = formatTZ.format(new Date());
     mh.setMessageDateString(today);
     mh.setMessageDate(new Date());
@@ -38,8 +49,19 @@ public class MessageHeaderDateIsValidTester {
     logger.info(r.getValidationDetections().toString());
     assertTrue(r.isRulePassed());
   }
-  
-  
+
+  @Test
+  public void testRuleDateWrongFormat() {
+    String dateTime = "11-15-2013";
+    mh.setMessageDateString(dateTime);
+
+    ValidationRuleResult r = rule.executeRule(mh, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertFalse(r.isRulePassed());
+    assertEquals(Detection.MessageMessageDateIsUnexpectedFormat,
+        r.getValidationDetections().get(0).getDetection());
+  }
+
   @Test
   public void testRuleDateMissing() {
     ValidationRuleResult r = rule.executeRule(mh, mr);
@@ -73,7 +95,7 @@ public class MessageHeaderDateIsValidTester {
     mh.setMessageDate(new Date());
     ValidationRuleResult r = rule.executeRule(mh, mr);
     logger.info(r.getValidationDetections().toString());
-    assertFalse(r.isRulePassed());
+    assertTrue(r.isRulePassed());
     assertEquals(Detection.MessageMessageDateIsMissingTimezone,
         r.getValidationDetections().get(0).getDetection());
   }

@@ -32,6 +32,7 @@ public class PatientBirthDateIsReasonableTest {
     cal.add(Calendar.YEAR, +1);
 
     p.setBirthDateString(dateFormat.format(cal.getTime()));
+    p.setBirthDate(cal.getTime());
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
     assertFalse(r.isRulePassed());
@@ -47,6 +48,7 @@ public class PatientBirthDateIsReasonableTest {
     // Making sure we are not in the future
     cal.add(Calendar.YEAR, -121);
     p.setBirthDateString(dateFormat.format(cal.getTime()));
+    p.setBirthDate(cal.getTime());
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
     assertFalse(r.isRulePassed());
@@ -99,6 +101,7 @@ public class PatientBirthDateIsReasonableTest {
     cal.set(Calendar.DAY_OF_MONTH, 15);
 
     p.setBirthDateString(dateFormat.format(cal.getTime()));
+    p.setBirthDate(cal.getTime());
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
     assertTrue(r.isRulePassed());
@@ -113,6 +116,7 @@ public class PatientBirthDateIsReasonableTest {
     cal.add(Calendar.MONTH, -1);
     cal.set(Calendar.DAY_OF_MONTH, 1);
     p.setBirthDateString(dateFormat.format(cal.getTime()));
+    p.setBirthDate(cal.getTime());
 
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
@@ -127,8 +131,8 @@ public class PatientBirthDateIsReasonableTest {
     // Making sure we are not in the future
     cal.add(Calendar.MONTH, -1);
     cal.set(Calendar.DAY_OF_MONTH, cal.getMaximum(Calendar.DAY_OF_MONTH));
-
     p.setBirthDateString(dateFormat.format(cal.getTime()));
+    p.setBirthDate(cal.getTime());
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
     assertTrue(r.isRulePassed());

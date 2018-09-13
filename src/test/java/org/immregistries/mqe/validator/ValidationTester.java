@@ -17,6 +17,7 @@ public class ValidationTester {
   private static final Logger logger = LoggerFactory.getLogger(ValidationTester.class);
   private HL7MessageParser parser = HL7MessageParser.INSTANCE;
   private MessageValidator validator = MessageValidator.INSTANCE;
+  private MqeMessageService service = MqeMessageService.INSTANCE;
 
   TestMessageGenerator genr = new TestMessageGenerator();
 
@@ -44,6 +45,12 @@ public class ValidationTester {
   public void test4() {
     validateAndReport(genr.getExampleVXU_3());
   }
+  
+  @Test
+  public void testBadLotNumber()
+  {
+    parseValidateAndReport(genr.getBadLotNumberExample());
+  }
 
   private void validateAndReport(String message) {
     System.out.println("MESSAGE: ***********************************************");
@@ -53,6 +60,30 @@ public class ValidationTester {
     }
     System.out.println("********************************************************");
     MqeMessageReceived mr = parser.extractMessageFromText(message);
+
+    long start = Calendar.getInstance().getTimeInMillis();
+    List<ValidationRuleResult> list = validator.validateMessage(mr);
+    long finish = Calendar.getInstance().getTimeInMillis();
+
+    System.out.println("IT TOOK: " + (finish - start) + " ms to validate");
+
+    System.out.println("ACCEPT: ***********************************************");
+    reportAcceptResults(list);
+    System.out.println("WARN  : ***********************************************");
+    reportWarnResults(list);
+    System.out.println("ERROR : ***********************************************");
+    reportErrorResults(list);
+  }
+  
+  private void parseValidateAndReport(String message) {
+    System.out.println("MESSAGE: ***********************************************");
+    String[] lines = message.split("\\r");
+    for (String line : lines) {
+      System.out.println("         " + line);
+    }
+    System.out.println("********************************************************");
+    MqeMessageReceived mr = 
+    service.extractMessageFromText(message);
 
     long start = Calendar.getInstance().getTimeInMillis();
     List<ValidationRuleResult> list = validator.validateMessage(mr);

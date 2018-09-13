@@ -35,7 +35,7 @@ public class PatientBirthDateIsReasonable extends ValidationRule<MqePatient> {
     boolean passed = true;
 
     String birthDateString = target.getBirthDateString();
-    DateTime birthDate = this.common.parseDateTimeFrom(birthDateString);
+    DateTime birthDate = new DateTime(target.getBirthDate());
 
     // in the original validator, the "future" was determined based
     // on when the message is validated... we might need to keep that.

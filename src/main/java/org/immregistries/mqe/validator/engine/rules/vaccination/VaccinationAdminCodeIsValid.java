@@ -28,7 +28,9 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
             Detection.VaccinationAdminCodeIsNotSpecific,
             Detection.VaccinationAdminCodeIsValuedAsNotAdministered,
             Detection.VaccinationAdminCodeIsValuedAsUnknown,
-            Detection.VaccinationAdminCodeIsNotVaccine));
+            Detection.VaccinationAdminCodeIsNotVaccine,
+            Detection.VaccinationAdminCodeIsUnrecognized,
+            Detection.VaccinationAdminCodeIsForiegn));
   }
 
   @Override
@@ -67,7 +69,7 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
       }
     }
 
-    //If you didn't find anything for NDC code data, look up CVX code data.
+    //If you didn't find anything for CVX code data, look up CPT code data.
     if (adminCode == null) {
       if (StringUtils.isNotBlank(cptCode)) {
         adminCode = this.repo

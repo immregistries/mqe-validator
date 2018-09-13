@@ -10,18 +10,17 @@ import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
 
-public class VaccinationAdministeredRequiredFieldsArePresent extends
-    ValidationRule<MqeVaccination> {
+public class VaccinationAdministeredRequiredFieldsArePresent
+    extends ValidationRule<MqeVaccination> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[]{VaccinationIsAdministered.class};
+    return new Class[] {VaccinationAdministeredLotNumberIsPresent.class};
   }
 
   public VaccinationAdministeredRequiredFieldsArePresent() {
     ruleDetections.addAll(Arrays.asList(Detection.VaccinationFacilityNameIsMissing,
-        Detection.VaccinationLotExpirationDateIsMissing, Detection.VaccinationLotNumberIsMissing,
-        Detection.VaccinationLotNumberIsInvalid));
+        Detection.VaccinationLotExpirationDateIsMissing));
   }
 
   @Override
@@ -41,15 +40,6 @@ public class VaccinationAdministeredRequiredFieldsArePresent extends
 
     if (target.getExpirationDate() == null) {
       issues.add(Detection.VaccinationLotExpirationDateIsMissing.build(target));
-    }
-
-    if (this.common.isEmpty(target.getLotNumber())) {
-      issues.add(Detection.VaccinationLotNumberIsMissing.build(target));
-    } else {
-      String lotNumber = target.getLotNumber();
-      if (lotNumber.startsWith("LOT") || lotNumber.length() <= 4) {
-        issues.add(Detection.VaccinationLotNumberIsInvalid.build(target));
-      }
     }
 
     passed = (issues.size() == 0);

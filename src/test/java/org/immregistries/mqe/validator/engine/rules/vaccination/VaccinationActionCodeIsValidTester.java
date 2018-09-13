@@ -20,29 +20,26 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by Allison on 5/9/2017.
  */
-public class ObservationValueTypeIsValidTester {
+public class VaccinationActionCodeIsValidTester {
 
-  private ObservationValueTypeIsValid rule = new ObservationValueTypeIsValid();
+  private VaccinationActionCodeIsValid rule = new VaccinationActionCodeIsValid();
 
   // Parts required for the test
   private MqeMessageHeader mh = new MqeMessageHeader();
   private MqeMessageReceived mr = new MqeMessageReceived();
   private MqeVaccination v = new MqeVaccination();
-  private Observation o = new Observation();
 
   private static final Logger logger = LoggerFactory
-      .getLogger(ObservationValueTypeIsValidTester.class);
+      .getLogger(VaccinationActionCodeIsValidTester.class);
 
   /**
    * Sets up the objects needed for the test.
    */
   @Before
   public void setUpTheObjects() {
-    o.setValueTypeCode("CE"); // CE = Coded Entry
-
     mh.setMessageDate(new Date());
     mr.setMessageHeader(mh);
-    setObservationsAndVaccinations();
+    mr.getVaccinations().add(v);
   }
 
   /**
@@ -50,66 +47,47 @@ public class ObservationValueTypeIsValidTester {
    * (should be true)
    */
   @Test
-  public void testRule() {
+  public void testValid() {
+	v.setActionCode(MqeVaccination.ACTION_CODE_ADD);
     ValidationRuleResult r = rule.executeRule(v, mr);
     logger.info(r.getValidationDetections().toString());
     assertTrue(r.isRulePassed());
+    assertEquals(Detection.VaccinationActionCodeIsValuedAsAdd,
+            r.getValidationDetections().get(0).getDetection());
+    assertEquals(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate,
+            r.getValidationDetections().get(1).getDetection());
+    
+	v.setActionCode(MqeVaccination.ACTION_CODE_DELETE);
+    r = rule.executeRule(v, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertTrue(r.isRulePassed());
+    assertEquals(Detection.VaccinationActionCodeIsValuedAsDelete,
+            r.getValidationDetections().get(0).getDetection());
+    
+	v.setActionCode(MqeVaccination.ACTION_CODE_UPDATE);
+    r = rule.executeRule(v, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertTrue(r.isRulePassed());
+    assertEquals(Detection.VaccinationActionCodeIsValuedAsUpdate,
+            r.getValidationDetections().get(0).getDetection());
+    assertEquals(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate,
+            r.getValidationDetections().get(1).getDetection());
   }
 
   @Test
-  public void testRuleMissingType() {
-    o.setValueTypeCode(null);
-    setObservationsAndVaccinations();
-
+  public void testInvalid() {
+	v.setActionCode("#");
     ValidationRuleResult r = rule.executeRule(v, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.ObservationValueTypeIsMissing,
+    assertEquals(Detection.VaccinationActionCodeIsUnrecognized,
         r.getValidationDetections().get(0).getDetection());
     
-    o.setValueTypeCode("");
-    setObservationsAndVaccinations();
-
+	v.setActionCode(null);
     r = rule.executeRule(v, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.ObservationValueTypeIsMissing,
+    assertEquals(Detection.VaccinationActionCodeIsMissing,
         r.getValidationDetections().get(0).getDetection());
-  }
-
-  /**
-   * Test the rule with an unrecognized type code.
-   */
-  @Test
-  public void testRuleUnrecognizedType() {
-    o.setValueTypeCode("abc");
-    setObservationsAndVaccinations();
-
-    ValidationRuleResult r = rule.executeRule(v, mr);
-    logger.info(r.getValidationDetections().toString());
-    assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.ObservationValueTypeIsUnrecognized,
-        r.getValidationDetections().get(0).getDetection());
-  }
-  
-  @Test
-  public void testRuleIgnoredType() {
-    o.setValueTypeCode("CF");
-    setObservationsAndVaccinations();
-
-    ValidationRuleResult r = rule.executeRule(v, mr);
-    logger.info(r.getValidationDetections().toString());
-    assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.ObservationValueTypeIsIgnored,
-        r.getValidationDetections().get(0).getDetection());
-  }
-
-  /**
-   * Set the observation/vaccination we're currently looking at.
-   */
-  private void setObservationsAndVaccinations() {
-    List<Observation> obs = new ArrayList<>();
-    obs.add(o);
-    v.setObservations(obs);
   }
 }

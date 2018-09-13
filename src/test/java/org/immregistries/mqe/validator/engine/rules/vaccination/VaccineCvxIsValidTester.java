@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class VaccineCvxCodeIsValidTester {
+public class VaccineCvxIsValidTester {
 
   private VaccinationCvxIsValid vaccinationCvxIsValid = new VaccinationCvxIsValid();
 
@@ -22,7 +22,7 @@ public class VaccineCvxCodeIsValidTester {
   private MqeMessageReceived mr = new MqeMessageReceived();
   private MqeVaccination v = new MqeVaccination();
 
-  private static final Logger logger = LoggerFactory.getLogger(VaccineProductIsValidTester.class);
+  private static final Logger logger = LoggerFactory.getLogger(VaccinationCvxIsValid.class);
 
   /**
    * Sets up the objects needed for the test.

@@ -2,6 +2,8 @@ package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -29,9 +31,19 @@ public class VaccinationBodyRouteAndSiteAreValid extends ValidationRule<MqeVacci
     if (target != null) {// No null pointers!
       String bodySite = target.getBodySite();
       String bodyRoute = target.getBodyRoute();
-
-      issues.addAll(codr.handleCode(bodyRoute, VxuField.VACCINATION_BODY_ROUTE, target));
-      issues.addAll(codr.handleCode(bodySite, VxuField.VACCINATION_BODY_SITE, target));
+      
+      if (this.common.isEmpty(bodyRoute) || this.common.isEmpty(bodySite)) {
+          if (this.common.isEmpty(bodyRoute)) {
+        	  issues.add(Detection.VaccinationBodyRouteIsMissing.build(target));
+          }
+          
+          if (this.common.isEmpty(bodySite)) {
+        	  issues.add(Detection.VaccinationBodySiteIsMissing.build(target));
+          }
+      } else {
+          issues.addAll(codr.handleCode(bodyRoute, VxuField.VACCINATION_BODY_ROUTE, target));
+          issues.addAll(codr.handleCode(bodySite, VxuField.VACCINATION_BODY_SITE, target));
+      }
     }
 
     // These were not implemented in MQE 1.0

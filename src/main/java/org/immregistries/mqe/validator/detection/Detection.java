@@ -36,12 +36,12 @@ public enum Detection implements DetectionInfo {
   MessageMessageControlIdIsMissing(MESSAGE_CONTROL_ID, MISSING, WARN, MQE0014),
 
   //This we validate against other stuff.
-  MessageMessageDateIsInFuture(MESSAGE_DATE, IN_FUTURE, ACCEPT, MQE0015),
-  MessageMessageDateIsInvalid(MESSAGE_DATE, INVALID, ACCEPT, MQE0016),
-  MessageMessageDateIsMissing(MESSAGE_DATE, MISSING, ACCEPT, MQE0017),
-  MessageMessageDateIsNotPrecise(MESSAGE_DATE, NOT_PRECISE, ACCEPT, MQE0526),
-  MessageMessageDateIsMissingTimezone(MESSAGE_DATE, MISSING_TIMEZONE, INFO, MQE0527),
-  MessageMessageDateIsUnexpectedFormat(MESSAGE_DATE, UNEXPECTED_FORMAT, INFO, MQE0531),
+  MessageMessageDateIsInFuture(MESSAGE_DATE, IN_FUTURE, ERROR, MQE0015),
+//  MessageMessageDateIsInvalid(MESSAGE_DATE, INVALID, ACCEPT, MQE0016),  /* Decided this is covered by more specific detections. NB and JH */
+  MessageMessageDateIsMissing(MESSAGE_DATE, MISSING, ERROR, MQE0017),
+  MessageMessageDateIsNotPrecise(MESSAGE_DATE, NOT_PRECISE, WARN, MQE0526),
+  MessageMessageDateIsMissingTimezone(MESSAGE_DATE, MISSING_TIMEZONE, WARN, MQE0527),
+  MessageMessageDateIsUnexpectedFormat(MESSAGE_DATE, UNEXPECTED_FORMAT, ERROR, MQE0531),
 
   MessageMessageProfileIdIsMissing(MESSAGE_PROFILE_ID, MISSING, ACCEPT, MQE0439),
   MessageMessageTriggerIsMissing(MESSAGE_TRIGGER, MISSING, WARN, MQE0018),
@@ -451,6 +451,7 @@ public enum Detection implements DetectionInfo {
   VaccinationFundingSourceCodeIsInvalid(VACCINATION_FUNDING_SOURCE_CODE, INVALID, ACCEPT, MQE0585),
   VaccinationFundingSourceCodeIsMissing(VACCINATION_FUNDING_SOURCE_CODE, MISSING, ACCEPT, MQE0586),
   VaccinationFundingSourceCodeIsUnrecognized(VACCINATION_FUNDING_SOURCE_CODE, UNRECOGNIZED, ACCEPT, MQE0587),
+  VaccinationFundingSourceCodeIsUnexpectedForFinancialEligibility(VACCINATION_FUNDING_SOURCE_CODE, UNEXPECTED_FOR_FINANCIAL_ELIGIBILITY, WARN, MQE0596),
   
 
   VaccinationGivenByIsDeprecated(VACCINATION_GIVEN_BY, DEPRECATED, WARN, MQE0317),
@@ -506,6 +507,12 @@ public enum Detection implements DetectionInfo {
 
   VaccinationLotExpirationDateIsInvalid(VACCINATION_LOT_EXPIRATION_DATE, INVALID, WARN, MQE0336),
   VaccinationLotExpirationDateIsMissing(VACCINATION_LOT_EXPIRATION_DATE, MISSING, ACCEPT, MQE0337),
+  VaccinationLotNumberFormatIsUnrecognized(VACCINATION_LOT_NUMBER, UNRECOGNIZED, WARN, MQE0590),
+  VaccinationLotNumberHasMultiple(VACCINATION_LOT_NUMBER, MUTLIPLES, WARN, MQE0591),
+  VaccinationLotNumberHasInvalidPrefixes(VACCINATION_LOT_NUMBER, INVALID_PREFIXES, WARN, MQE0592),
+  VaccinationLotNumberHasInvalidSuffixes(VACCINATION_LOT_NUMBER, INVALID_SUFFIXES, WARN, MQE0593),
+  VaccinationLotNumberHasInvalidInfixes(VACCINATION_LOT_NUMBER, INVALID_INFIXES, WARN, MQE0594),
+  VaccinationLotNumberIsTooShort(VACCINATION_LOT_NUMBER, TOO_SHORT, WARN, MQE0595),
   VaccinationLotNumberIsInvalid(VACCINATION_LOT_NUMBER, INVALID, WARN, MQE0338),
   VaccinationLotNumberIsMissing(VACCINATION_LOT_NUMBER, MISSING, WARN, MQE0339),
   VaccinationManufacturerCodeIsDeprecated(VACCINATION_MANUFACTURER_CODE, DEPRECATED, WARN, MQE0340),

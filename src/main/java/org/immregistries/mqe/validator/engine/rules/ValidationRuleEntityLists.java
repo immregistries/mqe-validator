@@ -2,10 +2,13 @@ package org.immregistries.mqe.validator.engine.rules;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.rules.header.MessageHeaderCodesAreValid;
-import org.immregistries.mqe.validator.engine.rules.header.MessageHeaderDateIsExpectedFormat;
 import org.immregistries.mqe.validator.engine.rules.header.MessageHeaderDateIsValid;
 import org.immregistries.mqe.validator.engine.rules.header.MessageHeaderFieldsArePresent;
 import org.immregistries.mqe.validator.engine.rules.header.MessageVersionIs25;
@@ -46,12 +49,14 @@ import org.immregistries.mqe.validator.engine.rules.patient.PatientSubmitterIsVa
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationActionCodeIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminAfterBirthDate;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeCptIsValid;
-import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsUsable;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsPresent;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsUsable;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminDateIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminDateIsValidForPatientAge;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredAmtIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredLotNumberIsPresent;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredLotNumberIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredRequiredFieldsArePresent;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredUnitIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationBodyRouteAndSiteAreValid;
@@ -62,6 +67,8 @@ import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCptIs
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCvxIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCvxUseIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFinancialEligibilityCodeIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFundingAndEligibilityConflict;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFundingSourceCodeIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationInformationSourceIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationIsAdministered;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationIsAdministeredOrHistorical;
@@ -132,10 +139,14 @@ public enum ValidationRuleEntityLists {
       new VaccinationNdcIsValid(),
       new VaccinationCvxUseIsValid(),
       new VaccinationFinancialEligibilityCodeIsValid(),
+      new VaccinationFundingSourceCodeIsValid(),
+      new VaccinationFundingAndEligibilityConflict(),
       new VaccinationInformationSourceIsValid(),
       new VaccinationIsAdministered(),
       new VaccinationIsAdministeredOrHistorical(),
       new VaccinationIsForeign(),
+      new VaccinationAdministeredLotNumberIsValid(),
+      new VaccinationAdministeredLotNumberIsPresent(),
       new VaccinationMfrIsValid(),
       new VaccinationOrdererIsValid(),
       new VaccinationProductIsValid(),
@@ -154,7 +165,6 @@ public enum ValidationRuleEntityLists {
       new MessageHeaderCodesAreValid(),
       new MessageHeaderFieldsArePresent(),
       new MessageHeaderDateIsValid(),
-      new MessageHeaderDateIsExpectedFormat(),
       new MessageVersionIsValid(),
       new MessageVersionIs25()),
   NEXT_OF_KIN_RULES(
@@ -169,6 +179,21 @@ public enum ValidationRuleEntityLists {
   ValidationRuleEntityLists(ValidationRule... rulesIn) {
     this.rules = Arrays.asList(rulesIn);
   }
+  
+	public static Set<Detection> activeDetections(){
+		Set<Detection> dets = new HashSet<Detection>();
+    	for(ValidationRule rule : ValidationRuleEntityLists.PATIENT_RULES.getRules()){
+    		dets.addAll(rule.getRuleDetections());
+    	}
+    	for(ValidationRule rule : ValidationRuleEntityLists.VACCINATION_RULES.getRules()){
+    		dets.addAll(rule.getRuleDetections());
+    	}
+    	for(ValidationRule rule : ValidationRuleEntityLists.NEXT_OF_KIN_RULES.getRules()){
+    		dets.addAll(rule.getRuleDetections());
+    	}
+    	return dets;
+	}
+	
 
   public List<ValidationRule> getRules() {
     return new ArrayList<>(this.rules);

@@ -12,7 +12,7 @@ public enum MqeCode {
   MQE0006,
   MQE0014,
   MQE0015,
-  MQE0016,
+//  MQE0016, /* this was removed b/c the detection is no longer used. See Detection.java */
   MQE0017,
   MQE0018,
   MQE0020,
@@ -511,7 +511,15 @@ public enum MqeCode {
   MQE0586,
   MQE0587,
   MQE0588,
-  MQE0589
+  MQE0589,
+  MQE0590,
+  MQE0591,
+  MQE0592,
+  MQE0593,
+  MQE0594,
+  MQE0595,
+  MQE0596,
+  
   
   
   // Add new codes here below in ascending order

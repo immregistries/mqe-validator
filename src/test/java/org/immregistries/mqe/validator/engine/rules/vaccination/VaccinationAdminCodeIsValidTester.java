@@ -96,7 +96,7 @@ public class VaccinationAdminCodeIsValidTester {
     logger.warn("Detections: " + r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
     assertEquals(false, r.isRulePassed());
-    assertEquals(Detection.VaccinationAdminCodeIsForiegn,
+    assertEquals(Detection.VaccinationAdminCodeIsForeign,
         r.getValidationDetections().get(0).getDetection());
   }
 

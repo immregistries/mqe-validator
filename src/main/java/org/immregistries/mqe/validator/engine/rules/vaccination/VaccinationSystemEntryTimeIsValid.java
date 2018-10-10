@@ -9,6 +9,7 @@ import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.joda.time.DateTime;
 
 public class VaccinationSystemEntryTimeIsValid extends ValidationRule<MqeVaccination> {
 
@@ -25,10 +26,18 @@ public class VaccinationSystemEntryTimeIsValid extends ValidationRule<MqeVaccina
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
     boolean passed = true;
 
-    if (target.getSystemEntryDate() == null) {
+    if (target.getSystemEntryDateString() == null) {
       issues.add(Detection.VaccinationSystemEntryTimeIsMissing.build(target));
-    } else if (datr.isBeforeDate(m.getReceivedDate(), target.getSystemEntryDate())) {
-      issues.add(Detection.VaccinationSystemEntryTimeIsInFuture.build(target));
+    } else  {
+    	if (this.common.isValidDate(target.getSystemEntryDateString())) {
+        	DateTime systemEntryDate = this.common.parseDateTimeFrom(target.getSystemEntryDateString());
+            
+            if (datr.isBeforeDate(m.getReceivedDate(), systemEntryDate.toDate())) {
+                issues.add(Detection.VaccinationSystemEntryTimeIsInFuture.build(target));
+            }
+    	} else {
+    		issues.add(Detection.VaccinationSystemEntryTimeIsInvalid.build(target));
+    	}
     }
 
     passed = (issues.size() == 0);

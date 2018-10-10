@@ -55,7 +55,7 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<MqeVacci
           issues.add(Detection.VaccinationInformationSourceIsValuedAsAdministered.build((sourceCd),
               target));
           break;
-        case MqeVaccination.INFO_SOURCE_HIST:
+        default:
           issues.add(Detection.VaccinationInformationSourceIsValuedAsHistorical.build((sourceCd),
               target));
           break;

@@ -18,9 +18,8 @@ public class VaccinationIsAdministeredOrHistorical extends ValidationRule<MqeVac
 
     passed =
         (target.getCompletion() != null
-            && (target.getCompletion().isEmpty() || target
-                .isCompletionCompletedOrPartiallyAdministered()) && (target.getAdminCvxCode() != null && !target
-            .getAdminCvxCode().equals("998")));
+            && (target.getCompletion().isEmpty() || target.isCompletionCompletedOrPartiallyAdministered()) 
+            && (target.getAdminCvxCode() != null && !target.getAdminCvxCode().equals("998")));
 
     return buildResults(issues, passed);
   }

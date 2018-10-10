@@ -29,7 +29,7 @@ public class PatientImmunityIsValid extends ValidationRule<MqePatient> {
     boolean passed = true;
 
     for (PatientImmunity imm : target.getPatientImmunityList()) {
-      String immCode = imm.getImmunityCode();
+      String immCode = imm.getCode();
       issues.addAll(codr.handleCode(immCode, VxuField.PATIENT_IMMUNITY_CODE, target));
     }
 

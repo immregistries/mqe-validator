@@ -194,6 +194,7 @@ public enum MessageTransformer {
   private static final String OBX_VIS_PUBLISHED = "29768-9";
   private static final String OBX_VIS_PRESENTED = "29769-7";
   private static final String OBX_DISEASE_WITH_PRESUMED_IMMUNITY = "59784-9";
+  private static final String OBX_SERIOLOGICAL_EVIDENCE_OF_IMMUNITY = "75505-8";
 
   protected void transformObservations(MqeMessageReceived mr) {
     for (MqeVaccination v : mr.getVaccinations()) {
@@ -310,7 +311,9 @@ public enum MessageTransformer {
     for (Observation o : obxList) {
       switch (o.getIdentifierCode()) {
         case OBX_DISEASE_WITH_PRESUMED_IMMUNITY:
-          pi.setImmunityCode(o.getValue());
+        case OBX_SERIOLOGICAL_EVIDENCE_OF_IMMUNITY:
+          pi.setCode(o.getValue());
+          pi.setType(o.getIdentifierCode());
       }
     }
 

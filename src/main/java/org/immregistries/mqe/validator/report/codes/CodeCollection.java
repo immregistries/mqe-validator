@@ -183,7 +183,7 @@ public class CodeCollection {
     addCounts(VxuField.PATIENT_GENDER, "", patient.getSexCode(), bucketList);
 
     for (PatientImmunity p : patient.getPatientImmunityList()) {
-      addCounts(VxuField.PATIENT_IMMUNITY_CODE, "", p.getImmunityCode(), bucketList);
+      addCounts(VxuField.PATIENT_IMMUNITY_CODE, "", p.getCode(), bucketList);
     }
 
     addCounts(VxuField.PATIENT_NAME_TYPE_CODE, "", patient.getNameTypeCode(), bucketList);

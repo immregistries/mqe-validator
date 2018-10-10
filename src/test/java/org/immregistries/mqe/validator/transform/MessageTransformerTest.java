@@ -57,7 +57,7 @@ public class MessageTransformerTest {
     assertNotNull(immunities);
     assertEquals("Should have two immunity", 1, immunities.size());
     assertEquals("should be an immunity of type 23511006", "23511006",
-        immunities.get(0).getImmunityCode());
+        immunities.get(0).getCode());
 
     List<MqeVaccination> vaccList = mr.getVaccinations();
     assertNotNull(vaccList);

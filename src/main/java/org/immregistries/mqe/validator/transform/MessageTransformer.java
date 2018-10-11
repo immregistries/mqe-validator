@@ -60,7 +60,7 @@ import org.slf4j.LoggerFactory;
  */
 
 public enum MessageTransformer {
-                                INSTANCE;
+  INSTANCE;
 
   private CodeRepository repo = CodeRepository.INSTANCE;
 
@@ -110,7 +110,7 @@ public enum MessageTransformer {
 
     //Then clean them. Get the cleanser every time.
     AddressCleanser ac = AddressCleanserFactory.INSTANCE.getAddressCleanser();
-    Map<MqeAddress, MqeAddress> cleanMap = ac.cleanThese(list.toArray(new MqeAddress[] {}));
+    Map<MqeAddress, MqeAddress> cleanMap = ac.cleanThese(list.toArray(new MqeAddress[]{}));
     if (logger.isInfoEnabled()) {
       logger.info("Finished address cleansing request");
     }
@@ -131,7 +131,9 @@ public enum MessageTransformer {
         logger.info("Patient Address: " + p.getPatientAddress());
       }
       if (p.getPatientAddress() != null && !p.getPatientAddress().isClean()) {
-        logger.warn("Patient Address not clean: " + p.getPatientAddress().getCleansingResultCode());
+        if (logger.isInfoEnabled()) {
+          logger.info("Patient Address not clean: " + p.getPatientAddress().getCleansingResultCode());
+        }
       }
       if (p.getResponsibleParty() != null) {
         MqeAddress aClean = cleanMap.get(p.getResponsibleParty().getAddress());

@@ -576,7 +576,7 @@ public enum Detection implements DetectionInfo {
   VaccinationSystemEntryTimeIsInvalid(VACCINATION_SYSTEM_ENTRY_TIME, INVALID, ACCEPT, MQE0366),
   VaccinationSystemEntryTimeIsMissing(VACCINATION_SYSTEM_ENTRY_TIME, MISSING, ACCEPT, MQE0367),
 
-  UnknownValidationIssue(CONFIGURATION, UNRECOGNIZED, ERROR, MQE0000);
+  UnknownValidationIssue(CONFIGURATION, UNRECOGNIZED, WARN, MQE0000);
   //@formatter:on
   private static final Map<VxuField, Map<DetectionType, Detection>> fieldIssueMaps =
       new HashMap<>();

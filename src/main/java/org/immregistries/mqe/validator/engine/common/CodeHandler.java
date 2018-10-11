@@ -195,8 +195,10 @@ public enum CodeHandler {
       return issue.build(receivedValue, meta);
     } else {
       LOGGER.warn("Checking for a condition that has no corresponding PotentialIssue. Field: "
-          + field + " IssueType: " + type);
-      return Detection.UnknownValidationIssue.build(meta);
+          + field + " IssueType: " + type + " - returning General Configuration error.");
+      return Detection.UnknownValidationIssue.build(
+          field + " " + type + " value["+receivedValue+"]",
+          meta);
     }
   }
 }

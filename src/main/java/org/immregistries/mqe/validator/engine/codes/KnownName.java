@@ -103,15 +103,15 @@ public class KnownName {
   }
 
   public boolean onlyNameLast() {
-    return nameFirst == null && nameMiddle == null && birthDate == null;
+    return (nameFirst == null || nameFirst.equals("")) && (nameMiddle == null || nameMiddle.equals("")) && (birthDate == null || birthDate.equals(""));
   }
 
   public boolean onlyNameFirst() {
-    return nameLast == null && nameMiddle == null && birthDate == null;
+    return (nameLast == null || nameLast.equals("")) && (nameMiddle == null || nameMiddle.equals("")) && (birthDate == null || birthDate.equals(""));
   }
 
   public boolean onlyNameMiddle() {
-    return nameFirst == null && nameLast == null && birthDate == null;
+    return (nameFirst == null || nameFirst.equals("")) && (nameLast == null || nameLast.equals("")) && (birthDate == null || birthDate.equals(""));
   }
 
   public void setKnownNameId(int knownNameId) {

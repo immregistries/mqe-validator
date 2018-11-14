@@ -624,7 +624,7 @@ public enum Detection implements DetectionInfo {
         + " "
         + fieldRef.getFieldDescription()
         + " "
-        + detectionType.getText();
+        + detectionType.wording;
   }
 
   public DetectionType getDetectionType() {

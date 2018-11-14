@@ -24,7 +24,7 @@ public class MessageVersionIsValid extends ValidationRule<MqeMessageHeader> {
   }
 
   public MessageVersionIsValid() {
-    this.ruleDetections.addAll(Arrays.asList(Detection.MessageVersionIsMissing,
+    this.addRuleDocumentation(Arrays.asList(Detection.MessageVersionIsMissing,
         Detection.MessageVersionIsUnrecognized));
   }
 

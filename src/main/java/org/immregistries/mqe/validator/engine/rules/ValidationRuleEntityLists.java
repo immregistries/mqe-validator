@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.rules.header.MessageHeaderCodesAreValid;
 import org.immregistries.mqe.validator.engine.rules.header.MessageHeaderDateIsValid;
@@ -190,6 +191,23 @@ public enum ValidationRuleEntityLists {
     	}
     	for(ValidationRule rule : ValidationRuleEntityLists.NEXT_OF_KIN_RULES.getRules()){
     		dets.addAll(rule.getRuleDetections());
+    	}
+    	return dets;
+	}
+	
+	public static Set<ImplementationDetail> getImplementationDocumentations(){
+		Set<ImplementationDetail> dets = new HashSet<ImplementationDetail>();
+    	for(ValidationRule rule : ValidationRuleEntityLists.PATIENT_RULES.getRules()){
+    		dets.addAll(rule.getImplementationDocumentation());
+    	}
+    	for(ValidationRule rule : ValidationRuleEntityLists.VACCINATION_RULES.getRules()){
+    		dets.addAll(rule.getImplementationDocumentation());
+    	}
+    	for(ValidationRule rule : ValidationRuleEntityLists.MESSAGE_HEADER_RULES.getRules()){
+    		dets.addAll(rule.getImplementationDocumentation());
+    	}
+    	for(ValidationRule rule : ValidationRuleEntityLists.NEXT_OF_KIN_RULES.getRules()){
+    		dets.addAll(rule.getImplementationDocumentation());
     	}
     	return dets;
 	}

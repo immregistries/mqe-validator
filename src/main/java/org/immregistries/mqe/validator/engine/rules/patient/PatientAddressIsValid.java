@@ -32,22 +32,25 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientAddressIsValid() {
-    this.ruleDetections.addAll(Arrays.asList(Detection.PatientAddressTypeIsValuedBadAddress));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STREET));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_CITY));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STATE));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_COUNTY));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_COUNTRY));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_ZIP));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_TYPE));
+    this.addRuleDocumentation(Arrays.asList(Detection.PatientAddressTypeIsValuedBadAddress));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STREET));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_CITY));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STATE));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_COUNTY));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_COUNTRY));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_ZIP));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_TYPE));
+    this.addImplementationMessage(Detection.PatientAddressTypeIsValuedBadAddress, "Sample Message");
+    
 
     if (props.isAddressCleanserEnabled()) {
-      this.ruleDetections.add(Detection.PatientAddressIsInvalid);
+      this.addRuleDocumentation(Detection.PatientAddressIsInvalid);
     }
   }
 
-  @Override
+
+@Override
   protected ValidationRuleResult executeRule(MqePatient target, MqeMessageReceived m) {
     List<ValidationReport> issues = new ArrayList<>();
     boolean passed;

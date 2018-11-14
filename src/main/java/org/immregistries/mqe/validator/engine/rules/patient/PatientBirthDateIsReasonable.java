@@ -21,7 +21,7 @@ public class PatientBirthDateIsReasonable extends ValidationRule<MqePatient> {
   }
 
   public PatientBirthDateIsReasonable() {
-    this.ruleDetections.addAll(
+    this.addRuleDocumentation(
         Arrays.asList(Detection.PatientBirthDateIsVeryLongAgo,
             Detection.PatientBirthDateIsOn15ThDayOfMonth,
             Detection.PatientBirthDateIsOnFirstDayOfMonth,

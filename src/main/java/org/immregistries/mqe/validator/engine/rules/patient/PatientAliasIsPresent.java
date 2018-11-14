@@ -17,7 +17,7 @@ public class PatientAliasIsPresent extends ValidationRule<MqePatient> {
   }
 
   public PatientAliasIsPresent() {
-    this.ruleDetections.add(Detection.PatientAliasIsMissing);
+    this.addRuleDocumentation(Detection.PatientAliasIsMissing);
   }
 
   @Override

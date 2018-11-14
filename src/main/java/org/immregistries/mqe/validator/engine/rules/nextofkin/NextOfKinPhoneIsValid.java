@@ -15,7 +15,7 @@ public class NextOfKinPhoneIsValid extends ValidationRule<MqeNextOfKin> {
   private PhoneValidator phoneValidator = PhoneValidator.INSTANCE;
 
   public NextOfKinPhoneIsValid() {
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_PHONE));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_PHONE));
   }
 
   @Override

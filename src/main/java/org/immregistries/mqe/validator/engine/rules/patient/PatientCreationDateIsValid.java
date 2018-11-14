@@ -19,7 +19,7 @@ public class PatientCreationDateIsValid extends ValidationRule<MqePatient> {
 	
 	public PatientCreationDateIsValid() {
 		super();
-		this.ruleDetections.addAll(Arrays.asList(
+		this.addRuleDocumentation(Arrays.asList(
 				Detection.PatientSystemEntryDateIsInvalid,
 				Detection.PatientSystemEntryDateIsMissing,
 				Detection.PatientSystemEntryDateIsInTheFuture

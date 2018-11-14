@@ -22,7 +22,7 @@ public class MessageHeaderDateIsValid extends ValidationRule<MqeMessageHeader> {
   }
 
   public MessageHeaderDateIsValid() {
-    this.ruleDetections.addAll(Arrays.asList(
+    this.addRuleDocumentation(Arrays.asList(
         Detection.MessageMessageDateIsUnexpectedFormat,
         Detection.MessageMessageDateIsMissing,
         Detection.MessageMessageDateIsInFuture,

@@ -22,7 +22,7 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
   }
 
   public NextOfKinRelationshipIsValidForUnderagedPatient() {
-    this.ruleDetections.addAll(Arrays.asList(Detection.NextOfKinRelationshipIsUnexpected,
+    this.addRuleDocumentation(Arrays.asList(Detection.NextOfKinRelationshipIsUnexpected,
         Detection.NextOfKinRelationshipIsUnrecognized,
         Detection.NextOfKinRelationshipIsNotResponsibleParty,
         Detection.NextOfKinRelationshipIsMissing));

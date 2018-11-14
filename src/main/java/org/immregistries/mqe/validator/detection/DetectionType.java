@@ -11,7 +11,7 @@ public enum DetectionType {
   IN_FUTURE("is in future"),
   INCOMPLETE("is incomplete"),
   INVALID("is invalid"),
-  MISSING("is missing"),
+  MISSING("is missing", "No value given for field"), 
   REPEATED("is repeated"),
   UNRECOGNIZED("is unrecognized"),
   UNEXPECTED("is unexpected"),
@@ -115,16 +115,21 @@ public enum DetectionType {
   IS_LATE("is late"),
   IS_VERY_LATE("is very late"),
   IS_TOO_LATE("is too late");
+	
 
 
-  private String wording;
+
+  public final String wording;
+  public final String description;
 
   DetectionType(String wording) {
     this.wording = wording;
+    this.description = null;
   }
-
-  public String getText() {
-    return wording;
+  
+  DetectionType(String wording, String description) {
+    this.wording = wording;
+    this.description = description;
   }
 
   public AckERRCode getAckErrCode() {

@@ -22,7 +22,7 @@ public class PatientIsUnderage extends ValidationRule<MqePatient> {
   }
 
   public PatientIsUnderage() {
-    this.ruleDetections.add(Detection.PatientBirthDateIsUnderage);
+    this.addRuleDocumentation(Detection.PatientBirthDateIsUnderage);
   }
 
 

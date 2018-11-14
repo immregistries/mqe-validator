@@ -19,7 +19,7 @@ public class PatientHasResponsibleParty extends ValidationRule<MqePatient> {
   }
 
   public PatientHasResponsibleParty() {
-    this.ruleDetections.addAll(Arrays.asList(Detection.PatientGuardianResponsiblePartyIsMissing));
+    this.addRuleDocumentation(Arrays.asList(Detection.PatientGuardianResponsiblePartyIsMissing));
   }
 
   @Override

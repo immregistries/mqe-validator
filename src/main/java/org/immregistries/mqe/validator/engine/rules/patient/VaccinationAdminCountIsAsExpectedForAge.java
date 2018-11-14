@@ -21,7 +21,7 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
 
 	public VaccinationAdminCountIsAsExpectedForAge() {
 		super();
-		this.ruleDetections.add(Detection.AdministredVaccinationsCountIsLargerThanExpected);
+		this.addRuleDocumentation(Detection.AdministredVaccinationsCountIsLargerThanExpected);
 	}
 
 	@Override

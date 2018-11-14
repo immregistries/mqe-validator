@@ -24,7 +24,7 @@ public class PatientCreationTimeliness extends ValidationRule<MqePatient> {
 	
 	public PatientCreationTimeliness() {
 		super();
-		this.ruleDetections.addAll(Arrays.asList(
+		this.addRuleDocumentation(Arrays.asList(
 				Detection.PatientCreationIsVeryLate,
 				Detection.PatientCreationIsTooLate,
 				Detection.PatientCreationIsOnTime,

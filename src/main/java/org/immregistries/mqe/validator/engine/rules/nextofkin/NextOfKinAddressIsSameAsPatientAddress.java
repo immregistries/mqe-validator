@@ -20,7 +20,7 @@ public class NextOfKinAddressIsSameAsPatientAddress extends ValidationRule<MqeNe
   }
 
   public NextOfKinAddressIsSameAsPatientAddress() {
-    this.ruleDetections.addAll(Arrays
+    this.addRuleDocumentation(Arrays
         .asList(Detection.NextOfKinAddressIsDifferentFromPatientAddress));
   }
 

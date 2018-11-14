@@ -3,10 +3,16 @@ package org.immregistries.mqe.validator.engine;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.immregistries.mqe.core.util.DateUtility;
 import org.immregistries.mqe.validator.ValidatorProperties;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.codes.CodeRepository;
 import org.immregistries.mqe.validator.engine.common.CodeHandler;
@@ -29,6 +35,7 @@ public abstract class ValidationRule<T> {
    * and I wanted to limit the number of util objects.
    */
   protected final List<Detection> ruleDetections = new ArrayList<>();
+  protected final Set<ImplementationDetail> ruleDocumentation = new HashSet<ImplementationDetail>();
   protected final ValidationUtility util = ValidationUtility.INSTANCE;
   protected final CommonRules common = CommonRules.INSTANCE;
   protected final CodeHandler codr = CodeHandler.INSTANCE;
@@ -102,5 +109,26 @@ public abstract class ValidationRule<T> {
 		return ruleDetections;
 	}
   
+	public Set<ImplementationDetail> getImplementationDocumentation() {
+		return ruleDocumentation;
+	}
+
+	public void addRuleDocumentation(Detection detection) {
+		List<Detection> detections = new ArrayList<Detection>();
+		detections.add(detection);
+		this.addRuleDocumentation(detections);
+	}
   
+	public void addRuleDocumentation(List<Detection> detections) {
+		this.ruleDetections.addAll(detections);
+		for (Detection detection : detections) {
+			this.ruleDocumentation.add(new ImplementationDetail(detection));
+		}
+	}
+	
+	public void addImplementationMessage(Detection detection, String message) {
+		ImplementationDetail implDetail = new ImplementationDetail(detection, message);
+		this.ruleDocumentation.remove(implDetail);
+		this.ruleDocumentation.add(implDetail);
+	}
 }

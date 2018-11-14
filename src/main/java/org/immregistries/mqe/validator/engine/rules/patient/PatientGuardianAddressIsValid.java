@@ -31,19 +31,19 @@ public class PatientGuardianAddressIsValid extends ValidationRule<MqeNextOfKin> 
   private AddressValidator addressValidator = AddressValidator.INSTANCE;
 
   public PatientGuardianAddressIsValid() {
-	  this.ruleDetections.addAll(Arrays.asList(Detection.PatientGuardianAddressTypeIsValuedBadAddress));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_STREET));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_CITY));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_STATE));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_COUNTY));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_COUNTRY));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_ZIP));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_TYPE));
+	  this.addRuleDocumentation(Arrays.asList(Detection.PatientGuardianAddressTypeIsValuedBadAddress));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_STREET));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_CITY));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_STATE));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_COUNTY));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_COUNTRY));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_ZIP));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_TYPE));
     
 
     if (props.isAddressCleanserEnabled()) {
-      this.ruleDetections.add(Detection.PatientGuardianAddressIsInvalid);
+      this.addRuleDocumentation(Detection.PatientGuardianAddressIsInvalid);
     }
   }
 

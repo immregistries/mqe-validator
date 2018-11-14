@@ -23,7 +23,7 @@ public class NextOfKinNameIsNotSameAsPatient extends ValidationRule<MqeNextOfKin
   }
 
   public NextOfKinNameIsNotSameAsPatient() {
-    this.ruleDetections.addAll(Arrays.asList(Detection.PatientGuardianNameIsSameAsUnderagePatient));
+    this.addRuleDocumentation(Arrays.asList(Detection.PatientGuardianNameIsSameAsUnderagePatient));
   }
 
   @Override

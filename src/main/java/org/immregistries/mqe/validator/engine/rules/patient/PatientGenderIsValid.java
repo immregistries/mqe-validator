@@ -19,7 +19,7 @@ public class PatientGenderIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientGenderIsValid() {
-	  this.ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_GENDER));
+	  this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_GENDER));
   }
 
   @Override

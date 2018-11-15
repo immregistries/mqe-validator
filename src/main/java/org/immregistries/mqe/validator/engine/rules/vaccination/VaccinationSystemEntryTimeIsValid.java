@@ -16,7 +16,7 @@ public class VaccinationSystemEntryTimeIsValid extends ValidationRule<MqeVaccina
   // dependency: VaccinationIsAdministered
 
   public VaccinationSystemEntryTimeIsValid() {
-    ruleDetections.addAll(Arrays.asList(Detection.VaccinationSystemEntryTimeIsMissing,
+    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationSystemEntryTimeIsMissing,
         Detection.VaccinationSystemEntryTimeIsInFuture));
   }
 

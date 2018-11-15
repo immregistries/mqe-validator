@@ -15,7 +15,7 @@ import org.immregistries.mqe.vxu.VxuField;
 public class PatientClassIsValid extends ValidationRule<MqePatient> {
 
   public PatientClassIsValid() {
-    ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.PATIENT_CLASS));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_CLASS));
   }
 
   @Override

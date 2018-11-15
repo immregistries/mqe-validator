@@ -27,22 +27,15 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
   private AddressValidator addressValidator = AddressValidator.INSTANCE;
 
   public NextOfKinAddressIsValid() {
-
-    this.addRuleDocumentation(Arrays.asList(
-        Detection.NextOfKinAddressTypeIsValuedBadAddress));
-
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS));
-    this.ruleDetections
-        .addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET));
-    this.ruleDetections
-        .addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET2));
-    this.ruleDetections
-        .addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTY));
-    this.ruleDetections
-        .addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTRY));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET2));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTY));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_CITY));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTRY));
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_ZIP));
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_TYPE));
-
+    
     if (props.isAddressCleanserEnabled()) {
       this.addRuleDocumentation(Detection.NextOfKinAddressIsInvalid);
     }

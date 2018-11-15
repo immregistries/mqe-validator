@@ -19,7 +19,7 @@ public class VaccinationAdministeredRequiredFieldsArePresent
   }
 
   public VaccinationAdministeredRequiredFieldsArePresent() {
-    ruleDetections.addAll(Arrays.asList(Detection.VaccinationFacilityNameIsMissing,
+    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationFacilityNameIsMissing,
         Detection.VaccinationLotExpirationDateIsMissing));
   }
 

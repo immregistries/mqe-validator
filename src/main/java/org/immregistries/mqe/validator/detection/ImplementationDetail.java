@@ -22,6 +22,10 @@ public class ImplementationDetail {
 		this.detection = detection;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
 	@Override
 	public String toString() {
 		return "ImplementationDetail [detection=" + detection.name() + ", description=" + description + "]";

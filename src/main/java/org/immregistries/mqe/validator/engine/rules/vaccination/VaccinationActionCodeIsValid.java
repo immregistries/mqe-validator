@@ -15,7 +15,7 @@ public class VaccinationActionCodeIsValid extends ValidationRule<MqeVaccination>
 
 
   public VaccinationActionCodeIsValid() {
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_ACTION_CODE));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_ACTION_CODE));
   }
 
   @Override

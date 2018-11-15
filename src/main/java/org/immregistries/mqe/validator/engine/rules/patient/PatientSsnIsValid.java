@@ -15,7 +15,7 @@ import org.immregistries.mqe.vxu.VxuField;
 public class PatientSsnIsValid extends ValidationRule<MqePatient> {
 
   public PatientSsnIsValid() {
-    ruleDetections.addAll(Arrays.asList(Detection.get(VxuField.PATIENT_SSN, DetectionType.MISSING),
+    this.addRuleDocumentation(Arrays.asList(Detection.get(VxuField.PATIENT_SSN, DetectionType.MISSING),
         Detection.get(VxuField.PATIENT_SSN, DetectionType.INVALID)));
   }
 

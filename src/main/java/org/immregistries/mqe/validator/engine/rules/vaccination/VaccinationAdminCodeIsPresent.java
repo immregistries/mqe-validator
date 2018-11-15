@@ -14,7 +14,7 @@ import org.immregistries.mqe.vxu.VxuField;
 public class VaccinationAdminCodeIsPresent extends ValidationRule<MqeVaccination> {
 
   public VaccinationAdminCodeIsPresent() {
-    ruleDetections.add(Detection.VaccinationAdminCodeIsMissing);
+    this.addRuleDocumentation(Detection.VaccinationAdminCodeIsMissing);
   }
 
   @Override

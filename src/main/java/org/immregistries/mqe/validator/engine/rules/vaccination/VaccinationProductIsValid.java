@@ -21,8 +21,8 @@ public class VaccinationProductIsValid extends ValidationRule<MqeVaccination> {
   }
 
   public VaccinationProductIsValid() {
-    ruleDetections.add(Detection.VaccinationProductIsMissing);
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_PRODUCT));
+    this.addRuleDocumentation(Detection.VaccinationProductIsMissing);
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_PRODUCT));
   }
 
   @Override

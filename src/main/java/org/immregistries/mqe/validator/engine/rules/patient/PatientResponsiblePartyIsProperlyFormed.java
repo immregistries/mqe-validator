@@ -21,7 +21,7 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
   }
 
   public PatientResponsiblePartyIsProperlyFormed() {
-    ruleDetections.addAll(Arrays.asList(
+    this.addRuleDocumentation(Arrays.asList(
         Detection.PatientGuardianAddressStateIsMissing,
         Detection.PatientGuardianAddressCityIsMissing,
         Detection.PatientGuardianAddressZipIsMissing,
@@ -33,7 +33,7 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
         Detection.PatientGuardianResponsiblePartyIsMissing));
 
     if (props.isAddressCleanserEnabled()) {
-      ruleDetections.add(Detection.PatientGuardianAddressIsInvalid);
+      this.addRuleDocumentation(Detection.PatientGuardianAddressIsInvalid);
     }
   }
 

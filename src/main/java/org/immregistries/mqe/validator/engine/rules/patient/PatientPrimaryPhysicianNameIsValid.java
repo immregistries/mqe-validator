@@ -14,7 +14,7 @@ public class PatientPrimaryPhysicianNameIsValid extends ValidationRule<MqePatien
 
 
   public PatientPrimaryPhysicianNameIsValid() {
-    ruleDetections.add(Detection.PatientPrimaryPhysicianNameIsMissing);
+    this.addRuleDocumentation(Detection.PatientPrimaryPhysicianNameIsMissing);
   }
 
   @Override

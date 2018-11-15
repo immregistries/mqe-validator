@@ -1,8 +1,11 @@
 package org.immregistries.mqe.validator.detection;
 
 
+import static org.junit.Assert.assertFalse;
+
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntityLists;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -14,15 +17,12 @@ public class ImplementationDocumentationTest {
 	
 	@Test
 	public void test() {
-		try {
 		Set<ImplementationDetail> implementationDocumentations = ValidationRuleEntityLists.getImplementationDocumentations();
 		for (ImplementationDetail implementationDetail : implementationDocumentations) {
-			System.out.println(implementationDetail.toString());
+			logger.info(implementationDetail.toString());
+			assertFalse(StringUtils.isBlank(implementationDetail.getDescription()));
 		}
-		} catch(Exception e) {
-			e.printStackTrace();
-			System.out.println("Exception");
-		}
+
 	}
 	
 	

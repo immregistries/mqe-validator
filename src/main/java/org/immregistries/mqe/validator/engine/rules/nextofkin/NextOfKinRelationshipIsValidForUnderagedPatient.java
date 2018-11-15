@@ -26,6 +26,8 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
         Detection.NextOfKinRelationshipIsUnrecognized,
         Detection.NextOfKinRelationshipIsNotResponsibleParty,
         Detection.NextOfKinRelationshipIsMissing));
+    this.addImplementationMessage(Detection.NextOfKinRelationshipIsUnexpected, "An underage patient is not expecting a next of kin that is a child, step child, or foster child.");
+    this.addImplementationMessage(Detection.NextOfKinRelationshipIsNotResponsibleParty, "The next of kin for an underage patient is expected to be a caregiver, father, grandparent, mother, parent, or guardian.");
   }
 
   @Override

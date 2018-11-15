@@ -24,6 +24,7 @@ public class PatientCreationDateIsValid extends ValidationRule<MqePatient> {
 				Detection.PatientSystemEntryDateIsMissing,
 				Detection.PatientSystemEntryDateIsInTheFuture
 		));
+		this.addImplementationMessage(Detection.PatientSystemEntryDateIsInvalid, "Patient system entry date cannot be translated to a date.");
 	}
 
 	@Override

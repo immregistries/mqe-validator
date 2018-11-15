@@ -19,8 +19,8 @@ public class VaccinationBodyRouteAndSiteAreValid extends ValidationRule<MqeVacci
   }
 
   public VaccinationBodyRouteAndSiteAreValid() {
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_BODY_ROUTE));
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_BODY_SITE));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_BODY_ROUTE));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_BODY_SITE));
   }
 
   @Override

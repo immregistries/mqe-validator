@@ -21,7 +21,7 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
   }
 
   public VaccinationVisDatesAreValid() {
-    ruleDetections.addAll(Arrays.asList(Detection.VaccinationVisPublishedDateIsMissing,
+    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationVisPublishedDateIsMissing,
         Detection.VaccinationVisPresentedDateIsInvalid,
         Detection.VaccinationVisPresentedDateIsMissing,
         Detection.VaccinationVisPublishedDateIsInvalid,

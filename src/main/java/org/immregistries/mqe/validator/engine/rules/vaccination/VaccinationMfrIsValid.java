@@ -19,10 +19,10 @@ public class VaccinationMfrIsValid extends ValidationRule<MqeVaccination> {
   // dependency: VaccinationIsAdministered
 
   public VaccinationMfrIsValid() {
-    ruleDetections.addAll(Arrays.asList(
+    this.addRuleDocumentation(Arrays.asList(
         Detection.VaccinationManufacturerCodeIsInvalidForDateAdministered,
         Detection.VaccinationManufacturerCodeIsUnexpectedForDateAdministered));
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_MANUFACTURER_CODE));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_MANUFACTURER_CODE));
   }
 
   @Override

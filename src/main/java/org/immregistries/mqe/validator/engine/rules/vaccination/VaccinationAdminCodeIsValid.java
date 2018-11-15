@@ -23,7 +23,7 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
   }
 
   public VaccinationAdminCodeIsValid() {
-    ruleDetections.addAll(Arrays
+    this.addRuleDocumentation(Arrays
         .asList(
             Detection.VaccinationAdminCodeIsNotSpecific,
             Detection.VaccinationAdminCodeIsValuedAsNotAdministered,

@@ -18,7 +18,7 @@ public class VaccinationVisCvxIsValid extends ValidationRule<MqeVaccination> {
   }
 
   public VaccinationVisCvxIsValid() {
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_VIS_CVX_CODE));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_VIS_CVX_CODE));
   }
 
 

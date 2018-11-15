@@ -16,8 +16,8 @@ import org.immregistries.mqe.vxu.hl7.Observation;
 public class ObservationDateIsValid extends ValidationRule<MqeVaccination> {
 
   public ObservationDateIsValid() {
-    ruleDetections.add(Detection.ObservationDateTimeOfObservationIsMissing);
-    ruleDetections.add(Detection.ObservationDateTimeOfObservationIsInvalid);
+    this.addRuleDocumentation(Detection.ObservationDateTimeOfObservationIsMissing);
+    this.addRuleDocumentation(Detection.ObservationDateTimeOfObservationIsInvalid);
   }
 
   @Override

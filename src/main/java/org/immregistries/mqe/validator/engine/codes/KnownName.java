@@ -9,6 +9,8 @@ package org.immregistries.mqe.validator.engine.codes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.vxu.hl7.Name;
 
 public class KnownName {
@@ -103,15 +105,15 @@ public class KnownName {
   }
 
   public boolean onlyNameLast() {
-    return (nameFirst == null || nameFirst.equals("")) && (nameMiddle == null || nameMiddle.equals("")) && (birthDate == null || birthDate.equals(""));
+    return StringUtils.isNotEmpty(nameFirst) && StringUtils.isNotEmpty(nameMiddle) && birthDate == null;
   }
 
   public boolean onlyNameFirst() {
-    return (nameLast == null || nameLast.equals("")) && (nameMiddle == null || nameMiddle.equals("")) && (birthDate == null || birthDate.equals(""));
+    return StringUtils.isNotEmpty(nameLast) && StringUtils.isNotEmpty(nameMiddle) && birthDate == null;
   }
 
   public boolean onlyNameMiddle() {
-    return (nameFirst == null || nameFirst.equals("")) && (nameLast == null || nameLast.equals("")) && (birthDate == null || birthDate.equals(""));
+    return StringUtils.isNotEmpty(nameFirst) && StringUtils.isNotEmpty(nameLast) && birthDate == null;
   }
 
   public void setKnownNameId(int knownNameId) {

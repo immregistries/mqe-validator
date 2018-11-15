@@ -20,7 +20,7 @@ public class VaccinationVisIsPresent extends ValidationRule<MqeVaccination> {
   }
 
   public VaccinationVisIsPresent() {
-    ruleDetections.add(Detection.VaccinationVisIsMissing);
+    this.addRuleDocumentation(Detection.VaccinationVisIsMissing);
   }
 
   @Override

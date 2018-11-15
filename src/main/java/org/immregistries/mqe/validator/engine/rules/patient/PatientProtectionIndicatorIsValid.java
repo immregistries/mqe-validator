@@ -15,8 +15,8 @@ import org.immregistries.mqe.vxu.VxuField;
 public class PatientProtectionIndicatorIsValid extends ValidationRule<MqePatient> {
 
   public PatientProtectionIndicatorIsValid() {
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_PROTECTION_INDICATOR));
-    ruleDetections.addAll(Arrays.asList(Detection.PatientProtectionIndicatorIsValuedAsYes,
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_PROTECTION_INDICATOR));
+    this.addRuleDocumentation(Arrays.asList(Detection.PatientProtectionIndicatorIsValuedAsYes,
         Detection.PatientProtectionIndicatorIsValuedAsNo));
   }
 

@@ -14,7 +14,7 @@ import org.immregistries.mqe.vxu.MqeVaccination;
 public class VaccinationCodeGroupsMatch extends ValidationRule<MqeVaccination> {
 
   public VaccinationCodeGroupsMatch() {
-    ruleDetections.add(Detection.VaccinationCvxCodeAndCptCodeAreInconsistent);
+    this.addRuleDocumentation(Detection.VaccinationCvxCodeAndCptCodeAreInconsistent);
   }
 
   @Override

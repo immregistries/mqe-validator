@@ -26,7 +26,7 @@ public class VaccinationAdministeredLotNumberIsValid extends ValidationRule<MqeV
   }
 
   public VaccinationAdministeredLotNumberIsValid() {
-    ruleDetections.addAll(Arrays.asList(Detection.VaccinationLotNumberIsInvalid, Detection.VaccinationLotNumberFormatIsUnrecognized,
+    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationLotNumberIsInvalid, Detection.VaccinationLotNumberFormatIsUnrecognized,
         Detection.VaccinationLotNumberHasInvalidInfixes, Detection.VaccinationLotNumberHasInvalidPrefixes, Detection.VaccinationLotNumberHasInvalidSuffixes,
         Detection.VaccinationLotNumberHasMultiple, Detection.VaccinationLotNumberIsTooShort));
   }

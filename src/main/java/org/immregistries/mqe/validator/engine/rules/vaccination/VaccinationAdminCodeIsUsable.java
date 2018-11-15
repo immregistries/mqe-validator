@@ -22,7 +22,7 @@ public class VaccinationAdminCodeIsUsable extends ValidationRule<MqeVaccination>
   }
 
   public VaccinationAdminCodeIsUsable() {
-    ruleDetections.add(Detection.VaccinationAdminCodeIsNotUsable);
+    this.addRuleDocumentation(Detection.VaccinationAdminCodeIsNotUsable);
   }
 
   @Override

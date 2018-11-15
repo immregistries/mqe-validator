@@ -13,7 +13,7 @@ import org.immregistries.mqe.vxu.MqePatient;
 public class PatientNameTypeIsValid extends ValidationRule<MqePatient> {
 
   public PatientNameTypeIsValid() {
-    ruleDetections.addAll(Arrays.asList(Detection.PatientNameTypeCodeIsMissing));
+    this.addRuleDocumentation(Arrays.asList(Detection.PatientNameTypeCodeIsMissing));
   }
 
   @Override

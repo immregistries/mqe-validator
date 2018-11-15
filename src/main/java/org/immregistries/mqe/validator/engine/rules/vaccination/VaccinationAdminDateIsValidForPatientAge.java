@@ -22,7 +22,7 @@ public class VaccinationAdminDateIsValidForPatientAge extends ValidationRule<Mqe
   }
 
   public VaccinationAdminDateIsValidForPatientAge() {
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_ADMIN_DATE));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_ADMIN_DATE));
   }
 
   @Override

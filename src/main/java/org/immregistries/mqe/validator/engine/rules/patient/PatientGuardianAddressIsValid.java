@@ -31,7 +31,7 @@ public class PatientGuardianAddressIsValid extends ValidationRule<MqeNextOfKin> 
   private AddressValidator addressValidator = AddressValidator.INSTANCE;
 
   public PatientGuardianAddressIsValid() {
-	  this.addRuleDocumentation(Arrays.asList(Detection.PatientGuardianAddressTypeIsValuedBadAddress));
+	  this.addRuleDocumentation(Detection.PatientGuardianAddressTypeIsValuedBadAddress);
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS));
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_STREET));
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_CITY));
@@ -40,6 +40,8 @@ public class PatientGuardianAddressIsValid extends ValidationRule<MqeNextOfKin> 
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_COUNTRY));
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_ZIP));
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_TYPE));
+    
+    this.addImplementationMessage(Detection.PatientGuardianAddressIsInvalid, "Address not valid according to Smarty Streets.");
     
 
     if (props.isAddressCleanserEnabled()) {

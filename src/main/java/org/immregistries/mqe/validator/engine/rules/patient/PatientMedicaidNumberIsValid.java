@@ -20,8 +20,9 @@ public class PatientMedicaidNumberIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientMedicaidNumberIsValid() {
-    ruleDetections.addAll(Arrays.asList(Detection.PatientMedicaidNumberIsMissing,
+    this.addRuleDocumentation(Arrays.asList(Detection.PatientMedicaidNumberIsMissing,
         Detection.PatientMedicaidNumberIsInvalid));
+    this.addImplementationMessage(Detection.PatientMedicaidNumberIsInvalid, "Medicaid Number is 9 digits long, does not have six of the same digits in a row and is not '123456789' or '987654321'");
   }
 
   /*

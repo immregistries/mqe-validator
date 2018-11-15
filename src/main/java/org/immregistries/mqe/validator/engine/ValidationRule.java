@@ -120,9 +120,11 @@ public abstract class ValidationRule<T> {
 	}
   
 	public void addRuleDocumentation(List<Detection> detections) {
-		this.ruleDetections.addAll(detections);
 		for (Detection detection : detections) {
-			this.ruleDocumentation.add(new ImplementationDetail(detection));
+			if (detection != null) {
+				this.ruleDetections.add(detection);
+				this.ruleDocumentation.add(new ImplementationDetail(detection));
+			}
 		}
 	}
 	

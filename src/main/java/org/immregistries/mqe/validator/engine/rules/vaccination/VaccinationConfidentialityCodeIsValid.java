@@ -18,8 +18,8 @@ public class VaccinationConfidentialityCodeIsValid extends ValidationRule<MqeVac
   }
 
   public VaccinationConfidentialityCodeIsValid() {
-    ruleDetections.add(Detection.VaccinationConfidentialityCodeIsValuedAsRestricted);
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_CONFIDENTIALITY_CODE));
+    this.addRuleDocumentation(Detection.VaccinationConfidentialityCodeIsValuedAsRestricted);
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_CONFIDENTIALITY_CODE));
   }
 
   @Override

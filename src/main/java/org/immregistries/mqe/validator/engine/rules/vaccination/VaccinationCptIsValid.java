@@ -16,8 +16,8 @@ public class VaccinationCptIsValid extends ValidationRule<MqeVaccination> {
 
 
   public VaccinationCptIsValid() {
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_CPT_CODE));
-    ruleDetections.add(Detection.VaccinationCptCodeIsInvalidForDateAdministered);
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_CPT_CODE));
+    this.addRuleDocumentation(Detection.VaccinationCptCodeIsInvalidForDateAdministered);
   }
 
   @Override

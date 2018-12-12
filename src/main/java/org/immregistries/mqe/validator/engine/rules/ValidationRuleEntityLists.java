@@ -17,10 +17,14 @@ import org.immregistries.mqe.validator.engine.rules.header.MessageVersionIsValid
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinAddressIsSameAsPatientAddress;
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinAddressIsValid;
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinIsPresent;
+import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinNameIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientAddressIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientAliasIsPresent;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsReasonable;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientCodesAreValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientCreationDateIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientCreationTimeliness;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientDeathDateIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientDeathIndicatorIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientEmailIsPresent;
@@ -47,6 +51,7 @@ import org.immregistries.mqe.validator.engine.rules.patient.PatientRegistryIdIsP
 import org.immregistries.mqe.validator.engine.rules.patient.PatientRegistryIdIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientResponsiblePartyIsProperlyFormed;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientSubmitterIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.VaccinationAdminCountIsAsExpectedForAge;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationActionCodeIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminAfterBirthDate;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeCptIsValid;
@@ -65,6 +70,8 @@ import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCodeG
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCompletionStatusIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationConfidentialityCodeIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCptIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCreationDateIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCreationTimeliness;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCvxIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCvxUseIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFinancialEligibilityCodeIsValid;
@@ -120,7 +127,11 @@ public enum ValidationRuleEntityLists {
       new PatientSubmitterIsValid(),
       new PatientImmunityIsValid(),
       new PatientHasResponsibleParty(),
-      new PatientResponsiblePartyIsProperlyFormed()),
+      new PatientCodesAreValid(),
+      new PatientResponsiblePartyIsProperlyFormed(),
+      new PatientCreationDateIsValid(),
+      new VaccinationAdminCountIsAsExpectedForAge(),
+      new PatientCreationTimeliness()),
   VACCINATION_RULES(
       new VaccinationIsPresent(),
       new VaccinationActionCodeIsValid(),
@@ -161,6 +172,8 @@ public enum ValidationRuleEntityLists {
       new VaccinationVisIsPresent(),
       new VaccinationAdminCodeIsPresent(),
       new VaccinationAdminCodeIsUsable(),
+      new VaccinationCreationTimeliness(),
+      new VaccinationCreationDateIsValid(),
       new VaccinationVisIsRecognized()),
   MESSAGE_HEADER_RULES(
       new MessageHeaderCodesAreValid(),
@@ -170,6 +183,7 @@ public enum ValidationRuleEntityLists {
       new MessageVersionIs25()),
   NEXT_OF_KIN_RULES(
       new NextOfKinIsPresent(),
+      new NextOfKinNameIsValid(),
       new NextOfKinAddressIsSameAsPatientAddress(),
       new NextOfKinAddressIsValid()
   //@formatter:on

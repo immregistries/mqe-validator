@@ -1,14 +1,9 @@
 package org.immregistries.mqe.validator.engine;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.engine.ValidationRulePair;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
-import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntityLists;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 
 public enum MessageValidator {
@@ -96,20 +91,5 @@ public enum MessageValidator {
 		
 		return validationResults;
 	}
-	
-	public static Set<Detection> activeDetections(){
-		Set<Detection> active = new HashSet<>();
-		for(ValidationRule r : ValidationRuleEntityLists.PATIENT_RULES.getRules()){
-			active.addAll(r.getRuleDetections());
-		}
-		for(ValidationRule r : ValidationRuleEntityLists.NEXT_OF_KIN_RULES.getRules()){
-			active.addAll(r.getRuleDetections());
-		}
-		for(ValidationRule r : ValidationRuleEntityLists.VACCINATION_RULES.getRules()){
-			active.addAll(r.getRuleDetections());
-		}
-		return active;
-	}
-
 
 }

@@ -34,7 +34,7 @@ public abstract class ValidationRule<T> {
    * I wanted this to be a singleton because I know I'll have tons of rule objects floating around
    * and I wanted to limit the number of util objects.
    */
-  protected final List<Detection> ruleDetections = new ArrayList<>();
+  protected final Set<Detection> ruleDetections = new HashSet<>();
   protected final Set<ImplementationDetail> ruleDocumentation = new HashSet<ImplementationDetail>();
   protected final ValidationUtility util = ValidationUtility.INSTANCE;
   protected final CommonRules common = CommonRules.INSTANCE;
@@ -105,7 +105,7 @@ public abstract class ValidationRule<T> {
     return true;
   }
 
-	public List<Detection> getRuleDetections() {
+	public Set<Detection> getRuleDetections() {
 		return ruleDetections;
 	}
   

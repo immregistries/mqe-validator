@@ -24,7 +24,7 @@ public class ValidationRulesOverlapTest {
 		  boolean hasDuplicates = false;
 		  
 		  for(ValidationRule rule : rules){
-			  List<Detection> ruleDetections = rule.getRuleDetections();
+			  Set<Detection> ruleDetections = rule.getRuleDetections();
 			  for(Detection d: ruleDetections) {
 				  if(detections.containsKey(d)) {
 	    				if(duplicates.containsKey(d)) {

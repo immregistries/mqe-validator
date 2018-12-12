@@ -8,9 +8,11 @@ import java.util.Set;
 
 import org.apache.commons.lang3.text.WordUtils;
 import org.immregistries.mqe.hl7util.SeverityLevel;
+import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntityLists;
 import org.immregistries.mqe.vxu.VxuField;
 import org.immregistries.mqe.vxu.VxuObject;
+import org.reflections.Reflections;
 
 public class DetectionDocumentation {
 	
@@ -18,16 +20,18 @@ public class DetectionDocumentation {
 		private String description;
 		private boolean active;
 		private Detection detection;
+		private Map<String, String> implementationDetailsPerRule;
 		private String text;
 		private String code;
 		
 		public DetectionDocumentationPayload(){}
-		public DetectionDocumentationPayload(String description, boolean active, Detection detection, String text, String code) {
+		public DetectionDocumentationPayload(String description, boolean active, Detection detection, String text, String code, Map<String, String> implementationDetailsPerRule) {
 			super();
 			this.description = description;
 			this.active = active;
 			this.detection = detection;
 			this.text = text;
+			this.implementationDetailsPerRule = implementationDetailsPerRule;
 			this.code = code;
 		}
 		public String getDescription() {
@@ -60,6 +64,13 @@ public class DetectionDocumentation {
 		public void setCode(String code) {
 			this.code = code;
 		}
+		public Map<String, String> getImplementationDetailsPerRule() {
+			return implementationDetailsPerRule;
+		}
+		public void setImplementationDetailsPerRule(Map<String, String> implementationDetailsPerRule) {
+			this.implementationDetailsPerRule = implementationDetailsPerRule;
+		}
+		
 		
 	}
 	
@@ -110,48 +121,58 @@ public class DetectionDocumentation {
 	public static DetectionDocumentation getDetectionDocumentation() throws NoSuchFieldException, SecurityException {
 		DetectionDocumentation documentation = new DetectionDocumentation();
 		documentation.detections = new HashMap<>();
-		Set<Detection> active = ValidationRuleEntityLists.activeDetections();
+		
+		Reflections reflections = new Reflections("org.immregistries.mqe");
+		Set<Class<? extends ValidationRule>> subTypes = reflections.getSubTypesOf(ValidationRule.class);
+		List<ValidationRule> rules = new ArrayList<>();
+		for(Class<? extends ValidationRule> rule : subTypes) {
+			try {
+				rules.add(rule.newInstance());
+			} catch (Exception e) {
+			}
+		}
+		
 		for(Detection detection : Detection.values()){
-			addVxuObject(documentation.detections, detection.getTargetObject().getDescription(), detection);
+			addVxuObject(documentation.detections, detection.getTargetObject().getDescription(), detection, getImplementationDetails(rules));
 		}
 		return documentation;
 	}
 	
-	private static void addVxuObject(Map<String, Map<String, Map<String, List<DetectionDocumentationPayload>>>> detections, String object, Detection detection) throws NoSuchFieldException, SecurityException{
+	private static void addVxuObject(Map<String, Map<String, Map<String, List<DetectionDocumentationPayload>>>> detections, String object, Detection detection, Map<String, Map<String, String>> implementationDetails) throws NoSuchFieldException, SecurityException{
 		String field_str = WordUtils.capitalizeFully(detection.getTargetField().getFieldDescription()) + (detection.getTargetField().getHl7Locator() != null ? " ("+detection.getTargetField().getHl7Locator().toUpperCase()+")" : "");
 		if(detections.containsKey(object)){
-			addVxuField(detections.get(object), field_str, detection);
+			addVxuField(detections.get(object), field_str, detection, implementationDetails);
 		}
 		else {
 			Map<String, Map<String, List<DetectionDocumentationPayload>>> tmp = new HashMap<>();
 			detections.put(object, tmp);
-			addVxuField(tmp, field_str, detection);
+			addVxuField(tmp, field_str, detection, implementationDetails);
 		}
 	}
 	
-	private static void addVxuField(Map<String, Map<String, List<DetectionDocumentationPayload>>> detections, String field, Detection detection) throws NoSuchFieldException, SecurityException{
+	private static void addVxuField(Map<String, Map<String, List<DetectionDocumentationPayload>>> detections, String field, Detection detection, Map<String, Map<String, String>> implementationDetails) throws NoSuchFieldException, SecurityException{
 		if(detections.containsKey(field)){
-			addSeverityLevel(detections.get(field), detection.getSeverity().getCode(), detection);
+			addSeverityLevel(detections.get(field), detection.getSeverity().getCode(), detection, implementationDetails);
 		}
 		else {
 			Map<String, List<DetectionDocumentationPayload>> tmp = new HashMap<>();
 			detections.put(field, tmp);
-			addSeverityLevel(tmp, detection.getSeverity().getCode(), detection);
+			addSeverityLevel(tmp, detection.getSeverity().getCode(), detection, implementationDetails);
 		}
 	}
 	
-	private static void addSeverityLevel(Map<String, List<DetectionDocumentationPayload>> detections, String severity, Detection detection) throws NoSuchFieldException, SecurityException{
+	private static void addSeverityLevel(Map<String, List<DetectionDocumentationPayload>> detections, String severity, Detection detection, Map<String, Map<String, String>> implementationDetails) throws NoSuchFieldException, SecurityException{
 		if(detections.containsKey(severity)){
-			detections.get(severity).add(payload(detection));
+			detections.get(severity).add(payload(detection, implementationDetails));
 		}
 		else {
 			List<DetectionDocumentationPayload> tmp = new ArrayList<>();
 			detections.put(severity, tmp);
-			tmp.add(payload(detection));
+			tmp.add(payload(detection, implementationDetails));
 		}
 	}
 	
-	private static DetectionDocumentationPayload payload(Detection detection) throws NoSuchFieldException, SecurityException{
+	private static DetectionDocumentationPayload payload(Detection detection, Map<String, Map<String, String>> implementationDetails) throws NoSuchFieldException, SecurityException{
 		boolean active = ValidationRuleEntityLists.activeDetections().contains(detection);
 		String description = "";
 		
@@ -159,7 +180,30 @@ public class DetectionDocumentation {
 			description = Detection.class.getField(detection.name()).getAnnotation(Documentation.class).value();
 		}
 		
-		return new DetectionDocumentationPayload(description, active, detection, detection.getDisplayText(), detection.getMqeMqeCode());
+		
+		
+		return new DetectionDocumentationPayload(description, active, detection, detection.getDisplayText(), detection.getMqeMqeCode(), implementationDetails.get(detection.getMqeMqeCode()));
+	}
+	
+	// code - rule - details
+	private static Map<String, Map<String, String>> getImplementationDetails(List<ValidationRule> rules) {
+		Map<String, Map<String, String>> implementationDetails = new HashMap<>();
+		for(ValidationRule rule: rules) {
+			String ruleName = rule.getClass().getSimpleName();
+			Set<ImplementationDetail> ruleDetails = rule.getImplementationDocumentation();
+			
+			for(ImplementationDetail details: ruleDetails) {
+				if(implementationDetails.containsKey(details.getDetection().getMqeMqeCode())) {
+					implementationDetails.get(details.getDetection().getMqeMqeCode()).put(ruleName, details.getDescription());
+				} else {
+					Map<String, String> implementation = new HashMap<>();
+					implementation.put(ruleName, details.getDescription());
+					implementationDetails.put(details.getDetection().getMqeMqeCode(), implementation);
+				}
+			}
+		}
+		
+		return implementationDetails;
 	}
 
 }

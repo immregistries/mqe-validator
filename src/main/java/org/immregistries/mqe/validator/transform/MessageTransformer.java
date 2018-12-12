@@ -174,6 +174,7 @@ public enum MessageTransformer {
       String mvxCode = v.getManufacturerCode();
       String cvxCode = v.getCvxDerived();
       String adminDate = v.getAdminDateString();
+      v.setAdminDate(datr.parseDate(adminDate));
 
       Code product = this.repo.getVaccineProduct(cvxCode, mvxCode, adminDate);
 

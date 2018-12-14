@@ -27,24 +27,17 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
   private AddressValidator addressValidator = AddressValidator.INSTANCE;
 
   public NextOfKinAddressIsValid() {
-
-    this.ruleDetections.addAll(Arrays.asList(
-        Detection.NextOfKinAddressTypeIsValuedBadAddress));
-
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS));
-    this.ruleDetections
-        .addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET));
-    this.ruleDetections
-        .addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET2));
-    this.ruleDetections
-        .addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTY));
-    this.ruleDetections
-        .addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTRY));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_ZIP));
-    this.ruleDetections.addAll(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_TYPE));
-
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET2));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTY));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_CITY));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTRY));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_ZIP));
+    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_TYPE));
+    
     if (props.isAddressCleanserEnabled()) {
-      this.ruleDetections.add(Detection.NextOfKinAddressIsInvalid);
+      this.addRuleDocumentation(Detection.NextOfKinAddressIsInvalid);
     }
   }
 

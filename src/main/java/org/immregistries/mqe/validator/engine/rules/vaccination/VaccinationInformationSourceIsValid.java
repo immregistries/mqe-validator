@@ -19,11 +19,11 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<MqeVacci
   }
 
   public VaccinationInformationSourceIsValid() {
-    ruleDetections.addAll(Arrays.asList(Detection.VaccinationInformationSourceIsMissing,
+    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationInformationSourceIsMissing,
         Detection.VaccinationInformationSourceIsValuedAsAdministered,
         Detection.VaccinationInformationSourceIsValuedAsHistorical));
 
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_INFORMATION_SOURCE));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_INFORMATION_SOURCE));
   }
 
   /*
@@ -55,7 +55,7 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<MqeVacci
           issues.add(Detection.VaccinationInformationSourceIsValuedAsAdministered.build((sourceCd),
               target));
           break;
-        case MqeVaccination.INFO_SOURCE_HIST:
+        default:
           issues.add(Detection.VaccinationInformationSourceIsValuedAsHistorical.build((sourceCd),
               target));
           break;

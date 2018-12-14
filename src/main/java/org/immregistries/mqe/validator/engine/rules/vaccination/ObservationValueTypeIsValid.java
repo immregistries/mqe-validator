@@ -16,7 +16,7 @@ import org.immregistries.mqe.vxu.hl7.Observation;
 public class ObservationValueTypeIsValid extends ValidationRule<MqeVaccination> {
 
   public ObservationValueTypeIsValid() {
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.OBSERVATION_VALUE_TYPE));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.OBSERVATION_VALUE_TYPE));
   }
 
   @Override

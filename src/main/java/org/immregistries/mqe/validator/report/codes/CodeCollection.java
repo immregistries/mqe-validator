@@ -67,7 +67,7 @@ public class CodeCollection {
           CollectionBucket cbTwo = two.get(x);
           int countNew = cbTwo.getCount() + cbOne.getCount();
           CollectionBucket cbClone =
-              new CollectionBucket(cbOne.getType(), cbOne.getAttribute(), cbOne.getValue());
+              new CollectionBucket(cbOne.getTypeCode(), cbOne.getAttribute(), cbOne.getValue());
           cbClone.setCount(countNew);
           cbNew.add(cbClone);
         }
@@ -89,7 +89,7 @@ public class CodeCollection {
   List<CollectionBucket> getByType(CodesetType desiredType) {
     List<CollectionBucket> cbNew = new ArrayList<>();
     for (CollectionBucket bucket : this.codeCountList) {
-      if (desiredType.getType().equals(bucket.getType())) {
+      if (desiredType.getType().equals(bucket.getTypeCode())) {
         cbNew.add(bucket);
       }
     }
@@ -183,7 +183,7 @@ public class CodeCollection {
     addCounts(VxuField.PATIENT_GENDER, "", patient.getSexCode(), bucketList);
 
     for (PatientImmunity p : patient.getPatientImmunityList()) {
-      addCounts(VxuField.PATIENT_IMMUNITY_CODE, "", p.getImmunityCode(), bucketList);
+      addCounts(VxuField.PATIENT_IMMUNITY_CODE, "", p.getCode(), bucketList);
     }
 
     addCounts(VxuField.PATIENT_NAME_TYPE_CODE, "", patient.getNameTypeCode(), bucketList);

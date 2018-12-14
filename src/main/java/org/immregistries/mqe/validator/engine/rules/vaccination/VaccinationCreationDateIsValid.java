@@ -18,7 +18,7 @@ public class VaccinationCreationDateIsValid extends ValidationRule<MqeVaccinatio
 	
 	public VaccinationCreationDateIsValid() {
 		super();
-		this.ruleDetections.addAll(Arrays.asList(
+		this.addRuleDocumentation(Arrays.asList(
 				Detection.VaccinationSystemEntryDateIsInvalid,
 				Detection.VaccinationSystemEntryDateIsMissing,
 				Detection.VaccinationSystemEntryDateIsInTheFuture

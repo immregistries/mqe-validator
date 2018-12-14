@@ -19,7 +19,7 @@ public class PatientEthnicityIsValid extends ValidationRule<MqePatient> {
   }
   
   public PatientEthnicityIsValid() {
-	  this.ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_ETHNICITY));
+	  this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_ETHNICITY));
   }
 
   @Override

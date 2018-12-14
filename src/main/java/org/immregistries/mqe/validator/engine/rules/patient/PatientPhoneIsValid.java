@@ -16,9 +16,9 @@ public class PatientPhoneIsValid extends ValidationRule<MqePatient> {
   private PhoneValidator phValr = PhoneValidator.INSTANCE;
 
   public PatientPhoneIsValid() {
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_PHONE));
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_PHONE_TEL_USE_CODE));
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_PHONE_TEL_EQUIP_CODE));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_PHONE));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_PHONE_TEL_USE_CODE));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_PHONE_TEL_EQUIP_CODE));
   }
 
   @Override

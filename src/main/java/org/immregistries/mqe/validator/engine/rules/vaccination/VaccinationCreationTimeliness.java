@@ -25,7 +25,7 @@ public class VaccinationCreationTimeliness extends ValidationRule<MqeVaccination
 	
 	public VaccinationCreationTimeliness() {
 		super();
-		this.ruleDetections.addAll(Arrays.asList(
+		this.addRuleDocumentation(Arrays.asList(
 				Detection.VaccinationCreationIsVeryLate,
 				Detection.VaccinationCreationIsTooLate,
 				Detection.VaccinationCreationIsOnTime,

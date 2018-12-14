@@ -19,7 +19,7 @@ public class VaccinationAdministeredUnitIsValid extends ValidationRule<MqeVaccin
   }
 
   public VaccinationAdministeredUnitIsValid() {
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.VACCINATION_ADMINISTERED_UNIT));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_ADMINISTERED_UNIT));
   }
 
   @Override

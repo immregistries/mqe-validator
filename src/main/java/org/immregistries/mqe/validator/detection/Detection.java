@@ -156,7 +156,7 @@ public enum Detection implements DetectionInfo {
   PatientBirthDateIsVeryLongAgo(PATIENT_BIRTH_DATE, VERY_LONG_AGO, WARN, MQE0120),
   PatientBirthIndicatorIsInvalid(PATIENT_BIRTH_INDICATOR, INVALID, WARN, MQE0121),
   PatientBirthIndicatorIsMissing(PATIENT_BIRTH_INDICATOR, MISSING, ACCEPT, MQE0122),
-  PatientBirthOrderIsUnknown(PATIENT_BIRTH_ORDER, UNRECOGNIZED, WARN, MQE0557),
+  PatientBirthOrderIsUnknown(PATIENT_BIRTH_ORDER, VALUED_AS_UNKNOWN, WARN, MQE0557),
   PatientBirthOrderIsInvalid(PATIENT_BIRTH_ORDER, INVALID, WARN, MQE0123),
   PatientBirthOrderIsMissing(PATIENT_BIRTH_ORDER, MISSING, ACCEPT, MQE0124),
   PatientBirthOrderIsMissingAndMultipleBirthIndicated(PATIENT_BIRTH_ORDER, MISSING_AND_MULTIPLE_BIRTH_INDICATED, WARN, MQE0125),
@@ -174,7 +174,7 @@ public enum Detection implements DetectionInfo {
   PatientDeathDateIsMissing(PATIENT_DEATH_DATE, MISSING, WARN, MQE0132),
   PatientDeathIndicatorIsInconsistent(PATIENT_DEATH_INDICATOR, INCONSISTENT, WARN, MQE0133),
   PatientDeathIndicatorIsMissing(PATIENT_DEATH_INDICATOR, MISSING, ACCEPT, MQE0134),
-  PatientEmailIsInvalid(PATIENT_EMAIL, MISSING, ACCEPT, MQE0588),
+  PatientEmailIsInvalid(PATIENT_EMAIL, INVALID, ACCEPT, MQE0588),
   PatientEmailIsMissing(PATIENT_EMAIL, MISSING, ACCEPT, MQE0589),
   PatientEthnicityIsDeprecated(PATIENT_ETHNICITY, DEPRECATED, WARN, MQE0135),
   PatientEthnicityIsIgnored(PATIENT_ETHNICITY, IGNORED, INFO, MQE0136),
@@ -199,6 +199,12 @@ public enum Detection implements DetectionInfo {
   PatientGuardianResponsiblePartyIsMissing(PATIENT_GUARDIAN_RESPONSIBLE_PARTY, MISSING, WARN, MQE0157),
   PatientGuardianPhoneIsMissing(PATIENT_GUARDIAN_PHONE, MISSING, ACCEPT, MQE0158),
   PatientGuardianRelationshipIsMissing(PATIENT_GUARDIAN_RELATIONSHIP, MISSING, WARN, MQE0159),
+  PatientGuardianAddressTypeIsValuedBadAddress(PATIENT_GUARDIAN_ADDRESS_TYPE, VALUED_BAD_ADDRESS, INFO, MQE0597),
+  PatientGuardianAddressTypeIsMissing(PATIENT_GUARDIAN_ADDRESS_TYPE, MISSING, ACCEPT, MQE0598),
+  PatientGuardianAddressCountryIsMissing(PATIENT_GUARDIAN_ADDRESS_COUNTRY, MISSING, ACCEPT, MQE0599),
+  PatientGuardianAddressTypeIsUnrecognized(PATIENT_GUARDIAN_ADDRESS_TYPE, UNRECOGNIZED, WARN, MQE0600),  
+  PatientImmunityCodeIsDeprecated(PATIENT_IMMUNITY_CODE, DEPRECATED, WARN, MQE0606),
+  PatientImmunityCodeIsUnrecognized(PATIENT_IMMUNITY_CODE, UNRECOGNIZED, WARN, MQE0607),
   PatientImmunizationRegistryStatusIsDeprecated(PATIENT_IMMUNIZATION_REGISTRY_STATUS, DEPRECATED, WARN, MQE0160),
   PatientImmunizationRegistryStatusIsIgnored(PATIENT_IMMUNIZATION_REGISTRY_STATUS, IGNORED, INFO, MQE0161),
   PatientImmunizationRegistryStatusIsInvalid(PATIENT_IMMUNIZATION_REGISTRY_STATUS, INVALID, WARN, MQE0162),
@@ -352,7 +358,7 @@ public enum Detection implements DetectionInfo {
   VaccinationAdminDateIsReportedLate(VACCINATION_ADMIN_DATE, REPORTED_LATE, ACCEPT, MQE0265),
   VaccinationAdminDateEndIsDifferentFromStartDate(VACCINATION_ADMIN_DATE_END, DIFF_FROM_START, WARN, MQE0266),
   VaccinationAdminDateEndIsMissing(VACCINATION_ADMIN_DATE_END, MISSING, ACCEPT, MQE0267),
-  VaccinationAdminCodeIsForiegn(VACCINATION_ADMIN_CODE, VALUED_AS_FOREIGN, ACCEPT, MQE0268),
+  VaccinationAdminCodeIsForeign(VACCINATION_ADMIN_CODE, VALUED_AS_FOREIGN, ACCEPT, MQE0268),
   VaccinationHistoricalCodeIsForeign(VACCINATION_ADMIN_CODE, VALUED_AS_FOREIGN, ACCEPT, MQE0553),
   VaccinationAdministeredAmountIsInvalid(VACCINATION_ADMINISTERED_AMOUNT, INVALID, WARN, MQE0555),
   VaccinationAdministeredAmountIsMissing(VACCINATION_ADMINISTERED_AMOUNT, MISSING, ACCEPT, MQE0554),
@@ -475,6 +481,12 @@ public enum Detection implements DetectionInfo {
   VaccinationInformationSourceIsValuedAsAdministered(VACCINATION_INFORMATION_SOURCE, VALUED_AS_ADMINISTERED, ACCEPT, MQE0334),
   VaccinationInformationSourceIsValuedAsHistorical(VACCINATION_INFORMATION_SOURCE, VALUED_AS_HISTORICAL, ACCEPT, MQE0335),
 
+  VaccinationVisCvxIsDeprecated(VACCINATION_VIS_CVX_CODE, DEPRECATED, WARN, MQE0601),
+  VaccinationVisCvxIsIgnored(VACCINATION_VIS_CVX_CODE, IGNORED, INFO, MQE0602),
+  VaccinationVisCvxIsInvalid(VACCINATION_VIS_CVX_CODE, INVALID, ACCEPT, MQE0603),
+  VaccinationVisCvxIsUnrecognized(VACCINATION_VIS_CVX_CODE, UNRECOGNIZED, ACCEPT, MQE0604),
+  VaccinationVisCvxIsMissing(VACCINATION_VIS_CVX_CODE, MISSING, ACCEPT, MQE0605),
+  
   VaccinationVisDocumentTypeIsDeprecated(VACCINATION_VIS_DOCUMENT_TYPE, DEPRECATED, WARN, MQE0496),
   VaccinationVisDocumentTypeIsIgnored(VACCINATION_VIS_DOCUMENT_TYPE, IGNORED, INFO, MQE0497),
   VaccinationVisDocumentTypeIsIncorrect(VACCINATION_VIS_DOCUMENT_TYPE, INCORRECT, WARN, MQE0498),
@@ -564,7 +576,7 @@ public enum Detection implements DetectionInfo {
   VaccinationSystemEntryTimeIsInvalid(VACCINATION_SYSTEM_ENTRY_TIME, INVALID, ACCEPT, MQE0366),
   VaccinationSystemEntryTimeIsMissing(VACCINATION_SYSTEM_ENTRY_TIME, MISSING, ACCEPT, MQE0367),
 
-  UnknownValidationIssue(CONFIGURATION, UNRECOGNIZED, ERROR, MQE0000);
+  UnknownValidationIssue(CONFIGURATION, UNRECOGNIZED, WARN, MQE0000);
   //@formatter:on
   private static final Map<VxuField, Map<DetectionType, Detection>> fieldIssueMaps =
       new HashMap<>();
@@ -612,7 +624,7 @@ public enum Detection implements DetectionInfo {
         + " "
         + fieldRef.getFieldDescription()
         + " "
-        + detectionType.getText();
+        + detectionType.wording;
   }
 
   public DetectionType getDetectionType() {

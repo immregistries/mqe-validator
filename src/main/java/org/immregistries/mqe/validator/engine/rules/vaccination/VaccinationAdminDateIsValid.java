@@ -15,7 +15,7 @@ import org.joda.time.LocalDate;
 public class VaccinationAdminDateIsValid extends ValidationRule<MqeVaccination> {
 
   public VaccinationAdminDateIsValid() {
-    this.ruleDetections.addAll(Arrays.asList(Detection.VaccinationAdminDateIsMissing,
+    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationAdminDateIsMissing,
         Detection.VaccinationAdminDateIsInvalid,
         Detection.VaccinationAdminDateIsAfterMessageSubmitted,
         Detection.VaccinationAdminDateIsOnFirstDayOfMonth,

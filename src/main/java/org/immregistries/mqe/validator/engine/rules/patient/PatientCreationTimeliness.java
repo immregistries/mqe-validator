@@ -24,12 +24,16 @@ public class PatientCreationTimeliness extends ValidationRule<MqePatient> {
 	
 	public PatientCreationTimeliness() {
 		super();
-		this.ruleDetections.addAll(Arrays.asList(
+		this.addRuleDocumentation(Arrays.asList(
 				Detection.PatientCreationIsVeryLate,
 				Detection.PatientCreationIsTooLate,
 				Detection.PatientCreationIsOnTime,
 				Detection.PatientCreationIsLate
 		));
+		this.addImplementationMessage(Detection.PatientCreationIsVeryLate, "It is 45-60 days between the patient birth date and the system entry date.");
+		this.addImplementationMessage(Detection.PatientCreationIsTooLate, "It is over 60 days between the patient birth date and the system entry date.");
+		this.addImplementationMessage(Detection.PatientCreationIsOnTime, "It has been 30 days or less between the patient birth date and the system entry date.");
+		this.addImplementationMessage(Detection.PatientCreationIsLate, "It is 30-45 days between the patient birth date and the system entry date.");
 	}
 
 	@Override

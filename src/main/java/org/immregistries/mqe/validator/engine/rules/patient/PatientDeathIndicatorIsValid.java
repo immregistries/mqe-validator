@@ -18,8 +18,10 @@ public class PatientDeathIndicatorIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientDeathIndicatorIsValid() {
-    ruleDetections.addAll(Arrays.asList(Detection.PatientDeathIndicatorIsMissing,
+    this.addRuleDocumentation(Arrays.asList(Detection.PatientDeathIndicatorIsMissing,
         Detection.PatientDeathIndicatorIsInconsistent));
+    this.addImplementationMessage(Detection.PatientDeathIndicatorIsMissing, "Patient death date was given but death indicator is missing.");
+    this.addImplementationMessage(Detection.PatientDeathIndicatorIsInconsistent, "Patient death indicator says not dead but death date is populated.");
   }
 
   @Override

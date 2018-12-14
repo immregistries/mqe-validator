@@ -13,8 +13,9 @@ import org.immregistries.mqe.vxu.MqeNextOfKin;
 public class NextOfKinNameIsValid extends ValidationRule<MqeNextOfKin> {
 
   public NextOfKinNameIsValid() {
-    this.ruleDetections.addAll(Arrays.asList(Detection.NextOfKinNameIsMissing,
+    this.addRuleDocumentation(Arrays.asList(Detection.NextOfKinNameIsMissing,
         Detection.NextOfKinNameFirstIsMissing, Detection.NextOfKinNameLastIsMissing));
+    this.addImplementationMessage(Detection.NextOfKinNameIsMissing, "Next of kin is missing both first and last names.");
   }
 
   @Override

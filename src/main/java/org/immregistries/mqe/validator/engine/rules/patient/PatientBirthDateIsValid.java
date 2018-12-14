@@ -20,8 +20,9 @@ public class PatientBirthDateIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientBirthDateIsValid() {
-    this.ruleDetections.addAll(Arrays.asList(Detection.PatientBirthDateIsMissing,
+    this.addRuleDocumentation(Arrays.asList(Detection.PatientBirthDateIsMissing,
         Detection.PatientBirthDateIsInvalid));
+    this.addImplementationMessage(Detection.PatientBirthDateIsInvalid, "Patient Birth date cannot be translated to a date.");
   }
 
   @Override

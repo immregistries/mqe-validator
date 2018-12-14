@@ -18,8 +18,8 @@ public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<M
   }
 
   public VaccinationFinancialEligibilityCodeIsValid() {
-    ruleDetections.add(Detection.VaccinationFinancialEligibilityCodeIsMissing);
-    ruleDetections.addAll(codr
+    this.addRuleDocumentation(Detection.VaccinationFinancialEligibilityCodeIsMissing);
+    this.addRuleDocumentation(codr
         .getDetectionsForField(VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE));
   }
 

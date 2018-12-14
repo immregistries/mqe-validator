@@ -23,7 +23,8 @@ public class NextOfKinNameIsNotSameAsPatient extends ValidationRule<MqeNextOfKin
   }
 
   public NextOfKinNameIsNotSameAsPatient() {
-    this.ruleDetections.addAll(Arrays.asList(Detection.PatientGuardianNameIsSameAsUnderagePatient));
+    this.addRuleDocumentation(Detection.PatientGuardianNameIsSameAsUnderagePatient);
+    this.addImplementationMessage(Detection.PatientGuardianNameIsSameAsUnderagePatient, "Next of Kin is a patient guardian (caregiver, father, grandparent, mother, parent, or guardian) and has same last name, first name, middle name, and suffix as the patient.");
   }
 
   @Override

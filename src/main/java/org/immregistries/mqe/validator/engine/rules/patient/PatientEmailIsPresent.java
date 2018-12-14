@@ -14,7 +14,9 @@ import org.immregistries.mqe.vxu.MqePatient;
 public class PatientEmailIsPresent extends ValidationRule<MqePatient> {
 
 	public PatientEmailIsPresent() {
-		ruleDetections.add(Detection.PatientEmailIsMissing);
+		this.addRuleDocumentation(Detection.PatientEmailIsMissing);
+		this.addRuleDocumentation(Detection.PatientEmailIsInvalid);
+		this.addImplementationMessage(Detection.PatientEmailIsInvalid, "Email address is invalid and must contain letters, numbers, '@' and '.'");
 	}
 
 	@Override

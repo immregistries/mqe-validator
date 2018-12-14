@@ -90,7 +90,7 @@ public class MessageTransformerMCIR {
   public PatientImmunity toPatientImmunity(Observation ob) {
 
     PatientImmunity patientImmunity = new PatientImmunity();
-    patientImmunity.setImmunityCode(ob.getValue());
+    patientImmunity.setCode(ob.getValue());
     // patient.getPatientImmunityList().add(patientImmunity);
     // handleCodeReceived(patientImmunity.getImmunity(),
     // PotentialIssues.Field.PATIENT_IMMUNITY_CODE);

@@ -18,7 +18,7 @@ public class PatientBirthPlaceIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientBirthPlaceIsValid() {
-    this.ruleDetections.addAll(Arrays.asList(Detection.PatientBirthPlaceIsMissing));
+    this.addRuleDocumentation(Arrays.asList(Detection.PatientBirthPlaceIsMissing));
   }
 
   @Override

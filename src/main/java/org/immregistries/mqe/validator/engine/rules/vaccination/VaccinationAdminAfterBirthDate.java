@@ -19,7 +19,7 @@ public class VaccinationAdminAfterBirthDate extends ValidationRule<MqeVaccinatio
   }
 
   public VaccinationAdminAfterBirthDate() {
-    ruleDetections.add(Detection.VaccinationAdminDateIsBeforeBirth);
+    this.addRuleDocumentation(Detection.VaccinationAdminDateIsBeforeBirth);
   }
 
   @Override

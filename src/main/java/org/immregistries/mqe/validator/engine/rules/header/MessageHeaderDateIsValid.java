@@ -22,11 +22,13 @@ public class MessageHeaderDateIsValid extends ValidationRule<MqeMessageHeader> {
   }
 
   public MessageHeaderDateIsValid() {
-    this.ruleDetections.addAll(Arrays.asList(
+    this.addRuleDocumentation(Arrays.asList(
         Detection.MessageMessageDateIsUnexpectedFormat,
         Detection.MessageMessageDateIsMissing,
         Detection.MessageMessageDateIsInFuture,
         Detection.MessageMessageDateIsMissingTimezone));
+    this.addImplementationMessage( Detection.MessageMessageDateIsUnexpectedFormat, "Message Header date cannot be translated to a date");
+    this.addImplementationMessage( Detection.MessageMessageDateIsInFuture, "Message Header date is over 2 hours into the future.");
   }
 
 

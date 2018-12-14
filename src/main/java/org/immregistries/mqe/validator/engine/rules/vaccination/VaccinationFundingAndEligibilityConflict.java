@@ -23,7 +23,7 @@ public class VaccinationFundingAndEligibilityConflict extends ValidationRule<Mqe
   }
 
   public VaccinationFundingAndEligibilityConflict() {
-    ruleDetections.add(Detection.VaccinationFundingSourceCodeIsUnexpectedForFinancialEligibility);
+    this.addRuleDocumentation(Detection.VaccinationFundingSourceCodeIsUnexpectedForFinancialEligibility);
   }
 
   @Override

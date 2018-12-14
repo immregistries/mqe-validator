@@ -12,7 +12,7 @@ import org.immregistries.mqe.vxu.MqePatient;
 public class PatientMiddleNameIsPresent extends ValidationRule<MqePatient> {
 
   public PatientMiddleNameIsPresent() {
-    ruleDetections.add(Detection.PatientNameMiddleIsMissing);
+    this.addRuleDocumentation(Detection.PatientNameMiddleIsMissing);
   }
 
   @Override

@@ -17,7 +17,8 @@ public class PatientAliasIsPresent extends ValidationRule<MqePatient> {
   }
 
   public PatientAliasIsPresent() {
-    this.ruleDetections.add(Detection.PatientAliasIsMissing);
+    this.addRuleDocumentation(Detection.PatientAliasIsMissing);
+    this.addImplementationMessage(Detection.PatientAliasIsMissing, "Patient is missing values for both first and last alias names.");
   }
 
   @Override

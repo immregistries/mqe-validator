@@ -16,7 +16,7 @@ import org.immregistries.mqe.vxu.MqeVaccination;
 public class VaccinationIsForeign extends ValidationRule<MqeVaccination> {
 
   public VaccinationIsForeign() {
-    ruleDetections.addAll(Arrays.asList(Detection.VaccinationAdminCodeIsForiegn,
+    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationAdminCodeIsForeign,
         Detection.VaccinationHistoricalCodeIsForeign));
   }
 
@@ -35,7 +35,7 @@ public class VaccinationIsForeign extends ValidationRule<MqeVaccination> {
 
       if (CvxConceptType.FOREIGN_VACCINE == concept) {
         if (administered) {
-          issues.add(Detection.VaccinationAdminCodeIsForiegn.build(target));
+          issues.add(Detection.VaccinationAdminCodeIsForeign.build(target));
         } else {
           issues.add(Detection.VaccinationHistoricalCodeIsForeign.build(target));
         }

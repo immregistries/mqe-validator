@@ -21,8 +21,11 @@ public class PatientMiddleNameIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientMiddleNameIsValid() {
-    ruleDetections.addAll(Arrays.asList(Detection.PatientNameMiddleIsInvalid,
-        Detection.PatientMiddleNameMayBeInitial, Detection.PatientNameMiddleIsInvalid));
+    this.addRuleDocumentation(Arrays.asList(Detection.PatientNameMiddleIsInvalid,
+        Detection.PatientMiddleNameMayBeInitial));
+    
+    this.addImplementationMessage(Detection.PatientMiddleNameMayBeInitial, "Patient middle name is only 1 character and might be an initial.");
+    this.addImplementationMessage(Detection.PatientNameMiddleIsInvalid, "Patient middle name must not be on the specified invalid name list ('UN','UK','UNK', 'UNKN', 'NONE') and is comprised of alphabetical characters except for '.' at the end.");
   }
 
   @Override
@@ -56,7 +59,11 @@ public class PatientMiddleNameIsValid extends ValidationRule<MqePatient> {
           passed = false;
         }
       }
+    } else {
+	    issues.add(Detection.PatientNameMiddleIsMissing.build(target));
+	    passed = false;
     }
+    
     return buildResults(issues, passed);
   }
 

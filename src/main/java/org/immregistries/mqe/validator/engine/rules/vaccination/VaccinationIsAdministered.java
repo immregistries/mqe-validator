@@ -16,7 +16,7 @@ public class VaccinationIsAdministered extends ValidationRule<MqeVaccination> {
   AdministeredLikelihood confidenceCalculator = AdministeredLikelihood.INSTANCE;
 
   public VaccinationIsAdministered() {
-    ruleDetections.addAll(Arrays.asList(
+    this.addRuleDocumentation(Arrays.asList(
         Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical,
         Detection.VaccinationInformationSourceIsHistoricalButAppearsToBeAdministered));
   }

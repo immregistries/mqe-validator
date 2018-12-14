@@ -23,14 +23,14 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
   }
 
   public VaccinationAdminCodeIsValid() {
-    ruleDetections.addAll(Arrays
+    this.addRuleDocumentation(Arrays
         .asList(
             Detection.VaccinationAdminCodeIsNotSpecific,
             Detection.VaccinationAdminCodeIsValuedAsNotAdministered,
             Detection.VaccinationAdminCodeIsValuedAsUnknown,
             Detection.VaccinationAdminCodeIsNotVaccine,
             Detection.VaccinationAdminCodeIsUnrecognized,
-            Detection.VaccinationAdminCodeIsForiegn));
+            Detection.VaccinationAdminCodeIsForeign));
   }
 
   @Override
@@ -93,7 +93,7 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
             issues.add(Detection.VaccinationAdminCodeIsNotVaccine.build(adminValue, target));
             break;
           case FOREIGN_VACCINE:
-            issues.add(Detection.VaccinationAdminCodeIsForiegn.build(adminValue, target));
+            issues.add(Detection.VaccinationAdminCodeIsForeign.build(adminValue, target));
             break;
         }
       }

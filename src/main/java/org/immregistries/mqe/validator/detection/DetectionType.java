@@ -5,15 +5,15 @@ import org.immregistries.mqe.hl7util.builder.AckERRCode;
 
 public enum DetectionType {
   EXCEPTION("exception"),
-  BEFORE_BIRTH("is before birth"),
-  DEPRECATED("is deprecated"),
-  IGNORED("is ignored"),
-  IN_FUTURE("is in future"),
-  INCOMPLETE("is incomplete"),
-  INVALID("is invalid"),
-  MISSING("is missing"),
+  BEFORE_BIRTH("is before birth", "Date given is before patient birth date."),
+  DEPRECATED("is deprecated", "Deprecated code value."),
+  IGNORED("is ignored", "Ignored code value."),
+  IN_FUTURE("is in future", "Date given is in the future."),
+  INCOMPLETE("is incomplete", "Incomplete code value."),
+  INVALID("is invalid", "Invalid code value."),
+  MISSING("is missing", "No value given for field."), 
   REPEATED("is repeated"),
-  UNRECOGNIZED("is unrecognized"),
+  UNRECOGNIZED("is unrecognized", "Field value didn't match any values in the code set."),
   UNEXPECTED("is unexpected"),
 
   //Valued As types:
@@ -41,7 +41,7 @@ public enum DetectionType {
   OUT_OF_ORDER("out of order"),
   NON_STANDARD("is non-standard"),
   NOT_PRECISE("is not precise"),
-  MISSING_TIMEZONE("is missing timezone"),
+  MISSING_TIMEZONE("is missing timezone", "Timezone was not included in the date field."),
   UNSUPPORTED("is unsupported"),
   TOO_SHORT("is too short"),
   TOO_LONG("is too long"),
@@ -91,7 +91,7 @@ public enum DetectionType {
   BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE("is before or after when expected for patient age"),
   BEFORE_OR_AFTER_LICENSED_DATE_RANGE("is before or after licensed vaccine range"),
   BEFORE_OR_AFTER_EXPECTED_DATE_RANGE("is before or after expected vaccine usage range"),
-  VALUED_BAD_ADDRESS("is valued bad address"),
+  VALUED_BAD_ADDRESS("is valued bad address", "Value is 'BA'."),
   AFTER_SYSTEM_ENTRY_DATE("is after system entry date"),
   AFTER_PATIENT_DEATH_DATE("is after patient death date"),
   AFTER_MESSAGE_SUBMITTED("is after message submitted"),
@@ -115,16 +115,21 @@ public enum DetectionType {
   IS_LATE("is late"),
   IS_VERY_LATE("is very late"),
   IS_TOO_LATE("is too late");
+	
 
 
-  private String wording;
+
+  public final String wording;
+  public final String description;
 
   DetectionType(String wording) {
     this.wording = wording;
+    this.description = null;
   }
-
-  public String getText() {
-    return wording;
+  
+  DetectionType(String wording, String description) {
+    this.wording = wording;
+    this.description = description;
   }
 
   public AckERRCode getAckErrCode() {

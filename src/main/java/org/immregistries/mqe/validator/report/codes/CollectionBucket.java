@@ -6,13 +6,22 @@ import org.immregistries.mqe.vxu.VxuField;
 
 public class CollectionBucket {
 
-  private String type;
+  private String typeCode;
+  private String typeName;
   private String source;
   private String attribute;
   private String value;
   private int count;
   private String status;
   private String label;
+
+  public String getTypeName() {
+    return typeName;
+  }
+
+  public void setTypeName(String typeName) {
+    this.typeName = typeName;
+  }
 
   public String getSource() {
     return source;
@@ -43,13 +52,13 @@ public class CollectionBucket {
   }
 
   public CollectionBucket(String type, String attribute, String value) {
-    this.type = type;
+    this.typeCode = type;
     this.attribute = attribute;
     this.value = value;
   }
 
   public CollectionBucket(String type, String attribute, String value, int count) {
-    this.type = type;
+    this.typeCode = type;
     this.attribute = attribute;
     this.value = value;
     this.count = count;
@@ -57,7 +66,7 @@ public class CollectionBucket {
 
   @Override
   public String toString() {
-    return "CollectionBucket{type:" + type + " attribute:" + getAttribute() + " /value: "
+    return "CollectionBucket{type:" + typeCode + " attribute:" + getAttribute() + " /value: "
         + getValue() + " /count: " + getCount() + "}";
   }
 
@@ -71,7 +80,7 @@ public class CollectionBucket {
     }
     CollectionBucket that = (CollectionBucket) o;
 
-    return Objects.equals(this.type, that.type)
+    return Objects.equals(this.typeCode, that.typeCode)
         && Objects.equals(this.attribute, that.attribute)
         && Objects.equals(this.source, that.source)
         && Objects.equals(this.value, that.value);
@@ -79,7 +88,7 @@ public class CollectionBucket {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, source, attribute, value);
+    return Objects.hash(typeCode, source, attribute, value);
   }
 
   public int getCount() {
@@ -98,12 +107,12 @@ public class CollectionBucket {
     this.value = value;
   }
 
-  public String getType() {
-    return type;
+  public String getTypeCode() {
+    return typeCode;
   }
 
-  public void setType(String type) {
-    this.type = type;
+  public void setTypeCode(String type) {
+    this.typeCode = type;
   }
 
   public String getAttribute() {

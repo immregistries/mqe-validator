@@ -60,7 +60,7 @@ import org.slf4j.LoggerFactory;
  */
 
 public enum MessageTransformer {
-                                INSTANCE;
+  INSTANCE;
 
   private CodeRepository repo = CodeRepository.INSTANCE;
 
@@ -110,7 +110,7 @@ public enum MessageTransformer {
 
     //Then clean them. Get the cleanser every time.
     AddressCleanser ac = AddressCleanserFactory.INSTANCE.getAddressCleanser();
-    Map<MqeAddress, MqeAddress> cleanMap = ac.cleanThese(list.toArray(new MqeAddress[] {}));
+    Map<MqeAddress, MqeAddress> cleanMap = ac.cleanThese(list.toArray(new MqeAddress[]{}));
     if (logger.isInfoEnabled()) {
       logger.info("Finished address cleansing request");
     }
@@ -131,7 +131,9 @@ public enum MessageTransformer {
         logger.info("Patient Address: " + p.getPatientAddress());
       }
       if (p.getPatientAddress() != null && !p.getPatientAddress().isClean()) {
-        logger.warn("Patient Address not clean: " + p.getPatientAddress().getCleansingResultCode());
+        if (logger.isInfoEnabled()) {
+          logger.info("Patient Address not clean: " + p.getPatientAddress().getCleansingResultCode());
+        }
       }
       if (p.getResponsibleParty() != null) {
         MqeAddress aClean = cleanMap.get(p.getResponsibleParty().getAddress());
@@ -172,6 +174,7 @@ public enum MessageTransformer {
       String mvxCode = v.getManufacturerCode();
       String cvxCode = v.getCvxDerived();
       String adminDate = v.getAdminDateString();
+      v.setAdminDate(datr.parseDate(adminDate));
 
       Code product = this.repo.getVaccineProduct(cvxCode, mvxCode, adminDate);
 
@@ -194,6 +197,7 @@ public enum MessageTransformer {
   private static final String OBX_VIS_PUBLISHED = "29768-9";
   private static final String OBX_VIS_PRESENTED = "29769-7";
   private static final String OBX_DISEASE_WITH_PRESUMED_IMMUNITY = "59784-9";
+  private static final String OBX_SERIOLOGICAL_EVIDENCE_OF_IMMUNITY = "75505-8";
 
   protected void transformObservations(MqeMessageReceived mr) {
     for (MqeVaccination v : mr.getVaccinations()) {
@@ -310,7 +314,9 @@ public enum MessageTransformer {
     for (Observation o : obxList) {
       switch (o.getIdentifierCode()) {
         case OBX_DISEASE_WITH_PRESUMED_IMMUNITY:
-          pi.setImmunityCode(o.getValue());
+        case OBX_SERIOLOGICAL_EVIDENCE_OF_IMMUNITY:
+          pi.setCode(o.getValue());
+          pi.setType(o.getIdentifierCode());
       }
     }
 

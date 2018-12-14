@@ -17,7 +17,7 @@ public class VaccinationAdministeredAmountIsReasonable extends ValidationRule<Mq
   }
 
   public VaccinationAdministeredAmountIsReasonable() {
-    ruleDetections.add(Detection.VaccinationAdministeredAmountIsInvalid);
+    this.addRuleDocumentation(Detection.VaccinationAdministeredAmountIsInvalid);
   }
 
   @Override

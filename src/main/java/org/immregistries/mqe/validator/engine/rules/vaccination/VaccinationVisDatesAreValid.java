@@ -2,6 +2,7 @@ package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
@@ -20,7 +21,7 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
   }
 
   public VaccinationVisDatesAreValid() {
-    ruleDetections.addAll(Arrays.asList(Detection.VaccinationVisPublishedDateIsMissing,
+    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationVisPublishedDateIsMissing,
         Detection.VaccinationVisPresentedDateIsInvalid,
         Detection.VaccinationVisPresentedDateIsMissing,
         Detection.VaccinationVisPublishedDateIsInvalid,
@@ -47,26 +48,34 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
     if (publishedDateString == null) {
       issues.add(Detection.VaccinationVisPublishedDateIsMissing.build(target));
     } else if (publishedDate == null) {// it didn't parse to a date.
-      issues.add(Detection.VaccinationVisPresentedDateIsInvalid.build(vis.getPublishedDateString(),
+      issues.add(Detection.VaccinationVisPublishedDateIsInvalid.build(vis.getPublishedDateString(),
           target));
     }
 
     if (presentedDateString == null) {
       issues.add(Detection.VaccinationVisPresentedDateIsMissing.build(target));
     } else if (presentedDate == null) {// it didn't parse to a date.
-      issues.add(Detection.VaccinationVisPublishedDateIsInvalid.build(vis.getPresentedDateString(),
+      issues.add(Detection.VaccinationVisPresentedDateIsInvalid.build(vis.getPresentedDateString(),
           target));
     }
+    
+    if (publishedDate != null) {
+    	Calendar now = Calendar.getInstance();
+    	 if (datr.isAfterDate(publishedDate, now.getTime())) {
+    		 issues.add(Detection.VaccinationVisPublishedDateIsInFuture.build(vis.getPresentedDateString(),
+    		          target));
+    	 }
+    }
+    
+    if (publishedDate != null && presentedDate != null) {
+        if (datr.isBeforeDate(presentedDate, publishedDate)) {
+          issues.add(Detection.VaccinationVisPresentedDateIsBeforePublishedDate.build(target));
+        }
+    }
+
 
     Date adminDate = target.getAdminDate();
     if (adminDate != null) {
-      if (presentedDate != null) {
-        if (datr.isAfterDate(presentedDate, adminDate)) {
-          issues.add(Detection.VaccinationVisPresentedDateIsAfterAdminDate.build(
-              (presentedDateString), target));
-        }
-      }
-
       if (presentedDate != null) {
         if (datr.isAfterDate(presentedDate, adminDate)) {
           issues.add(Detection.VaccinationVisPresentedDateIsAfterAdminDate.build(
@@ -76,13 +85,6 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
               (presentedDateString), target));
         }
       }
-
-      if (publishedDate != null && presentedDate != null) {
-        if (datr.isBeforeDate(presentedDate, publishedDate)) {
-          issues.add(Detection.VaccinationVisPresentedDateIsBeforePublishedDate.build(target));
-        }
-      }
-
     }
 
     passed = issues.isEmpty();

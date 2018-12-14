@@ -22,13 +22,9 @@ public class PatientIsUnderage extends ValidationRule<MqePatient> {
   }
 
   public PatientIsUnderage() {
-    this.ruleDetections.add(Detection.PatientBirthDateIsUnderage);
+    this.addRuleDocumentation(Detection.PatientBirthDateIsUnderage);
+    this.addImplementationMessage(Detection.PatientBirthDateIsUnderage, "Patient is under 18 years old.");
   }
-
-
-  /*
-   * This is the money:
-   */
 
   @Override
   protected ValidationRuleResult executeRule(MqePatient target, MqeMessageReceived m) {
@@ -46,7 +42,7 @@ public class PatientIsUnderage extends ValidationRule<MqePatient> {
       logger.info("Eighteen years before submission: " + datr.toString(eighteenYearsBeforeToday));
       logger.info("patient birth date: " + datr.toString(birthDate));
 
-      if (/* patient is underage */underage) {
+      if (underage) {
         issues.add(Detection.PatientBirthDateIsUnderage.build(datr.toString(birthDate), target));
         passed = true;
       }

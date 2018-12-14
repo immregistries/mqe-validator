@@ -17,17 +17,17 @@ import org.immregistries.mqe.vxu.VxuField;
 public class PatientCodesAreValid extends ValidationRule<MqePatient> {
 
   public PatientCodesAreValid() {
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_ETHNICITY));
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_GENDER));
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_NAME_TYPE_CODE));
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_PRIMARY_LANGUAGE));
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_PUBLICITY_CODE));
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_RACE));
-    ruleDetections.addAll(codr.getDetectionsForField(VxuField.PATIENT_VFC_STATUS));
-    ruleDetections
-        .addAll(Arrays.asList(Detection.PatientNameTypeCodeIsNotValuedLegal,
-            Detection.PatientPrimaryFacilityIdIsMissing,
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_ETHNICITY));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_GENDER));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_NAME_TYPE_CODE));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_PRIMARY_LANGUAGE));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_PUBLICITY_CODE));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_RACE));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_VFC_STATUS));
+    this.addRuleDocumentation(Arrays.asList(Detection.PatientPrimaryFacilityIdIsMissing,
             Detection.PatientPrimaryFacilityNameIsMissing));
+    
+    this.addImplementationMessage(Detection.PatientNameTypeCodeIsNotValuedLegal, "Patient Name Type is not 'L' for legal.");
   }
 
   @Override

@@ -18,7 +18,7 @@ public class VaccinationVisIsRecognized extends ValidationRule<MqeVaccination> {
   }
 
   public VaccinationVisIsRecognized() {
-    ruleDetections.add(Detection.VaccinationVisIsMissing);
+    this.addRuleDocumentation(Detection.VaccinationVisIsMissing);
   }
 
   @Override

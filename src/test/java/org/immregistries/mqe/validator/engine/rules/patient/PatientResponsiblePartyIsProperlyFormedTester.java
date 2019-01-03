@@ -8,6 +8,7 @@ import org.immregistries.mqe.vxu.MqeAddress;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeNextOfKin;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.MqePhoneNumber;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +31,7 @@ public class PatientResponsiblePartyIsProperlyFormedTester {
 		nok.setNameFirst("Jane");
 		nok.setNameLast("Doe");
 		nok.setRelationshipCode("MTH");
-		nok.setPhoneNumber("8109573567");
+		nok.setPhoneNumber(new MqePhoneNumber("8109573567"));
 	    MqeAddress addr = new MqeAddress();
 	    addr.setStreet("233 Cherokee Ln");
 	    addr.setStreet2("Apt 106");
@@ -60,7 +61,7 @@ public class PatientResponsiblePartyIsProperlyFormedTester {
 		nok.setNameFirst("Jane");
 		nok.setNameLast("Doe");
 		nok.setRelationshipCode("MTH");
-		nok.setPhoneNumber("8109573567");
+		nok.setPhoneNumber(new MqePhoneNumber("8109573567"));
 	    MqeAddress addr = new MqeAddress();
 	    addr.setStreet("233 Cherokee Ln");
 	    addr.setStreet2("Apt 106");
@@ -90,7 +91,7 @@ public class PatientResponsiblePartyIsProperlyFormedTester {
 		nok.setNameFirst("Jane");
 		nok.setNameLast("Doe");
 		nok.setRelationshipCode("MTH");
-		nok.setPhoneNumber("8109573567");
+		nok.setPhoneNumber(new MqePhoneNumber("8109573567"));
 	    MqeAddress addr = new MqeAddress();
 	    addr.setStreet("233 Cherokee Ln");
 	    addr.setStreet2("Apt 106");
@@ -120,7 +121,7 @@ public class PatientResponsiblePartyIsProperlyFormedTester {
 		nok.setNameFirst("");
 		nok.setNameLast("Doe");
 		nok.setRelationshipCode("MTH");
-		nok.setPhoneNumber("8109573567");
+		nok.setPhoneNumber(new MqePhoneNumber("8109573567"));
 	    MqeAddress addr = new MqeAddress();
 	    addr.setStreet("233 Cherokee Ln");
 	    addr.setStreet2("Apt 106");
@@ -150,7 +151,7 @@ public class PatientResponsiblePartyIsProperlyFormedTester {
 		nok.setNameFirst("Jane");
 		nok.setNameLast("");
 		nok.setRelationshipCode("MTH");
-		nok.setPhoneNumber("8109573567");
+		nok.setPhoneNumber(new MqePhoneNumber("8109573567"));
 	    MqeAddress addr = new MqeAddress();
 	    addr.setStreet("233 Cherokee Ln");
 	    addr.setStreet2("Apt 106");
@@ -180,7 +181,7 @@ public class PatientResponsiblePartyIsProperlyFormedTester {
 		nok.setNameFirst("Jane");
 		nok.setNameLast("Doe");
 		nok.setRelationshipCode("MTH");
-		nok.setPhoneNumber("8109573567");
+		nok.setPhoneNumber(new MqePhoneNumber("8109573567"));
 	    MqeAddress addr = new MqeAddress();
 	    addr.setStreet("233 Cherokee Ln");
 	    addr.setStreet2("Apt 106");
@@ -213,7 +214,7 @@ public class PatientResponsiblePartyIsProperlyFormedTester {
 		nok.setNameFirst("Jane");
 		nok.setNameLast("Doe");
 		nok.setRelationshipCode("MTH");
-		nok.setPhoneNumber("");
+		nok.setPhoneNumber(new MqePhoneNumber(""));
 	    MqeAddress addr = new MqeAddress();
 	    addr.setStreet("233 Cherokee Ln");
 	    addr.setStreet2("Apt 106");
@@ -243,7 +244,7 @@ public class PatientResponsiblePartyIsProperlyFormedTester {
 		nok.setNameFirst("Jane");
 		nok.setNameLast("Doe");
 		nok.setRelationshipCode("");
-		nok.setPhoneNumber("8109573567");
+		nok.setPhoneNumber(new MqePhoneNumber("8109573567"));
 	    MqeAddress addr = new MqeAddress();
 	    addr.setStreet("233 Cherokee Ln");
 	    addr.setStreet2("Apt 106");
@@ -273,7 +274,7 @@ public class PatientResponsiblePartyIsProperlyFormedTester {
 		nok.setNameFirst("Jane");
 		nok.setNameLast("Doe");
 		nok.setRelationshipCode("MTH");
-		nok.setPhoneNumber("8109573567");
+		nok.setPhoneNumber(new MqePhoneNumber("8109573567"));
 	    MqeAddress addr = new MqeAddress();
 	    addr.setStreet("233 Cherokee Ln");
 	    addr.setStreet2("Apt 106");

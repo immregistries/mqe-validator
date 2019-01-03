@@ -2,7 +2,11 @@ package org.immregistries.mqe.validator.engine.rules.patient;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.prefs.Preferences;
+import org.immregistries.mqe.validator.MqeMessageService;
+import org.immregistries.mqe.validator.MqeMessageServiceResponse;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageHeader;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
@@ -22,6 +26,27 @@ public class PatientPhoneIsValidTester {
 
 	  private static final Logger logger = LoggerFactory.getLogger(PatientPhoneIsValidTester.class);
 
+	  private MqeMessageService service = MqeMessageService.INSTANCE;
+
+	  private String examplePhoneMessage =
+    "MSH|^~\\&||1255-60-20|MCIR|MDCH|20181226142736-0500||VXU^V04^VXU_V04|NDC-Codes-NDC-11-DIGIT-20181226142736-0500|P|2.5.1\r"
+    +"PID|||TEST-2011288367^^^AIRA-TEST^MR||Joshua^Genie^Floke^^^^L|Lenny^Santiago|20151226|M||2076-8^Native Hawaiian or Other Pacific Islander^HL70005|6142 Minidoka Ave^null^Traverse City^MI^49696^USA^P||^PRN^PH^^^517^222-1234|||||||||2135-2^Hispanic or Latino^HL70005\r"
+    +"PD1|||||||||||02^Reminder/Recall - any method^HL70215|||||A|20170301|20170301\r"
+    +"NK1|1|Joshua^Santiago^^^^^L|MTH^Mother^HL70063|6142 Minidoka Ave^null^Traverse City^MI^49696^USA^P|^PRN^PH^^^517^231-1234\r";
+
+	  @Test
+		public void testEndToEnd() {
+	  	//parse a whole message.
+      MqeMessageServiceResponse msr = service.processMessage(examplePhoneMessage);
+      MqePatient p = msr.getMessageObjects().getPatient();
+      ValidationRuleResult r = rule.executeRule(p, msr.getMessageObjects());
+//      System.out.println("PHONE NUMBER: " + p);
+      for (ValidationReport vr : r.getValidationDetections()) {
+        System.out.println(vr);
+      }
+      assertEquals("should not be a fail", 0, r.getValidationDetections().size());
+      assertEquals(true, r.isRulePassed());
+		}
 	  /**
 	   * Test the basic rule with a valid phone number.
 	   * (should be true)
@@ -37,6 +62,22 @@ public class PatientPhoneIsValidTester {
 	    assertEquals(true, r.isRulePassed());
 	  }
 
+
+	/**
+	 * Test the basic rule with a valid phone number.
+	 * (should be true)
+	 */
+	@Test
+	public void testRuleWithDash() {
+		MqePhoneNumber phone = new MqePhoneNumber("810", "957-3567");
+		phone.setTelEquipCode("CP");
+		phone.setTelUseCode("PRN");
+		p.setPhone(phone);
+		ValidationRuleResult r = rule.executeRule(p, mr);
+		assertEquals(0, r.getValidationDetections().size());
+		assertEquals("Should pass the test", true, r.isRulePassed());
+	}
+
 	  /**
 	   * Test with missing area code.
 	   * (should be false)
@@ -44,7 +85,7 @@ public class PatientPhoneIsValidTester {
 	  @Test
 	  public void testRuleNoAreaCode() {
 	    p.getPhone().setAreaCode(null);
-	    p.getPhone().setNumber("9573567");
+	    p.getPhone().setLocalNumber("9573567");
 		p.getPhone().setTelEquipCode("CP");
 		p.getPhone().setTelUseCode("PRN");
 

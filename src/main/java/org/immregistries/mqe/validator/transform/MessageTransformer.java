@@ -16,6 +16,7 @@ import org.immregistries.mqe.vxu.MqeMessageHeader;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeNextOfKin;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.MqePhoneNumber;
 import org.immregistries.mqe.vxu.MqeVaccination;
 import org.immregistries.mqe.vxu.PatientImmunity;
 import org.immregistries.mqe.vxu.VaccinationVIS;
@@ -78,8 +79,26 @@ public enum MessageTransformer {
     transformObservations(mr);
     transformVaccinations(mr.getVaccinations());
     transformAddesses(mr);
-
+    transformPhoneNumbers(mr);
     return mr;
+  }
+
+  protected void transformPhoneNumbers(MqeMessageReceived mr) {
+    if (mr == null) {
+      return;
+    }
+
+    if (mr.getPatient() != null) {
+      mr.getPatient().setPhone(this.transformPhoneNumber(mr.getPatient().getPhone()));
+
+      if (mr.getPatient().getResponsibleParty() != null) {
+        mr.getPatient().getResponsibleParty()
+            .setPhone(this.transformPhoneNumber(mr.getPatient().getResponsibleParty().getPhone()));
+      }
+    }
+    for (MqeNextOfKin nk : mr.getNextOfKins()) {
+      nk.setPhone(this.transformPhoneNumber(nk.getPhone()));
+    }
   }
 
   protected void transformAddesses(MqeMessageReceived mr) {
@@ -356,6 +375,29 @@ public enum MessageTransformer {
   }
 
   /**
+   * The transforms for Phone number fill in the details, and clean up the values.
+   * <p>Clean up involves:</p>
+   * <ul>
+   *   <li>Removing non-numeric characters</li>
+   *   <li>Parsing from single input value if no specific parts were provided. </li>
+   * </ul>
+   * @param numIn
+   * @return
+   */
+  protected MqePhoneNumber transformPhoneNumber(MqePhoneNumber numIn) {
+    MqePhoneNumber numOut = new MqePhoneNumber(numIn);
+
+    if (StringUtils.isBlank(numOut.getAreaCode()) || StringUtils.isBlank(numOut.getLocalNumber())) {
+      numOut.setAreaCode(numOut.getAreaCodeFrom(numOut.getSingleFieldinput()));
+      numOut.setLocalNumber(numOut.getLocalNumberFrom(numOut.getSingleFieldinput()));
+    }
+
+    numOut.setLocalNumber(numOut.onlyDigits(numOut.getLocalNumber()));
+    numOut.setAreaCode(numOut.onlyDigits(numOut.getAreaCode()));
+    return numOut;
+  }
+
+  /**
    * Parse birth/death dates, etc.
    *
    * @param mr Message to be processed.
@@ -364,7 +406,6 @@ public enum MessageTransformer {
     MqePatient p = mr.getPatient();
     // transformAddress(p.getAddress());
 
-    // TODO: should we be parsing the birth dates here, or in the validation classes?
     // birth date transformations
     String birthDateString = p.getBirthDateString();
     if (!StringUtils.isBlank(birthDateString)) {

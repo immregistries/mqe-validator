@@ -69,7 +69,7 @@ public class PatientCodesAreValid extends ValidationRule<MqePatient> {
 
     // physician
     // TODO: primary physician isn't in the list of validation rules at all...
-    // issues.addAll(this.codr.handleCode(target.getPhysician().getNumber(),
+    // issues.addAll(this.codr.handleCode(target.getPhysician().getFormattedNumber(),
     // VxuField.PATIENT_PRIMARY_PHYSICIAN_ID, target));
 
     // publicity code

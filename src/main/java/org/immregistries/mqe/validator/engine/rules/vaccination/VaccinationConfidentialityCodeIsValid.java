@@ -18,8 +18,8 @@ public class VaccinationConfidentialityCodeIsValid extends ValidationRule<MqeVac
   }
 
   public VaccinationConfidentialityCodeIsValid() {
-    this.addRuleDocumentation(Detection.VaccinationConfidentialityCodeIsValuedAsRestricted);
     this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_CONFIDENTIALITY_CODE));
+    this.addImplementationMessage(Detection.VaccinationConfidentialityCodeIsValuedAsRestricted, "Vaccination Confidentiality Code has value of 'R' or 'V'.");
   }
 
   @Override

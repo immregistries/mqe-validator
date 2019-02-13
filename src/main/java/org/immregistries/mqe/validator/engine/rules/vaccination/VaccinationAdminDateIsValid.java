@@ -21,10 +21,17 @@ public class VaccinationAdminDateIsValid extends ValidationRule<MqeVaccination> 
         Detection.VaccinationAdminDateIsOnFirstDayOfMonth,
         Detection.VaccinationAdminDateIsOn15ThDayOfMonth,
         Detection.VaccinationAdminDateIsOnLastDayOfMonth,
-        Detection.VaccinationAdminDateIsAfterLotExpirationDate,
         Detection.VaccinationAdminDateIsAfterPatientDeathDate,
         Detection.VaccinationAdminDateIsBeforeBirth,
         Detection.VaccinationAdminDateIsAfterSystemEntryDate));
+    this.addImplementationMessage(Detection.VaccinationAdminDateIsInvalid, "Vaccination Administered Date annot be translated to a date.");
+    this.addImplementationMessage(Detection.VaccinationAdminDateIsAfterMessageSubmitted, "Vaccination Administered Date is after the message header date.");
+    this.addImplementationMessage(Detection.VaccinationAdminDateIsAfterPatientDeathDate, "Vaccination Administered Date is after patient's death date");
+    this.addImplementationMessage(Detection.VaccinationAdminDateIsBeforeBirth, "Vaccination Administered Date is after patient's birth date.");
+    this.addImplementationMessage(Detection.VaccinationAdminDateIsAfterSystemEntryDate, "Vaccination Administered Date is after System Entry date.");
+    this.addImplementationMessage(Detection.VaccinationAdminDateIsOnFirstDayOfMonth, "Vaccination Administered Date is the first day of the month.");
+    this.addImplementationMessage(Detection.VaccinationAdminDateIsOn15ThDayOfMonth, "Vaccination Administered Date is on the 15th of the month.");
+    this.addImplementationMessage(Detection.VaccinationAdminDateIsOnLastDayOfMonth, "Vaccination Administered Date is on the last day of the month.");
   }
 
   @Override
@@ -78,15 +85,6 @@ public class VaccinationAdminDateIsValid extends ValidationRule<MqeVaccination> 
        }
     }
 
-    if (target.isAdministered()) {
-      if (target.getExpirationDate() != null) {
-        if (datr.isAfterDate(target.getAdminDate(), target.getExpirationDate())) {
-          issues.add(Detection.VaccinationAdminDateIsAfterLotExpirationDate.build(target));
-          //??? passed = false;
-        }
-      }
-    }
-    
     // After this, we have a date.
     int dayOfMonth = adminDate.getDayOfMonth();
 

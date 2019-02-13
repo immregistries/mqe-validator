@@ -14,7 +14,7 @@ public class VaccinationFundingSourceCodeIsValid extends ValidationRule<MqeVacci
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationIsAdministered.class};
+    return new Class[] {VaccinationSourceIsAdministered.class};
   }
 
   public VaccinationFundingSourceCodeIsValid() {

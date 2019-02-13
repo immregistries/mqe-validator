@@ -31,6 +31,12 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
             Detection.VaccinationAdminCodeIsNotVaccine,
             Detection.VaccinationAdminCodeIsUnrecognized,
             Detection.VaccinationAdminCodeIsForeign));
+    this.addImplementationMessage(Detection.VaccinationAdminCodeIsNotSpecific, "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has an unspecified value type.");
+    this.addImplementationMessage(Detection.VaccinationAdminCodeIsNotVaccine, "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a non-vaccine value type.");
+    this.addImplementationMessage(Detection.VaccinationAdminCodeIsForeign, "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a foreign vaccine value type.");
+    this.addImplementationMessage(Detection.VaccinationAdminCodeIsUnrecognized, "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) could not be derived.");
+    this.addImplementationMessage(Detection.VaccinationAdminCodeIsValuedAsNotAdministered, "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a value of 998.");
+    this.addImplementationMessage(Detection.VaccinationAdminCodeIsValuedAsUnknown, "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a value of 999.");
   }
 
   @Override

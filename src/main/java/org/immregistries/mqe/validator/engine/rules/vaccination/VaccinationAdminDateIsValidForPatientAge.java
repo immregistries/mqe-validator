@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import org.immregistries.codebase.client.generated.Code;
 import org.immregistries.codebase.client.reference.CodesetType;
+import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -22,7 +23,10 @@ public class VaccinationAdminDateIsValidForPatientAge extends ValidationRule<Mqe
   }
 
   public VaccinationAdminDateIsValidForPatientAge() {
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_ADMIN_DATE));
+    this.addRuleDocumentation(Detection.VaccinationAdminDateIsBeforeOrAfterWhenExpectedForPatientAge);
+    this.addRuleDocumentation(Detection.VaccinationAdminDateIsBeforeOrAfterWhenValidForPatientAge);
+    this.addImplementationMessage(Detection.VaccinationAdminDateIsBeforeOrAfterWhenExpectedForPatientAge, "Vaccination Administration Date is outside of the expected date range for the patient's age.");
+    this.addImplementationMessage(Detection.VaccinationAdminDateIsBeforeOrAfterWhenValidForPatientAge, "Vaccination Administration Date is outside of the valid date range for the patient's age.");
   }
 
   @Override

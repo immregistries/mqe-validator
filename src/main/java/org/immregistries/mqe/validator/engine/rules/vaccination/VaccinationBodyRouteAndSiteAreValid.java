@@ -15,7 +15,7 @@ public class VaccinationBodyRouteAndSiteAreValid extends ValidationRule<MqeVacci
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationIsAdministered.class};
+    return new Class[] {VaccinationSourceIsAdministered.class};
   }
 
   public VaccinationBodyRouteAndSiteAreValid() {

@@ -14,12 +14,12 @@ import org.immregistries.mqe.vxu.VxuField;
 public class VaccinationCompletionStatusIsValid extends ValidationRule<MqeVaccination> {
 
   public VaccinationCompletionStatusIsValid() {
-    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationCompletionStatusIsValuedAsCompleted,
-        Detection.VaccinationCompletionStatusIsValuedAsRefused,
-        Detection.VaccinationCompletionStatusIsValuedAsNotAdministered,
-        Detection.VaccinationCompletionStatusIsValuedAsPartiallyAdministered,
-        Detection.VaccinationCompletionStatusIsUnrecognized));
     this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_COMPLETION_STATUS));
+    String baseMessage = "Vaccination Completion Code has value of ";
+    this.addImplementationMessage(Detection.VaccinationCompletionStatusIsValuedAsCompleted, baseMessage.concat(MqeVaccination.COMPLETION_COMPLETED));
+    this.addImplementationMessage(Detection.VaccinationCompletionStatusIsValuedAsRefused, baseMessage.concat(MqeVaccination.COMPLETION_REFUSED));
+    this.addImplementationMessage(Detection.VaccinationCompletionStatusIsValuedAsNotAdministered, baseMessage.concat(MqeVaccination.COMPLETION_NOT_ADMINISTERED));
+    this.addImplementationMessage(Detection.VaccinationCompletionStatusIsValuedAsPartiallyAdministered, baseMessage.concat(MqeVaccination.COMPLETION_PARTIALLY_ADMINISTERED));
   }
 
   @Override

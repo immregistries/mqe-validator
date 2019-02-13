@@ -19,11 +19,13 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<MqeVacci
   }
 
   public VaccinationInformationSourceIsValid() {
-    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationInformationSourceIsMissing,
-        Detection.VaccinationInformationSourceIsValuedAsAdministered,
-        Detection.VaccinationInformationSourceIsValuedAsHistorical));
-
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_INFORMATION_SOURCE));
+	  this.addRuleDocumentation(Arrays.asList(Detection.VaccinationInformationSourceIsDeprecated,
+		        Detection.VaccinationInformationSourceIsIgnored,
+		    	Detection.VaccinationInformationSourceIsInvalid,
+		    	Detection.VaccinationInformationSourceIsMissing,
+		    	Detection.VaccinationInformationSourceIsUnrecognized,
+		    	Detection.VaccinationInformationSourceIsValuedAsAdministered,
+		    	Detection.VaccinationInformationSourceIsValuedAsHistorical));
   }
 
   /*

@@ -17,7 +17,8 @@ public class VaccinationCptIsValid extends ValidationRule<MqeVaccination> {
 
   public VaccinationCptIsValid() {
     this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_CPT_CODE));
-    this.addRuleDocumentation(Detection.VaccinationCptCodeIsInvalidForDateAdministered);
+	this.addImplementationMessage(Detection.VaccinationCptCodeIsInvalidForDateAdministered, "Vaccination CPT Code is outside of expected vaccine date range for the cvx it maps to.");
+	this.addImplementationMessage(Detection.VaccinationCptCodeIsUnexpectedForDateAdministered, "Vaccination CPT Code is outside of licensed vaccine date range for the cvx it maps to.");
   }
 
   @Override

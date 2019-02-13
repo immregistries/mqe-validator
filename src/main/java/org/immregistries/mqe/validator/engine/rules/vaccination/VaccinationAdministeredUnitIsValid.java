@@ -15,7 +15,7 @@ public class VaccinationAdministeredUnitIsValid extends ValidationRule<MqeVaccin
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationAdministeredAmtIsValid.class, VaccinationIsAdministered.class};
+    return new Class[] {VaccinationAdministeredAmtIsValid.class, VaccinationSourceIsAdministered.class};
   }
 
   public VaccinationAdministeredUnitIsValid() {

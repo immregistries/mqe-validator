@@ -14,11 +14,10 @@ public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<M
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationIsAdministered.class};
+    return new Class[] {VaccinationSourceIsAdministered.class};
   }
 
   public VaccinationFinancialEligibilityCodeIsValid() {
-    this.addRuleDocumentation(Detection.VaccinationFinancialEligibilityCodeIsMissing);
     this.addRuleDocumentation(codr
         .getDetectionsForField(VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE));
   }

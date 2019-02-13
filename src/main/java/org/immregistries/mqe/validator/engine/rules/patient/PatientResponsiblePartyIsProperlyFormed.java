@@ -31,9 +31,12 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
         Detection.PatientGuardianPhoneIsMissing,
         Detection.PatientGuardianRelationshipIsMissing,
         Detection.PatientGuardianResponsiblePartyIsMissing));
+    
+    this.addImplementationMessage(Detection.PatientGuardianNameIsSameAsUnderagePatient, "Patient first and last name match the guardian first and last name.");
 
     if (props.isAddressCleanserEnabled()) {
       this.addRuleDocumentation(Detection.PatientGuardianAddressIsInvalid);
+      this.addImplementationMessage(Detection.PatientGuardianAddressIsInvalid, "Patient Guardian Address is invalid according to Smarty Streets.");
     }
   }
 

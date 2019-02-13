@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
@@ -15,14 +14,13 @@ public class VaccinationRefusalReasonIsValid extends ValidationRule<MqeVaccinati
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationIsAdministered.class};
+    return new Class[] {VaccinationSourceIsAdministered.class};
   }
 
   public VaccinationRefusalReasonIsValid() {
-    this.addRuleDocumentation(Arrays.asList(
-        Detection.VaccinationRefusalReasonConflictsCompletionStatus,
-        Detection.VaccinationRefusalReasonIsMissing));
     this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_REFUSAL_REASON));
+    this.addImplementationMessage(Detection.VaccinationRefusalReasonConflictsCompletionStatus, "Vaccination is marked as completed but refusal code was given.");
+    this.addImplementationMessage(Detection.VaccinationRefusalReasonIsMissing, "Vaccination completion was refused but refusal code is missing. ");
   }
 
   @Override

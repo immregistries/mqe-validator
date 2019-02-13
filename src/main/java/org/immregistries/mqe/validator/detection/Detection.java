@@ -320,7 +320,7 @@ public enum Detection implements DetectionInfo {
   PatientSystemEntryDateIsInvalid(PATIENT_SYSTEM_ENTRY_TIME, INVALID, ACCEPT, MQE0580),
   PatientSystemEntryDateIsInTheFuture(PATIENT_SYSTEM_ENTRY_TIME, IN_FUTURE, ACCEPT, MQE0582),
 
-  AdministredVaccinationsCountIsLargerThanExpected(PATIENT_LEVEL, VACCINATION_COUNT_EXCEEDS_EXPECTATIONS, WARN, MQE0568),
+  AdministeredVaccinationsCountIsLargerThanExpected(PATIENT_LEVEL, VACCINATION_COUNT_EXCEEDS_EXPECTATIONS, WARN, MQE0568),
 
   VaccinationSystemEntryDateIsMissing(VACCINATION_SYSTEM_ENTRY_TIME, MISSING, ACCEPT, MQE0573),
   VaccinationSystemEntryDateIsInTheFuture(VACCINATION_SYSTEM_ENTRY_TIME, IN_FUTURE, ACCEPT, MQE0581),
@@ -575,6 +575,7 @@ public enum Detection implements DetectionInfo {
   VaccinationSystemEntryTimeIsInFuture(VACCINATION_SYSTEM_ENTRY_TIME, IN_FUTURE, ACCEPT, MQE0365),
   VaccinationSystemEntryTimeIsInvalid(VACCINATION_SYSTEM_ENTRY_TIME, INVALID, ACCEPT, MQE0366),
   VaccinationSystemEntryTimeIsMissing(VACCINATION_SYSTEM_ENTRY_TIME, MISSING, ACCEPT, MQE0367),
+
 
   UnknownValidationIssue(CONFIGURATION, UNRECOGNIZED, WARN, MQE0000);
   //@formatter:on

@@ -171,8 +171,8 @@ public enum KnowNameList {
     names.add(new KnownName(56, "", "", "NOMIDDLENAME", null, NameType.JUNK_NAME));
     names.add(new KnownName(57, "", "", "NO MIDDLE NAME", null, NameType.JUNK_NAME));
     names.add(new KnownName(58, "", "", "NO MIDDLENAME", null, NameType.JUNK_NAME));
-    names.add(new KnownName(59, "", "", "NOLASTNAME", null, NameType.JUNK_NAME));
-    names.add(new KnownName(60, "NO LAST NAM", "", "", null, NameType.JUNK_NAME));
+    names.add(new KnownName(59, "NOLASTNAME", "", "", null, NameType.JUNK_NAME));
+    names.add(new KnownName(60, "NO LAST NAME", "", "", null, NameType.JUNK_NAME));
     names.add(new KnownName(61, "NO LASTNAME", "", "", null, NameType.JUNK_NAME));
     names.add(new KnownName(62, "", "NONAME", "", null, NameType.JUNK_NAME));
     names.add(new KnownName(63, "", "NO NAME", "", null, NameType.JUNK_NAME));

@@ -62,7 +62,7 @@ public class VaccinationAdminCountIsAsExpectedForAgeTester {
 		logger.info(r.getValidationDetections().toString());
 		assertTrue(!r.isRulePassed());
 		assertEquals(1, r.getValidationDetections().size());
-		assertEquals(Detection.AdministredVaccinationsCountIsLargerThanExpected, r.getValidationDetections().get(0).getDetection());
+		assertEquals(Detection.AdministeredVaccinationsCountIsLargerThanExpected, r.getValidationDetections().get(0).getDetection());
 	}
 	
 	@Test
@@ -79,7 +79,7 @@ public class VaccinationAdminCountIsAsExpectedForAgeTester {
 		logger.info(r.getValidationDetections().toString());
 		assertTrue(!r.isRulePassed());
 		assertEquals(1, r.getValidationDetections().size());
-		assertEquals(Detection.AdministredVaccinationsCountIsLargerThanExpected, r.getValidationDetections().get(0).getDetection());
+		assertEquals(Detection.AdministeredVaccinationsCountIsLargerThanExpected, r.getValidationDetections().get(0).getDetection());
 	}
 	
 	@Test

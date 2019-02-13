@@ -14,7 +14,7 @@ public class VaccinationVisCvxIsValid extends ValidationRule<MqeVaccination> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationVisIsPresent.class, VaccinationIsAdministered.class};
+    return new Class[] {VaccinationVisIsPresent.class, VaccinationSourceIsAdministered.class};
   }
 
   public VaccinationVisCvxIsValid() {

@@ -30,6 +30,9 @@ public class VaccinationSystemEntryTimeIsValidTester {
 	@Before
 	public void setUpTheObjects() {
 		mr.getVaccinations().add(v);
+		
+		DateTime receivedDate = new DateTime();
+		mr.setReceivedDate(receivedDate.toDate());
 	}
 
 	@Test

@@ -11,14 +11,16 @@ import org.immregistries.mqe.validator.engine.codes.AdministeredLikelihood;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
 
-public class VaccinationIsAdministered extends ValidationRule<MqeVaccination> {
+public class VaccinationSourceIsAdministered extends ValidationRule<MqeVaccination> {
 
   AdministeredLikelihood confidenceCalculator = AdministeredLikelihood.INSTANCE;
 
-  public VaccinationIsAdministered() {
+  public VaccinationSourceIsAdministered() {
     this.addRuleDocumentation(Arrays.asList(
         Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical,
         Detection.VaccinationInformationSourceIsHistoricalButAppearsToBeAdministered));
+    this.addImplementationMessage(Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical, "Vaccination information source is reported as administered but based on our scoring calculation (how recently shot was given and how much data is known about the shot) the shot seems to be historical.");
+    this.addImplementationMessage(Detection.VaccinationInformationSourceIsHistoricalButAppearsToBeAdministered, "Vaccination information source is reported as historical but based on our scoring calculation (how recently shot was given and how much data is known about the shot) the shot seems to be administered.");
   }
 
   @Override
@@ -27,9 +29,19 @@ public class VaccinationIsAdministered extends ValidationRule<MqeVaccination> {
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
     boolean passed = true;
 
-    boolean administered = target.isAdministered();
-
-    int administeredScore = confidenceCalculator.administeredLiklihoodScore(target, m);
+    String sourceCd = target.getInformationSourceCode();
+    boolean administered;
+    
+    switch (sourceCd) {
+	    case MqeVaccination.INFO_SOURCE_ADMIN:
+	    	administered = true;
+	      break;
+	    default:
+	    	administered = false;
+	      break;
+    }
+    
+    int administeredScore = confidenceCalculator.administeredLikelihoodScore(target, m);
 
     if (administered && administeredScore < 10) {
       issues.add(Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical

@@ -71,6 +71,13 @@ public class ValidationRuleResult {
 		this.possible = possible;
 	}
   
-  
+   public boolean issuesContainsDetection(Detection detection) {
+	   for (ValidationReport issue : this.issues) {
+		   if (issue.getDetection().equals(detection)) {
+			   return true;
+		   }
+	   }
+	   return false;
+   }
 
 }

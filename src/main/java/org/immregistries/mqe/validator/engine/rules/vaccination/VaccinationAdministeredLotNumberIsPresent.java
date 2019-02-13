@@ -15,12 +15,11 @@ public class VaccinationAdministeredLotNumberIsPresent extends
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[]{VaccinationIsAdministered.class};
+    return new Class[]{VaccinationSourceIsAdministered.class};
   }
 
   public VaccinationAdministeredLotNumberIsPresent() {
-    this.addRuleDocumentation(Arrays.asList( Detection.VaccinationLotNumberIsMissing
-        ));
+    this.addRuleDocumentation(Arrays.asList( Detection.VaccinationLotNumberIsMissing));
   }
 
   @Override

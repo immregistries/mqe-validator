@@ -18,6 +18,8 @@ public class PatientProtectionIndicatorIsValid extends ValidationRule<MqePatient
     this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_PROTECTION_INDICATOR));
     this.addRuleDocumentation(Arrays.asList(Detection.PatientProtectionIndicatorIsValuedAsYes,
         Detection.PatientProtectionIndicatorIsValuedAsNo));
+    this.addImplementationMessage(Detection.PatientProtectionIndicatorIsValuedAsYes, "Patient Protection Indicator value is 'Y'.");
+    this.addImplementationMessage(Detection.PatientProtectionIndicatorIsValuedAsNo, "Patient Protection Indicator value is 'N'.");
   }
 
   @Override

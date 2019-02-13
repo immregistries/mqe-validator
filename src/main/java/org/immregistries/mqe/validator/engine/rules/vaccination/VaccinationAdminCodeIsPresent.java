@@ -15,6 +15,7 @@ public class VaccinationAdminCodeIsPresent extends ValidationRule<MqeVaccination
 
   public VaccinationAdminCodeIsPresent() {
     this.addRuleDocumentation(Detection.VaccinationAdminCodeIsMissing);
+    this.addImplementationMessage(Detection.VaccinationAdminCodeIsNotUsable, "NDC, CVX, or CPT must be given in order to have a Vaccination Administered Code.");
   }
 
   @Override

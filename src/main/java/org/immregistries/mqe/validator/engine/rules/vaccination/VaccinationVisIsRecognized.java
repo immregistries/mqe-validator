@@ -14,11 +14,12 @@ public class VaccinationVisIsRecognized extends ValidationRule<MqeVaccination> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationVisIsPresent.class, VaccinationIsAdministered.class};
+    return new Class[] {VaccinationVisIsPresent.class, VaccinationSourceIsAdministered.class};
   }
 
   public VaccinationVisIsRecognized() {
     this.addRuleDocumentation(Detection.VaccinationVisIsMissing);
+    this.addImplementationMessage(Detection.VaccinationVisIsMissing, "Vaccination Vis is missing a document code, CVX and Published Date.");
   }
 
   @Override

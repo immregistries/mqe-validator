@@ -23,6 +23,9 @@ public class VaccinationCreationDateIsValid extends ValidationRule<MqeVaccinatio
 				Detection.VaccinationSystemEntryDateIsMissing,
 				Detection.VaccinationSystemEntryDateIsInTheFuture
 		));
+	    this.addImplementationMessage(Detection.VaccinationSystemEntryDateIsInTheFuture, "Vaccination System Entry date is in the future.");
+	    this.addImplementationMessage(Detection.VaccinationSystemEntryDateIsInvalid, "Vaccination System Entry date cannot be translated to a date.");
+
 	}
 
 	@Override

@@ -43,6 +43,7 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_TYPE));
     
     this.addImplementationMessage(Detection.PatientAddressIsInvalid, "Patient Address is invalid according to Smarty Streets.");
+    this.addImplementationMessage(Detection.PatientAddressTypeIsValuedBadAddress, "Patient Address type value is 'BA'.");
     
     
     if (props.isAddressCleanserEnabled()) {

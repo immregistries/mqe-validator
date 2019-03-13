@@ -16,8 +16,6 @@ import org.immregistries.mqe.vxu.VxuField;
 
 public class VaccinationMfrIsValid extends ValidationRule<MqeVaccination> {
 
-  // dependency: VaccinationIsAdministered
-
   public VaccinationMfrIsValid() {
     this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_MANUFACTURER_CODE));
     this.addImplementationMessage(Detection.VaccinationManufacturerCodeIsInvalidForDateAdministered, "Vaccination Manufacturer code was used outside of the valid date range defined for this code. ");

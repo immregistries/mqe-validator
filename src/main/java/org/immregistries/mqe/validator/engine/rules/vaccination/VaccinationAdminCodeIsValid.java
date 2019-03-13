@@ -19,7 +19,7 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[]{VaccinationAdminCodeIsPresent.class};
+    return new Class[]{VaccinationSourceIsAdministered.class, VaccinationAdminCodeIsValid.class, VaccinationAdminCodeIsPresent.class};
   }
 
   public VaccinationAdminCodeIsValid() {

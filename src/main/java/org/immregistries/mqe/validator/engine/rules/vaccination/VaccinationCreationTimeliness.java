@@ -20,7 +20,7 @@ public class VaccinationCreationTimeliness extends ValidationRule<MqeVaccination
 
 	@Override
 	protected final Class[] getDependencies() {
-		return new Class[] { VaccinationCreationDateIsValid.class, VaccinationAdminDateIsValid.class };
+		return new Class[] { VaccinationSourceIsAdministered.class, VaccinationCreationDateIsValid.class, VaccinationAdminDateIsValid.class };
 	}
 	
 	public VaccinationCreationTimeliness() {

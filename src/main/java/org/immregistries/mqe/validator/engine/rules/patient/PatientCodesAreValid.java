@@ -12,14 +12,11 @@ import org.immregistries.mqe.vxu.MqePatient;
 import org.immregistries.mqe.vxu.VxuField;
 
 /**
- * Covers several cases. Replaces patient ethnicity, gender, and name type validation classes.
+ * Covers several cases. Looks like a catchall for codes that don't have a separate rule
  */
 public class PatientCodesAreValid extends ValidationRule<MqePatient> {
 
   public PatientCodesAreValid() {
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_ETHNICITY));
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_GENDER));
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_NAME_TYPE_CODE));
     this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_PRIMARY_LANGUAGE));
     this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_PUBLICITY_CODE));
     this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_RACE));
@@ -27,7 +24,7 @@ public class PatientCodesAreValid extends ValidationRule<MqePatient> {
     this.addRuleDocumentation(Arrays.asList(Detection.PatientPrimaryFacilityIdIsMissing,
             Detection.PatientPrimaryFacilityNameIsMissing));
     
-    this.addImplementationMessage(Detection.PatientNameTypeCodeIsNotValuedLegal, "Patient Name Type is not 'L' for legal.");
+    
   }
 
   @Override
@@ -37,18 +34,6 @@ public class PatientCodesAreValid extends ValidationRule<MqePatient> {
 
     if (target == null) {
       return buildResults(issues, false);
-    }
-
-    issues.addAll(this.codr.handleCodeOrMissing(target.getEthnicity(), VxuField.PATIENT_ETHNICITY, target));
-    issues.addAll(this.codr.handleCodeOrMissing(target.getSex(), VxuField.PATIENT_GENDER, target));
-
-    // name type
-    issues.addAll(this.codr.handleCodeOrMissing(target.getName().getType(), VxuField.PATIENT_NAME_TYPE_CODE,
-        target));
-
-    // name code is supposed to be L for legal
-    if (!"L".equals(target.getNameTypeCode())) {
-      issues.add(Detection.PatientNameTypeCodeIsNotValuedLegal.build(target));
     }
 
     // facility

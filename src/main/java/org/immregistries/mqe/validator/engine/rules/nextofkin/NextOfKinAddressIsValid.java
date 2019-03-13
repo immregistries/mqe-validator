@@ -36,9 +36,12 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_ZIP));
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_TYPE));
     
+    this.addImplementationMessage(Detection.NextOfKinAddressIsInvalid, "Next of kin Address is invalid according to Smarty Streets.");
+
     if (props.isAddressCleanserEnabled()) {
       this.addRuleDocumentation(Detection.NextOfKinAddressIsInvalid);
     }
+    
   }
 
   @Override
@@ -47,7 +50,6 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
     boolean passed;
 
     MqeAddress nokAddress = target.getAddress();
-    MqeAddress p = m.getPatient().getPatientAddress();
 
     ValidationRuleResult addrResult = addressValidator
         .getAddressIssuesFor(fields, nokAddress, target);
@@ -58,7 +60,7 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
 
       if (props.isAddressCleanserEnabled()) {
         if (nokAddress != null && !nokAddress.isClean()) {
-          ValidationReport r = Detection.PatientGuardianAddressIsInvalid.build(target);
+          ValidationReport r = Detection.NextOfKinAddressIsInvalid.build(target);
           List<SmartyStreetResponse> rList = SmartyStreetResponse
               .codesFromDpv(nokAddress.getCleansingResultCode());
           if (rList.size() > 0) {

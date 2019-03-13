@@ -31,12 +31,8 @@ public class VaccinationFundingSourceCodeIsValid extends ValidationRule<MqeVacci
     String fundingSourceCode = target.getFundingSourceCode();
 
     if (target.isAdministered()) {
-      if (this.common.isEmpty(fundingSourceCode)) {
-        issues.add(Detection.VaccinationFundingSourceCodeIsMissing.build(target));
-      } else {
-        issues.addAll(codr.handleCode(fundingSourceCode,
-            VxuField.VACCINATION_FUNDING_SOURCE_CODE, target));
-      }
+        issues.addAll(codr.handleCodeOrMissing(fundingSourceCode,
+                VxuField.VACCINATION_FUNDING_SOURCE_CODE, target));
     }
 
     passed = (issues.size() == 0);

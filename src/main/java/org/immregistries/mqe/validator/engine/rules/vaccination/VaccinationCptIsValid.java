@@ -33,7 +33,7 @@ public class VaccinationCptIsValid extends ValidationRule<MqeVaccination> {
     // so what I need to do... is check the CPT code stuff...
     if (!this.common.isEmpty(cptCode)) {
 
-      issues.addAll(this.codr.handleCode(cptCode, VxuField.VACCINATION_CPT_CODE, target));
+      issues.addAll(this.codr.handleCode(cpt, VxuField.VACCINATION_CPT_CODE, cptCode, target));
 
       if (issues.size() > 0) {
         passed = false;

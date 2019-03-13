@@ -1,4 +1,4 @@
-package org.immregistries.mqe.validator.engine.rules.patient;
+package org.immregistries.mqe.validator.engine.rules.nextofkin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +20,7 @@ import org.immregistries.mqe.vxu.VxuField;
 /**
  * Created by Allison on 5/9/2017.
  */
-public class PatientGuardianAddressIsValid extends ValidationRule<MqeNextOfKin> {
+public class NextOfKinGuardianAddressIsValid extends ValidationRule<MqeNextOfKin> {
 	
   private AddressFields fields = new AddressFields(VxuField.PATIENT_GUARDIAN_ADDRESS,
 	      VxuField.PATIENT_GUARDIAN_ADDRESS_STREET, VxuField.PATIENT_GUARDIAN_ADDRESS_STREET2,
@@ -30,7 +30,7 @@ public class PatientGuardianAddressIsValid extends ValidationRule<MqeNextOfKin> 
 
   private AddressValidator addressValidator = AddressValidator.INSTANCE;
 
-  public PatientGuardianAddressIsValid() {
+  public NextOfKinGuardianAddressIsValid() {
 	  this.addRuleDocumentation(Detection.PatientGuardianAddressTypeIsValuedBadAddress);
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS));
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_GUARDIAN_ADDRESS_STREET));
@@ -88,12 +88,8 @@ public class PatientGuardianAddressIsValid extends ValidationRule<MqeNextOfKin> 
                 target));
           }
 
-          if (StringUtils.isBlank(nokAddress.getTypeCode())) {
-            issues.add(Detection.PatientGuardianAddressTypeIsMissing.build(target));
-          } else {
-            issues.addAll(this.codr
-                .handleCode(nokAddress.getTypeCode(), VxuField.PATIENT_GUARDIAN_ADDRESS_TYPE, target));
-          }
+          issues.addAll(this.codr
+              .handleCodeOrMissing(nokAddress.getTypeCode(), VxuField.PATIENT_GUARDIAN_ADDRESS_TYPE, target));
         }
 
     passed = (issues.size() == 0);

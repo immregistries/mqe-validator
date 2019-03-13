@@ -30,7 +30,7 @@ public class VaccinationConfidentialityCodeIsValid extends ValidationRule<MqeVac
 
     String confCode = target.getConfidentialityCode();
 
-    issues.addAll(codr.handleCode(confCode, VxuField.VACCINATION_CONFIDENTIALITY_CODE, target));
+    issues.addAll(codr.handleCodeOrMissing(confCode, VxuField.VACCINATION_CONFIDENTIALITY_CODE, target));
     passed = (issues.size() == 0);
 
     if ("R".equals(confCode) || "V".equals(confCode)) {

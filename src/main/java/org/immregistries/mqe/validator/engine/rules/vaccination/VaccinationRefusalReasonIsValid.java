@@ -35,12 +35,8 @@ public class VaccinationRefusalReasonIsValid extends ValidationRule<MqeVaccinati
     }
 
     if (target.isCompletionRefused()) {
-      if (this.common.isEmpty(target.getRefusalCode())) {
-        issues.add(Detection.VaccinationRefusalReasonIsMissing.build(target));
-      } else {
-        issues.addAll(codr.handleCode(target.getRefusal(), VxuField.VACCINATION_REFUSAL_REASON,
-            target));
-      }
+    	issues.addAll(codr.handleCodeOrMissing(target.getRefusal(), VxuField.VACCINATION_REFUSAL_REASON,
+                target));
     }
 
     passed = (issues.size() == 0);

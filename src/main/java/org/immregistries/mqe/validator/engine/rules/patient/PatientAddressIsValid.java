@@ -83,11 +83,7 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
           issues.add(Detection.PatientAddressTypeIsValuedBadAddress.build(a.toString(), target));
         }
 
-        if (StringUtils.isBlank(a.getTypeCode())) {
-          issues.add(Detection.PatientAddressTypeIsMissing.build(target));
-        } else {
-          issues.addAll(this.codr.handleCode(a.getTypeCode(), VxuField.PATIENT_ADDRESS_TYPE, target));
-        }
+        issues.addAll(this.codr.handleCodeOrMissing(a.getTypeCode(), VxuField.PATIENT_ADDRESS_TYPE, target));
       } else {
         issues.add(Detection.PatientAddressIsMissing.build(target));
       }

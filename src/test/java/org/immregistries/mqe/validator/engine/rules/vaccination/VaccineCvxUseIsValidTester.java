@@ -40,9 +40,6 @@ public class VaccineCvxUseIsValidTester {
 
   }
 
-  /**
-   * Test the rule with a null type code.
-   */
   @Test
   public void testRuleValid() {
 	Calendar cal = Calendar.getInstance(); 
@@ -54,9 +51,7 @@ public class VaccineCvxUseIsValidTester {
     assertEquals(0, r.getValidationDetections().size());
   }
 
-  /**
-   * Test the rule with a null type code.
-   */
+
   @Test
   public void testRuleNotExpected() {
 	Calendar cal = Calendar.getInstance(); 
@@ -67,12 +62,10 @@ public class VaccineCvxUseIsValidTester {
     ValidationRuleResult r = rule.executeRule(v, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.VaccinationCptCodeIsInvalidForDateAdministered,
+    assertEquals(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange,
         r.getValidationDetections().get(0).getDetection());
   }
-  /**
-   * Test the rule with a null type code.
-   */
+
   @Test
   public void testRuleNotBefore() {
 	Calendar cal = Calendar.getInstance(); 
@@ -83,7 +76,7 @@ public class VaccineCvxUseIsValidTester {
     ValidationRuleResult r = rule.executeRule(v, mr);
     logger.info(r.getValidationDetections().toString());
     assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.VaccinationCptCodeIsInvalidForDateAdministered,
+    assertEquals(Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange,
         r.getValidationDetections().get(0).getDetection());
   }
 

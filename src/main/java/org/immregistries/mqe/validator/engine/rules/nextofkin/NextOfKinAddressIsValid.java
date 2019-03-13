@@ -79,12 +79,8 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
             target));
       }
 
-      if (StringUtils.isBlank(nokAddress.getTypeCode())) {
-        issues.add(Detection.NextOfKinAddressTypeIsMissing.build(target));
-      } else {
-        issues.addAll(this.codr
-            .handleCode(nokAddress.getTypeCode(), VxuField.NEXT_OF_KIN_ADDRESS_TYPE, target));
-      }
+      issues.addAll(this.codr
+            .handleCodeOrMissing(nokAddress.getTypeCode(), VxuField.NEXT_OF_KIN_ADDRESS_TYPE, target));
     }
 
     passed = issues.size() == 0;

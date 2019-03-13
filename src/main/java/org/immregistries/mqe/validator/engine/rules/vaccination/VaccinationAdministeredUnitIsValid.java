@@ -28,12 +28,8 @@ public class VaccinationAdministeredUnitIsValid extends ValidationRule<MqeVaccin
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
     boolean passed = false;
     
-    if (this.common.isEmpty(target.getAmountUnit())) {
-        issues.add(Detection.VaccinationAdministeredUnitIsMissing.build(target));
-      } else {
-    	  issues.addAll(codr.handleCode(target.getAmountUnit(), VxuField.VACCINATION_ADMINISTERED_UNIT,
-    		        target));
-      }
+    issues.addAll(codr.handleCodeOrMissing(target.getAmountUnit(), VxuField.VACCINATION_ADMINISTERED_UNIT,
+	        target));
     
     passed = (issues.size() == 0);
     return buildResults(issues, passed);

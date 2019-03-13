@@ -18,10 +18,16 @@ import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinAddressIs
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinAddressIsValid;
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinIsPresent;
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinNameIsValid;
+import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinNameIsNotSameAsPatient;
+import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinPhoneIsValid;
+import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinRelationshipIsValidForUnderagedPatient;
+import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinGuardianAddressIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientAddressIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientAliasIsPresent;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsReasonable;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthPlaceIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientClassIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientCodesAreValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientCreationDateIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientCreationTimeliness;
@@ -37,8 +43,6 @@ import org.immregistries.mqe.validator.engine.rules.patient.PatientHasResponsibl
 import org.immregistries.mqe.validator.engine.rules.patient.PatientImmunityIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientIsUnderage;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientMedicaidNumberIsValid;
-import org.immregistries.mqe.validator.engine.rules.patient.PatientMiddleNameIsPresent;
-import org.immregistries.mqe.validator.engine.rules.patient.PatientMiddleNameIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientMothersMaidenNameIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientMultipleBirthsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientNameIsValid;
@@ -50,16 +54,20 @@ import org.immregistries.mqe.validator.engine.rules.patient.PatientProtectionInd
 import org.immregistries.mqe.validator.engine.rules.patient.PatientRegistryIdIsPresent;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientRegistryIdIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientResponsiblePartyIsProperlyFormed;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientSsnIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientSubmitterIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.VaccinationAdminCountIsAsExpectedForAge;
+import org.immregistries.mqe.validator.engine.rules.vaccination.ObservationDateIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.ObservationValueTypeIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationActionCodeIsValid;
-import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminAfterBirthDate;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeCptIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsPresent;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsUsable;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminDateIsBeforeLotExpirationDate;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminDateIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminDateIsValidForPatientAge;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredAmountIsReasonable;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredAmtIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredLotNumberIsPresent;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredLotNumberIsValid;
@@ -78,7 +86,6 @@ import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFinan
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFundingAndEligibilityConflict;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFundingSourceCodeIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationInformationSourceIsValid;
-import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationSourceIsAdministered;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationIsAdministeredOrHistorical;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationIsForeign;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationIsPresent;
@@ -87,9 +94,10 @@ import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationNdcIs
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationOrdererIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationProductIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationRefusalReasonIsValid;
-import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationSystemEntryTimeIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationSourceIsAdministered;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationUseCptInsteadOfCvx;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationUseCvx;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationUseNdc;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationVisCvxIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationVisDatesAreValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationVisIsPresent;
@@ -102,6 +110,11 @@ public enum ValidationRuleEntityLists {
       new PatientAliasIsPresent(),
       new PatientBirthDateIsValid(),
       new PatientBirthDateIsReasonable(),
+      new PatientBirthPlaceIsValid(),
+      new PatientClassIsValid(),
+      new PatientCodesAreValid(),
+      new PatientCreationDateIsValid(),
+      new PatientCreationTimeliness(),
       new PatientDeathDateIsValid(),
       new PatientDeathIndicatorIsValid(),
       new PatientEmailIsPresent(),
@@ -110,10 +123,10 @@ public enum ValidationRuleEntityLists {
       new PatientFinancialStatusCheckTrue(),
       new PatientFinancialStatusDateIsValid(),
       new PatientGenderIsValid(),
+      new PatientHasResponsibleParty(),
+      new PatientImmunityIsValid(),
       new PatientIsUnderage(),
       new PatientMedicaidNumberIsValid(),
-      new PatientMiddleNameIsPresent(),
-      new PatientMiddleNameIsValid(),
       new PatientMothersMaidenNameIsValid(),
       new PatientMultipleBirthsValid(),
       new PatientNameIsValid(),
@@ -124,22 +137,25 @@ public enum ValidationRuleEntityLists {
       new PatientProtectionIndicatorIsValid(),
       new PatientRegistryIdIsValid(),
       new PatientRegistryIdIsPresent(),
-      new PatientSubmitterIsValid(),
-      new PatientImmunityIsValid(),
-      new PatientHasResponsibleParty(),
-      new PatientCodesAreValid(),
       new PatientResponsiblePartyIsProperlyFormed(),
-      new PatientCreationDateIsValid(),
-      new VaccinationAdminCountIsAsExpectedForAge(),
-      new PatientCreationTimeliness()),
+      new PatientSsnIsValid(),
+      new PatientSubmitterIsValid(),
+      new VaccinationAdminCountIsAsExpectedForAge()),
   VACCINATION_RULES(
-      new VaccinationIsPresent(),
+	  new ObservationDateIsValid(),
+	  new ObservationValueTypeIsValid(),
       new VaccinationActionCodeIsValid(),
-      new VaccinationAdminAfterBirthDate(),
       new VaccinationAdminCodeCptIsValid(),
+      new VaccinationAdminCodeIsPresent(),
+      new VaccinationAdminCodeIsUsable(),
       new VaccinationAdminCodeIsValid(),
+      new VaccinationAdminDateIsBeforeLotExpirationDate(),
       new VaccinationAdminDateIsValid(),
       new VaccinationAdminDateIsValidForPatientAge(),
+      new VaccinationAdministeredAmountIsReasonable(),
+      new VaccinationAdministeredAmtIsValid(),
+      new VaccinationAdministeredLotNumberIsValid(),
+      new VaccinationAdministeredLotNumberIsPresent(),
       new VaccinationAdministeredRequiredFieldsArePresent(),
       new VaccinationAdministeredUnitIsValid(),
       new VaccinationBodyRouteAndSiteAreValid(),
@@ -147,33 +163,30 @@ public enum ValidationRuleEntityLists {
       new VaccinationCompletionStatusIsValid(),
       new VaccinationConfidentialityCodeIsValid(),
       new VaccinationCptIsValid(),
+      new VaccinationCreationTimeliness(),
+      new VaccinationCreationDateIsValid(),
       new VaccinationCvxIsValid(),
-      new VaccinationNdcIsValid(),
       new VaccinationCvxUseIsValid(),
       new VaccinationFinancialEligibilityCodeIsValid(),
-      new VaccinationFundingSourceCodeIsValid(),
       new VaccinationFundingAndEligibilityConflict(),
+      new VaccinationFundingSourceCodeIsValid(),
       new VaccinationInformationSourceIsValid(),
-      new VaccinationSourceIsAdministered(),
       new VaccinationIsAdministeredOrHistorical(),
       new VaccinationIsForeign(),
-      new VaccinationAdministeredLotNumberIsValid(),
-      new VaccinationAdministeredLotNumberIsPresent(),
+      new VaccinationIsPresent(),
       new VaccinationMfrIsValid(),
+      new VaccinationNdcIsValid(),
       new VaccinationOrdererIsValid(),
       new VaccinationProductIsValid(),
       new VaccinationRefusalReasonIsValid(),
-      new VaccinationSystemEntryTimeIsValid(),
+      new VaccinationSourceIsAdministered(),
       new VaccinationUseCptInsteadOfCvx(),
       new VaccinationUseCvx(),
+      new VaccinationUseNdc(),
       new VaccinationAdministeredAmtIsValid(),
       new VaccinationVisCvxIsValid(),
       new VaccinationVisDatesAreValid(),
       new VaccinationVisIsPresent(),
-      new VaccinationAdminCodeIsPresent(),
-      new VaccinationAdminCodeIsUsable(),
-      new VaccinationCreationTimeliness(),
-      new VaccinationCreationDateIsValid(),
       new VaccinationVisIsRecognized()),
   MESSAGE_HEADER_RULES(
       new MessageHeaderCodesAreValid(),
@@ -185,7 +198,11 @@ public enum ValidationRuleEntityLists {
       new NextOfKinIsPresent(),
       new NextOfKinNameIsValid(),
       new NextOfKinAddressIsSameAsPatientAddress(),
-      new NextOfKinAddressIsValid()
+      new NextOfKinAddressIsValid(),
+      new NextOfKinPhoneIsValid(),
+      new NextOfKinRelationshipIsValidForUnderagedPatient(),
+      new NextOfKinNameIsNotSameAsPatient(),
+      new NextOfKinGuardianAddressIsValid()
   //@formatter:on
   );
 

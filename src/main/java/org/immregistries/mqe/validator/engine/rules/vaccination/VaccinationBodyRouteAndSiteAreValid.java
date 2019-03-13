@@ -32,18 +32,9 @@ public class VaccinationBodyRouteAndSiteAreValid extends ValidationRule<MqeVacci
       String bodySite = target.getBodySite();
       String bodyRoute = target.getBodyRoute();
       
-      if (this.common.isEmpty(bodyRoute) || this.common.isEmpty(bodySite)) {
-          if (this.common.isEmpty(bodyRoute)) {
-        	  issues.add(Detection.VaccinationBodyRouteIsMissing.build(target));
-          }
-          
-          if (this.common.isEmpty(bodySite)) {
-        	  issues.add(Detection.VaccinationBodySiteIsMissing.build(target));
-          }
-      } else {
-          issues.addAll(codr.handleCode(bodyRoute, VxuField.VACCINATION_BODY_ROUTE, target));
-          issues.addAll(codr.handleCode(bodySite, VxuField.VACCINATION_BODY_SITE, target));
-      }
+      issues.addAll(codr.handleCodeOrMissing(bodyRoute, VxuField.VACCINATION_BODY_ROUTE, target));
+      issues.addAll(codr.handleCodeOrMissing(bodySite, VxuField.VACCINATION_BODY_SITE, target));
+
     }
 
     // These were not implemented in MQE 1.0

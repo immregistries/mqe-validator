@@ -32,7 +32,7 @@ public class VaccinationAdminDateIsBeforeLotExpirationDate extends ValidationRul
 	    Date adminDate = target.getAdminDate();
 	    Date lotExpirationDate = target.getExpirationDate();
 
-	    if (!adminDate.before(lotExpirationDate)) {
+	    if (lotExpirationDate != null && !adminDate.before(lotExpirationDate)) {
 	      issues.add(Detection.VaccinationAdminDateIsAfterLotExpirationDate.build(adminDate.toString(), target));
 	      passed = false;
 	    }

@@ -31,7 +31,7 @@ public class VaccinationVisCvxIsValid extends ValidationRule<MqeVaccination> {
     VaccinationVIS vis = target.getVaccinationVis();
     String visCvx = vis.getCvxCode();
 
-    issues.addAll(codr.handleCode(visCvx, VxuField.VACCINATION_VIS_CVX_CODE, target));
+    issues.addAll(codr.handleCodeOrMissing(visCvx, VxuField.VACCINATION_VIS_CVX_CODE, target));
 
     passed = issues.isEmpty();
     return buildResults(issues, passed);

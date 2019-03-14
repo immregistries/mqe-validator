@@ -35,11 +35,11 @@ public enum PhoneValidator {
 
     List<ValidationReport> issues = new ArrayList<>();
 
-    if (phone != null && StringUtils.isNotBlank(phone.getNumber())) {
+    if (phone != null && StringUtils.isNotBlank(phone.getFormattedNumber())) {
       if (StringUtils.isBlank(phone.getAreaCode()) || StringUtils.isBlank(phone.getLocalNumber())) {
         Detection attr = Detection.get(piPhone, DetectionType.INCOMPLETE);
         if (attr != null) {
-          issues.add(attr.build(phone.getNumber(), meta));
+          issues.add(attr.build(phone.getFormattedNumber(), meta));
         }
       }
 
@@ -57,7 +57,7 @@ public enum PhoneValidator {
       if (!isValidPhone(phone)) {
         Detection attr = Detection.get(piPhone, DetectionType.INVALID);
         if (attr != null) {
-          issues.add(attr.build(phone.getNumber(), meta));
+          issues.add(attr.build(phone.getFormattedNumber(), meta));
         }
       }
 
@@ -77,7 +77,7 @@ public enum PhoneValidator {
       // (NANP)
 
       if (StringUtils.isNotBlank(phone.getAreaCode())) {
-        if (!validPhone3Digit(phone.getAreaCode())) {
+        if (invalidPhone3Digit(phone.getAreaCode())) {
           return false;
         }
         
@@ -101,10 +101,11 @@ public enum PhoneValidator {
           return false;
         }
 
-        if (!validPhone3Digit(num.substring(0, 3))) {
+        if (invalidPhone3Digit(num.substring(0, 3))) {
           return false;
         }
 
+        //Numbers 2 and 3 can't be 11...
         if (num.substring(1, 3).equals("11")) {
           return false;
         }
@@ -113,6 +114,7 @@ public enum PhoneValidator {
         if (num.substring(0, 3).equals("555")) {
         	return false;
         }
+
       } else {
         return false;
       }
@@ -123,12 +125,12 @@ public enum PhoneValidator {
 
   protected boolean isValidPhoneAccordingToGoogle(MqePhoneNumber phone) {
     if (phone == null
-        || (StringUtils.isBlank(phone.getNumber()) && StringUtils.isBlank(phone.getAreaCode()) && StringUtils
+        || (StringUtils.isBlank(phone.getFormattedNumber()) && StringUtils.isBlank(phone.getAreaCode()) && StringUtils
             .isBlank(phone.getLocalNumber()))) {
       return false;
     }
 
-    String numberToCheck = phone.getNumber();
+    String numberToCheck = phone.getFormattedNumber();
     if (StringUtils.isBlank(numberToCheck)) {
       numberToCheck = phone.getAreaCode() + phone.getLocalNumber();
     }
@@ -142,21 +144,25 @@ public enum PhoneValidator {
   }
 
 
-  private static boolean validPhone3Digit(String s) {
+  private static boolean invalidPhone3Digit(String s) {
     if (s == null || s.length() != 3) {
-      return false;
+      return true;
     }
 
+    //First character is 1, 0, or non numeric
     if (s.charAt(0) < '2' || s.charAt(0) > '9') {
-      return false;
+      return true;
     }
+    //second character is non-numeric
     if (s.charAt(1) < '0' || s.charAt(1) > '9') {
-      return false;
+      return true;
     }
+    //third char is non-numeric
     if (s.charAt(2) < '0' || s.charAt(2) > '9') {
-      return false;
+      return true;
     }
-    return true;
+
+    return false;
   }
 
 }

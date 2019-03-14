@@ -16,6 +16,11 @@ public class VaccinationActionCodeIsValid extends ValidationRule<MqeVaccination>
 
   public VaccinationActionCodeIsValid() {
     this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_ACTION_CODE));
+    String baseMessage = "Vaccination Action Code value is ";
+    this.addImplementationMessage(Detection.VaccinationActionCodeIsValuedAsAdd, baseMessage.concat(MqeVaccination.ACTION_CODE_ADD));
+    this.addImplementationMessage(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate, baseMessage.concat(MqeVaccination.ACTION_CODE_ADD).concat(" or ").concat(MqeVaccination.ACTION_CODE_UPDATE));
+    this.addImplementationMessage(Detection.VaccinationActionCodeIsValuedAsDelete, baseMessage.concat(MqeVaccination.ACTION_CODE_DELETE));
+    this.addImplementationMessage(Detection.VaccinationActionCodeIsValuedAsUpdate, baseMessage.concat(MqeVaccination.ACTION_CODE_UPDATE));
   }
 
   @Override
@@ -25,32 +30,28 @@ public class VaccinationActionCodeIsValid extends ValidationRule<MqeVaccination>
     boolean passed = true;
 
     issues
-        .addAll(this.codr.handleCode(target.getAction(), VxuField.VACCINATION_ACTION_CODE, target));
+        .addAll(this.codr.handleCodeOrMissing(target.getAction(), VxuField.VACCINATION_ACTION_CODE, target));
 
     if (issues.size() > 0) {
       passed = false;
     } else {
       String actionCode = target.getActionCode();
       
-	     if (this.common.isEmpty(actionCode)) {
-	    	 issues.add(Detection.VaccinationActionCodeIsMissing.build(target));
-	    	 passed = false;
-	     } else {
-		      if (target.isActionAdd()) {
-		        issues.add(Detection.VaccinationActionCodeIsValuedAsAdd.build((actionCode), target));
-		        issues
-		            .add(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate.build((actionCode), target));
-		      } else if (target.isActionUpdate()) {
-		        issues.add(Detection.VaccinationActionCodeIsValuedAsUpdate.build((actionCode), target));
-		        issues
-		            .add(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate.build((actionCode), target));
-		      } else if (target.isActionDelete()) {
-		        issues.add(Detection.VaccinationActionCodeIsValuedAsDelete.build((actionCode), target));
-		      } else {
-		    	  issues.add(Detection.VaccinationActionCodeIsInvalid.build(target));
-		    	  passed = false;
-		      }
-	     }
+      if (target.isActionAdd()) {
+        issues.add(Detection.VaccinationActionCodeIsValuedAsAdd.build((actionCode), target));
+        issues
+            .add(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate.build((actionCode), target));
+      } else if (target.isActionUpdate()) {
+        issues.add(Detection.VaccinationActionCodeIsValuedAsUpdate.build((actionCode), target));
+        issues
+            .add(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate.build((actionCode), target));
+      } else if (target.isActionDelete()) {
+        issues.add(Detection.VaccinationActionCodeIsValuedAsDelete.build((actionCode), target));
+      } else {
+    	  issues.add(Detection.VaccinationActionCodeIsInvalid.build(target));
+    	  passed = false;
+      }
+	     
     }
 
     return buildResults(issues, passed);

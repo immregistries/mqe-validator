@@ -28,12 +28,13 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
         Detection.PatientGuardianNameFirstIsMissing,
         Detection.PatientGuardianNameLastIsMissing,
         Detection.PatientGuardianNameIsSameAsUnderagePatient,
-        Detection.PatientGuardianPhoneIsMissing,
-        Detection.PatientGuardianRelationshipIsMissing,
-        Detection.PatientGuardianResponsiblePartyIsMissing));
+        Detection.PatientGuardianPhoneIsMissing));
+    
+    this.addImplementationMessage(Detection.PatientGuardianNameIsSameAsUnderagePatient, "Patient first and last name match the guardian first and last name.");
 
     if (props.isAddressCleanserEnabled()) {
       this.addRuleDocumentation(Detection.PatientGuardianAddressIsInvalid);
+      this.addImplementationMessage(Detection.PatientGuardianAddressIsInvalid, "Patient Guardian Address is invalid according to Smarty Streets.");
     }
   }
 
@@ -93,9 +94,6 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
 
       if (this.common.isEmpty(guardian.getPhoneNumber())) {
         issues.add(Detection.PatientGuardianPhoneIsMissing.build(target));
-      }
-      if (this.common.isEmpty(guardian.getRelationshipCode())) {//This shouldn't be possible...
-        issues.add(Detection.PatientGuardianRelationshipIsMissing.build(target));
       }
 
       passed = (issues.size() == 0);

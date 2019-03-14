@@ -20,7 +20,7 @@ public class VaccinationCreationTimeliness extends ValidationRule<MqeVaccination
 
 	@Override
 	protected final Class[] getDependencies() {
-		return new Class[] { VaccinationCreationDateIsValid.class, VaccinationAdminDateIsValid.class };
+		return new Class[] { VaccinationSourceIsAdministered.class, VaccinationCreationDateIsValid.class, VaccinationAdminDateIsValid.class };
 	}
 	
 	public VaccinationCreationTimeliness() {
@@ -31,6 +31,10 @@ public class VaccinationCreationTimeliness extends ValidationRule<MqeVaccination
 				Detection.VaccinationCreationIsOnTime,
 				Detection.VaccinationCreationIsLate
 		));
+		this.addImplementationMessage(Detection.VaccinationCreationIsVeryLate, "Vaccination Administered Date and System Entry Date are more than 14 days but less than or equal to 30 days apart.");
+		this.addImplementationMessage(Detection.VaccinationCreationIsTooLate, "Vaccination Administered Date and System Entry Date are over 30 days apart.");
+		this.addImplementationMessage(Detection.VaccinationCreationIsOnTime, "Vaccination Administered Date and System Entry Date less than or equal to 3 days of eachother.");
+		this.addImplementationMessage(Detection.VaccinationCreationIsLate, "Vaccination Administered Date and System Entry Date are are more than 3 days but less than or equal to 14 days apart.");
 	}
 
 	@Override

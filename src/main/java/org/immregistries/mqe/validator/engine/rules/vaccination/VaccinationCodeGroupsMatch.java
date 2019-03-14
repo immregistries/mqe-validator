@@ -15,6 +15,7 @@ public class VaccinationCodeGroupsMatch extends ValidationRule<MqeVaccination> {
 
   public VaccinationCodeGroupsMatch() {
     this.addRuleDocumentation(Detection.VaccinationCvxCodeAndCptCodeAreInconsistent);
+    this.addImplementationMessage(Detection.VaccinationCvxCodeAndCptCodeAreInconsistent, "The Vaccination CPT code given is expecting a different vaccine group than the vaccine group from the CVX given.");
   }
 
   @Override

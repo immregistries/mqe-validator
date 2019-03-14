@@ -19,11 +19,13 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<MqeVacci
   }
 
   public VaccinationInformationSourceIsValid() {
-    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationInformationSourceIsMissing,
-        Detection.VaccinationInformationSourceIsValuedAsAdministered,
-        Detection.VaccinationInformationSourceIsValuedAsHistorical));
-
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_INFORMATION_SOURCE));
+	  this.addRuleDocumentation(Arrays.asList(Detection.VaccinationInformationSourceIsDeprecated,
+		        Detection.VaccinationInformationSourceIsIgnored,
+		    	Detection.VaccinationInformationSourceIsInvalid,
+		    	Detection.VaccinationInformationSourceIsMissing,
+		    	Detection.VaccinationInformationSourceIsUnrecognized,
+		    	Detection.VaccinationInformationSourceIsValuedAsAdministered,
+		    	Detection.VaccinationInformationSourceIsValuedAsHistorical));
   }
 
   /*
@@ -38,29 +40,22 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<MqeVacci
 
     String sourceCd = target.getInformationSourceCode();
 
-    if (this.common.isEmpty(sourceCd)) {
-      issues.add(Detection.VaccinationInformationSourceIsMissing.build(target));
-      passed = false;
-    } else {
+	  issues.addAll(this.codr.handleCodeOrMissing(target.getInformationSource(),
+	      VxuField.VACCINATION_INFORMATION_SOURCE, target));
 
-      issues.addAll(this.codr.handleCode(target.getInformationSource(),
-          VxuField.VACCINATION_INFORMATION_SOURCE, target));
-
-      if (issues.size() > 0) {
-        passed = false;
-      }
-
-      switch (sourceCd) {
-        case MqeVaccination.INFO_SOURCE_ADMIN:
-          issues.add(Detection.VaccinationInformationSourceIsValuedAsAdministered.build((sourceCd),
-              target));
-          break;
-        default:
-          issues.add(Detection.VaccinationInformationSourceIsValuedAsHistorical.build((sourceCd),
-              target));
-          break;
-      }
-    }
+	  passed = (issues.size() == 0);
+	
+	  switch (sourceCd) {
+	    case MqeVaccination.INFO_SOURCE_ADMIN:
+	      issues.add(Detection.VaccinationInformationSourceIsValuedAsAdministered.build((sourceCd),
+	          target));
+	      break;
+	    default:
+	      issues.add(Detection.VaccinationInformationSourceIsValuedAsHistorical.build((sourceCd),
+	          target));
+	      break;
+	  }
+    
 
     return buildResults(issues, passed);
   }

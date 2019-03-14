@@ -29,14 +29,8 @@ public class PatientGenderIsValid extends ValidationRule<MqePatient> {
 	    boolean passed = true;
 	    String patientGenderString = target.getSex();
 	    
-	    if (this.common.isEmpty(patientGenderString)) {
-	        issues.add(Detection.PatientGenderIsMissing.build((patientGenderString), target));
-	        passed = false;
-	    }
-	    else {
-	    	issues.addAll(codr.handleCode(patientGenderString, VxuField.PATIENT_GENDER, target));
-	    	passed = issues.isEmpty();
-	    }
+    	issues.addAll(codr.handleCodeOrMissing(patientGenderString, VxuField.PATIENT_GENDER, target));
+    	passed = issues.isEmpty();
 	    
 	    return buildResults(issues, passed);
   }

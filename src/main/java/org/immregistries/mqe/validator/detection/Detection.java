@@ -201,6 +201,7 @@ public enum Detection implements DetectionInfo {
   PatientGuardianRelationshipIsMissing(PATIENT_GUARDIAN_RELATIONSHIP, MISSING, WARN, MQE0159),
   PatientGuardianAddressTypeIsValuedBadAddress(PATIENT_GUARDIAN_ADDRESS_TYPE, VALUED_BAD_ADDRESS, INFO, MQE0597),
   PatientGuardianAddressTypeIsMissing(PATIENT_GUARDIAN_ADDRESS_TYPE, MISSING, ACCEPT, MQE0598),
+  PatientGuardianAddressCountyIsMissing(PATIENT_GUARDIAN_ADDRESS_COUNTY, MISSING, ACCEPT, MQE0608),
   PatientGuardianAddressCountryIsMissing(PATIENT_GUARDIAN_ADDRESS_COUNTRY, MISSING, ACCEPT, MQE0599),
   PatientGuardianAddressTypeIsUnrecognized(PATIENT_GUARDIAN_ADDRESS_TYPE, UNRECOGNIZED, WARN, MQE0600),  
   PatientImmunityCodeIsDeprecated(PATIENT_IMMUNITY_CODE, DEPRECATED, WARN, MQE0606),
@@ -320,8 +321,8 @@ public enum Detection implements DetectionInfo {
   PatientSystemEntryDateIsInvalid(PATIENT_SYSTEM_ENTRY_TIME, INVALID, ACCEPT, MQE0580),
   PatientSystemEntryDateIsInTheFuture(PATIENT_SYSTEM_ENTRY_TIME, IN_FUTURE, ACCEPT, MQE0582),
 
-  AdministredVaccinationsCountIsLargerThanExpected(PATIENT_LEVEL, VACCINATION_COUNT_EXCEEDS_EXPECTATIONS, WARN, MQE0568),
-
+  AdministeredVaccinationsCountIsLargerThanExpected(PATIENT_LEVEL, VACCINATION_COUNT_EXCEEDS_EXPECTATIONS, WARN, MQE0568),
+  
   VaccinationSystemEntryDateIsMissing(VACCINATION_SYSTEM_ENTRY_TIME, MISSING, ACCEPT, MQE0573),
   VaccinationSystemEntryDateIsInTheFuture(VACCINATION_SYSTEM_ENTRY_TIME, IN_FUTURE, ACCEPT, MQE0581),
   VaccinationSystemEntryDateIsInvalid(VACCINATION_SYSTEM_ENTRY_TIME, INVALID, ACCEPT, MQE0574),
@@ -572,9 +573,6 @@ public enum Detection implements DetectionInfo {
   VaccinationRefusalReasonIsInvalid(VACCINATION_REFUSAL_REASON, INVALID, ACCEPT, MQE0362),
   VaccinationRefusalReasonIsMissing(VACCINATION_REFUSAL_REASON, MISSING, ACCEPT, MQE0363),
   VaccinationRefusalReasonIsUnrecognized(VACCINATION_REFUSAL_REASON, UNRECOGNIZED, ACCEPT, MQE0364),
-  VaccinationSystemEntryTimeIsInFuture(VACCINATION_SYSTEM_ENTRY_TIME, IN_FUTURE, ACCEPT, MQE0365),
-  VaccinationSystemEntryTimeIsInvalid(VACCINATION_SYSTEM_ENTRY_TIME, INVALID, ACCEPT, MQE0366),
-  VaccinationSystemEntryTimeIsMissing(VACCINATION_SYSTEM_ENTRY_TIME, MISSING, ACCEPT, MQE0367),
 
   UnknownValidationIssue(CONFIGURATION, UNRECOGNIZED, WARN, MQE0000);
   //@formatter:on

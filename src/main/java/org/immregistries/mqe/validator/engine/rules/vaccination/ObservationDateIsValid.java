@@ -18,6 +18,7 @@ public class ObservationDateIsValid extends ValidationRule<MqeVaccination> {
   public ObservationDateIsValid() {
     this.addRuleDocumentation(Detection.ObservationDateTimeOfObservationIsMissing);
     this.addRuleDocumentation(Detection.ObservationDateTimeOfObservationIsInvalid);
+    this.addImplementationMessage(Detection.ObservationDateTimeOfObservationIsInvalid, "Observation date cannot be translated to a date.");
   }
 
   @Override

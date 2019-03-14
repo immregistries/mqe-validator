@@ -17,11 +17,10 @@ import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntityLists;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientExists;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientIsUnderage;
-import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminAfterBirthDate;
-import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminDateIsValid;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
 import org.immregistries.mqe.vxu.MqeAddress;
+import org.immregistries.mqe.vxu.MqePhoneNumber;
 import org.immregistries.mqe.vxu.MqeVaccination;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -37,8 +36,8 @@ public class ValidationRuleTest {
 
   @Test
   public void whatClassDoesItReport() {
-    ValidationRule<MqeVaccination> vr = new VaccinationAdminAfterBirthDate();
-    assertEquals(VaccinationAdminAfterBirthDate.class, vr.getClass());
+    ValidationRule<MqePatient> vr = new PatientIsUnderage();
+    assertEquals(PatientIsUnderage.class, vr.getClass());
   }
 
 //	So..for a full fledged test, I'd need to parse a message into the model, and then invoke the validators. 
@@ -112,24 +111,6 @@ public class ValidationRuleTest {
     dependenciesMet = vr.dependenciesAreMet(passed);
 
     assertEquals("PatientBirthDateIsValid deps should NOW be met", true, dependenciesMet);
-
-    vr = new VaccinationAdminAfterBirthDate();
-    dependenciesMet = vr.dependenciesAreMet(passed);
-
-    assertEquals("VaccinationAdminAfterBirthDate Deps should not be met!", false, dependenciesMet);
-
-    passed.add(VaccinationAdminDateIsValid.class);
-
-    dependenciesMet = vr.dependenciesAreMet(passed);
-
-    assertEquals("VaccinationAdminAfterBirthDate Deps should not be met 2!", false,
-        dependenciesMet);
-
-    passed.add(PatientBirthDateIsValid.class);
-
-    dependenciesMet = vr.dependenciesAreMet(passed);
-
-    assertEquals("VaccinationAdminAfterBirthDate Deps should be met!", true, dependenciesMet);
 
     dependenciesMet = pu.dependenciesAreMet(passed);
 
@@ -290,7 +271,7 @@ public class ValidationRuleTest {
     MqePatient p = new MqePatient();
     p.setNameFirst("Johnathan");
     p.setNameMiddle("JingleHeimer");
-    p.setPhoneNumber("5175555454");
+    p.setPhone(new MqePhoneNumber("5175555454"));
     p.setNameLast("Scmitt");
     p.setAliasFirst("John");
     p.setNameTypeCode("Superhero");

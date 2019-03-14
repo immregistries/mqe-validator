@@ -42,8 +42,7 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_ZIP));
     this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_TYPE));
     
-    this.addImplementationMessage(Detection.PatientAddressIsInvalid, "Patient Address is invalid according to Smarty Streets.");
-    
+    this.addImplementationMessage(Detection.PatientAddressIsInvalid, "Patient Address is invalid according to Smarty Streets.");    
     
     if (props.isAddressCleanserEnabled()) {
       this.addRuleDocumentation(Detection.PatientAddressIsInvalid);
@@ -84,11 +83,7 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
           issues.add(Detection.PatientAddressTypeIsValuedBadAddress.build(a.toString(), target));
         }
 
-        if (StringUtils.isBlank(a.getTypeCode())) {
-          issues.add(Detection.PatientAddressTypeIsMissing.build(target));
-        } else {
-          issues.addAll(this.codr.handleCode(a.getTypeCode(), VxuField.PATIENT_ADDRESS_TYPE, target));
-        }
+        issues.addAll(this.codr.handleCodeOrMissing(a.getTypeCode(), VxuField.PATIENT_ADDRESS_TYPE, target));
       } else {
         issues.add(Detection.PatientAddressIsMissing.build(target));
       }

@@ -12,22 +12,27 @@ import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
 import org.immregistries.mqe.vxu.VaccinationVIS;
+import org.immregistries.mqe.vxu.VxuField;
 
 public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationVisIsPresent.class, VaccinationIsAdministered.class};
+    return new Class[] {VaccinationVisIsPresent.class, VaccinationSourceIsAdministered.class};
   }
 
   public VaccinationVisDatesAreValid() {
     this.addRuleDocumentation(Arrays.asList(Detection.VaccinationVisPublishedDateIsMissing,
-        Detection.VaccinationVisPresentedDateIsInvalid,
-        Detection.VaccinationVisPresentedDateIsMissing,
-        Detection.VaccinationVisPublishedDateIsInvalid,
-        Detection.VaccinationVisPresentedDateIsAfterAdminDate,
-        Detection.VaccinationVisPresentedDateIsNotAdminDate,
-        Detection.VaccinationVisPresentedDateIsBeforePublishedDate));
+    	Detection.VaccinationVisPublishedDateIsInFuture,
+    	Detection.VaccinationVisPublishedDateIsInvalid));
+    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_VIS_PRESENTED_DATE));
+    this.addImplementationMessage(Detection.VaccinationVisPublishedDateIsInvalid, "Vaccination Vis Publication date cannot be translated to a date.");
+    this.addImplementationMessage(Detection.VaccinationVisPublishedDateIsInFuture, "Vaccination Vis Publication date cannot be a future date.");
+    this.addImplementationMessage(Detection.VaccinationVisPresentedDateIsInvalid, "Vaccination Vis Presented date cannot be translated to a date.");
+    this.addImplementationMessage(Detection.VaccinationVisPresentedDateIsBeforePublishedDate, "Vaccination Vis Presented date cannot be earlier than Vis Published date.");
+    this.addImplementationMessage(Detection.VaccinationVisPresentedDateIsAfterAdminDate, "Vaccination Vis Presented date cannot be after Vaccination Administered Date.");
+    this.addImplementationMessage(Detection.VaccinationVisPresentedDateIsNotAdminDate, "Vaccination Vis Presented date should be the same as the Vaccination Administered Date.");
+    
   }
 
   @Override
@@ -80,7 +85,7 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
         if (datr.isAfterDate(presentedDate, adminDate)) {
           issues.add(Detection.VaccinationVisPresentedDateIsAfterAdminDate.build(
               (presentedDateString), target));
-        } else if (datr.isBeforeDate(presentedDate, adminDate)) {
+        } else if (datr.isNotSameDate(presentedDate, adminDate)) {
           issues.add(Detection.VaccinationVisPresentedDateIsNotAdminDate.build(
               (presentedDateString), target));
         }

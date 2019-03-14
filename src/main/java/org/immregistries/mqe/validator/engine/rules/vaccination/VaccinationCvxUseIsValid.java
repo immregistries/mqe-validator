@@ -1,10 +1,12 @@
 package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.immregistries.codebase.client.generated.Code;
 import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.codebase.client.reference.CvxConceptType;
+import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -24,7 +26,10 @@ public class VaccinationCvxUseIsValid extends ValidationRule<MqeVaccination> {
   }
 
   public VaccinationCvxUseIsValid() {
-
+	  this.addRuleDocumentation(Arrays.asList(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange,
+		        Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange));
+	  this.addImplementationMessage(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange, "Vaccination Administered Date is outside of expected vaccine date range.");
+	  this.addImplementationMessage(Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange, "Vaccination Administered Date is outside of licensed vaccine date range.");
   }
 
   @Override
@@ -46,7 +51,7 @@ public class VaccinationCvxUseIsValid extends ValidationRule<MqeVaccination> {
         logger
             .info("Not evaluating date because the concept type indicates an UNSPECIFIED or FOREIGN_VACCINE, and it's not administered");
       } else {
-        codr.handleUseDate(vaccineCode, target.getAdminDateString(),
+        issues = codr.handleUseDate(vaccineCode, target.getAdminDateString(),
             VxuField.VACCINATION_ADMIN_DATE, target);
       }
 

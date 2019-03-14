@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 
 public class VaccinationIsAdministeredTester {
 
-  private VaccinationIsAdministered rule = new VaccinationIsAdministered();
+  private VaccinationSourceIsAdministered rule = new VaccinationSourceIsAdministered();
 
   // Parts required for the test
   private MqeMessageHeader mh = new MqeMessageHeader();

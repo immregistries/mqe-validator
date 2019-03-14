@@ -14,13 +14,13 @@ public class VaccinationVisIsPresent extends ValidationRule<MqeVaccination> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {
-
-    };
+    return new Class[] {VaccinationSourceIsAdministered.class};
   }
+
 
   public VaccinationVisIsPresent() {
     this.addRuleDocumentation(Detection.VaccinationVisIsMissing);
+    this.addImplementationMessage(Detection.VaccinationVisIsMissing, "Administered Vaccine is missing Vis or Vis is missing a document code, CVX and Published Date.");
   }
 
   @Override
@@ -29,16 +29,14 @@ public class VaccinationVisIsPresent extends ValidationRule<MqeVaccination> {
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
     boolean passed = false;
 
-    if (target.isAdministered()) {
-      VaccinationVIS vis = target.getVaccinationVis();
-      if (vis == null
-          || (this.common.isEmpty(vis.getDocumentCode()) && (this.common.isEmpty(vis.getCvxCode()) && vis
-              .getPublishedDate() == null))) {
-        issues.add(Detection.VaccinationVisIsMissing.build(target));
-      } else {
-        passed = true;
-      }
-    }
+	VaccinationVIS vis = target.getVaccinationVis();
+	if (vis == null
+	    || (this.common.isEmpty(vis.getDocumentCode()) && (this.common.isEmpty(vis.getCvxCode()) && vis
+	        .getPublishedDate() == null))) {
+	  issues.add(Detection.VaccinationVisIsMissing.build(target));
+	} else {
+	  passed = true;
+	}
 
     return buildResults(issues, passed);
   }

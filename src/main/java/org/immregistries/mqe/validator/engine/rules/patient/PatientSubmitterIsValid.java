@@ -16,9 +16,9 @@ public class PatientSubmitterIsValid extends ValidationRule<MqePatient> {
 
   public PatientSubmitterIsValid() {
     this.addRuleDocumentation(Arrays.asList(
-        Detection.get(VxuField.PATIENT_SUBMITTER_ID, DetectionType.MISSING),
-        Detection.get(VxuField.PATIENT_SUBMITTER_ID_AUTHORITY, DetectionType.MISSING),
-        Detection.get(VxuField.PATIENT_SUBMITTER_ID_TYPE_CODE, DetectionType.MISSING)));
+        Detection.PatientSubmitterIdIsMissing,
+        Detection.PatientSubmitterIdAuthorityIsMissing,
+        Detection.PatientSubmitterIdTypeCodeIsMissing));
   }
 
   @Override

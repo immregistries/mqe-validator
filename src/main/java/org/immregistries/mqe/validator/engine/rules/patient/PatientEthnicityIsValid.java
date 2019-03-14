@@ -29,14 +29,8 @@ public class PatientEthnicityIsValid extends ValidationRule<MqePatient> {
     boolean passed = true;
     String patientEthnicityString = target.getEthnicity();
     
-    if (this.common.isEmpty(patientEthnicityString)) {
-        issues.add(Detection.PatientEthnicityIsMissing.build((patientEthnicityString), target));
-        passed = false;
-    }
-    else {
-    	issues.addAll(codr.handleCode(patientEthnicityString, VxuField.PATIENT_ETHNICITY, target));
-    	passed = issues.isEmpty();
-    }
+	issues.addAll(codr.handleCodeOrMissing(patientEthnicityString, VxuField.PATIENT_ETHNICITY, target));
+	passed = issues.isEmpty();
     
     return buildResults(issues, passed);
   }

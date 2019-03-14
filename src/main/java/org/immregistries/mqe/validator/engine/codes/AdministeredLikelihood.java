@@ -10,7 +10,7 @@ public enum AdministeredLikelihood {
 
   private DateUtility datr = DateUtility.INSTANCE;
 
-  public int administeredLiklihoodScore(MqeVaccination vaccination, MqeMessageReceived message) {
+  public int administeredLikelihoodScore(MqeVaccination vaccination, MqeMessageReceived message) {
 
     // Created rough scoring system that gives a point to other attributes
     // that suggest a vaccination

@@ -21,7 +21,8 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
 
 	public VaccinationAdminCountIsAsExpectedForAge() {
 		super();
-		this.addRuleDocumentation(Detection.AdministredVaccinationsCountIsLargerThanExpected);
+		this.addRuleDocumentation(Detection.AdministeredVaccinationsCountIsLargerThanExpected);
+		this.addImplementationMessage(Detection.AdministeredVaccinationsCountIsLargerThanExpected, "Expecting less than 20 vaccinations given before 6 months of age. Expecting less than 30 vaccinations given before 2 years of age.");
 	}
 
 	@Override
@@ -51,7 +52,7 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
 		}
 
 		if (count_of_baby_vaccinations > 20 || count_of_toddler_vaccinations > 30) {
-			issues.add(Detection.AdministredVaccinationsCountIsLargerThanExpected.build(target));
+			issues.add(Detection.AdministeredVaccinationsCountIsLargerThanExpected.build(target));
 			passed = false;
 		}
 

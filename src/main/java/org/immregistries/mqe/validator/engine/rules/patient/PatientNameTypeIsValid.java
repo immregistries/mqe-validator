@@ -9,11 +9,15 @@ import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.VxuField;
 
 public class PatientNameTypeIsValid extends ValidationRule<MqePatient> {
 
   public PatientNameTypeIsValid() {
     this.addRuleDocumentation(Arrays.asList(Detection.PatientNameTypeCodeIsMissing));
+    this.addRuleDocumentation(Arrays.asList(Detection.PatientNameTypeCodeIsNotValuedLegal));
+    
+    this.addImplementationMessage(Detection.PatientNameTypeCodeIsNotValuedLegal, "Patient Name Type is not 'L' for legal.");
   }
 
   @Override
@@ -23,13 +27,14 @@ public class PatientNameTypeIsValid extends ValidationRule<MqePatient> {
 
     if (target != null && target.getName() != null) {
       String type = target.getName().getType();
-      if (this.common.isEmpty(type)) {
-        issues.add(Detection.PatientNameTypeCodeIsMissing.build(target));
+      
+      issues.addAll(this.codr.handleCodeOrMissing(type, VxuField.PATIENT_NAME_TYPE_CODE,
+    	        target));
+      
+      // name code is supposed to be L for legal
+      if (!"L".equals(target.getNameTypeCode())) {
+        issues.add(Detection.PatientNameTypeCodeIsNotValuedLegal.build(target));
       }
-
-      // TODO: code received stuff.
-      // handleCodeReceived(target.getName().getType(),
-      // PotentialIssues.Field.PATIENT_NAME_TYPE_CODE);
     }
 
     return buildResults(issues, passed);

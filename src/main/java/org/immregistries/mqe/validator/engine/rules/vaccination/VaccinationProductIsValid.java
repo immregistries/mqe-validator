@@ -1,8 +1,10 @@
 package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.immregistries.codebase.client.generated.Code;
+import org.immregistries.codebase.client.generated.UseDate;
 import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
@@ -17,12 +19,13 @@ public class VaccinationProductIsValid extends ValidationRule<MqeVaccination> {
   // dependency: VaccinationIsAdministered
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationIsAdministered.class,VaccinationAdminCodeIsValid.class};
+    return new Class[] {VaccinationSourceIsAdministered.class, VaccinationAdminCodeIsValid.class};
   }
 
   public VaccinationProductIsValid() {
-    this.addRuleDocumentation(Detection.VaccinationProductIsMissing);
     this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_PRODUCT));
+    this.addImplementationMessage(Detection.VaccinationProductIsInvalidForDateAdministered, "Vaccination product was used outside of the valid date range defined for this product. ");
+    this.addImplementationMessage(Detection.VaccinationProductIsUnexpectedForDateAdministered, "Vaccination product was used outside of the expected date range defined for this product. ");
   }
 
   @Override
@@ -34,9 +37,38 @@ public class VaccinationProductIsValid extends ValidationRule<MqeVaccination> {
 
     if (product != null) {
       Code productCode = this.repo.getCodeFromValue(product, CodesetType.VACCINE_PRODUCT);
-      String adminDate = target.getAdminDateString();
       issues.addAll(codr.handleCode(productCode, VxuField.VACCINATION_PRODUCT, product, target));
-      codr.handleUseDate(productCode, adminDate, VxuField.VACCINATION_PRODUCT, target);
+      
+      if (productCode != null) {
+          UseDate ud = productCode.getUseDate();
+
+          if (ud != null && target.getAdminDate() != null) {
+            String notBeforeString = ud.getNotBefore();
+            String notAfterString = ud.getNotAfter();
+
+            Date notBeforeDate = datr.parseDate(notBeforeString);
+            Date notAfterDate = datr.parseDate(notAfterString);
+
+            String notExpectedBeforeString = ud.getNotExpectedBefore();
+            String notExpectedAfterString = ud.getNotExpectedAfter();
+
+            Date notExpectedBeforeDate = datr.parseDate(notExpectedBeforeString);
+            Date notExpectedAfterDate = datr.parseDate(notExpectedAfterString);
+
+            if (datr.isAfterDate(target.getAdminDate(), notAfterDate)
+                || datr.isBeforeDate(target.getAdminDate(), notBeforeDate)) {
+
+              issues.add(Detection.VaccinationProductIsInvalidForDateAdministered.build(
+            		  product, target));
+              passed = false;
+
+            } else if (datr.isAfterDate(target.getAdminDate(), notExpectedAfterDate)
+                || datr.isBeforeDate(target.getAdminDate(), notExpectedBeforeDate)) {
+              issues.add(Detection.VaccinationProductIsUnexpectedForDateAdministered.build(
+            		  product, target));
+            }
+          }
+      }
     } else {
       issues.add(Detection.VaccinationProductIsMissing.build(target));
     }

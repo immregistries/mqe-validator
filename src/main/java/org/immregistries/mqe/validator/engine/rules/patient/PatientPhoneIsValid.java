@@ -2,6 +2,8 @@ package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -19,6 +21,7 @@ public class PatientPhoneIsValid extends ValidationRule<MqePatient> {
     this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_PHONE));
     this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_PHONE_TEL_USE_CODE));
     this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_PHONE_TEL_EQUIP_CODE));
+    this.addImplementationMessage(Detection.PatientPhoneIsInvalid, "Only validating North American Phone Numbers. Area code must be 3 valid digits (First digit can't be 0 or 1. Can't end with '11'). Local number must be 7 valid digits (First digit can't be 0 or 1. First 3 digits can't be '555'. 2nd and 3rd digits can't both be '1'.).");
   }
 
   @Override

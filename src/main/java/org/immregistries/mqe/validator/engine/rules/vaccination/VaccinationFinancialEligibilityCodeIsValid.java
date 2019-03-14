@@ -14,11 +14,10 @@ public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<M
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationIsAdministered.class};
+    return new Class[] {VaccinationSourceIsAdministered.class};
   }
 
   public VaccinationFinancialEligibilityCodeIsValid() {
-    this.addRuleDocumentation(Detection.VaccinationFinancialEligibilityCodeIsMissing);
     this.addRuleDocumentation(codr
         .getDetectionsForField(VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE));
   }
@@ -32,12 +31,8 @@ public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<M
     String financialEligibilityCode = target.getFinancialEligibilityCode();
 
     if (target.isAdministered()) {
-      if (this.common.isEmpty(financialEligibilityCode)) {
-        issues.add(Detection.VaccinationFinancialEligibilityCodeIsMissing.build(target));
-      } else {
-        issues.addAll(codr.handleCode(financialEligibilityCode,
-            VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE, target));
-      }
+    	issues.addAll(codr.handleCodeOrMissing(financialEligibilityCode,
+                VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE, target));
     }
 
     passed = (issues.size() == 0);

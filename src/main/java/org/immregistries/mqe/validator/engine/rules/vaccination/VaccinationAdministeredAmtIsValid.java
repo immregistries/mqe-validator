@@ -14,7 +14,7 @@ public class VaccinationAdministeredAmtIsValid extends ValidationRule<MqeVaccina
 	
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationIsAdministered.class};
+    return new Class[] {VaccinationSourceIsAdministered.class};
   }
 
   public VaccinationAdministeredAmtIsValid() {
@@ -22,6 +22,10 @@ public class VaccinationAdministeredAmtIsValid extends ValidationRule<MqeVaccina
         Detection.VaccinationAdministeredAmountIsValuedAsUnknown,
         Detection.VaccinationAdministeredAmountIsValuedAsZero,
         Detection.VaccinationAdministeredAmountIsInvalid));
+    this.addImplementationMessage(Detection.VaccinationAdministeredAmountIsMissing, "Vaccination Administered Amount is missing or equal to 999.");
+    this.addImplementationMessage(Detection.VaccinationAdministeredAmountIsValuedAsUnknown, "Vaccination Administered Amount is missing or equal to 999.");
+    this.addImplementationMessage(Detection.VaccinationAdministeredAmountIsValuedAsZero, "Vaccination Administered Amount is 0.");
+    this.addImplementationMessage(Detection.VaccinationAdministeredAmountIsInvalid, "Vaccination Administered Amount could not be converted into a number.");
   }
 
   @Override

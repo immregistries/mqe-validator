@@ -1,7 +1,10 @@
 package org.immregistries.mqe.validator.detection;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
+
 import org.immregistries.mqe.hl7util.ApplicationErrorCode;
 import org.immregistries.mqe.hl7util.SeverityLevel;
 import org.immregistries.mqe.hl7util.builder.AckERRCode;
@@ -581,6 +584,8 @@ public enum Detection implements DetectionInfo {
 
   private static final Map<MqeCode, Detection> errorCodeAttributeMap = new HashMap<>();
 
+  private static final Map<MqeCode, SeverityLevel> defaultDetectionsMap = new HashMap<>();
+  
   static {
     for (Detection detection : Detection.values()) {
       Map<DetectionType, Detection> map = fieldIssueMaps.get(detection.getTargetField());
@@ -592,6 +597,9 @@ public enum Detection implements DetectionInfo {
       map.put(detection.getDetectionType(), detection);
 
       errorCodeAttributeMap.put(detection.mqeMqeCode, detection);
+      
+      defaultDetectionsMap.put(detection.mqeMqeCode, detection.severity);
+
     }
   }
 
@@ -685,9 +693,17 @@ public enum Detection implements DetectionInfo {
   public String getMqeMqeCode() {
     return mqeMqeCode.toString();
   }
+  
+  public MqeCode getMqeCodeObject() {
+	  return mqeMqeCode;
+  }
 
   public AckERRCode getHl7ErrorCode() {
     return detectionType.getAckErrCode();
+  }
+  
+  public void setSeverity(SeverityLevel severity) {
+	  this.severity = severity;
   }
 
   /**
@@ -703,4 +719,9 @@ public enum Detection implements DetectionInfo {
     return Detection.UnknownValidationIssue;
   }
 
+  public static void resetDetectionSeverityToDefault() {
+	  for (Detection detection : Detection.values()) {
+		  detection.setSeverity(defaultDetectionsMap.get(detection.getMqeCodeObject()));
+	  }
+  }
 }

@@ -2,7 +2,11 @@ package org.immregistries.mqe.validator.engine;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+
+import org.immregistries.mqe.hl7util.SeverityLevel;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.common.CommonRules;
@@ -68,15 +72,30 @@ public enum ValidationUtility {
 
   public List<ValidationRulePair> buildRulePairs(List<ValidationRule> ruleList, Object target,
       MqeMessageReceived mr) {
+	HashMap<String, String> detectionsOverride = mr.getDetectionsOverride();
     List<ValidationRulePair> vrpList = new ArrayList<ValidationRulePair>();
     for (ValidationRule vr : ruleList) {
       ValidationRulePair vp = new ValidationRulePair();
       vp.setMessage(mr);
       vp.setTarget(target);
-      vp.setRule(vr);
+      vp.setRule(getFinalRule(vr, detectionsOverride));
       vrpList.add(vp);
     }
     return vrpList;
   }
+
+private ValidationRule getFinalRule(ValidationRule vr, HashMap<String, String> detectionsOverride) {
+	Iterator<Detection> itr = vr.getRuleDetections().iterator();
+	while (itr.hasNext()) {
+		Detection detection = itr.next();
+		String mqeCode = detection.getMqeMqeCode();
+		if (detectionsOverride.containsKey(mqeCode)) {
+			String severityLabel = detectionsOverride.get(mqeCode);
+			SeverityLevel severity = SeverityLevel.findByLabel(severityLabel);
+			detection.setSeverity(severity);
+		}
+	}
+	return vr;
+}
 
 }

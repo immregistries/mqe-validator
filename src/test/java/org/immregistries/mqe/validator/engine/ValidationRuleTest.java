@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.immregistries.mqe.util.validation.MqeDetection;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.DetectionType;
 import org.immregistries.mqe.validator.detection.ValidationReport;
@@ -47,9 +48,8 @@ public class ValidationRuleTest {
   public void test3() {
     //let's say we start with a MessageReceived:
     MqeMessageReceived mr = new MqeMessageReceived();
-    MqePatient p = new MqePatient();
+    MqePatient p = mr.getPatient();
     p.setBirthDateString("20160101");
-    mr.setPatient(p);
 
     ValidationRule<MqePatient> vr = new PatientBirthDateIsValid();
 
@@ -183,7 +183,7 @@ public class ValidationRuleTest {
 
     List<ValidationReport> validationReports = new ArrayList<ValidationReport>();
 
-    MqeMessageReceived mr = getEmptyMessage();
+    MqeMessageReceived mr = new MqeMessageReceived();
 
 //    mr.getPatient().setBirthDateString("20160101");
 
@@ -202,9 +202,9 @@ public class ValidationRuleTest {
     }
     System.out.println("Issues.size(): " + validationReports.size());
 
-    Map<Detection, String> reduce = new HashMap<>(expectedMissingDetections);
+    Map<MqeDetection, String> reduce = new HashMap<>(expectedMissingDetections);
 
-    List<Detection> extras = new ArrayList<>();
+    List<MqeDetection> extras = new ArrayList<>();
     for (ValidationReport validationReport : validationReports) {
       System.out.println("Detection: " + validationReport.getDetection() + " --> " + validationReport.getHl7LocationList());
       if (!reduce.containsKey(validationReport.getDetection())) {
@@ -215,12 +215,12 @@ public class ValidationRuleTest {
     }
 
     System.out.println("\nNot Detected:");
-    for (Detection d : reduce.keySet()) {
+    for (MqeDetection d : reduce.keySet()) {
       System.out.println("----: " + d + " --> " + reduce.get(d));
     }
 
     System.out.println("\nExtra Detections:");
-    for (Detection d : extras) {
+    for (MqeDetection d : extras) {
       System.out.println("----: " + d + " --> " + reduce.get(d));
     }
 
@@ -258,17 +258,9 @@ public class ValidationRuleTest {
     }
   }
 
-  private MqeMessageReceived getEmptyMessage() {
-    MqeMessageReceived mr = new MqeMessageReceived();
-    MqePatient p = new MqePatient();
-    mr.setPatient(p);
-
-    return mr;
-  }
-
   private MqeMessageReceived getFreshMessage() {
     MqeMessageReceived mr = new MqeMessageReceived();
-    MqePatient p = new MqePatient();
+    MqePatient p = mr.getPatient();
     p.setNameFirst("Johnathan");
     p.setNameMiddle("JingleHeimer");
     p.setPhone(new MqePhoneNumber("5175555454"));
@@ -287,7 +279,6 @@ public class ValidationRuleTest {
     p.setBirthMultipleIndicator("N");
     p.setBirthOrder("1");
 //		p.setBirthDateString("20160101");
-    mr.setPatient(p);
     return mr;
   }
 

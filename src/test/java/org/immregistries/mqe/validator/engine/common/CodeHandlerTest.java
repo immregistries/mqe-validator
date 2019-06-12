@@ -13,7 +13,6 @@ import org.immregistries.mqe.hl7util.model.MetaFieldInfo;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.codes.CodeRepository;
-import org.immregistries.mqe.vxu.DetectionInfo;
 import org.immregistries.mqe.vxu.MetaFieldInfoData;
 import org.immregistries.mqe.vxu.VxuField;
 import org.joda.time.DateTime;
@@ -41,11 +40,6 @@ public class CodeHandlerTest {
       MetaFieldInfo mfi = new MetaFieldInfo();
       mfi.setVxuField(vxuField);
       return null;
-    }
-
-    @Override
-    public List<DetectionInfo> getDetectionList() {
-      return new ArrayList<>();
     }
   };
 

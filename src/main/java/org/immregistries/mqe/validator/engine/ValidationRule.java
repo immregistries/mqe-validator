@@ -2,13 +2,9 @@ package org.immregistries.mqe.validator.engine;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-
 import org.immregistries.mqe.core.util.DateUtility;
 import org.immregistries.mqe.validator.ValidatorProperties;
 import org.immregistries.mqe.validator.detection.Detection;

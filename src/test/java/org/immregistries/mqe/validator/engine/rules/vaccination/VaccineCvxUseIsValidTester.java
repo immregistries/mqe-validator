@@ -36,8 +36,6 @@ public class VaccineCvxUseIsValidTester {
     mr.setMessageHeader(mh);
     mr.getVaccinations().add(v);
     v.setAdminCvxCode("143");
-  
-
   }
 
   @Test

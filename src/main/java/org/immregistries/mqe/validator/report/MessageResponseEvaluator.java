@@ -3,6 +3,7 @@ package org.immregistries.mqe.validator.report;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.immregistries.mqe.util.validation.MqeDetection;
 import org.immregistries.mqe.validator.MqeMessageServiceResponse;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
@@ -23,7 +24,7 @@ public enum MessageResponseEvaluator {
   public MqeMessageMetrics toMetrics(MqeMessageServiceResponse validationResults) {
     List<ValidationRuleResult> ruleResults = validationResults.getValidationResults();
     MqeMessageMetrics metrics = new MqeMessageMetrics();
-    Map<Detection, Integer> attributeCounts = makeCountMap(ruleResults);
+    Map<MqeDetection, Integer> attributeCounts = makeCountMap(ruleResults);
     metrics.setAttributeCounts(attributeCounts);
     metrics.getObjectCounts().putAll(makeObjectCounts(ruleResults));
     metrics.getPatientAgeCounts().put(getPatientAgeForMessage(validationResults), 1);
@@ -78,12 +79,12 @@ public enum MessageResponseEvaluator {
     return -1;//we don't have an age to report.
   }
 
-  protected Map<Detection, Integer> makeCountMap(List<ValidationRuleResult> results) {
-    Map<Detection, Integer> map = new HashMap<>();
+  protected Map<MqeDetection, Integer> makeCountMap(List<ValidationRuleResult> results) {
+    Map<MqeDetection, Integer> map = new HashMap<>();
     for (ValidationRuleResult result : results) {
       List<ValidationReport> issues = result.getValidationDetections();
       for (ValidationReport issue : issues) {
-        Detection attr = issue.getDetection();
+        MqeDetection attr = issue.getDetection();
         Integer cnt = map.get(attr);
         if (cnt == null) {
           map.put(attr, 1);

@@ -2,6 +2,7 @@ package org.immregistries.mqe.validator.engine;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.immregistries.mqe.validator.detection.ValidationReport;
 
 public enum ValidationRunner {
   INSTANCE;
@@ -53,6 +54,7 @@ public enum ValidationRunner {
     List<ValidationRuleResult> results = new ArrayList<ValidationRuleResult>();
     for (ValidationRulePair rp : eligible) {
       ValidationRuleResult vrr = rp.evaluateRule();
+      vrr.getValidationDetections().forEach((vr) -> rp.getTarget().addValidationReport(vr));
       results.add(vrr);
     }
     return results;

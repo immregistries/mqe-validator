@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.immregistries.mqe.util.validation.MqeDetection;
 import org.immregistries.mqe.validator.MqeMessageService;
 import org.immregistries.mqe.validator.MqeMessageServiceResponse;
 import org.immregistries.mqe.validator.detection.Detection;
@@ -51,9 +52,9 @@ public enum ReportScorer {
   public VxuScoredReport getScoredReport(ReportDefinition def, MqeMessageMetrics measures) {
     VxuScoredReport report = new VxuScoredReport();
 
-    Map<Detection, Integer> detectionCounts = measures.getAttributeCounts();
+    Map<MqeDetection, Integer> detectionCounts = measures.getAttributeCounts();
     // turn these into reportables:
-    for (Detection d : detectionCounts.keySet()) {
+    for (MqeDetection d : detectionCounts.keySet()) {
       Integer count = detectionCounts.get(d);
       if (count != null) {// && (d.getSeverity() == SeverityLevel.ERROR || d.getSeverity() ==
                           // SeverityLevel.WARN)) {
@@ -101,7 +102,7 @@ public enum ReportScorer {
   }
 
   protected VxuFieldScore scoreField(MqeReportFieldDefinition fieldDef,
-      Map<Detection, Integer> evaluated, int expectedFieldCount) {
+      Map<MqeDetection, Integer> evaluated, int expectedFieldCount) {
     VxuFieldScore fieldScore = new VxuFieldScore();
     fieldScore.setReportFieldDefinition(fieldDef);
     fieldScore.getFieldScore().setPotential(fieldDef.getWeight());
@@ -257,7 +258,7 @@ public enum ReportScorer {
   }
 
   protected Map<DetectionType, Integer> getIssueCounts(MqeReportFieldDefinition d,
-      Map<Detection, Integer> measures) {
+      Map<MqeDetection, Integer> measures) {
 
     Map<DetectionType, Integer> map = new HashMap<>();
 

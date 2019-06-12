@@ -2,8 +2,9 @@ package org.immregistries.mqe.validator.detection;
 
 import org.immregistries.mqe.hl7util.ApplicationErrorCode;
 import org.immregistries.mqe.hl7util.builder.AckERRCode;
+import org.immregistries.mqe.util.validation.MqeDetectionType;
 
-public enum DetectionType {
+public enum DetectionType implements MqeDetectionType {
   EXCEPTION("exception"),
   BEFORE_BIRTH("is before birth", "Date given is before patient birth date."),
   DEPRECATED("is deprecated", "Deprecated code value."),
@@ -35,7 +36,6 @@ public enum DetectionType {
   VALUED_AS_PARTIALLY_ADMINISTERED("is valued as partially administered"),
   VALUED_AS_HISTORICAL("is valued as historical"),
 
-
   // These are the issue types that are not widely used...
 
   OUT_OF_ORDER("out of order"),
@@ -56,7 +56,6 @@ public enum DetectionType {
   NOT_USABLE("is not usable")
 
   // These are the REALLY specific ones
-
   ,
   UNDERAGE("is underage"),
   DIFFERENT_FROM_PATIENT_ADDRESS("is different from patient address"),
@@ -106,19 +105,11 @@ public enum DetectionType {
   MISSING_AND_MULTIPLE_BIRTH_INDICATED("is missing and multiple birth indicated"),
   MUTLIPLES("has multiples"),
   
-//  VaccinationLotNumberHasInvalidCharacters(VACCINATION_LOT_NUMBER, INVALID, WARN, MQE0592),
-//  VaccinationLotNumberHasInvalidStartCharacters(VACCINATION_LOT_NUMBER, INVALID, WARN, MQE0593),
-//  VaccinationLotNumberHasInvalidMiddleCharacters(VACCINATION_LOT_NUMBER, INVALID, WARN, MQE0594),
-//  VaccinationLotNumberHasInvalidEndCharacters(VACCINATION_LOT_NUMBER, INVALID, WARN, MQE0595),
-  
   IS_ON_TIME("is on time"),
   IS_LATE("is late"),
   IS_VERY_LATE("is very late"),
   IS_TOO_LATE("is too late");
 	
-
-
-
   public final String wording;
   public final String description;
 
@@ -130,6 +121,14 @@ public enum DetectionType {
   DetectionType(String wording, String description) {
     this.wording = wording;
     this.description = description;
+  }
+
+  public String getWording() {
+    return wording;
+  }
+
+  public String getDescription() {
+    return description;
   }
 
   public AckERRCode getAckErrCode() {

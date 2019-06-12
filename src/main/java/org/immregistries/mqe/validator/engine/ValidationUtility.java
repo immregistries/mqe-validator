@@ -5,9 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-
-import org.immregistries.mqe.hl7util.SeverityLevel;
-import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.util.validation.MqeValidatedObject;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.common.CommonRules;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
@@ -70,7 +68,7 @@ public enum ValidationUtility {
     return failedValidations;
   }
 
-  public List<ValidationRulePair> buildRulePairs(List<ValidationRule> ruleList, Object target,
+  public List<ValidationRulePair> buildRulePairs(List<ValidationRule> ruleList, MqeValidatedObject target,
       MqeMessageReceived mr) {
 	HashMap<String, String> detectionsOverride = mr.getDetectionsOverride();
     List<ValidationRulePair> vrpList = new ArrayList<ValidationRulePair>();

@@ -1,25 +1,17 @@
 package org.immregistries.mqe.validator.engine;
 
-
-import org.immregistries.mqe.validator.domain.TargetType;
+import org.immregistries.mqe.util.validation.MqeValidatedObject;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
-import org.immregistries.mqe.vxu.MqeVaccination;
 
-public class ValidationRulePair<T> {
+public class ValidationRulePair<T extends MqeValidatedObject> {
 
   private ValidationRule<T> rule;
   private T target;
   private MqeMessageReceived message;
 
   public ValidationRuleResult evaluateRule() {
-    
     ValidationRuleResult vrr = rule.evaluate(this.target, this.message);
-	if(target instanceof MqeVaccination){
-		vrr.setTargetType(TargetType.Vaccination);
-		vrr.setTargetId(((MqeVaccination) target).getID());
-	}
-	
-	return vrr;
+    return vrr;
   }
 
   /**

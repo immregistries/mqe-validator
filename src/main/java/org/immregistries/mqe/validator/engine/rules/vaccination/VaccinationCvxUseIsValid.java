@@ -51,10 +51,8 @@ public class VaccinationCvxUseIsValid extends ValidationRule<MqeVaccination> {
         logger
             .info("Not evaluating date because the concept type indicates an UNSPECIFIED or FOREIGN_VACCINE, and it's not administered");
       } else {
-        issues = codr.handleUseDate(vaccineCode, target.getAdminDateString(),
-            VxuField.VACCINATION_ADMIN_DATE, target);
+        issues.addAll(codr.handleUseDate(vaccineCode, target.getAdminDateString(),VxuField.VACCINATION_ADMIN_DATE, target));
       }
-
       passed = (issues.size() == 0);
     }
 

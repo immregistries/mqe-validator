@@ -2,12 +2,12 @@ package org.immregistries.mqe.validator.engine;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntityLists;
 import org.immregistries.mqe.vxu.MqeMessageHeader;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeNextOfKin;
 import org.immregistries.mqe.vxu.MqePatient;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntityLists;
 
 public enum RulePairBuilder {
   INSTANCE;

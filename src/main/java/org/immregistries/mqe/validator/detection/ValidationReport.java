@@ -8,16 +8,18 @@ import org.immregistries.mqe.hl7util.ReportableSource;
 import org.immregistries.mqe.hl7util.SeverityLevel;
 import org.immregistries.mqe.hl7util.model.CodedWithExceptions;
 import org.immregistries.mqe.hl7util.model.Hl7Location;
+import org.immregistries.mqe.util.validation.MqeDetection;
+import org.immregistries.mqe.util.validation.MqeValidationReport;
 import org.immregistries.mqe.vxu.MetaFieldInfoData;
 import org.immregistries.mqe.vxu.VxuField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ValidationReport implements Reportable {
+public class ValidationReport implements Reportable, MqeValidationReport {
 
   private static final Logger logger = LoggerFactory.getLogger(ValidationReport.class);
 
-  private Detection detection = null;// should this be a String?
+  private MqeDetection detection = null;// should this be a String?
   private String additionalMessage;
   private int positionId = 0;// This says where in the ACK to put it.
   private SeverityLevel severityLevel = null; // this is how bad it is.
@@ -45,7 +47,7 @@ public class ValidationReport implements Reportable {
     this.valueReceived = value;
   }
 
-  public Detection getDetection() {
+  public MqeDetection getDetection() {
     return detection;
   }
 
@@ -53,7 +55,7 @@ public class ValidationReport implements Reportable {
     return detection != null ? detection.getDisplayText() : "";
   }
 
-  public void setDetection(Detection issue) {
+  public void setDetection(MqeDetection issue) {
     this.detection = issue;
   }
 
@@ -78,7 +80,7 @@ public class ValidationReport implements Reportable {
   }
 
   public boolean isError() {
-    return (this.severityLevel != null && SeverityLevel.ERROR.equals(this.severityLevel))
+    return (SeverityLevel.ERROR.equals(this.severityLevel))
         || this.severityLevel == null && this.detection.getSeverity() == SeverityLevel.ERROR;
   }
 

@@ -6,7 +6,7 @@ import org.immregistries.mqe.hl7util.ReportableSource;
 import org.immregistries.mqe.hl7util.SeverityLevel;
 import org.immregistries.mqe.hl7util.model.CodedWithExceptions;
 import org.immregistries.mqe.hl7util.model.Hl7Location;
-import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.util.validation.MqeDetection;
 
 /**
  * The intention is to generalize the interface for the various types of things we report.
@@ -22,7 +22,7 @@ public class ScoreReportable implements Reportable {
   private final CodedWithExceptions applicationErrorCode;
   private int reportedCount;
 
-  public ScoreReportable(Detection d, int count) {
+  public ScoreReportable(MqeDetection d, int count) {
     this.reportedCount = count;
     this.hl7LocationList = new ArrayList<>();
     CodedWithExceptions cwe = new CodedWithExceptions();

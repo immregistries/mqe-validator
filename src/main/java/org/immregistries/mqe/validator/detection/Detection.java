@@ -10,7 +10,7 @@ import org.immregistries.mqe.hl7util.SeverityLevel;
 import org.immregistries.mqe.hl7util.builder.AckERRCode;
 import org.immregistries.mqe.hl7util.model.Hl7Location;
 import org.immregistries.mqe.hl7util.model.MetaFieldInfo;
-import org.immregistries.mqe.vxu.DetectionInfo;
+import org.immregistries.mqe.util.validation.MqeDetection;
 import org.immregistries.mqe.vxu.VxuObject;
 import org.immregistries.mqe.vxu.MetaFieldInfoData;
 import org.immregistries.mqe.vxu.VxuField;
@@ -20,7 +20,7 @@ import static org.immregistries.mqe.vxu.VxuField.*;
 import static org.immregistries.mqe.validator.detection.DetectionType.*;
 import static org.immregistries.mqe.validator.detection.MqeCode.*;
 
-public enum Detection implements DetectionInfo {
+public enum Detection implements MqeDetection {
   // @formatter:off
   GeneralAuthorizationException(AUTHORIZATION, EXCEPTION, ACCEPT, MQE0002),
   GeneralConfigurationException(CONFIGURATION, EXCEPTION, ACCEPT, MQE0003),
@@ -630,7 +630,7 @@ public enum Detection implements DetectionInfo {
         + " "
         + fieldRef.getFieldDescription()
         + " "
-        + detectionType.wording;
+        + detectionType.getWording();
   }
 
   public DetectionType getDetectionType() {
@@ -662,8 +662,7 @@ public enum Detection implements DetectionInfo {
   public ValidationReport build(MetaFieldInfoData meta) {
     Hl7Location loc = null;
     if (meta != null) {
-      meta.getDetectionList().add(
-          this);//I'm not super comfortable with this...  but I'm not sure how else to accomplish this.
+//      meta.getDetectionList().add(this);//I'm not super comfortable with this...  but I'm not sure how else to accomplish this.
       MetaFieldInfo mfi = meta.getMetaFieldInfo(this.fieldRef);
       if (mfi != null) {
         loc = mfi.getHl7Location();

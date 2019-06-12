@@ -6,7 +6,7 @@ public class ImplementationDetail {
 	
 	public ImplementationDetail(Detection detection) {
 		this.setDetection(detection);
-		this.description = detection.getDetectionType().description;
+		this.description = detection.getDetectionType().getDescription();
 	}
 	
 	public ImplementationDetail(Detection detection, String description) {

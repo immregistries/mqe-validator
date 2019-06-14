@@ -38,7 +38,6 @@ public enum MqeMessageService {
   
   public MqeMessageServiceResponse processMessage(String messageText, HashMap<String, String> detectionsOverride) {
 	    MqeMessageReceived mr = this.extractMessageFromText(messageText);
-	    mr.setDetectionsOverride(detectionsOverride);
 	    return validateData(mr);
   }
 
@@ -56,4 +55,10 @@ public enum MqeMessageService {
     msr.getValidationResults().addAll(validationResults);
     return msr;
   }
+  
+  public String getSendingFacility(String messageText) {
+	  MqeMessageReceived mr = this.extractMessageFromText(messageText);
+	  return mr.getMessageHeader().getSendingFacility();
+  }
+  
 }

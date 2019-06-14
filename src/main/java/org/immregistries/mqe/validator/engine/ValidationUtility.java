@@ -72,13 +72,13 @@ public enum ValidationUtility {
 
   public List<ValidationRulePair> buildRulePairs(List<ValidationRule> ruleList, MqeValidatedObject target,
       MqeMessageReceived mr) {
-	HashMap<String, String> detectionsOverride = mr.getDetectionsOverride();
+	
     List<ValidationRulePair> vrpList = new ArrayList<ValidationRulePair>();
     for (ValidationRule vr : ruleList) {
       ValidationRulePair vp = new ValidationRulePair();
       vp.setMessage(mr);
       vp.setTarget(target);
-      vp.setRule(getFinalRule(vr, detectionsOverride));
+      vp.setRule(vr);
       vrpList.add(vp);
     }
     return vrpList;
@@ -89,10 +89,12 @@ private ValidationRule getFinalRule(ValidationRule vr, HashMap<String, String> d
 	while (itr.hasNext()) {
 		Detection detection = itr.next();
 		String mqeCode = detection.getMqeMqeCode();
-		if (detectionsOverride.containsKey(mqeCode)) {
-			String severityLabel = detectionsOverride.get(mqeCode);
-			SeverityLevel severity = SeverityLevel.findByLabel(severityLabel);
-			detection.setSeverity(severity);
+		if (detectionsOverride != null) {
+			if (detectionsOverride.containsKey(mqeCode)) {
+				String severityLabel = detectionsOverride.get(mqeCode);
+				SeverityLevel severity = SeverityLevel.findByLabel(severityLabel);
+				detection.setSeverity(severity);
+			}
 		}
 	}
 	return vr;

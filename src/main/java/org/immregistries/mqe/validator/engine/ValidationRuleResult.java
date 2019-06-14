@@ -8,7 +8,8 @@ import org.immregistries.mqe.validator.detection.ValidationReport;
 public class ValidationRuleResult {
 
   private List<ValidationReport> issues = new ArrayList<ValidationReport>();
-  private boolean rulePassed = false;
+
+private boolean rulePassed = false;
   private List<Detection> possible = new ArrayList<>();
   private Class<? extends ValidationRule> ruleClass;
 
@@ -52,4 +53,5 @@ public class ValidationRuleResult {
     }
     return false;
   }
+  
 }

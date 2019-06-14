@@ -18,6 +18,7 @@ public class MqeMessageMetrics {
   private VaccineCollection vaccinations = new VaccineCollection();
   private DateTime firstMessageReceived;
   private DateTime lastMessageReceived;
+  private String provider;
 
   public Map<Integer, Integer> getPatientAgeCounts() {
     return patientAgeCounts;
@@ -83,6 +84,14 @@ public class MqeMessageMetrics {
         + ", firstMessageReceived=" + firstMessageReceived + ", lastMessageReceived="
         + lastMessageReceived + "]";
   }
+
+public String getProvider() {
+	return provider;
+}
+
+public void setProvider(String provider) {
+	this.provider = provider;
+}
 
 
 }

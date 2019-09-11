@@ -5,13 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.apache.commons.lang3.text.WordUtils;
-import org.immregistries.mqe.hl7util.SeverityLevel;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntityLists;
-import org.immregistries.mqe.vxu.VxuField;
-import org.immregistries.mqe.vxu.VxuObject;
 import org.reflections.Reflections;
 
 public class DetectionDocumentation {

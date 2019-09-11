@@ -2,9 +2,7 @@ package org.immregistries.mqe.validator.detection;
 
 
 import static org.junit.Assert.assertFalse;
-
 import java.util.Set;
-
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntityLists;
 import org.junit.Test;

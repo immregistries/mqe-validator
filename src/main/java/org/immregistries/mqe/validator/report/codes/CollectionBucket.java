@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.report.codes;
 
 import java.util.Objects;
-import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.mqe.vxu.VxuField;
 
 public class CollectionBucket {

@@ -3,10 +3,9 @@ package org.immregistries.mqe.validator.report;
 import java.util.HashMap;
 import java.util.Map;
 import org.immregistries.mqe.util.validation.MqeDetection;
-import org.immregistries.mqe.validator.detection.Detection;
-import org.immregistries.mqe.vxu.VxuObject;
 import org.immregistries.mqe.validator.report.codes.CodeCollection;
 import org.immregistries.mqe.validator.report.codes.VaccineCollection;
+import org.immregistries.mqe.vxu.VxuObject;
 import org.joda.time.DateTime;
 
 public class MqeMessageMetrics {

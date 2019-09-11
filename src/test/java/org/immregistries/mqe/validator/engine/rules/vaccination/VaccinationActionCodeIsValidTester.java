@@ -2,16 +2,12 @@ package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageHeader;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
-import org.immregistries.mqe.vxu.hl7.Observation;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;

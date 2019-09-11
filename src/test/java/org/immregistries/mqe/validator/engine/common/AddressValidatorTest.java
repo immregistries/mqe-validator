@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.common;
 
 import static org.junit.Assert.assertEquals;
-
 import org.immregistries.mqe.vxu.MqeAddress;
 import org.junit.Before;
 import org.junit.Test;

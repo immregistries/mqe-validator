@@ -1,10 +1,8 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import static org.junit.Assert.assertEquals;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;

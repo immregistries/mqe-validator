@@ -2,8 +2,6 @@ package org.immregistries.mqe.validator;
 
 import java.util.HashMap;
 import java.util.List;
-
-import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.engine.MessageValidator;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.validator.transform.MessageTransformer;

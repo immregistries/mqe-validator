@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.codes;
 
 import static org.junit.Assert.assertEquals;
-
 import org.immregistries.mqe.validator.engine.codes.KnownName.NameType;
 import org.junit.Test;
 

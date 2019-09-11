@@ -2,14 +2,12 @@ package org.immregistries.mqe.validator.engine;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.immregistries.mqe.util.validation.MqeDetection;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.DetectionType;
@@ -18,9 +16,9 @@ import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntityLists;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientExists;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientIsUnderage;
+import org.immregistries.mqe.vxu.MqeAddress;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
-import org.immregistries.mqe.vxu.MqeAddress;
 import org.immregistries.mqe.vxu.MqePhoneNumber;
 import org.immregistries.mqe.vxu.MqeVaccination;
 import org.junit.Test;

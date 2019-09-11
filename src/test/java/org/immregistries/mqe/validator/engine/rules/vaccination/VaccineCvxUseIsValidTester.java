@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import static org.junit.Assert.assertEquals;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;

@@ -1,10 +1,5 @@
 package org.immregistries.mqe.validator.address;
 
-//import com.fasterxml.jackson.annotation.JsonCreator;
-//import com.fasterxml.jackson.annotation.JsonValue;
-
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * Enum representation of COUNTRY.
  * tocode/fromcode used by jaxb/hibernate annotations.

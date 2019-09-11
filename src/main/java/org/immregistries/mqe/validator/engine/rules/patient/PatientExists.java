@@ -12,7 +12,7 @@ import org.immregistries.mqe.vxu.MqePatient;
 public class PatientExists extends ValidationRule<MqePatient> {
 
   public PatientExists() {
-    this.addRuleDocumentation(Detection.PatientObjectIsMissing);
+    this.addRuleDetection(Detection.PatientObjectIsMissing);
   }
 
   @Override

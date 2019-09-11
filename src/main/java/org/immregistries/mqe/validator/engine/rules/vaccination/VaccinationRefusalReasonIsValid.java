@@ -18,9 +18,9 @@ public class VaccinationRefusalReasonIsValid extends ValidationRule<MqeVaccinati
   }
 
   public VaccinationRefusalReasonIsValid() {
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_REFUSAL_REASON));
-    this.addImplementationMessage(Detection.VaccinationRefusalReasonConflictsCompletionStatus, "Vaccination is marked as completed but refusal code was given.");
-    this.addImplementationMessage(Detection.VaccinationRefusalReasonIsMissing, "Vaccination completion was refused but refusal code is missing. ");
+    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_REFUSAL_REASON));
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationRefusalReasonConflictsCompletionStatus);id.setImplementationDescription("Vaccination is marked as completed but refusal code was given.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationRefusalReasonIsMissing);id.setImplementationDescription("Vaccination completion was refused but refusal code is missing. ");
   }
 
   @Override

@@ -17,9 +17,9 @@ public class NextOfKinPhoneIsValid extends ValidationRule<MqeNextOfKin> {
   private PhoneValidator phoneValidator = PhoneValidator.INSTANCE;
 
   public NextOfKinPhoneIsValid() {
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_PHONE));
-    this.addImplementationMessage(Detection.NextOfKinPhoneNumberIsIncomplete, "Next of kin phone number is missing area code or local number.");
-    this.addImplementationMessage(Detection.NextOfKinPhoneNumberIsInvalid, "Phone number is invalid according to the North American Numbering Plan (NANP).");
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_PHONE));
+    ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinPhoneNumberIsIncomplete);id.setImplementationDescription("Next of kin phone number is missing area code or local number.");
+    ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinPhoneNumberIsInvalid);id.setImplementationDescription("Phone number is invalid according to the North American Numbering Plan (NANP).");
   }
 
   @Override

@@ -32,20 +32,20 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientAddressIsValid() {
-    this.addRuleDocumentation(Detection.PatientAddressTypeIsValuedBadAddress);
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS));
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STREET));
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_CITY));
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STATE));
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_COUNTY));
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_COUNTRY));
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_ZIP));
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_TYPE));
+    this.addRuleDetection(Detection.PatientAddressTypeIsValuedBadAddress);
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS));
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STREET));
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_CITY));
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STATE));
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_COUNTY));
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_COUNTRY));
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_ZIP));
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_TYPE));
     
-    this.addImplementationMessage(Detection.PatientAddressIsInvalid, "Patient Address is invalid according to Smarty Streets.");    
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressIsInvalid);id.setImplementationDescription("Patient Address is invalid according to Smarty Streets.");    
     
     if (props.isAddressCleanserEnabled()) {
-      this.addRuleDocumentation(Detection.PatientAddressIsInvalid);
+      this.addRuleDetection(Detection.PatientAddressIsInvalid);
     }
   }
 

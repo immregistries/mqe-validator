@@ -22,16 +22,16 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
   }
 
   public VaccinationVisDatesAreValid() {
-    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationVisPublishedDateIsMissing,
+    this.addRuleDetections(Arrays.asList(Detection.VaccinationVisPublishedDateIsMissing,
     	Detection.VaccinationVisPublishedDateIsInFuture,
     	Detection.VaccinationVisPublishedDateIsInvalid));
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_VIS_PRESENTED_DATE));
-    this.addImplementationMessage(Detection.VaccinationVisPublishedDateIsInvalid, "Vaccination Vis Publication date cannot be translated to a date.");
-    this.addImplementationMessage(Detection.VaccinationVisPublishedDateIsInFuture, "Vaccination Vis Publication date cannot be a future date.");
-    this.addImplementationMessage(Detection.VaccinationVisPresentedDateIsInvalid, "Vaccination Vis Presented date cannot be translated to a date.");
-    this.addImplementationMessage(Detection.VaccinationVisPresentedDateIsBeforePublishedDate, "Vaccination Vis Presented date cannot be earlier than Vis Published date.");
-    this.addImplementationMessage(Detection.VaccinationVisPresentedDateIsAfterAdminDate, "Vaccination Vis Presented date cannot be after Vaccination Administered Date.");
-    this.addImplementationMessage(Detection.VaccinationVisPresentedDateIsNotAdminDate, "Vaccination Vis Presented date should be the same as the Vaccination Administered Date.");
+    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_VIS_PRESENTED_DATE));
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisPublishedDateIsInvalid);id.setImplementationDescription("Vaccination Vis Publication date cannot be translated to a date.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisPublishedDateIsInFuture);id.setImplementationDescription("Vaccination Vis Publication date cannot be a future date.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisPresentedDateIsInvalid);id.setImplementationDescription("Vaccination Vis Presented date cannot be translated to a date.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisPresentedDateIsBeforePublishedDate);id.setImplementationDescription("Vaccination Vis Presented date cannot be earlier than Vis Published date.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisPresentedDateIsAfterAdminDate);id.setImplementationDescription("Vaccination Vis Presented date cannot be after Vaccination Administered Date.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisPresentedDateIsNotAdminDate);id.setImplementationDescription("Vaccination Vis Presented date should be the same as the Vaccination Administered Date.");
     
   }
 

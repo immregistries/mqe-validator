@@ -22,8 +22,8 @@ public class PatientIsUnderage extends ValidationRule<MqePatient> {
   }
 
   public PatientIsUnderage() {
-    this.addRuleDocumentation(Detection.PatientBirthDateIsUnderage);
-    this.addImplementationMessage(Detection.PatientBirthDateIsUnderage, "Patient is under 18 years old.");
+    this.addRuleDetection(Detection.PatientBirthDateIsUnderage);
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsUnderage);id.setImplementationDescription("Patient is under 18 years old.");
   }
 
   @Override

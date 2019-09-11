@@ -14,7 +14,7 @@ import org.immregistries.mqe.vxu.VxuField;
 public class PatientRegistryIdIsPresent extends ValidationRule<MqePatient> {
 
   public PatientRegistryIdIsPresent() {
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_REGISTRY_ID));
+    this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_REGISTRY_ID));
   }
 
   @Override

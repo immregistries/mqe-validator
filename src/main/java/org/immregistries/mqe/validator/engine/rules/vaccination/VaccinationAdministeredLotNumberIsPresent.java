@@ -19,7 +19,7 @@ public class VaccinationAdministeredLotNumberIsPresent extends
   }
 
   public VaccinationAdministeredLotNumberIsPresent() {
-    this.addRuleDocumentation(Arrays.asList( Detection.VaccinationLotNumberIsMissing));
+    this.addRuleDetections(Arrays.asList( Detection.VaccinationLotNumberIsMissing));
   }
 
   @Override

@@ -22,10 +22,10 @@ public class VaccinationSourceIsAdministeredButAppearsHistorical extends Validat
     }
 
     public VaccinationSourceIsAdministeredButAppearsHistorical() {
-        this.addRuleDocumentation(Arrays.asList(
+        this.addRuleDetections(Arrays.asList(
                 Detection.VaccinationInformationSourceIsHistoricalButAppearsToBeAdministered
         ));
-        this.addImplementationMessage(Detection.VaccinationInformationSourceIsHistoricalButAppearsToBeAdministered, "Vaccination information source is reported as historical but based on our scoring calculation (how recently shot was given and how much data is known about the shot) the shot seems to be administered.");
+        ImplementationDetail id = this.addRuleDetection(Detection.VaccinationInformationSourceIsHistoricalButAppearsToBeAdministered);id.setImplementationDescription("Vaccination information source is reported as historical but based on our scoring calculation (how recently shot was given and how much data is known about the shot) the shot seems to be administered.");
     }
 
     @Override

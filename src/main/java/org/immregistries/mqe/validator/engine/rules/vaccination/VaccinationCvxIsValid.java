@@ -12,7 +12,7 @@ import org.immregistries.mqe.vxu.VxuField;
 public class VaccinationCvxIsValid extends ValidationRule<MqeVaccination> {
 
   public VaccinationCvxIsValid() {
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_CVX_CODE));
+    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_CVX_CODE));
   }
 
   @Override

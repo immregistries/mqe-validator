@@ -1,9 +1,9 @@
 package org.immregistries.mqe.validator.engine.rules.nextofkin;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -20,8 +20,8 @@ public class NextOfKinAddressIsSameAsPatientAddress extends ValidationRule<MqeNe
   }
 
   public NextOfKinAddressIsSameAsPatientAddress() {
-    this.addRuleDocumentation(Detection.NextOfKinAddressIsDifferentFromPatientAddress);
-    this.addImplementationMessage(Detection.NextOfKinAddressIsDifferentFromPatientAddress, "The City/State/Street/Street2 are different between Next Of Kin address and Patient address.");
+    ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressIsDifferentFromPatientAddress);
+    id.setImplementationDescription("The City/State/Street/Street2 are different between Next Of Kin address and Patient address.");
   }
 
 

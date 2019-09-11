@@ -21,7 +21,7 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
   }
 
   public PatientResponsiblePartyIsProperlyFormed() {
-    this.addRuleDocumentation(Arrays.asList(
+    this.addRuleDetections(Arrays.asList(
         Detection.PatientGuardianAddressStateIsMissing,
         Detection.PatientGuardianAddressCityIsMissing,
         Detection.PatientGuardianAddressZipIsMissing,
@@ -30,11 +30,11 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
         Detection.PatientGuardianNameIsSameAsUnderagePatient,
         Detection.PatientGuardianPhoneIsMissing));
     
-    this.addImplementationMessage(Detection.PatientGuardianNameIsSameAsUnderagePatient, "Patient first and last name match the guardian first and last name.");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianNameIsSameAsUnderagePatient);id.setImplementationDescription("Patient first and last name match the guardian first and last name.");
 
     if (props.isAddressCleanserEnabled()) {
-      this.addRuleDocumentation(Detection.PatientGuardianAddressIsInvalid);
-      this.addImplementationMessage(Detection.PatientGuardianAddressIsInvalid, "Patient Guardian Address is invalid according to Smarty Streets.");
+      this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);id.setImplementationDescription("Patient Guardian Address is invalid according to Smarty Streets.");
     }
   }
 

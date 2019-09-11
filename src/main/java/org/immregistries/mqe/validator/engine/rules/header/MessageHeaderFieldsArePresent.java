@@ -20,7 +20,7 @@ public class MessageHeaderFieldsArePresent extends ValidationRule<MqeMessageHead
   }
 
   public MessageHeaderFieldsArePresent() {
-    this.addRuleDocumentation(Arrays.asList(
+    this.addRuleDetections(Arrays.asList(
         Detection.MessageReceivingApplicationIsMissing,
         Detection.MessageReceivingFacilityIsMissing,
         Detection.MessageSendingApplicationIsMissing,

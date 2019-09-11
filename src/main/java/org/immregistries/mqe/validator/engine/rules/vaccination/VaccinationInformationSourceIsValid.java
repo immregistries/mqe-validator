@@ -19,7 +19,7 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<MqeVacci
   }
 
   public VaccinationInformationSourceIsValid() {
-	  this.addRuleDocumentation(Arrays.asList(Detection.VaccinationInformationSourceIsDeprecated,
+	  this.addRuleDetections(Arrays.asList(Detection.VaccinationInformationSourceIsDeprecated,
 		        Detection.VaccinationInformationSourceIsIgnored,
 		    	Detection.VaccinationInformationSourceIsInvalid,
 		    	Detection.VaccinationInformationSourceIsMissing,

@@ -1,11 +1,10 @@
 package org.immregistries.mqe.validator.engine.rules.nextofkin;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.validator.address.SmartyStreetResponse;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -27,21 +26,19 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
   private AddressValidator addressValidator = AddressValidator.INSTANCE;
 
   public NextOfKinAddressIsValid() {
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS));
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET));
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET2));
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTY));
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_CITY));
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTRY));
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_ZIP));
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_TYPE));
-    
-    this.addImplementationMessage(Detection.NextOfKinAddressIsInvalid, "Next of kin Address is invalid according to Smarty Streets.");
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS));
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET));
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET2));
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTY));
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_CITY));
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTRY));
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_ZIP));
+    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_TYPE));
 
-    if (props.isAddressCleanserEnabled()) {
-      this.addRuleDocumentation(Detection.NextOfKinAddressIsInvalid);
-    }
-    
+    ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressIsInvalid);
+    id.setImplementationDescription("Next of kin Address is invalid according to Smarty Streets.");
+    id.setHowToFix("fix some junk");
+    id.setWhyToFix("Clean addresses are better");
   }
 
   @Override

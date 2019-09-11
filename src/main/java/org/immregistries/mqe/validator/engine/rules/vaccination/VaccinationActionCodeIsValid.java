@@ -15,7 +15,7 @@ public class VaccinationActionCodeIsValid extends ValidationRule<MqeVaccination>
 
 
   public VaccinationActionCodeIsValid() {
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_ACTION_CODE));
+    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_ACTION_CODE));
     String baseMessage = "Vaccination Action Code value is ";
     this.addImplementationMessage(Detection.VaccinationActionCodeIsValuedAsAdd, baseMessage.concat(MqeVaccination.ACTION_CODE_ADD));
     this.addImplementationMessage(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate, baseMessage.concat(MqeVaccination.ACTION_CODE_ADD).concat(" or ").concat(MqeVaccination.ACTION_CODE_UPDATE));

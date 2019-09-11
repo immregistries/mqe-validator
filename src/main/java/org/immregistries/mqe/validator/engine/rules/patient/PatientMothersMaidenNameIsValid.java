@@ -17,14 +17,14 @@ public class PatientMothersMaidenNameIsValid extends ValidationRule<MqePatient> 
   private KnowNameList listr = KnowNameList.INSTANCE;
 
   public PatientMothersMaidenNameIsValid() {
-    this.addRuleDocumentation(Arrays.asList(Detection.PatientMotherSMaidenNameIsMissing,
+    this.addRuleDetections(Arrays.asList(Detection.PatientMotherSMaidenNameIsMissing,
         Detection.PatientMothersMaidenNameIsInvalid, Detection.PatientMotherSMaidenNameHasJunkName,
         Detection.PatientMotherSMaidenNameHasInvalidPrefixes,
         Detection.PatientMotherSMaidenNameIsTooShort));
-    this.addImplementationMessage(Detection.PatientMothersMaidenNameIsInvalid, "Patient maiden name must not be on the specified invalid name list ('X','UN','UK','UNK', 'UNKN', 'NONE').");
-    this.addImplementationMessage(Detection.PatientMotherSMaidenNameHasJunkName, "Patient maiden name must not be on the specified junk name list ('UNKNOWN','NONE','NO LAST NAM','NO LAST NAME', 'NONAME', 'NO NAME', 'EMPTY', 'MISSING').");
-    this.addImplementationMessage(Detection.PatientMotherSMaidenNameHasInvalidPrefixes, "Patient maiden name must not be on the specified invalid prefixes name list ('ZZ','XX').");
-    this.addImplementationMessage(Detection.PatientMotherSMaidenNameIsTooShort, "Patient maiden name must be more than 1 character in length.");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientMothersMaidenNameIsInvalid);id.setImplementationDescription("Patient maiden name must not be on the specified invalid name list ('X','UN','UK','UNK', 'UNKN', 'NONE').");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientMotherSMaidenNameHasJunkName);id.setImplementationDescription("Patient maiden name must not be on the specified junk name list ('UNKNOWN','NONE','NO LAST NAM','NO LAST NAME', 'NONAME', 'NO NAME', 'EMPTY', 'MISSING').");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientMotherSMaidenNameHasInvalidPrefixes);id.setImplementationDescription("Patient maiden name must not be on the specified invalid prefixes name list ('ZZ','XX').");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientMotherSMaidenNameIsTooShort);id.setImplementationDescription("Patient maiden name must be more than 1 character in length.");
   }
 
   @Override

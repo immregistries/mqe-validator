@@ -18,13 +18,13 @@ public class VaccinationCreationDateIsValid extends ValidationRule<MqeVaccinatio
 	
 	public VaccinationCreationDateIsValid() {
 		super();
-		this.addRuleDocumentation(Arrays.asList(
+		this.addRuleDetections(Arrays.asList(
 				Detection.VaccinationSystemEntryDateIsInvalid,
 				Detection.VaccinationSystemEntryDateIsMissing,
 				Detection.VaccinationSystemEntryDateIsInTheFuture
 		));
-	    this.addImplementationMessage(Detection.VaccinationSystemEntryDateIsInTheFuture, "Vaccination System Entry date is in the future or is after message recieved date.");
-	    this.addImplementationMessage(Detection.VaccinationSystemEntryDateIsInvalid, "Vaccination System Entry date cannot be translated to a date.");
+	    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationSystemEntryDateIsInTheFuture);id.setImplementationDescription("Vaccination System Entry date is in the future or is after message recieved date.");
+	    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationSystemEntryDateIsInvalid);id.setImplementationDescription("Vaccination System Entry date cannot be translated to a date.");
 
 	}
 

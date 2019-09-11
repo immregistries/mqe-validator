@@ -19,16 +19,16 @@ public class PatientMultipleBirthsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientMultipleBirthsValid() {
-    this.addRuleDocumentation(Arrays.asList(
+    this.addRuleDetections(Arrays.asList(
         Detection.PatientBirthIndicatorIsMissing,
         Detection.PatientBirthOrderIsMissingAndMultipleBirthIndicated,
         Detection.PatientBirthOrderIsInvalid,
         Detection.PatientBirthIndicatorIsInvalid));
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_BIRTH_ORDER));
+    this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_BIRTH_ORDER));
     
-    this.addImplementationMessage(Detection.PatientBirthOrderIsMissingAndMultipleBirthIndicated, "Multiple birth indicator was sent as Yes but birth order was not.");
-    this.addImplementationMessage(Detection.PatientBirthOrderIsInvalid, "Multiple birth indicator was sent as No but birth order was sent with value > 1.");
-    this.addImplementationMessage(Detection.PatientBirthIndicatorIsInvalid, "Birth indicator is something other than 'Y' or 'N'.");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthOrderIsMissingAndMultipleBirthIndicated);id.setImplementationDescription("Multiple birth indicator was sent as Yes but birth order was not.");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthOrderIsInvalid);id.setImplementationDescription("Multiple birth indicator was sent as No but birth order was sent with value > 1.");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthIndicatorIsInvalid);id.setImplementationDescription("Birth indicator is something other than 'Y' or 'N'.");
   }
 
   @Override

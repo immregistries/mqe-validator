@@ -21,17 +21,17 @@ public class PatientBirthDateIsReasonable extends ValidationRule<MqePatient> {
   }
 
   public PatientBirthDateIsReasonable() {
-    this.addRuleDocumentation(
+    this.addRuleDetections(
         Arrays.asList(Detection.PatientBirthDateIsVeryLongAgo,
             Detection.PatientBirthDateIsOn15ThDayOfMonth,
             Detection.PatientBirthDateIsOnFirstDayOfMonth,
             Detection.PatientBirthDateIsOnLastDayOfMonth,
             Detection.PatientBirthDateIsAfterSubmission));
-    this.addImplementationMessage(Detection.PatientBirthDateIsVeryLongAgo, "Patient is over 120 years old.");
-    this.addImplementationMessage(Detection.PatientBirthDateIsAfterSubmission, "Patient birth date is over 2 hours after the message header date.");
-    this.addImplementationMessage(Detection.PatientBirthDateIsOnFirstDayOfMonth, "Patient birth date is on the first day of the month.");
-    this.addImplementationMessage(Detection.PatientBirthDateIsOn15ThDayOfMonth, "Patient birth date is on the 15th day of the month.");
-    this.addImplementationMessage(Detection.PatientBirthDateIsOnLastDayOfMonth, "Patient birth date is on the last day of the month.");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsVeryLongAgo);id.setImplementationDescription("Patient is over 120 years old.");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsAfterSubmission);id.setImplementationDescription("Patient birth date is over 2 hours after the message header date.");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsOnFirstDayOfMonth);id.setImplementationDescription("Patient birth date is on the first day of the month.");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsOn15ThDayOfMonth);id.setImplementationDescription("Patient birth date is on the 15th day of the month.");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsOnLastDayOfMonth);id.setImplementationDescription("Patient birth date is on the last day of the month.");
   }
 
   @Override

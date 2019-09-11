@@ -18,10 +18,10 @@ public class PatientPhoneIsValid extends ValidationRule<MqePatient> {
   private PhoneValidator phValr = PhoneValidator.INSTANCE;
 
   public PatientPhoneIsValid() {
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_PHONE));
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_PHONE_TEL_USE_CODE));
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_PHONE_TEL_EQUIP_CODE));
-    this.addImplementationMessage(Detection.PatientPhoneIsInvalid, "Only validating North American Phone Numbers. Area code must be 3 valid digits (First digit can't be 0 or 1. Can't end with '11'). Local number must be 7 valid digits (First digit can't be 0 or 1. First 3 digits can't be '555'. 2nd and 3rd digits can't both be '1'.).");
+    this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_PHONE));
+    this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_PHONE_TEL_USE_CODE));
+    this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_PHONE_TEL_EQUIP_CODE));
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientPhoneIsInvalid);id.setImplementationDescription("Only validating North American Phone Numbers. Area code must be 3 valid digits (First digit can't be 0 or 1. Can't end with '11'). Local number must be 7 valid digits (First digit can't be 0 or 1. First 3 digits can't be '555'. 2nd and 3rd digits can't both be '1'.).");
   }
 
   @Override

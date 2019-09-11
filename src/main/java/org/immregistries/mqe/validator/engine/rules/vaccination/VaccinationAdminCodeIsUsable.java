@@ -22,8 +22,8 @@ public class VaccinationAdminCodeIsUsable extends ValidationRule<MqeVaccination>
   }
 
   public VaccinationAdminCodeIsUsable() {
-    this.addRuleDocumentation(Detection.VaccinationAdminCodeIsNotUsable);
-    this.addImplementationMessage(Detection.VaccinationAdminCodeIsNotUsable, "Vaccination Administered Code could not be derived from given NDC or CVX.");
+    this.addRuleDetection(Detection.VaccinationAdminCodeIsNotUsable);
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotUsable);id.setImplementationDescription("Vaccination Administered Code could not be derived from given NDC or CVX.");
   }
 
   @Override

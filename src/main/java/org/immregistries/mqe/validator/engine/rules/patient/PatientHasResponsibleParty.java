@@ -19,8 +19,8 @@ public class PatientHasResponsibleParty extends ValidationRule<MqePatient> {
   }
 
   public PatientHasResponsibleParty() {
-    this.addRuleDocumentation(Detection.PatientGuardianResponsiblePartyIsMissing);
-    this.addImplementationMessage(Detection.PatientGuardianResponsiblePartyIsMissing, "Responsible party missing and/or responsible party relationship code missing.");
+    this.addRuleDetection(Detection.PatientGuardianResponsiblePartyIsMissing);
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianResponsiblePartyIsMissing);id.setImplementationDescription("Responsible party missing and/or responsible party relationship code missing.");
   }
 
   @Override

@@ -23,18 +23,18 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
   }
 
   public VaccinationAdminCodeIsValid() {
-    this.addRuleDocumentation(Arrays
+    this.addRuleDetections(Arrays
         .asList(
             Detection.VaccinationAdminCodeIsNotSpecific,
             Detection.VaccinationAdminCodeIsValuedAsNotAdministered,
             Detection.VaccinationAdminCodeIsValuedAsUnknown,
             Detection.VaccinationAdminCodeIsNotVaccine,
             Detection.VaccinationAdminCodeIsUnrecognized));
-    this.addImplementationMessage(Detection.VaccinationAdminCodeIsNotSpecific, "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has an unspecified value type.");
-    this.addImplementationMessage(Detection.VaccinationAdminCodeIsNotVaccine, "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a non-vaccine value type.");
-    this.addImplementationMessage(Detection.VaccinationAdminCodeIsUnrecognized, "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) could not be derived.");
-    this.addImplementationMessage(Detection.VaccinationAdminCodeIsValuedAsNotAdministered, "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a value of 998.");
-    this.addImplementationMessage(Detection.VaccinationAdminCodeIsValuedAsUnknown, "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a value of 999.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotSpecific);id.setImplementationDescription("Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has an unspecified value type.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotVaccine);id.setImplementationDescription("Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a non-vaccine value type.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsUnrecognized);id.setImplementationDescription("Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) could not be derived.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsValuedAsNotAdministered);id.setImplementationDescription("Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a value of 998.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsValuedAsUnknown);id.setImplementationDescription("Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a value of 999.");
   }
 
   @Override

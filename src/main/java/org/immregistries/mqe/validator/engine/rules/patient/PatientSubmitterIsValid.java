@@ -15,7 +15,7 @@ import org.immregistries.mqe.vxu.VxuField;
 public class PatientSubmitterIsValid extends ValidationRule<MqePatient> {
 
   public PatientSubmitterIsValid() {
-    this.addRuleDocumentation(Arrays.asList(
+    this.addRuleDetections(Arrays.asList(
         Detection.PatientSubmitterIdIsMissing,
         Detection.PatientSubmitterIdAuthorityIsMissing,
         Detection.PatientSubmitterIdTypeCodeIsMissing));

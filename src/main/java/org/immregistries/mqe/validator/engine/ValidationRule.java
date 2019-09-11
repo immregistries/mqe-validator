@@ -1,6 +1,5 @@
 package org.immregistries.mqe.validator.engine;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -14,6 +13,7 @@ import org.immregistries.mqe.validator.engine.codes.CodeRepository;
 import org.immregistries.mqe.validator.engine.common.CodeHandler;
 import org.immregistries.mqe.validator.engine.common.CommonRules;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
+import org.immregistries.mqe.vxu.VxuField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,8 +30,8 @@ public abstract class ValidationRule<T> {
    * I wanted this to be a singleton because I know I'll have tons of rule objects floating around
    * and I wanted to limit the number of util objects.
    */
-  protected final Set<Detection> ruleDetections = new HashSet<Detection>();
-  protected final Set<ImplementationDetail> ruleDocumentation = new HashSet<ImplementationDetail>();
+  private final Set<Detection> ruleDetections = new HashSet<>();
+  private final Set<ImplementationDetail> ruleDocumentation = new HashSet<>();
   protected final ValidationUtility util = ValidationUtility.INSTANCE;
   protected final CommonRules common = CommonRules.INSTANCE;
   protected final CodeHandler codr = CodeHandler.INSTANCE;
@@ -109,24 +109,44 @@ public abstract class ValidationRule<T> {
 		return ruleDocumentation;
 	}
 
-	public void addRuleDocumentation(Detection detection) {
-		List<Detection> detections = new ArrayList<Detection>();
-		detections.add(detection);
-		this.addRuleDocumentation(detections);
-	}
+//	public void addRuleDetections(Detection detection) {
+//		List<Detection> detections = new ArrayList<Detection>();
+//		detections.add(detection);
+//		this.addRuleDetection(Detections);
+//	}
   
-	public void addRuleDocumentation(List<Detection> detections) {
-		for (Detection detection : detections) {
-			if (detection != null) {
-				this.ruleDetections.add(detection);
-				this.ruleDocumentation.add(new ImplementationDetail(detection));
-			}
-		}
-	}
-	
-	public void addImplementationMessage(Detection detection, String message) {
-		ImplementationDetail implDetail = new ImplementationDetail(detection, message);
-		this.ruleDocumentation.remove(implDetail);
-		this.ruleDocumentation.add(implDetail);
-	}
+//	public void addRuleDetections(List<Detection> detections) {
+//		for (Detection detection : detections) {
+//			if (detection != null) {
+//				this.ruleDetections.add(detection);
+//				this.ruleDocumentation.add(new ImplementationDetail(detection));
+//			}
+//		}
+//	}
+
+  public ImplementationDetail addRuleDetection(Detection d) {
+    this.ruleDetections.add(d);
+    ImplementationDetail id = new ImplementationDetail(d);
+    this.ruleDocumentation.add(id);
+    return id;
+  }
+
+  protected void addRuleDetections(List<Detection> detectionsForField) {
+    for (Detection d : detectionsForField) {
+      this.addRuleDetection(d);
+    }
+  }
+
+
+  protected void addRuleDetectionsForFields(VxuField... fields) {
+    for (VxuField f : fields) {
+      this.addRuleDetections(this.codr.getDetectionsForField(f));
+    }
+  }
+
+//	public void addImplementationMessage(Detection detection, String message) {
+//		ImplementationDetail implDetail = new ImplementationDetail(detection, message);
+//		this.ruleDocumentation.remove(implDetail);
+//		this.ruleDocumentation.add(implDetail);
+//	}
 }

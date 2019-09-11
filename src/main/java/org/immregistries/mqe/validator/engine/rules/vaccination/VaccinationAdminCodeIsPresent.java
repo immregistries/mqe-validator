@@ -14,8 +14,8 @@ import org.immregistries.mqe.vxu.VxuField;
 public class VaccinationAdminCodeIsPresent extends ValidationRule<MqeVaccination> {
 
   public VaccinationAdminCodeIsPresent() {
-    this.addRuleDocumentation(Detection.VaccinationAdminCodeIsMissing);
-    this.addImplementationMessage(Detection.VaccinationAdminCodeIsNotUsable, "NDC, CVX, or CPT must be given in order to have a Vaccination Administered Code.");
+    this.addRuleDetection(Detection.VaccinationAdminCodeIsMissing);
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotUsable);id.setImplementationDescription("NDC, CVX, or CPT must be given in order to have a Vaccination Administered Code.");
   }
 
   @Override

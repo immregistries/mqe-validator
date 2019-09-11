@@ -16,10 +16,10 @@ import org.immregistries.mqe.vxu.MqeVaccination;
 public class VaccinationIsForeign extends ValidationRule<MqeVaccination> {
 
   public VaccinationIsForeign() {
-    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationAdminCodeIsForeign,
+    this.addRuleDetections(Arrays.asList(Detection.VaccinationAdminCodeIsForeign,
         Detection.VaccinationHistoricalCodeIsForeign));
-    this.addImplementationMessage(Detection.VaccinationAdminCodeIsForeign, "Administered Vaccination has a foreign CVX vaccine code.");
-    this.addImplementationMessage(Detection.VaccinationHistoricalCodeIsForeign, "Historical Vaccination has a foreign CVX vaccine code.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsForeign);id.setImplementationDescription("Administered Vaccination has a foreign CVX vaccine code.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationHistoricalCodeIsForeign);id.setImplementationDescription("Historical Vaccination has a foreign CVX vaccine code.");
 
   }
 

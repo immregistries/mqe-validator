@@ -26,10 +26,10 @@ public class VaccinationCvxUseIsValid extends ValidationRule<MqeVaccination> {
   }
 
   public VaccinationCvxUseIsValid() {
-	  this.addRuleDocumentation(Arrays.asList(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange,
+	  this.addRuleDetections(Arrays.asList(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange,
 		        Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange));
-	  this.addImplementationMessage(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange, "Vaccination Administered Date is outside of expected vaccine date range.");
-	  this.addImplementationMessage(Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange, "Vaccination Administered Date is outside of licensed vaccine date range.");
+	  ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange);id.setImplementationDescription("Vaccination Administered Date is outside of expected vaccine date range.");
+	  ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange);id.setImplementationDescription("Vaccination Administered Date is outside of licensed vaccine date range.");
   }
 
   @Override

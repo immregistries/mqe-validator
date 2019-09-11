@@ -6,6 +6,7 @@ import java.util.List;
 import org.immregistries.codebase.client.generated.Code;
 import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -23,10 +24,16 @@ public class VaccinationAdminDateIsValidForPatientAge extends ValidationRule<Mqe
   }
 
   public VaccinationAdminDateIsValidForPatientAge() {
-    this.addRuleDocumentation(Detection.VaccinationAdminDateIsBeforeOrAfterWhenExpectedForPatientAge);
-    this.addRuleDocumentation(Detection.VaccinationAdminDateIsBeforeOrAfterWhenValidForPatientAge);
-    this.addImplementationMessage(Detection.VaccinationAdminDateIsBeforeOrAfterWhenExpectedForPatientAge, "Vaccination Administration Date is outside of the expected date range for the patient's age.");
-    this.addImplementationMessage(Detection.VaccinationAdminDateIsBeforeOrAfterWhenValidForPatientAge, "Vaccination Administration Date is outside of the valid date range for the patient's age.");
+    ImplementationDetail id =
+        this.addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterWhenExpectedForPatientAge);
+        id.setImplementationDescription("CodeBase specifies the expected age range for this vaccination.  We compare the patients age at administration to this age range.");
+        id.setHowToFix("Vaccinations given outside of the expected age range may not be effective. ");
+        id.setWhyToFix("Consider reviewing your medical practices.");
+    ImplementationDetail id2 =
+    this.addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterWhenValidForPatientAge);
+        id2.setImplementationDescription("CodeBase specifies the valid age range for this vaccination.  We compare the patients age at administration to this age range.");
+        id2.setHowToFix("Vaccinations given outside of the valid age range are not effective, and do not support desired public health outcomes.  It's a waste of money");
+        id2.setWhyToFix("Make sure your administration date is accurate.  If it is, evaluate why you are administering doses outside of the valid age range.");
   }
 
   @Override

@@ -17,7 +17,7 @@ public class VaccinationAdminCodeCptIsValid extends ValidationRule<MqeVaccinatio
   }
 
   public VaccinationAdminCodeCptIsValid() {
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_CPT_CODE));
+    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_CPT_CODE));
   }
 
   @Override

@@ -14,10 +14,10 @@ import org.immregistries.mqe.vxu.VxuField;
 public class PatientNameTypeIsValid extends ValidationRule<MqePatient> {
 
   public PatientNameTypeIsValid() {
-    this.addRuleDocumentation(Arrays.asList(Detection.PatientNameTypeCodeIsMissing));
-    this.addRuleDocumentation(Arrays.asList(Detection.PatientNameTypeCodeIsNotValuedLegal));
+    this.addRuleDetections(Arrays.asList(Detection.PatientNameTypeCodeIsMissing));
+    this.addRuleDetections(Arrays.asList(Detection.PatientNameTypeCodeIsNotValuedLegal));
     
-    this.addImplementationMessage(Detection.PatientNameTypeCodeIsNotValuedLegal, "Patient Name Type is not 'L' for legal.");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientNameTypeCodeIsNotValuedLegal);id.setImplementationDescription("Patient Name Type is not 'L' for legal.");
   }
 
   @Override

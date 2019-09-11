@@ -19,11 +19,11 @@ public class PatientDeathDateIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientDeathDateIsValid() {
-    this.addRuleDocumentation(Arrays.asList(Detection.PatientDeathDateIsMissing,
+    this.addRuleDetections(Arrays.asList(Detection.PatientDeathDateIsMissing,
         Detection.PatientDeathDateIsInvalid, Detection.PatientDeathDateIsInFuture,
         Detection.PatientDeathDateIsBeforeBirth));
-    this.addImplementationMessage(Detection.PatientDeathDateIsMissing, "The death indicator is marked as dead but there is no death date.");
-    this.addImplementationMessage(Detection.PatientDeathDateIsInvalid, "The death date cannot be translated to a date.");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsMissing);id.setImplementationDescription("The death indicator is marked as dead but there is no death date.");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsInvalid);id.setImplementationDescription("The death date cannot be translated to a date.");
   }
 
   @Override

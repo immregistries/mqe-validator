@@ -20,7 +20,7 @@ public class PatientImmunityIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientImmunityIsValid() {
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.PATIENT_IMMUNITY_CODE));
+    this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_IMMUNITY_CODE));
   }
 
   @Override

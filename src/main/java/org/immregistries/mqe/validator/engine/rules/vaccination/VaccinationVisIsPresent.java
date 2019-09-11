@@ -19,8 +19,8 @@ public class VaccinationVisIsPresent extends ValidationRule<MqeVaccination> {
 
 
   public VaccinationVisIsPresent() {
-    this.addRuleDocumentation(Detection.VaccinationVisIsMissing);
-    this.addImplementationMessage(Detection.VaccinationVisIsMissing, "Administered Vaccine is missing Vis or Vis is missing a document code, CVX and Published Date.");
+    this.addRuleDetection(Detection.VaccinationVisIsMissing);
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisIsMissing);id.setImplementationDescription("Administered Vaccine is missing Vis or Vis is missing a document code, CVX and Published Date.");
   }
 
   @Override

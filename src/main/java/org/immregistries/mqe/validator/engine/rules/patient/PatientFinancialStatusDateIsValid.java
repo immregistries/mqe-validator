@@ -19,9 +19,9 @@ public class PatientFinancialStatusDateIsValid extends ValidationRule<MqePatient
   }
 
   public PatientFinancialStatusDateIsValid() {
-    this.addRuleDocumentation(Arrays.asList(Detection.PatientVfcEffectiveDateIsBeforeBirth,
+    this.addRuleDetections(Arrays.asList(Detection.PatientVfcEffectiveDateIsBeforeBirth,
         Detection.PatientVfcEffectiveDateIsInFuture, Detection.PatientVfcEffectiveDateIsMissing));
-    this.addImplementationMessage(Detection.PatientVfcEffectiveDateIsInFuture, "Message received date is before the patient VFC Effective date.");
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientVfcEffectiveDateIsInFuture);id.setImplementationDescription("Message received date is before the patient VFC Effective date.");
   }
 
   @Override

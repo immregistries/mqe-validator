@@ -18,14 +18,14 @@ public class VaccinationAdministeredAmtIsValid extends ValidationRule<MqeVaccina
   }
 
   public VaccinationAdministeredAmtIsValid() {
-    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationAdministeredAmountIsMissing,
+    this.addRuleDetections(Arrays.asList(Detection.VaccinationAdministeredAmountIsMissing,
         Detection.VaccinationAdministeredAmountIsValuedAsUnknown,
         Detection.VaccinationAdministeredAmountIsValuedAsZero,
         Detection.VaccinationAdministeredAmountIsInvalid));
-    this.addImplementationMessage(Detection.VaccinationAdministeredAmountIsMissing, "Vaccination Administered Amount is missing or equal to 999.");
-    this.addImplementationMessage(Detection.VaccinationAdministeredAmountIsValuedAsUnknown, "Vaccination Administered Amount is missing or equal to 999.");
-    this.addImplementationMessage(Detection.VaccinationAdministeredAmountIsValuedAsZero, "Vaccination Administered Amount is 0.");
-    this.addImplementationMessage(Detection.VaccinationAdministeredAmountIsInvalid, "Vaccination Administered Amount could not be converted into a number.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdministeredAmountIsMissing);id.setImplementationDescription("Vaccination Administered Amount is missing or equal to 999.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdministeredAmountIsValuedAsUnknown);id.setImplementationDescription("Vaccination Administered Amount is missing or equal to 999.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdministeredAmountIsValuedAsZero);id.setImplementationDescription("Vaccination Administered Amount is 0.");
+    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdministeredAmountIsInvalid);id.setImplementationDescription("Vaccination Administered Amount could not be converted into a number.");
   }
 
   @Override

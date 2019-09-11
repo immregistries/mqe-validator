@@ -19,12 +19,12 @@ public class PatientCreationDateIsValid extends ValidationRule<MqePatient> {
 	
 	public PatientCreationDateIsValid() {
 		super();
-		this.addRuleDocumentation(Arrays.asList(
+		this.addRuleDetections(Arrays.asList(
 				Detection.PatientSystemEntryDateIsInvalid,
 				Detection.PatientSystemEntryDateIsMissing,
 				Detection.PatientSystemEntryDateIsInTheFuture
 		));
-		this.addImplementationMessage(Detection.PatientSystemEntryDateIsInvalid, "Patient system entry date cannot be translated to a date.");
+		ImplementationDetail id = this.addRuleDetection(Detection.PatientSystemEntryDateIsInvalid);id.setImplementationDescription("Patient system entry date cannot be translated to a date.");
 	}
 
 	@Override

@@ -16,8 +16,33 @@ public class NextOfKinNameIsValid extends ValidationRule<MqeNextOfKin> {
   public NextOfKinNameIsValid() {
     this.addRuleDetections(Arrays.asList(Detection.NextOfKinNameIsMissing,
         Detection.NextOfKinNameFirstIsMissing, Detection.NextOfKinNameLastIsMissing));
-    ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinNameIsMissing);
-    id.setImplementationDescription("Next of kin is missing both first and last names.");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinNameFirstIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinNameLastIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinNameIsMissing);
+      id.setImplementationDescription("Next of kin is missing both first and last names.");
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override

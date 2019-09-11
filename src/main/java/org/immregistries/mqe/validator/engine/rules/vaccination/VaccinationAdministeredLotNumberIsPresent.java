@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -20,7 +21,16 @@ public class VaccinationAdministeredLotNumberIsPresent extends
 
   public VaccinationAdministeredLotNumberIsPresent() {
     this.addRuleDetections(Arrays.asList( Detection.VaccinationLotNumberIsMissing));
-  }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationLotNumberIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }  }
 
   @Override
   protected ValidationRuleResult executeRule(MqeVaccination target, MqeMessageReceived m) {

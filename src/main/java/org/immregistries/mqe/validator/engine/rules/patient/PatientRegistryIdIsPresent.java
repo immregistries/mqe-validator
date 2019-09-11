@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -15,6 +16,17 @@ public class PatientRegistryIdIsPresent extends ValidationRule<MqePatient> {
 
   public PatientRegistryIdIsPresent() {
     this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_REGISTRY_ID));
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientRegistryIdIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+
   }
 
   @Override

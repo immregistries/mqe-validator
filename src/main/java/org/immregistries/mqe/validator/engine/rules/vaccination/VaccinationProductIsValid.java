@@ -30,13 +30,22 @@ public class VaccinationProductIsValid extends ValidationRule<MqeVaccination> {
           this.addRuleDetection(Detection.VaccinationProductIsInvalidForDateAdministered);
       id.setImplementationDescription(
           "Vaccination product was used outside of the valid date range defined for this product. ");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationProductIsUnexpectedForDateAdministered);
       id.setImplementationDescription(
           "Vaccination product was used outside of the expected date range defined for this product. ");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
+    
   }
 
   @Override

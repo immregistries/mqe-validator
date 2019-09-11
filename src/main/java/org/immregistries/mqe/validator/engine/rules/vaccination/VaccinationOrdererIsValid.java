@@ -2,6 +2,8 @@ package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -20,6 +22,87 @@ public class VaccinationOrdererIsValid extends ValidationRule<MqeVaccination> {
   public VaccinationOrdererIsValid() {
     this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_ORDERED_BY));
     this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_RECORDED_BY));
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationOrderedByIsDeprecated);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationOrderedByIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationOrderedByIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationOrderedByIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationRecordedByIsDeprecated);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationRecordedByIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationRecordedByIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationRecordedByIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+
   }
 
   @Override

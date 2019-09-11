@@ -22,11 +22,21 @@ public class NextOfKinPhoneIsValid extends ValidationRule<MqeNextOfKin> {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinPhoneNumberIsIncomplete);
       id.setImplementationDescription(
           "Next of kin phone number is missing area code or local number.");
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinPhoneNumberIsInvalid);
       id.setImplementationDescription(
           "Phone number is invalid according to the North American Numbering Plan (NANP).");
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
   }
 

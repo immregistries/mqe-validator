@@ -25,11 +25,19 @@ public class VaccinationRefusalReasonIsValid extends ValidationRule<MqeVaccinati
           this.addRuleDetection(Detection.VaccinationRefusalReasonConflictsCompletionStatus);
       id.setImplementationDescription(
           "Vaccination is marked as completed but refusal code was given.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationRefusalReasonIsMissing);
       id.setImplementationDescription(
           "Vaccination completion was refused but refusal code is missing. ");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
   }
 

@@ -12,34 +12,45 @@ import org.immregistries.mqe.validator.engine.codes.AdministeredLikelihood;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
 
-public class VaccinationSourceIsHistoricalButAppearsAdministered extends ValidationRule<MqeVaccination> {
+public class VaccinationSourceIsHistoricalButAppearsAdministered
+    extends ValidationRule<MqeVaccination> {
 
-    AdministeredLikelihood confidenceCalculator = AdministeredLikelihood.INSTANCE;
+  AdministeredLikelihood confidenceCalculator = AdministeredLikelihood.INSTANCE;
 
-    @Override
-    protected final Class[] getDependencies() {
-        return new Class[] { VaccinationSourceIsAdministered.class };
+  @Override
+  protected final Class[] getDependencies() {
+    return new Class[] {VaccinationSourceIsAdministered.class};
+  }
+
+  public VaccinationSourceIsHistoricalButAppearsAdministered() {
+    this.addRuleDetections(
+        Arrays.asList(Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical));
+    {
+      ImplementationDetail id = this.addRuleDetection(
+          Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical);
+      id.setImplementationDescription(
+          "Vaccination information source is reported as administered but based on our scoring calculation (how recently shot was given and how much data is known about the shot) the shot seems to be historical.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
 
-    public VaccinationSourceIsHistoricalButAppearsAdministered() {
-        this.addRuleDetections(Arrays.asList(
-                Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical));
-        ImplementationDetail id = this.addRuleDetection(Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical);id.setImplementationDescription("Vaccination information source is reported as administered but based on our scoring calculation (how recently shot was given and how much data is known about the shot) the shot seems to be historical.");
+  }
+
+  @Override
+  protected ValidationRuleResult executeRule(MqeVaccination target, MqeMessageReceived m) {
+    List<ValidationReport> issues = new ArrayList<ValidationReport>();
+    boolean passed = true;
+
+    int administeredScore = confidenceCalculator.administeredLikelihoodScore(target, m);
+
+    if (administeredScore < 10) {
+      issues.add(
+          Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical.build(target));
+      passed = false;
     }
 
-    @Override
-    protected ValidationRuleResult executeRule(MqeVaccination target, MqeMessageReceived m) {
-        List<ValidationReport> issues = new ArrayList<ValidationReport>();
-        boolean passed = true;
-
-        int administeredScore = confidenceCalculator.administeredLikelihoodScore(target, m);
-
-        if(administeredScore < 10) {
-            issues.add(Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical
-                    .build(target));
-            passed = false;
-        }
-
-        return buildResults(issues, passed);
-    }
+    return buildResults(issues, passed);
+  }
 }

@@ -21,13 +21,61 @@ public class PatientProtectionIndicatorIsValid extends ValidationRule<MqePatient
         Detection.PatientProtectionIndicatorIsValuedAsNo));
     {
       ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientProtectionIndicatorIsDeprecated);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientProtectionIndicatorIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientProtectionIndicatorIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientProtectionIndicatorIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
           this.addRuleDetection(Detection.PatientProtectionIndicatorIsValuedAsYes);
       id.setImplementationDescription("Patient Protection Indicator value is 'Y'.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientProtectionIndicatorIsValuedAsNo);
       id.setImplementationDescription("Patient Protection Indicator value is 'N'.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
   }
 

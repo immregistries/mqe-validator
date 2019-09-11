@@ -504,7 +504,7 @@ public enum Detection implements MqeDetection {
   VaccinationCptCodeIsIgnored(VACCINATION_CPT_CODE, IGNORED, INFO, MQE0301),
   VaccinationCptCodeIsInvalid(VACCINATION_CPT_CODE, INVALID, WARN, MQE0302),
   VaccinationCptCodeIsInvalidForDateAdministered(VACCINATION_CPT_CODE, INVALID_FOR_DATE_ADMINISTERED, WARN, MQE0489),
-//  VaccinationCptCodeIsMissing(VACCINATION_CPT_CODE, MISSING, ACCEPT,  ErrorCode.MQE0303),
+  VaccinationCptCodeIsMissing(VACCINATION_CPT_CODE, MISSING, ACCEPT, MQE0303),
   VaccinationCptCodeIsUnexpectedForDateAdministered(VACCINATION_CPT_CODE, UNEXPECTED_FOR_DATE_ADMINISTERED, ACCEPT, MQE0488),
   VaccinationCptCodeIsUnrecognized(VACCINATION_CPT_CODE, UNRECOGNIZED, WARN, MQE0304),
 

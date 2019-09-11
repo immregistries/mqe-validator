@@ -27,18 +27,42 @@ public class PatientMultipleBirthsValid extends ValidationRule<MqePatient> {
 
     {
       ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientBirthIndicatorIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
           this.addRuleDetection(Detection.PatientBirthOrderIsMissingAndMultipleBirthIndicated);
       id.setImplementationDescription(
           "Multiple birth indicator was sent as Yes but birth order was not.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthOrderIsInvalid);
       id.setImplementationDescription(
           "Multiple birth indicator was sent as No but birth order was sent with value > 1.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthIndicatorIsInvalid);
       id.setImplementationDescription("Birth indicator is something other than 'Y' or 'N'.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+
     }
   }
 

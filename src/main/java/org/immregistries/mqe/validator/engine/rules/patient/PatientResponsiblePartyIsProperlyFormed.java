@@ -30,16 +30,81 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
 
     {
       ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientGuardianAddressStateIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientGuardianAddressCityIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientGuardianAddressZipIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientGuardianNameFirstIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientGuardianNameLastIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+
+    {
+      ImplementationDetail id =
           this.addRuleDetection(Detection.PatientGuardianNameIsSameAsUnderagePatient);
       id.setImplementationDescription(
           "Patient first and last name match the guardian first and last name.");
     }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientGuardianPhoneIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+
 
     if (props.isAddressCleanserEnabled()) {
       this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);
       ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);
       id.setImplementationDescription(
           "Patient Guardian Address is invalid according to Smarty Streets.");
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
   }
 

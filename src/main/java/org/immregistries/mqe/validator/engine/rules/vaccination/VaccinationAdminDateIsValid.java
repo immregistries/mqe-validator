@@ -26,6 +26,15 @@ public class VaccinationAdminDateIsValid extends ValidationRule<MqeVaccination> 
         Detection.VaccinationAdminDateIsBeforeBirth,
         Detection.VaccinationAdminDateIsAfterSystemEntryDate));
     {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsInvalid);
       id.setImplementationDescription(
           "Vaccination Administered Date annot be translated to a date.");

@@ -30,6 +30,10 @@ public class VaccinationCreationTimeliness extends ValidationRule<MqeVaccination
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCreationIsVeryLate);
       id.setImplementationDescription(
           "Vaccination Administered Date and System Entry Date are more than 14 days but less than or equal to 30 days apart.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
 
 
@@ -37,16 +41,28 @@ public class VaccinationCreationTimeliness extends ValidationRule<MqeVaccination
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCreationIsTooLate);
       id.setImplementationDescription(
           "Vaccination Administered Date and System Entry Date are over 30 days apart.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCreationIsOnTime);
       id.setImplementationDescription(
           "Vaccination Administered Date and System Entry Date less than or equal to 3 days of eachother.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCreationIsLate);
       id.setImplementationDescription(
           "Vaccination Administered Date and System Entry Date are are more than 3 days but less than or equal to 14 days apart.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
   }
 

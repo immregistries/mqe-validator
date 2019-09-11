@@ -17,13 +17,19 @@ public class NextOfKinNameIsNotSameAsPatient extends ValidationRule<MqeNextOfKin
   @Override
   protected final Class[] getDependencies() {
 
-    return new Class[] {PatientNameIsValid.class,
-        NextOfKinNameIsValid.class};
+    return new Class[] {PatientNameIsValid.class, NextOfKinNameIsValid.class};
   }
 
   public NextOfKinNameIsNotSameAsPatient() {
     this.addRuleDetection(Detection.PatientGuardianNameIsSameAsUnderagePatient);
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianNameIsSameAsUnderagePatient);id.setImplementationDescription("Next of Kin is a patient guardian (caregiver, father, grandparent, mother, parent, or guardian) and has same last name, first name, middle name, and suffix as the patient.");
+    ImplementationDetail id =
+        this.addRuleDetection(Detection.PatientGuardianNameIsSameAsUnderagePatient);
+    id.setImplementationDescription(
+        "Next of Kin is a patient guardian (caregiver, father, grandparent, mother, parent, or guardian) and has same last name, first name, middle name, and suffix as the patient.");
+    // TODO Complete HowToFix
+    id.setHowToFix("");
+    // TODO Complete WhyToFix
+    id.setWhyToFix("");
   }
 
   @Override

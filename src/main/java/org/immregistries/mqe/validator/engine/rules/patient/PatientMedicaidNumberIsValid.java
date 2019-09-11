@@ -23,7 +23,23 @@ public class PatientMedicaidNumberIsValid extends ValidationRule<MqePatient> {
   public PatientMedicaidNumberIsValid() {
     this.addRuleDetections(Arrays.asList(Detection.PatientMedicaidNumberIsMissing,
         Detection.PatientMedicaidNumberIsInvalid));
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientMedicaidNumberIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
     ImplementationDetail id = this.addRuleDetection(Detection.PatientMedicaidNumberIsInvalid);id.setImplementationDescription("Medicaid Number is 9 digits long, does not have six of the same digits in a row and is not '123456789' or '987654321'");
+    // TODO Complete HowToFix
+    id.setHowToFix("");
+    // TODO Complete WhyToFix
+    id.setWhyToFix("");
+    }
   }
 
   /*

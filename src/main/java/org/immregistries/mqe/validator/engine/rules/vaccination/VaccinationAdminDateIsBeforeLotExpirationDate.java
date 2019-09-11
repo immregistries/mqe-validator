@@ -13,30 +13,39 @@ import org.immregistries.mqe.vxu.MqeVaccination;
 
 public class VaccinationAdminDateIsBeforeLotExpirationDate extends ValidationRule<MqeVaccination> {
 
-	@Override
-	protected final Class[] getDependencies() {
-		return new Class[] { VaccinationAdminDateIsValid.class };
-	}
+  @Override
+  protected final Class[] getDependencies() {
+    return new Class[] {VaccinationAdminDateIsValid.class};
+  }
 
-	public VaccinationAdminDateIsBeforeLotExpirationDate() {
-		this.addRuleDetection(Detection.VaccinationAdminDateIsAfterLotExpirationDate);
-		ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsAfterLotExpirationDate);id.setImplementationDescription("Vaccine administered date is after Lot expiration date");
-	}
+  public VaccinationAdminDateIsBeforeLotExpirationDate() {
+    this.addRuleDetection(Detection.VaccinationAdminDateIsAfterLotExpirationDate);
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationAdminDateIsAfterLotExpirationDate);
+      id.setImplementationDescription("Vaccine administered date is after Lot expiration date");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+  }
 
-	@Override
-	protected ValidationRuleResult executeRule(MqeVaccination target, MqeMessageReceived m) {
-		List<ValidationReport> issues = new ArrayList<ValidationReport>();
-	    boolean passed = true;
+  @Override
+  protected ValidationRuleResult executeRule(MqeVaccination target, MqeMessageReceived m) {
+    List<ValidationReport> issues = new ArrayList<ValidationReport>();
+    boolean passed = true;
 
-	    Date adminDate = target.getAdminDate();
-	    Date lotExpirationDate = target.getExpirationDate();
+    Date adminDate = target.getAdminDate();
+    Date lotExpirationDate = target.getExpirationDate();
 
-	    if (lotExpirationDate != null && !adminDate.before(lotExpirationDate)) {
-	      issues.add(Detection.VaccinationAdminDateIsAfterLotExpirationDate.build(adminDate.toString(), target));
-	      passed = false;
-	    }
+    if (lotExpirationDate != null && !adminDate.before(lotExpirationDate)) {
+      issues.add(Detection.VaccinationAdminDateIsAfterLotExpirationDate.build(adminDate.toString(),
+          target));
+      passed = false;
+    }
 
-	    return buildResults(issues, passed);
-	}
+    return buildResults(issues, passed);
+  }
 
 }

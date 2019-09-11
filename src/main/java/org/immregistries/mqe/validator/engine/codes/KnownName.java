@@ -77,7 +77,6 @@ public class KnownName {
       sb.append(sdf.format(birthDate));
       sb.append(" ");
     }
-    // TODO Auto-generated method stub
     return sb.toString();
   }
 

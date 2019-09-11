@@ -2,6 +2,8 @@ package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -17,6 +19,27 @@ public class PatientRegistryIdIsValid extends ValidationRule<MqePatient> {
 
   public PatientRegistryIdIsValid() {
     this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_REGISTRY_ID));
+    
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientRegistryIdIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientRegistryIdIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override

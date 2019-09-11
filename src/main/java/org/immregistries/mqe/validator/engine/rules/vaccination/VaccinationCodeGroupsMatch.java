@@ -16,7 +16,16 @@ public class VaccinationCodeGroupsMatch extends ValidationRule<MqeVaccination> {
 
   public VaccinationCodeGroupsMatch() {
     this.addRuleDetection(Detection.VaccinationCvxCodeAndCptCodeAreInconsistent);
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCvxCodeAndCptCodeAreInconsistent);id.setImplementationDescription("The Vaccination CPT code given is expecting a different vaccine group than the vaccine group from the CVX given.");
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationCvxCodeAndCptCodeAreInconsistent);
+      id.setImplementationDescription(
+          "The Vaccination CPT code given is expecting a different vaccine group than the vaccine group from the CVX given.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override
@@ -32,9 +41,8 @@ public class VaccinationCodeGroupsMatch extends ValidationRule<MqeVaccination> {
     // Code cptCode = repo.getCodeFromValue(target.getAdminCptCode(),
     // CodesetType.VACCINATION_CPT_CODE);
 
-    Code cptCvxCode =
-        repo.getFirstRelatedCodeForCodeIn(CodesetType.VACCINATION_CPT_CODE, vaccineCpt,
-            CodesetType.VACCINATION_CVX_CODE);
+    Code cptCvxCode = repo.getFirstRelatedCodeForCodeIn(CodesetType.VACCINATION_CPT_CODE,
+        vaccineCpt, CodesetType.VACCINATION_CVX_CODE);
 
     if (cptCvxCode != null && cptCvxCode.getValue() != null && vaccineCvx != null) {
       if (!checkGroupMatch(vaccineCvx, cptCvxCode.getValue())) {
@@ -56,13 +64,11 @@ public class VaccinationCodeGroupsMatch extends ValidationRule<MqeVaccination> {
       return true;
     }
 
-    List<Code> cvxVaccineGroups =
-        repo.getRelatedCodesForCodeIn(CodesetType.VACCINATION_CVX_CODE, cvxCode,
-            CodesetType.VACCINE_GROUP);
+    List<Code> cvxVaccineGroups = repo.getRelatedCodesForCodeIn(CodesetType.VACCINATION_CVX_CODE,
+        cvxCode, CodesetType.VACCINE_GROUP);
 
-    List<Code> cptVaccineGroups =
-        repo.getRelatedCodesForCodeIn(CodesetType.VACCINATION_CPT_CODE, cptCvxCode,
-            CodesetType.VACCINE_GROUP);
+    List<Code> cptVaccineGroups = repo.getRelatedCodesForCodeIn(CodesetType.VACCINATION_CPT_CODE,
+        cptCvxCode, CodesetType.VACCINE_GROUP);
 
     if (cptVaccineGroups != null && cvxVaccineGroups != null) {
       for (Code cvxGroup : cvxVaccineGroups) {

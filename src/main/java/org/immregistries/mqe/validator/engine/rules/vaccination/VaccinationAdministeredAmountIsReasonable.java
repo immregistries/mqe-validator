@@ -14,12 +14,23 @@ public class VaccinationAdministeredAmountIsReasonable extends ValidationRule<Mq
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationAdministeredAmtIsValid.class, VaccinationSourceIsAdministered.class};
+    return new Class[] {VaccinationAdministeredAmtIsValid.class,
+        VaccinationSourceIsAdministered.class};
   }
 
   public VaccinationAdministeredAmountIsReasonable() {
     this.addRuleDetection(Detection.VaccinationAdministeredAmountIsInvalid);
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdministeredAmountIsInvalid);id.setImplementationDescription("Vaccination Administered amount is expected to be a number between 0 and 999.");
+
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationAdministeredAmountIsInvalid);
+      id.setImplementationDescription(
+          "Vaccination Administered amount is expected to be a number between 0 and 999.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override

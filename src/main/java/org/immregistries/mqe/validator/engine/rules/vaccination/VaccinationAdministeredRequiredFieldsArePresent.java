@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -21,6 +22,27 @@ public class VaccinationAdministeredRequiredFieldsArePresent
   public VaccinationAdministeredRequiredFieldsArePresent() {
     this.addRuleDetections(Arrays.asList(Detection.VaccinationFacilityNameIsMissing,
         Detection.VaccinationLotExpirationDateIsMissing));
+    
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationFacilityNameIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationLotExpirationDateIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override

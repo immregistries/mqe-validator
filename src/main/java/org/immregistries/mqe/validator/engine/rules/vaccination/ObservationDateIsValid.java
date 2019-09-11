@@ -19,7 +19,25 @@ public class ObservationDateIsValid extends ValidationRule<MqeVaccination> {
   public ObservationDateIsValid() {
     this.addRuleDetection(Detection.ObservationDateTimeOfObservationIsMissing);
     this.addRuleDetection(Detection.ObservationDateTimeOfObservationIsInvalid);
-    ImplementationDetail id = this.addRuleDetection(Detection.ObservationDateTimeOfObservationIsInvalid);id.setImplementationDescription("Observation date cannot be translated to a date.");
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.ObservationDateTimeOfObservationIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.ObservationDateTimeOfObservationIsInvalid);
+      id.setImplementationDescription("Observation date cannot be translated to a date.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override
@@ -30,11 +48,11 @@ public class ObservationDateIsValid extends ValidationRule<MqeVaccination> {
     for (Observation o : target.getObservations()) {
       String observationDateString = o.getObservationDateString();
       if (this.common.isEmpty(observationDateString)) {
-        issues.add(Detection.ObservationDateTimeOfObservationIsMissing.build(
-            (observationDateString), target));
+        issues.add(Detection.ObservationDateTimeOfObservationIsMissing
+            .build((observationDateString), target));
       } else if (!this.common.isValidDate(observationDateString)) {
-    	  issues.add(Detection.ObservationDateTimeOfObservationIsInvalid.build(
-    	    (observationDateString), target));
+        issues.add(Detection.ObservationDateTimeOfObservationIsInvalid
+            .build((observationDateString), target));
       }
     }
 

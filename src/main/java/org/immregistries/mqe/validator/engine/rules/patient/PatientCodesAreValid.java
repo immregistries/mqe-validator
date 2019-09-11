@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -22,9 +23,139 @@ public class PatientCodesAreValid extends ValidationRule<MqePatient> {
     this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_RACE));
     this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_VFC_STATUS));
     this.addRuleDetections(Arrays.asList(Detection.PatientPrimaryFacilityIdIsMissing,
-            Detection.PatientPrimaryFacilityNameIsMissing));
-    
-    
+        Detection.PatientPrimaryFacilityNameIsMissing));
+
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientPrimaryLanguageIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientPrimaryLanguageIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientPublicityCodeIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientPublicityCodeIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientPublicityCodeIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientRaceIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientRaceIsDeprecated);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientRaceIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientRaceIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientVfcStatusIsDeprecated);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientVfcStatusIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientVfcStatusIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientVfcStatusIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientVfcStatusIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+
+
+
   }
 
   @Override
@@ -58,8 +189,8 @@ public class PatientCodesAreValid extends ValidationRule<MqePatient> {
     // VxuField.PATIENT_PRIMARY_PHYSICIAN_ID, target));
 
     // publicity code
-    issues.addAll(this.codr.handleCodeOrMissing(target.getPublicity(), VxuField.PATIENT_PUBLICITY_CODE,
-        target));
+    issues.addAll(this.codr.handleCodeOrMissing(target.getPublicity(),
+        VxuField.PATIENT_PUBLICITY_CODE, target));
 
     // race
     issues.addAll(this.codr.handleCodeOrMissing(target.getRace(), VxuField.PATIENT_RACE, target));

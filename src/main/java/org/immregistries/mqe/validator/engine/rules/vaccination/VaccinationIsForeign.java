@@ -22,11 +22,17 @@ public class VaccinationIsForeign extends ValidationRule<MqeVaccination> {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsForeign);
       id.setImplementationDescription("Administered Vaccination has a foreign CVX vaccine code.");
-    }
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");    }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationHistoricalCodeIsForeign);
       id.setImplementationDescription("Historical Vaccination has a foreign CVX vaccine code.");
-    }
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");    }
 
   }
 

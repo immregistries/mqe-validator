@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -26,6 +27,72 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<MqeVacci
 		    	Detection.VaccinationInformationSourceIsUnrecognized,
 		    	Detection.VaccinationInformationSourceIsValuedAsAdministered,
 		    	Detection.VaccinationInformationSourceIsValuedAsHistorical));
+	  
+      {
+        ImplementationDetail id =
+            this.addRuleDetection(Detection.VaccinationInformationSourceIsDeprecated);
+        // TODO Complete ImplementationDescription
+        id.setImplementationDescription("");
+        // TODO Complete HowToFix
+        id.setHowToFix("");
+        // TODO Complete WhyToFix
+        id.setWhyToFix("");
+      }
+      {
+        ImplementationDetail id =
+            this.addRuleDetection(Detection.VaccinationInformationSourceIsInvalid);
+        // TODO Complete ImplementationDescription
+        id.setImplementationDescription("");
+        // TODO Complete HowToFix
+        id.setHowToFix("");
+        // TODO Complete WhyToFix
+        id.setWhyToFix("");
+      }
+      {
+        ImplementationDetail id =
+            this.addRuleDetection(Detection.VaccinationInformationSourceIsMissing);
+        // TODO Complete ImplementationDescription
+        id.setImplementationDescription("");
+        // TODO Complete HowToFix
+        id.setHowToFix("");
+        // TODO Complete WhyToFix
+        id.setWhyToFix("");
+      }
+      {
+        ImplementationDetail id =
+            this.addRuleDetection(Detection.VaccinationInformationSourceIsUnrecognized);
+        // TODO Complete ImplementationDescription
+        id.setImplementationDescription("");
+        // TODO Complete HowToFix
+        id.setHowToFix("");
+        // TODO Complete WhyToFix
+        id.setWhyToFix("");
+      }
+      
+      {
+        ImplementationDetail id =
+            this.addRuleDetection(Detection.VaccinationInformationSourceIsValuedAsAdministered);
+        // TODO Complete ImplementationDescription
+        id.setImplementationDescription("");
+        // TODO Complete HowToFix
+        id.setHowToFix("");
+        // TODO Complete WhyToFix
+        id.setWhyToFix("");
+      }
+
+      {
+        ImplementationDetail id =
+            this.addRuleDetection(Detection.VaccinationInformationSourceIsValuedAsHistorical);
+        // TODO Complete ImplementationDescription
+        id.setImplementationDescription("");
+        // TODO Complete HowToFix
+        id.setHowToFix("");
+        // TODO Complete WhyToFix
+        id.setWhyToFix("");
+      }
+
+
+      
   }
 
   /*

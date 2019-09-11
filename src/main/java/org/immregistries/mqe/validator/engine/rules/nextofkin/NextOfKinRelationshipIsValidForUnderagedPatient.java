@@ -28,15 +28,42 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
         Detection.NextOfKinRelationshipIsNotResponsibleParty,
         Detection.NextOfKinRelationshipIsMissing));
     {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.NextOfKinRelationshipIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinRelationshipIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinRelationshipIsUnexpected);
       id.setImplementationDescription(
           "An underage patient is not expecting a next of kin that is a child, step child, or foster child.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.NextOfKinRelationshipIsNotResponsibleParty);
       id.setImplementationDescription(
           "The next of kin for an underage patient is expected to be a caregiver, father, grandparent, mother, parent, or guardian.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
   }
 

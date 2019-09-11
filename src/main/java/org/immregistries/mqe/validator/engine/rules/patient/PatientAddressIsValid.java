@@ -27,29 +27,114 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[]{PatientExists.class,};
+    return new Class[] {PatientExists.class,};
   }
 
   public PatientAddressIsValid() {
-    this.addRuleDetection(Detection.PatientAddressTypeIsValuedBadAddress);
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS));
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STREET));
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_CITY));
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_STATE));
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_COUNTY));
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_COUNTRY));
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_ZIP));
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.PATIENT_ADDRESS_TYPE));
-    
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressIsInvalid);id.setImplementationDescription("Patient Address is invalid according to Smarty Streets.");    
-    
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressIsMissing);
+      id.setImplementationDescription("Patient Address was not indicated");
+      id.setHowToFix(
+          "Please ensure that address for this patient has been entered. If the patient does have an address, please verify that the system is configured to send that address to the IIS. ");
+      id.setWhyToFix(
+          "The patient address is used first to ensure that the patient record is properly matched with other previously submitted data. The address may also be used to generate geographic coverage reports or support reminder/recall activities. ");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressIsInvalid);
+      id.setImplementationDescription("Patient Address is not recognized by the address checker as a valid address");
+      id.setHowToFix("Please review and correct the address for this patient, it is not recognized by the address checker. Once the address has been corrected, please resubmit the record. ");
+      id.setWhyToFix("Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressStreetIsMissing);
+      id.setImplementationDescription("Patient Address street is not indicated");
+      id.setHowToFix("Please ensure that the full address for this patient has been entered. Once the address has been corrected, please resubmit the record. ");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressCityIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      id.setHowToFix("Please ensure that the full address for this patient has been entered. Once the address has been corrected, please resubmit the record. ");
+      id.setWhyToFix("Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressStateIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      id.setHowToFix("Please ensure that the full address for this patient has been entered. Once the address has been corrected, please resubmit the record. ");
+      id.setWhyToFix("Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressCountyIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressCountryIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressZipIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      id.setHowToFix("Please ensure that the full address for this patient has been entered. Once the address has been corrected, please resubmit the record. ");
+      id.setWhyToFix("Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressTypeIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressTypeIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientAddressTypeIsValuedBadAddress);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+
+
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressIsInvalid);
+    id.setImplementationDescription("Patient Address is invalid according to Smarty Streets.");
+    // TODO Complete HowToFix
+    id.setHowToFix("");
+    // TODO Complete WhyToFix
+    id.setWhyToFix("");
+
     if (props.isAddressCleanserEnabled()) {
       this.addRuleDetection(Detection.PatientAddressIsInvalid);
     }
   }
 
 
-@Override
+  @Override
   protected ValidationRuleResult executeRule(MqePatient target, MqeMessageReceived m) {
     List<ValidationReport> issues = new ArrayList<>();
     boolean passed;
@@ -65,8 +150,8 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
         if (props.isAddressCleanserEnabled()) {
           if (!a.isClean()) {
             ValidationReport r = Detection.PatientAddressIsInvalid.build(target);
-            List<SmartyStreetResponse> rList = SmartyStreetResponse
-                .codesFromDpv(a.getCleansingResultCode());
+            List<SmartyStreetResponse> rList =
+                SmartyStreetResponse.codesFromDpv(a.getCleansingResultCode());
             if (rList.size() > 0) {
               StringBuilder b = new StringBuilder(":");
               for (SmartyStreetResponse rz : rList) {
@@ -82,7 +167,8 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
           issues.add(Detection.PatientAddressTypeIsValuedBadAddress.build(a.toString(), target));
         }
 
-        issues.addAll(this.codr.handleCodeOrMissing(a.getTypeCode(), VxuField.PATIENT_ADDRESS_TYPE, target));
+        issues.addAll(
+            this.codr.handleCodeOrMissing(a.getTypeCode(), VxuField.PATIENT_ADDRESS_TYPE, target));
       } else {
         issues.add(Detection.PatientAddressIsMissing.build(target));
       }

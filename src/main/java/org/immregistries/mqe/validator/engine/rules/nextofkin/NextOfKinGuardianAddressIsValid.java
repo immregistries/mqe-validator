@@ -29,19 +29,115 @@ public class NextOfKinGuardianAddressIsValid extends ValidationRule<MqeNextOfKin
   private AddressValidator addressValidator = AddressValidator.INSTANCE;
 
   public NextOfKinGuardianAddressIsValid() {
-    this.addRuleDetectionsForFields(
-        VxuField.PATIENT_GUARDIAN_ADDRESS,
-        VxuField.PATIENT_GUARDIAN_ADDRESS_STREET,
-        VxuField.PATIENT_GUARDIAN_ADDRESS_CITY,
-        VxuField.PATIENT_GUARDIAN_ADDRESS_STATE,
-        VxuField.PATIENT_GUARDIAN_ADDRESS_COUNTY,
-        VxuField.PATIENT_GUARDIAN_ADDRESS_COUNTRY,
-        VxuField.PATIENT_GUARDIAN_ADDRESS_ZIP,
+    this.addRuleDetectionsForFields(VxuField.PATIENT_GUARDIAN_ADDRESS,
+        VxuField.PATIENT_GUARDIAN_ADDRESS_STREET, VxuField.PATIENT_GUARDIAN_ADDRESS_CITY,
+        VxuField.PATIENT_GUARDIAN_ADDRESS_STATE, VxuField.PATIENT_GUARDIAN_ADDRESS_COUNTY,
+        VxuField.PATIENT_GUARDIAN_ADDRESS_COUNTRY, VxuField.PATIENT_GUARDIAN_ADDRESS_ZIP,
         VxuField.PATIENT_GUARDIAN_ADDRESS_TYPE);
-    
     this.addRuleDetection(Detection.PatientGuardianAddressTypeIsValuedBadAddress);
-    ImplementationDetail id =
-        this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);
+
+
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressStreetIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressCityIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressStateIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressCountyIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressCountryIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressZipIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressTypeIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressTypeIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressTypeIsValuedBadAddress);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);
     id.setImplementationDescription("Address not valid according to Smarty Streets.");
 
     if (props.isAddressCleanserEnabled()) {
@@ -59,8 +155,8 @@ public class NextOfKinGuardianAddressIsValid extends ValidationRule<MqeNextOfKin
     MqeAddress nokAddress = target.getAddress();
     //MqeAddress p = m.getPatient().getPatientAddress();
 
-    ValidationRuleResult addrResult = addressValidator
-        .getAddressIssuesFor(fields, nokAddress, target);
+    ValidationRuleResult addrResult =
+        addressValidator.getAddressIssuesFor(fields, nokAddress, target);
 
     issues.addAll(addrResult.getValidationDetections());
 
@@ -69,8 +165,8 @@ public class NextOfKinGuardianAddressIsValid extends ValidationRule<MqeNextOfKin
       if (props.isAddressCleanserEnabled()) {
         if (nokAddress != null && !nokAddress.isClean()) {
           ValidationReport r = Detection.PatientGuardianAddressIsInvalid.build(target);
-          List<SmartyStreetResponse> rList = SmartyStreetResponse
-              .codesFromDpv(nokAddress.getCleansingResultCode());
+          List<SmartyStreetResponse> rList =
+              SmartyStreetResponse.codesFromDpv(nokAddress.getCleansingResultCode());
           if (rList.size() > 0) {
             StringBuilder b = new StringBuilder(":");
             for (SmartyStreetResponse rz : rList) {
@@ -83,14 +179,12 @@ public class NextOfKinGuardianAddressIsValid extends ValidationRule<MqeNextOfKin
       }
 
       if (nokAddress.getTypeCode() != null && "BA".equals(nokAddress.getTypeCode())) {
-        issues
-            .add(Detection.PatientGuardianAddressTypeIsValuedBadAddress.build(nokAddress.toString(),
-                target));
+        issues.add(Detection.PatientGuardianAddressTypeIsValuedBadAddress
+            .build(nokAddress.toString(), target));
       }
 
-      issues.addAll(this.codr
-          .handleCodeOrMissing(nokAddress.getTypeCode(), VxuField.PATIENT_GUARDIAN_ADDRESS_TYPE,
-              target));
+      issues.addAll(this.codr.handleCodeOrMissing(nokAddress.getTypeCode(),
+          VxuField.PATIENT_GUARDIAN_ADDRESS_TYPE, target));
     }
 
     passed = (issues.size() == 0);

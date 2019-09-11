@@ -19,16 +19,60 @@ public class VaccinationCptIsValid extends ValidationRule<MqeVaccination> {
   public VaccinationCptIsValid() {
     this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_CPT_CODE));
     {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCptCodeIsDeprecated);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCptCodeIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCptCodeIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCptCodeIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationCptCodeIsInvalidForDateAdministered);
       id.setImplementationDescription(
           "Vaccination CPT Code is outside of expected vaccine date range for the cvx it maps to.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationCptCodeIsUnexpectedForDateAdministered);
       id.setImplementationDescription(
           "Vaccination CPT Code is outside of licensed vaccine date range for the cvx it maps to.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
   }
 

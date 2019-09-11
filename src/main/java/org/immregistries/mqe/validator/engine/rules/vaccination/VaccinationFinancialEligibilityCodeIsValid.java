@@ -2,6 +2,8 @@ package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -17,8 +19,48 @@ public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<M
   }
 
   public VaccinationFinancialEligibilityCodeIsValid() {
-    this.addRuleDetections(codr
-        .getDetectionsForField(VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE));
+    this.addRuleDetections(
+        codr.getDetectionsForField(VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE));
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsDeprecated);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override
@@ -30,8 +72,8 @@ public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<M
     String financialEligibilityCode = target.getFinancialEligibilityCode();
 
     if (target.isAdministered()) {
-    	issues.addAll(codr.handleCodeOrMissing(financialEligibilityCode,
-                VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE, target));
+      issues.addAll(codr.handleCodeOrMissing(financialEligibilityCode,
+          VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE, target));
     }
 
     passed = (issues.size() == 0);

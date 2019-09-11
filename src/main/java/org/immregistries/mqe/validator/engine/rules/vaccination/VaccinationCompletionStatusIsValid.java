@@ -15,28 +15,84 @@ public class VaccinationCompletionStatusIsValid extends ValidationRule<MqeVaccin
 
   public VaccinationCompletionStatusIsValid() {
     this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_COMPLETION_STATUS));
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationCompletionStatusIsDeprecated);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationCompletionStatusIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationCompletionStatusIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationCompletionStatusIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
     String baseMessage = "Vaccination Completion Code has value of ";
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationCompletionStatusIsValuedAsCompleted);
       id.setImplementationDescription(baseMessage.concat(MqeVaccination.COMPLETION_COMPLETED));
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationCompletionStatusIsValuedAsRefused);
       id.setImplementationDescription(baseMessage.concat(MqeVaccination.COMPLETION_REFUSED));
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationCompletionStatusIsValuedAsNotAdministered);
       id.setImplementationDescription(
           baseMessage.concat(MqeVaccination.COMPLETION_NOT_ADMINISTERED));
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id = this
           .addRuleDetection(Detection.VaccinationCompletionStatusIsValuedAsPartiallyAdministered);
       id.setImplementationDescription(
           baseMessage.concat(MqeVaccination.COMPLETION_PARTIALLY_ADMINISTERED));
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
   }
 

@@ -13,36 +13,50 @@ import org.immregistries.mqe.vxu.MqePatient;
 
 public class PatientEmailIsPresent extends ValidationRule<MqePatient> {
 
-	public PatientEmailIsPresent() {
-		this.addRuleDetection(Detection.PatientEmailIsMissing);
-		this.addRuleDetection(Detection.PatientEmailIsInvalid);
-		ImplementationDetail id = this.addRuleDetection(Detection.PatientEmailIsInvalid);id.setImplementationDescription("Email address is invalid and must contain letters, numbers, '@' and '.'");
-	}
+  public PatientEmailIsPresent() {
+    this.addRuleDetection(Detection.PatientEmailIsMissing);
+    this.addRuleDetection(Detection.PatientEmailIsInvalid);
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientEmailIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientEmailIsInvalid);
+      id.setImplementationDescription(
+          "Email address is invalid and must contain letters, numbers, '@' and '.'");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+  }
 
-	@Override
-	protected ValidationRuleResult executeRule(MqePatient target, MqeMessageReceived m) {
-	    List<ValidationReport> issues = new ArrayList<ValidationReport>();
-	    boolean passed = false;
+  @Override
+  protected ValidationRuleResult executeRule(MqePatient target, MqeMessageReceived m) {
+    List<ValidationReport> issues = new ArrayList<ValidationReport>();
+    boolean passed = false;
 
-	    String patientEmail = target.getEmail();
+    String patientEmail = target.getEmail();
 
-	    if (this.common.isEmpty(patientEmail)) {
-	    	issues.add(Detection.PatientEmailIsMissing.build(target));
-	    }
-	    else {
-	        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
-                    "[a-zA-Z0-9_+&*-]+)*@" +
-                    "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                    "A-Z]{2,7}$";
-                     
-			Pattern pat = Pattern.compile(emailRegex);
-			if (!pat.matcher(patientEmail).matches()) {
-				issues.add(Detection.PatientEmailIsInvalid.build(target));
-			}
-	    }
+    if (this.common.isEmpty(patientEmail)) {
+      issues.add(Detection.PatientEmailIsMissing.build(target));
+    } else {
+      String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@"
+          + "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
 
-	    passed = (issues.size() == 0);
-	    return buildResults(issues, passed);
-	}
-	
+      Pattern pat = Pattern.compile(emailRegex);
+      if (!pat.matcher(patientEmail).matches()) {
+        issues.add(Detection.PatientEmailIsInvalid.build(target));
+      }
+    }
+
+    passed = (issues.size() == 0);
+    return buildResults(issues, passed);
+  }
+
 }

@@ -15,7 +15,24 @@ public class VaccinationAdminCodeIsPresent extends ValidationRule<MqeVaccination
 
   public VaccinationAdminCodeIsPresent() {
     this.addRuleDetection(Detection.VaccinationAdminCodeIsMissing);
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotUsable);id.setImplementationDescription("NDC, CVX, or CPT must be given in order to have a Vaccination Administered Code.");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotUsable);
+      id.setImplementationDescription(
+          "NDC, CVX, or CPT must be given in order to have a Vaccination Administered Code.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override
@@ -27,8 +44,7 @@ public class VaccinationAdminCodeIsPresent extends ValidationRule<MqeVaccination
     String adminCpt = target.getAdminCptCode();
 
 
-    if (StringUtils.isBlank(adminCpt)
-        && StringUtils.isBlank(adminCvx)
+    if (StringUtils.isBlank(adminCpt) && StringUtils.isBlank(adminCvx)
         && StringUtils.isBlank(adminNdc)) {
       issues.add(Detection.VaccinationAdminCodeIsMissing.build(target));
     }

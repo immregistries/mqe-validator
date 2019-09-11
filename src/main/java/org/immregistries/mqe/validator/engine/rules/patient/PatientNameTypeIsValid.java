@@ -17,8 +17,25 @@ public class PatientNameTypeIsValid extends ValidationRule<MqePatient> {
   public PatientNameTypeIsValid() {
     this.addRuleDetections(Arrays.asList(Detection.PatientNameTypeCodeIsMissing));
     this.addRuleDetections(Arrays.asList(Detection.PatientNameTypeCodeIsNotValuedLegal));
-    
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientNameTypeCodeIsNotValuedLegal);id.setImplementationDescription("Patient Name Type is not 'L' for legal.");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientNameTypeCodeIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientNameTypeCodeIsNotValuedLegal);
+      id.setImplementationDescription("Patient Name Type is not 'L' for legal.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override
@@ -28,10 +45,9 @@ public class PatientNameTypeIsValid extends ValidationRule<MqePatient> {
 
     if (target != null && target.getName() != null) {
       String type = target.getName().getType();
-      
-      issues.addAll(this.codr.handleCodeOrMissing(type, VxuField.PATIENT_NAME_TYPE_CODE,
-    	        target));
-      
+
+      issues.addAll(this.codr.handleCodeOrMissing(type, VxuField.PATIENT_NAME_TYPE_CODE, target));
+
       // name code is supposed to be L for legal
       if (!"L".equals(target.getNameTypeCode())) {
         issues.add(Detection.PatientNameTypeCodeIsNotValuedLegal.build(target));

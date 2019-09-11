@@ -18,12 +18,20 @@ public class VaccinationAdminCodeIsUsable extends ValidationRule<MqeVaccination>
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[]{VaccinationAdminCodeIsPresent.class};
+    return new Class[] {VaccinationAdminCodeIsPresent.class};
   }
 
   public VaccinationAdminCodeIsUsable() {
     this.addRuleDetection(Detection.VaccinationAdminCodeIsNotUsable);
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotUsable);id.setImplementationDescription("Vaccination Administered Code could not be derived from given NDC or CVX.");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotUsable);
+      id.setImplementationDescription(
+          "Vaccination Administered Code could not be derived from given NDC or CVX.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override
@@ -43,9 +51,8 @@ public class VaccinationAdminCodeIsUsable extends ValidationRule<MqeVaccination>
     Code ndcDerivedAdminCode = null;
     //Get NDC code data, if it's not blank.
     if (StringUtils.isNotBlank(ndcCode)) {
-      ndcDerivedAdminCode = this.repo
-          .getFirstRelatedCodeForCodeIn(CodesetType.VACCINATION_NDC_CODE, ndcCode,
-              CodesetType.VACCINATION_CVX_CODE);
+      ndcDerivedAdminCode = this.repo.getFirstRelatedCodeForCodeIn(CodesetType.VACCINATION_NDC_CODE,
+          ndcCode, CodesetType.VACCINATION_CVX_CODE);
     }
 
     Code cvxDerivedadminCode = null;

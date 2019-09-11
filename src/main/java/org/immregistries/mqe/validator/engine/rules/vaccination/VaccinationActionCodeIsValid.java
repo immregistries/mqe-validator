@@ -16,30 +16,79 @@ public class VaccinationActionCodeIsValid extends ValidationRule<MqeVaccination>
 
   public VaccinationActionCodeIsValid() {
     this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_ACTION_CODE));
-    String baseMessage = "Vaccination Action Code value is ";
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationActionCodeIsDeprecated);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationActionCodeIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationActionCodeIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
     {
       ImplementationDetail id =
-          this.addRuleDetection(Detection.VaccinationActionCodeIsValuedAsAdd);
-      id.setImplementationDescription(
-          baseMessage.concat(MqeVaccination.ACTION_CODE_ADD));
+          this.addRuleDetection(Detection.VaccinationActionCodeIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    String baseMessage = "Vaccination Action Code value is ";
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationActionCodeIsValuedAsAdd);
+      id.setImplementationDescription(baseMessage.concat(MqeVaccination.ACTION_CODE_ADD));
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate);
-      id.setImplementationDescription(
-          baseMessage.concat(MqeVaccination.ACTION_CODE_ADD).concat(" or ").concat(MqeVaccination.ACTION_CODE_UPDATE));
+      id.setImplementationDescription(baseMessage.concat(MqeVaccination.ACTION_CODE_ADD)
+          .concat(" or ").concat(MqeVaccination.ACTION_CODE_UPDATE));
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationActionCodeIsValuedAsDelete);
-      id.setImplementationDescription(
-          baseMessage.concat(MqeVaccination.ACTION_CODE_DELETE));
+      id.setImplementationDescription(baseMessage.concat(MqeVaccination.ACTION_CODE_DELETE));
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationActionCodeIsValuedAsUpdate);
-      id.setImplementationDescription(
-          baseMessage.concat(MqeVaccination.ACTION_CODE_UPDATE));
+      id.setImplementationDescription(baseMessage.concat(MqeVaccination.ACTION_CODE_UPDATE));
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
   }
 
@@ -49,14 +98,14 @@ public class VaccinationActionCodeIsValid extends ValidationRule<MqeVaccination>
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
     boolean passed = true;
 
-    issues
-        .addAll(this.codr.handleCodeOrMissing(target.getAction(), VxuField.VACCINATION_ACTION_CODE, target));
+    issues.addAll(this.codr.handleCodeOrMissing(target.getAction(),
+        VxuField.VACCINATION_ACTION_CODE, target));
 
     if (issues.size() > 0) {
       passed = false;
     } else {
       String actionCode = target.getActionCode();
-      
+
       if (target.isActionAdd()) {
         issues.add(Detection.VaccinationActionCodeIsValuedAsAdd.build((actionCode), target));
         issues
@@ -68,10 +117,10 @@ public class VaccinationActionCodeIsValid extends ValidationRule<MqeVaccination>
       } else if (target.isActionDelete()) {
         issues.add(Detection.VaccinationActionCodeIsValuedAsDelete.build((actionCode), target));
       } else {
-    	  issues.add(Detection.VaccinationActionCodeIsInvalid.build(target));
-    	  passed = false;
+        issues.add(Detection.VaccinationActionCodeIsInvalid.build(target));
+        passed = false;
       }
-	     
+
     }
 
     return buildResults(issues, passed);

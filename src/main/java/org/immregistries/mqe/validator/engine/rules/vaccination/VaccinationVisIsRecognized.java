@@ -20,7 +20,17 @@ public class VaccinationVisIsRecognized extends ValidationRule<MqeVaccination> {
 
   public VaccinationVisIsRecognized() {
     this.addRuleDetection(Detection.VaccinationVisIsMissing);
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisIsMissing);id.setImplementationDescription("Vaccination Vis is missing a document code, CVX and Published Date.");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisIsMissing);
+      id.setImplementationDescription(
+          "Vaccination Vis is missing a document code, CVX and Published Date.");
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override

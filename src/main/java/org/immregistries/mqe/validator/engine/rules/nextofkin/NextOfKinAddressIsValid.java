@@ -34,11 +34,118 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
     this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTRY));
     this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_ZIP));
     this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_TYPE));
+    this.addRuleDetection(Detection.NextOfKinAddressTypeIsInvalid);
+    this.addRuleDetection(Detection.NextOfKinAddressTypeIsValuedBadAddress);
 
-    ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressIsInvalid);
-    id.setImplementationDescription("Next of kin Address is invalid according to Smarty Streets.");
-    id.setHowToFix("fix some junk");
-    id.setWhyToFix("Clean addresses are better");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressStreetIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressCityIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressStateIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressCountyIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressCountryIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressZipIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressTypeIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressTypeIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.NextOfKinAddressTypeIsValuedBadAddress);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressTypeIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override
@@ -48,8 +155,8 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
 
     MqeAddress nokAddress = target.getAddress();
 
-    ValidationRuleResult addrResult = addressValidator
-        .getAddressIssuesFor(fields, nokAddress, target);
+    ValidationRuleResult addrResult =
+        addressValidator.getAddressIssuesFor(fields, nokAddress, target);
 
     issues.addAll(addrResult.getValidationDetections());
 
@@ -58,8 +165,8 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
       if (props.isAddressCleanserEnabled()) {
         if (nokAddress != null && !nokAddress.isClean()) {
           ValidationReport r = Detection.NextOfKinAddressIsInvalid.build(target);
-          List<SmartyStreetResponse> rList = SmartyStreetResponse
-              .codesFromDpv(nokAddress.getCleansingResultCode());
+          List<SmartyStreetResponse> rList =
+              SmartyStreetResponse.codesFromDpv(nokAddress.getCleansingResultCode());
           if (rList.size() > 0) {
             StringBuilder b = new StringBuilder(":");
             for (SmartyStreetResponse rz : rList) {
@@ -72,12 +179,12 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
       }
 
       if (nokAddress.getTypeCode() != null && "BA".equals(nokAddress.getTypeCode())) {
-        issues.add(Detection.NextOfKinAddressTypeIsValuedBadAddress.build(nokAddress.toString(),
-            target));
+        issues.add(
+            Detection.NextOfKinAddressTypeIsValuedBadAddress.build(nokAddress.toString(), target));
       }
 
-      issues.addAll(this.codr
-            .handleCodeOrMissing(nokAddress.getTypeCode(), VxuField.NEXT_OF_KIN_ADDRESS_TYPE, target));
+      issues.addAll(this.codr.handleCodeOrMissing(nokAddress.getTypeCode(),
+          VxuField.NEXT_OF_KIN_ADDRESS_TYPE, target));
     }
 
     passed = issues.size() == 0;

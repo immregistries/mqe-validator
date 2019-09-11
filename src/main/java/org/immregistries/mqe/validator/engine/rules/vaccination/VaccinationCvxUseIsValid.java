@@ -27,10 +27,29 @@ public class VaccinationCvxUseIsValid extends ValidationRule<MqeVaccination> {
   }
 
   public VaccinationCvxUseIsValid() {
-	  this.addRuleDetections(Arrays.asList(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange,
-		        Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange));
-	  {ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange);id.setImplementationDescription("Vaccination Administered Date is outside of expected vaccine date range.");}
-	  {ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange);id.setImplementationDescription("Vaccination Administered Date is outside of licensed vaccine date range.");}
+    this.addRuleDetections(
+        Arrays.asList(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange,
+            Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange));
+    {
+      ImplementationDetail id = this
+          .addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange);
+      id.setImplementationDescription(
+          "Vaccination Administered Date is outside of expected vaccine date range.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange);
+      id.setImplementationDescription(
+          "Vaccination Administered Date is outside of licensed vaccine date range.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override
@@ -47,12 +66,13 @@ public class VaccinationCvxUseIsValid extends ValidationRule<MqeVaccination> {
     CvxConceptType concept = CvxConceptType.getBy(CvxConceptTypeString);
 
     if (vaccineCode != null && target.getAdminDate() != null) {
-      if (CvxConceptType.FOREIGN_VACCINE == concept || CvxConceptType.UNSPECIFIED == concept
-          && !target.isAdministered()) {
-        logger
-            .info("Not evaluating date because the concept type indicates an UNSPECIFIED or FOREIGN_VACCINE, and it's not administered");
+      if (CvxConceptType.FOREIGN_VACCINE == concept
+          || CvxConceptType.UNSPECIFIED == concept && !target.isAdministered()) {
+        logger.info(
+            "Not evaluating date because the concept type indicates an UNSPECIFIED or FOREIGN_VACCINE, and it's not administered");
       } else {
-        issues.addAll(codr.handleUseDate(vaccineCode, target.getAdminDateString(),VxuField.VACCINATION_ADMIN_DATE, target));
+        issues.addAll(codr.handleUseDate(vaccineCode, target.getAdminDateString(),
+            VxuField.VACCINATION_ADMIN_DATE, target));
       }
       passed = (issues.size() == 0);
     }

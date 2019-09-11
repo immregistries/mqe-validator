@@ -28,23 +28,39 @@ public class VaccinationAdministeredAmtIsValid extends ValidationRule<MqeVaccina
           this.addRuleDetection(Detection.VaccinationAdministeredAmountIsMissing);
       id.setImplementationDescription(
           "Vaccination Administered Amount is missing or equal to 999.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdministeredAmountIsValuedAsUnknown);
       id.setImplementationDescription(
           "Vaccination Administered Amount is missing or equal to 999.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdministeredAmountIsValuedAsZero);
       id.setImplementationDescription("Vaccination Administered Amount is 0.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdministeredAmountIsInvalid);
       id.setImplementationDescription(
           "Vaccination Administered Amount could not be converted into a number.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
   }
 

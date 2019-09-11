@@ -16,12 +16,18 @@ public class NextOfKinAddressIsSameAsPatientAddress extends ValidationRule<MqeNe
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[]{PatientExists.class, NextOfKinAddressIsValid.class};
+    return new Class[] {PatientExists.class, NextOfKinAddressIsValid.class};
   }
 
   public NextOfKinAddressIsSameAsPatientAddress() {
-    ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressIsDifferentFromPatientAddress);
-    id.setImplementationDescription("The City/State/Street/Street2 are different between Next Of Kin address and Patient address.");
+    ImplementationDetail id =
+        this.addRuleDetection(Detection.NextOfKinAddressIsDifferentFromPatientAddress);
+    id.setImplementationDescription(
+        "The City/State/Street/Street2 are different between Next Of Kin address and Patient address.");
+    // TODO Complete HowToFix
+    id.setHowToFix("");
+    // TODO Complete WhyToFix
+    id.setWhyToFix("");
   }
 
 
@@ -34,7 +40,8 @@ public class NextOfKinAddressIsSameAsPatientAddress extends ValidationRule<MqeNe
     MqeAddress n = target.getAddress();
 
     if ((p != null && n != null) && !p.equals(n)) {
-      issues.add(Detection.NextOfKinAddressIsDifferentFromPatientAddress.build(n.toString(), target));
+      issues
+          .add(Detection.NextOfKinAddressIsDifferentFromPatientAddress.build(n.toString(), target));
       passed = false;
     }
 

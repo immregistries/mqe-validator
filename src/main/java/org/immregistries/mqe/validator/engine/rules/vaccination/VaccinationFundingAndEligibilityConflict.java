@@ -23,8 +23,18 @@ public class VaccinationFundingAndEligibilityConflict extends ValidationRule<Mqe
   }
 
   public VaccinationFundingAndEligibilityConflict() {
-    this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsUnexpectedForFinancialEligibility);
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsUnexpectedForFinancialEligibility);id.setImplementationDescription("The financial funding source given is unexpected for the financial eligibility given.");
+    this.addRuleDetection(
+        Detection.VaccinationFundingSourceCodeIsUnexpectedForFinancialEligibility);
+    {
+      ImplementationDetail id = this.addRuleDetection(
+          Detection.VaccinationFundingSourceCodeIsUnexpectedForFinancialEligibility);
+      id.setImplementationDescription(
+          "The financial funding source given is unexpected for the financial eligibility given.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override
@@ -32,7 +42,7 @@ public class VaccinationFundingAndEligibilityConflict extends ValidationRule<Mqe
 
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
     boolean passed = false;
-    
+
     if (StringUtils.isBlank(target.getFinancialEligibilityCode())
         || StringUtils.isBlank(target.getFundingSourceCode())) {
       return buildResults(issues, false);

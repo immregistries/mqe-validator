@@ -21,7 +21,17 @@ public class VaccinationVisIsPresent extends ValidationRule<MqeVaccination> {
 
   public VaccinationVisIsPresent() {
     this.addRuleDetection(Detection.VaccinationVisIsMissing);
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisIsMissing);id.setImplementationDescription("Administered Vaccine is missing Vis or Vis is missing a document code, CVX and Published Date.");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisIsMissing);
+      id.setImplementationDescription(
+          "Administered Vaccine is missing Vis or Vis is missing a document code, CVX and Published Date.");
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override
@@ -30,14 +40,13 @@ public class VaccinationVisIsPresent extends ValidationRule<MqeVaccination> {
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
     boolean passed = false;
 
-	VaccinationVIS vis = target.getVaccinationVis();
-	if (vis == null
-	    || (this.common.isEmpty(vis.getDocumentCode()) && (this.common.isEmpty(vis.getCvxCode()) && vis
-	        .getPublishedDate() == null))) {
-	  issues.add(Detection.VaccinationVisIsMissing.build(target));
-	} else {
-	  passed = true;
-	}
+    VaccinationVIS vis = target.getVaccinationVis();
+    if (vis == null || (this.common.isEmpty(vis.getDocumentCode())
+        && (this.common.isEmpty(vis.getCvxCode()) && vis.getPublishedDate() == null))) {
+      issues.add(Detection.VaccinationVisIsMissing.build(target));
+    } else {
+      passed = true;
+    }
 
     return buildResults(issues, passed);
   }

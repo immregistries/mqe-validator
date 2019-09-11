@@ -37,12 +37,20 @@ public class VaccinationAdministeredLotNumberIsValid extends ValidationRule<MqeV
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberIsInvalid);
       id.setImplementationDescription(
           "Vaccination lot number must be comprised of alphanumeric characters and/or the '-'. All other characters are invalid.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationLotNumberFormatIsUnrecognized);
       id.setImplementationDescription(
           "Vaccination lot number doesn't match the expected format specified by the manufacturer code.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
@@ -54,6 +62,10 @@ public class VaccinationAdministeredLotNumberIsValid extends ValidationRule<MqeV
           this.addRuleDetection(Detection.VaccinationLotNumberHasInvalidPrefixes);
       id.setImplementationDescription(
           "Vaccination lot number cannot start with LOT, (P), MED, SKB, LOT, PMC, WSD, WAL");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
 
     {
@@ -65,14 +77,26 @@ public class VaccinationAdministeredLotNumberIsValid extends ValidationRule<MqeV
               + "        UNINSURED, SPECIAL, OVER19, VMC, -COUNT, REAR, PENT, PENTACEL, DTAP,\r\n"
               + "        IPV, ACTH, HIB, PFF, FLU, BOOST, HAV, GARDASIL, ROTATEQ, PEDVAX,\r\n"
               + "        VARIVAX, PNEU, PNEUMOVAX, MMR, MENVEO, MENACTRA, FLU ZONE");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberHasMultiple);
       id.setImplementationDescription("Vaccination lot number has multiple lot numbers.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberIsTooShort);
       id.setImplementationDescription("Vaccination lot number is 4 characters or less.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
   }
 

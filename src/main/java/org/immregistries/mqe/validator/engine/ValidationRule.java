@@ -128,6 +128,7 @@ public abstract class ValidationRule<T> {
     this.ruleDetections.add(d);
     ImplementationDetail id = new ImplementationDetail(d);
     this.ruleDocumentation.add(id);
+    id.setSeverityLevel(d.getSeverity());
     return id;
   }
 

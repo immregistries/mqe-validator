@@ -20,15 +20,63 @@ public class VaccinationMfrIsValid extends ValidationRule<MqeVaccination> {
     this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_MANUFACTURER_CODE));
     {
       ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationManufacturerCodeIsDeprecated);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationManufacturerCodeIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationManufacturerCodeIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationManufacturerCodeIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationManufacturerCodeIsInvalidForDateAdministered);
       id.setImplementationDescription(
           "Vaccination Manufacturer code was used outside of the valid date range defined for this code. ");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id = this
           .addRuleDetection(Detection.VaccinationManufacturerCodeIsUnexpectedForDateAdministered);
       id.setImplementationDescription(
           "Vaccination Manufacturer code was used outside of the expected date range defined for this code. ");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
   }
 

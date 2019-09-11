@@ -20,7 +20,55 @@ public class VaccinationConfidentialityCodeIsValid extends ValidationRule<MqeVac
 
   public VaccinationConfidentialityCodeIsValid() {
     this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_CONFIDENTIALITY_CODE));
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsValuedAsRestricted);id.setImplementationDescription("Vaccination Confidentiality Code has value of 'R' or 'V'.");
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsDeprecated);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsInvalid);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsValuedAsRestricted);
+      id.setImplementationDescription("Vaccination Confidentiality Code has value of 'R' or 'V'.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override
@@ -31,7 +79,8 @@ public class VaccinationConfidentialityCodeIsValid extends ValidationRule<MqeVac
 
     String confCode = target.getConfidentialityCode();
 
-    issues.addAll(codr.handleCodeOrMissing(confCode, VxuField.VACCINATION_CONFIDENTIALITY_CODE, target));
+    issues.addAll(
+        codr.handleCodeOrMissing(confCode, VxuField.VACCINATION_CONFIDENTIALITY_CODE, target));
     passed = (issues.size() == 0);
 
     if ("R".equals(confCode) || "V".equals(confCode)) {

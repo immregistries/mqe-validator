@@ -16,9 +16,27 @@ import org.immregistries.mqe.vxu.VxuField;
 public class PatientSsnIsValid extends ValidationRule<MqePatient> {
 
   public PatientSsnIsValid() {
-    this.addRuleDetections(Arrays.asList(Detection.PatientSsnIsMissing,
-        Detection.PatientSsnIsInvalid));
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientSsnIsInvalid);id.setImplementationDescription("Patient SSN cannot start with 000 or have 00 in the middle section. It must be comprised of exactly 9 digits. It cannot be equal to '123456789' or '987654321'. It cannot have 6 consective digits that are the same.");
+    this.addRuleDetections(
+        Arrays.asList(Detection.PatientSsnIsMissing, Detection.PatientSsnIsInvalid));
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientSsnIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientSsnIsInvalid);
+      id.setImplementationDescription(
+          "Patient SSN cannot start with 000 or have 00 in the middle section. It must be comprised of exactly 9 digits. It cannot be equal to '123456789' or '987654321'. It cannot have 6 consective digits that are the same.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+
   }
 
   @Override

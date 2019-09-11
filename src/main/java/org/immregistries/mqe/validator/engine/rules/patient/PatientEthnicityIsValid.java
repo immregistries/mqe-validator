@@ -2,6 +2,8 @@ package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -18,6 +20,48 @@ public class PatientEthnicityIsValid extends ValidationRule<MqePatient> {
   
   public PatientEthnicityIsValid() {
 	  this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_ETHNICITY));
+	  
+      {
+        ImplementationDetail id =
+            this.addRuleDetection(Detection.PatientEthnicityIsUnrecognized);
+        // TODO Complete ImplementationDescription
+        id.setImplementationDescription("");
+        // TODO Complete HowToFix
+        id.setHowToFix("");
+        // TODO Complete WhyToFix
+        id.setWhyToFix("");
+      }
+      {
+        ImplementationDetail id =
+            this.addRuleDetection(Detection.PatientEthnicityIsInvalid);
+        // TODO Complete ImplementationDescription
+        id.setImplementationDescription("");
+        // TODO Complete HowToFix
+        id.setHowToFix("");
+        // TODO Complete WhyToFix
+        id.setWhyToFix("");
+      }
+      {
+        ImplementationDetail id =
+            this.addRuleDetection(Detection.PatientEthnicityIsDeprecated);
+        // TODO Complete ImplementationDescription
+        id.setImplementationDescription("");
+        // TODO Complete HowToFix
+        id.setHowToFix("");
+        // TODO Complete WhyToFix
+        id.setWhyToFix("");
+      }
+      {
+        ImplementationDetail id =
+            this.addRuleDetection(Detection.PatientEthnicityIsMissing);
+        // TODO Complete ImplementationDescription
+        id.setImplementationDescription("");
+        // TODO Complete HowToFix
+        id.setHowToFix("");
+        // TODO Complete WhyToFix
+        id.setWhyToFix("");
+      }
+
   }
 
   @Override

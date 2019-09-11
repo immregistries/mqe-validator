@@ -20,20 +20,31 @@ public class VaccinationAdminDateIsValidForPatientAge extends ValidationRule<Mqe
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {PatientBirthDateIsValid.class, VaccinationAdminDateIsValid.class, VaccinationCvxIsValid.class};
+    return new Class[] {PatientBirthDateIsValid.class, VaccinationAdminDateIsValid.class,
+        VaccinationCvxIsValid.class};
   }
 
   public VaccinationAdminDateIsValidForPatientAge() {
-    ImplementationDetail id =
-        this.addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterWhenExpectedForPatientAge);
-        id.setImplementationDescription("CodeBase specifies the expected age range for this vaccination.  We compare the patients age at administration to this age range.");
-        id.setHowToFix("Vaccinations given outside of the expected age range may not be effective. ");
-        id.setWhyToFix("Consider reviewing your medical practices.");
-    ImplementationDetail id2 =
-    this.addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterWhenValidForPatientAge);
-        id2.setImplementationDescription("CodeBase specifies the valid age range for this vaccination.  We compare the patients age at administration to this age range.");
-        id2.setHowToFix("Vaccinations given outside of the valid age range are not effective, and do not support desired public health outcomes.  It's a waste of money");
-        id2.setWhyToFix("Make sure your administration date is accurate.  If it is, evaluate why you are administering doses outside of the valid age range.");
+    {
+      ImplementationDetail id = this
+          .addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterWhenExpectedForPatientAge);
+      id.setImplementationDescription(
+          "CodeBase specifies the expected age range for this vaccination.  We compare the patients age at administration to this age range.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this
+          .addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterWhenValidForPatientAge);
+      id.setImplementationDescription(
+          "CodeBase specifies the valid age range for this vaccination.  We compare the patients age at administration to this age range.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override
@@ -45,8 +56,8 @@ public class VaccinationAdminDateIsValidForPatientAge extends ValidationRule<Mqe
     String cvxCode = target.getAdminCvxCode();
     Code vaccineCode = this.repo.getCodeFromValue(cvxCode, CodesetType.VACCINATION_CVX_CODE);
     LOGGER.info("VaccinationAdminDateIsValidForPatientAge - CVX: " + cvxCode);
-    LOGGER.info("VaccinationAdminDateIsValidForPatientAge - Admin Date "
-        + target.getAdminDateString());
+    LOGGER.info(
+        "VaccinationAdminDateIsValidForPatientAge - Admin Date " + target.getAdminDateString());
     LOGGER.info("VaccinationAdminDateIsValidForPatientAge - Birth Date "
         + m.getPatient().getBirthDateString());
     if (vaccineCode != null && !this.common.isEmpty(target.getAdminDateString())) {
@@ -55,7 +66,8 @@ public class VaccinationAdminDateIsValidForPatientAge extends ValidationRule<Mqe
       Date birthDate = datr.parseDate(m.getPatient().getBirthDateString());
 
       if (birthDate != null) {
-        issues.addAll(codr.handleAgeDate(CodesetType.VACCINATION_CVX_CODE, vaccineCode, adminDate, birthDate, VxuField.VACCINATION_ADMIN_DATE, target));
+        issues.addAll(codr.handleAgeDate(CodesetType.VACCINATION_CVX_CODE, vaccineCode, adminDate,
+            birthDate, VxuField.VACCINATION_ADMIN_DATE, target));
       }
 
       passed = (issues.size() == 0);

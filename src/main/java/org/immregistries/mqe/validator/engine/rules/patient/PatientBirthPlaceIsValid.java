@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -19,6 +20,15 @@ public class PatientBirthPlaceIsValid extends ValidationRule<MqePatient> {
 
   public PatientBirthPlaceIsValid() {
     this.addRuleDetections(Arrays.asList(Detection.PatientBirthPlaceIsMissing));
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthPlaceIsMissing);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override

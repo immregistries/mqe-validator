@@ -32,28 +32,48 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotSpecific);
       id.setImplementationDescription(
           "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has an unspecified value type.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotVaccine);
       id.setImplementationDescription(
           "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a non-vaccine value type.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsUnrecognized);
       id.setImplementationDescription(
           "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) could not be derived.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdminCodeIsValuedAsNotAdministered);
       id.setImplementationDescription(
           "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a value of 998.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdminCodeIsValuedAsUnknown);
       id.setImplementationDescription(
           "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a value of 999.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
   }
 

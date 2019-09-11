@@ -2,6 +2,8 @@ package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -15,12 +17,28 @@ public class PatientImmunityIsValid extends ValidationRule<MqePatient> {
   @Override
   protected final Class[] getDependencies() {
     return new Class[] {
-    // PatientBirthDateIsValid.class
+        // PatientBirthDateIsValid.class
     };
   }
 
   public PatientImmunityIsValid() {
     this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_IMMUNITY_CODE));
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientImmunityCodeIsDeprecated);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");// TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientImmunityCodeIsUnrecognized);
+      // TODO Complete ImplementationDescription
+      id.setImplementationDescription("");// TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override

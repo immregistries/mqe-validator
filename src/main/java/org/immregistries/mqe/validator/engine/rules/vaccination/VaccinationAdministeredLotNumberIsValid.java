@@ -11,6 +11,7 @@ import org.immregistries.codebase.client.generated.Code;
 import org.immregistries.codebase.client.generated.LinkTo;
 import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -26,20 +27,53 @@ public class VaccinationAdministeredLotNumberIsValid extends ValidationRule<MqeV
   }
 
   public VaccinationAdministeredLotNumberIsValid() {
-    this.addRuleDetections(Arrays.asList(Detection.VaccinationLotNumberIsInvalid, Detection.VaccinationLotNumberFormatIsUnrecognized,
-        Detection.VaccinationLotNumberHasInvalidInfixes, Detection.VaccinationLotNumberHasInvalidPrefixes, Detection.VaccinationLotNumberHasInvalidSuffixes,
-        Detection.VaccinationLotNumberHasMultiple, Detection.VaccinationLotNumberIsTooShort));
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberIsInvalid);id.setImplementationDescription("Vaccination lot number must be comprised of alphanumeric characters and/or the '-'. All other characters are invalid.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberFormatIsUnrecognized);id.setImplementationDescription("Vaccination lot number doesn't match the expected format specified by the manufacturer code.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberHasInvalidInfixes);id.setImplementationDescription("Vaccination lot number cannot contain the text ICE3");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberHasInvalidPrefixes);id.setImplementationDescription("Vaccination lot number cannot start with LOT, (P), MED, SKB, LOT, PMC, WSD, WAL");
-    this.addImplementationMessage(Detection.VaccinationLotNumberHasInvalidSuffixes, "Vaccination lot number cannot end with (P), -P, -S, -C, -H, -V, *, #, (S), (P),\r\n" + 
-    		"        MSD, HSP, SELECT, CP, VFC, STATE, CHIP, ADULT, ST-, PRIVATE, PED,\r\n" + 
-    		"        UNINSURED, SPECIAL, OVER19, VMC, -COUNT, REAR, PENT, PENTACEL, DTAP,\r\n" + 
-    		"        IPV, ACTH, HIB, PFF, FLU, BOOST, HAV, GARDASIL, ROTATEQ, PEDVAX,\r\n" + 
-    		"        VARIVAX, PNEU, PNEUMOVAX, MMR, MENVEO, MENACTRA, FLU ZONE");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberHasMultiple);id.setImplementationDescription("Vaccination lot number has multiple lot numbers.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberIsTooShort);id.setImplementationDescription("Vaccination lot number is 4 characters or less.");
+    this.addRuleDetections(Arrays.asList(Detection.VaccinationLotNumberIsInvalid,
+        Detection.VaccinationLotNumberFormatIsUnrecognized,
+        Detection.VaccinationLotNumberHasInvalidInfixes,
+        Detection.VaccinationLotNumberHasInvalidPrefixes,
+        Detection.VaccinationLotNumberHasInvalidSuffixes, Detection.VaccinationLotNumberHasMultiple,
+        Detection.VaccinationLotNumberIsTooShort));
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberIsInvalid);
+      id.setImplementationDescription(
+          "Vaccination lot number must be comprised of alphanumeric characters and/or the '-'. All other characters are invalid.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationLotNumberFormatIsUnrecognized);
+      id.setImplementationDescription(
+          "Vaccination lot number doesn't match the expected format specified by the manufacturer code.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationLotNumberHasInvalidInfixes);
+      id.setImplementationDescription("Vaccination lot number cannot contain the text ICE3");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationLotNumberHasInvalidPrefixes);
+      id.setImplementationDescription(
+          "Vaccination lot number cannot start with LOT, (P), MED, SKB, LOT, PMC, WSD, WAL");
+    }
+
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationLotNumberHasInvalidSuffixes);
+      id.setImplementationDescription(
+          "Vaccination lot number cannot end with (P), -P, -S, -C, -H, -V, *, #, (S), (P),\r\n"
+              + "        MSD, HSP, SELECT, CP, VFC, STATE, CHIP, ADULT, ST-, PRIVATE, PED,\r\n"
+              + "        UNINSURED, SPECIAL, OVER19, VMC, -COUNT, REAR, PENT, PENTACEL, DTAP,\r\n"
+              + "        IPV, ACTH, HIB, PFF, FLU, BOOST, HAV, GARDASIL, ROTATEQ, PEDVAX,\r\n"
+              + "        VARIVAX, PNEU, PNEUMOVAX, MMR, MENVEO, MENACTRA, FLU ZONE");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberHasMultiple);
+      id.setImplementationDescription("Vaccination lot number has multiple lot numbers.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberIsTooShort);
+      id.setImplementationDescription("Vaccination lot number is 4 characters or less.");
+    }
   }
 
   @Override

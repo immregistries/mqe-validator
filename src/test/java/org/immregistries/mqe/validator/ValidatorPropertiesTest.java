@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator;
 
 import static org.junit.Assert.assertNotNull;
-
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

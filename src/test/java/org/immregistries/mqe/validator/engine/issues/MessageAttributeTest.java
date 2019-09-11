@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.issues;
 
 import static org.junit.Assert.assertFalse;
-
 import java.util.HashSet;
 import java.util.Set;
 import org.immregistries.mqe.validator.detection.Detection;

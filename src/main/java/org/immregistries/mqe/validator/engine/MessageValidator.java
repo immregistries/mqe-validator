@@ -2,8 +2,6 @@ package org.immregistries.mqe.validator.engine;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.immregistries.mqe.validator.engine.ValidationRulePair;
-import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 
 public enum MessageValidator {

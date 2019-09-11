@@ -1,9 +1,9 @@
 package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -17,10 +17,30 @@ public class VaccinationActionCodeIsValid extends ValidationRule<MqeVaccination>
   public VaccinationActionCodeIsValid() {
     this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_ACTION_CODE));
     String baseMessage = "Vaccination Action Code value is ";
-    this.addImplementationMessage(Detection.VaccinationActionCodeIsValuedAsAdd, baseMessage.concat(MqeVaccination.ACTION_CODE_ADD));
-    this.addImplementationMessage(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate, baseMessage.concat(MqeVaccination.ACTION_CODE_ADD).concat(" or ").concat(MqeVaccination.ACTION_CODE_UPDATE));
-    this.addImplementationMessage(Detection.VaccinationActionCodeIsValuedAsDelete, baseMessage.concat(MqeVaccination.ACTION_CODE_DELETE));
-    this.addImplementationMessage(Detection.VaccinationActionCodeIsValuedAsUpdate, baseMessage.concat(MqeVaccination.ACTION_CODE_UPDATE));
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationActionCodeIsValuedAsAdd);
+      id.setImplementationDescription(
+          baseMessage.concat(MqeVaccination.ACTION_CODE_ADD));
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate);
+      id.setImplementationDescription(
+          baseMessage.concat(MqeVaccination.ACTION_CODE_ADD).concat(" or ").concat(MqeVaccination.ACTION_CODE_UPDATE));
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationActionCodeIsValuedAsDelete);
+      id.setImplementationDescription(
+          baseMessage.concat(MqeVaccination.ACTION_CODE_DELETE));
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationActionCodeIsValuedAsUpdate);
+      id.setImplementationDescription(
+          baseMessage.concat(MqeVaccination.ACTION_CODE_UPDATE));
+    }
   }
 
   @Override

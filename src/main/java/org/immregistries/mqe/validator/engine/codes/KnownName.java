@@ -9,7 +9,6 @@ package org.immregistries.mqe.validator.engine.codes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.vxu.hl7.Name;
 

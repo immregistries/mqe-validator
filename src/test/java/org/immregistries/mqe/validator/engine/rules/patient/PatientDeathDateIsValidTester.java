@@ -2,7 +2,6 @@ package org.immregistries.mqe.validator.engine.rules.patient;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;

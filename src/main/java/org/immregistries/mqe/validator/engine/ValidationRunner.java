@@ -2,7 +2,6 @@ package org.immregistries.mqe.validator.engine;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.immregistries.mqe.validator.detection.ValidationReport;
 
 public enum ValidationRunner {
   INSTANCE;

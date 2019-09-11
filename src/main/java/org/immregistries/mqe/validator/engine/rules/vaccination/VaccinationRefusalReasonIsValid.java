@@ -3,6 +3,7 @@ package org.immregistries.mqe.validator.engine.rules.vaccination;
 import java.util.ArrayList;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -19,8 +20,17 @@ public class VaccinationRefusalReasonIsValid extends ValidationRule<MqeVaccinati
 
   public VaccinationRefusalReasonIsValid() {
     this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_REFUSAL_REASON));
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationRefusalReasonConflictsCompletionStatus);id.setImplementationDescription("Vaccination is marked as completed but refusal code was given.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationRefusalReasonIsMissing);id.setImplementationDescription("Vaccination completion was refused but refusal code is missing. ");
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationRefusalReasonConflictsCompletionStatus);
+      id.setImplementationDescription(
+          "Vaccination is marked as completed but refusal code was given.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationRefusalReasonIsMissing);
+      id.setImplementationDescription(
+          "Vaccination completion was refused but refusal code is missing. ");
+    }
   }
 
   @Override
@@ -35,8 +45,8 @@ public class VaccinationRefusalReasonIsValid extends ValidationRule<MqeVaccinati
     }
 
     if (target.isCompletionRefused()) {
-    	issues.addAll(codr.handleCodeOrMissing(target.getRefusal(), VxuField.VACCINATION_REFUSAL_REASON,
-                target));
+      issues.addAll(codr.handleCodeOrMissing(target.getRefusal(),
+          VxuField.VACCINATION_REFUSAL_REASON, target));
     }
 
     passed = (issues.size() == 0);

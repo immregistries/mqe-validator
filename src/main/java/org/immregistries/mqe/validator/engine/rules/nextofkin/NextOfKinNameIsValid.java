@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -15,7 +16,8 @@ public class NextOfKinNameIsValid extends ValidationRule<MqeNextOfKin> {
   public NextOfKinNameIsValid() {
     this.addRuleDetections(Arrays.asList(Detection.NextOfKinNameIsMissing,
         Detection.NextOfKinNameFirstIsMissing, Detection.NextOfKinNameLastIsMissing));
-    ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinNameIsMissing);id.setImplementationDescription("Next of kin is missing both first and last names.");
+    ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinNameIsMissing);
+    id.setImplementationDescription("Next of kin is missing both first and last names.");
   }
 
   @Override

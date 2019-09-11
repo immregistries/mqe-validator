@@ -9,10 +9,10 @@ import org.immregistries.mqe.validator.MqeMessageService;
 import org.immregistries.mqe.validator.MqeMessageServiceResponse;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.DetectionType;
-import org.immregistries.mqe.vxu.VxuObject;
 import org.immregistries.mqe.validator.report.codes.CodeCollection;
 import org.immregistries.mqe.validator.report.codes.VaccineCollection;
 import org.immregistries.mqe.vxu.VxuField;
+import org.immregistries.mqe.vxu.VxuObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

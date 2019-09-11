@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -11,7 +12,7 @@ import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
 
 public class VaccinationAdministeredAmtIsValid extends ValidationRule<MqeVaccination> {
-	
+
   @Override
   protected final Class[] getDependencies() {
     return new Class[] {VaccinationSourceIsAdministered.class};
@@ -22,10 +23,29 @@ public class VaccinationAdministeredAmtIsValid extends ValidationRule<MqeVaccina
         Detection.VaccinationAdministeredAmountIsValuedAsUnknown,
         Detection.VaccinationAdministeredAmountIsValuedAsZero,
         Detection.VaccinationAdministeredAmountIsInvalid));
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdministeredAmountIsMissing);id.setImplementationDescription("Vaccination Administered Amount is missing or equal to 999.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdministeredAmountIsValuedAsUnknown);id.setImplementationDescription("Vaccination Administered Amount is missing or equal to 999.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdministeredAmountIsValuedAsZero);id.setImplementationDescription("Vaccination Administered Amount is 0.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdministeredAmountIsInvalid);id.setImplementationDescription("Vaccination Administered Amount could not be converted into a number.");
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationAdministeredAmountIsMissing);
+      id.setImplementationDescription(
+          "Vaccination Administered Amount is missing or equal to 999.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationAdministeredAmountIsValuedAsUnknown);
+      id.setImplementationDescription(
+          "Vaccination Administered Amount is missing or equal to 999.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationAdministeredAmountIsValuedAsZero);
+      id.setImplementationDescription("Vaccination Administered Amount is 0.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationAdministeredAmountIsInvalid);
+      id.setImplementationDescription(
+          "Vaccination Administered Amount could not be converted into a number.");
+    }
   }
 
   @Override
@@ -49,8 +69,8 @@ public class VaccinationAdministeredAmtIsValid extends ValidationRule<MqeVaccina
             passed = true;
           }
         } catch (NumberFormatException nfe) {
-          issues.add(Detection.VaccinationAdministeredAmountIsInvalid.build(target.getAmount(),
-              target));
+          issues.add(
+              Detection.VaccinationAdministeredAmountIsInvalid.build(target.getAmount(), target));
         }
       }
     }

@@ -7,8 +7,8 @@ import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.DetectionType;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
-import org.immregistries.mqe.vxu.MqeAddress;
 import org.immregistries.mqe.vxu.MetaFieldInfoData;
+import org.immregistries.mqe.vxu.MqeAddress;
 import org.immregistries.mqe.vxu.VxuField;
 
 /**

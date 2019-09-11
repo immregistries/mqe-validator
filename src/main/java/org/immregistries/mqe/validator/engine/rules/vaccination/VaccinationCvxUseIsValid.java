@@ -7,6 +7,7 @@ import org.immregistries.codebase.client.generated.Code;
 import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.codebase.client.reference.CvxConceptType;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -28,8 +29,8 @@ public class VaccinationCvxUseIsValid extends ValidationRule<MqeVaccination> {
   public VaccinationCvxUseIsValid() {
 	  this.addRuleDetections(Arrays.asList(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange,
 		        Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange));
-	  ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange);id.setImplementationDescription("Vaccination Administered Date is outside of expected vaccine date range.");
-	  ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange);id.setImplementationDescription("Vaccination Administered Date is outside of licensed vaccine date range.");
+	  {ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange);id.setImplementationDescription("Vaccination Administered Date is outside of expected vaccine date range.");}
+	  {ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange);id.setImplementationDescription("Vaccination Administered Date is outside of licensed vaccine date range.");}
   }
 
   @Override

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -17,21 +18,36 @@ public class PatientBirthDateIsReasonable extends ValidationRule<MqePatient> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[]{PatientExists.class, PatientBirthDateIsValid.class, MessageHeaderDateIsValid.class};
+    return new Class[] {PatientExists.class, PatientBirthDateIsValid.class,
+        MessageHeaderDateIsValid.class};
   }
 
   public PatientBirthDateIsReasonable() {
-    this.addRuleDetections(
-        Arrays.asList(Detection.PatientBirthDateIsVeryLongAgo,
-            Detection.PatientBirthDateIsOn15ThDayOfMonth,
-            Detection.PatientBirthDateIsOnFirstDayOfMonth,
-            Detection.PatientBirthDateIsOnLastDayOfMonth,
-            Detection.PatientBirthDateIsAfterSubmission));
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsVeryLongAgo);id.setImplementationDescription("Patient is over 120 years old.");
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsAfterSubmission);id.setImplementationDescription("Patient birth date is over 2 hours after the message header date.");
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsOnFirstDayOfMonth);id.setImplementationDescription("Patient birth date is on the first day of the month.");
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsOn15ThDayOfMonth);id.setImplementationDescription("Patient birth date is on the 15th day of the month.");
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsOnLastDayOfMonth);id.setImplementationDescription("Patient birth date is on the last day of the month.");
+    this.addRuleDetections(Arrays.asList(Detection.PatientBirthDateIsVeryLongAgo,
+        Detection.PatientBirthDateIsOn15ThDayOfMonth, Detection.PatientBirthDateIsOnFirstDayOfMonth,
+        Detection.PatientBirthDateIsOnLastDayOfMonth, Detection.PatientBirthDateIsAfterSubmission));
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsVeryLongAgo);
+      id.setImplementationDescription("Patient is over 120 years old.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsAfterSubmission);
+      id.setImplementationDescription(
+          "Patient birth date is over 2 hours after the message header date.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientBirthDateIsOnFirstDayOfMonth);
+      id.setImplementationDescription("Patient birth date is on the first day of the month.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsOn15ThDayOfMonth);
+      id.setImplementationDescription("Patient birth date is on the 15th day of the month.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsOnLastDayOfMonth);
+      id.setImplementationDescription("Patient birth date is on the last day of the month.");
+    }
   }
 
   @Override

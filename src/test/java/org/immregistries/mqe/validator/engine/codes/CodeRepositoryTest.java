@@ -2,7 +2,6 @@ package org.immregistries.mqe.validator.engine.codes;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
 import org.immregistries.codebase.client.generated.Code;
 import org.junit.Test;
 

@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -16,19 +17,24 @@ public class MessageHeaderDateIsValid extends ValidationRule<MqeMessageHeader> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[]{
+    return new Class[] {
         // PatientExists.class,
     };
   }
 
   public MessageHeaderDateIsValid() {
-    this.addRuleDetections(Arrays.asList(
-        Detection.MessageMessageDateIsUnexpectedFormat,
-        Detection.MessageMessageDateIsMissing,
-        Detection.MessageMessageDateIsInFuture,
+    this.addRuleDetections(Arrays.asList(Detection.MessageMessageDateIsUnexpectedFormat,
+        Detection.MessageMessageDateIsMissing, Detection.MessageMessageDateIsInFuture,
         Detection.MessageMessageDateIsMissingTimezone));
-    this.addImplementationMessage( Detection.MessageMessageDateIsUnexpectedFormat, "Message Header date cannot be translated to a date");
-    this.addImplementationMessage( Detection.MessageMessageDateIsInFuture, "Message Header date is over 2 hours into the future.");
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.MessageMessageDateIsUnexpectedFormat);
+      id.setImplementationDescription("Message Header date cannot be translated to a date");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.MessageMessageDateIsInFuture);
+      id.setImplementationDescription("Message Header date is over 2 hours into the future.");
+    }
   }
 
 
@@ -48,7 +54,8 @@ public class MessageHeaderDateIsValid extends ValidationRule<MqeMessageHeader> {
       LOGGER.info("receivedDate: " + mr.getReceivedDate());
       if (target.getMessageDate() == null) {
         //must have failed parsing, so add a detection saying its not valid.
-        issues.add(Detection.MessageMessageDateIsUnexpectedFormat.build((messageDateString), target));
+        issues
+            .add(Detection.MessageMessageDateIsUnexpectedFormat.build((messageDateString), target));
         passed = false;
       } else {
         Date t = target.getMessageDate();

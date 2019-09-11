@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.report.codes;
 
 import static org.junit.Assert.assertEquals;
-
 import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.TestMessageGenerator;

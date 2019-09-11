@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -14,14 +15,23 @@ public class PatientDeathIndicatorIsValid extends ValidationRule<MqePatient> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[]{PatientExists.class};
+    return new Class[] {PatientExists.class};
   }
 
   public PatientDeathIndicatorIsValid() {
     this.addRuleDetections(Arrays.asList(Detection.PatientDeathIndicatorIsMissing,
         Detection.PatientDeathIndicatorIsInconsistent));
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathIndicatorIsMissing);id.setImplementationDescription("Patient death date was given but death indicator is missing.");
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathIndicatorIsInconsistent);id.setImplementationDescription("Patient death indicator says not dead but death date is populated.");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathIndicatorIsMissing);
+      id.setImplementationDescription(
+          "Patient death date was given but death indicator is missing.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientDeathIndicatorIsInconsistent);
+      id.setImplementationDescription(
+          "Patient death indicator says not dead but death date is populated.");
+    }
   }
 
   @Override

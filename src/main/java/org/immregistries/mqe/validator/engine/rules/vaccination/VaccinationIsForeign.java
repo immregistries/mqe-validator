@@ -7,6 +7,7 @@ import org.immregistries.codebase.client.generated.Code;
 import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.codebase.client.reference.CvxConceptType;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -18,8 +19,14 @@ public class VaccinationIsForeign extends ValidationRule<MqeVaccination> {
   public VaccinationIsForeign() {
     this.addRuleDetections(Arrays.asList(Detection.VaccinationAdminCodeIsForeign,
         Detection.VaccinationHistoricalCodeIsForeign));
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsForeign);id.setImplementationDescription("Administered Vaccination has a foreign CVX vaccine code.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationHistoricalCodeIsForeign);id.setImplementationDescription("Historical Vaccination has a foreign CVX vaccine code.");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsForeign);
+      id.setImplementationDescription("Administered Vaccination has a foreign CVX vaccine code.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationHistoricalCodeIsForeign);
+      id.setImplementationDescription("Historical Vaccination has a foreign CVX vaccine code.");
+    }
 
   }
 

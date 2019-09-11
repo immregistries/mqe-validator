@@ -1,12 +1,12 @@
 package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import org.immregistries.codebase.client.generated.Code;
 import org.immregistries.codebase.client.generated.UseDate;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -18,8 +18,18 @@ public class VaccinationMfrIsValid extends ValidationRule<MqeVaccination> {
 
   public VaccinationMfrIsValid() {
     this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_MANUFACTURER_CODE));
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationManufacturerCodeIsInvalidForDateAdministered);id.setImplementationDescription("Vaccination Manufacturer code was used outside of the valid date range defined for this code. ");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationManufacturerCodeIsUnexpectedForDateAdministered);id.setImplementationDescription("Vaccination Manufacturer code was used outside of the expected date range defined for this code. ");
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationManufacturerCodeIsInvalidForDateAdministered);
+      id.setImplementationDescription(
+          "Vaccination Manufacturer code was used outside of the valid date range defined for this code. ");
+    }
+    {
+      ImplementationDetail id = this
+          .addRuleDetection(Detection.VaccinationManufacturerCodeIsUnexpectedForDateAdministered);
+      id.setImplementationDescription(
+          "Vaccination Manufacturer code was used outside of the expected date range defined for this code. ");
+    }
   }
 
   @Override
@@ -55,14 +65,14 @@ public class VaccinationMfrIsValid extends ValidationRule<MqeVaccination> {
         if (datr.isAfterDate(target.getAdminDate(), notAfterDate)
             || datr.isBeforeDate(target.getAdminDate(), notBeforeDate)) {
 
-          issues.add(Detection.VaccinationManufacturerCodeIsInvalidForDateAdministered.build(
-              target.getManufacturer(), target));
+          issues.add(Detection.VaccinationManufacturerCodeIsInvalidForDateAdministered
+              .build(target.getManufacturer(), target));
           passed = false;
 
         } else if (datr.isAfterDate(target.getAdminDate(), notExpectedAfterDate)
             || datr.isBeforeDate(target.getAdminDate(), notExpectedBeforeDate)) {
-          issues.add(Detection.VaccinationManufacturerCodeIsUnexpectedForDateAdministered.build(
-              target.getManufacturer(), target));
+          issues.add(Detection.VaccinationManufacturerCodeIsUnexpectedForDateAdministered
+              .build(target.getManufacturer(), target));
         }
       }
     }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.validator.address.SmartyStreetResponse;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -17,24 +18,28 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[]{PatientHasResponsibleParty.class};
+    return new Class[] {PatientHasResponsibleParty.class};
   }
 
   public PatientResponsiblePartyIsProperlyFormed() {
-    this.addRuleDetections(Arrays.asList(
-        Detection.PatientGuardianAddressStateIsMissing,
-        Detection.PatientGuardianAddressCityIsMissing,
-        Detection.PatientGuardianAddressZipIsMissing,
-        Detection.PatientGuardianNameFirstIsMissing,
-        Detection.PatientGuardianNameLastIsMissing,
+    this.addRuleDetections(Arrays.asList(Detection.PatientGuardianAddressStateIsMissing,
+        Detection.PatientGuardianAddressCityIsMissing, Detection.PatientGuardianAddressZipIsMissing,
+        Detection.PatientGuardianNameFirstIsMissing, Detection.PatientGuardianNameLastIsMissing,
         Detection.PatientGuardianNameIsSameAsUnderagePatient,
         Detection.PatientGuardianPhoneIsMissing));
-    
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianNameIsSameAsUnderagePatient);id.setImplementationDescription("Patient first and last name match the guardian first and last name.");
+
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientGuardianNameIsSameAsUnderagePatient);
+      id.setImplementationDescription(
+          "Patient first and last name match the guardian first and last name.");
+    }
 
     if (props.isAddressCleanserEnabled()) {
       this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);
-      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);id.setImplementationDescription("Patient Guardian Address is invalid according to Smarty Streets.");
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);
+      id.setImplementationDescription(
+          "Patient Guardian Address is invalid according to Smarty Streets.");
     }
   }
 
@@ -54,8 +59,8 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
       if (props.isAddressCleanserEnabled()) {
         if (guardian.getAddress() != null && !guardian.getAddress().isClean()) {
           ValidationReport r = Detection.PatientGuardianAddressIsInvalid.build(target);
-          List<SmartyStreetResponse> rList = SmartyStreetResponse
-              .codesFromDpv(guardian.getAddress().getCleansingResultCode());
+          List<SmartyStreetResponse> rList =
+              SmartyStreetResponse.codesFromDpv(guardian.getAddress().getCleansingResultCode());
           if (rList.size() > 0) {
             StringBuilder b = new StringBuilder(":");
             for (SmartyStreetResponse rz : rList) {

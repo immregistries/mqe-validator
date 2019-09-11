@@ -1,10 +1,7 @@
 package org.immregistries.mqe.validator.engine.rules.nextofkin;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.validator.address.SmartyStreetResponse;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;

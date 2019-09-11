@@ -9,6 +9,7 @@ import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.codebase.client.reference.CvxConceptType;
 import org.immregistries.codebase.client.reference.CvxSpecialValues;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -19,22 +20,41 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[]{VaccinationSourceIsAdministered.class, VaccinationAdminCodeIsPresent.class};
+    return new Class[] {VaccinationSourceIsAdministered.class, VaccinationAdminCodeIsPresent.class};
   }
 
   public VaccinationAdminCodeIsValid() {
-    this.addRuleDetections(Arrays
-        .asList(
-            Detection.VaccinationAdminCodeIsNotSpecific,
-            Detection.VaccinationAdminCodeIsValuedAsNotAdministered,
-            Detection.VaccinationAdminCodeIsValuedAsUnknown,
-            Detection.VaccinationAdminCodeIsNotVaccine,
-            Detection.VaccinationAdminCodeIsUnrecognized));
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotSpecific);id.setImplementationDescription("Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has an unspecified value type.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotVaccine);id.setImplementationDescription("Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a non-vaccine value type.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsUnrecognized);id.setImplementationDescription("Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) could not be derived.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsValuedAsNotAdministered);id.setImplementationDescription("Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a value of 998.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsValuedAsUnknown);id.setImplementationDescription("Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a value of 999.");
+    this.addRuleDetections(Arrays.asList(Detection.VaccinationAdminCodeIsNotSpecific,
+        Detection.VaccinationAdminCodeIsValuedAsNotAdministered,
+        Detection.VaccinationAdminCodeIsValuedAsUnknown, Detection.VaccinationAdminCodeIsNotVaccine,
+        Detection.VaccinationAdminCodeIsUnrecognized));
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotSpecific);
+      id.setImplementationDescription(
+          "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has an unspecified value type.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotVaccine);
+      id.setImplementationDescription(
+          "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a non-vaccine value type.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsUnrecognized);
+      id.setImplementationDescription(
+          "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) could not be derived.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationAdminCodeIsValuedAsNotAdministered);
+      id.setImplementationDescription(
+          "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a value of 998.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationAdminCodeIsValuedAsUnknown);
+      id.setImplementationDescription(
+          "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a value of 999.");
+    }
   }
 
   @Override
@@ -48,10 +68,8 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
     String ndcCode = target.getAdminNdc();
     String cptCode = target.getAdminCptCode();
 
-    if (StringUtils.isBlank(cvxCode)
-        && StringUtils.isBlank(ndcCode)
-        && StringUtils.isBlank(cptCode)
-        ) {
+    if (StringUtils.isBlank(cvxCode) && StringUtils.isBlank(ndcCode)
+        && StringUtils.isBlank(cptCode)) {
       return buildResults(issues, false);
     }
 
@@ -60,9 +78,8 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
 
     //Get NDC code data, if it's not blank.
     if (StringUtils.isNotBlank(ndcCode)) {
-      adminCode = this.repo
-          .getFirstRelatedCodeForCodeIn(CodesetType.VACCINATION_NDC_CODE, ndcCode,
-              CodesetType.VACCINATION_CVX_CODE);
+      adminCode = this.repo.getFirstRelatedCodeForCodeIn(CodesetType.VACCINATION_NDC_CODE, ndcCode,
+          CodesetType.VACCINATION_CVX_CODE);
     }
 
     //If you didn't find anything for NDC code data, look up CVX code data.
@@ -76,9 +93,8 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
     //If you didn't find anything for CVX code data, look up CPT code data.
     if (adminCode == null) {
       if (StringUtils.isNotBlank(cptCode)) {
-        adminCode = this.repo
-            .getFirstRelatedCodeForCodeIn(CodesetType.VACCINATION_CPT_CODE, cptCode,
-                CodesetType.VACCINATION_CVX_CODE);
+        adminCode = this.repo.getFirstRelatedCodeForCodeIn(CodesetType.VACCINATION_CPT_CODE,
+            cptCode, CodesetType.VACCINATION_CVX_CODE);
         useNdc = false;
       }
     }

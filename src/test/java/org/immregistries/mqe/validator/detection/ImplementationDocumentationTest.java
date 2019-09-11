@@ -20,7 +20,7 @@ public class ImplementationDocumentationTest {
 		Set<ImplementationDetail> implementationDocumentations = ValidationRuleEntityLists.getImplementationDocumentations();
 		for (ImplementationDetail implementationDetail : implementationDocumentations) {
 			logger.info(implementationDetail.toString());
-			assertFalse(StringUtils.isBlank(implementationDetail.getDescription()));
+			assertFalse(StringUtils.isBlank(implementationDetail.getImplementationDescription()));
 		}
 
 	}

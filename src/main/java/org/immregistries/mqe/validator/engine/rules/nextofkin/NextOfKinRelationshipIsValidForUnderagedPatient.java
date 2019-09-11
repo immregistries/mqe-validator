@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -26,8 +27,17 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
         Detection.NextOfKinRelationshipIsUnrecognized,
         Detection.NextOfKinRelationshipIsNotResponsibleParty,
         Detection.NextOfKinRelationshipIsMissing));
-    ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinRelationshipIsUnexpected);id.setImplementationDescription("An underage patient is not expecting a next of kin that is a child, step child, or foster child.");
-    ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinRelationshipIsNotResponsibleParty);id.setImplementationDescription("The next of kin for an underage patient is expected to be a caregiver, father, grandparent, mother, parent, or guardian.");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinRelationshipIsUnexpected);
+      id.setImplementationDescription(
+          "An underage patient is not expecting a next of kin that is a child, step child, or foster child.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.NextOfKinRelationshipIsNotResponsibleParty);
+      id.setImplementationDescription(
+          "The next of kin for an underage patient is expected to be a caregiver, father, grandparent, mother, parent, or guardian.");
+    }
   }
 
   @Override
@@ -49,8 +59,8 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
         } else if (NokRelationship.get(relationship) == NokRelationship.UNKNOWN) {
           issues.add(Detection.NextOfKinRelationshipIsUnrecognized.build((relationship), target));
         } else {
-          issues.add(Detection.NextOfKinRelationshipIsNotResponsibleParty.build((relationship),
-              target));
+          issues.add(
+              Detection.NextOfKinRelationshipIsNotResponsibleParty.build((relationship), target));
         }
       }
     } else {

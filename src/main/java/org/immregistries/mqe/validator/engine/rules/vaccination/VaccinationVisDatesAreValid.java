@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -23,16 +24,45 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
 
   public VaccinationVisDatesAreValid() {
     this.addRuleDetections(Arrays.asList(Detection.VaccinationVisPublishedDateIsMissing,
-    	Detection.VaccinationVisPublishedDateIsInFuture,
-    	Detection.VaccinationVisPublishedDateIsInvalid));
+        Detection.VaccinationVisPublishedDateIsInFuture,
+        Detection.VaccinationVisPublishedDateIsInvalid));
     this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_VIS_PRESENTED_DATE));
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisPublishedDateIsInvalid);id.setImplementationDescription("Vaccination Vis Publication date cannot be translated to a date.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisPublishedDateIsInFuture);id.setImplementationDescription("Vaccination Vis Publication date cannot be a future date.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisPresentedDateIsInvalid);id.setImplementationDescription("Vaccination Vis Presented date cannot be translated to a date.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisPresentedDateIsBeforePublishedDate);id.setImplementationDescription("Vaccination Vis Presented date cannot be earlier than Vis Published date.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisPresentedDateIsAfterAdminDate);id.setImplementationDescription("Vaccination Vis Presented date cannot be after Vaccination Administered Date.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisPresentedDateIsNotAdminDate);id.setImplementationDescription("Vaccination Vis Presented date should be the same as the Vaccination Administered Date.");
-    
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationVisPublishedDateIsInvalid);
+      id.setImplementationDescription(
+          "Vaccination Vis Publication date cannot be translated to a date.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationVisPublishedDateIsInFuture);
+      id.setImplementationDescription("Vaccination Vis Publication date cannot be a future date.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationVisPresentedDateIsInvalid);
+      id.setImplementationDescription(
+          "Vaccination Vis Presented date cannot be translated to a date.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationVisPresentedDateIsBeforePublishedDate);
+      id.setImplementationDescription(
+          "Vaccination Vis Presented date cannot be earlier than Vis Published date.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationVisPresentedDateIsAfterAdminDate);
+      id.setImplementationDescription(
+          "Vaccination Vis Presented date cannot be after Vaccination Administered Date.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationVisPresentedDateIsNotAdminDate);
+      id.setImplementationDescription(
+          "Vaccination Vis Presented date should be the same as the Vaccination Administered Date.");
+    }
+
   }
 
   @Override
@@ -63,19 +93,19 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
       issues.add(Detection.VaccinationVisPresentedDateIsInvalid.build(vis.getPresentedDateString(),
           target));
     }
-    
+
     if (publishedDate != null) {
-    	Calendar now = Calendar.getInstance();
-    	 if (datr.isAfterDate(publishedDate, now.getTime())) {
-    		 issues.add(Detection.VaccinationVisPublishedDateIsInFuture.build(vis.getPresentedDateString(),
-    		          target));
-    	 }
+      Calendar now = Calendar.getInstance();
+      if (datr.isAfterDate(publishedDate, now.getTime())) {
+        issues.add(Detection.VaccinationVisPublishedDateIsInFuture
+            .build(vis.getPresentedDateString(), target));
+      }
     }
-    
+
     if (publishedDate != null && presentedDate != null) {
-        if (datr.isBeforeDate(presentedDate, publishedDate)) {
-          issues.add(Detection.VaccinationVisPresentedDateIsBeforePublishedDate.build(target));
-        }
+      if (datr.isBeforeDate(presentedDate, publishedDate)) {
+        issues.add(Detection.VaccinationVisPresentedDateIsBeforePublishedDate.build(target));
+      }
     }
 
 
@@ -83,11 +113,11 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
     if (adminDate != null) {
       if (presentedDate != null) {
         if (datr.isAfterDate(presentedDate, adminDate)) {
-          issues.add(Detection.VaccinationVisPresentedDateIsAfterAdminDate.build(
-              (presentedDateString), target));
+          issues.add(Detection.VaccinationVisPresentedDateIsAfterAdminDate
+              .build((presentedDateString), target));
         } else if (datr.isNotSameDate(presentedDate, adminDate)) {
-          issues.add(Detection.VaccinationVisPresentedDateIsNotAdminDate.build(
-              (presentedDateString), target));
+          issues.add(Detection.VaccinationVisPresentedDateIsNotAdminDate
+              .build((presentedDateString), target));
         }
       }
     }

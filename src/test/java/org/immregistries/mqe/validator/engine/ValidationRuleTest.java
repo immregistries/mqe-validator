@@ -170,7 +170,7 @@ public class ValidationRuleTest {
     Map<Detection, String> expectedMissingDetections = new HashMap<>();
     //then get the list of everything that can be raised, and pick out the types that are MISSING.
     for (ValidationRule r : patientRules) {
-      Set<Detection> ruleDetections = r.ruleDetections;
+      Set<Detection> ruleDetections = r.getRuleDetections();
       for (Detection d : ruleDetections) {
         if (d != null && DetectionType.MISSING == d.getDetectionType()) {
           expectedMissingDetections.put(d, r.getClass().getSimpleName());

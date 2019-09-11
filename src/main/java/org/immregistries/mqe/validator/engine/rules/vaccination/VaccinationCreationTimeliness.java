@@ -3,7 +3,6 @@ package org.immregistries.mqe.validator.engine.rules.vaccination;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
@@ -13,42 +12,42 @@ import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.joda.time.DurationFieldType;
-import org.joda.time.Interval;
-import org.joda.time.Period;
 
 public class VaccinationCreationTimeliness extends ValidationRule<MqeVaccination> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[]{VaccinationSourceIsAdministered.class, VaccinationCreationDateIsValid.class,
+    return new Class[] {VaccinationSourceIsAdministered.class, VaccinationCreationDateIsValid.class,
         VaccinationAdminDateIsValid.class};
   }
 
   public VaccinationCreationTimeliness() {
     super();
-    this.addRuleDetections(Arrays.asList(
-        Detection.VaccinationCreationIsVeryLate,
-        Detection.VaccinationCreationIsTooLate,
-        Detection.VaccinationCreationIsOnTime,
-        Detection.VaccinationCreationIsLate
-    ));
+    this.addRuleDetections(Arrays.asList(Detection.VaccinationCreationIsVeryLate,
+        Detection.VaccinationCreationIsTooLate, Detection.VaccinationCreationIsOnTime,
+        Detection.VaccinationCreationIsLate));
     {
-      ImplementationDetail id =
-          this.addRuleDetection(Detection.VaccinationCreationIsVeryLate);
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCreationIsVeryLate);
       id.setImplementationDescription(
           "Vaccination Administered Date and System Entry Date are more than 14 days but less than or equal to 30 days apart.");
     }
 
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCreationIsTooLate);
-    id.setImplementationDescription(
-        "Vaccination Administered Date and System Entry Date are over 30 days apart.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCreationIsOnTime);
-    id.setImplementationDescription(
-        "Vaccination Administered Date and System Entry Date less than or equal to 3 days of eachother.");
-    ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCreationIsLate);
-    id.setImplementationDescription(
-        "Vaccination Administered Date and System Entry Date are are more than 3 days but less than or equal to 14 days apart.");
+
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCreationIsTooLate);
+      id.setImplementationDescription(
+          "Vaccination Administered Date and System Entry Date are over 30 days apart.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCreationIsOnTime);
+      id.setImplementationDescription(
+          "Vaccination Administered Date and System Entry Date less than or equal to 3 days of eachother.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCreationIsLate);
+      id.setImplementationDescription(
+          "Vaccination Administered Date and System Entry Date are are more than 3 days but less than or equal to 14 days apart.");
+    }
   }
 
   @Override

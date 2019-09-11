@@ -194,10 +194,10 @@ public class DetectionDocumentation {
 			
 			for(ImplementationDetail details: ruleDetails) {
 				if(implementationDetails.containsKey(details.getDetection().getMqeMqeCode())) {
-					implementationDetails.get(details.getDetection().getMqeMqeCode()).put(ruleName, details.getDescription());
+					implementationDetails.get(details.getDetection().getMqeMqeCode()).put(ruleName, details.getImplementationDescription());
 				} else {
 					Map<String, String> implementation = new HashMap<>();
-					implementation.put(ruleName, details.getDescription());
+					implementation.put(ruleName, details.getImplementationDescription());
 					implementationDetails.put(details.getDetection().getMqeMqeCode(), implementation);
 				}
 			}

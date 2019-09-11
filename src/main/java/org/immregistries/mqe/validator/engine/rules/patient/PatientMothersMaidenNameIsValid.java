@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -21,10 +22,28 @@ public class PatientMothersMaidenNameIsValid extends ValidationRule<MqePatient> 
         Detection.PatientMothersMaidenNameIsInvalid, Detection.PatientMotherSMaidenNameHasJunkName,
         Detection.PatientMotherSMaidenNameHasInvalidPrefixes,
         Detection.PatientMotherSMaidenNameIsTooShort));
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientMothersMaidenNameIsInvalid);id.setImplementationDescription("Patient maiden name must not be on the specified invalid name list ('X','UN','UK','UNK', 'UNKN', 'NONE').");
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientMotherSMaidenNameHasJunkName);id.setImplementationDescription("Patient maiden name must not be on the specified junk name list ('UNKNOWN','NONE','NO LAST NAM','NO LAST NAME', 'NONAME', 'NO NAME', 'EMPTY', 'MISSING').");
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientMotherSMaidenNameHasInvalidPrefixes);id.setImplementationDescription("Patient maiden name must not be on the specified invalid prefixes name list ('ZZ','XX').");
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientMotherSMaidenNameIsTooShort);id.setImplementationDescription("Patient maiden name must be more than 1 character in length.");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientMothersMaidenNameIsInvalid);
+      id.setImplementationDescription(
+          "Patient maiden name must not be on the specified invalid name list ('X','UN','UK','UNK', 'UNKN', 'NONE').");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientMotherSMaidenNameHasJunkName);
+      id.setImplementationDescription(
+          "Patient maiden name must not be on the specified junk name list ('UNKNOWN','NONE','NO LAST NAM','NO LAST NAME', 'NONAME', 'NO NAME', 'EMPTY', 'MISSING').");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientMotherSMaidenNameHasInvalidPrefixes);
+      id.setImplementationDescription(
+          "Patient maiden name must not be on the specified invalid prefixes name list ('ZZ','XX').");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientMotherSMaidenNameIsTooShort);
+      id.setImplementationDescription(
+          "Patient maiden name must be more than 1 character in length.");
+    }
   }
 
   @Override

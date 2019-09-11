@@ -7,12 +7,12 @@ import org.immregistries.codebase.client.generated.Code;
 import org.immregistries.codebase.client.generated.LinkTo;
 import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
-import org.immregistries.mqe.vxu.VxuField;
 
 public class VaccinationFundingAndEligibilityConflict extends ValidationRule<MqeVaccination> {
 

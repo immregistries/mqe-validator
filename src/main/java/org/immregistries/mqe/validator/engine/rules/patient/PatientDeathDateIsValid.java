@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -19,11 +20,18 @@ public class PatientDeathDateIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientDeathDateIsValid() {
-    this.addRuleDetections(Arrays.asList(Detection.PatientDeathDateIsMissing,
-        Detection.PatientDeathDateIsInvalid, Detection.PatientDeathDateIsInFuture,
-        Detection.PatientDeathDateIsBeforeBirth));
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsMissing);id.setImplementationDescription("The death indicator is marked as dead but there is no death date.");
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsInvalid);id.setImplementationDescription("The death date cannot be translated to a date.");
+    this.addRuleDetections(
+        Arrays.asList(Detection.PatientDeathDateIsMissing, Detection.PatientDeathDateIsInvalid,
+            Detection.PatientDeathDateIsInFuture, Detection.PatientDeathDateIsBeforeBirth));
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsMissing);
+      id.setImplementationDescription(
+          "The death indicator is marked as dead but there is no death date.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsInvalid);
+      id.setImplementationDescription("The death date cannot be translated to a date.");
+    }
   }
 
   @Override

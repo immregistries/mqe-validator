@@ -19,69 +19,74 @@ public class PatientNameIsValid extends ValidationRule<MqePatient> {
 
   public PatientNameIsValid() {
     {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientNameFirstIsMissing);
+      id.setImplementationDescription("Patient First Name is not indicated");
+      id.setHowToFix("Please enter the patient's first name and resubmit. ");
+      id.setWhyToFix(
+          "The first name is critical for patient matching both inside the IIS and when communicating with outside entities. ");
+    }
+    {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientNameFirstIsInvalid);
       id.setImplementationDescription(
           "Patient first name must not be on the specified invalid name list ('X','U','UN','UK','UNK', 'UNKN', 'NONE').");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix(
+          "Please enter the patient's legal first name. If the name being sent is the legal name then please contact the IIS for instructions on properly reporting this patient. ");
+      id.setWhyToFix(
+          "The first name is critical for patient matching both inside the IIS and when communicating with outside entities. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientNameLastIsInvalid);
       id.setImplementationDescription(
           "Patient last name must not be on the specified invalid name list ('X','U','UN','UK','UNK', 'UNKN', 'NONE').");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix(
+          "Please enter the patient's legal last name. If the name being sent is the legal name then please contact the IIS for instructions on properly reporting this patient. ");
+      id.setWhyToFix(
+          "The last name is critical for patient matching both inside the IIS and when communicating with outside entities. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientNameMiddleIsInvalid);
       id.setImplementationDescription(
           "Patient middle name must not be on the specified invalid name list ('UN','UK','UNK', 'UNKN', 'NONE').");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix(
+          "Please enter the patient's legal middle name. If there is no legal middle name then leave it blank. If the name being sent is the legal name then please contact the IIS for instructions on properly reporting this patient. ");
+      id.setWhyToFix(
+          "The middle name is very helpful for patient matching both inside the IIS and when communicating with outside entities.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientNameFirstMayIncludeMiddleInitial);
       id.setImplementationDescription(
           "Patient has first name but missing middle name. The first name has a space followed by a single character.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("If known, please enter the patient's full middle name. ");
+      id.setWhyToFix(
+          "The full middle name is very helpful for patient matching both inside the IIS and when communicating with outside entities.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientNameMayBeTemporaryNewbornName);
       id.setImplementationDescription(
           "Patient name must not be on the specified temporary newborn name list (BABY BOY, BABY GIRL, BABY (first name), NEWBORN (first name), BOY BABY, GIRL BABY)");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Please update the patient record to indicate the patient's legal name. ");
+      id.setWhyToFix(
+          "The full legal name is needed in order to properly match and merge immunization records. Vaccinations given to unamed babies are difficult to associate with correct record. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientNameMayBeTestName);
       id.setImplementationDescription(
           "Patient name must not be on the specified test name list (MICKY MOUSE, DONALD DUCK, TEST PATIENT, TEST(first or last name),  PATIENT(first or last name), BENJAMIN S PETERSON");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix(
+          "Patient submitted appears to be a test patient. Please do not submit this record to the IIS production system. Test records should only be sent to IIS test systems and never to production. If this record has been improperly classified as test, please contact the IIS for instructions on how to properly report this record. ");
+      id.setWhyToFix(
+          "Test data can be accidentally merged with good records and thus give information that will impact patient safety and the overal quality of the data in the IIS. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientNameHasJunkName);
       id.setImplementationDescription(
           "Patient names must not be on the specified junk name list (first names: B1, G1, G2, UNNAMED, UNKNOWN, NONE, NOFIRSTNAME, NO FIRST NAME, NO FIRSTNAME, NONAME, NO NAME, EMPTY, MISSING, BABY, BABY BOY, BABY GIRL, GIRL, BOY, A BOY, A GIRL, ABABYGIRL, B BOY, B GIRL, BABY OY, BABY BAY, BABY BO, BABY BOY, BABY BOY 2, BABY BOY A, BABY BOY B, BABY BOY #1, BABY BOY 2, BABY BOY1, BABY GIRL 1, BABY GIRL B, BABY GIRL #1, BABY GIRL 1, BABY GIRL A, BABY GIRL B, BABY GIRL ONE, BABY GIRL1, BABY GRIL, BABY M, BABY SISTER, BABY-GIRL, BABYBOY, BABYBOY-1, BABYBOY-2, BABYBOYA, BABYGIR, BABYGIRL, BABYGIRL-A, BABYGIRL-B, BB, BBABYGIRL, BG, BOY #1, BOY #2, BOY 1, BOY 2, BOY 3, BOY A, BOY B, BOY ONE, BOY TWO, BOY+, C BOY, GIRL # 2, GIRL #2, GIRL (L), GIRL A, GIRL B, GIRL TWIN 2, GIRL#1, GIRL#2, TEST GIRL, TWIN BOY, TWIN GIRL A, B2, NEWBORN, TWIN GIRL, BABU GIRL TWIN, BABY BOY TWIN, BABY BOY 1, BBOY, BABY GIRL, BABY GIRL TWO, BABY 1, BABYGIRL A, BABYBOY 2, BBTWO, BBONE, BGONE, BGTWO, B-G, BG2, BG1, MALE, FEMALE) (middle names: UNKNOWN, NONE, NOMIDDLENAME, NO MIDDLE NAME, NO MIDDLENAME, NONAME, NO NAME, EMPTY, MISSING) (last names: UNKNOWN, NONE, NOLASTNAME, NO LAST NAME, NO LASTNAME, NONAME, NO NAME, EMPTY, MISSING)");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix(
+          "Patient submitted appears to be a test patient or delete patient data. Please do not submit this record to the IIS production system. Test records should only be sent to IIS test systems and never to production. If this record has been improperly classified, please contact the IIS for instructions on how to properly report this record. ");
+      id.setWhyToFix(
+          "Test data can be accidentally merged with good records and thus give information that will impact patient safety and the overal quality of the data in the IIS. ");
     }
   }
 

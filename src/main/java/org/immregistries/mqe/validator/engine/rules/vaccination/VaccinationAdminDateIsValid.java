@@ -16,15 +16,6 @@ import org.joda.time.LocalDate;
 public class VaccinationAdminDateIsValid extends ValidationRule<MqeVaccination> {
 
   public VaccinationAdminDateIsValid() {
-    this.addRuleDetections(Arrays.asList(Detection.VaccinationAdminDateIsMissing,
-        Detection.VaccinationAdminDateIsInvalid,
-        Detection.VaccinationAdminDateIsAfterMessageSubmitted,
-        Detection.VaccinationAdminDateIsOnFirstDayOfMonth,
-        Detection.VaccinationAdminDateIsOn15ThDayOfMonth,
-        Detection.VaccinationAdminDateIsOnLastDayOfMonth,
-        Detection.VaccinationAdminDateIsAfterPatientDeathDate,
-        Detection.VaccinationAdminDateIsBeforeBirth,
-        Detection.VaccinationAdminDateIsAfterSystemEntryDate));
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsMissing);
       // TODO Complete ImplementationDescription
@@ -38,45 +29,77 @@ public class VaccinationAdminDateIsValid extends ValidationRule<MqeVaccination> 
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsInvalid);
       id.setImplementationDescription(
           "Vaccination Administered Date annot be translated to a date.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdminDateIsAfterMessageSubmitted);
       id.setImplementationDescription(
           "Vaccination Administered Date is after the message header date.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdminDateIsAfterPatientDeathDate);
       id.setImplementationDescription(
           "Vaccination Administered Date is after patient's death date");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsBeforeBirth);
       id.setImplementationDescription(
           "Vaccination Administered Date is before patient's birth date.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdminDateIsAfterSystemEntryDate);
       id.setImplementationDescription("Vaccination Administered Date is after System Entry date.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdminDateIsOnFirstDayOfMonth);
       id.setImplementationDescription(
           "Vaccination Administered Date is the first day of the month.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdminDateIsOn15ThDayOfMonth);
       id.setImplementationDescription("Vaccination Administered Date is on the 15th of the month.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdminDateIsOnLastDayOfMonth);
       id.setImplementationDescription(
           "Vaccination Administered Date is on the last day of the month.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
     }
   }
 

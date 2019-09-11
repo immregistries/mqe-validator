@@ -18,13 +18,6 @@ import org.immregistries.mqe.vxu.VxuField;
 public class PatientCodesAreValid extends ValidationRule<MqePatient> {
 
   public PatientCodesAreValid() {
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_PRIMARY_LANGUAGE));
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_PUBLICITY_CODE));
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_RACE));
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_VFC_STATUS));
-    this.addRuleDetections(Arrays.asList(Detection.PatientPrimaryFacilityIdIsMissing,
-        Detection.PatientPrimaryFacilityNameIsMissing));
-
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientPrimaryLanguageIsMissing);
       // TODO Complete ImplementationDescription

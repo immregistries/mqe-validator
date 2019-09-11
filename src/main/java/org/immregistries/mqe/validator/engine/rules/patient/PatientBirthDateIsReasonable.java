@@ -23,9 +23,6 @@ public class PatientBirthDateIsReasonable extends ValidationRule<MqePatient> {
   }
 
   public PatientBirthDateIsReasonable() {
-    this.addRuleDetections(Arrays.asList(Detection.PatientBirthDateIsVeryLongAgo,
-        Detection.PatientBirthDateIsOn15ThDayOfMonth, Detection.PatientBirthDateIsOnFirstDayOfMonth,
-        Detection.PatientBirthDateIsOnLastDayOfMonth, Detection.PatientBirthDateIsAfterSubmission));
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsVeryLongAgo);
       id.setImplementationDescription("Patient is over 120 years old.");

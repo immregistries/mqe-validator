@@ -10,12 +10,10 @@ import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
-import org.immregistries.mqe.vxu.VxuField;
 
 public class PatientRegistryIdIsPresent extends ValidationRule<MqePatient> {
 
   public PatientRegistryIdIsPresent() {
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_REGISTRY_ID));
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientRegistryIdIsMissing);

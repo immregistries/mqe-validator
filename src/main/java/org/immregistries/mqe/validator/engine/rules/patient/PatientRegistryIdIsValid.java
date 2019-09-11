@@ -18,8 +18,6 @@ public class PatientRegistryIdIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientRegistryIdIsValid() {
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_REGISTRY_ID));
-    
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientRegistryIdIsMissing);

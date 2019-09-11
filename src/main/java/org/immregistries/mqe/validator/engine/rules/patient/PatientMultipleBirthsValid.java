@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
@@ -20,11 +19,6 @@ public class PatientMultipleBirthsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientMultipleBirthsValid() {
-    this.addRuleDetections(Arrays.asList(Detection.PatientBirthIndicatorIsMissing,
-        Detection.PatientBirthOrderIsMissingAndMultipleBirthIndicated,
-        Detection.PatientBirthOrderIsInvalid, Detection.PatientBirthIndicatorIsInvalid));
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_BIRTH_ORDER));
-
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientBirthIndicatorIsMissing);

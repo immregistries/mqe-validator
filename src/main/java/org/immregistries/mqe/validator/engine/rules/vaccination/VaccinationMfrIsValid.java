@@ -17,7 +17,6 @@ import org.immregistries.mqe.vxu.VxuField;
 public class VaccinationMfrIsValid extends ValidationRule<MqeVaccination> {
 
   public VaccinationMfrIsValid() {
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_MANUFACTURER_CODE));
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationManufacturerCodeIsDeprecated);

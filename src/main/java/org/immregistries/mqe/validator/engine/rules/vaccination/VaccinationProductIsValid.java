@@ -24,7 +24,6 @@ public class VaccinationProductIsValid extends ValidationRule<MqeVaccination> {
   }
 
   public VaccinationProductIsValid() {
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_PRODUCT));
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationProductIsInvalidForDateAdministered);

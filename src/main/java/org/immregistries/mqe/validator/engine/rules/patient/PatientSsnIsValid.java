@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.DetectionType;
@@ -16,8 +15,6 @@ import org.immregistries.mqe.vxu.VxuField;
 public class PatientSsnIsValid extends ValidationRule<MqePatient> {
 
   public PatientSsnIsValid() {
-    this.addRuleDetections(
-        Arrays.asList(Detection.PatientSsnIsMissing, Detection.PatientSsnIsInvalid));
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientSsnIsMissing);
       // TODO Complete ImplementationDescription
@@ -36,7 +33,6 @@ public class PatientSsnIsValid extends ValidationRule<MqePatient> {
       // TODO Complete WhyToFix
       id.setWhyToFix("");
     }
-
   }
 
   @Override

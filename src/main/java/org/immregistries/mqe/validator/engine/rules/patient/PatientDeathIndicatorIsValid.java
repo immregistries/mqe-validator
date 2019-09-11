@@ -19,8 +19,6 @@ public class PatientDeathIndicatorIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientDeathIndicatorIsValid() {
-    this.addRuleDetections(Arrays.asList(Detection.PatientDeathIndicatorIsMissing,
-        Detection.PatientDeathIndicatorIsInconsistent));
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathIndicatorIsMissing);
       id.setImplementationDescription(

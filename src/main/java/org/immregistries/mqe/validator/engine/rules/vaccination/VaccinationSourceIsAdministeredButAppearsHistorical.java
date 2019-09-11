@@ -23,8 +23,6 @@ public class VaccinationSourceIsAdministeredButAppearsHistorical
   }
 
   public VaccinationSourceIsAdministeredButAppearsHistorical() {
-    this.addRuleDetections(Arrays
-        .asList(Detection.VaccinationInformationSourceIsHistoricalButAppearsToBeAdministered));
     {
       ImplementationDetail id = this.addRuleDetection(
           Detection.VaccinationInformationSourceIsHistoricalButAppearsToBeAdministered);

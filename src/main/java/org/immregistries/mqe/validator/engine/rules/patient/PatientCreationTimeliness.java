@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
@@ -21,10 +20,6 @@ public class PatientCreationTimeliness extends ValidationRule<MqePatient> {
   }
 
   public PatientCreationTimeliness() {
-    super();
-    this.addRuleDetections(
-        Arrays.asList(Detection.PatientCreationIsVeryLate, Detection.PatientCreationIsTooLate,
-            Detection.PatientCreationIsOnTime, Detection.PatientCreationIsLate));
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientCreationIsVeryLate);
       id.setImplementationDescription(

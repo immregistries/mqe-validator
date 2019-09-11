@@ -26,17 +26,6 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
   private AddressValidator addressValidator = AddressValidator.INSTANCE;
 
   public NextOfKinAddressIsValid() {
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS));
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET));
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_STREET2));
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTY));
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_CITY));
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_COUNTRY));
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_ZIP));
-    this.addRuleDetections(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_ADDRESS_TYPE));
-    this.addRuleDetection(Detection.NextOfKinAddressTypeIsInvalid);
-    this.addRuleDetection(Detection.NextOfKinAddressTypeIsValuedBadAddress);
-
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressIsMissing);
       // TODO Complete ImplementationDescription

@@ -19,8 +19,6 @@ public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<M
   }
 
   public VaccinationFinancialEligibilityCodeIsValid() {
-    this.addRuleDetections(
-        codr.getDetectionsForField(VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE));
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsDeprecated);

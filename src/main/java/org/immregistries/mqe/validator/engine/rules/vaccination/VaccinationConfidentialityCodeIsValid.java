@@ -19,7 +19,6 @@ public class VaccinationConfidentialityCodeIsValid extends ValidationRule<MqeVac
   }
 
   public VaccinationConfidentialityCodeIsValid() {
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_CONFIDENTIALITY_CODE));
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsDeprecated);

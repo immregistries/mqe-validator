@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.validator.detection.Detection;
@@ -16,9 +15,6 @@ import org.immregistries.mqe.vxu.VxuField;
 public class PatientProtectionIndicatorIsValid extends ValidationRule<MqePatient> {
 
   public PatientProtectionIndicatorIsValid() {
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_PROTECTION_INDICATOR));
-    this.addRuleDetections(Arrays.asList(Detection.PatientProtectionIndicatorIsValuedAsYes,
-        Detection.PatientProtectionIndicatorIsValuedAsNo));
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientProtectionIndicatorIsDeprecated);

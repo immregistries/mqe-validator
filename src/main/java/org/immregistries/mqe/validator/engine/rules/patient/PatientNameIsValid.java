@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
@@ -19,12 +18,6 @@ public class PatientNameIsValid extends ValidationRule<MqePatient> {
   private KnowNameList listr = KnowNameList.INSTANCE;
 
   public PatientNameIsValid() {
-    this.addRuleDetections(
-        Arrays.asList(Detection.PatientNameFirstIsMissing, Detection.PatientNameFirstIsInvalid,
-            Detection.PatientNameFirstMayIncludeMiddleInitial, Detection.PatientNameLastIsMissing,
-            Detection.PatientNameLastIsInvalid, Detection.PatientNameMiddleIsMissing,
-            Detection.PatientNameMiddleIsInvalid, Detection.PatientNameMayBeTemporaryNewbornName,
-            Detection.PatientNameMayBeTestName, Detection.PatientNameHasJunkName));
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientNameFirstIsInvalid);
       id.setImplementationDescription(

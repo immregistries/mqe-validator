@@ -42,7 +42,7 @@ public abstract class ValidationRule<T> {
   protected Class[] getDependencies() {
     return new Class[] {};
   }
-  
+
 
   /**
    * This is the primary method to call for this class from a validation driver.
@@ -52,9 +52,8 @@ public abstract class ValidationRule<T> {
       return executeRule(target, m);
     } catch (Exception e) {
       LOGGER.error("Error running rule - " + this.getClass() + " problem: " + e.getMessage(), e);
-      ValidationReport[] issues =
-          new ValidationReport[] {Detection.GeneralProcessingException.build(this.getClass()
-              .getName(), null)};
+      ValidationReport[] issues = new ValidationReport[] {
+          Detection.GeneralProcessingException.build(this.getClass().getName(), null)};
       return buildResults(Arrays.asList(issues), false);
     }
   }
@@ -94,35 +93,21 @@ public abstract class ValidationRule<T> {
     for (Class c : dependencies) {
       if (!passedValidations.contains(c)) {
         return false;
-      };
+      } ;
     }
 
     // At this point, none are missing! Dependencies are met!
     return true;
   }
 
-	public Set<Detection> getRuleDetections() {
-		return ruleDetections;
-	}
-  
-	public Set<ImplementationDetail> getImplementationDocumentation() {
-		return ruleDocumentation;
-	}
+  public Set<Detection> getRuleDetections() {
+    return ruleDetections;
+  }
 
-//	public void addRuleDetections(Detection detection) {
-//		List<Detection> detections = new ArrayList<Detection>();
-//		detections.add(detection);
-//		this.addRuleDetection(Detections);
-//	}
-  
-//	public void addRuleDetections(List<Detection> detections) {
-//		for (Detection detection : detections) {
-//			if (detection != null) {
-//				this.ruleDetections.add(detection);
-//				this.ruleDocumentation.add(new ImplementationDetail(detection));
-//			}
-//		}
-//	}
+  public Set<ImplementationDetail> getImplementationDocumentation() {
+    return ruleDocumentation;
+  }
+
 
   public ImplementationDetail addRuleDetection(Detection d) {
     this.ruleDetections.add(d);
@@ -132,22 +117,4 @@ public abstract class ValidationRule<T> {
     return id;
   }
 
-  protected void addRuleDetections(List<Detection> detectionsForField) {
-    for (Detection d : detectionsForField) {
-      this.addRuleDetection(d);
-    }
-  }
-
-
-  protected void addRuleDetectionsForFields(VxuField... fields) {
-    for (VxuField f : fields) {
-      this.addRuleDetections(this.codr.getDetectionsForField(f));
-    }
-  }
-
-//	public void addImplementationMessage(Detection detection, String message) {
-//		ImplementationDetail implDetail = new ImplementationDetail(detection, message);
-//		this.ruleDocumentation.remove(implDetail);
-//		this.ruleDocumentation.add(implDetail);
-//	}
 }

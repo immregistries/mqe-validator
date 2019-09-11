@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.DetectionType;
@@ -16,10 +15,6 @@ import org.immregistries.mqe.vxu.VxuField;
 public class PatientSubmitterIsValid extends ValidationRule<MqePatient> {
 
   public PatientSubmitterIsValid() {
-    this.addRuleDetections(Arrays.asList(Detection.PatientSubmitterIdIsMissing,
-        Detection.PatientSubmitterIdAuthorityIsMissing,
-        Detection.PatientSubmitterIdTypeCodeIsMissing));
-
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientSubmitterIdIsMissing);
       // TODO Complete ImplementationDescription
@@ -29,7 +24,6 @@ public class PatientSubmitterIsValid extends ValidationRule<MqePatient> {
       // TODO Complete WhyToFix
       id.setWhyToFix("");
     }
-
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientSubmitterIdAuthorityIsMissing);
@@ -40,7 +34,6 @@ public class PatientSubmitterIsValid extends ValidationRule<MqePatient> {
       // TODO Complete WhyToFix
       id.setWhyToFix("");
     }
-
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientSubmitterIdTypeCodeIsMissing);
@@ -51,7 +44,6 @@ public class PatientSubmitterIsValid extends ValidationRule<MqePatient> {
       // TODO Complete WhyToFix
       id.setWhyToFix("");
     }
-
   }
 
   @Override

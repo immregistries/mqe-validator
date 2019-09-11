@@ -14,7 +14,6 @@ import org.immregistries.mqe.vxu.VxuField;
 public class VaccinationCompletionStatusIsValid extends ValidationRule<MqeVaccination> {
 
   public VaccinationCompletionStatusIsValid() {
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_COMPLETION_STATUS));
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationCompletionStatusIsDeprecated);

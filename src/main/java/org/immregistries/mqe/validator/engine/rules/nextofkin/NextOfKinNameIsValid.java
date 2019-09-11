@@ -14,8 +14,6 @@ import org.immregistries.mqe.vxu.MqeNextOfKin;
 public class NextOfKinNameIsValid extends ValidationRule<MqeNextOfKin> {
 
   public NextOfKinNameIsValid() {
-    this.addRuleDetections(Arrays.asList(Detection.NextOfKinNameIsMissing,
-        Detection.NextOfKinNameFirstIsMissing, Detection.NextOfKinNameLastIsMissing));
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinNameFirstIsMissing);
       // TODO Complete ImplementationDescription

@@ -19,7 +19,6 @@ public class VaccinationRefusalReasonIsValid extends ValidationRule<MqeVaccinati
   }
 
   public VaccinationRefusalReasonIsValid() {
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_REFUSAL_REASON));
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationRefusalReasonConflictsCompletionStatus);

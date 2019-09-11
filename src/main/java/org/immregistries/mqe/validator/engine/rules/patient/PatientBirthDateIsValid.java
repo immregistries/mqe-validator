@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
@@ -19,14 +18,14 @@ public class PatientBirthDateIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientBirthDateIsValid() {
-    this.addRuleDetections(
-        Arrays.asList(Detection.PatientBirthDateIsMissing, Detection.PatientBirthDateIsInvalid));
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsInvalid);
-    id.setImplementationDescription("Patient Birth date cannot be translated to a date.");
-    // TODO Complete HowToFix
-    id.setHowToFix("");
-    // TODO Complete WhyToFix
-    id.setWhyToFix("");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsInvalid);
+      id.setImplementationDescription("Patient Birth date cannot be translated to a date.");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
   }
 
   @Override

@@ -19,10 +19,6 @@ public class VaccinationAdministeredAmtIsValid extends ValidationRule<MqeVaccina
   }
 
   public VaccinationAdministeredAmtIsValid() {
-    this.addRuleDetections(Arrays.asList(Detection.VaccinationAdministeredAmountIsMissing,
-        Detection.VaccinationAdministeredAmountIsValuedAsUnknown,
-        Detection.VaccinationAdministeredAmountIsValuedAsZero,
-        Detection.VaccinationAdministeredAmountIsInvalid));
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdministeredAmountIsMissing);

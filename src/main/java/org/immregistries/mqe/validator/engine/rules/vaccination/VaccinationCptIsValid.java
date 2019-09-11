@@ -17,7 +17,6 @@ public class VaccinationCptIsValid extends ValidationRule<MqeVaccination> {
 
 
   public VaccinationCptIsValid() {
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_CPT_CODE));
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCptCodeIsDeprecated);
       // TODO Complete ImplementationDescription

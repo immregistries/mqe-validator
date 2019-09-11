@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
@@ -15,8 +14,6 @@ import org.immregistries.mqe.vxu.VxuField;
 public class PatientNameTypeIsValid extends ValidationRule<MqePatient> {
 
   public PatientNameTypeIsValid() {
-    this.addRuleDetections(Arrays.asList(Detection.PatientNameTypeCodeIsMissing));
-    this.addRuleDetections(Arrays.asList(Detection.PatientNameTypeCodeIsNotValuedLegal));
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientNameTypeCodeIsMissing);
       // TODO Complete ImplementationDescription

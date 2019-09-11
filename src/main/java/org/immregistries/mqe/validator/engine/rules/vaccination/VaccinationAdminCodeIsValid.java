@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.codebase.client.generated.Code;
@@ -24,10 +23,6 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
   }
 
   public VaccinationAdminCodeIsValid() {
-    this.addRuleDetections(Arrays.asList(Detection.VaccinationAdminCodeIsNotSpecific,
-        Detection.VaccinationAdminCodeIsValuedAsNotAdministered,
-        Detection.VaccinationAdminCodeIsValuedAsUnknown, Detection.VaccinationAdminCodeIsNotVaccine,
-        Detection.VaccinationAdminCodeIsUnrecognized));
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotSpecific);
       id.setImplementationDescription(

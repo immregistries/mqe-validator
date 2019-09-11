@@ -22,7 +22,6 @@ public class PatientImmunityIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientImmunityIsValid() {
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_IMMUNITY_CODE));
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientImmunityCodeIsDeprecated);
       // TODO Complete ImplementationDescription

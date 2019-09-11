@@ -19,7 +19,6 @@ public class VaccinationFundingSourceCodeIsValid extends ValidationRule<MqeVacci
   }
 
   public VaccinationFundingSourceCodeIsValid() {
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_FUNDING_SOURCE_CODE));
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsDeprecated);

@@ -19,8 +19,6 @@ public class PatientEthnicityIsValid extends ValidationRule<MqePatient> {
   }
   
   public PatientEthnicityIsValid() {
-	  this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_ETHNICITY));
-	  
       {
         ImplementationDetail id =
             this.addRuleDetection(Detection.PatientEthnicityIsUnrecognized);

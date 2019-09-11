@@ -20,8 +20,6 @@ public class VaccinationOrdererIsValid extends ValidationRule<MqeVaccination> {
   }
 
   public VaccinationOrdererIsValid() {
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_ORDERED_BY));
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_RECORDED_BY));
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationOrderedByIsDeprecated);

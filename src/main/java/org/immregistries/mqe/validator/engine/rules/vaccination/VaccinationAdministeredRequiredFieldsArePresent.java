@@ -20,9 +20,6 @@ public class VaccinationAdministeredRequiredFieldsArePresent
   }
 
   public VaccinationAdministeredRequiredFieldsArePresent() {
-    this.addRuleDetections(Arrays.asList(Detection.VaccinationFacilityNameIsMissing,
-        Detection.VaccinationLotExpirationDateIsMissing));
-    
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFacilityNameIsMissing);

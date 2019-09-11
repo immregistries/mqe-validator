@@ -20,9 +20,6 @@ public class PatientDeathDateIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientDeathDateIsValid() {
-    this.addRuleDetections(
-        Arrays.asList(Detection.PatientDeathDateIsMissing, Detection.PatientDeathDateIsInvalid,
-            Detection.PatientDeathDateIsInFuture, Detection.PatientDeathDateIsBeforeBirth));
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsMissing);
       id.setImplementationDescription(

@@ -27,9 +27,6 @@ public class VaccinationCvxUseIsValid extends ValidationRule<MqeVaccination> {
   }
 
   public VaccinationCvxUseIsValid() {
-    this.addRuleDetections(
-        Arrays.asList(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange,
-            Detection.VaccinationAdminDateIsBeforeOrAfterLicensedVaccineRange));
     {
       ImplementationDetail id = this
           .addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterExpectedVaccineUsageRange);

@@ -23,10 +23,6 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
   }
 
   public NextOfKinRelationshipIsValidForUnderagedPatient() {
-    this.addRuleDetections(Arrays.asList(Detection.NextOfKinRelationshipIsUnexpected,
-        Detection.NextOfKinRelationshipIsUnrecognized,
-        Detection.NextOfKinRelationshipIsNotResponsibleParty,
-        Detection.NextOfKinRelationshipIsMissing));
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.NextOfKinRelationshipIsUnrecognized);

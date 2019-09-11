@@ -20,7 +20,6 @@ public class VaccinationVisCvxIsValid extends ValidationRule<MqeVaccination> {
   }
 
   public VaccinationVisCvxIsValid() {
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_VIS_CVX_CODE));
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisCvxIsDeprecated);
       // TODO Complete ImplementationDescription

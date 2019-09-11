@@ -29,14 +29,6 @@ public class NextOfKinGuardianAddressIsValid extends ValidationRule<MqeNextOfKin
   private AddressValidator addressValidator = AddressValidator.INSTANCE;
 
   public NextOfKinGuardianAddressIsValid() {
-    this.addRuleDetectionsForFields(VxuField.PATIENT_GUARDIAN_ADDRESS,
-        VxuField.PATIENT_GUARDIAN_ADDRESS_STREET, VxuField.PATIENT_GUARDIAN_ADDRESS_CITY,
-        VxuField.PATIENT_GUARDIAN_ADDRESS_STATE, VxuField.PATIENT_GUARDIAN_ADDRESS_COUNTY,
-        VxuField.PATIENT_GUARDIAN_ADDRESS_COUNTRY, VxuField.PATIENT_GUARDIAN_ADDRESS_ZIP,
-        VxuField.PATIENT_GUARDIAN_ADDRESS_TYPE);
-    this.addRuleDetection(Detection.PatientGuardianAddressTypeIsValuedBadAddress);
-
-
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressIsMissing);
       // TODO Complete ImplementationDescription

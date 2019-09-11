@@ -23,8 +23,6 @@ public class VaccinationSourceIsHistoricalButAppearsAdministered
   }
 
   public VaccinationSourceIsHistoricalButAppearsAdministered() {
-    this.addRuleDetections(
-        Arrays.asList(Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical));
     {
       ImplementationDetail id = this.addRuleDetection(
           Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical);
@@ -35,7 +33,6 @@ public class VaccinationSourceIsHistoricalButAppearsAdministered
       // TODO Complete WhyToFix
       id.setWhyToFix("");
     }
-
   }
 
   @Override

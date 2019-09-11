@@ -14,7 +14,6 @@ import org.immregistries.mqe.vxu.VxuField;
 public class VaccinationNdcIsValid extends ValidationRule<MqeVaccination> {
 
   public VaccinationNdcIsValid() {
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_NDC_CODE));
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationNDCCodeIsMissing);

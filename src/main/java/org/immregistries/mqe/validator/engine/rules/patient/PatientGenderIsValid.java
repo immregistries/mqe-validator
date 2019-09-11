@@ -19,8 +19,6 @@ public class PatientGenderIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientGenderIsValid() {
-	  this.addRuleDetections(codr.getDetectionsForField(VxuField.PATIENT_GENDER));
-	  
       {
         ImplementationDetail id =
             this.addRuleDetection(Detection.PatientGenderIsDeprecated);

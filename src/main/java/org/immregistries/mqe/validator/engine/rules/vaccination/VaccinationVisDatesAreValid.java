@@ -23,11 +23,6 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
   }
 
   public VaccinationVisDatesAreValid() {
-    this.addRuleDetections(Arrays.asList(Detection.VaccinationVisPublishedDateIsMissing,
-        Detection.VaccinationVisPublishedDateIsInFuture,
-        Detection.VaccinationVisPublishedDateIsInvalid));
-    this.addRuleDetections(codr.getDetectionsForField(VxuField.VACCINATION_VIS_PRESENTED_DATE));
-
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationVisPublishedDateIsMissing);

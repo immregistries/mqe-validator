@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
@@ -11,26 +10,24 @@ import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
 
-public class VaccinationAdministeredLotNumberIsPresent extends
-    ValidationRule<MqeVaccination> {
+public class VaccinationAdministeredLotNumberIsPresent extends ValidationRule<MqeVaccination> {
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[]{VaccinationSourceIsAdministered.class};
+    return new Class[] {VaccinationSourceIsAdministered.class};
   }
 
   public VaccinationAdministeredLotNumberIsPresent() {
-    this.addRuleDetections(Arrays.asList( Detection.VaccinationLotNumberIsMissing));
     {
-      ImplementationDetail id =
-          this.addRuleDetection(Detection.VaccinationLotNumberIsMissing);
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberIsMissing);
       // TODO Complete ImplementationDescription
       id.setImplementationDescription("");
       // TODO Complete HowToFix
       id.setHowToFix("");
       // TODO Complete WhyToFix
       id.setWhyToFix("");
-    }  }
+    }
+  }
 
   @Override
   protected ValidationRuleResult executeRule(MqeVaccination target, MqeMessageReceived m) {
@@ -45,7 +42,7 @@ public class VaccinationAdministeredLotNumberIsPresent extends
 
     if (this.common.isEmpty(target.getLotNumber())) {
       issues.add(Detection.VaccinationLotNumberIsMissing.build(target));
-    } 
+    }
 
     passed = (issues.size() == 0);
 

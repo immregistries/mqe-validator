@@ -1,9 +1,10 @@
 package org.immregistries.mqe.validator.engine;
 
-import org.immregistries.mqe.util.validation.MqeValidatedObject;
+import org.immregistries.mqe.vxu.MetaFieldInfoHolder;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
+import org.immregistries.mqe.vxu.TargetType;
 
-public class ValidationRulePair<T extends MqeValidatedObject> {
+public class ValidationRulePair<T extends MetaFieldInfoHolder> {
 
   private ValidationRule<T> rule;
   private T target;
@@ -11,6 +12,8 @@ public class ValidationRulePair<T extends MqeValidatedObject> {
 
   public ValidationRuleResult evaluateRule() {
     ValidationRuleResult vrr = rule.evaluate(this.target, this.message);
+    vrr.setTargetType(this.target.getTargetType());
+    vrr.setPositionId(target.getPositionId());
     return vrr;
   }
 

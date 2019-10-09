@@ -77,7 +77,8 @@ public enum ValidationUtility {
     for (ValidationRule vr : ruleList) {
       ValidationRulePair vp = new ValidationRulePair();
       vp.setMessage(mr);
-      vp.setTarget(target);
+      // TODO How is this to be done properly?
+      // vp.setTarget(target);
       vp.setRule(vr);
       vrpList.add(vp);
     }

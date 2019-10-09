@@ -17,12 +17,10 @@ public class PatientRegistryIdIsPresent extends ValidationRule<MqePatient> {
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientRegistryIdIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The IIS registry id was not recognized. Please contact your software vendor to verify the need for sending "
+          + "the IIS registry id. ");
+      id.setWhyToFix("The IIS id is used for identifying the specific patient that is to be updated or queried in the IIS. "
+          + "This is normally used in queries and is not expected on updates. ");
     }
 
   }

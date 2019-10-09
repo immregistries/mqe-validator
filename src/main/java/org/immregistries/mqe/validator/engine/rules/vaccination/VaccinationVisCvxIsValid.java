@@ -40,8 +40,7 @@ public class VaccinationVisCvxIsValid extends ValidationRule<MqeVaccination> {
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisCvxIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
+      id.setImplementationDescription("No value was indicated, no data sent, and nothing to found to evaluate. ");
       // TODO Complete HowToFix
       id.setHowToFix("");
       // TODO Complete WhyToFix
@@ -49,8 +48,7 @@ public class VaccinationVisCvxIsValid extends ValidationRule<MqeVaccination> {
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisCvxIsUnrecognized);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
+      id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
       // TODO Complete HowToFix
       id.setHowToFix("");
       // TODO Complete WhyToFix

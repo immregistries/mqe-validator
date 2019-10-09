@@ -21,42 +21,27 @@ public class ObservationValueTypeIsValid extends ValidationRule<MqeVaccination> 
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.ObservationValueTypeIsDeprecated);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The observation value type is recognized but should not longer be used. Please contact your software vendor and request that they review the observation value types that are being sent to ensure that the latest and best types are being sent. ");
+      id.setWhyToFix("The observation value type allows the transmission of additional information that is helpful to understand an immunization event or the patient medical history. Sending the wrong observation value type might cause the IIS to not recognize or understand medically relevant information.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.ObservationValueTypeIsInvalid);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The observation value type should not be used. Please contact your software vendor and request that they review the observation value types that are being sent to ensure that the latest and best types are being sent. ");
+      id.setWhyToFix("The observation value type allows the transmission of additional information that is helpful to understand an immunization event or the patient medical history. Sending the wrong observation value type might cause the IIS to not recognize or understand medically relevant information.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.ObservationValueTypeIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The observation value type must be indicated. Please contact your software vendor and request that they ensure that the format of the observation structure is meeting standards.");
+      id.setWhyToFix("The observation value type allows the transmission of additional information that is helpful to understand an immunization event or the patient medical history. Not sending the observation value type means the IIS will not recieve this information.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.ObservationValueTypeIsUnrecognized);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
+      id.setHowToFix("The observation value type is not recognized. Please contact your software vendor and request that they review the observation value types that are being sent to ensure that the latest and best types are being sent. ");
+      id.setWhyToFix("The observation value type allows the transmission of additional information that is helpful to understand an immunization event or the patient medical history. Sending the wrong observation value type might cause the IIS to not recognize or understand medically relevant information.");
     }
   }
 

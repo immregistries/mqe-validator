@@ -52,8 +52,7 @@ public class VaccinationConfidentialityCodeIsValid extends ValidationRule<MqeVac
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsUnrecognized);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
+      id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
       // TODO Complete HowToFix
       id.setHowToFix("");
       // TODO Complete WhyToFix

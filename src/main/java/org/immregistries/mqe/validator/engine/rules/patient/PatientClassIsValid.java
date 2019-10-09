@@ -19,21 +19,13 @@ public class PatientClassIsValid extends ValidationRule<MqePatient> {
   public PatientClassIsValid() {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientClassIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Ask your software vendor to please indicate that patient class as recurring patient. ");
+      id.setWhyToFix("Messaging standards may require the patient class to be set. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientClassIsUnrecognized);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Ask your software vendor to please ensure that patient class is properly encoded. ");
+      id.setWhyToFix("Messaging standards require the patient class to be set with a recognized value. ");
     }
 
   }

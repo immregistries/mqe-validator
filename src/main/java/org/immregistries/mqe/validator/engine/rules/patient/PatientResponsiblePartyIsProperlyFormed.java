@@ -24,52 +24,33 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientGuardianAddressStateIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The state of the guardian/parent address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
+      id.setWhyToFix("Guardian/parent address may be used for Reminder/Recall purposes. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientGuardianAddressCityIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The city of the guardian/parent address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
+      id.setWhyToFix("Guardian/parent address may be used for Reminder/Recall purposes. ");
     }
     {
-      ImplementationDetail id =
-          this.addRuleDetection(Detection.PatientGuardianAddressZipIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressZipIsMissing);
+      id.setHowToFix("The zip of the guardian/parent address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
+      id.setWhyToFix("Guardian/parent address may be used for Reminder/Recall purposes. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientGuardianNameFirstIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The guardian/parent first name is missing. Please review the patient guardian/parent and ensure that they have their first name "
+          + "or please ask your software vendor to ensure that the name of the guardian/parent responsible for the patient is sent properly in the message. ");
+      id.setWhyToFix("The name of the guardian/parent can be used for patient matching and as a contact for reminder/recall activities. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientGuardianNameLastIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The guardian/parent last name is missing. Please review the patient guardian/parent and ensure that they have their first name "
+          + "or please ask your software vendor to ensure that the name of the guardian/parent responsible for the patient is sent properly in the message. ");
+      id.setWhyToFix("The name of the guardian/parent can be used for patient matching and as a contact for reminder/recall activities. ");
     }
 
     {
@@ -77,16 +58,14 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
           this.addRuleDetection(Detection.PatientGuardianNameIsSameAsUnderagePatient);
       id.setImplementationDescription(
           "Patient first and last name match the guardian first and last name.");
+      id.setHowToFix("It appears that the minor (child) patient has themselves indicated as their own guardian/parent. Verify that this is the case in your system. If the information is recorded correctly then contact your software vendor and ask that they do not submit the patient as their own guardian/parent. ");
+      id.setWhyToFix("The guardian/parent information is used for patient deduplication. Resending the patient information as the guardian does not help improve matching and may cause confusion and duplicated information that is not properly kept up-to-date in the IIS. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientGuardianPhoneIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Indicate the phone for the guardian/parent. ");
+      id.setWhyToFix("Most IIS do not read the guardian/parent phone, but some do look for a phone here. ");
     }
 
 
@@ -95,9 +74,8 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
       ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);
       id.setImplementationDescription(
           "Patient Guardian Address is invalid according to Smarty Streets.");
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The address for the guardian/parent is not considered a valid address.  Please review the address for all persons connected with this patient and either remove it or update it. ");
+      id.setWhyToFix("Guardian/parent address may be used for Reminder/Recall purposes. ");
     }
   }
 

@@ -26,10 +26,9 @@ public class PatientIsUnderage extends ValidationRule<MqePatient> {
     this.addRuleDetection(Detection.PatientBirthDateIsUnderage);
     ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsUnderage);
     id.setImplementationDescription("Patient is under 18 years old.");
-    // TODO Complete HowToFix
-    id.setHowToFix("");
-    // TODO Complete WhyToFix
-    id.setWhyToFix("");
+    id.setHowToFix("Does not indicate a problem, but rather that this patient record is for a minor (child). ");
+    id.setWhyToFix("IIS often have business rules that are engaged for processing and storing of child vs adult records. "
+        + "This detection allows for reporting and statistics. ");
   }
 
   @Override

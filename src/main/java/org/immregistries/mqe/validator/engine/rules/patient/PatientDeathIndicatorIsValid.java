@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
@@ -23,20 +22,29 @@ public class PatientDeathIndicatorIsValid extends ValidationRule<MqePatient> {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathIndicatorIsMissing);
       id.setImplementationDescription(
           "Patient death date was given but death indicator is missing.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix(
+          "The death indicator is not set yet there is a date of death indicated. Please verify the data in the medical "
+              + "record and contact your software vendor and request that when sending death information to never indicate a death "
+              + "date without also indicating that the patient is deceased. ");
+      id.setWhyToFix(
+          "It is important for the IIS to know about patients who are now deceased so that reminder/recall "
+              + "activities are not attempted and to help the IIS understand the true vaccination rates in a given area "
+              + "or population. Inconsistent messaging may confuse the IIS. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientDeathIndicatorIsInconsistent);
       id.setImplementationDescription(
           "Patient death indicator says not dead but death date is populated.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix(
+          "The death indicator is specifically set to NO yet there is a date of death indicated. "
+              + "Please verify the data in the medical "
+              + "record and contact your software vendor and request that when sending death information to never indicate a death "
+              + "date without also indicating that the patient is deceased. ");
+      id.setWhyToFix(
+          "It is important for the IIS to know about patients who are now deceased so that reminder/recall "
+              + "activities are not attempted and to help the IIS understand the true vaccination rates in a given area "
+              + "or population. Inconsistent messaging may confuse the IIS. ");
     }
   }
 

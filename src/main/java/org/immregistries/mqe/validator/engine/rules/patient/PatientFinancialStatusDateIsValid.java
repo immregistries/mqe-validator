@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
@@ -23,32 +22,26 @@ public class PatientFinancialStatusDateIsValid extends ValidationRule<MqePatient
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientVfcEffectiveDateIsBeforeBirth);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The effective date for the patient funding elgibility code is before the birth of the patient. "
+          + "Please verify the value in the medical record. ");
+      id.setWhyToFix("May be important to certain VFC programs. ");
     }
 
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientVfcEffectiveDateIsInFuture);
       id.setImplementationDescription(
           "Message received date is before the patient VFC Effective date.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The effective date for the patient funding elgibility code is in the future. "
+          + "Please verify the value in the medical record. ");
+      id.setWhyToFix("May be important to certain VFC programs. ");
     }
 
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientVfcEffectiveDateIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The effective date for the patient funding elgibility code is not coded. "
+          + "Please verify the value is recorded in the medical record. If yes, then please contact "
+          + "your software vendor and request that this date be sent. ");
+      id.setWhyToFix("May be important to certain VFC programs. ");
     }
   }
 

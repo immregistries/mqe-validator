@@ -28,112 +28,66 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
   public NextOfKinAddressIsValid() {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Indicate the address for the next-of-kin. ");
+      id.setWhyToFix("Most IIS do not read the next-of-kin address, but some do look for an address here. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressIsInvalid);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The address for the next-of-kin is not considered a valid address.  Please review the address for all persons connected with this patient and either remove it or update it. ");
+      id.setWhyToFix("Next-of-kin address may be used for Reminder/Recall purposes. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressStreetIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The first line of the next-of-kin address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
+      id.setWhyToFix("Next-of-kin address may be used for Reminder/Recall purposes. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressCityIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The city of the next-of-kin address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
+      id.setWhyToFix("Next-of-kin address may be used for Reminder/Recall purposes. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressStateIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The state of the next-of-kin address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
+      id.setWhyToFix("Next-of-kin address may be used for Reminder/Recall purposes. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressCountyIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Send county with the next-of-kin address. ");
+      id.setWhyToFix("No known reason for why an IIS would need to know the next-of-kin county. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressCountryIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Contact the software vendor and request that when sending an address to ensure that the country is indicated. ");
+      id.setWhyToFix("Some IIS might not read the address correctly unless the country is indicated. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressZipIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The zip of the next-of-kin address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
+      id.setWhyToFix("Next-of-kin address may be used for Reminder/Recall purposes. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressTypeIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Contact the software vendor and request that when sending an address to ensure that the address type is indicated. ");
+      id.setWhyToFix("Some IIS might not read the address correctly unless the address type is indicated. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressTypeIsUnrecognized);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
+      id.setHowToFix("Contact the software vendor and request that when sending an address to ensure that the address type is indicated with a valid address type code. ");
+      id.setWhyToFix("Some IIS might not read the address correctly unless the address type is indicated properly. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.NextOfKinAddressTypeIsValuedBadAddress);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The address for the next-of-kin has been marked in your system as a bad address. The IIS should ignore this address but ideally it should never be sent. Contact your software vendor to ask that bad addresses be excluded from being sent to IIS. ");
+      id.setWhyToFix("Next-of-kin address may be used for Reminder/Recall purposes, but bad addresses are not useful to IIS and may be improperly understood as a good adddress.  ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressTypeIsInvalid);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setImplementationDescription("Address not valid according to Smarty Streets.");
+      id.setHowToFix("Contact the software vendor and request that when sending an address to ensure that this address type is not submitted to the IIS. ");
+      id.setWhyToFix("The IIS may not be able to support every type of address. ");
     }
   }
 

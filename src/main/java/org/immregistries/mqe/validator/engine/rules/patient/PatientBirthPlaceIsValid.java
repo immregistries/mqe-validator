@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
@@ -21,12 +20,8 @@ public class PatientBirthPlaceIsValid extends ValidationRule<MqePatient> {
   public PatientBirthPlaceIsValid() {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthPlaceIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Please verify that the patient birth place is indicated on the patient medical record. If it is then contact your software vendor and request that the birth place be properly encoded in the message. ");
+      id.setWhyToFix("The patien birth place may be used for patient matching and verification. Identifying unnamed children can be especially challanging and a birth place can help locate correct record matches. ");
     }
   }
 

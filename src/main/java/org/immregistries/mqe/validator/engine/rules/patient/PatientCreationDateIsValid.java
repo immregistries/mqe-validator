@@ -19,29 +19,36 @@ public class PatientCreationDateIsValid extends ValidationRule<MqePatient> {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientSystemEntryDateIsInvalid);
       id.setImplementationDescription("Patient system entry date cannot be translated to a date.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix(
+          "The patient system entry date, which indicates when the patient information sent to the IIS was entered into "
+              + "the sending system, is incorrectly formatted. "
+              + "Please contact your system vendor and request that the format of this date be encoded properly or omitted from the message. ");
+      id.setWhyToFix(
+          "The system entry date may help provide context for information especially when trying to determine which reported "
+              + "patient record is the most recently updated. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientSystemEntryDateIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix(
+          "The patient system entry date, which indicates when the patient information sent to the IIS was entered into "
+              + "the sending system, was not sent. "
+              + "Please contact your system vendor and request that this date be sent in every message. ");
+      id.setWhyToFix(
+          "The system entry date may help provide context for information especially when trying to determine which reported "
+              + "patient record is the most recently updated. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientSystemEntryDateIsInTheFuture);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix(
+          "The patient system entry date, which indicates when the patient information sent to the IIS was entered into "
+              + "the sending system, is in the future. "
+              + "Please ask your system administrator to verify that the system has the date set properly and that the data in your"
+              + "medical record system is incoded with the right dates. ");
+      id.setWhyToFix(
+          "It is important for all software systems to know and operate on the right date and time for their time zone and place in the world. "
+              + "Systems that are operated on the wrong date and time will make errors when recording and reporting information. Fixing "
+              + "this problem will ensure that other dates and times in the same message are being transmitted and understood correctly. ");
     }
   }
 

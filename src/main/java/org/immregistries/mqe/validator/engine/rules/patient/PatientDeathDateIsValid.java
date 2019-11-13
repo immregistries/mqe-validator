@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
@@ -24,38 +23,50 @@ public class PatientDeathDateIsValid extends ValidationRule<MqePatient> {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsMissing);
       id.setImplementationDescription(
           "The death indicator is marked as dead but there is no death date.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The patient is indicated as deceased but no death date is indicated. "
+          + "Please verify if the medical record includes a death date and if so contact your software vendor "
+          + "and request that the death date be encoded in all messages when known. ");
+      id.setWhyToFix(
+          "It is important for the IIS to know about patients who are now deceased so that reminder/recall "
+              + "activities are not attempted and to help the IIS understand the true vaccination rates in a given area "
+              + "or population. A death date helps provide assurance of the death status and provide the complete picture "
+              + "when verifying data quality. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsInvalid);
       id.setImplementationDescription("The death date cannot be translated to a date.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix(
+          "The patient is indicated as deceased but the death date is not coded properly. "
+              + "Please contact your software vendor and request that the death date be encoded properly when known. ");
+      id.setWhyToFix(
+          "It is important for the IIS to know about patients who are now deceased so that reminder/recall "
+              + "activities are not attempted and to help the IIS understand the true vaccination rates in a given area "
+              + "or population. A death date helps provide assurance of the death status and provide the complete picture "
+              + "when verifying data quality. ");
     }
     {
-      ImplementationDetail id =
-          this.addRuleDetection(Detection.PatientDeathDateIsInFuture);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsInFuture);
+      id.setHowToFix(
+          "The patient is indicated as deceased but the death date is set in the future. "
+              + "Please verify if the death date is set correctly and contact your software vendor and request that "
+              + "future dates can not be recorded in the medical record nor sent onwards to other systems such as the IIS. ");
+      id.setWhyToFix(
+          "It is important for the IIS to know about patients who are now deceased so that reminder/recall "
+              + "activities are not attempted and to help the IIS understand the true vaccination rates in a given area "
+              + "or population. A death date helps provide assurance of the death status and provide the complete picture "
+              + "when verifying data quality. ");
     }
     {
-      ImplementationDetail id =
-          this.addRuleDetection(Detection.PatientDeathDateIsBeforeBirth);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsBeforeBirth);
+      id.setHowToFix(
+          "The patient is indicated as deceased but the death date is before the patient was born. "
+              + "Please verify if the death date is set correctly and contact your software vendor and request that "
+              + "death dates can not be recorded in the medical record as happening before a patient was born. ");
+      id.setWhyToFix(
+          "It is important for the IIS to know about patients who are now deceased so that reminder/recall "
+              + "activities are not attempted and to help the IIS understand the true vaccination rates in a given area "
+              + "or population. A death date helps provide assurance of the death status and provide the complete picture "
+              + "when verifying data quality. ");
     }
   }
 

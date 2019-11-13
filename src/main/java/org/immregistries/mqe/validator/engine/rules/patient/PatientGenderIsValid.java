@@ -22,62 +22,31 @@ public class PatientGenderIsValid extends ValidationRule<MqePatient> {
       {
         ImplementationDetail id =
             this.addRuleDetection(Detection.PatientGenderIsDeprecated);
-        // TODO Complete ImplementationDescription
-        id.setImplementationDescription("");
-        // TODO Complete HowToFix
-        id.setHowToFix("");
-        // TODO Complete WhyToFix
-        id.setWhyToFix("");
+        id.setHowToFix("The patient sex is set with an older code that should no longer be used. "
+            + "Please contact your software vendor and request that correct sex codes be used. ");
+        id.setWhyToFix("Patient sex may be used for patient matching purposes or to ensure the correct vaccination is recommended. ");
       }
       {
         ImplementationDetail id =
             this.addRuleDetection(Detection.PatientGenderIsInvalid);
-        // TODO Complete ImplementationDescription
-        id.setImplementationDescription("");
-        // TODO Complete HowToFix
-        id.setHowToFix("");
-        // TODO Complete WhyToFix
-        id.setWhyToFix("");
+        id.setHowToFix("The patient sex is set with an invalid code that should no longer be used. "
+            + "Please contact your software vendor and request that correct sex codes be used. ");
+        id.setWhyToFix("Patient sex may be used for patient matching purposes or to ensure the correct vaccination is recommended. ");
       }
       {
         ImplementationDetail id =
             this.addRuleDetection(Detection.PatientGenderIsMissing);
-        // TODO Complete ImplementationDescription
-        id.setImplementationDescription("");
-        // TODO Complete HowToFix
-        id.setHowToFix("");
-        // TODO Complete WhyToFix
-        id.setWhyToFix("");
+        id.setHowToFix("The patient sex is not coded. "
+            + "Please verify that this information is recorded in the medical record. ");
+        id.setWhyToFix("Patient sex may be used for patient matching purposes or to ensure the correct vaccination is recommended. ");
       }
       {
         ImplementationDetail id =
             this.addRuleDetection(Detection.PatientGenderIsUnrecognized);
-        // TODO Complete ImplementationDescription
-        id.setImplementationDescription("");
-        // TODO Complete HowToFix
-        id.setHowToFix("");
-        // TODO Complete WhyToFix
-        id.setWhyToFix("");
-      }
-      {
-        ImplementationDetail id =
-            this.addRuleDetection(Detection.PatientGenderIsDeprecated);
-        // TODO Complete ImplementationDescription
-        id.setImplementationDescription("");
-        // TODO Complete HowToFix
-        id.setHowToFix("");
-        // TODO Complete WhyToFix
-        id.setWhyToFix("");
-      }
-      {
-        ImplementationDetail id =
-            this.addRuleDetection(Detection.PatientGenderIsDeprecated);
-        // TODO Complete ImplementationDescription
-        id.setImplementationDescription("");
-        // TODO Complete HowToFix
-        id.setHowToFix("");
-        // TODO Complete WhyToFix
-        id.setWhyToFix("");
+        id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
+        id.setHowToFix("The patient sex is set with an code that is not understood. "
+            + "Please contact your software vendor and request that correct sex codes be used. ");
+        id.setWhyToFix("Patient sex may be used for patient matching purposes or to ensure the correct vaccination is recommended. ");
       }
   }
 

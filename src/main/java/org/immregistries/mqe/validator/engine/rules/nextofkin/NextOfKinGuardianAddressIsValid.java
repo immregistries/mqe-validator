@@ -31,107 +31,73 @@ public class NextOfKinGuardianAddressIsValid extends ValidationRule<MqeNextOfKin
   public NextOfKinGuardianAddressIsValid() {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Indicate the address for the guardian/parent. ");
+      id.setWhyToFix("Most IIS do not read the guardian/parent address, but some do look for an address here. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The address for the guardian/parent is not considered a valid address.  Please review the address for all persons connected with this patient and either remove it or update it. ");
+      id.setWhyToFix("Guardian/parent address may be used for Reminder/Recall purposes. ");
     }
     {
-      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressStreetIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientGuardianAddressStreetIsMissing);
+      id.setHowToFix("The first line of the guardian/parent address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
+      id.setWhyToFix("Guardian/parent address may be used for Reminder/Recall purposes. ");
     }
     {
-      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressCityIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientGuardianAddressCityIsMissing);
+      id.setHowToFix("The city of the guardian/parent address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
+      id.setWhyToFix("Guardian/parent address may be used for Reminder/Recall purposes. ");
     }
     {
-      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressStateIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientGuardianAddressStateIsMissing);
+      id.setHowToFix("The state of the guardian/parent address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
+      id.setWhyToFix("Guardian/parent address may be used for Reminder/Recall purposes. ");
     }
     {
-      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressCountyIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientGuardianAddressCountyIsMissing);
+      id.setHowToFix("Send county with the guardian/parent address. ");
+      id.setWhyToFix("No known reason for why an IIS would need to know the guardian/parent county. ");
     }
     {
-      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressCountryIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientGuardianAddressCountryIsMissing);
+      id.setHowToFix("Contact the software vendor and request that when sending a guardian/parent address to ensure that the country is indicated. ");
+      id.setWhyToFix("Some IIS might not read the address correctly unless the country is indicated. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressZipIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The zip of the guardian/parent address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
+      id.setWhyToFix("Guardian/parent address may be used for Reminder/Recall purposes. ");
     }
     {
-      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressTypeIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientGuardianAddressTypeIsMissing);
+      id.setHowToFix("Contact the software vendor and request that when sending a guardian/parent address to ensure that the address type is indicated. ");
+      id.setWhyToFix("Some IIS might not read the address correctly unless the address type is indicated. ");
     }
     {
-      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressTypeIsUnrecognized);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientGuardianAddressTypeIsUnrecognized);
+      id.setHowToFix("Contact the software vendor and request that when sending a guardian/parent address to ensure that the address type is indicated with a valid address type code. ");
+      id.setWhyToFix("Some IIS might not read the address correctly unless the address type is indicated properly. ");
     }
     {
-      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressTypeIsValuedBadAddress);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientGuardianAddressTypeIsValuedBadAddress);
+      id.setHowToFix("The address for the guardian/parent has been marked in your system as a bad address. The IIS should ignore this address but ideally it should never be sent. Contact your software vendor to ask that bad addresses be excluded from being sent to IIS. ");
+      id.setWhyToFix("Guardian/parent address may be used for Reminder/Recall purposes, but bad addresses are not useful to IIS and may be improperly understood as a good adddress.  ");
     }
-
-    ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);
-    id.setImplementationDescription("Address not valid according to Smarty Streets.");
-
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);
+      id.setImplementationDescription("Address not valid according to Smarty Streets.");
+      id.setHowToFix("Contact the software vendor and request that when sending a guardian/parent address to ensure that this address type is not submitted to the IIS. ");
+      id.setWhyToFix("The IIS may not be able to support every type of address. ");
+    }
     if (props.isAddressCleanserEnabled()) {
       this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);
     }
@@ -142,7 +108,7 @@ public class NextOfKinGuardianAddressIsValid extends ValidationRule<MqeNextOfKin
     boolean passed;
 
     // TODO: finish this and test it--is guardian the responsible party? if so, this should already
-    // be addressed by the next-of-kin address validation
+    // be addressed by the guardian/parent address validation
 
     MqeAddress nokAddress = target.getAddress();
     //MqeAddress p = m.getPatient().getPatientAddress();

@@ -44,7 +44,7 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsUnrecognized);
       id.setImplementationDescription(
-          "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) could not be derived.");
+          "Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
       // TODO Complete HowToFix
       id.setHowToFix("");
       // TODO Complete WhyToFix

@@ -18,12 +18,9 @@ public class PatientPrimaryPhysicianNameIsValid extends ValidationRule<MqePatien
     this.addRuleDetection(Detection.PatientPrimaryPhysicianNameIsMissing);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientPrimaryPhysicianIdIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Please ask your software vendor to ensure that the patient's primary care physician is encoded in the message. ");
+      id.setWhyToFix("The primary physician may be used by the IIS to determine the medical home for this record or to help "
+          + "document the source of the data. ");
     }
   }
 

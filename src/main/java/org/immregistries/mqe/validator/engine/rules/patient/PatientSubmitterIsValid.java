@@ -17,32 +17,28 @@ public class PatientSubmitterIsValid extends ValidationRule<MqePatient> {
   public PatientSubmitterIsValid() {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientSubmitterIdIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The patient submitter id (or medical record number) was not valued. Please contact "
+          + "your software vendor and request that they populate all messages with the medical record number. ");
+      id.setWhyToFix("The patient submitter id or medical record number is a unique id assigned to a patient "
+          + "by the submitting system. This id must not be reassigned to other patients althought it might be retired "
+          + "in favor of other codes when records are merged. The IIS needs this to track the identity of records from "
+          + "submitters. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientSubmitterIdAuthorityIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The patient submitter id or medical record number is not encoded correctly in the message. "
+          + "Please contact your software vendor and ask them to insure that all submitted ids have an authority "
+          + "indicated. ");
+      id.setWhyToFix("The assigning authority may be used by the IIS to distinguish between different EHR systems that "
+          + "assign medical record numbers.  ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientSubmitterIdTypeCodeIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The patient submitter id or medical record number is not encoded correctly in the message. "
+          + "Please contact your software vendor and ask them to insure that all submitted ids have an id type indicated. ");
+      id.setWhyToFix("The id type is used by IIS to properly identify the medical record number. ");
     }
   }
 

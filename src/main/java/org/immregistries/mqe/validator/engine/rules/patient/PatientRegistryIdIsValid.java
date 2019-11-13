@@ -19,32 +19,32 @@ public class PatientRegistryIdIsValid extends ValidationRule<MqePatient> {
 
   public PatientRegistryIdIsValid() {
     {
-      ImplementationDetail id =
-          this.addRuleDetection(Detection.PatientRegistryIdIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientRegistryIdIsMissing);
+      id.setHowToFix(
+          "The IIS registry id was not recognized. Please contact your software vendor and the IIS to verify the need for sending "
+              + "the IIS registry id. ");
+      id.setWhyToFix(
+          "The IIS id is used for identifying the specific patient that is to be updated or queried in the IIS. "
+              + "This is normally used in queries and is not expected on updates. ");
     }
     {
-      ImplementationDetail id =
-          this.addRuleDetection(Detection.PatientRegistryIdIsUnrecognized);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientRegistryIdIsUnrecognized);
+      id.setImplementationDescription(
+          "Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
+      id.setHowToFix(
+          "The IIS registry id was not recognized. Please contact your software vendor to verify the need for sending "
+              + "the IIS registry id. ");
+      id.setWhyToFix(
+          "The IIS id is used for identifying the specific patient that is to be updated or queried in the IIS. "
+              + "This is normally used in queries and is not expected on updates. ");
     }
   }
 
   @Override
   protected ValidationRuleResult executeRule(MqePatient target, MqeMessageReceived m) {
     String regNum = target.getIdRegistryNumber();
-    List<ValidationReport> issues = new ArrayList<>(
-        codr.handleCode(regNum, VxuField.PATIENT_REGISTRY_ID, target));
+    List<ValidationReport> issues =
+        new ArrayList<>(codr.handleCode(regNum, VxuField.PATIENT_REGISTRY_ID, target));
     // TODO PatientRegistryIdIsUnrecognized--can we use codr instead? I can't get it to work
     boolean passed = issues.size() == 0;
     return buildResults(issues, passed);

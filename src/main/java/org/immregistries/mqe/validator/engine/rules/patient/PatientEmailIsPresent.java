@@ -18,21 +18,20 @@ public class PatientEmailIsPresent extends ValidationRule<MqePatient> {
     this.addRuleDetection(Detection.PatientEmailIsInvalid);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientEmailIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The patient email is missing. "
+          + "Please verify that the patient email is indicated on the medical record. "
+          + "If so, please contact your software vendor and request that email be send in every message when available.  ");
+      id.setWhyToFix(
+          "The email address may be used by IIS to improve patient matching or for contacting during reminder/recall activities. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientEmailIsInvalid);
       id.setImplementationDescription(
           "Email address is invalid and must contain letters, numbers, '@' and '.'");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The patient email is not a valid email address. "
+          + "Please verify that the patient email is indicated properly on the medical record. ");
+      id.setWhyToFix(
+          "The email address may be used by IIS to improve patient matching or for contacting during reminder/recall activities. ");
     }
   }
 

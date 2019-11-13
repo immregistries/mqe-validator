@@ -1,10 +1,11 @@
 package org.immregistries.mqe.validator.engine;
 
+import org.immregistries.mqe.util.validation.MqeValidatedObject;
 import org.immregistries.mqe.vxu.MetaFieldInfoHolder;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.TargetType;
 
-public class ValidationRulePair<T extends MetaFieldInfoHolder> {
+public class ValidationRulePair<T extends MqeValidatedObject> {
 
   private ValidationRule<T> rule;
   private T target;

@@ -40,31 +40,6 @@ public class PatientBirthDateIsReasonable extends ValidationRule<MqePatient> {
       // TODO Complete WhyToFix
       id.setWhyToFix("");
     }
-    {
-      ImplementationDetail id =
-          this.addRuleDetection(Detection.PatientBirthDateIsOnFirstDayOfMonth);
-      id.setImplementationDescription("Patient birth date is on the first day of the month.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
-    }
-    {
-      ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsOn15ThDayOfMonth);
-      id.setImplementationDescription("Patient birth date is on the 15th day of the month.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
-    }
-    {
-      ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsOnLastDayOfMonth);
-      id.setImplementationDescription("Patient birth date is on the last day of the month.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
-    }
   }
 
   @Override
@@ -90,21 +65,6 @@ public class PatientBirthDateIsReasonable extends ValidationRule<MqePatient> {
       issues.add(Detection.PatientBirthDateIsAfterSubmission.build((birthDateString), target));
       passed = false;
     }
-    // After this, we have a date.
-    int dayOfMonth = birthDate.getDayOfMonth();
-
-    LocalDate lastDayOfMonth = birthDate.toLocalDate().dayOfMonth().withMaximumValue();
-
-    int lastDay = lastDayOfMonth.getDayOfMonth();
-
-    if (dayOfMonth == 1) {
-      issues.add(Detection.PatientBirthDateIsOnFirstDayOfMonth.build((birthDateString), target));
-    } else if (dayOfMonth == 15) {
-      issues.add(Detection.PatientBirthDateIsOn15ThDayOfMonth.build((birthDateString), target));
-    } else if (dayOfMonth == lastDay) {
-      issues.add(Detection.PatientBirthDateIsOnLastDayOfMonth.build((birthDateString), target));
-    }
-
     return buildResults(issues, passed);
   }
 }

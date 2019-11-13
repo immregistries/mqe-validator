@@ -21,6 +21,7 @@ public class ScoreReportable implements Reportable {
   private final CodedWithExceptions hl7ErrorCode;
   private final CodedWithExceptions applicationErrorCode;
   private int reportedCount;
+  private String exampleMessage;
   private final String mqeCode;
 
   public ScoreReportable(MqeDetection d, int count) {
@@ -94,7 +95,23 @@ public class ScoreReportable implements Reportable {
 	  this.severity = severity;
   }
 
-public String getMqeCode() {
+  public int getReportedCount() {
+    return reportedCount;
+  }
+
+  public void setReportedCount(int reportedCount) {
+    this.reportedCount = reportedCount;
+  }
+
+  public String getExampleMessage() {
+    return exampleMessage;
+  }
+
+  public void setExampleMessage(String exampleMessage) {
+    this.exampleMessage = exampleMessage;
+  }
+
+  public String getMqeCode() {
 	return mqeCode;
 }
 }

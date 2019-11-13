@@ -19,12 +19,19 @@ public class PatientBirthDateIsValid extends ValidationRule<MqePatient> {
 
   public PatientBirthDateIsValid() {
     {
-      ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsInvalid);
-      id.setImplementationDescription("Patient Birth date cannot be translated to a date.");
+      ImplementationDetail idInvalid = this.addRuleDetection(Detection.PatientBirthDateIsInvalid);
+      idInvalid.setImplementationDescription("Patient Birth date cannot be translated to a date.");
       // TODO Complete HowToFix
-      id.setHowToFix("");
+      idInvalid.setHowToFix("");
       // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      idInvalid.setWhyToFix("");
+
+      ImplementationDetail idMissing = this.addRuleDetection(Detection.PatientBirthDateIsMissing);
+      idMissing.setImplementationDescription("Patient Birth date is not populated.");
+      // TODO Complete HowToFix
+      idMissing.setHowToFix("");
+      // TODO Complete WhyToFix
+      idMissing.setWhyToFix("");
     }
   }
 

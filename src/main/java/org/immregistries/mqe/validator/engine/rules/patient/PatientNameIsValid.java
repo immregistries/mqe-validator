@@ -35,6 +35,12 @@ public class PatientNameIsValid extends ValidationRule<MqePatient> {
           "The first name is critical for patient matching both inside the IIS and when communicating with outside entities. ");
     }
     {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientNameLastIsMissing);
+      id.setImplementationDescription("");
+      id.setHowToFix("");
+      id.setWhyToFix("");
+    }
+    {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientNameLastIsInvalid);
       id.setImplementationDescription(
           "Patient last name must not be on the specified invalid name list ('X','U','UN','UK','UNK', 'UNKN', 'NONE').");
@@ -42,6 +48,12 @@ public class PatientNameIsValid extends ValidationRule<MqePatient> {
           "Please enter the patient's legal last name. If the name being sent is the legal name then please contact the IIS for instructions on properly reporting this patient. ");
       id.setWhyToFix(
           "The last name is critical for patient matching both inside the IIS and when communicating with outside entities. ");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientNameMiddleIsMissing);
+      id.setImplementationDescription("");
+      id.setHowToFix("");
+      id.setWhyToFix("");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientNameMiddleIsInvalid);

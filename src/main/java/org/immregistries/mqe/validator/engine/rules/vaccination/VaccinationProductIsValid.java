@@ -44,6 +44,16 @@ public class VaccinationProductIsValid extends ValidationRule<MqeVaccination> {
       // TODO Complete WhyToFix
       id.setWhyToFix("");
     }
+    {
+      ImplementationDetail id =
+              this.addRuleDetection(Detection.VaccinationProductIsMissing);
+      id.setImplementationDescription(
+              "Vaccination product is missing. ");
+      // TODO Complete HowToFix
+      id.setHowToFix("");
+      // TODO Complete WhyToFix
+      id.setWhyToFix("");
+    }
     
   }
 

@@ -17,70 +17,54 @@ public class VaccinationActionCodeIsValid extends ValidationRule<MqeVaccination>
   public VaccinationActionCodeIsValid() {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationActionCodeIsDeprecated);
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("This vaccination action code should no longer be used. Please contact your software vendor and request that the vaccination action code be updated to the correct value.");
+      id.setWhyToFix("Sending the right action code will ensure that the patient's vaccinations are properly recorded.");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationActionCodeIsInvalid);
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("This vaccination action code should no longer be used. Please contact your software vendor and request that the vaccination action code be updated to the correct value.");
+      id.setWhyToFix("Sending the right action code will ensure that the patient's vaccinations are properly recorded.");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationActionCodeIsMissing);
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Vaccination information was submitted without indicating whether it is to be added or removed from the official vaccination record. Pelase contact your software vendor and request that the vaccination action code be set on all vaccinations so that the complete record can be properly recorded. ");
+      id.setWhyToFix("Sending the right action code will ensure that the patient's vaccinations are properly recorded.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationActionCodeIsUnrecognized);
       id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("This vaccination action code was not recognized. Please contact your software vendor and request that the vaccination action code be updated to the correct value.");
+      id.setWhyToFix("Sending the right action code will ensure that the patient's vaccinations are properly recorded.");
     }
     String baseMessage = "Vaccination Action Code value is ";
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationActionCodeIsValuedAsAdd);
       id.setImplementationDescription(baseMessage.concat(MqeVaccination.ACTION_CODE_ADD));
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("If this vaccination was given to the patient or was known to have been given to the patient then there is nothing to fix. This issue is used for reporting purposes and does not necessarily indicate a problem situation. ");
+      id.setWhyToFix("Sending the right action code will ensure that the patient's vaccinations are properly recorded.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationActionCodeIsValuedAsAddOrUpdate);
       id.setImplementationDescription(baseMessage.concat(MqeVaccination.ACTION_CODE_ADD)
           .concat(" or ").concat(MqeVaccination.ACTION_CODE_UPDATE));
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("If this vaccination was given to the patient or was known to have been given to the patient then there is nothing to fix. This issue is used for reporting purposes and does not necessarily indicate a problem situation. ");
+      id.setWhyToFix("Sending the right action code will ensure that the patient's vaccinations are properly recorded.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationActionCodeIsValuedAsDelete);
       id.setImplementationDescription(baseMessage.concat(MqeVaccination.ACTION_CODE_DELETE));
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("If this vaccination was NOT given to the patient or was recorded in error and needs to be removed from the record then there is nothing to fix. This issue is used for reporting purposes and does not necessarily indicate a problem situation. ");
+      id.setWhyToFix("Sending the right action code will ensure that the patient's vaccinations are properly recorded.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationActionCodeIsValuedAsUpdate);
       id.setImplementationDescription(baseMessage.concat(MqeVaccination.ACTION_CODE_UPDATE));
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("If this vaccination was given to the patient or was known to have been given to the patient then there is nothing to fix. This issue is used for reporting purposes and does not necessarily indicate a problem situation. ");
+      id.setWhyToFix("Sending the right action code will ensure that the patient's vaccinations are properly recorded.");
     }
   }
 

@@ -10,7 +10,6 @@ import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,26 +25,26 @@ public class PatientBirthDateCharacteristic extends ValidationRule<MqePatient> {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientBirthDateIsOnFirstDayOfMonth);
       id.setImplementationDescription("Patient birth date is on the first day of the month.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix(
+          "There is nothing to fix if the patient was born on the first day of they month.");
+      id.setWhyToFix(
+          "Sometimes when the exact patient date of birth is not known the first day of the month is choosen. It is important to use the correct date of birth, both for matching purposes and determining the right time for vaccinations.");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsOn15ThDayOfMonth);
       id.setImplementationDescription("Patient birth date is on the 15th day of the month.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix(
+          "There is nothing to fix if the patient was born on the fifteenth day of they month.");
+      id.setWhyToFix(
+          "Sometimes when the exact patient date of birth is not known the fifteenth day of the month is choosen. It is important to use the correct date of birth, both for matching purposes and determining the right time for vaccinations.");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsOnLastDayOfMonth);
       id.setImplementationDescription("Patient birth date is on the last day of the month.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix(
+          "There is nothing to fix if the patient was born on the last day of they month.");
+      id.setWhyToFix(
+          "Sometimes when the exact patient date of birth is not known the last day of the month is choosen. It is important to use the correct date of birth, both for matching purposes and determining the right time for vaccinations.");
     }
   }
 

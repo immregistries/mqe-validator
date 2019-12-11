@@ -1,5 +1,8 @@
 package org.immregistries.mqe.validator.engine.rules;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -21,8 +24,88 @@ import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinNameIsNot
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinNameIsValid;
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinPhoneIsValid;
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinRelationshipIsValidForUnderagedPatient;
-import org.immregistries.mqe.validator.engine.rules.patient.*;
-import org.immregistries.mqe.validator.engine.rules.vaccination.*;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientAddressIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientAliasIsPresent;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateCharacteristic;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsReasonable;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthPlaceIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientClassIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientCodesAreValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientCreationDateIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientCreationTimeliness;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientDeathDateIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientDeathIndicatorIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientEmailIsPresent;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientEthnicityIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientExists;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientFinancialStatusCheckTrue;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientFinancialStatusDateIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientGenderIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientHasResponsibleParty;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientImmunityIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientIsUnderage;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientMedicaidNumberIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientMothersMaidenNameIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientMultipleBirthsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientNameIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientNameSuffixIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientNameTypeIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientPhoneIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientPrimaryPhysicianNameIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientProtectionIndicatorIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientRegistryIdIsPresent;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientRegistryIdIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientResponsiblePartyIsProperlyFormed;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientSsnIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientSubmitterIsValid;
+import org.immregistries.mqe.validator.engine.rules.patient.VaccinationAdminCountIsAsExpectedForAge;
+import org.immregistries.mqe.validator.engine.rules.vaccination.ObservationDateIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.ObservationValueTypeIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationActionCodeIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeCptIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsPresent;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsUsable;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminCodeIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminDateIsBeforeLotExpirationDate;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminDateIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdminDateIsValidForPatientAge;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredAmountIsReasonable;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredAmtIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredLotNumberIsPresent;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredLotNumberIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredRequiredFieldsArePresent;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationAdministeredUnitIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationBodyRouteAndSiteAreValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCodeGroupsMatch;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCompletionStatusIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationConfidentialityCodeIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCptIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCreationDateIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCreationTimeliness;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCvxIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationCvxUseIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFinancialEligibilityCodeIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFundingAndEligibilityConflict;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationFundingSourceCodeIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationInformationSourceIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationIsAdministeredOrHistorical;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationIsForeign;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationIsPresent;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationMfrIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationNdcIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationOrdererIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationProductIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationRefusalReasonIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationSourceIsAdministered;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationSourceIsHistoricalButAppearsAdministered;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationUseCptInsteadOfCvx;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationUseCvx;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationUseNdc;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationVisCvxIsValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationVisDatesAreValid;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationVisIsPresent;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationVisIsRecognized;
 
 public enum ValidationRuleEntityLists {
   //@formatter:off
@@ -127,48 +210,50 @@ public enum ValidationRuleEntityLists {
       new NextOfKinNameIsNotSameAsPatient(),
       new NextOfKinGuardianAddressIsValid()
   //@formatter:on
-  );
+                                       );
 
   private final List<ValidationRule> rules;
 
   ValidationRuleEntityLists(ValidationRule... rulesIn) {
     this.rules = Arrays.asList(rulesIn);
   }
-  
-	public static Set<Detection> activeDetections(){
-		Set<Detection> dets = new HashSet<Detection>();
-    	for(ValidationRule rule : ValidationRuleEntityLists.PATIENT_RULES.getRules()){
-    		dets.addAll(rule.getRuleDetections());
-    	}
-    	for(ValidationRule rule : ValidationRuleEntityLists.VACCINATION_RULES.getRules()){
-    		dets.addAll(rule.getRuleDetections());
-    	}
-    	for(ValidationRule rule : ValidationRuleEntityLists.NEXT_OF_KIN_RULES.getRules()){
-    		dets.addAll(rule.getRuleDetections());
-    	}
-    	return dets;
-	}
-	
-	public static Set<ImplementationDetail> getImplementationDocumentations(){
-		Set<ImplementationDetail> dets = new HashSet<ImplementationDetail>();
-    	for(ValidationRule rule : ValidationRuleEntityLists.PATIENT_RULES.getRules()){
-    		dets.addAll(rule.getImplementationDocumentation());
-    	}
-    	for(ValidationRule rule : ValidationRuleEntityLists.VACCINATION_RULES.getRules()){
-    		dets.addAll(rule.getImplementationDocumentation());
-    	}
-    	for(ValidationRule rule : ValidationRuleEntityLists.MESSAGE_HEADER_RULES.getRules()){
-    		dets.addAll(rule.getImplementationDocumentation());
-    	}
-    	for(ValidationRule rule : ValidationRuleEntityLists.NEXT_OF_KIN_RULES.getRules()){
-    		dets.addAll(rule.getImplementationDocumentation());
-    	}
-    	return dets;
-	}
-	
+
+  public static Set<Detection> activeDetections() {
+    Set<Detection> dets = new HashSet<Detection>();
+    for (ValidationRule rule : ValidationRuleEntityLists.PATIENT_RULES.getRules()) {
+      dets.addAll(rule.getRuleDetections());
+    }
+    for (ValidationRule rule : ValidationRuleEntityLists.VACCINATION_RULES.getRules()) {
+      dets.addAll(rule.getRuleDetections());
+    }
+    for (ValidationRule rule : ValidationRuleEntityLists.NEXT_OF_KIN_RULES.getRules()) {
+      dets.addAll(rule.getRuleDetections());
+    }
+    return dets;
+  }
+
+  public static Set<ImplementationDetail> getImplementationDocumentations() {
+    Set<ImplementationDetail> dets = new HashSet<ImplementationDetail>();
+    for (ValidationRule rule : ValidationRuleEntityLists.PATIENT_RULES.getRules()) {
+      dets.addAll(rule.getImplementationDocumentation());
+    }
+    for (ValidationRule rule : ValidationRuleEntityLists.VACCINATION_RULES.getRules()) {
+      dets.addAll(rule.getImplementationDocumentation());
+    }
+    for (ValidationRule rule : ValidationRuleEntityLists.MESSAGE_HEADER_RULES.getRules()) {
+      dets.addAll(rule.getImplementationDocumentation());
+    }
+    for (ValidationRule rule : ValidationRuleEntityLists.NEXT_OF_KIN_RULES.getRules()) {
+      dets.addAll(rule.getImplementationDocumentation());
+    }
+    return dets;
+  }
+
 
   public List<ValidationRule> getRules() {
     return new ArrayList<>(this.rules);
     // It needs to be a new list. then if it's modified, the enum's version doesn't change.
   }
+
+
 }

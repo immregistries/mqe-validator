@@ -23,30 +23,22 @@ public class VaccinationCreationDateIsValid extends ValidationRule<MqeVaccinatio
           this.addRuleDetection(Detection.VaccinationSystemEntryDateIsInvalid);
       id.setImplementationDescription(
           "Vaccination System Entry date cannot be translated to a date.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The date that this vaccination was entered into the recording system could not be understood because it is formatted wrong. Please contact your vendor and request that they review the system entry date and ensure that it is always encoded properly for reporting. ");
+      id.setWhyToFix("The system entry date can be used to help provide context and information that can aid in ensuring the record has been properly recorded and in matching and merging into the official vaccination record. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationSystemEntryDateIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The date that this vaccination was entered into the recording system is not indicated. Please contact your vendor and request that they include the system entry date with all submissions. ");
+      id.setWhyToFix("The system entry date can be used to help provide context and information that can aid in ensuring the record has been properly recorded and in matching and merging into the official vaccination record. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationSystemEntryDateIsInTheFuture);
       id.setImplementationDescription(
           "Vaccination System Entry date is in the future or is after message recieved date.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The date that this vaccination was entered into the recording system is set in the future. This could be because your recording or submitting system has the current date and time set incorrectly or because the sending system is not working properly. Please contact your system administrator or vendor to review and correct. ");
+      id.setWhyToFix("The system entry date can be used to help provide context and information that can aid in ensuring the record has been properly recorded and in matching and merging into the official vaccination record. ");
     }
 
   }

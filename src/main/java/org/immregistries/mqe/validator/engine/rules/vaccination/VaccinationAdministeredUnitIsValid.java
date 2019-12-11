@@ -23,42 +23,27 @@ public class VaccinationAdministeredUnitIsValid extends ValidationRule<MqeVaccin
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdministeredUnitIsDeprecated);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The administered amount unit indicated should no longer be used. Please contact your vendor and request that they submit the amount using the correct units.  ");
+      id.setWhyToFix("The amount is likely to be not understood properly if it is reported in the wrong unit. The amount is important for creating a complete vaccination record and for properly recording the dosage given for certain vaccines that have different dosages for adults vs children. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdministeredUnitIsInvalid);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The administered amount unit indicated should no longer be used. Please contact your vendor and request that they submit the amount using the correct units.  ");
+      id.setWhyToFix("The amount is likely to be not understood properly if it is reported in the wrong unit. The amount is important for creating a complete vaccination record and for properly recording the dosage given for certain vaccines that have different dosages for adults vs children. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdministeredUnitIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The amount of vaccination given is indicated but not the unit. Please contact your vendor and request that they ensure the unit is always indicated when reporting the amount. ");
+      id.setWhyToFix("The amount is important for creating a complete vaccination record and for properly recording the dosage given for certain vaccines that have different dosages for adults vs children. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdministeredUnitIsUnrecognized);
-      // TODO Complete ImplementationDescription
       id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The amount of vaccination given is indicated but not the unit is not recognized. Please contact your vendor and request that they ensure the correct unit is always indicated when reporting the amount. ");
+      id.setWhyToFix("The amount is important for creating a complete vaccination record and for properly recording the dosage given for certain vaccines that have different dosages for adults vs children. ");
     }
   }
 

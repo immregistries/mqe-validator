@@ -22,50 +22,34 @@ public class VaccinationConfidentialityCodeIsValid extends ValidationRule<MqeVac
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsDeprecated);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The confidentiality code for this vaccination is being reported with an old concept code. Please contact your vendor and request that they use the correct concept code. ");
+      id.setWhyToFix("The confidentiality code may be used to protect this specific vaccination from being shared in specific situations. Please contact the receiving system to understand in which ways confidentiality for vaccinations is supported. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsInvalid);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The confidentiality code for this vaccination is being reported with an old concept code. Please contact your vendor and request that they use the correct concept code. ");
+      id.setWhyToFix("The confidentiality code may be used to protect this specific vaccination from being shared in specific situations. Please contact the receiving system to understand in which ways confidentiality for vaccinations is supported. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The confidentiality for this vaccination is not indicated. If you have indicated the confidentiality for this vaccination then please contact your vendor to request that they report the confidentiality code with this vaccination. ");
+      id.setWhyToFix("The confidentiality code may be used to protect this specific vaccination from being shared in specific situations. Please contact the receiving system to understand in which ways confidentiality for vaccinations is supported. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsUnrecognized);
       id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The confidentiality code for this vaccination is being reported with an unrecognized concept code. Please contact your vendor and request that they use the correct concept code. ");
+      id.setWhyToFix("The confidentiality code may be used to protect this specific vaccination from being shared in specific situations. Please contact the receiving system to understand in which ways confidentiality for vaccinations is supported. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsValuedAsRestricted);
       id.setImplementationDescription("Vaccination Confidentiality Code has value of 'R' or 'V'.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The confidentiality for this vaccination is indicated as restricted. If the confidentiality for this vaccination is not restricted please contact your vendor to ensure that confidentiality is being reported properly. ");
+      id.setWhyToFix("The confidentiality code may be used to protect this specific vaccination from being shared in specific situations. Please contact the receiving system to understand in which ways confidentiality for vaccinations is supported. ");
     }
   }
 

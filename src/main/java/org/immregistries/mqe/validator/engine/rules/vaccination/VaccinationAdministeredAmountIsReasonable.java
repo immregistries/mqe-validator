@@ -26,10 +26,8 @@ public class VaccinationAdministeredAmountIsReasonable extends ValidationRule<Mq
           this.addRuleDetection(Detection.VaccinationAdministeredAmountIsInvalid);
       id.setImplementationDescription(
           "Vaccination Administered amount is expected to be a number between 0 and 999.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The amount of vaccination indicated is an invalid number. For most vaccinations this value is 0.5. Please check the value you have indicated for the vaccination administered amount. You may also want to contact your vendor and ensure that they are only submitting values to the IIS that are a positive number. ");
+      id.setWhyToFix("While in most cases the amount of vaccination administered is known and can be assumed based on the type of vaccination given, there are some cases where the amount of vaccination given can vary between adult and child doses. Indicating the right dose amount can help in these situations and can also help to build a complete and properly vaccination history. ");
     }
   }
 

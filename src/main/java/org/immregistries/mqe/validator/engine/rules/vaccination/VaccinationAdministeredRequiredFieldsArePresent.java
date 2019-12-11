@@ -23,22 +23,14 @@ public class VaccinationAdministeredRequiredFieldsArePresent
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFacilityNameIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccination facility is not indicated. Please contact your vendor to ensure that when vaccinations are administered the facility where they were administered at is reported. ");
+      id.setWhyToFix("The facility name might be used to indicate where a vaccination was given. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationLotExpirationDateIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The lot expiration date was not indicated. Please verify if the lot expiration date has been entered or check with your vendor to ensure that when entered the lot number is submitted. ");
+      id.setWhyToFix("The registry may use this information to verify that the vaccination was given before the expiration date. ");
     }
   }
 

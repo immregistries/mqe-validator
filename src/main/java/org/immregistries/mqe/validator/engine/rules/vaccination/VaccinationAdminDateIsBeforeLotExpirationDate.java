@@ -23,7 +23,7 @@ public class VaccinationAdminDateIsBeforeLotExpirationDate extends ValidationRul
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdminDateIsAfterLotExpirationDate);
-      id.setImplementationDescription("Vaccine administered date is after Lot expiration date");
+      id.setImplementationDescription("Vaccine administered date is after Lot expiration date. ");
       // TODO Complete HowToFix
       id.setHowToFix("");
       // TODO Complete WhyToFix

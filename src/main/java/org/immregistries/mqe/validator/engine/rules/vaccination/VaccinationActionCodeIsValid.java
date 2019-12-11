@@ -17,8 +17,6 @@ public class VaccinationActionCodeIsValid extends ValidationRule<MqeVaccination>
   public VaccinationActionCodeIsValid() {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationActionCodeIsDeprecated);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
       // TODO Complete HowToFix
       id.setHowToFix("");
       // TODO Complete WhyToFix
@@ -26,8 +24,6 @@ public class VaccinationActionCodeIsValid extends ValidationRule<MqeVaccination>
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationActionCodeIsInvalid);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
       // TODO Complete HowToFix
       id.setHowToFix("");
       // TODO Complete WhyToFix
@@ -35,8 +31,6 @@ public class VaccinationActionCodeIsValid extends ValidationRule<MqeVaccination>
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationActionCodeIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
       // TODO Complete HowToFix
       id.setHowToFix("");
       // TODO Complete WhyToFix

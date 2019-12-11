@@ -46,7 +46,7 @@ public class VaccinationCreationTimeliness extends ValidationRule<MqeVaccination
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCreationIsOnTime);
       id.setImplementationDescription(
-          "Vaccination Administered Date and System Entry Date less than or equal to 3 days of eachother.");
+          "Vaccination Administered Date and System Entry Date less than or equal to 3 days of each other.");
       // TODO Complete HowToFix
       id.setHowToFix("");
       // TODO Complete WhyToFix

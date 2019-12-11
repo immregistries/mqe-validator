@@ -29,7 +29,7 @@ public class VaccinationAdminDateIsValidForPatientAge extends ValidationRule<Mqe
       ImplementationDetail id = this
           .addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterWhenExpectedForPatientAge);
       id.setImplementationDescription(
-          "CodeBase specifies the expected age range for this vaccination.  We compare the patients age at administration to this age range.");
+          "For this specific vaccine, it was not expected that this vaccination should be given at the age the patient was when this was administered. ");
       // TODO Complete HowToFix
       id.setHowToFix("");
       // TODO Complete WhyToFix

@@ -20,61 +20,43 @@ public class VaccinationMfrIsValid extends ValidationRule<MqeVaccination> {
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationManufacturerCodeIsDeprecated);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccine manufacturer is indicated with a bad code that should not longer be used. Please review your manufacturer codes or contact your vendor to ensure that the latest and best manufacturer codes are being reported. ");
+      id.setWhyToFix("The vaccine manufacturer code allows for identification of the specific vaccine administered and gives context for the lot number indicated. This helps to create a full and complete record, helps with vaccination matching and ensure that the good data is being stored. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationManufacturerCodeIsInvalid);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccine manufacturer is indicated with a bad code that should not longer be used. Please review your manufacturer codes or contact your vendor to ensure that the latest and best manufacturer codes are being reported. ");
+      id.setWhyToFix("The vaccine manufacturer code allows for identification of the specific vaccine administered and gives context for the lot number indicated. This helps to create a full and complete record, helps with vaccination matching and ensure that the good data is being stored. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationManufacturerCodeIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccine manufacturer is not indicated. Please indicate the manufacturer for this vaccination. ");
+      id.setWhyToFix("The vaccine manufacturer code allows for identification of the specific vaccine administered and gives context for the lot number indicated. This helps to create a full and complete record, helps with vaccination matching and ensure that the good data is being stored. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationManufacturerCodeIsUnrecognized);
       id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccine manufacturer is indicated with a bad code that should not longer be used. Please review your manufacturer codes or contact your vendor to ensure that the latest and best manufacturer codes are being reported. ");
+      id.setWhyToFix("The vaccine manufacturer code allows for identification of the specific vaccine administered and gives context for the lot number indicated. This helps to create a full and complete record, helps with vaccination matching and ensure that the good data is being stored. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationManufacturerCodeIsInvalidForDateAdministered);
       id.setImplementationDescription(
           "Vaccination Manufacturer code was used outside of the valid date range defined for this code. ");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccine manufacturer was not expected to be creating vaccines during the time that this vaccination was administered. Please review the manufacture indicated for this vaccination. ");
+      id.setWhyToFix("The vaccine manufacturer code allows for identification of the specific vaccine administered and gives context for the lot number indicated. This helps to create a full and complete record, helps with vaccination matching and ensure that the good data is being stored. ");
     }
     {
       ImplementationDetail id = this
           .addRuleDetection(Detection.VaccinationManufacturerCodeIsUnexpectedForDateAdministered);
       id.setImplementationDescription(
           "Vaccination Manufacturer code was used outside of the expected date range defined for this code. ");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccine manufacturer was not expected to be creating vaccines during the time that this vaccination was administered. Please review the manufacture indicated for this vaccination. ");
+      id.setWhyToFix("The vaccine manufacturer code allows for identification of the specific vaccine administered and gives context for the lot number indicated. This helps to create a full and complete record, helps with vaccination matching and ensure that the good data is being stored. ");
     }
   }
 

@@ -24,10 +24,8 @@ public class VaccinationAdminDateIsBeforeLotExpirationDate extends ValidationRul
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdminDateIsAfterLotExpirationDate);
       id.setImplementationDescription("Vaccine administered date is after Lot expiration date. ");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Please review the record and determine if the lot expiration date and vaccination date are correct. If they are correct then no action should be taken, otherwise the record should be corrected and resubmitted. ");
+      id.setWhyToFix("It is not correct practice, but it is clinically possible to administer a vaccination after it expires. If this happens it is important to report the event accurately. However, this issue may indicate a problem with how the lot expiration date or administered date were recorded. ");
     }
   }
 

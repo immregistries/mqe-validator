@@ -28,10 +28,8 @@ public class VaccinationSourceIsAdministeredButAppearsHistorical
           Detection.VaccinationInformationSourceIsHistoricalButAppearsToBeAdministered);
       id.setImplementationDescription(
           "Vaccination information source is reported as historical but based on our scoring calculation (how recently shot was given and how much data is known about the shot) the shot seems to be administered.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccination is reported as historical but looks more like an administered vaccinatin. Please review the vaccination event and ensure that it is properly recorded as historical or administered. ");
+      id.setWhyToFix("Reporting information as historical means the vaccination will not be decremented from inventory and will be given a lower priority in representing the vaccination event if it matches with other reports of the same vaccination. It is important to report administered vaccinations as administered. ");
     }
   }
 

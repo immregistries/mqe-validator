@@ -22,16 +22,13 @@ public class VaccinationAdminCodeIsUsable extends ValidationRule<MqeVaccination>
   }
 
   public VaccinationAdminCodeIsUsable() {
-    this.addRuleDetection(Detection.VaccinationAdminCodeIsNotUsable);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotUsable);
       id.setImplementationDescription(
-          "Vaccination Administered Code could not be derived from given NDC or CVX.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
-    }
+          "NDC, CVX, or CPT must be given in order to have a Vaccination Administered Code.");
+      id.setHowToFix("The submitted code could not be recognized as a usable code. Please review how the vaccines are coded in your system and select a CVX or NDC code that better represents the vaccination given.");
+      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
+    }    
   }
 
   @Override

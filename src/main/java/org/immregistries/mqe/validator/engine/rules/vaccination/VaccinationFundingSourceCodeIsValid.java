@@ -22,41 +22,27 @@ public class VaccinationFundingSourceCodeIsValid extends ValidationRule<MqeVacci
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsDeprecated);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccination funding source code is not a good value. Please update your funding source codes you use or contact your vendor to have the correct code submitted with vaccination records. ");
+      id.setWhyToFix("The use of publicly supplied vaccinations must be accounted for. Reporting this information can provide the information needed to comply with program requirements and ensure continued access to publicly funded vaccines. It can also be used to help resolve issues when public or private vaccines are borrowed to meet immediate needs. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsInvalid);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccination funding source code is not a good value. Please update your funding source codes you use or contact your vendor to have the correct code submitted with vaccination records. ");
+      id.setWhyToFix("The use of publicly supplied vaccinations must be accounted for. Reporting this information can provide the information needed to comply with program requirements and ensure continued access to publicly funded vaccines. It can also be used to help resolve issues when public or private vaccines are borrowed to meet immediate needs. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccination funding source code is not indicated. Please ensure taht the funding source is indicated or contact your vendor to have the it submitted with vaccination records. ");
+      id.setWhyToFix("The use of publicly supplied vaccinations must be accounted for. Reporting this information can provide the information needed to comply with program requirements and ensure continued access to publicly funded vaccines. It can also be used to help resolve issues when public or private vaccines are borrowed to meet immediate needs. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsUnrecognized);
       id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccination funding source code is not a good value. Please update your funding source codes you use or contact your vendor to have the correct code submitted with vaccination records. ");
+      id.setWhyToFix("The use of publicly supplied vaccinations must be accounted for. Reporting this information can provide the information needed to comply with program requirements and ensure continued access to publicly funded vaccines. It can also be used to help resolve issues when public or private vaccines are borrowed to meet immediate needs. ");
     }
   }
 

@@ -53,7 +53,6 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
       id.setImplementationDescription("Patient Address street is not indicated");
       id.setHowToFix(
           "Please ensure that the full address for this patient has been entered. Once the address has been corrected, please resubmit the record. ");
-      // TODO Complete WhyToFix
       id.setWhyToFix(
           "Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
     }

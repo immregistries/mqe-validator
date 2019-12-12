@@ -26,71 +26,55 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationVisPublishedDateIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Please indicate the date the Vaccine Information Statement was published. ");
+      id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationVisPublishedDateIsInvalid);
       id.setImplementationDescription(
           "Vaccination Vis Publication date cannot be translated to a date.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Please properly indicate the date the Vaccine Information Statement was published. ");
+      id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationVisPublishedDateIsInFuture);
       id.setImplementationDescription("Vaccination Vis Publication date cannot be a future date.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Please review the date the date the Vaccine Information Statement was published. ");
+      id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationVisPresentedDateIsInvalid);
       id.setImplementationDescription(
           "Vaccination Vis Presented date cannot be translated to a date.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Please review the date the date the Vaccine Information Statement was published. ");
+      id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationVisPresentedDateIsBeforePublishedDate);
       id.setImplementationDescription(
           "Vaccination Vis Presented date cannot be earlier than Vis Published date.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Please review the date the date the Vaccine Information Statement was published. ");
+      id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationVisPresentedDateIsAfterAdminDate);
       id.setImplementationDescription(
           "Vaccination Vis Presented date cannot be after Vaccination Administered Date.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Please review the date the date the Vaccine Information Statement was published. ");
+      id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationVisPresentedDateIsNotAdminDate);
       id.setImplementationDescription(
           "Vaccination Vis Presented date should be the same as the Vaccination Administered Date.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("Please review the date the date the Vaccine Information Statement was published. ");
+      id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
 
   }

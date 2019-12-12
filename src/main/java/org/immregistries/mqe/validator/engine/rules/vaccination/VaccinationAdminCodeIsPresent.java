@@ -17,21 +17,8 @@ public class VaccinationAdminCodeIsPresent extends ValidationRule<MqeVaccination
     this.addRuleDetection(Detection.VaccinationAdminCodeIsMissing);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
-    }
-    {
-      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotUsable);
-      id.setImplementationDescription(
-          "NDC, CVX, or CPT must be given in order to have a Vaccination Administered Code.");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccination administration code indicates what vaccine was administered. This may be submitted as a CVX, NDC, or CPT code. In this case none of these codes were submitted so the type of vaccination adminstered cannot be determined. Please verify the vaccine code you submitted for this vaccination and ensure it is a CVX, NDC or CPT and is labeled as such. You may have to contact your software vendor to make changes to ensure that vaccinations are submitted with a standardized code. ");
+      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
     }
   }
 

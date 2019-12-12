@@ -22,37 +22,24 @@ public class VaccinationVisCvxIsValid extends ValidationRule<MqeVaccination> {
   public VaccinationVisCvxIsValid() {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisCvxIsDeprecated);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The CVX code used to identify the Vaccine Information Statement should no longer be used to identify this statement. Please review the codes used to report VIS statements presented and correct. ");
+      id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisCvxIsInvalid);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The CVX code used to identify the Vaccine Information Statement should no longer be used to identify this statement. Please review the codes used to report VIS statements presented and correct. ");
+      id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisCvxIsMissing);
-      id.setImplementationDescription("No value was indicated, no data sent, and nothing to found to evaluate. ");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The CVX code used to identify the Vaccine Information Statement was not indicated. Please review the codes used to report VIS statements presented and correct. ");
+      id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisCvxIsUnrecognized);
       id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The CVX code used to identify the Vaccine Information Statement should no longer be used to identify this statement. Please review the codes used to report VIS statements presented and correct. ");
+      id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
   }
 

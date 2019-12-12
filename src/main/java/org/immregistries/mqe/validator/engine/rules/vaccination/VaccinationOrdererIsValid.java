@@ -23,80 +23,52 @@ public class VaccinationOrdererIsValid extends ValidationRule<MqeVaccination> {
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationOrderedByIsDeprecated);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The orderer of the vaccination is not recognized. ");
+      id.setWhyToFix("The orderer of the vaccination may be contacted if there are questions about the administation of a vaccination.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationOrderedByIsInvalid);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The orderer of the vaccination is not recognized. ");
+      id.setWhyToFix("The orderer of the vaccination may be contacted if there are questions about the administation of a vaccination.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationOrderedByIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The orderer of the vaccination is not indicated. ");
+      id.setWhyToFix("The orderer of the vaccination may be contacted if there are questions about the administation of a vaccination.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationOrderedByIsUnrecognized);
       id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The orderer of the vaccination is not recognized. ");
+      id.setWhyToFix("The orderer of the vaccination may be contacted if there are questions about the administation of a vaccination.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationRecordedByIsDeprecated);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The recorder of the vaccination is not recognized. ");
+      id.setWhyToFix("The recorder of the vaccination may be contacted if there are questions about the administation of a vaccination.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationRecordedByIsInvalid);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The recorder of the vaccination is not recognized. ");
+      id.setWhyToFix("The recorder of the vaccination may be contacted if there are questions about the administation of a vaccination.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationRecordedByIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The recorder of the vaccination is not indicated. ");
+      id.setWhyToFix("The recorder of the vaccination may be contacted if there are questions about the administation of a vaccination.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationRecordedByIsUnrecognized);
       id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The recorder of the vaccination is not recognized. ");
+      id.setWhyToFix("The recorder of the vaccination may be contacted if there are questions about the administation of a vaccination.");
     }
 
   }

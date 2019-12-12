@@ -23,67 +23,41 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<MqeVacci
       {
         ImplementationDetail id =
             this.addRuleDetection(Detection.VaccinationInformationSourceIsDeprecated);
-        // TODO Complete ImplementationDescription
-        id.setImplementationDescription("");
-        // TODO Complete HowToFix
-        id.setHowToFix("");
-        // TODO Complete WhyToFix
-        id.setWhyToFix("");
+        id.setHowToFix("The information source, which indicates if the vaccination is administered or historical is not indicated with a good value. Please contact your software vendor and request that the information source be indicated properly on all historical and administered vaccinations.");
+        id.setWhyToFix("The information source indicates if this information is first-hand, recorded by the organization that gave the vaccination, or is second-hand. It is important that all accurate vaccination history be reported including historical immunizations that may be on paper records. A full history allows for proper decision on which vaccinations are due to be given. However, administered vaccinations are held to higher standards for completness and given higher priority when merging data from multiple sources. Correctly indicating the information source helps create a consolidated vaccination history that is the most accurate. ");
       }
       {
         ImplementationDetail id =
             this.addRuleDetection(Detection.VaccinationInformationSourceIsInvalid);
-        // TODO Complete ImplementationDescription
-        id.setImplementationDescription("");
-        // TODO Complete HowToFix
-        id.setHowToFix("");
-        // TODO Complete WhyToFix
-        id.setWhyToFix("");
+        id.setHowToFix("The information source, which indicates if the vaccination is administered or historical is not indicated with a good value. Please contact your software vendor and request that the information source be indicated properly on all historical and administered vaccinations.");
+        id.setWhyToFix("The information source indicates if this information is first-hand, recorded by the organization that gave the vaccination, or is second-hand. It is important that all accurate vaccination history be reported including historical immunizations that may be on paper records. A full history allows for proper decision on which vaccinations are due to be given. However, administered vaccinations are held to higher standards for completness and given higher priority when merging data from multiple sources. Correctly indicating the information source helps create a consolidated vaccination history that is the most accurate. ");
       }
       {
         ImplementationDetail id =
             this.addRuleDetection(Detection.VaccinationInformationSourceIsMissing);
-        // TODO Complete ImplementationDescription
-        id.setImplementationDescription("");
-        // TODO Complete HowToFix
-        id.setHowToFix("");
-        // TODO Complete WhyToFix
-        id.setWhyToFix("");
+        id.setHowToFix("The information source, which indicates if the vaccination is administered or historical is not indicated. Please contact your software vendor and request that the information source be indicated on all historical and administered vaccinations.");
+        id.setWhyToFix("The information source indicates if this information is first-hand, recorded by the organization that gave the vaccination, or is second-hand. It is important that all accurate vaccination history be reported including historical immunizations that may be on paper records. A full history allows for proper decision on which vaccinations are due to be given. However, administered vaccinations are held to higher standards for completness and given higher priority when merging data from multiple sources. Correctly indicating the information source helps create a consolidated vaccination history that is the most accurate. ");
       }
       {
         ImplementationDetail id =
             this.addRuleDetection(Detection.VaccinationInformationSourceIsUnrecognized);
-        id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-        // TODO Complete HowToFix
-        id.setHowToFix("");
-        // TODO Complete WhyToFix
-        id.setWhyToFix("");
+        id.setHowToFix("The information source, which indicates if the vaccination is administered or historical is not indicated with a good value. Please contact your software vendor and request that the information source be indicated properly on all historical and administered vaccinations.");
+        id.setWhyToFix("The information source indicates if this information is first-hand, recorded by the organization that gave the vaccination, or is second-hand. It is important that all accurate vaccination history be reported including historical immunizations that may be on paper records. A full history allows for proper decision on which vaccinations are due to be given. However, administered vaccinations are held to higher standards for completness and given higher priority when merging data from multiple sources. Correctly indicating the information source helps create a consolidated vaccination history that is the most accurate. ");
       }
       
       {
         ImplementationDetail id =
             this.addRuleDetection(Detection.VaccinationInformationSourceIsValuedAsAdministered);
-        // TODO Complete ImplementationDescription
-        id.setImplementationDescription("");
-        // TODO Complete HowToFix
-        id.setHowToFix("");
-        // TODO Complete WhyToFix
-        id.setWhyToFix("");
+        id.setHowToFix("The vaccination is indicated as being administered at your location. Reports of administered vacccinations is not expected for this interface and should not be submitted. Ensure you are entering the immunizations in the right place in the application or please contact your vendor and request that administered vaccinations must not be submitted to the IIS. ");
+        id.setWhyToFix("The information source indicates if this information is first-hand, recorded by the organization that gave the vaccination, or is second-hand. It is important that all accurate vaccination history be reported including historical immunizations that may be on paper records. A full history allows for proper decision on which vaccinations are due to be given. However, administered vaccinations are held to higher standards for completness and given higher priority when merging data from multiple sources. Correctly indicating the information source helps create a consolidated vaccination history that is the most accurate. ");
       }
 
       {
         ImplementationDetail id =
             this.addRuleDetection(Detection.VaccinationInformationSourceIsValuedAsHistorical);
-        // TODO Complete ImplementationDescription
-        id.setImplementationDescription("");
-        // TODO Complete HowToFix
-        id.setHowToFix("");
-        // TODO Complete WhyToFix
-        id.setWhyToFix("");
+        id.setHowToFix("The vaccination information is indicated as coming from a historical source. Reports of non-administered vacccinations is not expected for this interface and should not be submitted. Ensure you are entering the immunizations in the right place in the application or please contact your vendor and request that historical vaccinations must not be submitted to the IIS. ");
+        id.setWhyToFix("The information source indicates if this information is first-hand, recorded by the organization that gave the vaccination, or is second-hand. It is important that all accurate vaccination history be reported including historical immunizations that may be on paper records. A full history allows for proper decision on which vaccinations are due to be given. However, administered vaccinations are held to higher standards for completness and given higher priority when merging data from multiple sources. Correctly indicating the information source helps create a consolidated vaccination history that is the most accurate. ");
       }
-
-
-      
   }
 
   /*

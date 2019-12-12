@@ -24,13 +24,9 @@ public class VaccinationVisIsPresent extends ValidationRule<MqeVaccination> {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisIsMissing);
       id.setImplementationDescription(
-          "Administered Vaccine is missing Vis or Vis is missing a document code, CVX and Published Date.");
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+          "Administered Vaccine is missing VIS or VIS is missing a document code, CVX and Published Date.");
+      id.setHowToFix("Please ensure that Vaccine Information Statement was recorded properly on the patient record. ");
+      id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
   }
 

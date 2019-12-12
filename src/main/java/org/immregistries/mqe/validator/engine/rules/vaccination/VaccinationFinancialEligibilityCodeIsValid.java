@@ -22,42 +22,27 @@ public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<M
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsDeprecated);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccination funding eligibility code is old. Please update your funding elgibility codes you use or contact your vendor to have the correct code submitted with vaccination records. ");
+      id.setWhyToFix("The use of publicly supplied vaccinations must be accounted for. Reporting this information can provide the information needed to comply with program requirements and ensure continued access to publicly funded vaccines. It can also be used to help resolve issues when public or private vaccines are borrowed to meet immediate needs. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsInvalid);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccination funding eligibility code is not to be used. Please update your funding elgibility codes you use or contact your vendor to have the correct code submitted with vaccination records. ");
+      id.setWhyToFix("The use of publicly supplied vaccinations must be accounted for. Reporting this information can provide the information needed to comply with program requirements and ensure continued access to publicly funded vaccines. It can also be used to help resolve issues when public or private vaccines are borrowed to meet immediate needs. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsMissing);
-      // TODO Complete ImplementationDescription
-      id.setImplementationDescription("");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccination funding eligibility code is not reported. Please ensure you are indicating the funding source or contact your vendor to request that the funding source be submitted with all administered vaccinations. ");
+      id.setWhyToFix("The use of publicly supplied vaccinations must be accounted for. Reporting this information can provide the information needed to comply with program requirements and ensure continued access to publicly funded vaccines. It can also be used to help resolve issues when public or private vaccines are borrowed to meet immediate needs. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsUnrecognized);
-      // TODO Complete ImplementationDescription
       id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-      // TODO Complete HowToFix
-      id.setHowToFix("");
-      // TODO Complete WhyToFix
-      id.setWhyToFix("");
+      id.setHowToFix("The vaccination funding eligibility code is not recognized or understood. Please update your funding elgibility codes you use or contact your vendor to have the correct code submitted with vaccination records. ");
+      id.setWhyToFix("The use of publicly supplied vaccinations must be accounted for. Reporting this information can provide the information needed to comply with program requirements and ensure continued access to publicly funded vaccines. It can also be used to help resolve issues when public or private vaccines are borrowed to meet immediate needs. ");
     }
   }
 

@@ -24,7 +24,7 @@ public class VaccinationVisIsRecognized extends ValidationRule<MqeVaccination> {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisIsMissing);
       id.setImplementationDescription(
           "Vaccination Vis is missing a document code, CVX and Published Date.");
-      id.setHowToFix("Please ensure that Vaccine Information Statement was recorded properly on the patient record. ");
+      id.setHowToFix("Please review the codes used to report VIS statements presented and correct.  ");
       id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
   }

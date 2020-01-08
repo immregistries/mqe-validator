@@ -18,26 +18,26 @@ public class VaccinationCompletionStatusIsValid extends ValidationRule<MqeVaccin
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationCompletionStatusIsDeprecated);
       id.setHowToFix("The vaccination completion status, which indicates if the vaccination was given completely or not, is using an old code that should no longer be used. Please contact your vendor and request that they update the codes they use for reporting vaccination completeness. ");
-      id.setWhyToFix("The completion status indicates the final status of the immunization being reported. The patient may refuse a vaccination or it may not be completely administered properly. These may be reported to the IIS but need to be properly marked to indicate that they were not completed and so should not count towards the patients immunization status. The completion status needs to be reported correctly so that the information can be properly recorded. ");
+      id.setWhyToFix("The completion status indicates the final status of the immunization being reported. The patient may refuse a vaccination or it may not be completely administered properly. These may be reported to the IIS but need to be properly marked to indicate that they were not completed and so should not count towards the patient's immunization status. The completion status needs to be reported correctly so that the information can be properly recorded. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationCompletionStatusIsInvalid);
       id.setHowToFix("The vaccination completion status, which indicates if the vaccination was given completely or not, is using an old code that should no longer be used. Please contact your vendor and request that they update the codes they use for reporting vaccination completeness. ");
-      id.setWhyToFix("The completion status indicates the final status of the immunization being reported. The patient may refuse a vaccination or it may not be completely administered properly. These may be reported to the IIS but need to be properly marked to indicate that they were not completed and so should not count towards the patients immunization status. The completion status needs to be reported correctly so that the information can be properly recorded. ");
+      id.setWhyToFix("The completion status indicates the final status of the immunization being reported. The patient may refuse a vaccination or it may not be completely administered properly. These may be reported to the IIS but need to be properly marked to indicate that they were not completed and so should not count towards the patient's immunization status. The completion status needs to be reported correctly so that the information can be properly recorded. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationCompletionStatusIsMissing);
       id.setHowToFix("The vaccination completion status, which indicates if the vaccination was given completely or not, was not indicated. Please contact your vendor to always indicate the completeness status when it is known. ");
-      id.setWhyToFix("The completion status indicates the final status of the immunization being reported. The patient may refuse a vaccination or it may not be completely administered properly. These may be reported to the IIS but need to be properly marked to indicate that they were not completed and so should not count towards the patients immunization status. The completion status needs to be reported correctly so that the information can be properly recorded. ");
+      id.setWhyToFix("The completion status indicates the final status of the immunization being reported. The patient may refuse a vaccination or it may not be completely administered properly. These may be reported to the IIS but need to be properly marked to indicate that they were not completed and so should not count towards the patient's immunization status. The completion status needs to be reported correctly so that the information can be properly recorded. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationCompletionStatusIsUnrecognized);
       id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
       id.setHowToFix("The vaccination completion status, which indicates if the vaccination was given completely or not, is using an old code that is not understood. Please contact your vendor and request that they update the codes they use for reporting vaccination completeness. ");
-      id.setWhyToFix("The completion status indicates the final status of the immunization being reported. The patient may refuse a vaccination or it may not be completely administered properly. These may be reported to the IIS but need to be properly marked to indicate that they were not completed and so should not count towards the patients immunization status. The completion status needs to be reported correctly so that the information can be properly recorded. ");
+      id.setWhyToFix("The completion status indicates the final status of the immunization being reported. The patient may refuse a vaccination or it may not be completely administered properly. These may be reported to the IIS but need to be properly marked to indicate that they were not completed and so should not count towards the patient's immunization status. The completion status needs to be reported correctly so that the information can be properly recorded. ");
     }
     String baseMessage = "Vaccination Completion Code has value of ";
     {

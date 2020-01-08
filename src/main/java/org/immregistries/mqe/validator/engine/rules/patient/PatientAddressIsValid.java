@@ -46,7 +46,7 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
       id.setHowToFix(
           "Please review and correct the address for this patient, it is not recognized by the address checker. Once the address has been corrected, please resubmit the record. ");
       id.setWhyToFix(
-          "Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
+          "Recognizable addresses help improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressStreetIsMissing);
@@ -54,21 +54,21 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
       id.setHowToFix(
           "Please ensure that the full address for this patient has been entered. Once the address has been corrected, please resubmit the record. ");
       id.setWhyToFix(
-          "Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
+          "Recognizable addresses help improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressCityIsMissing);
       id.setHowToFix(
           "Please ensure that the full address for this patient has been entered. Once the address has been corrected, please resubmit the record. ");
       id.setWhyToFix(
-          "Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
+          "Recognizable addresses help improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressStateIsMissing);
       id.setHowToFix(
           "Please ensure that the full address for this patient has been entered. Once the address has been corrected, please resubmit the record. ");
       id.setWhyToFix(
-          "Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
+          "Recognizable addresses help improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressCountyIsMissing);
@@ -82,21 +82,21 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
       id.setHowToFix(
           "Patient address country was not specified. Please contact your software vendor and request that country be set for all addresses. ");
       id.setWhyToFix(
-          "Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities. Indicating the country will help ensure that the address is properly understood. ");
+          "Recognizable addresses help improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities. Indicating the country will help ensure that the address is properly understood. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressZipIsMissing);
       id.setHowToFix(
           "Please ensure that the full address for this patient has been entered. Once the address has been corrected, please resubmit the record. ");
       id.setWhyToFix(
-          "Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
+          "Recognizable addresses help improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities.");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressTypeIsMissing);
       id.setHowToFix(
           "Patient address type was not specified. Please contact your software vendor and request that the address type always be set when sending addresses. ");
       id.setWhyToFix(
-          "Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities. The address type will ensure that the IIS understands the type of addres being sent. ");
+          "Recognizable addresses help improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities. The address type will ensure that the IIS understands the type of address being sent. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressTypeIsUnrecognized);
@@ -105,15 +105,15 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
       id.setHowToFix(
           "Patient address type was not recognized. Please contact your software vendor and request that the address type always be set with a proper value when sending addresses. ");
       id.setWhyToFix(
-          "Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities. The correct address type will ensure that the IIS understands the type of addres being sent. ");
+          "Recognizable addresses help improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities. The correct address type will ensure that the IIS understands the type of address being sent. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientAddressTypeIsValuedBadAddress);
       id.setHowToFix(
-          "The patient address was indicated to be a bad address, which means it should not be considered as a good address for this patient. Please verify that the patient indeed has been marked to have a bad address and if this is correct. If it is then contact your software vendor and request that addresses marked as bad are never transmitted to the IIS. ");
+          "The patient address was indicated to be a bad address, which means it should not be considered as a good address for this patient. Please verify that the patient indeed has been marked to have a bad address and if this is correct. If it is, then contact your software vendor and request that addresses marked as bad are never transmitted to the IIS. ");
       id.setWhyToFix(
-          "Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities. Better to send a blank address than a bad one that may cause the IIS confusion. ");
+          "Recognizable addresses help improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities. Better to send a blank address than a bad one that may cause the IIS confusion. ");
     }
 
 
@@ -122,7 +122,7 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
     id.setHowToFix(
         "The patient address does not refer to a valid mailable address. Please review and either update or remove the patient address. ");
     id.setWhyToFix(
-        "Recognizable addresses help to improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities. If the address is incorrect is better to indicate that the patient has no address rather than send an address that us unusable. ");
+        "Recognizable addresses help improve patient matching, allow geographic analysis of vaccination rates, and support reminder/recall activities. If the address is incorrect it is better to indicate that the patient has no address rather than send an address that us unusable. ");
 
     if (props.isAddressCleanserEnabled()) {
       this.addRuleDetection(Detection.PatientAddressIsInvalid);

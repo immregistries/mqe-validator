@@ -22,15 +22,15 @@ public class ObservationDateIsValid extends ValidationRule<MqeVaccination> {
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.ObservationDateTimeOfObservationIsMissing);
-      id.setHowToFix("In some cases the observation date/time might be needed. Please request your software vendor to review the observation date/time indicated to ensure that it is being properly populated. ");
-      id.setWhyToFix("Helps to indicate when this observation was physiologically relevant. May be important for certain evaluating and forecasting immunizations. ");
+      id.setHowToFix("Please contact your software vendor and request that they review and submit observation date times. ");
+      id.setWhyToFix("Submitting the date time of the observation is helpful to understand an immunization event or the patient medical history. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.ObservationDateTimeOfObservationIsInvalid);
       id.setImplementationDescription("Observation date cannot be translated to a date.");
-      id.setHowToFix("In some cases the observation date/time might be needed. Please request your software vendor to review the observation date/time indicated to ensure that it is being properly encoded. ");
-      id.setWhyToFix("Helps to indicate when this observation was physiologically relevant. May be important for certain evaluating and forecasting immunizations. ");
+      id.setHowToFix("Please contact your software vendor and request that they review and submit a valid observation date time. ");
+      id.setWhyToFix("Submitting a valid observation date time is helpful to understand an immunization event or the patient medical history.");
     }
   }
 

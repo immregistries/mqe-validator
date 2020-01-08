@@ -34,7 +34,7 @@ public class VaccinationFundingSourceCodeIsValid extends ValidationRule<MqeVacci
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsMissing);
-      id.setHowToFix("The vaccination funding source code is not indicated. Please ensure taht the funding source is indicated or contact your vendor to have the it submitted with vaccination records. ");
+      id.setHowToFix("The vaccination funding source code is not indicated. Please ensure that the funding source is indicated or contact your vendor to have the it submitted with vaccination records. ");
       id.setWhyToFix("The use of publicly supplied vaccinations must be accounted for. Reporting this information can provide the information needed to comply with program requirements and ensure continued access to publicly funded vaccines. It can also be used to help resolve issues when public or private vaccines are borrowed to meet immediate needs. ");
     }
     {

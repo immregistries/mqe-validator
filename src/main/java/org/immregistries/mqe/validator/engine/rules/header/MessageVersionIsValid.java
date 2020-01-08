@@ -29,7 +29,7 @@ public class MessageVersionIsValid extends ValidationRule<MqeMessageHeader> {
       ImplementationDetail id = this.addRuleDetection(Detection.MessageVersionIsMissing);
       id.setImplementationDescription("Message Version is not indicated");
       id.setHowToFix("The problem is in the format of the HL7 message being sent. Please contact your software vendor to fix this issue.");
-      id.setWhyToFix("The HL7 Standard requies that senders indicate which version of the HL7 guide the message is built to. Not indicating the version means that the receiver may mis-interpret the content of the message. ");
+      id.setWhyToFix("The HL7 Standard requires that senders indicate which version of the HL7 guide the message is built to. Not indicating the version means that the receiver may mis-interpret the content of the message. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.MessageVersionIsUnrecognized);

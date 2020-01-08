@@ -24,51 +24,51 @@ public class VaccinationOrdererIsValid extends ValidationRule<MqeVaccination> {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationOrderedByIsDeprecated);
       id.setHowToFix("The orderer of the vaccination is not recognized. ");
-      id.setWhyToFix("The orderer of the vaccination may be contacted if there are questions about the administation of a vaccination.");
+      id.setWhyToFix("The orderer of the vaccination may be contacted if there are questions about the administration of a vaccination.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationOrderedByIsInvalid);
       id.setHowToFix("The orderer of the vaccination is not recognized. ");
-      id.setWhyToFix("The orderer of the vaccination may be contacted if there are questions about the administation of a vaccination.");
+      id.setWhyToFix("The orderer of the vaccination may be contacted if there are questions about the administration of a vaccination.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationOrderedByIsMissing);
       id.setHowToFix("The orderer of the vaccination is not indicated. ");
-      id.setWhyToFix("The orderer of the vaccination may be contacted if there are questions about the administation of a vaccination.");
+      id.setWhyToFix("The orderer of the vaccination may be contacted if there are questions about the administration of a vaccination.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationOrderedByIsUnrecognized);
       id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
       id.setHowToFix("The orderer of the vaccination is not recognized. ");
-      id.setWhyToFix("The orderer of the vaccination may be contacted if there are questions about the administation of a vaccination.");
+      id.setWhyToFix("The orderer of the vaccination may be contacted if there are questions about the administration of a vaccination.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationRecordedByIsDeprecated);
       id.setHowToFix("The recorder of the vaccination is not recognized. ");
-      id.setWhyToFix("The recorder of the vaccination may be contacted if there are questions about the administation of a vaccination.");
+      id.setWhyToFix("The recorder of the vaccination may be contacted if there are questions about the administration of a vaccination.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationRecordedByIsInvalid);
       id.setHowToFix("The recorder of the vaccination is not recognized. ");
-      id.setWhyToFix("The recorder of the vaccination may be contacted if there are questions about the administation of a vaccination.");
+      id.setWhyToFix("The recorder of the vaccination may be contacted if there are questions about the administration of a vaccination.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationRecordedByIsMissing);
       id.setHowToFix("The recorder of the vaccination is not indicated. ");
-      id.setWhyToFix("The recorder of the vaccination may be contacted if there are questions about the administation of a vaccination.");
+      id.setWhyToFix("The recorder of the vaccination may be contacted if there are questions about the administration of a vaccination.");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationRecordedByIsUnrecognized);
       id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
       id.setHowToFix("The recorder of the vaccination is not recognized. ");
-      id.setWhyToFix("The recorder of the vaccination may be contacted if there are questions about the administation of a vaccination.");
+      id.setWhyToFix("The recorder of the vaccination may be contacted if there are questions about the administration of a vaccination.");
     }
 
   }

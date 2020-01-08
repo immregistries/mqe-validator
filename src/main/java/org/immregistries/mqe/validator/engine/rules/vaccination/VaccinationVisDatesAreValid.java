@@ -41,7 +41,7 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationVisPublishedDateIsInFuture);
       id.setImplementationDescription("Vaccination Vis Publication date cannot be a future date.");
-      id.setHowToFix("Please review the date the date the Vaccine Information Statement was published. ");
+      id.setHowToFix("Please review the date the Vaccine Information Statement was published. ");
       id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
     {
@@ -49,7 +49,7 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
           this.addRuleDetection(Detection.VaccinationVisPresentedDateIsInvalid);
       id.setImplementationDescription(
           "Vaccination Vis Presented date cannot be translated to a date.");
-      id.setHowToFix("Please review the date the date the Vaccine Information Statement was published. ");
+      id.setHowToFix("Please review the date the Vaccine Information Statement was published. ");
       id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
     {
@@ -57,7 +57,7 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
           this.addRuleDetection(Detection.VaccinationVisPresentedDateIsBeforePublishedDate);
       id.setImplementationDescription(
           "Vaccination Vis Presented date cannot be earlier than Vis Published date.");
-      id.setHowToFix("Please review the date the date the Vaccine Information Statement was published. ");
+      id.setHowToFix("Please review the date the Vaccine Information Statement was published. ");
       id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
     {
@@ -65,7 +65,7 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
           this.addRuleDetection(Detection.VaccinationVisPresentedDateIsAfterAdminDate);
       id.setImplementationDescription(
           "Vaccination Vis Presented date cannot be after Vaccination Administered Date.");
-      id.setHowToFix("Please review the date the date the Vaccine Information Statement was published. ");
+      id.setHowToFix("Please review the date the Vaccine Information Statement was published. ");
       id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
     {
@@ -73,7 +73,7 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
           this.addRuleDetection(Detection.VaccinationVisPresentedDateIsNotAdminDate);
       id.setImplementationDescription(
           "Vaccination Vis Presented date should be the same as the Vaccination Administered Date.");
-      id.setHowToFix("Please review the date the date the Vaccine Information Statement was published. ");
+      id.setHowToFix("Please review the date the Vaccine Information Statement was published. ");
       id.setWhyToFix("Properly recording the Vaccine Information Statement in the originating medical system is important to qualify for coverage under the Vaccine Compensation Program. ");
     }
 

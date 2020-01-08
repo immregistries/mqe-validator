@@ -19,7 +19,7 @@ public class PatientNameTypeIsValid extends ValidationRule<MqePatient> {
       id.setHowToFix("The patient name type is not valued. Please contact your software vendor and ask them to "
           + "ensure that all names sent in the message include a name type code. ");
       id.setWhyToFix("The IIS uses the name for patient matching. Indicating the type of name being sent will help "
-          + "the IIS match it correctly to other names that have been recevied.  ");
+          + "the IIS match it correctly to other names that have been received.  ");
     }
 
     {
@@ -27,8 +27,8 @@ public class PatientNameTypeIsValid extends ValidationRule<MqePatient> {
           this.addRuleDetection(Detection.PatientNameTypeCodeIsNotValuedLegal);
       id.setImplementationDescription("Patient Name Type is not 'L' for legal.");
       id.setHowToFix("The first name sent was not the legal name. Please contact your software vendor and ask them "
-          + "to ensure that the first name sent is always the legal name and that is designated as such. ");
-      id.setWhyToFix("The IIS uses the name for patient matching. The legal name is generally stable and is routinly submitted "
+          + "to ensure that the first name sent is always the legal name and that it is designated as such. ");
+      id.setWhyToFix("The IIS uses the name for patient matching. The legal name is generally stable and is routinely submitted "
           + "by other systems. ");
     }
   }

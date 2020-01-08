@@ -27,8 +27,8 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
           this.addRuleDetection(Detection.AdministeredVaccinationsCountIsLargerThanExpected);
       id.setImplementationDescription(
           "Expecting less than 20 vaccinations given before 6 months of age. Expecting less than 30 vaccinations given before 2 years of age.");
-      id.setHowToFix("This record has so many vaccinations that it is assumed to be either a test record or multiple improperly-merged patient records. This record should be reviewed to determine if the data is correct. If it is test information, then this should not be submitted to a production system. If this is an improperly merged record then it should be fixed before submission to an immunization system. ");
-      id.setWhyToFix("Production immunization systems depend on accurate data free of test data and badly merged records. Immunization systems actively merge data together and depend on all submitted data accurately reflect what actually happened. ");
+      id.setHowToFix("Review the patient record to ensure duplicate vaccines have not been recorded.");
+      id.setWhyToFix("Accurate patient data helps keep patients vaccinated on time, avoiding under- and over-immunization. ");
     }
   }
 

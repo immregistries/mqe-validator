@@ -21,7 +21,7 @@ public class ObservationValueTypeIsValid extends ValidationRule<MqeVaccination> 
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.ObservationValueTypeIsDeprecated);
-      id.setHowToFix("The observation value type is recognized but should not longer be used. Please contact your software vendor and request that they review the observation value types that are being sent to ensure that the latest and best types are being sent. ");
+      id.setHowToFix("The observation value type is recognized but should no longer be used. Please contact your software vendor and request that they review the observation value types that are being sent to ensure that the latest and best types are being sent. ");
       id.setWhyToFix("The observation value type allows the transmission of additional information that is helpful to understand an immunization event or the patient medical history. Sending the wrong observation value type might cause the IIS to not recognize or understand medically relevant information.");
     }
     {

@@ -19,14 +19,14 @@ public class VaccinationIsForeign extends ValidationRule<MqeVaccination> {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsForeign);
       id.setImplementationDescription("Administered Vaccination has a foreign CVX vaccine code.");
-      id.setHowToFix("The administered vaccination is indicated as being a foreign vaccine, one that is not normally administered in the US. Please review the vaccination codes you are sending with this vaccination and ensure that the information is being recorded correctly. Normally would not expect a foriegn vaccine to be reported as administered in the US. ");
-      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
+      id.setHowToFix("The administered vaccination is indicated as being a foreign vaccine, one that is not normally administered in the US. Please review the vaccination codes you are sending with this vaccination and ensure that the information is being recorded correctly. Normally the IIS would not expect a foreign vaccine to be reported as administered in the US. ");
+      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support Systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationHistoricalCodeIsForeign);
       id.setImplementationDescription("Historical Vaccination has a foreign CVX vaccine code.");
-      id.setHowToFix("The vaccination on the patient history is indicated as being a foreign vaccine, one that is not normally administered in the US. Review the vaccination record to ensure this is correct. It is possible for foriegn vaccines to be record on the records of patients in the US. ");
-      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
+      id.setHowToFix("The vaccination on the patient history is indicated as being a foreign vaccine, one that is not normally administered in the US. Review the vaccination record to ensure this is correct. It is possible for foreign vaccines to be record on the records of patients in the US. ");
+      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support Systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
     }
 
   }

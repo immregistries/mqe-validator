@@ -21,8 +21,8 @@ public class VaccinationCodeGroupsMatch extends ValidationRule<MqeVaccination> {
           this.addRuleDetection(Detection.VaccinationCvxCodeAndCptCodeAreInconsistent);
       id.setImplementationDescription(
           "The Vaccination CPT code given is expecting a different vaccine group than the vaccine group from the CVX given.");
-      id.setHowToFix("The vaccination is being reported with both a CVX and a CPT code but they do not agree on which vaccination was given. Please check your vaccine codes and ensure that the cvx and cpt codes are recorded properly for the vaccination being reported. ");
-      id.setWhyToFix("Creating a complete vaccination history requires an accurate list of vaccinations administered. Conflicting information means that the wrong information may be recorded and transmitted to other systems. Great care must be taken to ensure that vaccinations are reported using the correct codes. ");
+      id.setHowToFix("The vaccination CVX code and CPT code are inconsistent, which indicates two different vaccines or two different products were recorded. Please review which vaccine was administered, update the incorrect code, and resubmit. ");
+      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support Systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
     }
   }
 

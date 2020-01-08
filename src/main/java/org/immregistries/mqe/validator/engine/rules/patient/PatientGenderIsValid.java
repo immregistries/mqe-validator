@@ -44,7 +44,7 @@ public class PatientGenderIsValid extends ValidationRule<MqePatient> {
         ImplementationDetail id =
             this.addRuleDetection(Detection.PatientGenderIsUnrecognized);
         id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-        id.setHowToFix("The patient sex is set with an code that is not understood. "
+        id.setHowToFix("The patient sex is set with a code that is not understood. "
             + "Please contact your software vendor and request that correct sex codes be used. ");
         id.setWhyToFix("Patient sex may be used for patient matching purposes or to ensure the correct vaccination is recommended. ");
       }

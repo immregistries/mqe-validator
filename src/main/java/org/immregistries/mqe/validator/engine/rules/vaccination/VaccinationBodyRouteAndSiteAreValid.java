@@ -52,7 +52,7 @@ public class VaccinationBodyRouteAndSiteAreValid extends ValidationRule<MqeVacci
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationBodySiteIsMissing);
-      id.setHowToFix("The vaccination body site (the location on the human body where the vaccination was injected or given) is not being reported. Please ensure you have indicated it and if so please ask your vendor to ensure that it is reported. ");
+      id.setHowToFix("The vaccination body site (the location on the human body where the vaccination was injected or given) is not being reported. Please ensure you have indicated it and, if so, please ask your vendor to ensure that it is reported. ");
       id.setWhyToFix("The body site helps to provide a full vaccination history of where a vaccination was given and may be used to provide context when there are local reactions to this vaccination. ");
     }
     {

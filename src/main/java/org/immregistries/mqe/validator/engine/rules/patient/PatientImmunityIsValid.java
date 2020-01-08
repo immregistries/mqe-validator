@@ -24,15 +24,15 @@ public class PatientImmunityIsValid extends ValidationRule<MqePatient> {
   public PatientImmunityIsValid() {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientImmunityCodeIsDeprecated);
-      id.setHowToFix("Contact you software vendor and ask them to ensure that immunity information is encoded properly in the message. ");
-      id.setWhyToFix("Patient immunities can change recommendation of next vaccinations due so ideally would be included "
+      id.setHowToFix("Contact your software vendor and ask them to ensure that immunity information is encoded properly in the message. ");
+      id.setWhyToFix("Patient immunities can change recommendation of next vaccinations due, so ideally patient immunities would be included "
           + "in a complete vaccination record. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientImmunityCodeIsUnrecognized);
       id.setImplementationDescription(
           "Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-      id.setHowToFix("Contact you software vendor and ask them to ensure that immunity information is encoded properly in the message. ");
+      id.setHowToFix("Contact your software vendor and ask them to ensure that immunity information is encoded properly in the message. ");
       id.setWhyToFix("Patient immunities can change recommendation of next vaccinations due so ideally would be included "
           + "in a complete vaccination record. ");
     }

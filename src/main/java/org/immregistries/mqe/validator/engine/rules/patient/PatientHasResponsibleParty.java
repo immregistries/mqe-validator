@@ -24,11 +24,10 @@ public class PatientHasResponsibleParty extends ValidationRule<MqePatient> {
         this.addRuleDetection(Detection.PatientGuardianResponsiblePartyIsMissing);
     id.setImplementationDescription(
         "Responsible party missing and/or responsible party relationship code missing.");
-    id.setHowToFix("The patient responsible party which is a parent or guardian was not found in the message for a minor-aged patient. "
-        + "Please ensure that the guardian/parent is recorded for this patient or "
-        + "ask your software vendor to include the guardian/parent in all messages when available. ");
-    id.setWhyToFix("Patient matching uses the guardian information to improve patient matching and identify the person that should be "
-        + "contacted during reminder/recall activities. ");
+    id.setHowToFix("The guardian/parent is missing. Please review the patient guardian/parent and ensure that a name is "
+        + "entered or please ask your software vendor to ensure that the name of the guardian/parent responsible for the "
+        + "patient is sent properly in the message. ");
+    id.setWhyToFix("The name of the guardian/parent can be used for patient matching and as a contact for reminder/recall activities.  ");
   }
 
   @Override

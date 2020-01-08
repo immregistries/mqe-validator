@@ -22,18 +22,18 @@ public class PatientMedicaidNumberIsValid extends ValidationRule<MqePatient> {
   public PatientMedicaidNumberIsValid() {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientMedicaidNumberIsMissing);
-      id.setHowToFix("The patient Medicaid number was not encoded. Please verify that the medicaid number is recorded on the "
-          + "patient medical record or please contact your software vendor and request that the medicaid number be included "
+      id.setHowToFix("The patient Medicaid number was not encoded. Please verify that the Medicaid number is recorded on the "
+          + "patient medical record or please contact your software vendor and request that the Medicaid number be included "
           + "in messages. ");
-      id.setWhyToFix("The Medicaid number may be used to connect record to other services. ");
+      id.setWhyToFix("The Medicaid number may be used to connect the record to other services. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientMedicaidNumberIsInvalid);
       id.setImplementationDescription(
           "Medicaid Number is 9 digits long, does not have six of the same digits in a row and is not '123456789' or '987654321'");
-      id.setHowToFix("The patient Medicaid number is not correct. Please verify that the medicaid number is recorded on the "
+      id.setHowToFix("The patient Medicaid number is not correct. Please verify that the Medicaid number is recorded on the "
           + "patient medical record correctly. ");
-      id.setWhyToFix("The Medicaid number may be used to connect record to other services. ");
+      id.setWhyToFix("The Medicaid number may be used to connect the record to other services. ");
     }
   }
 

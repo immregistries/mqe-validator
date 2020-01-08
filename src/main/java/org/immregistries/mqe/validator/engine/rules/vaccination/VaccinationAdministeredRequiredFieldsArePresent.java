@@ -29,7 +29,7 @@ public class VaccinationAdministeredRequiredFieldsArePresent
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationLotExpirationDateIsMissing);
-      id.setHowToFix("The lot expiration date was not indicated. Please verify if the lot expiration date has been entered or check with your vendor to ensure that when entered the lot number is submitted. ");
+      id.setHowToFix("The lot expiration date was not indicated. Please verify if the lot expiration date has been entered or check with your vendor to ensure that lot expiration date is sent when the lot number is submitted. ");
       id.setWhyToFix("The registry may use this information to verify that the vaccination was given before the expiration date. ");
     }
   }

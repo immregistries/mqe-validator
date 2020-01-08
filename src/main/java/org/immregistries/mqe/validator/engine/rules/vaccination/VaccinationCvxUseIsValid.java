@@ -33,7 +33,7 @@ public class VaccinationCvxUseIsValid extends ValidationRule<MqeVaccination> {
       id.setImplementationDescription(
           "Vaccination Administered Date is outside of expected vaccine date range.");
       id.setHowToFix("The vaccination was administered before or after when it was available for general use. Please review the vaccine administered and the date it was administered on to ensure that the event has been recorded properly. ");
-      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
+      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support Systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
     }
     {
       ImplementationDetail id =
@@ -41,7 +41,7 @@ public class VaccinationCvxUseIsValid extends ValidationRule<MqeVaccination> {
       id.setImplementationDescription(
           "Vaccination Administered Date is outside of licensed vaccine date range.");
       id.setHowToFix("The vaccination was administered before or after when it was licensed for use. Please review the vaccine administered and the date it was administered on to ensure that the event has been recorded properly. ");
-      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
+      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support Systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
     }
   }
 

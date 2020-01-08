@@ -27,8 +27,8 @@ public class VaccinationSourceIsHistoricalButAppearsAdministered
       ImplementationDetail id = this.addRuleDetection(
           Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical);
       id.setImplementationDescription(
-          "Vaccination information source is reported as administered but based on our scoring calculation (how recently shot was given and how much data is known about the shot) the shot seems to be historical.");
-      id.setHowToFix("The vaccination is reported as administered but looks more like a historical vaccination. Please review the vaccination event and ensure that it is properly recorded as historical or administered. ");
+          "Vaccination information source is reported as administered, but based on our scoring calculation (how recently shot was given and how much data is known about the shot) the shot seems to be historical.");
+      id.setHowToFix("The vaccination is reported as administered, but looks more like a historical vaccination. Please review the vaccination event and ensure that it is properly recorded as historical or administered. ");
       id.setWhyToFix("Reporting information as administered when it really is historical information can cause major headaches for the integrity of the immunization history. Improperly reported administered doses can change patient ownership, override more accurate information reported from other systems, and incorrectly decrement doses in the current inventory. ");
     }
   }

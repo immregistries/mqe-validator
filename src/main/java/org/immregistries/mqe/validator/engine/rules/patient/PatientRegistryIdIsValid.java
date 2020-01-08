@@ -21,10 +21,10 @@ public class PatientRegistryIdIsValid extends ValidationRule<MqePatient> {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientRegistryIdIsMissing);
       id.setHowToFix(
-          "The IIS registry id was not recognized. Please contact your software vendor and the IIS to verify the need for sending "
-              + "the IIS registry id. ");
+          "The IIS registry ID was not recognized. Please contact your software vendor and the IIS to verify the need for sending "
+              + "the IIS registry ID. ");
       id.setWhyToFix(
-          "The IIS id is used for identifying the specific patient that is to be updated or queried in the IIS. "
+          "The IIS ID is used for identifying the specific patient that is to be updated or queried in the IIS. "
               + "This is normally used in queries and is not expected on updates. ");
     }
     {
@@ -32,10 +32,10 @@ public class PatientRegistryIdIsValid extends ValidationRule<MqePatient> {
       id.setImplementationDescription(
           "Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
       id.setHowToFix(
-          "The IIS registry id was not recognized. Please contact your software vendor to verify the need for sending "
-              + "the IIS registry id. ");
+          "The IIS registry ID was not recognized. Please contact your software vendor to verify the need for sending "
+              + "the IIS registry ID. ");
       id.setWhyToFix(
-          "The IIS id is used for identifying the specific patient that is to be updated or queried in the IIS. "
+          "The IIS ID is used for identifying the specific patient that is to be updated or queried in the IIS. "
               + "This is normally used in queries and is not expected on updates. ");
     }
   }

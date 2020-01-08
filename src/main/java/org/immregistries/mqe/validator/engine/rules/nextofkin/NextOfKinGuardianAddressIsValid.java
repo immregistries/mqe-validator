@@ -71,7 +71,7 @@ public class NextOfKinGuardianAddressIsValid extends ValidationRule<MqeNextOfKin
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressZipIsMissing);
-      id.setHowToFix("The zip of the guardian/parent address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
+      id.setHowToFix("The zip code of the guardian/parent address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
       id.setWhyToFix("Guardian/parent address may be used for Reminder/Recall purposes. ");
     }
     {
@@ -90,7 +90,7 @@ public class NextOfKinGuardianAddressIsValid extends ValidationRule<MqeNextOfKin
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientGuardianAddressTypeIsValuedBadAddress);
       id.setHowToFix("The address for the guardian/parent has been marked in your system as a bad address. The IIS should ignore this address but ideally it should never be sent. Contact your software vendor to ask that bad addresses be excluded from being sent to IIS. ");
-      id.setWhyToFix("Guardian/parent address may be used for Reminder/Recall purposes, but bad addresses are not useful to IIS and may be improperly understood as a good adddress.  ");
+      id.setWhyToFix("Guardian/parent address may be used for Reminder/Recall purposes, but bad addresses are not useful to the IIS and may be improperly understood as a good address.  ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressIsInvalid);

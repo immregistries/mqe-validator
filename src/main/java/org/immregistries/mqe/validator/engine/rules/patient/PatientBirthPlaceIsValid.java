@@ -20,8 +20,8 @@ public class PatientBirthPlaceIsValid extends ValidationRule<MqePatient> {
   public PatientBirthPlaceIsValid() {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthPlaceIsMissing);
-      id.setHowToFix("Please verify that the patient birth place is indicated on the patient medical record. If it is then contact your software vendor and request that the birth place be properly encoded in the message. ");
-      id.setWhyToFix("The patien birth place may be used for patient matching and verification. Identifying unnamed children can be especially challanging and a birth place can help locate correct record matches. ");
+      id.setHowToFix("Please verify that the patient birth place is indicated on the patient medical record. If it is, then contact your software vendor and request that the birth place be properly encoded in the message. ");
+      id.setWhyToFix("The patient birth place may be used for patient matching and verification. Identifying unnamed children can be especially challenging and a birth place can help locate correct record matches. ");
     }
   }
 

@@ -35,7 +35,7 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientGuardianAddressZipIsMissing);
-      id.setHowToFix("The zip of the guardian/parent address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
+      id.setHowToFix("The zip code of the guardian/parent address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
       id.setWhyToFix("Guardian/parent address may be used for Reminder/Recall purposes. ");
     }
     {

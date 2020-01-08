@@ -45,6 +45,8 @@ public class VaccinationAdministeredLotNumberIsValid extends ValidationRule<MqeV
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationLotNumberHasInvalidInfixes);
       id.setImplementationDescription("Vaccination lot number cannot contain the text ICE3");
+      id.setHowToFix("The vaccination lot number contains additional characters that are not expected in a regular lot number. Please review the lot number you are sending and ensure that it contains the lot number exactly as it appears on the vaccination packaging and that there is no additional information being included with the lot number. The manufacturer lot number field should only include the lot number and nothing else.");
+      id.setWhyToFix("The Lot Number is used for several critical IIS functions including: Vaccine lot inventory decrementing, vaccination matching, and vaccination product recall. Reporting the vaccine lot number helps to create a complete and accurate vaccination history. Incorrectly recorded lot numbers may cause problems in lot decrementing and may not be recognized during lot recalls.");
     }
     {
       ImplementationDetail id =
@@ -76,7 +78,7 @@ public class VaccinationAdministeredLotNumberIsValid extends ValidationRule<MqeV
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberIsTooShort);
       id.setImplementationDescription("Vaccination lot number is 4 characters or less.");
-      id.setHowToFix("The vaccination lot number is too short and so is not a valid lot number. Please review the lot number you are sending and ensure that it contains the lot number exactly as it appears on the vaccination packaging and that there is no additional information being included with the correct lot number. ");
+      id.setHowToFix("The vaccination lot number is too short and therefore may not be a valid lot number. Please review the lot number you are sending and ensure that it contains the lot number exactly as it appears on the vaccination packaging and that there is no missing information from the correct lot number. ");
       id.setWhyToFix("The Lot Number is used for several critical IIS functions including: Vaccine lot inventory decrementing, vaccination matching, and vaccination product recall. Reporting the vaccine lot number helps to create a complete and accurate vaccination history. ");
     }
   }

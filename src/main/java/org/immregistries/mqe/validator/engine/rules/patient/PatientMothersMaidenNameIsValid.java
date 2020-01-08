@@ -19,7 +19,7 @@ public class PatientMothersMaidenNameIsValid extends ValidationRule<MqePatient> 
   public PatientMothersMaidenNameIsValid() {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientMotherSMaidenNameIsMissing);
-      id.setHowToFix("The mother's maiden name is not valued. Please verify that this name is on the patient's "
+      id.setHowToFix("The mother's maiden name is not valued. Please verify that this name is in the patient's "
           + "medical record or please contact your software vendor to ask them to put the name in all messages when available. ");
       id.setWhyToFix("The mother's maiden name is used to improve matching, and can be especially helpful for matching "
           + "newborn baby records that only have the mother's maiden name. ");
@@ -28,7 +28,7 @@ public class PatientMothersMaidenNameIsValid extends ValidationRule<MqePatient> 
       ImplementationDetail id = this.addRuleDetection(Detection.PatientMothersMaidenNameIsInvalid);
       id.setImplementationDescription(
           "Patient maiden name must not be on the specified invalid name list ('X','UN','UK','UNK', 'UNKN', 'NONE').");
-      id.setHowToFix("The mother's maiden name doesn't appear to be a valid name. Please verify that this name is correct on the patient's "
+      id.setHowToFix("The mother's maiden name doesn't appear to be a valid name. Please verify that this name is correct in the patient's "
           + "medical record. ");
       id.setWhyToFix("The mother's maiden name is used to improve matching, and can be especially helpful for matching "
           + "newborn baby records that only have the mother's maiden name. ");
@@ -39,7 +39,7 @@ public class PatientMothersMaidenNameIsValid extends ValidationRule<MqePatient> 
       id.setImplementationDescription(
           "Patient maiden name must not be on the specified junk name list ('UNKNOWN','NONE','NO LAST NAM','NO LAST NAME', 'NONAME', 'NO NAME', 'EMPTY', 'MISSING').");
       id.setHowToFix("The mother's maiden is a name thought to not represent a real person. "
-          + "Please verify that this name is correct on the patient's medical record. ");
+          + "Please verify that this name is correct in the patient's medical record. ");
       id.setWhyToFix("The mother's maiden name is used to improve matching, and can be especially helpful for matching "
           + "newborn baby records that only have the mother's maiden name. ");
     }
@@ -48,7 +48,7 @@ public class PatientMothersMaidenNameIsValid extends ValidationRule<MqePatient> 
           this.addRuleDetection(Detection.PatientMotherSMaidenNameHasInvalidPrefixes);
       id.setImplementationDescription(
           "Patient maiden name must not be on the specified invalid prefixes name list ('ZZ','XX').");
-      id.setHowToFix("The mother's maiden name doesn't appear to be a valid name. Please verify that this name is correct on the patient's "
+      id.setHowToFix("The mother's maiden name doesn't appear to be a valid name. Please verify that this name is correct in the patient's "
           + "medical record. ");
       id.setWhyToFix("The mother's maiden name is used to improve matching, and can be especially helpful for matching "
           + "newborn baby records that only have the mother's maiden name. ");
@@ -57,7 +57,7 @@ public class PatientMothersMaidenNameIsValid extends ValidationRule<MqePatient> 
       ImplementationDetail id = this.addRuleDetection(Detection.PatientMotherSMaidenNameIsTooShort);
       id.setImplementationDescription(
           "Patient maiden name must be more than 1 character in length.");
-      id.setHowToFix("The mother's maiden name doesn't appear to be a valid name. Please verify that this name is correct on the patient's "
+      id.setHowToFix("The mother's maiden name doesn't appear to be a valid name. Please verify that this name is correct in the patient's "
           + "medical record. ");
       id.setWhyToFix("The mother's maiden name is used to improve matching, and can be especially helpful for matching "
           + "newborn baby records that only have the mother's maiden name. ");

@@ -63,7 +63,7 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressZipIsMissing);
-      id.setHowToFix("The zip of the next-of-kin address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
+      id.setHowToFix("The zip code of the next-of-kin address is missing. Please review the address for all persons connected with this patient and either remove it or update it.");
       id.setWhyToFix("Next-of-kin address may be used for Reminder/Recall purposes. ");
     }
     {
@@ -81,7 +81,7 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
       ImplementationDetail id =
           this.addRuleDetection(Detection.NextOfKinAddressTypeIsValuedBadAddress);
       id.setHowToFix("The address for the next-of-kin has been marked in your system as a bad address. The IIS should ignore this address but ideally it should never be sent. Contact your software vendor to ask that bad addresses be excluded from being sent to IIS. ");
-      id.setWhyToFix("Next-of-kin address may be used for Reminder/Recall purposes, but bad addresses are not useful to IIS and may be improperly understood as a good adddress.  ");
+      id.setWhyToFix("Next-of-kin address may be used for Reminder/Recall purposes, but bad addresses are not useful to the IIS and may be improperly understood as a good address.  ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressTypeIsInvalid);

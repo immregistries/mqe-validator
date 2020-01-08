@@ -23,7 +23,7 @@ public class PatientDeathIndicatorIsValid extends ValidationRule<MqePatient> {
       id.setImplementationDescription(
           "Patient death date was given but death indicator is missing.");
       id.setHowToFix(
-          "The death indicator is not set yet there is a date of death indicated. Please verify the data in the medical "
+          "The death indicator is not set yet, there is a date of death indicated. Please verify the data in the medical "
               + "record and contact your software vendor and request that when sending death information to never indicate a death "
               + "date without also indicating that the patient is deceased. ");
       id.setWhyToFix(
@@ -37,7 +37,7 @@ public class PatientDeathIndicatorIsValid extends ValidationRule<MqePatient> {
       id.setImplementationDescription(
           "Patient death indicator says not dead but death date is populated.");
       id.setHowToFix(
-          "The death indicator is specifically set to NO yet there is a date of death indicated. "
+          "The death indicator is specifically set to NO, yet there is a date of death indicated. "
               + "Please verify the data in the medical "
               + "record and contact your software vendor and request that when sending death information to never indicate a death "
               + "date without also indicating that the patient is deceased. ");

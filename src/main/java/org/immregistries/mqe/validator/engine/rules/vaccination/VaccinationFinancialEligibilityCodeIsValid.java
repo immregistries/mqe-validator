@@ -22,13 +22,13 @@ public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<M
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsDeprecated);
-      id.setHowToFix("The vaccination funding eligibility code is old. Please update your funding elgibility codes you use or contact your vendor to have the correct code submitted with vaccination records. ");
+      id.setHowToFix("The vaccination funding eligibility code is old. Please update your funding eligibility codes you use or contact your vendor to have the correct code submitted with vaccination records. ");
       id.setWhyToFix("The use of publicly supplied vaccinations must be accounted for. Reporting this information can provide the information needed to comply with program requirements and ensure continued access to publicly funded vaccines. It can also be used to help resolve issues when public or private vaccines are borrowed to meet immediate needs. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsInvalid);
-      id.setHowToFix("The vaccination funding eligibility code is not to be used. Please update your funding elgibility codes you use or contact your vendor to have the correct code submitted with vaccination records. ");
+      id.setHowToFix("The vaccination funding eligibility code is invalid and should not to be used. Please update funding eligibility codes you use or contact your vendor to have the correct code submitted with vaccination records. ");
       id.setWhyToFix("The use of publicly supplied vaccinations must be accounted for. Reporting this information can provide the information needed to comply with program requirements and ensure continued access to publicly funded vaccines. It can also be used to help resolve issues when public or private vaccines are borrowed to meet immediate needs. ");
     }
     {
@@ -41,7 +41,7 @@ public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<M
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsUnrecognized);
       id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-      id.setHowToFix("The vaccination funding eligibility code is not recognized or understood. Please update your funding elgibility codes you use or contact your vendor to have the correct code submitted with vaccination records. ");
+      id.setHowToFix("The vaccination funding eligibility code is not recognized or understood. Please update your funding eligibility codes you use or contact your vendor to have the correct code submitted with vaccination records. ");
       id.setWhyToFix("The use of publicly supplied vaccinations must be accounted for. Reporting this information can provide the information needed to comply with program requirements and ensure continued access to publicly funded vaccines. It can also be used to help resolve issues when public or private vaccines are borrowed to meet immediate needs. ");
     }
   }

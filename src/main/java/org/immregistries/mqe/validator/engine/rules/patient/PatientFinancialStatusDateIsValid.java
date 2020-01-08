@@ -22,26 +22,26 @@ public class PatientFinancialStatusDateIsValid extends ValidationRule<MqePatient
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientVfcEffectiveDateIsBeforeBirth);
-      id.setHowToFix("The effective date for the patient funding elgibility code is before the birth of the patient. "
+      id.setHowToFix("The effective date for the patient funding eligibility code is before the birth of the patient. "
           + "Please verify the value in the medical record. ");
-      id.setWhyToFix("May be important to certain VFC programs. ");
+      id.setWhyToFix("The VFC effective date may be important to certain VFC programs. ");
     }
 
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientVfcEffectiveDateIsInFuture);
       id.setImplementationDescription(
           "Message received date is before the patient VFC Effective date.");
-      id.setHowToFix("The effective date for the patient funding elgibility code is in the future. "
+      id.setHowToFix("The effective date for the patient funding eligibility code is in the future. "
           + "Please verify the value in the medical record. ");
       id.setWhyToFix("May be important to certain VFC programs. ");
     }
 
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientVfcEffectiveDateIsMissing);
-      id.setHowToFix("The effective date for the patient funding elgibility code is not coded. "
+      id.setHowToFix("The effective date for the patient funding eligibility code is not coded. "
           + "Please verify the value is recorded in the medical record. If yes, then please contact "
           + "your software vendor and request that this date be sent. ");
-      id.setWhyToFix("May be important to certain VFC programs. ");
+      id.setWhyToFix("The VFC effective date may be important to certain VFC programs. ");
     }
   }
 

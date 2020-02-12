@@ -59,9 +59,9 @@ public class VaccinationCreationTimeliness extends ValidationRule<MqeVaccination
   protected ValidationRuleResult executeRule(MqeVaccination target, MqeMessageReceived m) {
     List<ValidationReport> issues = new ArrayList<>();
 
-    int w1 = 3;
-    int w2 = 14;
-    int w3 = 30;
+    int w1 = 1;
+    int w2 = 7;
+    int w3 = 14;
 
     DateTime admin = new DateTime(target.getAdminDate());
     DateTime entry = new DateTime(target.getSystemEntryDate());

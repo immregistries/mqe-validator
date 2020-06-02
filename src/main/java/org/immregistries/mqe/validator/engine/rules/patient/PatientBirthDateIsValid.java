@@ -25,6 +25,9 @@ public class PatientBirthDateIsValid extends ValidationRule<MqePatient> {
       id.setWhyToFix("The IIS matches patients by birth date and uses it to calculate when vaccinations are due. "
           + "It is critical that the correct birth date is always submitted with patient records. ");
     }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsMissing);
+    }
   }
 
   @Override

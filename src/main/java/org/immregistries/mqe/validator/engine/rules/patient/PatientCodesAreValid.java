@@ -130,6 +130,16 @@ public class PatientCodesAreValid extends ValidationRule<MqePatient> {
       id.setWhyToFix("Vaccine programs must know the funding eligibility of patients and their vaccinations in order to "
           + "ensure that vaccination programs receive continued funding. ");
     }
+
+    ///TODO ADD HowToFix and WhyToFix
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientPrimaryFacilityIdIsMissing);
+    }
+
+    ///TODO ADD HowToFix and WhyToFix
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientPrimaryFacilityNameIsMissing);
+    }
   }
 
   @Override

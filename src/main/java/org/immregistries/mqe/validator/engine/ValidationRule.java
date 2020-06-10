@@ -62,6 +62,19 @@ public abstract class ValidationRule<T> {
    * This builds a results object and determines if issues represent a failure or a pass.
    */
   protected ValidationRuleResult buildResults(List<ValidationReport> issues, boolean passed) {
+    //is this issue in the list of rule detections?
+    //This will help find detection documentation issues
+//      for (ValidationReport vr : issues) {
+//        MqeDetection d = vr.getDetection();
+//        String mqeCode = d.getMqeMqeCode();
+//        Detection detection = Detection.getByMqeErrorCodeString(mqeCode);
+//        if (!ruleDetections.contains(detection)) {
+//          //blow up really bad
+//          throw new UnsupportedOperationException(
+//              "Somehow you triggered a detection that wasn't listed in the possible detections for this rule");
+//        }
+//      }
+
     ValidationRuleResult result = new ValidationRuleResult();
     result.setRuleClass(this.getClass());
     result.setValidationDetections(issues);

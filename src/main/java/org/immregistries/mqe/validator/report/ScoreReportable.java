@@ -20,12 +20,17 @@ public class ScoreReportable implements Reportable {
   private final ArrayList<Hl7Location> hl7LocationList;
   private final CodedWithExceptions hl7ErrorCode;
   private final CodedWithExceptions applicationErrorCode;
-  private int reportedCount;
-  private String exampleMessage;
   private final String mqeCode;
 
+  /* Support for extra reporting features */
+  private String exampleMessage;
+  private int count;
+
+  private String howToFix;
+  private String whyToFix;
+
   public ScoreReportable(MqeDetection d, int count) {
-    this.reportedCount = count;
+    this.count = count;
     this.hl7LocationList = new ArrayList<>();
     CodedWithExceptions cwe = new CodedWithExceptions();
     this.hl7ErrorCode = cwe;
@@ -88,19 +93,13 @@ public class ScoreReportable implements Reportable {
   }
 
   public int getCount() {
-    return reportedCount;
+    return count;
   }
+
+  public void setCount(int count) { this.count = count; }
   
   public void setSeverity(SeverityLevel severity) {
 	  this.severity = severity;
-  }
-
-  public int getReportedCount() {
-    return reportedCount;
-  }
-
-  public void setReportedCount(int reportedCount) {
-    this.reportedCount = reportedCount;
   }
 
   public String getExampleMessage() {
@@ -114,4 +113,20 @@ public class ScoreReportable implements Reportable {
   public String getMqeCode() {
 	return mqeCode;
 }
+
+  public String getHowToFix() {
+    return howToFix;
+  }
+
+  public void setHowToFix(String howToFix) {
+    this.howToFix = howToFix;
+  }
+
+  public String getWhyToFix() {
+    return whyToFix;
+  }
+
+  public void setWhyToFix(String whyToFix) {
+    this.whyToFix = whyToFix;
+  }
 }

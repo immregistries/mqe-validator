@@ -1,10 +1,10 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -19,9 +19,30 @@ public class PatientFinancialStatusDateIsValid extends ValidationRule<MqePatient
   }
 
   public PatientFinancialStatusDateIsValid() {
-    this.addRuleDocumentation(Arrays.asList(Detection.PatientVfcEffectiveDateIsBeforeBirth,
-        Detection.PatientVfcEffectiveDateIsInFuture, Detection.PatientVfcEffectiveDateIsMissing));
-    this.addImplementationMessage(Detection.PatientVfcEffectiveDateIsInFuture, "Message received date is before the patient VFC Effective date.");
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.PatientVfcEffectiveDateIsBeforeBirth);
+      id.setHowToFix("The effective date for the patient funding eligibility code is before the birth of the patient. "
+          + "Please verify the value in the medical record. ");
+      id.setWhyToFix("The VFC effective date may be important to certain VFC programs. ");
+    }
+
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientVfcEffectiveDateIsInFuture);
+      id.setImplementationDescription(
+          "Message received date is before the patient VFC Effective date.");
+      id.setHowToFix("The effective date for the patient funding eligibility code is in the future. "
+          + "Please verify the value in the medical record. ");
+      id.setWhyToFix("May be important to certain VFC programs. ");
+    }
+
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientVfcEffectiveDateIsMissing);
+      id.setHowToFix("The effective date for the patient funding eligibility code is not coded. "
+          + "Please verify the value is recorded in the medical record. If yes, then please contact "
+          + "your software vendor and request that this date be sent. ");
+      id.setWhyToFix("The VFC effective date may be important to certain VFC programs. ");
+    }
   }
 
   @Override

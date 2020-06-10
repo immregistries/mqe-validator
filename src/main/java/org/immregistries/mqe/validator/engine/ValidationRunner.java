@@ -53,6 +53,7 @@ public enum ValidationRunner {
     List<ValidationRuleResult> results = new ArrayList<ValidationRuleResult>();
     for (ValidationRulePair rp : eligible) {
       ValidationRuleResult vrr = rp.evaluateRule();
+      vrr.getValidationDetections().forEach((vr) -> rp.getTarget().addValidationReport(vr));
       results.add(vrr);
     }
     return results;

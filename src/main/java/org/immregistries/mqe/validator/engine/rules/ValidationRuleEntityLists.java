@@ -1,11 +1,13 @@
 package org.immregistries.mqe.validator.engine.rules;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.engine.ValidationRule;
@@ -16,14 +18,15 @@ import org.immregistries.mqe.validator.engine.rules.header.MessageVersionIs25;
 import org.immregistries.mqe.validator.engine.rules.header.MessageVersionIsValid;
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinAddressIsSameAsPatientAddress;
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinAddressIsValid;
+import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinGuardianAddressIsValid;
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinIsPresent;
-import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinNameIsValid;
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinNameIsNotSameAsPatient;
+import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinNameIsValid;
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinPhoneIsValid;
 import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinRelationshipIsValidForUnderagedPatient;
-import org.immregistries.mqe.validator.engine.rules.nextofkin.NextOfKinGuardianAddressIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientAddressIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientAliasIsPresent;
+import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateCharacteristic;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsReasonable;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsValid;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthPlaceIsValid;
@@ -95,6 +98,7 @@ import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationOrder
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationProductIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationRefusalReasonIsValid;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationSourceIsAdministered;
+import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationSourceIsHistoricalButAppearsAdministered;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationUseCptInsteadOfCvx;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationUseCvx;
 import org.immregistries.mqe.validator.engine.rules.vaccination.VaccinationUseNdc;
@@ -110,6 +114,7 @@ public enum ValidationRuleEntityLists {
       new PatientAliasIsPresent(),
       new PatientBirthDateIsValid(),
       new PatientBirthDateIsReasonable(),
+      new PatientBirthDateCharacteristic(),
       new PatientBirthPlaceIsValid(),
       new PatientClassIsValid(),
       new PatientCodesAreValid(),
@@ -153,6 +158,7 @@ public enum ValidationRuleEntityLists {
       new VaccinationAdminDateIsValid(),
       new VaccinationAdminDateIsValidForPatientAge(),
       new VaccinationAdministeredAmountIsReasonable(),
+	  new VaccinationSourceIsHistoricalButAppearsAdministered(),
       new VaccinationAdministeredAmtIsValid(),
       new VaccinationAdministeredLotNumberIsValid(),
       new VaccinationAdministeredLotNumberIsPresent(),
@@ -204,48 +210,50 @@ public enum ValidationRuleEntityLists {
       new NextOfKinNameIsNotSameAsPatient(),
       new NextOfKinGuardianAddressIsValid()
   //@formatter:on
-  );
+                                       );
 
   private final List<ValidationRule> rules;
 
   ValidationRuleEntityLists(ValidationRule... rulesIn) {
     this.rules = Arrays.asList(rulesIn);
   }
-  
-	public static Set<Detection> activeDetections(){
-		Set<Detection> dets = new HashSet<Detection>();
-    	for(ValidationRule rule : ValidationRuleEntityLists.PATIENT_RULES.getRules()){
-    		dets.addAll(rule.getRuleDetections());
-    	}
-    	for(ValidationRule rule : ValidationRuleEntityLists.VACCINATION_RULES.getRules()){
-    		dets.addAll(rule.getRuleDetections());
-    	}
-    	for(ValidationRule rule : ValidationRuleEntityLists.NEXT_OF_KIN_RULES.getRules()){
-    		dets.addAll(rule.getRuleDetections());
-    	}
-    	return dets;
-	}
-	
-	public static Set<ImplementationDetail> getImplementationDocumentations(){
-		Set<ImplementationDetail> dets = new HashSet<ImplementationDetail>();
-    	for(ValidationRule rule : ValidationRuleEntityLists.PATIENT_RULES.getRules()){
-    		dets.addAll(rule.getImplementationDocumentation());
-    	}
-    	for(ValidationRule rule : ValidationRuleEntityLists.VACCINATION_RULES.getRules()){
-    		dets.addAll(rule.getImplementationDocumentation());
-    	}
-    	for(ValidationRule rule : ValidationRuleEntityLists.MESSAGE_HEADER_RULES.getRules()){
-    		dets.addAll(rule.getImplementationDocumentation());
-    	}
-    	for(ValidationRule rule : ValidationRuleEntityLists.NEXT_OF_KIN_RULES.getRules()){
-    		dets.addAll(rule.getImplementationDocumentation());
-    	}
-    	return dets;
-	}
-	
+
+  public static Set<Detection> activeDetections() {
+    Set<Detection> dets = new HashSet<Detection>();
+    for (ValidationRule rule : ValidationRuleEntityLists.PATIENT_RULES.getRules()) {
+      dets.addAll(rule.getRuleDetections());
+    }
+    for (ValidationRule rule : ValidationRuleEntityLists.VACCINATION_RULES.getRules()) {
+      dets.addAll(rule.getRuleDetections());
+    }
+    for (ValidationRule rule : ValidationRuleEntityLists.NEXT_OF_KIN_RULES.getRules()) {
+      dets.addAll(rule.getRuleDetections());
+    }
+    return dets;
+  }
+
+  public static Set<ImplementationDetail> getImplementationDocumentations() {
+    Set<ImplementationDetail> dets = new HashSet<ImplementationDetail>();
+    for (ValidationRule rule : ValidationRuleEntityLists.PATIENT_RULES.getRules()) {
+      dets.addAll(rule.getImplementationDocumentation());
+    }
+    for (ValidationRule rule : ValidationRuleEntityLists.VACCINATION_RULES.getRules()) {
+      dets.addAll(rule.getImplementationDocumentation());
+    }
+    for (ValidationRule rule : ValidationRuleEntityLists.MESSAGE_HEADER_RULES.getRules()) {
+      dets.addAll(rule.getImplementationDocumentation());
+    }
+    for (ValidationRule rule : ValidationRuleEntityLists.NEXT_OF_KIN_RULES.getRules()) {
+      dets.addAll(rule.getImplementationDocumentation());
+    }
+    return dets;
+  }
+
 
   public List<ValidationRule> getRules() {
     return new ArrayList<>(this.rules);
     // It needs to be a new list. then if it's modified, the enum's version doesn't change.
   }
+
+
 }

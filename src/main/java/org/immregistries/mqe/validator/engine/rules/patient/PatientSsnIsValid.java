@@ -1,10 +1,10 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.DetectionType;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -15,9 +15,21 @@ import org.immregistries.mqe.vxu.VxuField;
 public class PatientSsnIsValid extends ValidationRule<MqePatient> {
 
   public PatientSsnIsValid() {
-    this.addRuleDocumentation(Arrays.asList(Detection.PatientSsnIsMissing,
-        Detection.PatientSsnIsInvalid));
-    this.addImplementationMessage(Detection.PatientSsnIsInvalid, "Patient SSN cannot start with 000 or have 00 in the middle section. It must be comprised of exactly 9 digits. It cannot be equal to '123456789' or '987654321'. It cannot have 6 consective digits that are the same.");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientSsnIsMissing);
+      id.setHowToFix("The patient SSN is missing. This may or may not be something to fix, depending on IIS jurisdiction rules. "
+          + "It is common that most IIS do not want to receive SSN. You may need to talk to software vendor about sending SSN "
+          + "if you are being asked to do so by the IIS. ");
+      id.setWhyToFix("The SSN can be used for patient matching. ");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientSsnIsInvalid);
+      id.setImplementationDescription(
+          "Patient SSN cannot start with 000 or have 00 in the middle section. It must be comprised of exactly 9 digits. It cannot be equal to '123456789' or '987654321'. It cannot have 6 consective digits that are the same.");
+      id.setHowToFix("The patient SSN is not formatted correctly. This may or may not be something to fix, depending on IIS jurisdiction rules. "+ "It is common that most IIS do not want to receive SSN. You may need to talk to software vendor about sending SSN "
+          + "if you are being asked to do so by the IIS. ");
+      id.setWhyToFix("The SSN can be used for patient matching. ");
+    }
   }
 
   @Override

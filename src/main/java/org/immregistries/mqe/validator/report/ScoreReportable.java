@@ -6,7 +6,7 @@ import org.immregistries.mqe.hl7util.ReportableSource;
 import org.immregistries.mqe.hl7util.SeverityLevel;
 import org.immregistries.mqe.hl7util.model.CodedWithExceptions;
 import org.immregistries.mqe.hl7util.model.Hl7Location;
-import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.util.validation.MqeDetection;
 
 /**
  * The intention is to generalize the interface for the various types of things we report.
@@ -15,14 +15,16 @@ import org.immregistries.mqe.validator.detection.Detection;
  */
 public class ScoreReportable implements Reportable {
 
-  private final SeverityLevel severity;
+  private SeverityLevel severity;
   private final String reportedMessage;
   private final ArrayList<Hl7Location> hl7LocationList;
   private final CodedWithExceptions hl7ErrorCode;
   private final CodedWithExceptions applicationErrorCode;
   private int reportedCount;
+  private String exampleMessage;
+  private final String mqeCode;
 
-  public ScoreReportable(Detection d, int count) {
+  public ScoreReportable(MqeDetection d, int count) {
     this.reportedCount = count;
     this.hl7LocationList = new ArrayList<>();
     CodedWithExceptions cwe = new CodedWithExceptions();
@@ -33,6 +35,7 @@ public class ScoreReportable implements Reportable {
     if (d != null) {
       this.severity = d.getSeverity();
       this.reportedMessage = d.getDisplayText();
+      this.mqeCode = d.getMqeMqeCode();
       Hl7Location el = new Hl7Location(d.getTargetField().getHl7Locator());
       aec.setIdentifier(d.getApplicationErrorCode().getId());
       aec.setText(d.getApplicationErrorCode().getText());
@@ -45,6 +48,7 @@ public class ScoreReportable implements Reportable {
     } else {
       this.severity = SeverityLevel.INFO;
       this.reportedMessage = "Undetected";
+      this.mqeCode = null;
     }
   }
 
@@ -86,4 +90,28 @@ public class ScoreReportable implements Reportable {
   public int getCount() {
     return reportedCount;
   }
+  
+  public void setSeverity(SeverityLevel severity) {
+	  this.severity = severity;
+  }
+
+  public int getReportedCount() {
+    return reportedCount;
+  }
+
+  public void setReportedCount(int reportedCount) {
+    this.reportedCount = reportedCount;
+  }
+
+  public String getExampleMessage() {
+    return exampleMessage;
+  }
+
+  public void setExampleMessage(String exampleMessage) {
+    this.exampleMessage = exampleMessage;
+  }
+
+  public String getMqeCode() {
+	return mqeCode;
+}
 }

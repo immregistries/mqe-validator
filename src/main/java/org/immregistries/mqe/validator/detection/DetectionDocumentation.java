@@ -5,13 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.apache.commons.lang3.text.WordUtils;
-import org.immregistries.mqe.hl7util.SeverityLevel;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntityLists;
-import org.immregistries.mqe.vxu.VxuField;
-import org.immregistries.mqe.vxu.VxuObject;
 import org.reflections.Reflections;
 
 public class DetectionDocumentation {
@@ -194,10 +190,10 @@ public class DetectionDocumentation {
 			
 			for(ImplementationDetail details: ruleDetails) {
 				if(implementationDetails.containsKey(details.getDetection().getMqeMqeCode())) {
-					implementationDetails.get(details.getDetection().getMqeMqeCode()).put(ruleName, details.getDescription());
+					implementationDetails.get(details.getDetection().getMqeMqeCode()).put(ruleName, details.getImplementationDescription());
 				} else {
 					Map<String, String> implementation = new HashMap<>();
-					implementation.put(ruleName, details.getDescription());
+					implementation.put(ruleName, details.getImplementationDescription());
 					implementationDetails.put(details.getDetection().getMqeMqeCode(), implementation);
 				}
 			}

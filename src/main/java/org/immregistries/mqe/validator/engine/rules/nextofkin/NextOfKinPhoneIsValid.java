@@ -2,8 +2,8 @@ package org.immregistries.mqe.validator.engine.rules.nextofkin;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -17,9 +17,20 @@ public class NextOfKinPhoneIsValid extends ValidationRule<MqeNextOfKin> {
   private PhoneValidator phoneValidator = PhoneValidator.INSTANCE;
 
   public NextOfKinPhoneIsValid() {
-    this.addRuleDocumentation(this.codr.getDetectionsForField(VxuField.NEXT_OF_KIN_PHONE));
-    this.addImplementationMessage(Detection.NextOfKinPhoneNumberIsIncomplete, "Next of kin phone number is missing area code or local number.");
-    this.addImplementationMessage(Detection.NextOfKinPhoneNumberIsInvalid, "Phone number is invalid according to the North American Numbering Plan (NANP).");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinPhoneNumberIsIncomplete);
+      id.setImplementationDescription(
+          "Next of kin phone number is missing area code or local number.");
+      id.setHowToFix("The next-of-kin phone number is not a complete or usable phone number. Correct the next-of-kin phone number by either removing bad data or completing the phone number (with area code). You may also contact your software vendor and request that phone number only be sent to the IIS if it is complete and valid. ");
+      id.setWhyToFix("Phone number may be used for patient matching or reminder/recall functions. ");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinPhoneNumberIsInvalid);
+      id.setImplementationDescription(
+          "Phone number is invalid according to the North American Numbering Plan (NANP).");
+      id.setHowToFix("The next-of-kin phone number is not a complete or usable US phone number. Correct the next-of-kin phone number by either removing bad data or completing the phone number (with area code). You may also contact your software vendor and request that phone number only be sent to the IIS if it is complete and valid. ");
+      id.setWhyToFix("Phone number may be used for patient matching or reminder/recall functions. ");
+    }
   }
 
   @Override
@@ -28,8 +39,8 @@ public class NextOfKinPhoneIsValid extends ValidationRule<MqeNextOfKin> {
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
     boolean passed = true;
 
-    issues.addAll(phoneValidator.validatePhone(target.getPhone(), VxuField.NEXT_OF_KIN_PHONE,
-        target));
+    issues.addAll(
+        phoneValidator.validatePhone(target.getPhone(), VxuField.NEXT_OF_KIN_PHONE, target));
 
     passed = (issues.size() == 0);
 

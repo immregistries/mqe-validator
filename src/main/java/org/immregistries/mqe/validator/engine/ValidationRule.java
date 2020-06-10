@@ -1,14 +1,9 @@
 package org.immregistries.mqe.validator.engine;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-
 import org.immregistries.mqe.core.util.DateUtility;
 import org.immregistries.mqe.validator.ValidatorProperties;
 import org.immregistries.mqe.validator.detection.Detection;
@@ -18,6 +13,7 @@ import org.immregistries.mqe.validator.engine.codes.CodeRepository;
 import org.immregistries.mqe.validator.engine.common.CodeHandler;
 import org.immregistries.mqe.validator.engine.common.CommonRules;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
+import org.immregistries.mqe.vxu.VxuField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,8 +30,8 @@ public abstract class ValidationRule<T> {
    * I wanted this to be a singleton because I know I'll have tons of rule objects floating around
    * and I wanted to limit the number of util objects.
    */
-  protected final Set<Detection> ruleDetections = new HashSet<Detection>();
-  protected final Set<ImplementationDetail> ruleDocumentation = new HashSet<ImplementationDetail>();
+  private final Set<Detection> ruleDetections = new HashSet<>();
+  private final Set<ImplementationDetail> ruleDocumentation = new HashSet<>();
   protected final ValidationUtility util = ValidationUtility.INSTANCE;
   protected final CommonRules common = CommonRules.INSTANCE;
   protected final CodeHandler codr = CodeHandler.INSTANCE;
@@ -46,7 +42,7 @@ public abstract class ValidationRule<T> {
   protected Class[] getDependencies() {
     return new Class[] {};
   }
-  
+
 
   /**
    * This is the primary method to call for this class from a validation driver.
@@ -56,9 +52,8 @@ public abstract class ValidationRule<T> {
       return executeRule(target, m);
     } catch (Exception e) {
       LOGGER.error("Error running rule - " + this.getClass() + " problem: " + e.getMessage(), e);
-      ValidationReport[] issues =
-          new ValidationReport[] {Detection.GeneralProcessingException.build(this.getClass()
-              .getName(), null)};
+      ValidationReport[] issues = new ValidationReport[] {
+          Detection.GeneralProcessingException.build(this.getClass().getName(), null)};
       return buildResults(Arrays.asList(issues), false);
     }
   }
@@ -98,39 +93,31 @@ public abstract class ValidationRule<T> {
     for (Class c : dependencies) {
       if (!passedValidations.contains(c)) {
         return false;
-      };
+      } ;
     }
 
     // At this point, none are missing! Dependencies are met!
     return true;
   }
 
-	public Set<Detection> getRuleDetections() {
-		return ruleDetections;
-	}
-  
-	public Set<ImplementationDetail> getImplementationDocumentation() {
-		return ruleDocumentation;
-	}
+  public Set<Detection> getRuleDetections() {
+    return ruleDetections;
+  }
 
-	public void addRuleDocumentation(Detection detection) {
-		List<Detection> detections = new ArrayList<Detection>();
-		detections.add(detection);
-		this.addRuleDocumentation(detections);
-	}
-  
-	public void addRuleDocumentation(List<Detection> detections) {
-		for (Detection detection : detections) {
-			if (detection != null) {
-				this.ruleDetections.add(detection);
-				this.ruleDocumentation.add(new ImplementationDetail(detection));
-			}
-		}
-	}
-	
-	public void addImplementationMessage(Detection detection, String message) {
-		ImplementationDetail implDetail = new ImplementationDetail(detection, message);
-		this.ruleDocumentation.remove(implDetail);
-		this.ruleDocumentation.add(implDetail);
-	}
+  public Set<ImplementationDetail> getImplementationDocumentation() {
+    return ruleDocumentation;
+  }
+
+
+  public ImplementationDetail addRuleDetection(Detection d) {
+    this.ruleDetections.add(d);
+    ImplementationDetail id = new ImplementationDetail(d);
+    this.ruleDocumentation.add(id);
+    id.setSeverityLevel(d.getSeverity());
+    if (d.getDetectionType().getDescription() != null) {
+      id.setImplementationDescription(d.getDetectionType().getDescription());
+    }
+    return id;
+  }
+
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -19,8 +20,18 @@ public class VaccinationAdministeredRequiredFieldsArePresent
   }
 
   public VaccinationAdministeredRequiredFieldsArePresent() {
-    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationFacilityNameIsMissing,
-        Detection.VaccinationLotExpirationDateIsMissing));
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationFacilityNameIsMissing);
+      id.setHowToFix("The vaccination facility is not indicated. Please contact your vendor to ensure that when vaccinations are administered the facility where they were administered at is reported. ");
+      id.setWhyToFix("The facility name might be used to indicate where a vaccination was given. ");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationLotExpirationDateIsMissing);
+      id.setHowToFix("The lot expiration date was not indicated. Please verify if the lot expiration date has been entered or check with your vendor to ensure that lot expiration date is sent when the lot number is submitted. ");
+      id.setWhyToFix("The registry may use this information to verify that the vaccination was given before the expiration date. ");
+    }
   }
 
   @Override

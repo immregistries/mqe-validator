@@ -3,6 +3,7 @@ package org.immregistries.mqe.validator.engine.rules.patient;
 import java.util.ArrayList;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -17,8 +18,12 @@ public class PatientAliasIsPresent extends ValidationRule<MqePatient> {
   }
 
   public PatientAliasIsPresent() {
-    this.addRuleDocumentation(Detection.PatientAliasIsMissing);
-    this.addImplementationMessage(Detection.PatientAliasIsMissing, "Patient is missing values for both first and last alias names.");
+    this.addRuleDetection(Detection.PatientAliasIsMissing);
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientAliasIsMissing);
+    id.setImplementationDescription(
+        "Patient is missing values for both first and last alias names.");
+    id.setHowToFix("There is nothing to fix if the patient does not have any known aliases. ");
+    id.setWhyToFix("Adding a known patient alias can assist in patient matching and merging into the official vaccination record. ");
   }
 
   @Override

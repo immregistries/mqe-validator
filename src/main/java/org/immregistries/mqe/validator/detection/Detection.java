@@ -1,26 +1,109 @@
 package org.immregistries.mqe.validator.detection;
 
+import static org.immregistries.mqe.hl7util.SeverityLevel.ACCEPT;
+import static org.immregistries.mqe.hl7util.SeverityLevel.ERROR;
+import static org.immregistries.mqe.hl7util.SeverityLevel.INFO;
+import static org.immregistries.mqe.hl7util.SeverityLevel.WARN;
+import static org.immregistries.mqe.validator.detection.DetectionType.ADMINISTERED_BUT_APPEARS_TO_HISTORICAL;
+import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_ADMIN_DATE;
+import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_LOT_EXPIRATION;
+import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_MESSAGE_SUBMITTED;
+import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_PATIENT_DEATH_DATE;
+import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_SUBMISSION;
+import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_SYSTEM_ENTRY_DATE;
+import static org.immregistries.mqe.validator.detection.DetectionType.ARE_INCONSISTENT;
+import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_BIRTH;
+import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE;
+import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_OR_AFTER_EXPECTED_DATE_RANGE;
+import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_OR_AFTER_LICENSED_DATE_RANGE;
+import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_OR_AFTER_VALID_DATE_FOR_AGE;
+import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_PUBLISHED_DATE;
+import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_VERSION_DATE;
+import static org.immregistries.mqe.validator.detection.DetectionType.CONFLICTS_COMPLETION_STATUS;
+import static org.immregistries.mqe.validator.detection.DetectionType.DEPRECATED;
+import static org.immregistries.mqe.validator.detection.DetectionType.DIFFERENT_FROM_PATIENT_ADDRESS;
+import static org.immregistries.mqe.validator.detection.DetectionType.DIFF_FROM_START;
+import static org.immregistries.mqe.validator.detection.DetectionType.EXCEPTION;
+import static org.immregistries.mqe.validator.detection.DetectionType.HAS_JUNK_NAME;
+import static org.immregistries.mqe.validator.detection.DetectionType.HISTORICAL_BUT_APPEARS_TO_BE_ADMINISTERED;
+import static org.immregistries.mqe.validator.detection.DetectionType.IGNORED;
+import static org.immregistries.mqe.validator.detection.DetectionType.INCOMPLETE;
+import static org.immregistries.mqe.validator.detection.DetectionType.INCONSISTENT;
+import static org.immregistries.mqe.validator.detection.DetectionType.INCORRECT;
+import static org.immregistries.mqe.validator.detection.DetectionType.INVALID;
+import static org.immregistries.mqe.validator.detection.DetectionType.INVALID_FOR_DATE_ADMINISTERED;
+import static org.immregistries.mqe.validator.detection.DetectionType.INVALID_FOR_VACCINE;
+import static org.immregistries.mqe.validator.detection.DetectionType.INVALID_INFIXES;
+import static org.immregistries.mqe.validator.detection.DetectionType.INVALID_PREFIXES;
+import static org.immregistries.mqe.validator.detection.DetectionType.INVALID_SUFFIXES;
+import static org.immregistries.mqe.validator.detection.DetectionType.IN_FUTURE;
+import static org.immregistries.mqe.validator.detection.DetectionType.IS_LATE;
+import static org.immregistries.mqe.validator.detection.DetectionType.IS_ON_TIME;
+import static org.immregistries.mqe.validator.detection.DetectionType.IS_TOO_LATE;
+import static org.immregistries.mqe.validator.detection.DetectionType.IS_VERY_LATE;
+import static org.immregistries.mqe.validator.detection.DetectionType.MAY_BE_AN_INITIAL;
+import static org.immregistries.mqe.validator.detection.DetectionType.MAY_BE_PREVIOUSLY_REPORTED;
+import static org.immregistries.mqe.validator.detection.DetectionType.MAY_BE_TEMPORARY_NEWBORN_NAME;
+import static org.immregistries.mqe.validator.detection.DetectionType.MAY_BE_TEST_NAME;
+import static org.immregistries.mqe.validator.detection.DetectionType.MAY_INCLUDE_MIDDLE_INITIAL;
+import static org.immregistries.mqe.validator.detection.DetectionType.MISSING;
+import static org.immregistries.mqe.validator.detection.DetectionType.MISSING_AND_MULTIPLE_BIRTH_INDICATED;
+import static org.immregistries.mqe.validator.detection.DetectionType.MISSING_TIMEZONE;
+import static org.immregistries.mqe.validator.detection.DetectionType.MUTLIPLES;
+import static org.immregistries.mqe.validator.detection.DetectionType.NOT_PRECISE;
+import static org.immregistries.mqe.validator.detection.DetectionType.NOT_RESPONSIBLE_PARTY;
+import static org.immregistries.mqe.validator.detection.DetectionType.NOT_SAME_AS_ADMIN_DATE;
+import static org.immregistries.mqe.validator.detection.DetectionType.NOT_SPECIFIC;
+import static org.immregistries.mqe.validator.detection.DetectionType.NOT_USABLE;
+import static org.immregistries.mqe.validator.detection.DetectionType.NOT_VACCINE;
+import static org.immregistries.mqe.validator.detection.DetectionType.NOT_VALUED_LEGAL;
+import static org.immregistries.mqe.validator.detection.DetectionType.ON_FIFTEENTH_DAY_OF_MONTH;
+import static org.immregistries.mqe.validator.detection.DetectionType.ON_FIRST_DAY_OF_MONTH;
+import static org.immregistries.mqe.validator.detection.DetectionType.ON_LAST_DAY_OF_MONTH;
+import static org.immregistries.mqe.validator.detection.DetectionType.OUT_OF_DATE;
+import static org.immregistries.mqe.validator.detection.DetectionType.REPORTED_LATE;
+import static org.immregistries.mqe.validator.detection.DetectionType.SAME_AS_UNDERAGE_PATIENT;
+import static org.immregistries.mqe.validator.detection.DetectionType.TOO_SHORT;
+import static org.immregistries.mqe.validator.detection.DetectionType.UNDERAGE;
+import static org.immregistries.mqe.validator.detection.DetectionType.UNEXPECTED;
+import static org.immregistries.mqe.validator.detection.DetectionType.UNEXPECTED_FORMAT;
+import static org.immregistries.mqe.validator.detection.DetectionType.UNEXPECTED_FOR_DATE_ADMINISTERED;
+import static org.immregistries.mqe.validator.detection.DetectionType.UNEXPECTED_FOR_FINANCIAL_ELIGIBILITY;
+import static org.immregistries.mqe.validator.detection.DetectionType.UNRECOGNIZED;
+import static org.immregistries.mqe.validator.detection.DetectionType.VACCINATION_COUNT_EXCEEDS_EXPECTATIONS;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_ADD;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_ADD_OR_UPDATE;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_ADMINISTERED;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_COMPLETED;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_DELETE;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_FOREIGN;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_HISTORICAL;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_NO;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_NOT_ADMINISTERED;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_PARTIALLY_ADMINISTERED;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_REFUSED;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_RESTRICTED;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_UNKNOWN;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_UPDATE;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_YES;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_ZERO;
+import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_BAD_ADDRESS;
+import static org.immregistries.mqe.validator.detection.DetectionType.VERY_LONG_AGO;
+import static org.immregistries.mqe.validator.detection.MqeCode.*;
+import static org.immregistries.mqe.vxu.VxuField.*;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
-
 import org.immregistries.mqe.hl7util.ApplicationErrorCode;
 import org.immregistries.mqe.hl7util.SeverityLevel;
 import org.immregistries.mqe.hl7util.builder.AckERRCode;
 import org.immregistries.mqe.hl7util.model.Hl7Location;
 import org.immregistries.mqe.hl7util.model.MetaFieldInfo;
-import org.immregistries.mqe.vxu.DetectionInfo;
-import org.immregistries.mqe.vxu.VxuObject;
+import org.immregistries.mqe.util.validation.MqeDetection;
 import org.immregistries.mqe.vxu.MetaFieldInfoData;
 import org.immregistries.mqe.vxu.VxuField;
+import org.immregistries.mqe.vxu.VxuObject;
 
-import static org.immregistries.mqe.hl7util.SeverityLevel.*;
-import static org.immregistries.mqe.vxu.VxuField.*;
-import static org.immregistries.mqe.validator.detection.DetectionType.*;
-import static org.immregistries.mqe.validator.detection.MqeCode.*;
-
-public enum Detection implements DetectionInfo {
+public enum Detection implements MqeDetection {
   // @formatter:off
   GeneralAuthorizationException(AUTHORIZATION, EXCEPTION, ACCEPT, MQE0002),
   GeneralConfigurationException(CONFIGURATION, EXCEPTION, ACCEPT, MQE0003),
@@ -421,7 +504,7 @@ public enum Detection implements DetectionInfo {
   VaccinationCptCodeIsIgnored(VACCINATION_CPT_CODE, IGNORED, INFO, MQE0301),
   VaccinationCptCodeIsInvalid(VACCINATION_CPT_CODE, INVALID, WARN, MQE0302),
   VaccinationCptCodeIsInvalidForDateAdministered(VACCINATION_CPT_CODE, INVALID_FOR_DATE_ADMINISTERED, WARN, MQE0489),
-//  VaccinationCptCodeIsMissing(VACCINATION_CPT_CODE, MISSING, ACCEPT,  ErrorCode.MQE0303),
+  VaccinationCptCodeIsMissing(VACCINATION_CPT_CODE, MISSING, ACCEPT, MQE0303),
   VaccinationCptCodeIsUnexpectedForDateAdministered(VACCINATION_CPT_CODE, UNEXPECTED_FOR_DATE_ADMINISTERED, ACCEPT, MQE0488),
   VaccinationCptCodeIsUnrecognized(VACCINATION_CPT_CODE, UNRECOGNIZED, WARN, MQE0304),
 
@@ -630,7 +713,7 @@ public enum Detection implements DetectionInfo {
         + " "
         + fieldRef.getFieldDescription()
         + " "
-        + detectionType.wording;
+        + detectionType.getWording();
   }
 
   public DetectionType getDetectionType() {
@@ -662,8 +745,7 @@ public enum Detection implements DetectionInfo {
   public ValidationReport build(MetaFieldInfoData meta) {
     Hl7Location loc = null;
     if (meta != null) {
-      meta.getDetectionList().add(
-          this);//I'm not super comfortable with this...  but I'm not sure how else to accomplish this.
+//      meta.getDetectionList().add(this);//I'm not super comfortable with this...  but I'm not sure how else to accomplish this.
       MetaFieldInfo mfi = meta.getMetaFieldInfo(this.fieldRef);
       if (mfi != null) {
         loc = mfi.getHl7Location();

@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-
 import org.immregistries.mqe.hl7util.SeverityLevel;
+import org.immregistries.mqe.util.validation.MqeValidatedObject;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.common.CommonRules;
@@ -70,15 +70,16 @@ public enum ValidationUtility {
     return failedValidations;
   }
 
-  public List<ValidationRulePair> buildRulePairs(List<ValidationRule> ruleList, Object target,
+  public List<ValidationRulePair> buildRulePairs(List<ValidationRule> ruleList, MqeValidatedObject target,
       MqeMessageReceived mr) {
-	HashMap<String, String> detectionsOverride = mr.getDetectionsOverride();
+	
     List<ValidationRulePair> vrpList = new ArrayList<ValidationRulePair>();
     for (ValidationRule vr : ruleList) {
       ValidationRulePair vp = new ValidationRulePair();
       vp.setMessage(mr);
+      // TODO How is this to be done properly?
       vp.setTarget(target);
-      vp.setRule(getFinalRule(vr, detectionsOverride));
+      vp.setRule(vr);
       vrpList.add(vp);
     }
     return vrpList;
@@ -89,10 +90,12 @@ private ValidationRule getFinalRule(ValidationRule vr, HashMap<String, String> d
 	while (itr.hasNext()) {
 		Detection detection = itr.next();
 		String mqeCode = detection.getMqeMqeCode();
-		if (detectionsOverride.containsKey(mqeCode)) {
-			String severityLabel = detectionsOverride.get(mqeCode);
-			SeverityLevel severity = SeverityLevel.findByLabel(severityLabel);
-			detection.setSeverity(severity);
+		if (detectionsOverride != null) {
+			if (detectionsOverride.containsKey(mqeCode)) {
+				String severityLabel = detectionsOverride.get(mqeCode);
+				SeverityLevel severity = SeverityLevel.findByLabel(severityLabel);
+				detection.setSeverity(severity);
+			}
 		}
 	}
 	return vr;

@@ -1,9 +1,9 @@
 package org.immregistries.mqe.validator.engine.rules.nextofkin;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -16,12 +16,16 @@ public class NextOfKinAddressIsSameAsPatientAddress extends ValidationRule<MqeNe
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[]{PatientExists.class, NextOfKinAddressIsValid.class};
+    return new Class[] {PatientExists.class, NextOfKinAddressIsValid.class};
   }
 
   public NextOfKinAddressIsSameAsPatientAddress() {
-    this.addRuleDocumentation(Detection.NextOfKinAddressIsDifferentFromPatientAddress);
-    this.addImplementationMessage(Detection.NextOfKinAddressIsDifferentFromPatientAddress, "The City/State/Street/Street2 are different between Next Of Kin address and Patient address.");
+    ImplementationDetail id =
+        this.addRuleDetection(Detection.NextOfKinAddressIsDifferentFromPatientAddress);
+    id.setImplementationDescription(
+        "The City/State/Street/Street2 are different between Next Of Kin address and Patient address.");
+    id.setHowToFix("This is not considered incorrect, the next-of-kin is likely to have the same address as the patient, so no fix is needed. ");
+    id.setWhyToFix("This is not considered incorrect, the next-of-kin is likely to have the same address as the patient, so no fix is needed. ");
   }
 
 
@@ -34,7 +38,8 @@ public class NextOfKinAddressIsSameAsPatientAddress extends ValidationRule<MqeNe
     MqeAddress n = target.getAddress();
 
     if ((p != null && n != null) && !p.equals(n)) {
-      issues.add(Detection.NextOfKinAddressIsDifferentFromPatientAddress.build(n.toString(), target));
+      issues
+          .add(Detection.NextOfKinAddressIsDifferentFromPatientAddress.build(n.toString(), target));
       passed = false;
     }
 

@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import static org.junit.Assert.assertEquals;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -36,8 +35,6 @@ public class VaccineCvxUseIsValidTester {
     mr.setMessageHeader(mh);
     mr.getVaccinations().add(v);
     v.setAdminCvxCode("143");
-  
-
   }
 
   @Test

@@ -1,6 +1,5 @@
 package org.immregistries.mqe.validator.engine.rules.header;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageHeader;

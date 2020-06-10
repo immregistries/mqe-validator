@@ -3,8 +3,8 @@ package org.immregistries.mqe.validator.report;
 import java.util.ArrayList;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.DetectionType;
-import org.immregistries.mqe.vxu.VxuObject;
 import org.immregistries.mqe.vxu.VxuField;
+import org.immregistries.mqe.vxu.VxuObject;
 
 /**
  * The goal of this class is to generate a report definition through various means.

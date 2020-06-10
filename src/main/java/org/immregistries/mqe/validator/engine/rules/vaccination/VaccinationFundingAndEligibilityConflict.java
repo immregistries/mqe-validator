@@ -7,12 +7,12 @@ import org.immregistries.codebase.client.generated.Code;
 import org.immregistries.codebase.client.generated.LinkTo;
 import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
-import org.immregistries.mqe.vxu.VxuField;
 
 public class VaccinationFundingAndEligibilityConflict extends ValidationRule<MqeVaccination> {
 
@@ -23,8 +23,16 @@ public class VaccinationFundingAndEligibilityConflict extends ValidationRule<Mqe
   }
 
   public VaccinationFundingAndEligibilityConflict() {
-    this.addRuleDocumentation(Detection.VaccinationFundingSourceCodeIsUnexpectedForFinancialEligibility);
-    this.addImplementationMessage(Detection.VaccinationFundingSourceCodeIsUnexpectedForFinancialEligibility, "The financial funding source given is unexpected for the financial eligibility given.");
+    this.addRuleDetection(
+        Detection.VaccinationFundingSourceCodeIsUnexpectedForFinancialEligibility);
+    {
+      ImplementationDetail id = this.addRuleDetection(
+          Detection.VaccinationFundingSourceCodeIsUnexpectedForFinancialEligibility);
+      id.setImplementationDescription(
+          "The financial funding source given is unexpected for the financial eligibility given.");
+      id.setHowToFix("The funding source does not match with the funding eligibility for this patient and this vaccination. Please review the funding source and eligibility and ensure that they are correctly indicated. ");
+      id.setWhyToFix("The use of publicly supplied vaccinations must be accounted for. Reporting this information can provide the information needed to comply with program requirements and ensure continued access to publicly funded vaccines. It can also be used to help resolve issues when public or private vaccines are borrowed to meet immediate needs. ");
+    }
   }
 
   @Override
@@ -32,7 +40,7 @@ public class VaccinationFundingAndEligibilityConflict extends ValidationRule<Mqe
 
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
     boolean passed = false;
-    
+
     if (StringUtils.isBlank(target.getFinancialEligibilityCode())
         || StringUtils.isBlank(target.getFundingSourceCode())) {
       return buildResults(issues, false);

@@ -13,13 +13,10 @@ public class ProcessReport implements Reportable {
 
   private SeverityLevel severity;// expects I/W/E/A according to the IssueLevel.java class.
   private CodedWithExceptions hl7ErrorCode = new CodedWithExceptions();// This is 0 for success, and
-                                                                       // there's a whole table for
-                                                                       // errors. General code
   private List<Hl7Location> hl7LocationList = new ArrayList<>();
   private String reportedMessage; // ERR-8
   private String diagnosticMessage; // ERR-7
   private CodedWithExceptions applicationErrorCode; // Detailed code of the issue, CDC code & MQE
-                                                    // Code
 
   @Override
   public SeverityLevel getSeverity() {

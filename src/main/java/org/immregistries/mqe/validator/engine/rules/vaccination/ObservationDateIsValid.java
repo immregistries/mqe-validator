@@ -3,6 +3,7 @@ package org.immregistries.mqe.validator.engine.rules.vaccination;
 import java.util.ArrayList;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -16,9 +17,21 @@ import org.immregistries.mqe.vxu.hl7.Observation;
 public class ObservationDateIsValid extends ValidationRule<MqeVaccination> {
 
   public ObservationDateIsValid() {
-    this.addRuleDocumentation(Detection.ObservationDateTimeOfObservationIsMissing);
-    this.addRuleDocumentation(Detection.ObservationDateTimeOfObservationIsInvalid);
-    this.addImplementationMessage(Detection.ObservationDateTimeOfObservationIsInvalid, "Observation date cannot be translated to a date.");
+    this.addRuleDetection(Detection.ObservationDateTimeOfObservationIsMissing);
+    this.addRuleDetection(Detection.ObservationDateTimeOfObservationIsInvalid);
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.ObservationDateTimeOfObservationIsMissing);
+      id.setHowToFix("Please contact your software vendor and request that they review and submit observation date times. ");
+      id.setWhyToFix("Submitting the date time of the observation is helpful to understand an immunization event or the patient medical history. ");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.ObservationDateTimeOfObservationIsInvalid);
+      id.setImplementationDescription("Observation date cannot be translated to a date.");
+      id.setHowToFix("Please contact your software vendor and request that they review and submit a valid observation date time. ");
+      id.setWhyToFix("Submitting a valid observation date time is helpful to understand an immunization event or the patient medical history.");
+    }
   }
 
   @Override
@@ -29,11 +42,11 @@ public class ObservationDateIsValid extends ValidationRule<MqeVaccination> {
     for (Observation o : target.getObservations()) {
       String observationDateString = o.getObservationDateString();
       if (this.common.isEmpty(observationDateString)) {
-        issues.add(Detection.ObservationDateTimeOfObservationIsMissing.build(
-            (observationDateString), target));
+        issues.add(Detection.ObservationDateTimeOfObservationIsMissing
+            .build((observationDateString), target));
       } else if (!this.common.isValidDate(observationDateString)) {
-    	  issues.add(Detection.ObservationDateTimeOfObservationIsInvalid.build(
-    	    (observationDateString), target));
+        issues.add(Detection.ObservationDateTimeOfObservationIsInvalid
+            .build((observationDateString), target));
       }
     }
 

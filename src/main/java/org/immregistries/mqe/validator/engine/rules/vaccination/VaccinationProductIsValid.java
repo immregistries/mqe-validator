@@ -7,6 +7,7 @@ import org.immregistries.codebase.client.generated.Code;
 import org.immregistries.codebase.client.generated.UseDate;
 import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -23,9 +24,31 @@ public class VaccinationProductIsValid extends ValidationRule<MqeVaccination> {
   }
 
   public VaccinationProductIsValid() {
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_PRODUCT));
-    this.addImplementationMessage(Detection.VaccinationProductIsInvalidForDateAdministered, "Vaccination product was used outside of the valid date range defined for this product. ");
-    this.addImplementationMessage(Detection.VaccinationProductIsUnexpectedForDateAdministered, "Vaccination product was used outside of the expected date range defined for this product. ");
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationProductIsInvalidForDateAdministered);
+      id.setImplementationDescription(
+          "Vaccination product was used outside of the valid date range defined for this product. ");
+      id.setHowToFix("The vaccination product from this manufacturer was not generally available at this time to be administered. Please review how vaccines are coded in your system and select a CVX or NDC code that better represents the vaccination given.");
+      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support Systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationProductIsUnexpectedForDateAdministered);
+      id.setImplementationDescription(
+          "Vaccination product was used outside of the expected date range defined for this product. ");
+      id.setHowToFix("The vaccination product from this manufacturer was not available at this time to be administered. Please review how vaccines are coded in your system and select a CVX or NDC code that better represents the vaccination given.");
+      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support Systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
+    }
+    {
+      ImplementationDetail id =
+              this.addRuleDetection(Detection.VaccinationProductIsMissing);
+      id.setImplementationDescription(
+              "Vaccination product is missing. ");
+      id.setHowToFix("The combination of the vaccination and the manufacturer is not recognized. Please review the vaccine and manufacturer and ensure that these are selected properly.");
+      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support Systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. It appears that either the vaccination or the manufacturer are not correctly reported. ");
+    }
+    
   }
 
   @Override
@@ -38,36 +61,36 @@ public class VaccinationProductIsValid extends ValidationRule<MqeVaccination> {
     if (product != null) {
       Code productCode = this.repo.getCodeFromValue(product, CodesetType.VACCINE_PRODUCT);
       issues.addAll(codr.handleCode(productCode, VxuField.VACCINATION_PRODUCT, product, target));
-      
+
       if (productCode != null) {
-          UseDate ud = productCode.getUseDate();
+        UseDate ud = productCode.getUseDate();
 
-          if (ud != null && target.getAdminDate() != null) {
-            String notBeforeString = ud.getNotBefore();
-            String notAfterString = ud.getNotAfter();
+        if (ud != null && target.getAdminDate() != null) {
+          String notBeforeString = ud.getNotBefore();
+          String notAfterString = ud.getNotAfter();
 
-            Date notBeforeDate = datr.parseDate(notBeforeString);
-            Date notAfterDate = datr.parseDate(notAfterString);
+          Date notBeforeDate = datr.parseDate(notBeforeString);
+          Date notAfterDate = datr.parseDate(notAfterString);
 
-            String notExpectedBeforeString = ud.getNotExpectedBefore();
-            String notExpectedAfterString = ud.getNotExpectedAfter();
+          String notExpectedBeforeString = ud.getNotExpectedBefore();
+          String notExpectedAfterString = ud.getNotExpectedAfter();
 
-            Date notExpectedBeforeDate = datr.parseDate(notExpectedBeforeString);
-            Date notExpectedAfterDate = datr.parseDate(notExpectedAfterString);
+          Date notExpectedBeforeDate = datr.parseDate(notExpectedBeforeString);
+          Date notExpectedAfterDate = datr.parseDate(notExpectedAfterString);
 
-            if (datr.isAfterDate(target.getAdminDate(), notAfterDate)
-                || datr.isBeforeDate(target.getAdminDate(), notBeforeDate)) {
+          if (datr.isAfterDate(target.getAdminDate(), notAfterDate)
+              || datr.isBeforeDate(target.getAdminDate(), notBeforeDate)) {
 
-              issues.add(Detection.VaccinationProductIsInvalidForDateAdministered.build(
-            		  product, target));
-              passed = false;
+            issues.add(
+                Detection.VaccinationProductIsInvalidForDateAdministered.build(product, target));
+            passed = false;
 
-            } else if (datr.isAfterDate(target.getAdminDate(), notExpectedAfterDate)
-                || datr.isBeforeDate(target.getAdminDate(), notExpectedBeforeDate)) {
-              issues.add(Detection.VaccinationProductIsUnexpectedForDateAdministered.build(
-            		  product, target));
-            }
+          } else if (datr.isAfterDate(target.getAdminDate(), notExpectedAfterDate)
+              || datr.isBeforeDate(target.getAdminDate(), notExpectedBeforeDate)) {
+            issues.add(
+                Detection.VaccinationProductIsUnexpectedForDateAdministered.build(product, target));
           }
+        }
       }
     } else {
       issues.add(Detection.VaccinationProductIsMissing.build(target));

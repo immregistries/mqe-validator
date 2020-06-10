@@ -1,13 +1,5 @@
 package org.immregistries.mqe.validator.address;
 
-import com.smartystreets.api.StaticCredentials;
-import com.smartystreets.api.exceptions.BadCredentialsException;
-import com.smartystreets.api.exceptions.SmartyException;
-import com.smartystreets.api.us_street.Batch;
-import com.smartystreets.api.us_street.Candidate;
-import com.smartystreets.api.us_street.Client;
-import com.smartystreets.api.us_street.ClientBuilder;
-import com.smartystreets.api.us_street.Lookup;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +10,14 @@ import org.immregistries.mqe.validator.ValidatorProperties;
 import org.immregistries.mqe.vxu.MqeAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.smartystreets.api.StaticCredentials;
+import com.smartystreets.api.exceptions.BadCredentialsException;
+import com.smartystreets.api.exceptions.SmartyException;
+import com.smartystreets.api.us_street.Batch;
+import com.smartystreets.api.us_street.Candidate;
+import com.smartystreets.api.us_street.Client;
+import com.smartystreets.api.us_street.ClientBuilder;
+import com.smartystreets.api.us_street.Lookup;
 
 public enum AddressCleanserSmartyStreets implements AddressCleanser {
   INSTANCE;

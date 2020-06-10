@@ -2,8 +2,6 @@ package org.immregistries.mqe.validator;
 
 import java.util.HashMap;
 import java.util.List;
-
-import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.engine.MessageValidator;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.validator.transform.MessageTransformer;
@@ -38,7 +36,6 @@ public enum MqeMessageService {
   
   public MqeMessageServiceResponse processMessage(String messageText, HashMap<String, String> detectionsOverride) {
 	    MqeMessageReceived mr = this.extractMessageFromText(messageText);
-	    mr.setDetectionsOverride(detectionsOverride);
 	    return validateData(mr);
   }
 
@@ -56,4 +53,10 @@ public enum MqeMessageService {
     msr.getValidationResults().addAll(validationResults);
     return msr;
   }
+  
+  public String getSendingFacility(String messageText) {
+	  MqeMessageReceived mr = this.extractMessageFromText(messageText);
+	  return mr.getMessageHeader().getSendingFacility();
+  }
+  
 }

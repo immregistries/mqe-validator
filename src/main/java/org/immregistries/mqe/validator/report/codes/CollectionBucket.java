@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.report.codes;
 
 import java.util.Objects;
-import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.mqe.vxu.VxuField;
 
 public class CollectionBucket {
@@ -12,6 +11,7 @@ public class CollectionBucket {
   private String attribute;
   private String value;
   private int count;
+  private String exampleMessage;
   private String status;
   private String label;
 
@@ -41,6 +41,14 @@ public class CollectionBucket {
 
   public String getStatus() {
     return status;
+  }
+
+  public String getExampleMessage() {
+    return exampleMessage;
+  }
+
+  public void setExampleMessage(String exampleMessage) {
+    this.exampleMessage = exampleMessage;
   }
 
   public void setStatus(String status) {

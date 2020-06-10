@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,6 +10,7 @@ import org.immregistries.codebase.client.generated.Code;
 import org.immregistries.codebase.client.generated.LinkTo;
 import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -26,20 +26,61 @@ public class VaccinationAdministeredLotNumberIsValid extends ValidationRule<MqeV
   }
 
   public VaccinationAdministeredLotNumberIsValid() {
-    this.addRuleDocumentation(Arrays.asList(Detection.VaccinationLotNumberIsInvalid, Detection.VaccinationLotNumberFormatIsUnrecognized,
-        Detection.VaccinationLotNumberHasInvalidInfixes, Detection.VaccinationLotNumberHasInvalidPrefixes, Detection.VaccinationLotNumberHasInvalidSuffixes,
-        Detection.VaccinationLotNumberHasMultiple, Detection.VaccinationLotNumberIsTooShort));
-    this.addImplementationMessage(Detection.VaccinationLotNumberIsInvalid, "Vaccination lot number must be comprised of alphanumeric characters and/or the '-'. All other characters are invalid.");
-    this.addImplementationMessage(Detection.VaccinationLotNumberFormatIsUnrecognized, "Vaccination lot number doesn't match the expected format specified by the manufacturer code.");
-    this.addImplementationMessage(Detection.VaccinationLotNumberHasInvalidInfixes, "Vaccination lot number cannot contain the text ICE3");
-    this.addImplementationMessage(Detection.VaccinationLotNumberHasInvalidPrefixes, "Vaccination lot number cannot start with LOT, (P), MED, SKB, LOT, PMC, WSD, WAL");
-    this.addImplementationMessage(Detection.VaccinationLotNumberHasInvalidSuffixes, "Vaccination lot number cannot end with (P), -P, -S, -C, -H, -V, *, #, (S), (P),\r\n" + 
-    		"        MSD, HSP, SELECT, CP, VFC, STATE, CHIP, ADULT, ST-, PRIVATE, PED,\r\n" + 
-    		"        UNINSURED, SPECIAL, OVER19, VMC, -COUNT, REAR, PENT, PENTACEL, DTAP,\r\n" + 
-    		"        IPV, ACTH, HIB, PFF, FLU, BOOST, HAV, GARDASIL, ROTATEQ, PEDVAX,\r\n" + 
-    		"        VARIVAX, PNEU, PNEUMOVAX, MMR, MENVEO, MENACTRA, FLU ZONE");
-    this.addImplementationMessage(Detection.VaccinationLotNumberHasMultiple, "Vaccination lot number has multiple lot numbers.");
-    this.addImplementationMessage(Detection.VaccinationLotNumberIsTooShort, "Vaccination lot number is 4 characters or less.");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberIsInvalid);
+      id.setImplementationDescription(
+          "Vaccination lot number must be comprised of alphanumeric characters and/or the '-'. All other characters are invalid.");
+      id.setHowToFix("The vaccination lot number contains characters that are not expected in a regular lot number. Please review the lot number you are sending and ensure that it contains the lot number exactly as it appears on the vaccination packaging and that there is no additional information being included with the lot number. The manufacturer lot number field should only include the lot number and nothing else. ");
+      id.setWhyToFix("The Lot Number is used for several critical IIS functions including: Vaccine lot inventory decrementing, vaccination matching, and vaccination product recall. Reporting the vaccine lot number helps to create a complete and accurate vaccination history. Incorrectly recorded lot numbers may cause problems in lot decrementing and may not be recognized during lot recalls. ");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationLotNumberFormatIsUnrecognized);
+      id.setImplementationDescription(
+          "Vaccination lot number doesn't match the expected format specified by the manufacturer code.");
+      id.setHowToFix("The vaccination lot number does not look like the lot number that this manufacturer would assign. Please review the lot number you are sending and ensure that it contains the lot number exactly as it appears on the vaccination packaging and that there is no additional information being included with the lot number. The manufacturer lot number field should only include the lot number and nothing else. ");
+      id.setWhyToFix("The Lot Number is used for several critical IIS functions including: Vaccine lot inventory decrementing, vaccination matching, and vaccination product recall. Reporting the vaccine lot number helps to create a complete and accurate vaccination history. ");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationLotNumberHasInvalidInfixes);
+      id.setImplementationDescription("Vaccination lot number cannot contain the text ICE3");
+      id.setHowToFix("The vaccination lot number contains additional characters that are not expected in a regular lot number. Please review the lot number you are sending and ensure that it contains the lot number exactly as it appears on the vaccination packaging and that there is no additional information being included with the lot number. The manufacturer lot number field should only include the lot number and nothing else.");
+      id.setWhyToFix("The Lot Number is used for several critical IIS functions including: Vaccine lot inventory decrementing, vaccination matching, and vaccination product recall. Reporting the vaccine lot number helps to create a complete and accurate vaccination history. Incorrectly recorded lot numbers may cause problems in lot decrementing and may not be recognized during lot recalls.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationLotNumberHasInvalidPrefixes);
+      id.setImplementationDescription(
+          "Vaccination lot number cannot start with LOT, (P), MED, SKB, LOT, PMC, WSD, WAL");
+      id.setHowToFix("The vaccination lot number starts with characters that are not expected as part of the start of any valid lot number. Please review the lot number you are sending and ensure that it contains the lot number exactly as it appears on the vaccination packaging and that there is no additional information being included with the lot number. The manufacturer lot number field should only include the lot number and nothing else. ");
+      id.setWhyToFix("The Lot Number is used for several critical IIS functions including: Vaccine lot inventory decrementing, vaccination matching, and vaccination product recall. Reporting the vaccine lot number helps to create a complete and accurate vaccination history. ");
+    }
+
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationLotNumberHasInvalidSuffixes);
+      id.setImplementationDescription(
+          "Vaccination lot number cannot end with (P), -P, -S, -C, -H, -V, *, #, (S), (P),\r\n"
+              + "        MSD, HSP, SELECT, CP, VFC, STATE, CHIP, ADULT, ST-, PRIVATE, PED,\r\n"
+              + "        UNINSURED, SPECIAL, OVER19, VMC, -COUNT, REAR, PENT, PENTACEL, DTAP,\r\n"
+              + "        IPV, ACTH, HIB, PFF, FLU, BOOST, HAV, GARDASIL, ROTATEQ, PEDVAX,\r\n"
+              + "        VARIVAX, PNEU, PNEUMOVAX, MMR, MENVEO, MENACTRA, FLU ZONE");
+      id.setHowToFix("The vaccination lot number ends with characters that are not expected at the end of any valid lot number. Please review the lot number you are sending and ensure that it contains the lot number exactly as it appears on the vaccination packaging and that there is no additional information being included with the lot number. The manufacturer lot number field should only include the lot number and nothing else. ");
+      id.setWhyToFix("The Lot Number is used for several critical IIS functions including: Vaccine lot inventory decrementing, vaccination matching, and vaccination product recall. Reporting the vaccine lot number helps to create a complete and accurate vaccination history. ");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberHasMultiple);
+      id.setImplementationDescription("Vaccination lot number has multiple lot numbers.");
+      id.setHowToFix("The vaccination lot number field appears to contain more than one lot number. Please review the lot number recorded and ensure that only one lot number, the one that belongs to the active component of the vaccination, is being recorded. ");
+      id.setWhyToFix("The Lot Number is used for several critical IIS functions including: Vaccine lot inventory decrementing, vaccination matching, and vaccination product recall. Reporting the vaccine lot number helps to create a complete and accurate vaccination history. ");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberIsTooShort);
+      id.setImplementationDescription("Vaccination lot number is 4 characters or less.");
+      id.setHowToFix("The vaccination lot number is too short and therefore may not be a valid lot number. Please review the lot number you are sending and ensure that it contains the lot number exactly as it appears on the vaccination packaging and that there is no missing information from the correct lot number. ");
+      id.setWhyToFix("The Lot Number is used for several critical IIS functions including: Vaccine lot inventory decrementing, vaccination matching, and vaccination product recall. Reporting the vaccine lot number helps to create a complete and accurate vaccination history. ");
+    }
   }
 
   @Override

@@ -1,10 +1,10 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -19,8 +19,15 @@ public class PatientHasResponsibleParty extends ValidationRule<MqePatient> {
   }
 
   public PatientHasResponsibleParty() {
-    this.addRuleDocumentation(Detection.PatientGuardianResponsiblePartyIsMissing);
-    this.addImplementationMessage(Detection.PatientGuardianResponsiblePartyIsMissing, "Responsible party missing and/or responsible party relationship code missing.");
+    this.addRuleDetection(Detection.PatientGuardianResponsiblePartyIsMissing);
+    ImplementationDetail id =
+        this.addRuleDetection(Detection.PatientGuardianResponsiblePartyIsMissing);
+    id.setImplementationDescription(
+        "Responsible party missing and/or responsible party relationship code missing.");
+    id.setHowToFix("The guardian/parent is missing. Please review the patient guardian/parent and ensure that a name is "
+        + "entered or please ask your software vendor to ensure that the name of the guardian/parent responsible for the "
+        + "patient is sent properly in the message. ");
+    id.setWhyToFix("The name of the guardian/parent can be used for patient matching and as a contact for reminder/recall activities.  ");
   }
 
   @Override

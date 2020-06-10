@@ -3,6 +3,7 @@ package org.immregistries.mqe.validator.engine.rules.nextofkin;
 import java.util.ArrayList;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -16,13 +17,17 @@ public class NextOfKinNameIsNotSameAsPatient extends ValidationRule<MqeNextOfKin
   @Override
   protected final Class[] getDependencies() {
 
-    return new Class[] {PatientNameIsValid.class,
-        NextOfKinNameIsValid.class};
+    return new Class[] {PatientNameIsValid.class, NextOfKinNameIsValid.class};
   }
 
   public NextOfKinNameIsNotSameAsPatient() {
-    this.addRuleDocumentation(Detection.PatientGuardianNameIsSameAsUnderagePatient);
-    this.addImplementationMessage(Detection.PatientGuardianNameIsSameAsUnderagePatient, "Next of Kin is a patient guardian (caregiver, father, grandparent, mother, parent, or guardian) and has same last name, first name, middle name, and suffix as the patient.");
+    this.addRuleDetection(Detection.PatientGuardianNameIsSameAsUnderagePatient);
+    ImplementationDetail id =
+        this.addRuleDetection(Detection.PatientGuardianNameIsSameAsUnderagePatient);
+    id.setImplementationDescription(
+        "Next of Kin is a patient guardian (caregiver, father, grandparent, mother, parent, or guardian) and has same last name, first name, middle name, and suffix as the patient.");
+    id.setHowToFix("The next-of-kin name is the same as the underage patient. Please verify that the name being entered for the parent/guardian is correct. ");
+    id.setWhyToFix("The IIS uses the next-of-kin name for patient matching and reminder/recall activities. ");
   }
 
   @Override

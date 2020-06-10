@@ -3,9 +3,7 @@ package org.immregistries.mqe.validator.engine.common;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import org.immregistries.mqe.vxu.MqePhoneNumber;
-import org.junit.Before;
 import org.junit.Test;
 
 

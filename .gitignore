@@ -11,3 +11,5 @@
 src/test/java/META-INF/MANIFEST\.MF
 
 *.iml
+
+\.settings/org\.eclipse\.jdt\.apt\.core\.prefs

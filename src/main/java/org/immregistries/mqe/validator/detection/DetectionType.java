@@ -2,18 +2,19 @@ package org.immregistries.mqe.validator.detection;
 
 import org.immregistries.mqe.hl7util.ApplicationErrorCode;
 import org.immregistries.mqe.hl7util.builder.AckERRCode;
+import org.immregistries.mqe.util.validation.MqeDetectionType;
 
-public enum DetectionType {
-  EXCEPTION("exception"),
-  BEFORE_BIRTH("is before birth", "Date given is before patient birth date."),
-  DEPRECATED("is deprecated", "Deprecated code value."),
-  IGNORED("is ignored", "Ignored code value."),
-  IN_FUTURE("is in future", "Date given is in the future."),
-  INCOMPLETE("is incomplete", "Incomplete code value."),
-  INVALID("is invalid", "Invalid code value."),
-  MISSING("is missing", "No value given for field."), 
-  REPEATED("is repeated"),
-  UNRECOGNIZED("is unrecognized", "Field value didn't match any values in the code set."),
+public enum DetectionType implements MqeDetectionType {
+  EXCEPTION("exception", "Unexpected application error occured. "),
+  BEFORE_BIRTH("is before birth", "Date given is before patient birth date. "),
+  DEPRECATED("is deprecated", "Deprecated code value. "),
+  IGNORED("is ignored", "Ignored code value. "),
+  IN_FUTURE("is in future", "Date given is in the future. "),
+  INCOMPLETE("is incomplete", "Incomplete code value. "),
+  INVALID("is invalid", "Coded value is recognized and is considered to be an invalid code, which means that there are no valid uses for this coded value. "),
+  MISSING("is missing", "No value found, no data sent, nothing to analyze. "), 
+  REPEATED("is repeated", "Sent more than once. "),
+  UNRECOGNIZED("is unrecognized", "Coded value is not recognized as either valid or invalid because it is unknown to this system. "),
   UNEXPECTED("is unexpected"),
 
   //Valued As types:
@@ -35,7 +36,6 @@ public enum DetectionType {
   VALUED_AS_PARTIALLY_ADMINISTERED("is valued as partially administered"),
   VALUED_AS_HISTORICAL("is valued as historical"),
 
-
   // These are the issue types that are not widely used...
 
   OUT_OF_ORDER("out of order"),
@@ -43,20 +43,19 @@ public enum DetectionType {
   NOT_PRECISE("is not precise"),
   MISSING_TIMEZONE("is missing timezone", "Timezone was not included in the date field."),
   UNSUPPORTED("is unsupported"),
-  TOO_SHORT("is too short"),
-  TOO_LONG("is too long"),
-  UNEXPECTEDLY_SHORT("is unexpectedly short"),
-  UNEXPECETDLY_LONG("is unexpectedly long"),
-  INCORRECT("is incorrect"),
-  INCONSISTENT("is inconsistent"),
+  TOO_SHORT("is too short", "Length of the value is shorter than it should be. "),
+  TOO_LONG("is too long", "Length of the value is longer than it should be. "),
+  UNEXPECTEDLY_SHORT("is unexpectedly short", "Length of the value is shorter than expected. "),
+  UNEXPECETDLY_LONG("is unexpectedly long", "Length of the value is loger than expected."),
+  INCORRECT("is incorrect", "The value is incorrect. " ),
+  INCONSISTENT("is inconsistent", "Value is inconsistent with other values. "),
   OUT_OF_DATE("is out-of-date"),
-  VERY_LONG_AGO("is very long ago"),
-  AFTER_SUBMISSION("is after submission"),
-  UNEXPECTED_FORMAT("is an unexpected format"),
+  VERY_LONG_AGO("is very long ago", "Date is very long time in the past. "),
+  AFTER_SUBMISSION("is after submission", "Date is after submission. "),
+  UNEXPECTED_FORMAT("is an unexpected format", "Value format does not make sense. "),
   NOT_USABLE("is not usable")
 
   // These are the REALLY specific ones
-
   ,
   UNDERAGE("is underage"),
   DIFFERENT_FROM_PATIENT_ADDRESS("is different from patient address"),
@@ -91,7 +90,7 @@ public enum DetectionType {
   BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE("is before or after when expected for patient age"),
   BEFORE_OR_AFTER_LICENSED_DATE_RANGE("is before or after licensed vaccine range","Date is outside of licensed vaccine date range."),
   BEFORE_OR_AFTER_EXPECTED_DATE_RANGE("is before or after expected vaccine usage range", "Date is outside of expected vaccine date range."),
-  VALUED_BAD_ADDRESS("is valued bad address", "Value is 'BA'."),
+  VALUED_BAD_ADDRESS("is valued bad address", "Address Type indicates the address is a bad address. "),
   AFTER_SYSTEM_ENTRY_DATE("is after system entry date"),
   AFTER_PATIENT_DEATH_DATE("is after patient death date"),
   AFTER_MESSAGE_SUBMITTED("is after message submitted"),
@@ -106,19 +105,11 @@ public enum DetectionType {
   MISSING_AND_MULTIPLE_BIRTH_INDICATED("is missing and multiple birth indicated"),
   MUTLIPLES("has multiples"),
   
-//  VaccinationLotNumberHasInvalidCharacters(VACCINATION_LOT_NUMBER, INVALID, WARN, MQE0592),
-//  VaccinationLotNumberHasInvalidStartCharacters(VACCINATION_LOT_NUMBER, INVALID, WARN, MQE0593),
-//  VaccinationLotNumberHasInvalidMiddleCharacters(VACCINATION_LOT_NUMBER, INVALID, WARN, MQE0594),
-//  VaccinationLotNumberHasInvalidEndCharacters(VACCINATION_LOT_NUMBER, INVALID, WARN, MQE0595),
-  
   IS_ON_TIME("is on time"),
   IS_LATE("is late"),
   IS_VERY_LATE("is very late"),
   IS_TOO_LATE("is too late");
 	
-
-
-
   public final String wording;
   public final String description;
 
@@ -130,6 +121,14 @@ public enum DetectionType {
   DetectionType(String wording, String description) {
     this.wording = wording;
     this.description = description;
+  }
+
+  public String getWording() {
+    return wording;
+  }
+
+  public String getDescription() {
+    return description;
   }
 
   public AckERRCode getAckErrCode() {

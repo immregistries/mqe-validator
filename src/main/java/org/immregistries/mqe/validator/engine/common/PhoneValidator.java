@@ -1,7 +1,5 @@
 package org.immregistries.mqe.validator.engine.common;
 
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -9,9 +7,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.DetectionType;
 import org.immregistries.mqe.validator.detection.ValidationReport;
-import org.immregistries.mqe.vxu.MqePhoneNumber;
 import org.immregistries.mqe.vxu.MetaFieldInfoData;
+import org.immregistries.mqe.vxu.MqePhoneNumber;
 import org.immregistries.mqe.vxu.VxuField;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 /**
  * This is to evaluate the basic expectations for an address in the system this does not guarantee

@@ -1,9 +1,9 @@
 package org.immregistries.mqe.validator.engine;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.immregistries.mqe.validator.engine.ValidationRulePair;
-import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import java.util.*;
+
+import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntityLists;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 
 public enum MessageValidator {
@@ -58,7 +58,7 @@ public enum MessageValidator {
       List<Class> mainPassed) {
     List<List<ValidationRulePair>> listEntityRuleLists = builder.buildListItemRuleLists(m);
 
-    List<ValidationRuleResult> listRuleResults = new ArrayList<ValidationRuleResult>();
+    List<ValidationRuleResult> listRuleResults = new ArrayList<>();
 
     for (List<ValidationRulePair> rules : listEntityRuleLists) {
       List<ValidationRuleResult> results = runner.processValidationRules(rules, mainPassed);
@@ -70,9 +70,7 @@ public enum MessageValidator {
   
 	protected List<ValidationRuleResult> validatePatient(MqeMessageReceived m) {
 		List<ValidationRulePair> patientRules = builder.buildPatientRulePairs(m.getPatient(), m);
-		List<ValidationRuleResult> headerAndPatientResults = runner.processValidationRules(patientRules, new ArrayList<Class>());
-	
-		return headerAndPatientResults;
+    return runner.processValidationRules(patientRules, new ArrayList<>());
 	}
   
 	public List<ValidationRuleResult> validateMessageNIST(MqeMessageReceived m) {
@@ -91,5 +89,32 @@ public enum MessageValidator {
 		
 		return validationResults;
 	}
+
+    public static Set<Detection> activeDetections() {
+        Set<Detection> active = new HashSet();
+        Iterator var1 = ValidationRuleEntityLists.PATIENT_RULES.getRules().iterator();
+
+        ValidationRule r;
+        while(var1.hasNext()) {
+            r = (ValidationRule)var1.next();
+            active.addAll(r.getRuleDetections());
+        }
+
+        var1 = ValidationRuleEntityLists.NEXT_OF_KIN_RULES.getRules().iterator();
+
+        while(var1.hasNext()) {
+            r = (ValidationRule)var1.next();
+            active.addAll(r.getRuleDetections());
+        }
+
+        var1 = ValidationRuleEntityLists.VACCINATION_RULES.getRules().iterator();
+
+        while(var1.hasNext()) {
+            r = (ValidationRule)var1.next();
+            active.addAll(r.getRuleDetections());
+        }
+
+        return active;
+    }
 
 }

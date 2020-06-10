@@ -3,6 +3,7 @@ package org.immregistries.mqe.validator.engine.rules.vaccination;
 import java.util.ArrayList;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -18,9 +19,21 @@ public class VaccinationRefusalReasonIsValid extends ValidationRule<MqeVaccinati
   }
 
   public VaccinationRefusalReasonIsValid() {
-    this.addRuleDocumentation(codr.getDetectionsForField(VxuField.VACCINATION_REFUSAL_REASON));
-    this.addImplementationMessage(Detection.VaccinationRefusalReasonConflictsCompletionStatus, "Vaccination is marked as completed but refusal code was given.");
-    this.addImplementationMessage(Detection.VaccinationRefusalReasonIsMissing, "Vaccination completion was refused but refusal code is missing. ");
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationRefusalReasonConflictsCompletionStatus);
+      id.setImplementationDescription(
+          "Vaccination is marked as completed but refusal code was given.");
+      id.setHowToFix("The reported vaccination is conflicted, reporting both as completed but with a reason for a refusal. Please ask your software vendor to never report a record as completed if it has been refused. ");
+      id.setWhyToFix("Sending conflicting information can be confusing to receiving systems and result in bad information being added to the immunization history. ");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationRefusalReasonIsMissing);
+      id.setImplementationDescription(
+          "Vaccination completion was refused but refusal code is missing. ");
+      id.setHowToFix("The vaccination was refused, but the reason for the refusal was not given. Please indicate the refusal reason when submitting a refusal. ");
+      id.setWhyToFix("The refusal reason can give better insight to the reason for refusals. ");
+    }
   }
 
   @Override
@@ -35,8 +48,8 @@ public class VaccinationRefusalReasonIsValid extends ValidationRule<MqeVaccinati
     }
 
     if (target.isCompletionRefused()) {
-    	issues.addAll(codr.handleCodeOrMissing(target.getRefusal(), VxuField.VACCINATION_REFUSAL_REASON,
-                target));
+      issues.addAll(codr.handleCodeOrMissing(target.getRefusal(),
+          VxuField.VACCINATION_REFUSAL_REASON, target));
     }
 
     passed = (issues.size() == 0);

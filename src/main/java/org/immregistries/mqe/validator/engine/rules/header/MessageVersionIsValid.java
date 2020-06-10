@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -19,14 +20,23 @@ public class MessageVersionIsValid extends ValidationRule<MqeMessageHeader> {
   @Override
   protected final Class[] getDependencies() {
     return new Class[] {
-    // PatientExists.class,
+        // PatientExists.class,
     };
   }
 
   public MessageVersionIsValid() {
-    this.addRuleDocumentation(Arrays.asList(Detection.MessageVersionIsMissing,
-        Detection.MessageVersionIsUnrecognized));
-    this.addImplementationMessage(Detection.MessageVersionIsUnrecognized, "Message version is not a version of 2.3, 2.4, or 2.5 ");
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.MessageVersionIsMissing);
+      id.setImplementationDescription("Message Version is not indicated");
+      id.setHowToFix("The problem is in the format of the HL7 message being sent. Please contact your software vendor to fix this issue.");
+      id.setWhyToFix("The HL7 Standard requires that senders indicate which version of the HL7 guide the message is built to. Not indicating the version means that the receiver may mis-interpret the content of the message. ");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.MessageVersionIsUnrecognized);
+      id.setImplementationDescription("Message version is not a version of 2.3, 2.4, or 2.5 ");
+      id.setHowToFix("The problem is in the format of the HL7 message being sent. Please contact your software vendor to fix this issue.");
+      id.setWhyToFix("Processing data from other versions of HL7 may cause important data to be missed or not processed properly. ");
+    }
   }
 
   @Override

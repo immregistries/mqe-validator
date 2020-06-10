@@ -1,8 +1,7 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import static org.junit.Assert.assertEquals;
-
-import java.util.prefs.Preferences;
+import static org.junit.Assert.assertTrue;
 import org.immregistries.mqe.validator.MqeMessageService;
 import org.immregistries.mqe.validator.MqeMessageServiceResponse;
 import org.immregistries.mqe.validator.detection.Detection;
@@ -40,12 +39,11 @@ public class PatientPhoneIsValidTester {
       MqeMessageServiceResponse msr = service.processMessage(examplePhoneMessage);
       MqePatient p = msr.getMessageObjects().getPatient();
       ValidationRuleResult r = rule.executeRule(p, msr.getMessageObjects());
-//      System.out.println("PHONE NUMBER: " + p);
       for (ValidationReport vr : r.getValidationDetections()) {
         System.out.println(vr);
       }
-      assertEquals("should not be a fail", 0, r.getValidationDetections().size());
-      assertEquals(true, r.isRulePassed());
+      assertEquals("should not find issues", 0, r.getValidationDetections().size());
+      assertTrue("Should be passed", r.isRulePassed());
 		}
 	  /**
 	   * Test the basic rule with a valid phone number.

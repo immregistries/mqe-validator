@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.immregistries</groupId>
   <artifactId>mqe-validator</artifactId>
-  <version>2018.12-BETA</version>
+  <version>2020.02-BETA</version>
   <packaging>jar</packaging>
 
   <name>mqe-validator</name>
@@ -14,9 +14,9 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
-    <mqe.version>2018.12-BETA</mqe.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <mqe.version>2020.02-BETA</mqe.version>
     <codebase.version>2.3</codebase.version>
   </properties>
 

@@ -3,6 +3,7 @@ package org.immregistries.mqe.validator.engine.rules.patient;
 import java.util.ArrayList;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -22,8 +23,12 @@ public class PatientIsUnderage extends ValidationRule<MqePatient> {
   }
 
   public PatientIsUnderage() {
-    this.addRuleDocumentation(Detection.PatientBirthDateIsUnderage);
-    this.addImplementationMessage(Detection.PatientBirthDateIsUnderage, "Patient is under 18 years old.");
+    this.addRuleDetection(Detection.PatientBirthDateIsUnderage);
+    ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsUnderage);
+    id.setImplementationDescription("Patient is under 18 years old.");
+    id.setHowToFix("The patient birth date is underage. Please contact your software vendor and request that patient birth dates be encoded properly. ");
+    id.setWhyToFix("The IIS matches patients by birth date and uses it to calculate when vaccinations are due. "
+        + "It is critical that the correct birth date is always submitted with patient records. ");
   }
 
   @Override

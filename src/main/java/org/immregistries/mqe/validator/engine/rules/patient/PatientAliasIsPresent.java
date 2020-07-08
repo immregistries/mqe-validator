@@ -22,8 +22,6 @@ public class PatientAliasIsPresent extends ValidationRule<MqePatient> {
     ImplementationDetail id = this.addRuleDetection(Detection.PatientAliasIsMissing);
     id.setImplementationDescription(
         "Patient is missing values for both first and last alias names.");
-    id.setHowToFix("There is nothing to fix if the patient does not have any known aliases. ");
-    id.setWhyToFix("Adding a known patient alias can assist in patient matching and merging into the official vaccination record. ");
   }
 
   @Override

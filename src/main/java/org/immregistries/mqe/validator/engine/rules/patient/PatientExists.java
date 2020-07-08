@@ -17,8 +17,6 @@ public class PatientExists extends ValidationRule<MqePatient> {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientObjectIsMissing);
       id.setImplementationDescription("Verifies that the patient object was created and patient detections can be executed");
-      id.setHowToFix("Ensure that the PID segment was submitted. ");
-      id.setWhyToFix("The patient information must be included with every submission in order to know which patient this vaccination is associated with. ");
     }
   }
 

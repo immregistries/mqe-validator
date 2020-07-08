@@ -21,15 +21,11 @@ public class NextOfKinPhoneIsValid extends ValidationRule<MqeNextOfKin> {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinPhoneNumberIsIncomplete);
       id.setImplementationDescription(
           "Next of kin phone number is missing area code or local number.");
-      id.setHowToFix("The next-of-kin phone number is not a complete or usable phone number. Correct the next-of-kin phone number by either removing bad data or completing the phone number (with area code). You may also contact your software vendor and request that phone number only be sent to the IIS if it is complete and valid. ");
-      id.setWhyToFix("Phone number may be used for patient matching or reminder/recall functions. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinPhoneNumberIsInvalid);
       id.setImplementationDescription(
           "Phone number is invalid according to the North American Numbering Plan (NANP).");
-      id.setHowToFix("The next-of-kin phone number is not a complete or usable US phone number. Correct the next-of-kin phone number by either removing bad data or completing the phone number (with area code). You may also contact your software vendor and request that phone number only be sent to the IIS if it is complete and valid. ");
-      id.setWhyToFix("Phone number may be used for patient matching or reminder/recall functions. ");
     }
   }
 

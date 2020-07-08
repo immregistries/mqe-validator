@@ -29,24 +29,18 @@ public class VaccinationProductIsValid extends ValidationRule<MqeVaccination> {
           this.addRuleDetection(Detection.VaccinationProductIsInvalidForDateAdministered);
       id.setImplementationDescription(
           "Vaccination product was used outside of the valid date range defined for this product. ");
-      id.setHowToFix("The vaccination product from this manufacturer was not generally available at this time to be administered. Please review how vaccines are coded in your system and select a CVX or NDC code that better represents the vaccination given.");
-      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support Systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationProductIsUnexpectedForDateAdministered);
       id.setImplementationDescription(
           "Vaccination product was used outside of the expected date range defined for this product. ");
-      id.setHowToFix("The vaccination product from this manufacturer was not available at this time to be administered. Please review how vaccines are coded in your system and select a CVX or NDC code that better represents the vaccination given.");
-      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support Systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
     }
     {
       ImplementationDetail id =
               this.addRuleDetection(Detection.VaccinationProductIsMissing);
       id.setImplementationDescription(
               "Vaccination product is missing. ");
-      id.setHowToFix("The combination of the vaccination and the manufacturer is not recognized. Please review the vaccine and manufacturer and ensure that these are selected properly.");
-      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support Systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. It appears that either the vaccination or the manufacturer are not correctly reported. ");
     }
     
   }

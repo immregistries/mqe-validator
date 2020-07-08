@@ -26,9 +26,6 @@ public class PatientIsUnderage extends ValidationRule<MqePatient> {
     this.addRuleDetection(Detection.PatientBirthDateIsUnderage);
     ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsUnderage);
     id.setImplementationDescription("Patient is under 18 years old.");
-    id.setHowToFix("The patient birth date is underage. Please contact your software vendor and request that patient birth dates be encoded properly. ");
-    id.setWhyToFix("The IIS matches patients by birth date and uses it to calculate when vaccinations are due. "
-        + "It is critical that the correct birth date is always submitted with patient records. ");
   }
 
   @Override

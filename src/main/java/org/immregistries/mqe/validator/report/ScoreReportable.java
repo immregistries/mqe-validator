@@ -30,10 +30,12 @@ public class ScoreReportable implements Reportable {
   private String howToFix;
   private String whyToFix;
 
-  public ScoreReportable(String severity, String mqeCode, String exampleMessage, int count) {
+  public ScoreReportable(String severity, String mqeCode, String exampleMessage, String howToFix, String whyToFix, int count) {
     this(Detection.getByMqeErrorCodeString(mqeCode), count);
     this.severity = SeverityLevel.valueOf(severity);
     this.exampleMessage = exampleMessage;
+    this.howToFix = howToFix;
+    this.whyToFix = whyToFix;
   }
 
   public ScoreReportable(MqeDetection d, int count) {

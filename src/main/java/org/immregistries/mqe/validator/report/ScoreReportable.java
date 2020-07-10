@@ -7,6 +7,7 @@ import org.immregistries.mqe.hl7util.SeverityLevel;
 import org.immregistries.mqe.hl7util.model.CodedWithExceptions;
 import org.immregistries.mqe.hl7util.model.Hl7Location;
 import org.immregistries.mqe.util.validation.MqeDetection;
+import org.immregistries.mqe.validator.detection.Detection;
 
 /**
  * The intention is to generalize the interface for the various types of things we report.
@@ -28,6 +29,12 @@ public class ScoreReportable implements Reportable {
 
   private String howToFix;
   private String whyToFix;
+
+  public ScoreReportable(String severity, String mqeCode, String exampleMessage, int count) {
+    this(Detection.getByMqeErrorCodeString(mqeCode), count);
+    this.severity = SeverityLevel.valueOf(severity);
+    this.exampleMessage = exampleMessage;
+  }
 
   public ScoreReportable(MqeDetection d, int count) {
     this.count = count;

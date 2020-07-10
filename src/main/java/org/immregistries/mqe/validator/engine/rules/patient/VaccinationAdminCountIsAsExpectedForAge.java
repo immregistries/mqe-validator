@@ -21,14 +21,11 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
 
   public VaccinationAdminCountIsAsExpectedForAge() {
     super();
-    this.addRuleDetection(Detection.AdministeredVaccinationsCountIsLargerThanExpected);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.AdministeredVaccinationsCountIsLargerThanExpected);
       id.setImplementationDescription(
           "Expecting less than 20 vaccinations given before 6 months of age. Expecting less than 30 vaccinations given before 2 years of age.");
-      id.setHowToFix("Review the patient record to ensure duplicate vaccines have not been recorded.");
-      id.setWhyToFix("Accurate patient data helps keep patients vaccinated on time, avoiding under- and over-immunization. ");
     }
   }
 

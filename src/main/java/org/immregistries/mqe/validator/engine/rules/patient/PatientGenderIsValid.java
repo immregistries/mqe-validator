@@ -19,47 +19,26 @@ public class PatientGenderIsValid extends ValidationRule<MqePatient> {
   }
 
   public PatientGenderIsValid() {
-      {
-        ImplementationDetail id =
-            this.addRuleDetection(Detection.PatientGenderIsDeprecated);
-        id.setHowToFix("The patient sex is set with an older code that should no longer be used. "
-            + "Please contact your software vendor and request that correct sex codes be used. ");
-        id.setWhyToFix("Patient sex may be used for patient matching purposes or to ensure the correct vaccination is recommended. ");
-      }
-      {
-        ImplementationDetail id =
-            this.addRuleDetection(Detection.PatientGenderIsInvalid);
-        id.setHowToFix("The patient sex is set with an invalid code that should no longer be used. "
-            + "Please contact your software vendor and request that correct sex codes be used. ");
-        id.setWhyToFix("Patient sex may be used for patient matching purposes or to ensure the correct vaccination is recommended. ");
-      }
-      {
-        ImplementationDetail id =
-            this.addRuleDetection(Detection.PatientGenderIsMissing);
-        id.setHowToFix("The patient sex is not coded. "
-            + "Please verify that this information is recorded in the medical record. ");
-        id.setWhyToFix("Patient sex may be used for patient matching purposes or to ensure the correct vaccination is recommended. ");
-      }
-      {
-        ImplementationDetail id =
-            this.addRuleDetection(Detection.PatientGenderIsUnrecognized);
-        id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-        id.setHowToFix("The patient sex is set with a code that is not understood. "
-            + "Please contact your software vendor and request that correct sex codes be used. ");
-        id.setWhyToFix("Patient sex may be used for patient matching purposes or to ensure the correct vaccination is recommended. ");
-      }
+    this.addRuleDetection(Detection.PatientGenderIsDeprecated);
+    this.addRuleDetection(Detection.PatientGenderIsInvalid);
+    this.addRuleDetection(Detection.PatientGenderIsMissing);
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientGenderIsUnrecognized);
+      id.setImplementationDescription(
+          "Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
+    }
   }
 
   @Override
   protected ValidationRuleResult executeRule(MqePatient target, MqeMessageReceived m) {
 
-	    List<ValidationReport> issues = new ArrayList<ValidationReport>();
-	    boolean passed = true;
-	    String patientGenderString = target.getSex();
-	    
-    	issues.addAll(codr.handleCodeOrMissing(patientGenderString, VxuField.PATIENT_GENDER, target));
-    	passed = issues.isEmpty();
-	    
-	    return buildResults(issues, passed);
+    List<ValidationReport> issues = new ArrayList<ValidationReport>();
+    boolean passed = true;
+    String patientGenderString = target.getSex();
+
+    issues.addAll(codr.handleCodeOrMissing(patientGenderString, VxuField.PATIENT_GENDER, target));
+    passed = issues.isEmpty();
+
+    return buildResults(issues, passed);
   }
 }

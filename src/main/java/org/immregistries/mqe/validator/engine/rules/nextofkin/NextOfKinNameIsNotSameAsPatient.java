@@ -26,8 +26,6 @@ public class NextOfKinNameIsNotSameAsPatient extends ValidationRule<MqeNextOfKin
         this.addRuleDetection(Detection.PatientGuardianNameIsSameAsUnderagePatient);
     id.setImplementationDescription(
         "Next of Kin is a patient guardian (caregiver, father, grandparent, mother, parent, or guardian) and has same last name, first name, middle name, and suffix as the patient.");
-    id.setHowToFix("The next-of-kin name is the same as the underage patient. Please verify that the name being entered for the parent/guardian is correct. ");
-    id.setWhyToFix("The IIS uses the next-of-kin name for patient matching and reminder/recall activities. ");
   }
 
   @Override

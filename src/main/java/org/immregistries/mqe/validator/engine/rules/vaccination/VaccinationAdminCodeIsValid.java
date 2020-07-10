@@ -27,38 +27,28 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotSpecific);
       id.setImplementationDescription(
           "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has an unspecified value type.");
-      id.setHowToFix("Please update the vaccination recorded as administered with a vaccination that is specific to what was given. If a specific one is selected, then verify the CVX code that is being reported to ensure it is the correct match for what is in the recorded vaccination history. ");
-      id.setWhyToFix("Non-specific vaccination codes are reserved for reporting historical vaccines where information about which specific vaccination was given may not be available. It is better to record something of the vaccination history rather than have that information missing. But these non-specific codes should not be used in reporting administered vaccines where the reporter should know and thus be able to record the specific vaccine given. Without this specific vaccine information, the patient record will be incomplete, lot decrementing may not work properly, and recommendations may not take into account vaccine specific recommendations. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsNotVaccine);
       id.setImplementationDescription(
           "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a non-vaccine value type.");
-      id.setHowToFix("Please ask your system or vendor to not submit events that are not vaccines. ");
-      id.setWhyToFix("The current list of CVX codes contains concepts that, strictly speaking, are not vaccines. Some of these are accepted by immunization systems while others may not be. Some immunization systems may even be barred from receiving such information. Care should be taken to only submit this type of information to systems that are prepared and willing to recieve it. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminCodeIsUnrecognized);
       id.setImplementationDescription(
           "Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-      id.setHowToFix("The submitted code could not be recognized as a usable code. Please review how vaccines are coded in your system and select a CVX or NDC code that better represents the vaccination given.");
-      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support Systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdminCodeIsValuedAsNotAdministered);
       id.setImplementationDescription(
           "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a value of 998.");
-      id.setHowToFix("Please contact your vendor and request that they do not send an administered vaccination that indicates that no vaccine was administered. ");
-      id.setWhyToFix("There is a CVX code value that indicates that a vaccine was not administered. While this code exists it should not be sent in messages to indicate a vaccination was given as this would cause confusion to the receiving system. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdminCodeIsValuedAsUnknown);
       id.setImplementationDescription(
           "Vaccination Administered Code (CVX derived from given NDC, CVX, CPT. Derivation stops on first success.) has a value of 999.");
-      id.setHowToFix("Please contact your vendor and request that they do not send an administered vaccination without knowing what type of vaccination was administered. ");
-      id.setWhyToFix("The type of vaccination administered must be indicated to record a vaccination. The sender should not report that an unknown vaccination was given. This cannot be added to an official vaccination history. ");
     }
   }
 

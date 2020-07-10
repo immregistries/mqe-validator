@@ -19,37 +19,19 @@ public class VaccinationConfidentialityCodeIsValid extends ValidationRule<MqeVac
   }
 
   public VaccinationConfidentialityCodeIsValid() {
-    {
-      ImplementationDetail id =
-          this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsDeprecated);
-      id.setHowToFix("The confidentiality code for this vaccination is being reported with an old concept code. Please contact your vendor and request that they use the correct concept code. ");
-      id.setWhyToFix("The confidentiality code may be used to protect this specific vaccination from being shared in specific situations. Please contact the receiving system to understand in which ways confidentiality for vaccinations is supported. ");
-    }
-    {
-      ImplementationDetail id =
-          this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsInvalid);
-      id.setHowToFix("The confidentiality code for this vaccination is being reported with an old concept code. Please contact your vendor and request that they use the correct concept code. ");
-      id.setWhyToFix("The confidentiality code may be used to protect this specific vaccination from being shared in specific situations. Please contact the receiving system to understand in which ways confidentiality for vaccinations is supported. ");
-    }
-    {
-      ImplementationDetail id =
-          this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsMissing);
-      id.setHowToFix("The confidentiality for this vaccination is not indicated. If you have indicated the confidentiality for this vaccination then please contact your vendor to request that they report the confidentiality code with this vaccination. ");
-      id.setWhyToFix("The confidentiality code may be used to protect this specific vaccination from being shared in specific situations. Please contact the receiving system to understand in which ways confidentiality for vaccinations is supported. ");
-    }
+    this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsDeprecated);
+    this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsInvalid);
+    this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsMissing);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsUnrecognized);
-      id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
-      id.setHowToFix("The confidentiality code for this vaccination is being reported with an unrecognized concept code. Please contact your vendor and request that they use the correct concept code. ");
-      id.setWhyToFix("The confidentiality code may be used to protect this specific vaccination from being shared in specific situations. Please contact the receiving system to understand in which ways confidentiality for vaccinations is supported. ");
+      id.setImplementationDescription(
+          "Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
     }
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsValuedAsRestricted);
       id.setImplementationDescription("Vaccination Confidentiality Code has value of 'R' or 'V'.");
-      id.setHowToFix("The confidentiality for this vaccination is indicated as restricted. If the confidentiality for this vaccination is not restricted please contact your vendor to ensure that confidentiality is being reported properly. ");
-      id.setWhyToFix("The confidentiality code may be used to protect this specific vaccination from being shared in specific situations. Please contact the receiving system to understand in which ways confidentiality for vaccinations is supported. ");
     }
   }
 

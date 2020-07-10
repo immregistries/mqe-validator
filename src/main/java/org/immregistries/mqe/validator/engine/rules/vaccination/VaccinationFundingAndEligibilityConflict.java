@@ -23,15 +23,11 @@ public class VaccinationFundingAndEligibilityConflict extends ValidationRule<Mqe
   }
 
   public VaccinationFundingAndEligibilityConflict() {
-    this.addRuleDetection(
-        Detection.VaccinationFundingSourceCodeIsUnexpectedForFinancialEligibility);
     {
       ImplementationDetail id = this.addRuleDetection(
           Detection.VaccinationFundingSourceCodeIsUnexpectedForFinancialEligibility);
       id.setImplementationDescription(
           "The financial funding source given is unexpected for the financial eligibility given.");
-      id.setHowToFix("The funding source does not match with the funding eligibility for this patient and this vaccination. Please review the funding source and eligibility and ensure that they are correctly indicated. ");
-      id.setWhyToFix("The use of publicly supplied vaccinations must be accounted for. Reporting this information can provide the information needed to comply with program requirements and ensure continued access to publicly funded vaccines. It can also be used to help resolve issues when public or private vaccines are borrowed to meet immediate needs. ");
     }
   }
 

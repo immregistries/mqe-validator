@@ -24,8 +24,6 @@ public class NextOfKinAddressIsSameAsPatientAddress extends ValidationRule<MqeNe
         this.addRuleDetection(Detection.NextOfKinAddressIsDifferentFromPatientAddress);
     id.setImplementationDescription(
         "The City/State/Street/Street2 are different between Next Of Kin address and Patient address.");
-    id.setHowToFix("This is not considered incorrect, the next-of-kin is likely to have the same address as the patient, so no fix is needed. ");
-    id.setWhyToFix("This is not considered incorrect, the next-of-kin is likely to have the same address as the patient, so no fix is needed. ");
   }
 
 

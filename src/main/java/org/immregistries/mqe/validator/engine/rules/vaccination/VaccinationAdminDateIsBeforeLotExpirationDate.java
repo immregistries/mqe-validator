@@ -19,13 +19,10 @@ public class VaccinationAdminDateIsBeforeLotExpirationDate extends ValidationRul
   }
 
   public VaccinationAdminDateIsBeforeLotExpirationDate() {
-    this.addRuleDetection(Detection.VaccinationAdminDateIsAfterLotExpirationDate);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdminDateIsAfterLotExpirationDate);
       id.setImplementationDescription("Vaccine administered date is after Lot expiration date. ");
-      id.setHowToFix("Review the vaccination administration date and or lot expiration date to ensure the information is correct. If the patient was given expired vaccine, the dose should be repeated.  ");
-      id.setWhyToFix("The administration date is used both to identify a unique vaccination event and to establish the event in the correct place on the vaccination history. The primary function of an immunization history is to provide specific information about when vaccinations were given so that clinical decisions can be made as to what vaccinations are due next and if the patient is properly protected from disease. ");
     }
   }
 

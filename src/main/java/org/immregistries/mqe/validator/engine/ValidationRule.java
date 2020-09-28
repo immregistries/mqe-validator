@@ -13,7 +13,6 @@ import org.immregistries.mqe.validator.engine.codes.CodeRepository;
 import org.immregistries.mqe.validator.engine.common.CodeHandler;
 import org.immregistries.mqe.validator.engine.common.CommonRules;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
-import org.immregistries.mqe.vxu.VxuField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

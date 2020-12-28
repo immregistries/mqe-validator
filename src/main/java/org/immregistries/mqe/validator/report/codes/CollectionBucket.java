@@ -1,6 +1,8 @@
 package org.immregistries.mqe.validator.report.codes;
 
 import java.util.Objects;
+
+import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.mqe.vxu.VxuField;
 
 public class CollectionBucket {
@@ -70,6 +72,18 @@ public class CollectionBucket {
     this.attribute = attribute;
     this.value = value;
     this.count = count;
+  }
+
+  public CollectionBucket(String type, String attribute, String value, int count, String status, String exampleMessage) {
+    this(type, attribute, value, count);
+    this.exampleMessage = exampleMessage;
+    this.status = status;
+    VxuField field = VxuField.getByName(type);
+    CodesetType t = field.getCodesetType();
+    if (t != null) {
+      this.setSource(field.getHl7Locator());
+      this.setTypeName(t.getDescription());
+    }
   }
 
   @Override

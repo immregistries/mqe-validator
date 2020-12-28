@@ -3,7 +3,6 @@ package org.immregistries.mqe.validator.engine.rules.vaccination;
 import java.util.ArrayList;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
-import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -18,11 +17,7 @@ public class VaccinationAdministeredLotNumberIsPresent extends ValidationRule<Mq
   }
 
   public VaccinationAdministeredLotNumberIsPresent() {
-    {
-      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationLotNumberIsMissing);
-      id.setHowToFix("The vaccination lot number was not indicated for an administered vaccination. If the vaccination was administered then the person giving the vaccination should know the lot number of the vaccine administered. This should be entered as part of the complete record. Please verify that the lot number is being entered. If the lot number is not available because this was administered at a different location or by a different organization then this vaccination should be recorded as a historical dose. ");
-      id.setWhyToFix("The Lot Number is used for several critical IIS functions including: Vaccine lot inventory decrementing, vaccination matching, and vaccination product recall. Reporting the vaccine lot number helps to create a complete and accurate vaccination history. If at all possible, please report the lot number. ");
-    }
+    this.addRuleDetection(Detection.VaccinationLotNumberIsMissing);
   }
 
   @Override

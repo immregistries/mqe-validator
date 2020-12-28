@@ -15,14 +15,11 @@ import org.immregistries.mqe.vxu.MqeVaccination;
 public class VaccinationCodeGroupsMatch extends ValidationRule<MqeVaccination> {
 
   public VaccinationCodeGroupsMatch() {
-    this.addRuleDetection(Detection.VaccinationCvxCodeAndCptCodeAreInconsistent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationCvxCodeAndCptCodeAreInconsistent);
       id.setImplementationDescription(
           "The Vaccination CPT code given is expecting a different vaccine group than the vaccine group from the CVX given.");
-      id.setHowToFix("The vaccination CVX code and CPT code are inconsistent, which indicates two different vaccines or two different products were recorded. Please review which vaccine was administered, update the incorrect code, and resubmit. ");
-      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support Systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
     }
   }
 

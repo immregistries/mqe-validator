@@ -3,10 +3,12 @@ package org.immregistries.mqe.validator.report.codes;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
+import org.immregistries.codebase.client.generated.Code;
 import org.immregistries.codebase.client.reference.CodesetType;
 import org.immregistries.mqe.core.util.DateUtility;
 import org.immregistries.mqe.hl7util.model.Hl7Location;
 import org.immregistries.mqe.hl7util.model.MetaFieldInfo;
+import org.immregistries.mqe.validator.engine.codes.CodeRepository;
 import org.immregistries.mqe.vxu.MqeMessageHeader;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeNextOfKin;
@@ -122,7 +124,7 @@ public class CodeCollection {
       // find the admin type.
       String adminType = "Historical";
 
-      if (v.isAdministered()) {
+      if (v.isAdministered() || "00".equals(v.getInformationSource())) {
         adminType = "Administered";
         // for (String group : v.getVaccineGroupsDerived()) {
         // addCounts(CodesetType.VACCINE_GROUP, adminAgeString, group,
@@ -139,20 +141,21 @@ public class CodeCollection {
       }
 
 //      addCounts(CodesetType.VACCINATION_ACTION_CODE, adminType, v.getActionCode(), bucketList);
-      addCounts(VxuField.VACCINATION_ACTION_CODE, loc, v.getActionCode(), bucketList);
+      addCounts(VxuField.VACCINATION_ACTION_CODE, adminType, v.getActionCode(), bucketList);
+//      addCounts(VxuField.VACCINATION_CVX_CODE, v.getInformationSource(), v.getAdminCvxCode(), bucketList);
+      addCounts(VxuField.VACCINATION_CVX_CODE, adminType, v.getAdminCvxCode(), bucketList);
 
-      addCounts(VxuField.VACCINATION_CVX_CODE, v.getInformationSource(), v.getAdminCvxCode(), bucketList);
       addCounts(VxuField.VACCINATION_ADMINISTERED_UNIT, adminType, v.getAmountUnit(), bucketList);
       addCounts(VxuField.VACCINATION_BODY_ROUTE, adminType, v.getBodyRouteCode(), bucketList);
       addCounts(VxuField.VACCINATION_BODY_SITE, adminType, v.getBodySiteCode(), bucketList);
       addCounts(VxuField.VACCINATION_COMPLETION_STATUS, adminType, v.getCompletionCode(), bucketList);
       addCounts(VxuField.VACCINATION_CONFIDENTIALITY_CODE, adminType, v.getConfidentialityCode(),
           bucketList);
-      addCounts(VxuField.VACCINATION_CVX_CODE, adminType, v.getAdminCvxCode(), bucketList);
+
       addCounts(VxuField.VACCINATION_CPT_CODE, adminType, v.getAdminCptCode(), bucketList);
       addCounts(VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE, adminType, v.getFinancialEligibilityCode(),
           bucketList);
-      addCounts(VxuField.VACCINATION_INFORMATION_SOURCE, "RXA-9", v.getInformationSource(),
+      addCounts(VxuField.VACCINATION_INFORMATION_SOURCE, adminType, v.getInformationSource(),
           bucketList);
       addCounts(VxuField.VACCINATION_MANUFACTURER_CODE, adminType, v.getManufacturerCode(),
           bucketList);
@@ -163,7 +166,7 @@ public class CodeCollection {
 
     addCounts(VxuField.MESSAGE_ACCEPT_ACK_TYPE, "", mqeMessageHeader.getAckTypeAcceptCode(),
         bucketList);
-    addCounts(VxuField.MESSAGE_ACCEPT_ACK_TYPE, "", mqeMessageHeader.getAckTypeApplicationCode(),
+    addCounts(VxuField.MESSAGE_APP_ACK_TYPE, "", mqeMessageHeader.getAckTypeApplicationCode(),
         bucketList);
 
     for (MqeNextOfKin k : kinList) {
@@ -204,11 +207,39 @@ public class CodeCollection {
     return bucketList;
   }
 
+  private final CodeRepository codeRepo = CodeRepository.INSTANCE;
+
+  CollectionBucket makeBucket(VxuField vf, String attribute, String value) {
+    CollectionBucket cb = new CollectionBucket(vf, attribute, value);
+    CodesetType t = vf.getCodesetType();
+    if (t == null) {
+      throw new RuntimeException(
+          "well...  this is embarrassing. there's a field with no type: " + vf);
+    }
+    Code codeMeta = codeRepo.getCodeFromValue(value, t);
+    cb.setSource(vf.getHl7Locator());
+    cb.setTypeName(t.getDescription());
+    if (codeMeta != null) {
+      if (codeMeta.getCodeStatus() != null && StringUtils.isNotBlank(codeMeta.getCodeStatus().getStatus())) {
+        String status = codeMeta.getCodeStatus().getStatus();
+        cb.setStatus(status);
+      } else {
+        cb.setStatus("Unrecognized");
+      }
+      String description = codeMeta.getLabel();
+      cb.setLabel(description);
+    } else {
+      cb.setStatus("Unrecognized");
+    }
+    return cb;
+  }
+
   void addCounts(VxuField vf, String attribute, String value, List<CollectionBucket> existing) {
     if (StringUtils.isBlank(value)) {
       return;// don't add anything to the count.
     }
-    CollectionBucket cbLookup = new CollectionBucket(vf, attribute, value);
+
+    CollectionBucket cbLookup = this.makeBucket(vf, attribute, value);
     int idx = existing.indexOf(cbLookup);
     if (idx > -1) {
       CollectionBucket cb = existing.get(idx);

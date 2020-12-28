@@ -30,16 +30,12 @@ public class VaccinationAdminDateIsValidForPatientAge extends ValidationRule<Mqe
           .addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterWhenExpectedForPatientAge);
       id.setImplementationDescription(
           "For this specific vaccine, it was not expected that this vaccination should be given at the age the patient was when this was administered. ");
-      id.setHowToFix("The vaccination was given to a patient who is older or younger than would normally be expected for this vaccination. Please examine the patient record and ensure that the right vaccination is recorded. ");
-      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support Systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
     }
     {
       ImplementationDetail id = this
           .addRuleDetection(Detection.VaccinationAdminDateIsBeforeOrAfterWhenValidForPatientAge);
       id.setImplementationDescription(
           "CodeBase specifies the valid age range for this vaccination.  We compare the patients age at administration to this age range.");
-      id.setHowToFix("The vaccination was given to a patient who is older or younger than expected for this vaccination. Please examine the patient record and ensure that the right vaccination is recorded. ");
-      id.setWhyToFix("Correctly understanding what type of vaccination was administered is critical for building a complete vaccination history. Clinical Decision Support Systems depend on having access to a complete and accurate vaccination history. Without this the recommendations for a patient will be incorrect. ");
     }
   }
 

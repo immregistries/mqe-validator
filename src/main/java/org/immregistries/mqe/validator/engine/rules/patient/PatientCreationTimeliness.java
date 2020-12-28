@@ -24,29 +24,21 @@ public class PatientCreationTimeliness extends ValidationRule<MqePatient> {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientCreationIsVeryLate);
       id.setImplementationDescription(
           "It is 45-60 days between the patient birth date and the system entry date.");
-      id.setHowToFix("The patient record was created much later than the birth date. Please improve the process for recording patient records. ");
-      id.setWhyToFix("The patient record should be created as soon as possible after birth. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientCreationIsTooLate);
       id.setImplementationDescription(
           "It is over 60 days between the patient birth date and the system entry date.");
-      id.setHowToFix("The patient record was created much later than the birth date. Please improve the process for recording patient records. ");
-      id.setWhyToFix("The patient record should be created as soon as possible after birth. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientCreationIsOnTime);
       id.setImplementationDescription(
           "It has been 30 days or less between the patient birth date and the system entry date.");
-      id.setHowToFix("The patient record was created on time. Nothing to fix. ");
-      id.setWhyToFix("Nothing to fix.");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientCreationIsLate);
       id.setImplementationDescription(
           "It is 30-45 days between the patient birth date and the system entry date.");
-      id.setHowToFix("The patient record was created much later than the birth date. Please improve the process for recording patient records. ");
-      id.setWhyToFix("The patient record should be created as soon as possible after birth. ");
     }
   }
 

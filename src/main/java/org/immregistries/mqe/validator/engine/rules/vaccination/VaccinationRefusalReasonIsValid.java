@@ -24,15 +24,11 @@ public class VaccinationRefusalReasonIsValid extends ValidationRule<MqeVaccinati
           this.addRuleDetection(Detection.VaccinationRefusalReasonConflictsCompletionStatus);
       id.setImplementationDescription(
           "Vaccination is marked as completed but refusal code was given.");
-      id.setHowToFix("The reported vaccination is conflicted, reporting both as completed but with a reason for a refusal. Please ask your software vendor to never report a record as completed if it has been refused. ");
-      id.setWhyToFix("Sending conflicting information can be confusing to receiving systems and result in bad information being added to the immunization history. ");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationRefusalReasonIsMissing);
       id.setImplementationDescription(
           "Vaccination completion was refused but refusal code is missing. ");
-      id.setHowToFix("The vaccination was refused, but the reason for the refusal was not given. Please indicate the refusal reason when submitting a refusal. ");
-      id.setWhyToFix("The refusal reason can give better insight to the reason for refusals. ");
     }
   }
 

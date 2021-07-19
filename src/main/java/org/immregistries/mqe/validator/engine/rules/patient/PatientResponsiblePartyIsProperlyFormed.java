@@ -118,7 +118,7 @@ public class PatientResponsiblePartyIsProperlyFormed extends ValidationRule<MqeP
         issues.add(Detection.PatientGuardianPhoneIsPresent.build(target)); 
       }
 
-      passed = verifyPassed(issues);
+      passed = verifyNoIssuesExceptPresent(issues);
 
     }
 

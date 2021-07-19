@@ -54,7 +54,7 @@ public class VaccinationAdministeredRequiredFieldsArePresent
       }
     }
 
-    passed = verifyPassed(issues);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
 

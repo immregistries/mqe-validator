@@ -39,7 +39,7 @@ public class VaccinationAdminCodeCptIsValid extends ValidationRule<MqeVaccinatio
 
     issues.addAll(codr.handleCode(cpt, VxuField.VACCINATION_CPT_CODE, target));
 
-    passed = verifyPassed(issues);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

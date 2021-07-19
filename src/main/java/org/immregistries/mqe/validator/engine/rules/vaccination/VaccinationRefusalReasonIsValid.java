@@ -53,7 +53,7 @@ public class VaccinationRefusalReasonIsValid extends ValidationRule<MqeVaccinati
           VxuField.VACCINATION_REFUSAL_REASON, target));
     }
 
-    passed = verifyPassed(issues);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
 

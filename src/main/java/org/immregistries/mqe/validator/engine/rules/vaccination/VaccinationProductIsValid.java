@@ -97,7 +97,7 @@ public class VaccinationProductIsValid extends ValidationRule<MqeVaccination> {
       issues.add(Detection.VaccinationProductIsMissing.build(target));
     }
 
-    passed = verifyPassed(issues);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

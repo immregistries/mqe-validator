@@ -68,7 +68,7 @@ public class VaccinationFundingAndEligibilityConflict extends ValidationRule<Mqe
       }
     }
 
-    passed = verifyPassed(issues);
+    passed = verifyNoIssuesExceptPresent(issues);
     return buildResults(issues, passed);
 
   }

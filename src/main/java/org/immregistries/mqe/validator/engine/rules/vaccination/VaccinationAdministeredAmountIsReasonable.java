@@ -38,7 +38,7 @@ public class VaccinationAdministeredAmountIsReasonable extends ValidationRule<Mq
       issues.add(Detection.VaccinationAdministeredAmountIsInvalid.build(amount, target));
     }
 
-    passed = verifyPassed(issues);
+    passed = verifyNoIssuesExceptPresent(issues);
     return buildResults(issues, passed);
 
   }

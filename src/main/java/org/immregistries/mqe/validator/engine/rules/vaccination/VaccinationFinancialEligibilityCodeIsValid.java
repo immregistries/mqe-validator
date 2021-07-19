@@ -41,7 +41,7 @@ public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<M
     issues.addAll(codr.handleCodeOrMissing(financialEligibilityCode,
         VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE, target));
 
-    passed = verifyPassed(issues);
+    passed = verifyNoIssuesExceptPresent(issues);
     return buildResults(issues, passed);
 
   }

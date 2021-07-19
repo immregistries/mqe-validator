@@ -45,7 +45,7 @@ public class VaccinationCodeGroupsMatch extends ValidationRule<MqeVaccination> {
       }
     }
 
-    passed = verifyPassed(issues);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

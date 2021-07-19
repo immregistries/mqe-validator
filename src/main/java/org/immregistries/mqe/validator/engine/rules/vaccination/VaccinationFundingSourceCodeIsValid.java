@@ -42,7 +42,7 @@ public class VaccinationFundingSourceCodeIsValid extends ValidationRule<MqeVacci
     issues.addAll(codr.handleCodeOrMissing(fundingSourceCode,
         VxuField.VACCINATION_FUNDING_SOURCE_CODE, target));
 
-    passed = verifyPassed(issues);
+    passed = verifyNoIssuesExceptPresent(issues);
     return buildResults(issues, passed);
 
   }

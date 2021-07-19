@@ -66,7 +66,7 @@ public class VaccinationOrdererIsValid extends ValidationRule<MqeVaccination> {
     issues.addAll(codr.handleCode(recorderNum, VxuField.VACCINATION_RECORDED_BY, target));
 
     // mark passed if there's no issues.
-    passed = verifyPassed(issues);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

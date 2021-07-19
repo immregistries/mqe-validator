@@ -62,7 +62,7 @@ public class VaccinationAdminDateIsValidForPatientAge extends ValidationRule<Mqe
             birthDate, VxuField.VACCINATION_ADMIN_DATE, target));
       }
 
-      passed = verifyPassed(issues);
+      passed = verifyNoIssuesExceptPresent(issues);
     }
 
     return buildResults(issues, passed);

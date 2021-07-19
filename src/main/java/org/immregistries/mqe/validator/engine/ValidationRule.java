@@ -133,7 +133,7 @@ public abstract class ValidationRule<T> {
     return id;
   }
 
-  protected boolean verifyPassed(List<ValidationReport> issues) {
+  protected boolean verifyNoIssuesExceptPresent(List<ValidationReport> issues) {
     if (issues.size() == 0) {
       return true;
     }

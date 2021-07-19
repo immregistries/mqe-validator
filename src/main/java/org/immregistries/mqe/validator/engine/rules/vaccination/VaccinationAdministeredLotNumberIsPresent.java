@@ -38,7 +38,7 @@ public class VaccinationAdministeredLotNumberIsPresent extends ValidationRule<Mq
       issues.add(Detection.VaccinationLotNumberIsPresent.build(target));
     }
 
-    passed = verifyPassed(issues);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
 

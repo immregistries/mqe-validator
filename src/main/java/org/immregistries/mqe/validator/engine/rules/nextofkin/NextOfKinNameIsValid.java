@@ -65,7 +65,7 @@ public class NextOfKinNameIsValid extends ValidationRule<MqeNextOfKin> {
       }
     }
 
-    passed = verifyPassed(issues);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

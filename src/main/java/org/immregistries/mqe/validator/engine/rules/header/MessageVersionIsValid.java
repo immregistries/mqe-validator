@@ -29,6 +29,10 @@ public class MessageVersionIsValid extends ValidationRule<MqeMessageHeader> {
       id.setImplementationDescription("Message Version is not indicated");
     }
     {
+      ImplementationDetail id = this.addRuleDetection(Detection.MessageVersionIsPresent);
+      id.setImplementationDescription("Message Version is indicated");
+    }
+    {
       ImplementationDetail id = this.addRuleDetection(Detection.MessageVersionIsUnrecognized);
       id.setImplementationDescription("Message version is not a version of 2.3, 2.4, or 2.5 ");
     }
@@ -45,6 +49,7 @@ public class MessageVersionIsValid extends ValidationRule<MqeMessageHeader> {
     if (this.common.isEmpty(version)) {
       issues.add(Detection.MessageVersionIsMissing.build(target));
     } else {
+      issues.add(Detection.MessageVersionIsPresent.build(target));
       // We want to evaluate the starting three characters... 2.5.1 should evaluate as 2.5, etc.
       String evalVersion = version;
       if (evalVersion.length() > 3) {

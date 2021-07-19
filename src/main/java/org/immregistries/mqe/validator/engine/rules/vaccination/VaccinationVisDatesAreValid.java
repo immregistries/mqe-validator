@@ -24,6 +24,7 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
 
   public VaccinationVisDatesAreValid() {
           this.addRuleDetection(Detection.VaccinationVisPublishedDateIsMissing);
+          this.addRuleDetection(Detection.VaccinationVisPublishedDateIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationVisPublishedDateIsInvalid);
@@ -35,6 +36,8 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
           this.addRuleDetection(Detection.VaccinationVisPublishedDateIsInFuture);
       id.setImplementationDescription("Vaccination Vis Publication date cannot be a future date.");
     }
+    this.addRuleDetection(Detection.VaccinationVisPresentedDateIsMissing);
+    this.addRuleDetection(Detection.VaccinationVisPresentedDateIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationVisPresentedDateIsInvalid);
@@ -79,16 +82,22 @@ public class VaccinationVisDatesAreValid extends ValidationRule<MqeVaccination> 
     // IF block.
     if (publishedDateString == null) {
       issues.add(Detection.VaccinationVisPublishedDateIsMissing.build(target));
-    } else if (publishedDate == null) {// it didn't parse to a date.
-      issues.add(Detection.VaccinationVisPublishedDateIsInvalid.build(vis.getPublishedDateString(),
-          target));
+    } else {
+      issues.add(Detection.VaccinationVisPublishedDateIsPresent.build(target));
+      if (publishedDate == null) {// it didn't parse to a date.
+        issues.add(Detection.VaccinationVisPublishedDateIsInvalid.build(vis.getPublishedDateString(),
+            target));
+      }
     }
 
     if (presentedDateString == null) {
       issues.add(Detection.VaccinationVisPresentedDateIsMissing.build(target));
-    } else if (presentedDate == null) {// it didn't parse to a date.
-      issues.add(Detection.VaccinationVisPresentedDateIsInvalid.build(vis.getPresentedDateString(),
-          target));
+    } else {
+      issues.add(Detection.VaccinationVisPresentedDateIsPresent.build(target));
+      if (presentedDate == null) {// it didn't parse to a date.
+        issues.add(Detection.VaccinationVisPresentedDateIsInvalid.build(vis.getPresentedDateString(),
+            target));
+      }
     }
 
     if (publishedDate != null) {

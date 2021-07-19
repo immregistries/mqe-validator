@@ -19,7 +19,9 @@ public class VaccinationAdministeredRequiredFieldsArePresent
 
   public VaccinationAdministeredRequiredFieldsArePresent() {
     this.addRuleDetection(Detection.VaccinationFacilityNameIsMissing);
+    this.addRuleDetection(Detection.VaccinationFacilityNameIsPresent);
     this.addRuleDetection(Detection.VaccinationLotExpirationDateIsMissing);
+    this.addRuleDetection(Detection.VaccinationLotExpirationDateIsPresent);
   }
 
   @Override
@@ -35,10 +37,14 @@ public class VaccinationAdministeredRequiredFieldsArePresent
 
     if (this.common.isEmpty(target.getFacilityName())) {
       issues.add(Detection.VaccinationFacilityNameIsMissing.build(target));
+    } else {
+      issues.add(Detection.VaccinationFacilityNameIsPresent.build(target));
     }
 
     if (target.getExpirationDate() == null) {
       issues.add(Detection.VaccinationLotExpirationDateIsMissing.build(target));
+    } else {
+      issues.add(Detection.VaccinationLotExpirationDateIsPresent.build(target));
     }
 
     passed = (issues.size() == 0);

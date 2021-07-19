@@ -25,6 +25,11 @@ public class VaccinationVisIsPresent extends ValidationRule<MqeVaccination> {
       id.setImplementationDescription(
           "Administered Vaccine is missing VIS or VIS is missing a document code, CVX and Published Date.");
     }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisIsPresent);
+      id.setImplementationDescription(
+          "Administered Vaccine has VIS document code, CVX and Published Date.");
+    }
   }
 
   @Override
@@ -38,6 +43,7 @@ public class VaccinationVisIsPresent extends ValidationRule<MqeVaccination> {
         && (this.common.isEmpty(vis.getCvxCode()) && vis.getPublishedDate() == null))) {
       issues.add(Detection.VaccinationVisIsMissing.build(target));
     } else {
+      issues.add(Detection.VaccinationVisIsPresent.build(target));
       passed = true;
     }
 

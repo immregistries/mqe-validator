@@ -19,11 +19,15 @@ public class VaccinationVisIsRecognized extends ValidationRule<MqeVaccination> {
   }
 
   public VaccinationVisIsRecognized() {
-    this.addRuleDetection(Detection.VaccinationVisIsMissing);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisIsMissing);
       id.setImplementationDescription(
           "Vaccination Vis is missing a document code, CVX and Published Date.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisIsPresent);
+      id.setImplementationDescription(
+          "Vaccination Vis is indicated with a document code, CVX and Published Date.");
     }
   }
 
@@ -39,6 +43,8 @@ public class VaccinationVisIsRecognized extends ValidationRule<MqeVaccination> {
     if (this.common.isEmpty(vis.getDocumentCode())
         && (this.common.isEmpty(visCvx) && vis.getPublishedDate() == null)) {
       issues.add(Detection.VaccinationVisIsMissing.build(target));
+    } else {
+      issues.add(Detection.VaccinationVisIsPresent.build(target));
     }
 
     passed = issues.isEmpty();

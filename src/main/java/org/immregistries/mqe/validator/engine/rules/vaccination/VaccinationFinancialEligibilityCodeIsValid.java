@@ -22,6 +22,7 @@ public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<M
     this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsDeprecated);
     this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsInvalid);
     this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsUnrecognized);

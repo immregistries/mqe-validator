@@ -22,6 +22,7 @@ public class VaccinationFundingSourceCodeIsValid extends ValidationRule<MqeVacci
     this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsDeprecated);
     this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsInvalid);
     this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsUnrecognized);

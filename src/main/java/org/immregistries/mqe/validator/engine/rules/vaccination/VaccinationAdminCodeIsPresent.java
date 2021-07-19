@@ -14,6 +14,7 @@ public class VaccinationAdminCodeIsPresent extends ValidationRule<MqeVaccination
 
   public VaccinationAdminCodeIsPresent() {
     this.addRuleDetection(Detection.VaccinationAdminCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationAdminCodeIsPresent);
   }
 
   @Override
@@ -28,6 +29,10 @@ public class VaccinationAdminCodeIsPresent extends ValidationRule<MqeVaccination
     if (StringUtils.isBlank(adminCpt) && StringUtils.isBlank(adminCvx)
         && StringUtils.isBlank(adminNdc)) {
       issues.add(Detection.VaccinationAdminCodeIsMissing.build(target));
+    }
+    else
+    {
+      issues.add(Detection.VaccinationAdminCodeIsPresent.build(target));
     }
     LOGGER.info("issues: " + issues);
 

@@ -15,6 +15,7 @@ public class VaccinationNdcIsValid extends ValidationRule<MqeVaccination> {
 
   public VaccinationNdcIsValid() {
     this.addRuleDetection(Detection.VaccinationNDCCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationNDCCodeIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationNDCCodeIsUnrecognized);
       id.setImplementationDescription(

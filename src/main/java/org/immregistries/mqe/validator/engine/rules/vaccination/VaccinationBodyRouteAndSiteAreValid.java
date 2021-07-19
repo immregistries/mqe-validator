@@ -22,6 +22,7 @@ public class VaccinationBodyRouteAndSiteAreValid extends ValidationRule<MqeVacci
     this.addRuleDetection(Detection.VaccinationBodyRouteIsDeprecated);
     this.addRuleDetection(Detection.VaccinationBodyRouteIsInvalid);
     this.addRuleDetection(Detection.VaccinationBodyRouteIsMissing);
+    this.addRuleDetection(Detection.VaccinationBodyRouteIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationBodyRouteIsUnrecognized);
       id.setImplementationDescription(
@@ -30,6 +31,7 @@ public class VaccinationBodyRouteAndSiteAreValid extends ValidationRule<MqeVacci
     this.addRuleDetection(Detection.VaccinationBodySiteIsDeprecated);
     this.addRuleDetection(Detection.VaccinationBodySiteIsInvalid);
     this.addRuleDetection(Detection.VaccinationBodySiteIsMissing);
+    this.addRuleDetection(Detection.VaccinationBodySiteIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationBodySiteIsUnrecognized);
       id.setImplementationDescription(

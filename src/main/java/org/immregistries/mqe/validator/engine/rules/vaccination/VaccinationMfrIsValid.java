@@ -20,6 +20,7 @@ public class VaccinationMfrIsValid extends ValidationRule<MqeVaccination> {
     this.addRuleDetection(Detection.VaccinationManufacturerCodeIsDeprecated);
     this.addRuleDetection(Detection.VaccinationManufacturerCodeIsInvalid);
     this.addRuleDetection(Detection.VaccinationManufacturerCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationManufacturerCodeIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationManufacturerCodeIsUnrecognized);

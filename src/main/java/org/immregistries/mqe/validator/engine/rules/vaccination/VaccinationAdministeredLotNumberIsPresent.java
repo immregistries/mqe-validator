@@ -33,6 +33,8 @@ public class VaccinationAdministeredLotNumberIsPresent extends ValidationRule<Mq
 
     if (this.common.isEmpty(target.getLotNumber())) {
       issues.add(Detection.VaccinationLotNumberIsMissing.build(target));
+    } else {
+      issues.add(Detection.VaccinationLotNumberIsPresent.build(target));
     }
 
     passed = (issues.size() == 0);

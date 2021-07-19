@@ -27,6 +27,7 @@ public class VaccinationAdminCodeCptIsValid extends ValidationRule<MqeVaccinatio
           "Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
     }
     this.addRuleDetection(Detection.VaccinationCptCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationCptCodeIsPresent);
   }
 
   @Override

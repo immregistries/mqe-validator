@@ -23,6 +23,7 @@ public class VaccinationOrdererIsValid extends ValidationRule<MqeVaccination> {
     this.addRuleDetection(Detection.VaccinationOrderedByIsDeprecated);
     this.addRuleDetection(Detection.VaccinationOrderedByIsInvalid);
     this.addRuleDetection(Detection.VaccinationOrderedByIsMissing);
+    this.addRuleDetection(Detection.VaccinationOrderedByIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationOrderedByIsUnrecognized);
       id.setImplementationDescription(
@@ -31,6 +32,7 @@ public class VaccinationOrdererIsValid extends ValidationRule<MqeVaccination> {
     this.addRuleDetection(Detection.VaccinationRecordedByIsDeprecated);
     this.addRuleDetection(Detection.VaccinationRecordedByIsInvalid);
     this.addRuleDetection(Detection.VaccinationRecordedByIsMissing);
+    this.addRuleDetection(Detection.VaccinationRecordedByIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationRecordedByIsUnrecognized);

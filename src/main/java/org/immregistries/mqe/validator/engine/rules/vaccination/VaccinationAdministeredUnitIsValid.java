@@ -23,6 +23,7 @@ public class VaccinationAdministeredUnitIsValid extends ValidationRule<MqeVaccin
     this.addRuleDetection(Detection.VaccinationAdministeredUnitIsDeprecated);
     this.addRuleDetection(Detection.VaccinationAdministeredUnitIsInvalid);
     this.addRuleDetection(Detection.VaccinationAdministeredUnitIsMissing);
+    this.addRuleDetection(Detection.VaccinationAdministeredUnitIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdministeredUnitIsUnrecognized);

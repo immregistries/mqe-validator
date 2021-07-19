@@ -16,6 +16,7 @@ public class VaccinationAdminDateIsValid extends ValidationRule<MqeVaccination> 
 
   public VaccinationAdminDateIsValid() {
     this.addRuleDetection(Detection.VaccinationAdminDateIsMissing);
+    this.addRuleDetection(Detection.VaccinationAdminDateIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsInvalid);
       id.setImplementationDescription(
@@ -75,6 +76,9 @@ public class VaccinationAdminDateIsValid extends ValidationRule<MqeVaccination> 
       passed = false;
 
       return buildResults(issues, passed);
+    }
+    else {
+      issues.add(Detection.VaccinationAdminDateIsPresent.build(target));
     }
 
     if (!this.common.isValidDate(dateString)) {

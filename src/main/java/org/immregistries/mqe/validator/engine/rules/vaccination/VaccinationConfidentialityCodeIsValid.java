@@ -22,6 +22,7 @@ public class VaccinationConfidentialityCodeIsValid extends ValidationRule<MqeVac
     this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsDeprecated);
     this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsInvalid);
     this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsUnrecognized);

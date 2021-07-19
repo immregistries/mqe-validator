@@ -112,143 +112,48 @@ import org.immregistries.mqe.vxu.TargetType;
 import org.reflections.Reflections;
 @SuppressWarnings({"unchecked", "rawtypes"})
 public enum ValidationRuleEntityLists {
-  INSTANCE;
 //  //@formatter:off
-//  PATIENT_RULES(
-//      new PatientAddressIsValid(),
-//      new PatientAliasIsPresent(),
-//      new PatientBirthDateIsValid(),
-//      new PatientBirthDateIsReasonable(),
-//      new PatientBirthDateCharacteristic(),
-//      new PatientBirthPlaceIsValid(),
-//      new PatientClassIsValid(),
-//      new PatientCodesAreValid(),
-//      new PatientCreationDateIsValid(),
-//      new PatientCreationTimeliness(),
-//      new PatientDeathDateIsValid(),
-//      new PatientDeathIndicatorIsValid(),
-//      new PatientEmailIsPresent(),
-//      new PatientEthnicityIsValid(),
-//      new PatientExists(),
-//      new PatientFinancialStatusCheckTrue(),
-//      new PatientFinancialStatusDateIsValid(),
-//      new PatientGenderIsValid(),
-//      new PatientHasResponsibleParty(),
-//      new PatientImmunityIsValid(),
-//      new PatientIsUnderage(),
-//      new PatientMedicaidNumberIsValid(),
-//      new PatientMothersMaidenNameIsValid(),
-//      new PatientMultipleBirthsValid(),
-//      new PatientNameIsValid(),
-//      new PatientNameSuffixIsValid(),
-//      new PatientNameTypeIsValid(),
-//      new PatientPhoneIsValid(),
-//      new PatientPrimaryPhysicianNameIsValid(),
-//      new PatientProtectionIndicatorIsValid(),
-//      new PatientRegistryIdIsValid(),
-//      new PatientRegistryIdIsPresent(),
-//      new PatientResponsiblePartyIsProperlyFormed(),
-//      new PatientSsnIsValid(),
-//      new PatientSubmitterIsValid(),
-//      new VaccinationAdminCountIsAsExpectedForAge()),
-//  VACCINATION_RULES(
-//	  new ObservationDateIsValid(),
-//	  new ObservationValueTypeIsValid(),
-//      new VaccinationActionCodeIsValid(),
-//      new VaccinationAdminCodeCptIsValid(),
-//      new VaccinationAdminCodeIsPresent(),
-//      new VaccinationAdminCodeIsUsable(),
-//      new VaccinationAdminCodeIsValid(),
-//      new VaccinationAdminDateIsBeforeLotExpirationDate(),
-//      new VaccinationAdminDateIsValid(),
-//      new VaccinationAdminDateIsValidForPatientAge(),
-//      new VaccinationAdministeredAmountIsReasonable(),
-//	  new VaccinationSourceIsHistoricalButAppearsAdministered(),
-//      new VaccinationAdministeredAmtIsValid(),
-//      new VaccinationAdministeredLotNumberIsValid(),
-//      new VaccinationAdministeredLotNumberIsPresent(),
-//      new VaccinationAdministeredRequiredFieldsArePresent(),
-//      new VaccinationAdministeredUnitIsValid(),
-//      new VaccinationBodyRouteAndSiteAreValid(),
-//      new VaccinationCodeGroupsMatch(),
-//      new VaccinationCompletionStatusIsValid(),
-//      new VaccinationConfidentialityCodeIsValid(),
-//      new VaccinationCptIsValid(),
-//      new VaccinationCreationTimeliness(),
-//      new VaccinationCreationDateIsValid(),
-//      new VaccinationCvxIsValid(),
-//      new VaccinationCvxUseIsValid(),
-//      new VaccinationFinancialEligibilityCodeIsValid(),
-//      new VaccinationFundingAndEligibilityConflict(),
-//      new VaccinationFundingSourceCodeIsValid(),
-//      new VaccinationInformationSourceIsValid(),
-//      new VaccinationIsAdministeredOrHistorical(),
-//      new VaccinationIsForeign(),
-//      new VaccinationIsPresent(),
-//      new VaccinationMfrIsValid(),
-//      new VaccinationNdcIsValid(),
-//      new VaccinationOrdererIsValid(),
-//      new VaccinationProductIsValid(),
-//      new VaccinationRefusalReasonIsValid(),
-//      new VaccinationSourceIsAdministered(),
-//      new VaccinationUseCptInsteadOfCvx(),
-//      new VaccinationUseCvx(),
-//      new VaccinationUseNdc(),
-//      new VaccinationAdministeredAmtIsValid(),
-//      new VaccinationVisCvxIsValid(),
-//      new VaccinationVisDatesAreValid(),
-//      new VaccinationVisIsPresent(),
-//      new VaccinationVisIsRecognized()),
-//  MESSAGE_HEADER_RULES(
-//      new MessageHeaderCodesAreValid(),
-//      new MessageHeaderFieldsArePresent(),
-//      new MessageHeaderDateIsValid(),
-//      new MessageVersionIsValid(),
-//      new MessageVersionIs25()),
-//  NEXT_OF_KIN_RULES(
-//      new NextOfKinIsPresent(),
-//      new NextOfKinNameIsValid(),
-//      new NextOfKinAddressIsSameAsPatientAddress(),
-//      new NextOfKinAddressIsValid(),
-//      new NextOfKinPhoneIsValid(),
-//      new NextOfKinRelationshipIsValidForUnderagedPatient(),
-//      new NextOfKinNameIsNotSameAsPatient(),
-//      new NextOfKinGuardianAddressIsValid()
+  PATIENT_RULES(TargetType.Patient),
+  VACCINATION_RULES(TargetType.Vaccination),
+  MESSAGE_HEADER_RULES(TargetType.MessageHeader),
+  NEXT_OF_KIN_RULES(TargetType.NextOfKin);
 //  //@formatter:on
-//                                       );
 
-  private Map<TargetType, List<ValidationRule>> rules = new HashMap<>();
-//
-//  ValidationRuleEntityLists(ValidationRule... rulesIn) {
-//    this.rules = new HashSet<>(Arrays.asList(rulesIn));
-//  }
+  public static Map<TargetType, List<ValidationRule>> rulesMap = new HashMap<>();
 
-  ValidationRuleEntityLists() {
-      Reflections reflections = new Reflections("org.immregistries.mqe.validator");
-      Set<Class<?>> ruleClasses = reflections.getTypesAnnotatedWith(ValidationRuleEntry.class);
-      for (Class c : ruleClasses) {
-        try {
-          if (!c.isAssignableFrom(ValidationRule.class)) {
-            throw new RuntimeException("You have a class annotated with ValidateRuleEntry that is not a Validation Rule: " + c);
-          }
-          ValidationRule rule = (ValidationRule)c.newInstance();
-          ValidationRuleEntry annotation = (ValidationRuleEntry) c.getAnnotation(ValidationRuleEntry.class);
-          TargetType type = annotation.value();
-          List<ValidationRule> ruleList = rules.computeIfAbsent(type, k -> new ArrayList<>());
-          ruleList.add(rule);
-        } catch (InstantiationException | IllegalAccessException e) {
-          throw new RuntimeException("Something really bad happened while instantiating a class annotated with ValidationRuleEntry. Class["+ c+"]", e);
+  static {
+    Reflections reflections = new Reflections("org.immregistries.mqe.validator");
+    Set<Class<?>> ruleClasses = reflections.getTypesAnnotatedWith(ValidationRuleEntry.class);
+    for (Class c : ruleClasses) {
+      try {
+        if (!c.isAssignableFrom(ValidationRule.class)) {
+          throw new RuntimeException("You have a class annotated with ValidateRuleEntry that is not a Validation Rule: " + c);
         }
+        ValidationRule rule = (ValidationRule)c.newInstance();
+        ValidationRuleEntry annotation = (ValidationRuleEntry) c.getAnnotation(ValidationRuleEntry.class);
+        TargetType type = annotation.value();
+        List<ValidationRule> ruleList = rulesMap.computeIfAbsent(type, k -> new ArrayList<>());
+        ruleList.add(rule);
+      } catch (InstantiationException | IllegalAccessException e) {
+        throw new RuntimeException("Something really bad happened while instantiating a class annotated with ValidationRuleEntry. Class["+ c+"]", e);
       }
+    }
   }
 
-  public Set<ValidationRule> allRules() {
+  public final Set<ValidationRule> rules = new HashSet<>();//<--  how do we fill these buckets. 
+  public final TargetType targetType;
+  ValidationRuleEntityLists(TargetType type) {
+    this.targetType = type;
+  }
+
+
+  public static Set<ValidationRule> allRules() {
     //This collects all of the values from the lists in each of the type entries for the map.
     //This could have been a lot longer, but this is pretty, and cool, right?
-    return rules.values().stream().flatMap(Collection::stream).collect(Collectors.toSet());
+    return rulesMap.values().stream().flatMap(Collection::stream).collect(Collectors.toSet());
   }
 
-  public Set<Detection> activeDetections() {
+  public static Set<Detection> activeDetections() {
     return null;
 //    return this.allRules().stream().flatMap((r) -> r.getRuleDetections().stream().map((d) -> (Detection) d))
 //        .collect(Collectors.toSet())

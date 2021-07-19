@@ -22,7 +22,7 @@ public class PatientMultipleBirthsValid extends ValidationRule<MqePatient> {
     this.addRuleDetection(Detection.PatientBirthIndicatorIsMissing);
     {
       ImplementationDetail id =
-          this.addRuleDetection(Detection.PatientBirthOrderIsMissingAndMultipleBirthIndicated);
+          this.addRuleDetection(Detection.PatientBirthOrderAndMultipleBirthIndicatedIsMissing);
       id.setImplementationDescription(
           "Multiple birth indicator was sent as Yes but birth order was not.");
     }
@@ -55,7 +55,7 @@ public class PatientMultipleBirthsValid extends ValidationRule<MqePatient> {
             codr.handleCodeOrMissing(target.getBirthOrder(), VxuField.PATIENT_BIRTH_ORDER, target));
 
         if (this.common.isEmpty(birthOrder)) {
-          issues.add(Detection.PatientBirthOrderIsMissingAndMultipleBirthIndicated.build(target));
+          issues.add(Detection.PatientBirthOrderAndMultipleBirthIndicatedIsMissing.build(target));
         }
       } else if ("N".equals(multipleBirthInd)) {
         if (!this.common.isEmpty(birthOrder) && !"1".equals(birthOrder)) {

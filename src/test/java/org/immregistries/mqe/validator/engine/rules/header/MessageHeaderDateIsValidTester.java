@@ -94,7 +94,7 @@ public class MessageHeaderDateIsValidTester {
     ValidationRuleResult r = rule.executeRule(mh, mr);
     logger.info(r.getValidationDetections().toString());
     assertTrue(r.isRulePassed());
-    assertEquals(Detection.MessageMessageDateIsMissingTimezone,
+    assertEquals(Detection.MessageMessageDateTimezoneIsMissing,
         r.getValidationDetections().get(0).getDetection());
   }
 }

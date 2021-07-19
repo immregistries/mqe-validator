@@ -67,7 +67,7 @@ public class MessageHeaderDateIsValid extends ValidationRule<MqeMessageHeader> {
         // Need to do the timezone validation.
         if (!datr.hasTimezone(messageDateString)) {
           issues.add(
-              Detection.MessageMessageDateIsMissingTimezone.build((messageDateString), target));
+              Detection.MessageMessageDateTimezoneIsMissing.build((messageDateString), target));
           //doesn't fail. we can still use it.
         }
       }

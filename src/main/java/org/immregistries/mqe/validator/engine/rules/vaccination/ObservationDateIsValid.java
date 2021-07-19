@@ -22,6 +22,12 @@ public class ObservationDateIsValid extends ValidationRule<MqeVaccination> {
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.ObservationDateTimeOfObservationIsMissing);
+      id.setImplementationDescription("Observation Date/Time of Observation is not indicated");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.ObservationDateTimeOfObservationIsPresent);
+      id.setImplementationDescription("Observation Date/Time of Observation is indicated");
     }
     {
       ImplementationDetail id =
@@ -40,9 +46,13 @@ public class ObservationDateIsValid extends ValidationRule<MqeVaccination> {
       if (this.common.isEmpty(observationDateString)) {
         issues.add(Detection.ObservationDateTimeOfObservationIsMissing
             .build((observationDateString), target));
-      } else if (!this.common.isValidDate(observationDateString)) {
-        issues.add(Detection.ObservationDateTimeOfObservationIsInvalid
+      } else {
+        issues.add(Detection.ObservationDateTimeOfObservationIsPresent
             .build((observationDateString), target));
+        if (!this.common.isValidDate(observationDateString)) {
+          issues.add(Detection.ObservationDateTimeOfObservationIsInvalid
+              .build((observationDateString), target));
+        }
       }
     }
 

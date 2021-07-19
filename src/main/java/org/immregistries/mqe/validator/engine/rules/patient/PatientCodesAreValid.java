@@ -17,20 +17,26 @@ public class PatientCodesAreValid extends ValidationRule<MqePatient> {
 
   public PatientCodesAreValid() {
     this.addRuleDetection(Detection.PatientPrimaryLanguageIsMissing);
+    this.addRuleDetection(Detection.PatientPrimaryLanguageIsPresent);
     this.addRuleDetection(Detection.PatientPrimaryLanguageIsUnrecognized);
     this.addRuleDetection(Detection.PatientPublicityCodeIsMissing);
+    this.addRuleDetection(Detection.PatientPublicityCodeIsPresent);
     this.addRuleDetection(Detection.PatientPublicityCodeIsUnrecognized);
     this.addRuleDetection(Detection.PatientPublicityCodeIsInvalid);
     this.addRuleDetection(Detection.PatientRaceIsMissing);
+    this.addRuleDetection(Detection.PatientRaceIsPresent);
     this.addRuleDetection(Detection.PatientRaceIsDeprecated);
     this.addRuleDetection(Detection.PatientRaceIsUnrecognized);
     this.addRuleDetection(Detection.PatientRaceIsInvalid);
     this.addRuleDetection(Detection.PatientVfcStatusIsDeprecated);
     this.addRuleDetection(Detection.PatientVfcStatusIsInvalid);
     this.addRuleDetection(Detection.PatientVfcStatusIsMissing);
+    this.addRuleDetection(Detection.PatientVfcStatusIsPresent);
     this.addRuleDetection(Detection.PatientVfcStatusIsUnrecognized);
     this.addRuleDetection(Detection.PatientPrimaryFacilityIdIsMissing);
+    this.addRuleDetection(Detection.PatientPrimaryFacilityIdIsPresent);
     this.addRuleDetection(Detection.PatientPrimaryFacilityNameIsMissing);
+    this.addRuleDetection(Detection.PatientPrimaryFacilityNameIsPresent);
   }
 
   @Override
@@ -48,10 +54,15 @@ public class PatientCodesAreValid extends ValidationRule<MqePatient> {
 
     if (this.common.isEmpty(facilityId)) {
       issues.add(Detection.PatientPrimaryFacilityIdIsMissing.build((facilityId), target));
+    } else {
+      issues.add(Detection.PatientPrimaryFacilityIdIsPresent.build((facilityId), target));
     }
+    
 
     if (this.common.isEmpty(facilityName)) {
       issues.add(Detection.PatientPrimaryFacilityNameIsMissing.build((facilityName), target));
+    } else {
+      issues.add(Detection.PatientPrimaryFacilityNameIsPresent.build((facilityName), target));      
     }
 
     // language

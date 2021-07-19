@@ -28,6 +28,7 @@ public class PatientFinancialStatusDateIsValid extends ValidationRule<MqePatient
     }
 
     this.addRuleDetection(Detection.PatientVfcEffectiveDateIsMissing);
+    this.addRuleDetection(Detection.PatientVfcEffectiveDateIsPresent);
   }
 
   @Override
@@ -40,6 +41,7 @@ public class PatientFinancialStatusDateIsValid extends ValidationRule<MqePatient
     Date recDate = m.getReceivedDate();
 
     if (finEligDte != null) {
+      issues.add(Detection.PatientVfcEffectiveDateIsPresent.build(target));
       if (this.datr.isBeforeDate(finEligDte, birthDate)) {
         issues.add(Detection.PatientVfcEffectiveDateIsBeforeBirth.build(target));
         passed = false;

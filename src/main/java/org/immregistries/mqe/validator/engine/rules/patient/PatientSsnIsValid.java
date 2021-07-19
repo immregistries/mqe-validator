@@ -16,6 +16,7 @@ public class PatientSsnIsValid extends ValidationRule<MqePatient> {
 
   public PatientSsnIsValid() {
     this.addRuleDetection(Detection.PatientSsnIsMissing);
+    this.addRuleDetection(Detection.PatientSsnIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientSsnIsInvalid);
       id.setImplementationDescription(
@@ -33,9 +34,12 @@ public class PatientSsnIsValid extends ValidationRule<MqePatient> {
     if (this.common.isEmpty(ssn)) {
       issues.add(Detection.get(VxuField.PATIENT_SSN, DetectionType.MISSING).build(target));
       passed = false;
-    } else if (!isSsnPattern(ssn)) {
-      issues.add(Detection.get(VxuField.PATIENT_SSN, DetectionType.INVALID).build(target));
-      passed = false;
+    } else {
+      issues.add(Detection.get(VxuField.PATIENT_SSN, DetectionType.PRESENT).build(target));
+      if (!isSsnPattern(ssn)) {
+        issues.add(Detection.get(VxuField.PATIENT_SSN, DetectionType.INVALID).build(target));
+        passed = false;
+      }
     }
 
     return buildResults(issues, passed);

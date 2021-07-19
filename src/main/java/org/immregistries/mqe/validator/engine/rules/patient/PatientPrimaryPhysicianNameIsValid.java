@@ -15,7 +15,7 @@ public class PatientPrimaryPhysicianNameIsValid extends ValidationRule<MqePatien
 
   public PatientPrimaryPhysicianNameIsValid() {
     this.addRuleDetection(Detection.PatientPrimaryPhysicianNameIsMissing);
-    this.addRuleDetection(Detection.PatientPrimaryPhysicianIdIsMissing);
+    this.addRuleDetection(Detection.PatientPrimaryPhysicianNameIsPresent);
   }
 
   @Override
@@ -28,6 +28,8 @@ public class PatientPrimaryPhysicianNameIsValid extends ValidationRule<MqePatien
       if (physician.getName() == null || this.common.isEmpty(physician.getName())) {
         issues.add(Detection.PatientPrimaryPhysicianNameIsMissing.build(target));
         passed = false;
+      } else {
+        issues.add(Detection.PatientPrimaryPhysicianNameIsPresent.build(target));
       }
     }
 

@@ -18,6 +18,7 @@ public class PatientMothersMaidenNameIsValid extends ValidationRule<MqePatient> 
 
   public PatientMothersMaidenNameIsValid() {
     this.addRuleDetection(Detection.PatientMotherSMaidenNameIsMissing);
+    this.addRuleDetection(Detection.PatientMotherSMaidenNameIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientMothersMaidenNameIsInvalid);
       id.setImplementationDescription(
@@ -52,6 +53,7 @@ public class PatientMothersMaidenNameIsValid extends ValidationRule<MqePatient> 
       issues.add(Detection.PatientMotherSMaidenNameIsMissing.build(target));
       passed = false;
     } else {
+      issues.add(Detection.PatientMotherSMaidenNameIsPresent.build(target));
       if (listr.lastNameOnlyMatch(NameType.INVALID_NAME, mmName)) {
         issues.add(Detection.PatientMothersMaidenNameIsInvalid.build(target));
         passed = false;

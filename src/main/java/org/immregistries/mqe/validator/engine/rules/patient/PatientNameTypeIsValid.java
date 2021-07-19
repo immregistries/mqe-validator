@@ -15,6 +15,7 @@ public class PatientNameTypeIsValid extends ValidationRule<MqePatient> {
 
   public PatientNameTypeIsValid() {
     this.addRuleDetection(Detection.PatientNameTypeCodeIsMissing);
+    this.addRuleDetection(Detection.PatientNameTypeCodeIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientNameTypeCodeIsNotValuedLegal);

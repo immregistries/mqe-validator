@@ -30,6 +30,16 @@ public enum AddressValidator {
     }
     return vr;
   }
+
+  private List<ValidationReport> buildPresent(VxuField f, MetaFieldInfoData meta) {
+    List<ValidationReport> vr = new ArrayList<>();
+    Detection d = Detection.get(f, DetectionType.PRESENT);
+    if (d!=null) {
+      vr.add(d.build(meta));
+    }
+    return vr;
+  }
+  
   private List<ValidationReport> buildIncomplete(VxuField f, MetaFieldInfoData meta) {
     List<ValidationReport> vr = new ArrayList<>();
     Detection d = Detection.get(f, DetectionType.INCOMPLETE);
@@ -47,17 +57,26 @@ public enum AddressValidator {
         issues.addAll(buildMissing(fields.getAddress(), meta));
         passed = false;
     } else {
+      issues.addAll(buildPresent(fields.getAddress(), meta));
       if (common.isEmpty(a.getStreet())) {
         issues.addAll(buildMissing(fields.getStreetField(), meta));
+      } else {
+        issues.addAll(buildPresent(fields.getStreetField(), meta));
       }
       if (common.isEmpty(a.getCity())) {
         issues.addAll(buildMissing(fields.getCityField(), meta));
+      } else {
+        
       }
       if (common.isEmpty(a.getStateCode())) {
         issues.addAll(buildMissing(fields.getStateField(), meta));
+      } else {
+        issues.addAll(buildPresent(fields.getStateField(), meta));
       }
       if (common.isEmpty(a.getZip())) {
         issues.addAll(buildMissing(fields.getZipField(), meta));
+      } else {
+        issues.addAll(buildPresent(fields.getZipField(), meta));
       }
 
       if (issues.size() > 0) {
@@ -68,9 +87,13 @@ public enum AddressValidator {
 
       if (common.isEmpty(a.getCountyParishCode())) {
         issues.addAll(buildMissing(fields.getCountyField(), meta));
+      } else {
+        issues.addAll(buildPresent(fields.getCountyField(), meta));
       }
       if (common.isEmpty(a.getCountryCode())) {
         issues.addAll(buildMissing(fields.getCountryField(), meta));
+      } else {
+        issues.addAll(buildPresent(fields.getCountryField(), meta));
       }
     }
 

@@ -18,6 +18,7 @@ public class PatientSubmitterIsValid extends ValidationRule<MqePatient> {
     this.addRuleDetection(Detection.PatientSubmitterIdIsMissing);
     this.addRuleDetection(Detection.PatientSubmitterIdAuthorityIsMissing);
     this.addRuleDetection(Detection.PatientSubmitterIdTypeCodeIsMissing);
+    this.addRuleDetection(Detection.PatientSubmitterIdTypeCodeIsPresent);
   }
 
   @Override

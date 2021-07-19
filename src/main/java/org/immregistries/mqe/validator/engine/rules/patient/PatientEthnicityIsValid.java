@@ -27,6 +27,7 @@ public class PatientEthnicityIsValid extends ValidationRule<MqePatient> {
     this.addRuleDetection(Detection.PatientEthnicityIsInvalid);
     this.addRuleDetection(Detection.PatientEthnicityIsDeprecated);
     this.addRuleDetection(Detection.PatientEthnicityIsMissing);
+    this.addRuleDetection(Detection.PatientEthnicityIsPresent);
   }
 
   @Override
@@ -43,3 +44,4 @@ public class PatientEthnicityIsValid extends ValidationRule<MqePatient> {
     return buildResults(issues, passed);
   }
 }
+

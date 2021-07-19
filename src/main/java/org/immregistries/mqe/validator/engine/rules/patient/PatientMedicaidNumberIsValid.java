@@ -21,6 +21,7 @@ public class PatientMedicaidNumberIsValid extends ValidationRule<MqePatient> {
 
   public PatientMedicaidNumberIsValid() {
     this.addRuleDetection(Detection.PatientMedicaidNumberIsMissing);
+    this.addRuleDetection(Detection.PatientMedicaidNumberIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientMedicaidNumberIsInvalid);
       id.setImplementationDescription(
@@ -49,11 +50,15 @@ public class PatientMedicaidNumberIsValid extends ValidationRule<MqePatient> {
     if (id == null || this.common.isEmpty(id.getNumber())) {
       issues.add(Detection.PatientMedicaidNumberIsMissing.build(target));
       passed = false;
-    } else if (!common.isValidIdentifier(id.getNumber(), 9)) {
-      issues.add(Detection.PatientMedicaidNumberIsInvalid.build(id.getNumber(), target));
-      passed = false;
+    } else {
+      issues.add(Detection.PatientMedicaidNumberIsPresent.build(target));
+      if (!common.isValidIdentifier(id.getNumber(), 9)) {
+        issues.add(Detection.PatientMedicaidNumberIsInvalid.build(id.getNumber(), target));
+        passed = false;
+      }
     }
 
     return buildResults(issues, passed);
   }
 }
+

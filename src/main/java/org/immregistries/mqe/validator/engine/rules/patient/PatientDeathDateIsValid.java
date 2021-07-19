@@ -25,6 +25,11 @@ public class PatientDeathDateIsValid extends ValidationRule<MqePatient> {
           "The death indicator is marked as dead, but there is no death date.");
     }
     {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsPresent);
+      id.setImplementationDescription(
+          "The death indicator is marked as dead, and there is a death date.");
+    }
+    {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsInvalid);
       id.setImplementationDescription("The death date cannot be translated to a date.");
     }
@@ -46,6 +51,7 @@ public class PatientDeathDateIsValid extends ValidationRule<MqePatient> {
     if ("Y".equals(target.getDeathIndicator()) && this.common.isEmpty(deathDateString)) {
       issues.add(Detection.PatientDeathDateIsMissing.build((deathDateString), target));
     } else if (!this.common.isEmpty(deathDateString)) {
+      issues.add(Detection.PatientDeathDateIsPresent.build((deathDateString), target));
       if (!this.common.isValidDate(deathDateString)) {
         // Invalid date string.
         issues.add(Detection.PatientDeathDateIsInvalid.build((deathDateString), target));

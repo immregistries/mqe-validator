@@ -21,6 +21,7 @@ public class PatientCreationDateIsValid extends ValidationRule<MqePatient> {
       id.setImplementationDescription("Patient system entry date cannot be translated to a date.");
     }
     this.addRuleDetection(Detection.PatientSystemEntryDateIsMissing);
+    this.addRuleDetection(Detection.PatientSystemEntryDateIsPresent);
     this.addRuleDetection(Detection.PatientSystemEntryDateIsInTheFuture);
   }
 
@@ -32,6 +33,7 @@ public class PatientCreationDateIsValid extends ValidationRule<MqePatient> {
     if (target.getSystemEntryDateString() == null || target.getSystemEntryDateString().isEmpty()) {
       issues.add(Detection.PatientSystemEntryDateIsMissing.build(target));
     } else {
+      issues.add(Detection.PatientSystemEntryDateIsPresent.build(target));
       if (this.common.isValidDate(target.getSystemEntryDateString())) {
         DateTime systemEntryDate = this.common.parseDateTimeFrom(target.getSystemEntryDateString());
         if (systemEntryDate.isAfterNow()) {

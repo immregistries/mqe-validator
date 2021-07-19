@@ -15,13 +15,27 @@ public class NextOfKinNameIsValid extends ValidationRule<MqeNextOfKin> {
   public NextOfKinNameIsValid() {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinNameFirstIsMissing);
+      id.setImplementationDescription("Next of Kin First Name is not indicated");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinNameFirstIsPresent);
+      id.setImplementationDescription("Next of Kin First Name is indicated");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinNameLastIsMissing);
+      id.setImplementationDescription("Next of Kin Last Name is not indicated");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinNameLastIsPresent);
+      id.setImplementationDescription("Next of Kin Last Name is indicated");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinNameIsMissing);
       id.setImplementationDescription("No value found for both first and last name, no data sent, nothing to analyze. ");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinNameIsMissing);
+      id.setImplementationDescription("Value found for first and/or last name ");
     }
   }
 
@@ -37,12 +51,17 @@ public class NextOfKinNameIsValid extends ValidationRule<MqeNextOfKin> {
     if (this.common.isEmpty(first) && this.common.isEmpty(last)) {
       issues.add(Detection.NextOfKinNameIsMissing.build(first + " " + last, target));
     } else {
+      issues.add(Detection.NextOfKinNameIsPresent.build(first + " " + last, target));
       if (this.common.isEmpty(first)) {
         issues.add(Detection.NextOfKinNameFirstIsMissing.build((first), target));
+      } else {
+        issues.add(Detection.NextOfKinNameFirstIsPresent.build((first), target));
       }
 
       if (this.common.isEmpty(last)) {
         issues.add(Detection.NextOfKinNameLastIsMissing.build((last), target));
+      } else {
+        issues.add(Detection.NextOfKinNameLastIsPresent.build((last), target));
       }
     }
 

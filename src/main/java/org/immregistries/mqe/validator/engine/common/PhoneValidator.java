@@ -36,6 +36,7 @@ public enum PhoneValidator {
     List<ValidationReport> issues = new ArrayList<>();
 
     if (phone != null && StringUtils.isNotBlank(phone.getFormattedNumber())) {
+      issues.add(Detection.get(piPhone, DetectionType.PRESENT).build(meta));
       if (StringUtils.isBlank(phone.getAreaCode()) || StringUtils.isBlank(phone.getLocalNumber())) {
         Detection attr = Detection.get(piPhone, DetectionType.INCOMPLETE);
         if (attr != null) {

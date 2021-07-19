@@ -32,6 +32,10 @@ public class ObservationValueTypeIsValid extends ValidationRule<MqeVaccination> 
     }
     {
       ImplementationDetail id =
+          this.addRuleDetection(Detection.ObservationValueTypeIsPresent);
+    }
+    {
+      ImplementationDetail id =
           this.addRuleDetection(Detection.ObservationValueTypeIsUnrecognized);
       id.setImplementationDescription("Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
     }

@@ -25,6 +25,9 @@ public class PatientBirthDateIsValid extends ValidationRule<MqePatient> {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsMissing);
     }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthDateIsPresent);
+    }
   }
 
   @Override
@@ -37,9 +40,12 @@ public class PatientBirthDateIsValid extends ValidationRule<MqePatient> {
     if (this.common.isEmpty(birthDateString)) {
       issues.add(Detection.PatientBirthDateIsMissing.build((birthDateString), target));
       passed = false;
-    } else if (!this.common.isValidDate(birthDateString)) {
-      issues.add(Detection.PatientBirthDateIsInvalid.build((birthDateString), target));
-      passed = false;
+    } else {
+      issues.add(Detection.PatientBirthDateIsPresent.build((birthDateString), target));
+      if (!this.common.isValidDate(birthDateString)) {
+        issues.add(Detection.PatientBirthDateIsInvalid.build((birthDateString), target));
+        passed = false;
+      }
     }
 
     return buildResults(issues, passed);

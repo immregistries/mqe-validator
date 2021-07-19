@@ -22,6 +22,7 @@ public class PatientGenderIsValid extends ValidationRule<MqePatient> {
     this.addRuleDetection(Detection.PatientGenderIsDeprecated);
     this.addRuleDetection(Detection.PatientGenderIsInvalid);
     this.addRuleDetection(Detection.PatientGenderIsMissing);
+    this.addRuleDetection(Detection.PatientGenderIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientGenderIsUnrecognized);
       id.setImplementationDescription(

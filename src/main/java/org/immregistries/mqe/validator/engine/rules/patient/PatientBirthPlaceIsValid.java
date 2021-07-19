@@ -21,6 +21,9 @@ public class PatientBirthPlaceIsValid extends ValidationRule<MqePatient> {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthPlaceIsMissing);
     }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthPlaceIsPresent);
+    }
   }
 
   @Override
@@ -33,6 +36,8 @@ public class PatientBirthPlaceIsValid extends ValidationRule<MqePatient> {
 
     if (this.common.isEmpty(place)) {
       issues.add(Detection.PatientBirthPlaceIsMissing.build(target));
+    } else {
+      issues.add(Detection.PatientBirthPlaceIsPresent.build(target));
     }
 
     return buildResults(issues, passed);

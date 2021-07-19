@@ -15,8 +15,8 @@ public class PatientEmailIsPresent extends ValidationRule<MqePatient> {
 
   public PatientEmailIsPresent() {
     this.addRuleDetection(Detection.PatientEmailIsMissing);
+    this.addRuleDetection(Detection.PatientEmailIsPresent);
     this.addRuleDetection(Detection.PatientEmailIsInvalid);
-    this.addRuleDetection(Detection.PatientEmailIsMissing);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientEmailIsInvalid);
       id.setImplementationDescription(
@@ -34,6 +34,7 @@ public class PatientEmailIsPresent extends ValidationRule<MqePatient> {
     if (this.common.isEmpty(patientEmail)) {
       issues.add(Detection.PatientEmailIsMissing.build(target));
     } else {
+      issues.add(Detection.PatientEmailIsPresent.build(target));
       String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@"
           + "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
 

@@ -18,6 +18,10 @@ public class PatientExists extends ValidationRule<MqePatient> {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientObjectIsMissing);
       id.setImplementationDescription("Verifies that the patient object was created and patient detections can be executed");
     }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientObjectIsPresent);
+      id.setImplementationDescription("Verifies that the patient object was created and patient detections can be executed");
+    }
   }
 
   @Override
@@ -29,6 +33,8 @@ public class PatientExists extends ValidationRule<MqePatient> {
     if (target == null) {
       issues.add(Detection.PatientObjectIsMissing.build(target));
       passed = false;
+    } else {
+      issues.add(Detection.PatientObjectIsPresent.build(target));
     }
 
     return buildResults(issues, passed);

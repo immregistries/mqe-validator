@@ -25,9 +25,11 @@ public class PatientPhoneIsValid extends ValidationRule<MqePatient> {
           "Only validating North American Phone Numbers. Area code must be 3 valid digits (First digit can't be 0 or 1. Can't end with '11'). Local number must be 7 valid digits (First digit can't be 0 or 1. First 3 digits can't be '555'. 2nd and 3rd digits can't both be '1'.).");
     }
     this.addRuleDetection(Detection.PatientPhoneIsMissing);
+    this.addRuleDetection(Detection.PatientPhoneIsPresent);
     this.addRuleDetection(Detection.PatientPhoneTelUseCodeIsDeprecated);
     this.addRuleDetection(Detection.PatientPhoneTelUseCodeIsInvalid);
     this.addRuleDetection(Detection.PatientPhoneTelUseCodeIsMissing);
+    this.addRuleDetection(Detection.PatientPhoneTelUseCodeIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientPhoneTelUseCodeIsUnrecognized);
@@ -37,6 +39,7 @@ public class PatientPhoneIsValid extends ValidationRule<MqePatient> {
     this.addRuleDetection(Detection.PatientPhoneTelEquipCodeIsDeprecated);
     this.addRuleDetection(Detection.PatientPhoneTelEquipCodeIsInvalid);
     this.addRuleDetection(Detection.PatientPhoneTelEquipCodeIsMissing);
+    this.addRuleDetection(Detection.PatientPhoneTelEquipCodeIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.PatientPhoneTelEquipCodeIsUnrecognized);

@@ -29,6 +29,11 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinRelationshipIsMissing);
+      id.setImplementationDescription("Next of Kin Relationship is not indicated");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinRelationshipIsPresent);
+      id.setImplementationDescription("Next of Kin Relationship is indicated");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinRelationshipIsUnexpected);
@@ -51,6 +56,7 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
     String relationship = target.getRelationshipCode();
 
     if (StringUtils.isNotBlank(relationship)) {
+      issues.add(Detection.NextOfKinRelationshipIsPresent.build((relationship), target));
       if (!target.isResponsibleRelationship()) {
         if (target.isChildRelationship()) {
           // In most situations, an underage patient would not have a child, so this is unexpected

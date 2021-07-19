@@ -14,6 +14,7 @@ public class PatientRegistryIdIsPresent extends ValidationRule<MqePatient> {
 
   public PatientRegistryIdIsPresent() {
     this.addRuleDetection(Detection.PatientRegistryIdIsMissing);
+    this.addRuleDetection(Detection.PatientRegistryIdIsPresent);
   }
 
   @Override
@@ -22,6 +23,8 @@ public class PatientRegistryIdIsPresent extends ValidationRule<MqePatient> {
     String regNum = target.getIdRegistryNumber();
     if (StringUtils.isEmpty(regNum)) {
       issues.add(Detection.PatientRegistryIdIsMissing.build(target));
+    } else {
+      issues.add(Detection.PatientRegistryIdIsPresent.build(target));
     }
     boolean passed = issues.size() == 0;
     return buildResults(issues, passed);

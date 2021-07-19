@@ -7,6 +7,7 @@ import java.util.Set;
 import org.immregistries.mqe.core.util.DateUtility;
 import org.immregistries.mqe.validator.ValidatorProperties;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.DetectionType;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.codes.CodeRepository;
@@ -137,7 +138,7 @@ public abstract class ValidationRule<T> {
       return true;
     }
     for (ValidationReport vr : issues) {
-      if (!vr.getDetection().getDetectionType().getWording().equals("is present")) {
+      if (vr.getDetection().getDetectionType() != DetectionType.PRESENT) {
         return false;
       }
     }

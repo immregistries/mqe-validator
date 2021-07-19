@@ -46,7 +46,7 @@ public class ValidationReport implements Reportable, MqeValidationReport {
     this.hl7LocationList.add(meta.getMetaFieldInfo(field).getHl7Location());
     this.valueReceived = value;
   }
-
+  
   public MqeDetection getDetection() {
     return detection;
   }

@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import org.immregistries.mqe.hl7util.SeverityLevel;
+import org.immregistries.mqe.validator.detection.DetectionType;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.MessageValidator;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
@@ -59,11 +60,10 @@ public class PresentDetectionsTester {
     HashSet<String> missingDetectionsSet = new HashSet<String>();
     for (ValidationRuleResult vrr : list) {
       for (ValidationReport validationReport : vrr.getValidationDetections()) {
-        if (validationReport.getDetection().getDetectionType().getWording().equals("is present")) {
+        if (validationReport.getDetection().getDetectionType() == DetectionType.PRESENT) {
           //System.out.println(validationReport.getDetection() );
           presentDetectionsSet.add(validationReport.getDetection().toString());
-        } else if (validationReport.getDetection().getDetectionType().getWording()
-            .equals("is missing")) {
+        } else if (validationReport.getDetection().getDetectionType() == DetectionType.MISSING) {
           missingDetectionsSet.add(validationReport.getDetection().toString());
         }
       }

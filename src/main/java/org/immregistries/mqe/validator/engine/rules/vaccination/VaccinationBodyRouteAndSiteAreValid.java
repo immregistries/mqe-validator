@@ -57,7 +57,7 @@ public class VaccinationBodyRouteAndSiteAreValid extends ValidationRule<MqeVacci
     // TODO VaccinationBodyRouteIsInvalidForVaccineIndicated
     // TODO VaccinationBodySiteIsInvalidForVaccineIndicated
 
-    passed = (issues.size() == 0);
+    passed = verifyPassed(issues);
 
     return buildResults(issues, passed);
   }

@@ -44,7 +44,7 @@ public class PatientEmailIsPresent extends ValidationRule<MqePatient> {
       }
     }
 
-    passed = (issues.size() == 0);
+    passed = verifyPassed(issues);
     return buildResults(issues, passed);
   }
 

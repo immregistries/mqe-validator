@@ -46,7 +46,7 @@ public class VaccinationConfidentialityCodeIsValid extends ValidationRule<MqeVac
 
     issues.addAll(
         codr.handleCodeOrMissing(confCode, VxuField.VACCINATION_CONFIDENTIALITY_CODE, target));
-    passed = (issues.size() == 0);
+    passed = verifyPassed(issues);
 
     if ("R".equals(confCode) || "V".equals(confCode)) {
       issues.add(Detection.VaccinationConfidentialityCodeIsValuedAsRestricted.build(target));

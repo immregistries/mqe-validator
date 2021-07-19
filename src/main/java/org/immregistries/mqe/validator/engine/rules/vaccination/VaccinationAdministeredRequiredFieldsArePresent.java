@@ -2,12 +2,14 @@ package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.joda.time.DateTime;
 
 public class VaccinationAdministeredRequiredFieldsArePresent
     extends ValidationRule<MqeVaccination> {
@@ -22,6 +24,7 @@ public class VaccinationAdministeredRequiredFieldsArePresent
     this.addRuleDetection(Detection.VaccinationFacilityNameIsPresent);
     this.addRuleDetection(Detection.VaccinationLotExpirationDateIsMissing);
     this.addRuleDetection(Detection.VaccinationLotExpirationDateIsPresent);
+    this.addRuleDetection(Detection.VaccinationLotExpirationDateIsInvalid);
   }
 
   @Override
@@ -40,14 +43,18 @@ public class VaccinationAdministeredRequiredFieldsArePresent
     } else {
       issues.add(Detection.VaccinationFacilityNameIsPresent.build(target));
     }
-
-    if (target.getExpirationDate() == null) {
+    
+    String dateString = target.getExpirationDateString();
+    if (StringUtils.isEmpty(dateString)) {
       issues.add(Detection.VaccinationLotExpirationDateIsMissing.build(target));
     } else {
       issues.add(Detection.VaccinationLotExpirationDateIsPresent.build(target));
+      if (!this.common.isValidDate(dateString)) {
+        issues.add(Detection.VaccinationLotExpirationDateIsInvalid.build((dateString), target));
+      }
     }
 
-    passed = (issues.size() == 0);
+    passed = verifyPassed(issues);
 
     return buildResults(issues, passed);
 

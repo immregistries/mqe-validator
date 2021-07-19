@@ -76,8 +76,7 @@ public class VaccinationAdminDateIsValid extends ValidationRule<MqeVaccination> 
       passed = false;
 
       return buildResults(issues, passed);
-    }
-    else {
+    } else {
       issues.add(Detection.VaccinationAdminDateIsPresent.build(target));
     }
 

@@ -38,13 +38,10 @@ public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<M
     boolean passed = false;
 
     String financialEligibilityCode = target.getFinancialEligibilityCode();
+    issues.addAll(codr.handleCodeOrMissing(financialEligibilityCode,
+        VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE, target));
 
-    if (target.isAdministered()) {
-      issues.addAll(codr.handleCodeOrMissing(financialEligibilityCode,
-          VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE, target));
-    }
-
-    passed = (issues.size() == 0);
+    passed = verifyPassed(issues);
     return buildResults(issues, passed);
 
   }

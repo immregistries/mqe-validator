@@ -50,7 +50,7 @@ public class VaccinationMfrIsValid extends ValidationRule<MqeVaccination> {
     if (target.isAdministered()) {
       issues.addAll(codr.handleCode(target.getManufacturer(),
           VxuField.VACCINATION_MANUFACTURER_CODE, target));
-      passed = (issues.size() == 0);
+      passed = verifyPassed(issues);
     }
 
     Code vaccineMvx = repo.getMfrForCode(target.getManufacturerCode());

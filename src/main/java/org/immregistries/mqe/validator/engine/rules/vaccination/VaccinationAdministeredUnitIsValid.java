@@ -41,7 +41,7 @@ public class VaccinationAdministeredUnitIsValid extends ValidationRule<MqeVaccin
     issues.addAll(codr.handleCodeOrMissing(target.getAmountUnit(),
         VxuField.VACCINATION_ADMINISTERED_UNIT, target));
 
-    passed = (issues.size() == 0);
+    passed = verifyPassed(issues);
     return buildResults(issues, passed);
 
   }

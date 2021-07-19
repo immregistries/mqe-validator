@@ -42,7 +42,7 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<MqeVacci
     issues.addAll(this.codr.handleCodeOrMissing(target.getInformationSource(),
         VxuField.VACCINATION_INFORMATION_SOURCE, target));
 
-    passed = (issues.size() == 0);
+    passed = verifyPassed(issues);
 
     switch (sourceCd) {
       case MqeVaccination.INFO_SOURCE_ADMIN:

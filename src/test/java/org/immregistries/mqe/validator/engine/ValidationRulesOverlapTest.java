@@ -16,7 +16,7 @@ import org.junit.Test;
 public class ValidationRulesOverlapTest {
 	
 	  // Checks for duplicate detections
-	  public Map<Detection, List<String>> hasDuplicateDetection(List<ValidationRule> rules) {
+	  public Map<Detection, List<String>> hasDuplicateDetection(Set<ValidationRule> rules) {
 		  Map<Detection, String> detections = new HashMap<Detection, String>();
 		  Map<Detection, List<String>> duplicates = new HashMap<Detection, List<String>>();
 		  boolean hasDuplicates = false;

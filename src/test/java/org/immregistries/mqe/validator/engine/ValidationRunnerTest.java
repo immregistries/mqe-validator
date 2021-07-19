@@ -2,7 +2,9 @@ package org.immregistries.mqe.validator.engine;
 
 import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.immregistries.mqe.validator.TestMessageGenerator;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientBirthDateIsValid;
@@ -24,11 +26,11 @@ public class ValidationRunnerTest {
   @Test
   public void validatePatient() {
 
-    List<ValidationRule> testRules = Arrays.asList(new ValidationRule[]{
-        new PatientBirthDateIsValid(),
-        new PatientExists(),
-        new PatientIsUnderage()
-    });
+    Set<ValidationRule> testRules = new HashSet<>(
+        Arrays.asList(new PatientBirthDateIsValid(),
+            new PatientExists(),
+            new PatientIsUnderage())
+    );
 
     MqeMessageReceived m = getFreshMessage();
     m.getPatient().setBirthDateString("20160101");

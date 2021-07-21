@@ -7,11 +7,14 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageHeader;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
+import org.immregistries.mqe.vxu.TargetType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@ValidationRuleEntry(TargetType.MessageHeader)
 public class MessageVersionIsValid extends ValidationRule<MqeMessageHeader> {
 
   private static final Logger logger = LoggerFactory.getLogger(MessageVersionIsValid.class);

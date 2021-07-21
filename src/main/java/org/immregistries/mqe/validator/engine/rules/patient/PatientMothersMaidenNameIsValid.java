@@ -9,9 +9,12 @@ import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.validator.engine.codes.KnowNameList;
 import org.immregistries.mqe.validator.engine.codes.KnownName.NameType;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.TargetType;
 
+@ValidationRuleEntry(TargetType.Patient)
 public class PatientMothersMaidenNameIsValid extends ValidationRule<MqePatient> {
 
   private KnowNameList listr = KnowNameList.INSTANCE;

@@ -14,13 +14,8 @@ public enum MessageValidator {
   private final ValidationUtility util = ValidationUtility.INSTANCE;
   private final RulePairBuilder builder = RulePairBuilder.INSTANCE;
 
-  private Map<MqeCode, Boolean> detectionExclusionInclusion = new HashMap<>();
-
-  public void configure(Boolean includeOrExclude, List<MqeCode> code) {
-    //here we override stuff, based on some inputs that we haven't defined yet.
-
-
-
+  public void configure(Set<MqeCode> codes) {
+    builder.setActiveDetections(codes);
   }
 
   /**

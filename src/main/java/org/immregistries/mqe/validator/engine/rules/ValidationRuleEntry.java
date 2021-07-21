@@ -9,5 +9,7 @@ import org.immregistries.mqe.vxu.TargetType;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidationRuleEntry {
-    TargetType value ( );
+    TargetType value();
+    // If active is false the rule will not be read
+    boolean    active() default true;
 }

@@ -10,14 +10,13 @@ import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.validator.engine.common.AddressFields;
 import org.immregistries.mqe.validator.engine.common.AddressValidator;
-import org.immregistries.mqe.vxu.MqeAddress;
-import org.immregistries.mqe.vxu.MqeMessageReceived;
-import org.immregistries.mqe.vxu.MqeNextOfKin;
-import org.immregistries.mqe.vxu.VxuField;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
+import org.immregistries.mqe.vxu.*;
 
 /**
  * Created by Allison on 5/9/2017.
  */
+@ValidationRuleEntry(TargetType.NextOfKin)
 public class NextOfKinGuardianAddressIsValid extends ValidationRule<MqeNextOfKin> {
 
   private AddressFields fields = new AddressFields(VxuField.PATIENT_GUARDIAN_ADDRESS,

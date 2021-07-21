@@ -7,13 +7,17 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.hl7.Observation;
 
 /**
  * Currently only checks if the date is present or missing. Created by Allison on 5/9/2017.
  */
+
+@ValidationRuleEntry(TargetType.Vaccination)
 public class ObservationDateIsValid extends ValidationRule<MqeVaccination> {
 
   public ObservationDateIsValid() {

@@ -30,6 +30,7 @@ public class VaccinationAdminCodeCptIsValid extends ValidationRule<MqeVaccinatio
           "Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
     }
     this.addRuleDetection(Detection.VaccinationCptCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationCptCodeIsPresent);
   }
 
   @Override
@@ -41,7 +42,7 @@ public class VaccinationAdminCodeCptIsValid extends ValidationRule<MqeVaccinatio
 
     issues.addAll(codr.handleCode(cpt, VxuField.VACCINATION_CPT_CODE, target));
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

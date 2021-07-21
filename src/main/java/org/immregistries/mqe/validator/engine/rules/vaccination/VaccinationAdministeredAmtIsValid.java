@@ -29,6 +29,12 @@ public class VaccinationAdministeredAmtIsValid extends ValidationRule<MqeVaccina
     }
     {
       ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationAdministeredAmountIsPresent);
+      id.setImplementationDescription(
+          "Vaccination Administered Amount is indicated and not equal to 999.");
+    }
+    {
+      ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdministeredAmountIsValuedAsUnknown);
       id.setImplementationDescription(
           "Vaccination Administered Amount is missing or equal to 999.");
@@ -59,6 +65,7 @@ public class VaccinationAdministeredAmtIsValid extends ValidationRule<MqeVaccina
         issues.add(Detection.VaccinationAdministeredAmountIsMissing.build(target));
         issues.add(Detection.VaccinationAdministeredAmountIsValuedAsUnknown.build(target));
       } else {
+        issues.add(Detection.VaccinationAdministeredAmountIsPresent.build(target));
         try {
           float amount = Float.parseFloat(target.getAmount());
           if (amount == 0) {

@@ -66,7 +66,7 @@ public class VaccinationCvxUseIsValid extends ValidationRule<MqeVaccination> {
         issues.addAll(codr.handleUseDate(vaccineCode, target.getAdminDateString(),
             VxuField.VACCINATION_ADMIN_DATE, target));
       }
-      passed = (issues.size() == 0);
+      passed = verifyNoIssuesExceptPresent(issues);
     }
 
     return buildResults(issues, passed);

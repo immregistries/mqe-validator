@@ -41,7 +41,7 @@ public class NextOfKinPhoneIsValid extends ValidationRule<MqeNextOfKin> {
     issues.addAll(
         phoneValidator.validatePhone(target.getPhone(), VxuField.NEXT_OF_KIN_PHONE, target));
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

@@ -120,7 +120,7 @@ public class NextOfKinGuardianAddressIsValid extends ValidationRule<MqeNextOfKin
           VxuField.PATIENT_GUARDIAN_ADDRESS_TYPE, target));
     }
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

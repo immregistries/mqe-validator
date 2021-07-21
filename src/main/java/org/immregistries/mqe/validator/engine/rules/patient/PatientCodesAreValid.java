@@ -89,7 +89,7 @@ public class PatientCodesAreValid extends ValidationRule<MqePatient> {
         VxuField.PATIENT_VFC_STATUS, target));
 
     // mark passed if there's no issues
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
     return buildResults(issues, passed);
   }
 

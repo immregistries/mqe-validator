@@ -66,7 +66,7 @@ public enum AddressValidator {
       if (common.isEmpty(a.getCity())) {
         issues.addAll(buildMissing(fields.getCityField(), meta));
       } else {
-        
+        issues.addAll(buildPresent(fields.getCityField(), meta));
       }
       if (common.isEmpty(a.getStateCode())) {
         issues.addAll(buildMissing(fields.getStateField(), meta));

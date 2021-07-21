@@ -25,6 +25,7 @@ public class VaccinationFundingSourceCodeIsValid extends ValidationRule<MqeVacci
     this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsDeprecated);
     this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsInvalid);
     this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsUnrecognized);
@@ -41,12 +42,10 @@ public class VaccinationFundingSourceCodeIsValid extends ValidationRule<MqeVacci
 
     String fundingSourceCode = target.getFundingSourceCode();
 
-    if (target.isAdministered()) {
-      issues.addAll(codr.handleCodeOrMissing(fundingSourceCode,
-          VxuField.VACCINATION_FUNDING_SOURCE_CODE, target));
-    }
+    issues.addAll(codr.handleCodeOrMissing(fundingSourceCode,
+        VxuField.VACCINATION_FUNDING_SOURCE_CODE, target));
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
     return buildResults(issues, passed);
 
   }

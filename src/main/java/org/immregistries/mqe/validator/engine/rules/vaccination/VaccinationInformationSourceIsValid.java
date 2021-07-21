@@ -24,6 +24,7 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<MqeVacci
     this.addRuleDetection(Detection.VaccinationInformationSourceIsDeprecated);
     this.addRuleDetection(Detection.VaccinationInformationSourceIsInvalid);
     this.addRuleDetection(Detection.VaccinationInformationSourceIsMissing);
+    this.addRuleDetection(Detection.VaccinationInformationSourceIsPresent);
     this.addRuleDetection(Detection.VaccinationInformationSourceIsUnrecognized);
     this.addRuleDetection(Detection.VaccinationInformationSourceIsValuedAsAdministered);
     this.addRuleDetection(Detection.VaccinationInformationSourceIsValuedAsHistorical);
@@ -44,7 +45,7 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<MqeVacci
     issues.addAll(this.codr.handleCodeOrMissing(target.getInformationSource(),
         VxuField.VACCINATION_INFORMATION_SOURCE, target));
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     switch (sourceCd) {
       case MqeVaccination.INFO_SOURCE_ADMIN:

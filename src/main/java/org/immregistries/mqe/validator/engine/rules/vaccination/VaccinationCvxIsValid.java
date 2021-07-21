@@ -20,6 +20,7 @@ public class VaccinationCvxIsValid extends ValidationRule<MqeVaccination> {
     this.addRuleDetection(Detection.VaccinationCvxCodeIsDeprecated);
     this.addRuleDetection(Detection.VaccinationCvxCodeIsInvalid);
     this.addRuleDetection(Detection.VaccinationCvxCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationCvxCodeIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationCvxCodeIsUnrecognized);
       id.setImplementationDescription(

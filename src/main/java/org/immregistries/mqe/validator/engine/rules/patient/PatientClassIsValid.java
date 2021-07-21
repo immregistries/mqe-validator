@@ -37,7 +37,7 @@ public class PatientClassIsValid extends ValidationRule<MqePatient> {
     issues
         .addAll(codr.handleCodeOrMissing(target.getPatientClass(), VxuField.PATIENT_CLASS, target));
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

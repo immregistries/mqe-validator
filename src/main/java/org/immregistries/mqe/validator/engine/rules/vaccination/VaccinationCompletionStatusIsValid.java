@@ -20,6 +20,7 @@ public class VaccinationCompletionStatusIsValid extends ValidationRule<MqeVaccin
     this.addRuleDetection(Detection.VaccinationCompletionStatusIsDeprecated);
     this.addRuleDetection(Detection.VaccinationCompletionStatusIsInvalid);
     this.addRuleDetection(Detection.VaccinationCompletionStatusIsMissing);
+    this.addRuleDetection(Detection.VaccinationCompletionStatusIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationCompletionStatusIsUnrecognized);

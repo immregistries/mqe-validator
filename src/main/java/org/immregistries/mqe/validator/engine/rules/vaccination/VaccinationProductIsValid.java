@@ -45,6 +45,12 @@ public class VaccinationProductIsValid extends ValidationRule<MqeVaccination> {
       id.setImplementationDescription(
               "Vaccination product is missing. ");
     }
+    {
+      ImplementationDetail id =
+              this.addRuleDetection(Detection.VaccinationProductIsPresent);
+      id.setImplementationDescription(
+              "Vaccination product is not missing. ");
+    }
     
   }
 
@@ -60,6 +66,7 @@ public class VaccinationProductIsValid extends ValidationRule<MqeVaccination> {
       issues.addAll(codr.handleCode(productCode, VxuField.VACCINATION_PRODUCT, product, target));
 
       if (productCode != null) {
+        issues.add(Detection.VaccinationProductIsPresent.build(target));
         UseDate ud = productCode.getUseDate();
 
         if (ud != null && target.getAdminDate() != null) {
@@ -93,7 +100,7 @@ public class VaccinationProductIsValid extends ValidationRule<MqeVaccination> {
       issues.add(Detection.VaccinationProductIsMissing.build(target));
     }
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

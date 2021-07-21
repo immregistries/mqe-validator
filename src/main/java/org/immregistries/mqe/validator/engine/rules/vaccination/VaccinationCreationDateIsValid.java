@@ -28,6 +28,7 @@ public class VaccinationCreationDateIsValid extends ValidationRule<MqeVaccinatio
           "Vaccination System Entry date cannot be translated to a date.");
     }
     this.addRuleDetection(Detection.VaccinationSystemEntryDateIsMissing);
+    this.addRuleDetection(Detection.VaccinationSystemEntryDateIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationSystemEntryDateIsInTheFuture);
@@ -45,6 +46,7 @@ public class VaccinationCreationDateIsValid extends ValidationRule<MqeVaccinatio
     if (target.getSystemEntryDateString() == null || target.getSystemEntryDateString().isEmpty()) {
       issues.add(Detection.VaccinationSystemEntryDateIsMissing.build(target));
     } else {
+      issues.add(Detection.VaccinationSystemEntryDateIsPresent.build(target));
       if (this.common.isValidDate(target.getSystemEntryDateString())) {
         DateTime systemEntryDate = this.common.parseDateTimeFrom(target.getSystemEntryDateString());
 

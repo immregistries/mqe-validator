@@ -26,6 +26,7 @@ public class VaccinationAdministeredUnitIsValid extends ValidationRule<MqeVaccin
     this.addRuleDetection(Detection.VaccinationAdministeredUnitIsDeprecated);
     this.addRuleDetection(Detection.VaccinationAdministeredUnitIsInvalid);
     this.addRuleDetection(Detection.VaccinationAdministeredUnitIsMissing);
+    this.addRuleDetection(Detection.VaccinationAdministeredUnitIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdministeredUnitIsUnrecognized);
@@ -43,7 +44,7 @@ public class VaccinationAdministeredUnitIsValid extends ValidationRule<MqeVaccin
     issues.addAll(codr.handleCodeOrMissing(target.getAmountUnit(),
         VxuField.VACCINATION_ADMINISTERED_UNIT, target));
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
     return buildResults(issues, passed);
 
   }

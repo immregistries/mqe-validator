@@ -123,7 +123,7 @@ public class VaccinationAdminCodeIsValid extends ValidationRule<MqeVaccination> 
           issues.add(Detection.VaccinationAdminCodeIsValuedAsUnknown.build(adminValue, target));
           break;
       }
-      passed = (issues.size() == 0);
+      passed = verifyNoIssuesExceptPresent(issues);
     } else {
       String bestCode = useNdc ? ndcCode : cvxCode;
       issues.add(Detection.VaccinationAdminCodeIsUnrecognized.build(bestCode, target));

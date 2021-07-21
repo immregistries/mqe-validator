@@ -21,6 +21,7 @@ public class VaccinationActionCodeIsValid extends ValidationRule<MqeVaccination>
     this.addRuleDetection(Detection.VaccinationActionCodeIsDeprecated);
     this.addRuleDetection(Detection.VaccinationActionCodeIsInvalid);
     this.addRuleDetection(Detection.VaccinationActionCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationActionCodeIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationActionCodeIsUnrecognized);

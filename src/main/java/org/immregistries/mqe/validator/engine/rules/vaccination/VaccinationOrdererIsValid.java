@@ -26,6 +26,7 @@ public class VaccinationOrdererIsValid extends ValidationRule<MqeVaccination> {
     this.addRuleDetection(Detection.VaccinationOrderedByIsDeprecated);
     this.addRuleDetection(Detection.VaccinationOrderedByIsInvalid);
     this.addRuleDetection(Detection.VaccinationOrderedByIsMissing);
+    this.addRuleDetection(Detection.VaccinationOrderedByIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationOrderedByIsUnrecognized);
       id.setImplementationDescription(
@@ -34,6 +35,7 @@ public class VaccinationOrdererIsValid extends ValidationRule<MqeVaccination> {
     this.addRuleDetection(Detection.VaccinationRecordedByIsDeprecated);
     this.addRuleDetection(Detection.VaccinationRecordedByIsInvalid);
     this.addRuleDetection(Detection.VaccinationRecordedByIsMissing);
+    this.addRuleDetection(Detection.VaccinationRecordedByIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationRecordedByIsUnrecognized);
@@ -67,7 +69,7 @@ public class VaccinationOrdererIsValid extends ValidationRule<MqeVaccination> {
     issues.addAll(codr.handleCode(recorderNum, VxuField.VACCINATION_RECORDED_BY, target));
 
     // mark passed if there's no issues.
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

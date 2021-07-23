@@ -10,11 +10,14 @@ import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.validator.engine.common.AddressFields;
 import org.immregistries.mqe.validator.engine.common.AddressValidator;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeAddress;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
+@ValidationRuleEntry(TargetType.Patient)
 public class PatientAddressIsValid extends ValidationRule<MqePatient> {
 
   private AddressFields fields = new AddressFields(VxuField.PATIENT_ADDRESS,

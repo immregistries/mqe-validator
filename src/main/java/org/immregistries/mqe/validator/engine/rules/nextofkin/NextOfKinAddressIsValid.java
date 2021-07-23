@@ -10,11 +10,10 @@ import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.validator.engine.common.AddressFields;
 import org.immregistries.mqe.validator.engine.common.AddressValidator;
-import org.immregistries.mqe.vxu.MqeAddress;
-import org.immregistries.mqe.vxu.MqeMessageReceived;
-import org.immregistries.mqe.vxu.MqeNextOfKin;
-import org.immregistries.mqe.vxu.VxuField;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
+import org.immregistries.mqe.vxu.*;
 
+@ValidationRuleEntry(TargetType.NextOfKin)
 public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
 
   private AddressFields fields = new AddressFields(VxuField.NEXT_OF_KIN_ADDRESS,

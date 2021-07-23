@@ -827,9 +827,9 @@ public enum Detection implements MqeDetection {
 
       map.put(detection.getDetectionType(), detection);
 
-      errorCodeAttributeMap.put(detection.mqeMqeCode, detection);
+      errorCodeAttributeMap.put(detection.mqeCode, detection);
       
-      defaultDetectionsMap.put(detection.mqeMqeCode, detection.severity);
+      defaultDetectionsMap.put(detection.mqeCode, detection.severity);
 
     }
   }
@@ -840,16 +840,16 @@ public enum Detection implements MqeDetection {
   // public static final String CHANGE_PRIORITY_MUST = "Must";
   // public static final String CHANGE_PRIORITY_SHOULD = "Should";
 
-  private DetectionType detectionType;
-  private VxuField fieldRef;
-  private SeverityLevel severity;
-  private MqeCode mqeMqeCode;
+  public final DetectionType detectionType;
+  public final VxuField fieldRef;
+  private       SeverityLevel severity;
+  public final MqeCode mqeCode;
 
   Detection(VxuField fieldRef, DetectionType type, SeverityLevel severity, MqeCode mqeMqeCode) {
     this.detectionType = type;
     this.fieldRef = fieldRef;
     this.severity = severity;
-    this.mqeMqeCode = mqeMqeCode;
+    this.mqeCode = mqeMqeCode;
   }
 
   public ApplicationErrorCode getApplicationErrorCode() {
@@ -921,11 +921,11 @@ public enum Detection implements MqeDetection {
   }
 
   public String getMqeMqeCode() {
-    return mqeMqeCode.toString();
+    return mqeCode.toString();
   }
   
   public MqeCode getMqeCodeObject() {
-	  return mqeMqeCode;
+	  return mqeCode;
   }
 
   public AckERRCode getHl7ErrorCode() {

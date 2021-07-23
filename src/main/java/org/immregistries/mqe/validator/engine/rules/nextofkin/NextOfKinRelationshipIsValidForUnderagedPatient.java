@@ -8,11 +8,14 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientIsUnderage;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeNextOfKin;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.code.NokRelationship;
 
+@ValidationRuleEntry(TargetType.NextOfKin)
 public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationRule<MqeNextOfKin> {
 
   @Override

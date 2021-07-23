@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.immregistries.mqe.core.util.DateUtility;
+import org.immregistries.mqe.util.validation.MqeValidatedObject;
 import org.immregistries.mqe.validator.ValidatorProperties;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.DetectionType;
@@ -23,7 +24,7 @@ import org.slf4j.LoggerFactory;
  * @author Josh
  */
 @SuppressWarnings("rawtypes")
-public abstract class ValidationRule<T> {
+public abstract class ValidationRule<T extends MqeValidatedObject> {
 
   protected static final Logger LOGGER = LoggerFactory.getLogger(ValidationRule.class);
   /**

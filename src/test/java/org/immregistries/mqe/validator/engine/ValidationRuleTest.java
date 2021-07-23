@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -123,11 +124,9 @@ public class ValidationRuleTest {
   @Test
   public void validatePatient() {
 
-    List<ValidationRule> testRules = Arrays.asList(new ValidationRule[]{
-        new PatientBirthDateIsValid(),
+    Set<ValidationRule> testRules = new HashSet<>(Arrays.asList(new PatientBirthDateIsValid(),
         new PatientExists(),
-        new PatientIsUnderage()
-    });
+        new PatientIsUnderage()));
 
     MqeMessageReceived m = getFreshMessage();
     m.getPatient().setBirthDateString("20160101");
@@ -163,7 +162,7 @@ public class ValidationRuleTest {
    */
   @Test
   public void AllPatientRules() {
-    List<ValidationRule> patientRules = ValidationRuleEntityLists.PATIENT_RULES.getRules();
+    Set<ValidationRule> patientRules = ValidationRuleEntityLists.PATIENT_RULES.getRules();
 
     Map<Detection, String> expectedMissingDetections = new HashMap<>();
     //then get the list of everything that can be raised, and pick out the types that are MISSING.
@@ -248,7 +247,7 @@ public class ValidationRuleTest {
   @Test
   public void vaccinationRules() throws Exception {
     MqeMessageReceived mr = getFreshMessage();
-    List<ValidationRule> vv = ValidationRuleEntityLists.VACCINATION_RULES.getRules();
+    Set<ValidationRule> vv = ValidationRuleEntityLists.VACCINATION_RULES.getRules();
     for (ValidationRule<MqeVaccination> vr : vv) {
       for (MqeVaccination v : mr.getVaccinations()) {
         List<ValidationReport> issues = vr.executeRule(v, mr).getValidationDetections();

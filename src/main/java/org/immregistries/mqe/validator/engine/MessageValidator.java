@@ -3,6 +3,7 @@ package org.immregistries.mqe.validator.engine;
 import java.util.*;
 
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.MqeCode;
 import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntityLists;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 
@@ -12,6 +13,10 @@ public enum MessageValidator {
   private final ValidationRunner runner = ValidationRunner.INSTANCE;
   private final ValidationUtility util = ValidationUtility.INSTANCE;
   private final RulePairBuilder builder = RulePairBuilder.INSTANCE;
+
+  public void configure(Set<MqeCode> codes) {
+    builder.setActiveDetections(codes);
+  }
 
   /**
    * The driving method for executing the whole set of validations for an entire message.
@@ -113,6 +118,8 @@ public enum MessageValidator {
             r = (ValidationRule)var1.next();
             active.addAll(r.getRuleDetections());
         }
+
+        //Filter out detections that aren't set as "active" in the configuration file (that we make up)
 
         return active;
     }

@@ -52,6 +52,10 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
       id.setImplementationDescription("Patient Address street is not indicated");
     }
     {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressStreetIsPresent);
+      id.setImplementationDescription("Patient Address street is indicated");
+    }
+    {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressCityIsMissing);
     }
     {
@@ -150,7 +154,7 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
       issues.add(Detection.PatientAddressIsMissing.build(target));
     }
 
-    passed = issues.size() == 0;
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

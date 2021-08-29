@@ -54,7 +54,7 @@ public class ValidationRuleTest {
 
     List<ValidationReport> issues = vr.executeRule(p, mr).getValidationDetections();
 
-    assertEquals("should be zero issues", 0, issues.size());
+    assertEquals("should be just one issue for birthdate present.", 1, issues.size());
 
     p.setBirthDateString("");
     issues = vr.executeRule(p, mr).getValidationDetections();
@@ -111,6 +111,7 @@ public class ValidationRuleTest {
 
     assertEquals("PatientBirthDateIsValid deps should NOW be met", true, dependenciesMet);
 
+    passed.add(PatientBirthDateIsValid.class);
     dependenciesMet = pu.dependenciesAreMet(passed);
 
     assertEquals("PatientIsUnderage should be able to run now", true, dependenciesMet);
@@ -228,19 +229,29 @@ public class ValidationRuleTest {
     excludedCount++;
 //          PatientDeathDateIsMissing (only raised if a death flag is present)
     excludedCount++;
+    //          PatientDeathIndicatorIsMissing (only raised if a death date is present)
+    excludedCount++;
 //          PatientAddressTypeIsMissing (can't be missing if the whole address is missing)
     excludedCount++;
-//          PatientPhoneTelUseCodeIsMissing (the whole phone is missing, so it doesn't check this)
-    excludedCount++;
 //          PatientPhoneTelEquipCodeIsMissing (the whole phone is missing so it doesn't check this)
-    excludedCount++;
-//          PatientBirthOrderIsMissing (this won't be missing unless there's a birth order)
     excludedCount++;
 //          PatientObjectIsMissing (we have to have an object to run these tests)
     excludedCount++;
 
+    int extraCount = 0;
+    // We expect PatientObjectIsPresent because MqePatient is not Null
+    extraCount++;
+    // We expect PatientAddressIsPresent because MqePatientAddress is not Null
+    extraCount++;
+    // We expect PatientGuardianAddressIsPresent because MqePatientAddress is not Null
+    extraCount++;
+    // We expect PatientCreationIsOnTime because DOB and Entry Time are both null, in normal circumstances the rule will not run due to dependencies
+    extraCount++;
+    // We expect PatientNameTypeCodeIsNotValuedLegal because default values is "" which is different than L
+    extraCount++;
+
     assertEquals("should be some issues",
-        expectedMissingDetections.size() - excludedCount,
+        expectedMissingDetections.size() - excludedCount + extraCount,
         validationReports.size());
   }
 

@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.text.SimpleDateFormat;
+
+import com.google.common.base.Strings;
+import org.apache.commons.lang3.StringUtils;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
@@ -46,12 +49,17 @@ public class PatientBirthDateIsValidTest {
       passedExpected = false;
       expectedDetectionCount = 1;
     }
+    if(!StringUtils.isBlank(date)) {
+      // Is present
+      expectedDetectionCount++;
+    }
     ValidationRuleResult r = rule.executeRule(p, mr);
     if (!passedExpected) {
       assertFalse(r.isRulePassed());
     } else {
       assertTrue(r.isRulePassed());
     }
+    System.out.println(r.getValidationDetections());
     assertEquals("Date[" + p.getBirthDateString()+ "]", expectedDetectionCount,
         r.getValidationDetections().size());
 

@@ -6,6 +6,7 @@ import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.MqeCode;
 import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntityLists;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
+import org.immregistries.mqe.vxu.TargetType;
 
 public enum MessageValidator {
   INSTANCE;
@@ -79,13 +80,12 @@ public enum MessageValidator {
 	}
   
 	public List<ValidationRuleResult> validateMessageNIST(MqeMessageReceived m) {
-		
-		//first validate the high order elements of the message: 
+		//first validate the high order elements of the message
 		List<ValidationRuleResult> headerAndPatientResults = validatePatient(m);
 		//Generate a list of passed classes from the results: 
 		List<Class> headerAndPatientPassed = util.getPassedFromResults(headerAndPatientResults);
 		
-		//Then validate the list items.  The resons they are treated separately is desribed elsewhere.  
+		//Then validate the list items.  The reasons they are treated separately is described elsewhere.
 		List<ValidationRuleResult> listEntityResults = validateListItems(m, headerAndPatientPassed);
 		//Then add them all together.
 		List<ValidationRuleResult> validationResults = new ArrayList<ValidationRuleResult>();
@@ -95,33 +95,5 @@ public enum MessageValidator {
 		return validationResults;
 	}
 
-    public static Set<Detection> activeDetections() {
-        Set<Detection> active = new HashSet();
-        Iterator var1 = ValidationRuleEntityLists.PATIENT_RULES.getRules().iterator();
-
-        ValidationRule r;
-        while(var1.hasNext()) {
-            r = (ValidationRule)var1.next();
-            active.addAll(r.getRuleDetections());
-        }
-
-        var1 = ValidationRuleEntityLists.NEXT_OF_KIN_RULES.getRules().iterator();
-
-        while(var1.hasNext()) {
-            r = (ValidationRule)var1.next();
-            active.addAll(r.getRuleDetections());
-        }
-
-        var1 = ValidationRuleEntityLists.VACCINATION_RULES.getRules().iterator();
-
-        while(var1.hasNext()) {
-            r = (ValidationRule)var1.next();
-            active.addAll(r.getRuleDetections());
-        }
-
-        //Filter out detections that aren't set as "active" in the configuration file (that we make up)
-
-        return active;
-    }
 
 }

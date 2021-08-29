@@ -42,6 +42,7 @@ public class RulePairBuilderTest {
     Reflections reflections = new Reflections(new ConfigurationBuilder()
             .setScanners(new SubTypesScanner(false /* don't exclude Object.class */), new ResourcesScanner())
             .setUrls(ClasspathHelper.forClassLoader(classLoadersList.toArray(new ClassLoader[0])))
+            .addUrls(ClasspathHelper.forClass(ValidationRule.class))
             .filterInputsBy(new FilterBuilder().include(FilterBuilder.prefix(PACKAGE))));
 
     Set<Class<? extends ValidationRule>> allPackageRules = reflections.getSubTypesOf(ValidationRule.class);

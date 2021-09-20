@@ -37,8 +37,8 @@ public class NextOfKinNameIsValid extends ValidationRule<MqeNextOfKin> {
       id.setImplementationDescription("No value found for both first and last name, no data sent, nothing to analyze. ");
     }
     {
-      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinNameIsMissing);
-      id.setImplementationDescription("Value found for first and/or last name ");
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinNameIsPresent);
+      id.setImplementationDescription("Value not found for first and last name ");
     }
   }
 

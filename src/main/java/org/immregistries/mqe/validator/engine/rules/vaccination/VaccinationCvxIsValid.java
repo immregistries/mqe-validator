@@ -34,7 +34,7 @@ public class VaccinationCvxIsValid extends ValidationRule<MqeVaccination> {
         .handleCodeOrMissing(target.getAdminCvxCode(), VxuField.VACCINATION_CVX_CODE, target));
     LOGGER.info("issues: " + issues);
 
-    boolean passed = issues.isEmpty();
+    boolean passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

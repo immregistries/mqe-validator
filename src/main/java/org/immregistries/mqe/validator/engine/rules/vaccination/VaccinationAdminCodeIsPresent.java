@@ -39,7 +39,7 @@ public class VaccinationAdminCodeIsPresent extends ValidationRule<MqeVaccination
     }
     LOGGER.info("issues: " + issues);
 
-    boolean passed = issues.isEmpty();
+    boolean passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

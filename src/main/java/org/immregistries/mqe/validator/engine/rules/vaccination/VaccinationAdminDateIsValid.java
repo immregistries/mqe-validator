@@ -7,15 +7,19 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationAdminDateIsValid extends ValidationRule<MqeVaccination> {
 
   public VaccinationAdminDateIsValid() {
     this.addRuleDetection(Detection.VaccinationAdminDateIsMissing);
+    this.addRuleDetection(Detection.VaccinationAdminDateIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationAdminDateIsInvalid);
       id.setImplementationDescription(
@@ -75,6 +79,8 @@ public class VaccinationAdminDateIsValid extends ValidationRule<MqeVaccination> 
       passed = false;
 
       return buildResults(issues, passed);
+    } else {
+      issues.add(Detection.VaccinationAdminDateIsPresent.build(target));
     }
 
     if (!this.common.isValidDate(dateString)) {

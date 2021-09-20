@@ -7,10 +7,13 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationAdministeredUnitIsValid extends ValidationRule<MqeVaccination> {
 
   @Override
@@ -23,6 +26,7 @@ public class VaccinationAdministeredUnitIsValid extends ValidationRule<MqeVaccin
     this.addRuleDetection(Detection.VaccinationAdministeredUnitIsDeprecated);
     this.addRuleDetection(Detection.VaccinationAdministeredUnitIsInvalid);
     this.addRuleDetection(Detection.VaccinationAdministeredUnitIsMissing);
+    this.addRuleDetection(Detection.VaccinationAdministeredUnitIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdministeredUnitIsUnrecognized);
@@ -40,7 +44,7 @@ public class VaccinationAdministeredUnitIsValid extends ValidationRule<MqeVaccin
     issues.addAll(codr.handleCodeOrMissing(target.getAmountUnit(),
         VxuField.VACCINATION_ADMINISTERED_UNIT, target));
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
     return buildResults(issues, passed);
 
   }

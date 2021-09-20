@@ -7,11 +7,10 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
-import org.immregistries.mqe.vxu.MqeMessageReceived;
-import org.immregistries.mqe.vxu.MqeVaccination;
-import org.immregistries.mqe.vxu.VaccinationVIS;
-import org.immregistries.mqe.vxu.VxuField;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
+import org.immregistries.mqe.vxu.*;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationVisCvxIsValid extends ValidationRule<MqeVaccination> {
 
   @Override
@@ -23,6 +22,7 @@ public class VaccinationVisCvxIsValid extends ValidationRule<MqeVaccination> {
     this.addRuleDetection(Detection.VaccinationVisCvxIsDeprecated);
     this.addRuleDetection(Detection.VaccinationVisCvxIsInvalid);
     this.addRuleDetection(Detection.VaccinationVisCvxIsMissing);
+    this.addRuleDetection(Detection.VaccinationVisCvxIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationVisCvxIsUnrecognized);
       id.setImplementationDescription(

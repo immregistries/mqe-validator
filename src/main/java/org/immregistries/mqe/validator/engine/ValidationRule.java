@@ -5,8 +5,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.immregistries.mqe.core.util.DateUtility;
+import org.immregistries.mqe.util.validation.MqeValidatedObject;
 import org.immregistries.mqe.validator.ValidatorProperties;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.DetectionType;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.codes.CodeRepository;
@@ -22,7 +24,7 @@ import org.slf4j.LoggerFactory;
  * @author Josh
  */
 @SuppressWarnings("rawtypes")
-public abstract class ValidationRule<T> {
+public abstract class ValidationRule<T extends MqeValidatedObject> {
 
   protected static final Logger LOGGER = LoggerFactory.getLogger(ValidationRule.class);
   /**
@@ -63,16 +65,16 @@ public abstract class ValidationRule<T> {
   protected ValidationRuleResult buildResults(List<ValidationReport> issues, boolean passed) {
     //is this issue in the list of rule detections?
     //This will help find detection documentation issues
-//      for (ValidationReport vr : issues) {
-//        MqeDetection d = vr.getDetection();
-//        String mqeCode = d.getMqeMqeCode();
-//        Detection detection = Detection.getByMqeErrorCodeString(mqeCode);
-//        if (!ruleDetections.contains(detection)) {
-//          //blow up really bad
-//          throw new UnsupportedOperationException(
-//              "Somehow you triggered a detection that wasn't listed in the possible detections for this rule");
-//        }
-//      }
+    //      for (ValidationReport vr : issues) {
+    //        MqeDetection d = vr.getDetection();
+    //        String mqeCode = d.getMqeMqeCode();
+    //        Detection detection = Detection.getByMqeErrorCodeString(mqeCode);
+    //        if (!ruleDetections.contains(detection)) {
+    //          //blow up really bad
+    //          throw new UnsupportedOperationException(
+    //              "Somehow you triggered a detection that wasn't listed in the possible detections for this rule");
+    //        }
+    //      }
 
     ValidationRuleResult result = new ValidationRuleResult();
     result.setRuleClass(this.getClass());
@@ -130,6 +132,18 @@ public abstract class ValidationRule<T> {
       id.setImplementationDescription(d.getDetectionType().getDescription());
     }
     return id;
+  }
+
+  protected boolean verifyNoIssuesExceptPresent(List<ValidationReport> issues) {
+    if (issues.size() == 0) {
+      return true;
+    }
+    for (ValidationReport vr : issues) {
+      if (vr.getDetection().getDetectionType() != DetectionType.PRESENT) {
+        return false;
+      }
+    }
+    return true;
   }
 
 }

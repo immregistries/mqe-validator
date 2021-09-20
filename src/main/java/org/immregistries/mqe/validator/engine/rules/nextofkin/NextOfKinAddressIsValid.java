@@ -10,11 +10,10 @@ import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.validator.engine.common.AddressFields;
 import org.immregistries.mqe.validator.engine.common.AddressValidator;
-import org.immregistries.mqe.vxu.MqeAddress;
-import org.immregistries.mqe.vxu.MqeMessageReceived;
-import org.immregistries.mqe.vxu.MqeNextOfKin;
-import org.immregistries.mqe.vxu.VxuField;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
+import org.immregistries.mqe.vxu.*;
 
+@ValidationRuleEntry(TargetType.NextOfKin)
 public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
 
   private AddressFields fields = new AddressFields(VxuField.NEXT_OF_KIN_ADDRESS,
@@ -27,14 +26,22 @@ public class NextOfKinAddressIsValid extends ValidationRule<MqeNextOfKin> {
 
   public NextOfKinAddressIsValid() {
     this.addRuleDetection(Detection.NextOfKinAddressIsMissing);
+    this.addRuleDetection(Detection.NextOfKinAddressIsPresent);
     this.addRuleDetection(Detection.NextOfKinAddressIsInvalid);
     this.addRuleDetection(Detection.NextOfKinAddressStreetIsMissing);
+    this.addRuleDetection(Detection.NextOfKinAddressStreetIsPresent);
     this.addRuleDetection(Detection.NextOfKinAddressCityIsMissing);
+    this.addRuleDetection(Detection.NextOfKinAddressCityIsPresent);
     this.addRuleDetection(Detection.NextOfKinAddressStateIsMissing);
+    this.addRuleDetection(Detection.NextOfKinAddressStateIsPresent);
     this.addRuleDetection(Detection.NextOfKinAddressCountyIsMissing);
+    this.addRuleDetection(Detection.NextOfKinAddressCountyIsPresent);
     this.addRuleDetection(Detection.NextOfKinAddressCountryIsMissing);
+    this.addRuleDetection(Detection.NextOfKinAddressCountryIsPresent);
     this.addRuleDetection(Detection.NextOfKinAddressZipIsMissing);
+    this.addRuleDetection(Detection.NextOfKinAddressZipIsPresent);
     this.addRuleDetection(Detection.NextOfKinAddressTypeIsMissing);
+    this.addRuleDetection(Detection.NextOfKinAddressTypeIsPresent);
     this.addRuleDetection(Detection.NextOfKinAddressTypeIsValuedBadAddress);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinAddressTypeIsUnrecognized);

@@ -67,6 +67,7 @@ public enum CodeHandler {
 
 	public List<ValidationReport> handleCode(Code c, VxuField field, String value, MetaFieldInfoData meta) {
 		List<ValidationReport> issues = new ArrayList<>();
+		issues.add(issueForField(field, DetectionType.PRESENT, value, meta));
 		LOGGER.info("handleCode - Code " + value + " for field " + field + " found? " + (c != null));
 		if (c != null) {
 			CodeStatus status = c.getCodeStatus();

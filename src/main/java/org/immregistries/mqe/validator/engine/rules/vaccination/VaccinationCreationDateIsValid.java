@@ -8,10 +8,13 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 import org.joda.time.DateTime;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationCreationDateIsValid extends ValidationRule<MqeVaccination> {
 
 
@@ -25,6 +28,7 @@ public class VaccinationCreationDateIsValid extends ValidationRule<MqeVaccinatio
           "Vaccination System Entry date cannot be translated to a date.");
     }
     this.addRuleDetection(Detection.VaccinationSystemEntryDateIsMissing);
+    this.addRuleDetection(Detection.VaccinationSystemEntryDateIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationSystemEntryDateIsInTheFuture);
@@ -42,6 +46,7 @@ public class VaccinationCreationDateIsValid extends ValidationRule<MqeVaccinatio
     if (target.getSystemEntryDateString() == null || target.getSystemEntryDateString().isEmpty()) {
       issues.add(Detection.VaccinationSystemEntryDateIsMissing.build(target));
     } else {
+      issues.add(Detection.VaccinationSystemEntryDateIsPresent.build(target));
       if (this.common.isValidDate(target.getSystemEntryDateString())) {
         DateTime systemEntryDate = this.common.parseDateTimeFrom(target.getSystemEntryDateString());
 

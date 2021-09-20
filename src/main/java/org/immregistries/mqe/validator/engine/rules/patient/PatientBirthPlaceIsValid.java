@@ -7,9 +7,12 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.TargetType;
 
+@ValidationRuleEntry(TargetType.Patient)
 public class PatientBirthPlaceIsValid extends ValidationRule<MqePatient> {
 
   @Override
@@ -20,6 +23,9 @@ public class PatientBirthPlaceIsValid extends ValidationRule<MqePatient> {
   public PatientBirthPlaceIsValid() {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthPlaceIsMissing);
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientBirthPlaceIsPresent);
     }
   }
 
@@ -33,6 +39,8 @@ public class PatientBirthPlaceIsValid extends ValidationRule<MqePatient> {
 
     if (this.common.isEmpty(place)) {
       issues.add(Detection.PatientBirthPlaceIsMissing.build(target));
+    } else {
+      issues.add(Detection.PatientBirthPlaceIsPresent.build(target));
     }
 
     return buildResults(issues, passed);

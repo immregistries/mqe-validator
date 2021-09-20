@@ -8,15 +8,18 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.TargetType;
 
+@ValidationRuleEntry(TargetType.Patient)
 public class PatientEmailIsPresent extends ValidationRule<MqePatient> {
 
   public PatientEmailIsPresent() {
     this.addRuleDetection(Detection.PatientEmailIsMissing);
+    this.addRuleDetection(Detection.PatientEmailIsPresent);
     this.addRuleDetection(Detection.PatientEmailIsInvalid);
-    this.addRuleDetection(Detection.PatientEmailIsMissing);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientEmailIsInvalid);
       id.setImplementationDescription(
@@ -34,6 +37,7 @@ public class PatientEmailIsPresent extends ValidationRule<MqePatient> {
     if (this.common.isEmpty(patientEmail)) {
       issues.add(Detection.PatientEmailIsMissing.build(target));
     } else {
+      issues.add(Detection.PatientEmailIsPresent.build(target));
       String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@"
           + "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
 
@@ -43,7 +47,7 @@ public class PatientEmailIsPresent extends ValidationRule<MqePatient> {
       }
     }
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
     return buildResults(issues, passed);
   }
 

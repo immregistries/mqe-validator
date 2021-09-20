@@ -7,10 +7,13 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
+@ValidationRuleEntry(TargetType.Patient)
 public class PatientGenderIsValid extends ValidationRule<MqePatient> {
 
   @Override
@@ -22,6 +25,7 @@ public class PatientGenderIsValid extends ValidationRule<MqePatient> {
     this.addRuleDetection(Detection.PatientGenderIsDeprecated);
     this.addRuleDetection(Detection.PatientGenderIsInvalid);
     this.addRuleDetection(Detection.PatientGenderIsMissing);
+    this.addRuleDetection(Detection.PatientGenderIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientGenderIsUnrecognized);
       id.setImplementationDescription(

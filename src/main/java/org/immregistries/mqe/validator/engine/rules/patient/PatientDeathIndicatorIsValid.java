@@ -7,9 +7,12 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.TargetType;
 
+@ValidationRuleEntry(TargetType.Patient)
 public class PatientDeathIndicatorIsValid extends ValidationRule<MqePatient> {
 
   @Override
@@ -22,6 +25,11 @@ public class PatientDeathIndicatorIsValid extends ValidationRule<MqePatient> {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathIndicatorIsMissing);
       id.setImplementationDescription(
           "Patient death date was given but death indicator is missing.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathIndicatorIsPresent);
+      id.setImplementationDescription(
+          "Patient death indicator is present");
     }
     {
       ImplementationDetail id =
@@ -39,6 +47,9 @@ public class PatientDeathIndicatorIsValid extends ValidationRule<MqePatient> {
     String dInd = target.getDeathIndicator();
     String deathDate = target.getDeathDateString();
 
+    if (!this.common.isEmpty(dInd)) {
+      issues.add(Detection.PatientDeathIndicatorIsPresent.build(target));
+    } 
     if (!this.common.isEmpty(deathDate) && this.common.isEmpty(dInd)) {
       issues.add(Detection.PatientDeathIndicatorIsMissing.build(target));
       passed = false; // should this be a pass???

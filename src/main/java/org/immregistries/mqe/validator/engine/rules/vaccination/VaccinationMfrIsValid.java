@@ -10,16 +10,20 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationMfrIsValid extends ValidationRule<MqeVaccination> {
 
   public VaccinationMfrIsValid() {
     this.addRuleDetection(Detection.VaccinationManufacturerCodeIsDeprecated);
     this.addRuleDetection(Detection.VaccinationManufacturerCodeIsInvalid);
     this.addRuleDetection(Detection.VaccinationManufacturerCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationManufacturerCodeIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationManufacturerCodeIsUnrecognized);
@@ -49,7 +53,7 @@ public class VaccinationMfrIsValid extends ValidationRule<MqeVaccination> {
     if (target.isAdministered()) {
       issues.addAll(codr.handleCode(target.getManufacturer(),
           VxuField.VACCINATION_MANUFACTURER_CODE, target));
-      passed = (issues.size() == 0);
+      passed = verifyNoIssuesExceptPresent(issues);
     }
 
     Code vaccineMvx = repo.getMfrForCode(target.getManufacturerCode());

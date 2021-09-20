@@ -7,10 +7,13 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationFundingSourceCodeIsValid extends ValidationRule<MqeVaccination> {
 
   @Override
@@ -22,6 +25,7 @@ public class VaccinationFundingSourceCodeIsValid extends ValidationRule<MqeVacci
     this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsDeprecated);
     this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsInvalid);
     this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFundingSourceCodeIsUnrecognized);
@@ -38,12 +42,10 @@ public class VaccinationFundingSourceCodeIsValid extends ValidationRule<MqeVacci
 
     String fundingSourceCode = target.getFundingSourceCode();
 
-    if (target.isAdministered()) {
-      issues.addAll(codr.handleCodeOrMissing(fundingSourceCode,
-          VxuField.VACCINATION_FUNDING_SOURCE_CODE, target));
-    }
+    issues.addAll(codr.handleCodeOrMissing(fundingSourceCode,
+        VxuField.VACCINATION_FUNDING_SOURCE_CODE, target));
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
     return buildResults(issues, passed);
 
   }

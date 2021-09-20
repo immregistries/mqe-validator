@@ -7,13 +7,17 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.hl7.Observation;
 
 /**
  * Currently only checks if the date is present or missing. Created by Allison on 5/9/2017.
  */
+
+@ValidationRuleEntry(TargetType.Vaccination)
 public class ObservationDateIsValid extends ValidationRule<MqeVaccination> {
 
   public ObservationDateIsValid() {
@@ -22,6 +26,12 @@ public class ObservationDateIsValid extends ValidationRule<MqeVaccination> {
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.ObservationDateTimeOfObservationIsMissing);
+      id.setImplementationDescription("Observation Date/Time of Observation is not indicated");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.ObservationDateTimeOfObservationIsPresent);
+      id.setImplementationDescription("Observation Date/Time of Observation is indicated");
     }
     {
       ImplementationDetail id =
@@ -40,9 +50,13 @@ public class ObservationDateIsValid extends ValidationRule<MqeVaccination> {
       if (this.common.isEmpty(observationDateString)) {
         issues.add(Detection.ObservationDateTimeOfObservationIsMissing
             .build((observationDateString), target));
-      } else if (!this.common.isValidDate(observationDateString)) {
-        issues.add(Detection.ObservationDateTimeOfObservationIsInvalid
+      } else {
+        issues.add(Detection.ObservationDateTimeOfObservationIsPresent
             .build((observationDateString), target));
+        if (!this.common.isValidDate(observationDateString)) {
+          issues.add(Detection.ObservationDateTimeOfObservationIsInvalid
+              .build((observationDateString), target));
+        }
       }
     }
 

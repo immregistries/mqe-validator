@@ -8,11 +8,14 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.validator.engine.rules.patient.PatientIsUnderage;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeNextOfKin;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.code.NokRelationship;
 
+@ValidationRuleEntry(TargetType.NextOfKin)
 public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationRule<MqeNextOfKin> {
 
   @Override
@@ -29,6 +32,11 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinRelationshipIsMissing);
+      id.setImplementationDescription("Next of Kin Relationship is not indicated");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinRelationshipIsPresent);
+      id.setImplementationDescription("Next of Kin Relationship is indicated");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.NextOfKinRelationshipIsUnexpected);
@@ -51,6 +59,7 @@ public class NextOfKinRelationshipIsValidForUnderagedPatient extends ValidationR
     String relationship = target.getRelationshipCode();
 
     if (StringUtils.isNotBlank(relationship)) {
+      issues.add(Detection.NextOfKinRelationshipIsPresent.build((relationship), target));
       if (!target.isResponsibleRelationship()) {
         if (target.isChildRelationship()) {
           // In most situations, an underage patient would not have a child, so this is unexpected

@@ -7,10 +7,13 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationRefusalReasonIsValid extends ValidationRule<MqeVaccination> {
 
   @Override
@@ -30,6 +33,11 @@ public class VaccinationRefusalReasonIsValid extends ValidationRule<MqeVaccinati
       id.setImplementationDescription(
           "Vaccination completion was refused but refusal code is missing. ");
     }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccinationRefusalReasonIsPresent);
+      id.setImplementationDescription(
+          "Vaccination completion was refused and refusal code is indicated. ");
+    }
   }
 
   @Override
@@ -48,7 +56,7 @@ public class VaccinationRefusalReasonIsValid extends ValidationRule<MqeVaccinati
           VxuField.VACCINATION_REFUSAL_REASON, target));
     }
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
 

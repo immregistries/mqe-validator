@@ -16,6 +16,7 @@ public enum DetectionType implements MqeDetectionType {
   REPEATED("is repeated", "Sent more than once. "),
   UNRECOGNIZED("is unrecognized", "Coded value is not recognized as either valid or invalid because it is unknown to this system. "),
   UNEXPECTED("is unexpected"),
+  PRESENT("is present", "Value found, something sent, may be valid or invalid"),
 
   //Valued As types:
   VALUED_AS("is valued as"),

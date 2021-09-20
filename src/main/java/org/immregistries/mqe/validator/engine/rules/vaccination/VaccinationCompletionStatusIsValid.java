@@ -7,16 +7,20 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationCompletionStatusIsValid extends ValidationRule<MqeVaccination> {
 
   public VaccinationCompletionStatusIsValid() {
     this.addRuleDetection(Detection.VaccinationCompletionStatusIsDeprecated);
     this.addRuleDetection(Detection.VaccinationCompletionStatusIsInvalid);
     this.addRuleDetection(Detection.VaccinationCompletionStatusIsMissing);
+    this.addRuleDetection(Detection.VaccinationCompletionStatusIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationCompletionStatusIsUnrecognized);

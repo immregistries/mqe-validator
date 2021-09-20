@@ -7,13 +7,16 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
 /**
  * Created by Allison on 5/9/2017.
  */
+@ValidationRuleEntry(TargetType.Patient)
 public class PatientClassIsValid extends ValidationRule<MqePatient> {
 
   public PatientClassIsValid() {
@@ -34,7 +37,7 @@ public class PatientClassIsValid extends ValidationRule<MqePatient> {
     issues
         .addAll(codr.handleCodeOrMissing(target.getPatientClass(), VxuField.PATIENT_CLASS, target));
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

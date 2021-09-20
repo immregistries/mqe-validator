@@ -7,10 +7,13 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationBodyRouteAndSiteAreValid extends ValidationRule<MqeVaccination> {
 
   @Override
@@ -22,6 +25,7 @@ public class VaccinationBodyRouteAndSiteAreValid extends ValidationRule<MqeVacci
     this.addRuleDetection(Detection.VaccinationBodyRouteIsDeprecated);
     this.addRuleDetection(Detection.VaccinationBodyRouteIsInvalid);
     this.addRuleDetection(Detection.VaccinationBodyRouteIsMissing);
+    this.addRuleDetection(Detection.VaccinationBodyRouteIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationBodyRouteIsUnrecognized);
       id.setImplementationDescription(
@@ -30,6 +34,7 @@ public class VaccinationBodyRouteAndSiteAreValid extends ValidationRule<MqeVacci
     this.addRuleDetection(Detection.VaccinationBodySiteIsDeprecated);
     this.addRuleDetection(Detection.VaccinationBodySiteIsInvalid);
     this.addRuleDetection(Detection.VaccinationBodySiteIsMissing);
+    this.addRuleDetection(Detection.VaccinationBodySiteIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.VaccinationBodySiteIsUnrecognized);
       id.setImplementationDescription(
@@ -55,7 +60,7 @@ public class VaccinationBodyRouteAndSiteAreValid extends ValidationRule<MqeVacci
     // TODO VaccinationBodyRouteIsInvalidForVaccineIndicated
     // TODO VaccinationBodySiteIsInvalidForVaccineIndicated
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

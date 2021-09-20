@@ -7,10 +7,13 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.TargetType;
 import org.joda.time.DateTime;
 
+@ValidationRuleEntry(TargetType.Patient)
 public class PatientDeathDateIsValid extends ValidationRule<MqePatient> {
 
   @Override
@@ -23,6 +26,11 @@ public class PatientDeathDateIsValid extends ValidationRule<MqePatient> {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsMissing);
       id.setImplementationDescription(
           "The death indicator is marked as dead, but there is no death date.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsPresent);
+      id.setImplementationDescription(
+          "The death indicator is marked as dead, and there is a death date.");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientDeathDateIsInvalid);
@@ -46,6 +54,7 @@ public class PatientDeathDateIsValid extends ValidationRule<MqePatient> {
     if ("Y".equals(target.getDeathIndicator()) && this.common.isEmpty(deathDateString)) {
       issues.add(Detection.PatientDeathDateIsMissing.build((deathDateString), target));
     } else if (!this.common.isEmpty(deathDateString)) {
+      issues.add(Detection.PatientDeathDateIsPresent.build((deathDateString), target));
       if (!this.common.isValidDate(deathDateString)) {
         // Invalid date string.
         issues.add(Detection.PatientDeathDateIsInvalid.build((deathDateString), target));

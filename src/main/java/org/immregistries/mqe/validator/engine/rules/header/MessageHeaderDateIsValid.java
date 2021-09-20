@@ -9,9 +9,12 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageHeader;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
+import org.immregistries.mqe.vxu.TargetType;
 
+@ValidationRuleEntry(TargetType.MessageHeader)
 public class MessageHeaderDateIsValid extends ValidationRule<MqeMessageHeader> {
 
   @Override
@@ -31,6 +34,22 @@ public class MessageHeaderDateIsValid extends ValidationRule<MqeMessageHeader> {
       ImplementationDetail id = this.addRuleDetection(Detection.MessageMessageDateIsInFuture);
       id.setImplementationDescription("Message Header date is over 2 hours into the future.");
     }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.MessageMessageDateIsMissing);
+      id.setImplementationDescription("Message Header date was not indicated.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.MessageMessageDateIsPresent);
+      id.setImplementationDescription("Message Header date was indicated.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.MessageMessageDateTimezoneIsMissing);
+      id.setImplementationDescription("Message Header date timezone was not indicated.");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.MessageMessageDateTimezoneIsPresent);
+      id.setImplementationDescription("Message Header date timezone was indicated.");
+    }
   }
 
 
@@ -45,6 +64,7 @@ public class MessageHeaderDateIsValid extends ValidationRule<MqeMessageHeader> {
       issues.add(Detection.MessageMessageDateIsMissing.build(target));
       passed = false;
     } else {
+      issues.add(Detection.MessageMessageDateIsPresent.build(target));
       LOGGER.info("messageDate: " + target.getMessageDate());
       LOGGER.info("messageDateString: " + target.getMessageDateString());
       LOGGER.info("receivedDate: " + mr.getReceivedDate());
@@ -65,9 +85,12 @@ public class MessageHeaderDateIsValid extends ValidationRule<MqeMessageHeader> {
         }
 
         // Need to do the timezone validation.
-        if (!datr.hasTimezone(messageDateString)) {
+        if (datr.hasTimezone(messageDateString)) {
           issues.add(
-              Detection.MessageMessageDateIsMissingTimezone.build((messageDateString), target));
+              Detection.MessageMessageDateTimezoneIsPresent.build((messageDateString), target));
+        } else {
+          issues.add(
+              Detection.MessageMessageDateTimezoneIsMissing.build((messageDateString), target));
           //doesn't fail. we can still use it.
         }
       }

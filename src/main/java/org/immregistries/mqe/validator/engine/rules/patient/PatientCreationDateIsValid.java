@@ -7,10 +7,13 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.TargetType;
 import org.joda.time.DateTime;
 
+@ValidationRuleEntry(TargetType.Patient)
 public class PatientCreationDateIsValid extends ValidationRule<MqePatient> {
 
 
@@ -21,6 +24,7 @@ public class PatientCreationDateIsValid extends ValidationRule<MqePatient> {
       id.setImplementationDescription("Patient system entry date cannot be translated to a date.");
     }
     this.addRuleDetection(Detection.PatientSystemEntryDateIsMissing);
+    this.addRuleDetection(Detection.PatientSystemEntryDateIsPresent);
     this.addRuleDetection(Detection.PatientSystemEntryDateIsInTheFuture);
   }
 
@@ -32,6 +36,7 @@ public class PatientCreationDateIsValid extends ValidationRule<MqePatient> {
     if (target.getSystemEntryDateString() == null || target.getSystemEntryDateString().isEmpty()) {
       issues.add(Detection.PatientSystemEntryDateIsMissing.build(target));
     } else {
+      issues.add(Detection.PatientSystemEntryDateIsPresent.build(target));
       if (this.common.isValidDate(target.getSystemEntryDateString())) {
         DateTime systemEntryDate = this.common.parseDateTimeFrom(target.getSystemEntryDateString());
         if (systemEntryDate.isAfterNow()) {

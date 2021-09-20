@@ -6,10 +6,13 @@ import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationInformationSourceIsValid extends ValidationRule<MqeVaccination> {
 
   @Override
@@ -21,6 +24,7 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<MqeVacci
     this.addRuleDetection(Detection.VaccinationInformationSourceIsDeprecated);
     this.addRuleDetection(Detection.VaccinationInformationSourceIsInvalid);
     this.addRuleDetection(Detection.VaccinationInformationSourceIsMissing);
+    this.addRuleDetection(Detection.VaccinationInformationSourceIsPresent);
     this.addRuleDetection(Detection.VaccinationInformationSourceIsUnrecognized);
     this.addRuleDetection(Detection.VaccinationInformationSourceIsValuedAsAdministered);
     this.addRuleDetection(Detection.VaccinationInformationSourceIsValuedAsHistorical);
@@ -41,7 +45,7 @@ public class VaccinationInformationSourceIsValid extends ValidationRule<MqeVacci
     issues.addAll(this.codr.handleCodeOrMissing(target.getInformationSource(),
         VxuField.VACCINATION_INFORMATION_SOURCE, target));
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     switch (sourceCd) {
       case MqeVaccination.INFO_SOURCE_ADMIN:

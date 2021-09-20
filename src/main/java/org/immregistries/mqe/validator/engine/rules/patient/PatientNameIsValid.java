@@ -10,9 +10,12 @@ import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.validator.engine.codes.KnowNameList;
 import org.immregistries.mqe.validator.engine.codes.KnownName;
 import org.immregistries.mqe.validator.engine.codes.KnownName.NameType;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.TargetType;
 
+@ValidationRuleEntry(TargetType.Patient)
 public class PatientNameIsValid extends ValidationRule<MqePatient> {
 
   private KnowNameList listr = KnowNameList.INSTANCE;
@@ -21,6 +24,10 @@ public class PatientNameIsValid extends ValidationRule<MqePatient> {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientNameFirstIsMissing);
       id.setImplementationDescription("Patient First Name is not indicated");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientNameFirstIsPresent);
+      id.setImplementationDescription("Patient First Name is indicated");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientNameFirstIsInvalid);
@@ -32,12 +39,20 @@ public class PatientNameIsValid extends ValidationRule<MqePatient> {
       id.setImplementationDescription("");
     }
     {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientNameLastIsPresent);
+      id.setImplementationDescription("");
+    }
+    {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientNameLastIsInvalid);
       id.setImplementationDescription(
           "Patient last name must not be on the specified invalid name list ('X','U','UN','UK','UNK', 'UNKN', 'NONE').");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientNameMiddleIsMissing);
+      id.setImplementationDescription("");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientNameMiddleIsPresent);
       id.setImplementationDescription("");
     }
     {
@@ -86,6 +101,7 @@ public class PatientNameIsValid extends ValidationRule<MqePatient> {
       issues.add(Detection.PatientNameFirstIsMissing.build(first, target));
       passed = false;
     } else {
+      issues.add(Detection.PatientNameFirstIsPresent.build(first, target));
       if (listr.firstNameOnlyMatch(NameType.INVALID_NAME, first)) {
         issues.add(Detection.PatientNameFirstIsInvalid.build(first, target));
         passed = false;
@@ -109,6 +125,7 @@ public class PatientNameIsValid extends ValidationRule<MqePatient> {
       issues.add(Detection.PatientNameLastIsMissing.build(last, target));
       passed = false;
     } else {
+      issues.add(Detection.PatientNameLastIsPresent.build(last, target));
       if (listr.lastNameOnlyMatch(NameType.INVALID_NAME, last)) {
         issues.add(Detection.PatientNameLastIsInvalid.build(target));
         passed = false;
@@ -124,6 +141,7 @@ public class PatientNameIsValid extends ValidationRule<MqePatient> {
       issues.add(Detection.PatientNameMiddleIsMissing.build(middle, target));
       passed = false;
     } else {
+      issues.add(Detection.PatientNameMiddleIsPresent.build(middle, target));
       if (listr.middleNameOnlyMatch(NameType.INVALID_NAME, middle)) {
         issues.add(Detection.PatientNameMiddleIsInvalid.build(middle, target));
         passed = false;

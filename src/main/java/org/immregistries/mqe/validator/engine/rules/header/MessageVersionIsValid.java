@@ -7,11 +7,14 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageHeader;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
+import org.immregistries.mqe.vxu.TargetType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@ValidationRuleEntry(TargetType.MessageHeader)
 public class MessageVersionIsValid extends ValidationRule<MqeMessageHeader> {
 
   private static final Logger logger = LoggerFactory.getLogger(MessageVersionIsValid.class);
@@ -27,6 +30,10 @@ public class MessageVersionIsValid extends ValidationRule<MqeMessageHeader> {
     {
       ImplementationDetail id = this.addRuleDetection(Detection.MessageVersionIsMissing);
       id.setImplementationDescription("Message Version is not indicated");
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.MessageVersionIsPresent);
+      id.setImplementationDescription("Message Version is indicated");
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.MessageVersionIsUnrecognized);
@@ -45,6 +52,7 @@ public class MessageVersionIsValid extends ValidationRule<MqeMessageHeader> {
     if (this.common.isEmpty(version)) {
       issues.add(Detection.MessageVersionIsMissing.build(target));
     } else {
+      issues.add(Detection.MessageVersionIsPresent.build(target));
       // We want to evaluate the starting three characters... 2.5.1 should evaluate as 2.5, etc.
       String evalVersion = version;
       if (evalVersion.length() > 3) {

@@ -22,7 +22,6 @@ import org.slf4j.LoggerFactory;
  * Created by Allison on 5/9/2017.
  */
 public class ObservationDateIsValidTester {
-
   private ObservationDateIsValid rule = new ObservationDateIsValid();
 
   // Parts required for the test

@@ -7,10 +7,13 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<MqeVaccination> {
 
   @Override
@@ -22,6 +25,7 @@ public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<M
     this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsDeprecated);
     this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsInvalid);
     this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationFinancialEligibilityCodeIsUnrecognized);
@@ -37,13 +41,10 @@ public class VaccinationFinancialEligibilityCodeIsValid extends ValidationRule<M
     boolean passed = false;
 
     String financialEligibilityCode = target.getFinancialEligibilityCode();
+    issues.addAll(codr.handleCodeOrMissing(financialEligibilityCode,
+        VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE, target));
 
-    if (target.isAdministered()) {
-      issues.addAll(codr.handleCodeOrMissing(financialEligibilityCode,
-          VxuField.VACCINATION_FINANCIAL_ELIGIBILITY_CODE, target));
-    }
-
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
     return buildResults(issues, passed);
 
   }

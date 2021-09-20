@@ -8,14 +8,18 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
+@ValidationRuleEntry(TargetType.Patient)
 public class PatientSsnIsValid extends ValidationRule<MqePatient> {
 
   public PatientSsnIsValid() {
     this.addRuleDetection(Detection.PatientSsnIsMissing);
+    this.addRuleDetection(Detection.PatientSsnIsPresent);
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientSsnIsInvalid);
       id.setImplementationDescription(
@@ -33,9 +37,12 @@ public class PatientSsnIsValid extends ValidationRule<MqePatient> {
     if (this.common.isEmpty(ssn)) {
       issues.add(Detection.get(VxuField.PATIENT_SSN, DetectionType.MISSING).build(target));
       passed = false;
-    } else if (!isSsnPattern(ssn)) {
-      issues.add(Detection.get(VxuField.PATIENT_SSN, DetectionType.INVALID).build(target));
-      passed = false;
+    } else {
+      issues.add(Detection.get(VxuField.PATIENT_SSN, DetectionType.PRESENT).build(target));
+      if (!isSsnPattern(ssn)) {
+        issues.add(Detection.get(VxuField.PATIENT_SSN, DetectionType.INVALID).build(target));
+        passed = false;
+      }
     }
 
     return buildResults(issues, passed);

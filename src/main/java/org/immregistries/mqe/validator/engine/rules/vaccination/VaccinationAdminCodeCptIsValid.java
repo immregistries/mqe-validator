@@ -7,10 +7,13 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationAdminCodeCptIsValid extends ValidationRule<MqeVaccination> {
 
   @Override
@@ -27,6 +30,7 @@ public class VaccinationAdminCodeCptIsValid extends ValidationRule<MqeVaccinatio
           "Code submitted is not recognized as either valid or invalid because it is unknown to this system. ");
     }
     this.addRuleDetection(Detection.VaccinationCptCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationCptCodeIsPresent);
   }
 
   @Override
@@ -38,7 +42,7 @@ public class VaccinationAdminCodeCptIsValid extends ValidationRule<MqeVaccinatio
 
     issues.addAll(codr.handleCode(cpt, VxuField.VACCINATION_CPT_CODE, target));
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

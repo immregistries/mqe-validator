@@ -9,9 +9,12 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationCodeGroupsMatch extends ValidationRule<MqeVaccination> {
 
   public VaccinationCodeGroupsMatch() {
@@ -45,7 +48,7 @@ public class VaccinationCodeGroupsMatch extends ValidationRule<MqeVaccination> {
       }
     }
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
   }

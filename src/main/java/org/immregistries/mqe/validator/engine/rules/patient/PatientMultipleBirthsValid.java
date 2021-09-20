@@ -7,10 +7,13 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
+@ValidationRuleEntry(TargetType.Patient)
 public class PatientMultipleBirthsValid extends ValidationRule<MqePatient> {
 
   @Override
@@ -20,9 +23,10 @@ public class PatientMultipleBirthsValid extends ValidationRule<MqePatient> {
 
   public PatientMultipleBirthsValid() {
     this.addRuleDetection(Detection.PatientBirthIndicatorIsMissing);
+    this.addRuleDetection(Detection.PatientBirthIndicatorIsPresent);
     {
       ImplementationDetail id =
-          this.addRuleDetection(Detection.PatientBirthOrderIsMissingAndMultipleBirthIndicated);
+          this.addRuleDetection(Detection.PatientBirthOrderIsMultipleAndMultipleBirthIndicatedIsMissing);
       id.setImplementationDescription(
           "Multiple birth indicator was sent as Yes but birth order was not.");
     }
@@ -47,6 +51,7 @@ public class PatientMultipleBirthsValid extends ValidationRule<MqePatient> {
     if (this.common.isEmpty(multipleBirthInd)) {
       issues.add(Detection.PatientBirthIndicatorIsMissing.build(target));
     } else {
+      issues.add(Detection.PatientBirthIndicatorIsPresent.build(target));
       String birthOrder = target.getBirthOrder();
 
       if ("Y".equals(multipleBirthInd)) {
@@ -55,7 +60,9 @@ public class PatientMultipleBirthsValid extends ValidationRule<MqePatient> {
             codr.handleCodeOrMissing(target.getBirthOrder(), VxuField.PATIENT_BIRTH_ORDER, target));
 
         if (this.common.isEmpty(birthOrder)) {
-          issues.add(Detection.PatientBirthOrderIsMissingAndMultipleBirthIndicated.build(target));
+          issues.add(Detection.PatientBirthOrderIsMultipleAndMultipleBirthIndicatedIsMissing.build(target));
+        } else {
+          issues.add(Detection.PatientBirthOrderIsMultipleAndMultipleBirthIndicatedIsPresent.build(target));
         }
       } else if ("N".equals(multipleBirthInd)) {
         if (!this.common.isEmpty(birthOrder) && !"1".equals(birthOrder)) {

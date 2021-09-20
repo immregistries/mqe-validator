@@ -10,11 +10,14 @@ import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.validator.engine.common.AddressFields;
 import org.immregistries.mqe.validator.engine.common.AddressValidator;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeAddress;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqePatient;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
+@ValidationRuleEntry(TargetType.Patient)
 public class PatientAddressIsValid extends ValidationRule<MqePatient> {
 
   private AddressFields fields = new AddressFields(VxuField.PATIENT_ADDRESS,
@@ -36,6 +39,10 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
       id.setImplementationDescription("Patient Address was not indicated");
     }
     {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressIsPresent);
+      id.setImplementationDescription("Patient Address was indicated");
+    }
+    {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressIsInvalid);
       id.setImplementationDescription(
           "Patient Address is not recognized by the address checker as a valid address");
@@ -48,19 +55,37 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressCityIsMissing);
     }
     {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressCityIsPresent);
+    }
+    {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressStateIsMissing);
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressStateIsPresent);
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressCountyIsMissing);
     }
     {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressCountyIsPresent);
+    }
+    {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressCountryIsMissing);
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressCountryIsPresent);
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressZipIsMissing);
     }
     {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressZipIsPresent);
+    }
+    {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressTypeIsMissing);
+    }
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressTypeIsPresent);
     }
     {
       ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressTypeIsUnrecognized);
@@ -95,6 +120,7 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
       issues.addAll(result.getValidationDetections());
 
       if (!a.isEmpty()) {
+        issues.add(Detection.PatientAddressIsPresent.build(target));
         if (props.isAddressCleanserEnabled()) {
           if (!a.isClean()) {
             ValidationReport r = Detection.PatientAddressIsInvalid.build(target);

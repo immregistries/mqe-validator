@@ -7,10 +7,13 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 import org.immregistries.mqe.vxu.VxuField;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationConfidentialityCodeIsValid extends ValidationRule<MqeVaccination> {
 
   @Override
@@ -22,6 +25,7 @@ public class VaccinationConfidentialityCodeIsValid extends ValidationRule<MqeVac
     this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsDeprecated);
     this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsInvalid);
     this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsPresent);
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationConfidentialityCodeIsUnrecognized);
@@ -45,7 +49,7 @@ public class VaccinationConfidentialityCodeIsValid extends ValidationRule<MqeVac
 
     issues.addAll(
         codr.handleCodeOrMissing(confCode, VxuField.VACCINATION_CONFIDENTIALITY_CODE, target));
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     if ("R".equals(confCode) || "V".equals(confCode)) {
       issues.add(Detection.VaccinationConfidentialityCodeIsValuedAsRestricted.build(target));

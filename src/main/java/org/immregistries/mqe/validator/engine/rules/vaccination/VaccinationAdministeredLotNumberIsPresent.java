@@ -6,9 +6,12 @@ import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationAdministeredLotNumberIsPresent extends ValidationRule<MqeVaccination> {
 
   @Override
@@ -32,10 +35,13 @@ public class VaccinationAdministeredLotNumberIsPresent extends ValidationRule<Mq
     // By default we assume that the vaccination was completed.
 
     if (this.common.isEmpty(target.getLotNumber())) {
+      passed = false;
       issues.add(Detection.VaccinationLotNumberIsMissing.build(target));
+    } else {
+      issues.add(Detection.VaccinationLotNumberIsPresent.build(target));
     }
 
-    passed = (issues.size() == 0);
+    passed = verifyNoIssuesExceptPresent(issues);
 
     return buildResults(issues, passed);
 

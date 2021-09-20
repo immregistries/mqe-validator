@@ -7,9 +7,12 @@ import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationAdministeredAmtIsValid extends ValidationRule<MqeVaccination> {
 
   @Override
@@ -23,6 +26,12 @@ public class VaccinationAdministeredAmtIsValid extends ValidationRule<MqeVaccina
           this.addRuleDetection(Detection.VaccinationAdministeredAmountIsMissing);
       id.setImplementationDescription(
           "Vaccination Administered Amount is missing or equal to 999.");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.VaccinationAdministeredAmountIsPresent);
+      id.setImplementationDescription(
+          "Vaccination Administered Amount is indicated and not equal to 999.");
     }
     {
       ImplementationDetail id =
@@ -56,6 +65,7 @@ public class VaccinationAdministeredAmtIsValid extends ValidationRule<MqeVaccina
         issues.add(Detection.VaccinationAdministeredAmountIsMissing.build(target));
         issues.add(Detection.VaccinationAdministeredAmountIsValuedAsUnknown.build(target));
       } else {
+        issues.add(Detection.VaccinationAdministeredAmountIsPresent.build(target));
         try {
           float amount = Float.parseFloat(target.getAmount());
           if (amount == 0) {

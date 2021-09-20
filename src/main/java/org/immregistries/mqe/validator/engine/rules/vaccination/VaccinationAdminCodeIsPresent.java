@@ -7,13 +7,17 @@ import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
+import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
+import org.immregistries.mqe.vxu.TargetType;
 
+@ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationAdminCodeIsPresent extends ValidationRule<MqeVaccination> {
 
   public VaccinationAdminCodeIsPresent() {
     this.addRuleDetection(Detection.VaccinationAdminCodeIsMissing);
+    this.addRuleDetection(Detection.VaccinationAdminCodeIsPresent);
   }
 
   @Override
@@ -28,6 +32,10 @@ public class VaccinationAdminCodeIsPresent extends ValidationRule<MqeVaccination
     if (StringUtils.isBlank(adminCpt) && StringUtils.isBlank(adminCvx)
         && StringUtils.isBlank(adminNdc)) {
       issues.add(Detection.VaccinationAdminCodeIsMissing.build(target));
+    }
+    else
+    {
+      issues.add(Detection.VaccinationAdminCodeIsPresent.build(target));
     }
     LOGGER.info("issues: " + issues);
 

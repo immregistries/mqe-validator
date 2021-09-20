@@ -21,6 +21,7 @@ public class VaccinationAdministeredLotNumberIsPresent extends ValidationRule<Mq
 
   public VaccinationAdministeredLotNumberIsPresent() {
     this.addRuleDetection(Detection.VaccinationLotNumberIsMissing);
+    this.addRuleDetection(Detection.VaccinationLotNumberIsPresent);
   }
 
   @Override

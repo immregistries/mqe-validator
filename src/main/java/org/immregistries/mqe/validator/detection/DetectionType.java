@@ -17,7 +17,21 @@ public enum DetectionType implements MqeDetectionType {
   UNRECOGNIZED("is unrecognized", "Coded value is not recognized as either valid or invalid because it is unknown to this system. "),
   UNEXPECTED("is unexpected"),
   PRESENT("is present", "Value found, something sent, may be valid or invalid"),
-
+  
+  // Vaccine Evaluation
+  HEPB_3("with 3 valid HepB doses"),
+  DTAP_4("with 4 valid DTaP doses"),
+  PCV_4("with 4 valid PCV doses"),
+  POLIO_3("with 3 valid IPV doses"),
+  MMR_1("with 1 valid MMR dose"),
+  VAR_1("with 1 valid Varicella doses"),
+  HEPA_2("with 2 valid HepA doses"),
+  HIB_2("with 2 valid Hib Doses"),
+  HIB_3("with 3 valid Hib Doses"),
+  
+  // Vaccines Coverage
+  SERIES_4_3_1_3_3_1_4("for series 4:3:1:3:3:1:4"),
+  
   //Valued As types:
   VALUED_AS("is valued as"),
   VALUED_AS_NO("is valued as no"),

@@ -90,6 +90,16 @@ import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_
 import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_ZERO;
 import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_BAD_ADDRESS;
 import static org.immregistries.mqe.validator.detection.DetectionType.VERY_LONG_AGO;
+import static org.immregistries.mqe.validator.detection.DetectionType.HEPB_3;
+import static org.immregistries.mqe.validator.detection.DetectionType.DTAP_4;
+import static org.immregistries.mqe.validator.detection.DetectionType.PCV_4;
+import static org.immregistries.mqe.validator.detection.DetectionType.POLIO_3;
+import static org.immregistries.mqe.validator.detection.DetectionType.MMR_1;
+import static org.immregistries.mqe.validator.detection.DetectionType.VAR_1;
+import static org.immregistries.mqe.validator.detection.DetectionType.HEPA_2;
+import static org.immregistries.mqe.validator.detection.DetectionType.HIB_2;
+import static org.immregistries.mqe.validator.detection.DetectionType.HIB_3;
+import static org.immregistries.mqe.validator.detection.DetectionType.SERIES_4_3_1_3_3_1_4;
 import static org.immregistries.mqe.validator.detection.MqeCode.*;
 import static org.immregistries.mqe.vxu.VxuField.*;
 import java.util.HashMap;
@@ -806,6 +816,27 @@ public enum Detection implements MqeDetection {
   VaccinationVisPresentedDateIsPresent(VACCINATION_VIS_PRESENTED_DATE, PRESENT, ACCEPT, MQE0749),
   VaccinationVisPublishedDateIsPresent(VACCINATION_VIS_PUBLISHED_DATE, PRESENT, ACCEPT, MQE0750),
   VaccinationVisVersionDateIsPresent(VACCINATION_VIS_VERSION_DATE, PRESENT, ACCEPT, MQE0751),
+  
+  VaccineEvaluationAt18MonthsHepb3(VACCINE_EVALUATION_AT_18_MONTHS, HEPB_3, ACCEPT, MQE0752),
+  VaccineEvaluationAt18MonthsDtap4(VACCINE_EVALUATION_AT_18_MONTHS, DTAP_4, ACCEPT, MQE0753),
+  VaccineEvaluationAt15MonthsPcv4(VACCINE_EVALUATION_AT_15_MONTHS, PCV_4, ACCEPT, MQE0754),
+  VaccineEvaluationAt15MonthsPolio3(VACCINE_EVALUATION_AT_15_MONTHS, POLIO_3, ACCEPT, MQE0755),
+  VaccineEvaluationAt15MonthsMmr1(VACCINE_EVALUATION_AT_15_MONTHS, MMR_1, ACCEPT, MQE0756),
+  VaccineEvaluationAt15MonthsVar1(VACCINE_EVALUATION_AT_15_MONTHS, VAR_1, ACCEPT, MQE0757),
+  VaccineEvaluationAt18MonthsHepa2(VACCINE_EVALUATION_AT_18_MONTHS, HEPA_2, ACCEPT, MQE0758),
+  VaccineEvaluationAt15MonthsHib2(VACCINE_EVALUATION_AT_15_MONTHS, HIB_2, ACCEPT, MQE0759),
+  
+  VaccineEvaluationAt24MonthsDtap4(VACCINE_EVALUATION_AT_24_MONTHS, DTAP_4, ACCEPT, MQE0760),
+  VaccineEvaluationAt24MonthsPolio3(VACCINE_EVALUATION_AT_24_MONTHS, POLIO_3, ACCEPT, MQE0761),
+  VaccineEvaluationAt24MonthsMmr1(VACCINE_EVALUATION_AT_24_MONTHS, MMR_1, ACCEPT, MQE0762),
+  VaccineEvaluationAt24MonthsHib3(VACCINE_EVALUATION_AT_24_MONTHS, HIB_3, ACCEPT, MQE0763),
+  VaccineEvaluationAt24MonthsHepb3(VACCINE_EVALUATION_AT_24_MONTHS, HEPB_3, ACCEPT, MQE0764),
+  VaccineEvaluationAt24MonthsVar1(VACCINE_EVALUATION_AT_24_MONTHS, VAR_1, ACCEPT, MQE0765),
+  VaccineEvaluationAt24MonthsPcv4(VACCINE_EVALUATION_AT_24_MONTHS, PCV_4, ACCEPT, MQE0766),
+  
+  
+  VaccineCoverageAt24MonthsSeries4_3_1_3_3_1_4(VACCINE_COVERAGE_AT_24_MONTHS, SERIES_4_3_1_3_3_1_4, ACCEPT, MQE0767),
+  VaccineCoverageAt36MonthsSeries4_3_1_3_3_1_4(VACCINE_COVERAGE_AT_36_MONTHS, SERIES_4_3_1_3_3_1_4, ACCEPT, MQE0768),
 
 
   UnknownValidationIssue(CONFIGURATION, UNRECOGNIZED, WARN, MQE0000);

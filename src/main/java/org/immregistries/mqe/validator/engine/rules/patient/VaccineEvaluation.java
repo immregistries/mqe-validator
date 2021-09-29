@@ -1,40 +1,11 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
-import static org.immregistries.mqe.hl7util.SeverityLevel.ACCEPT;
-import static org.immregistries.mqe.validator.detection.DetectionType.DTAP_4;
-import static org.immregistries.mqe.validator.detection.DetectionType.HEPA_2;
-import static org.immregistries.mqe.validator.detection.DetectionType.HEPB_3;
-import static org.immregistries.mqe.validator.detection.DetectionType.HIB_2;
-import static org.immregistries.mqe.validator.detection.DetectionType.HIB_3;
-import static org.immregistries.mqe.validator.detection.DetectionType.MMR_1;
-import static org.immregistries.mqe.validator.detection.DetectionType.PCV_4;
-import static org.immregistries.mqe.validator.detection.DetectionType.POLIO_3;
-import static org.immregistries.mqe.validator.detection.DetectionType.VAR_1;
-import static org.immregistries.mqe.validator.detection.MqeCode.MQE0752;
-import static org.immregistries.mqe.validator.detection.MqeCode.MQE0753;
-import static org.immregistries.mqe.validator.detection.MqeCode.MQE0754;
-import static org.immregistries.mqe.validator.detection.MqeCode.MQE0755;
-import static org.immregistries.mqe.validator.detection.MqeCode.MQE0756;
-import static org.immregistries.mqe.validator.detection.MqeCode.MQE0757;
-import static org.immregistries.mqe.validator.detection.MqeCode.MQE0758;
-import static org.immregistries.mqe.validator.detection.MqeCode.MQE0759;
-import static org.immregistries.mqe.validator.detection.MqeCode.MQE0760;
-import static org.immregistries.mqe.validator.detection.MqeCode.MQE0761;
-import static org.immregistries.mqe.validator.detection.MqeCode.MQE0762;
-import static org.immregistries.mqe.validator.detection.MqeCode.MQE0763;
-import static org.immregistries.mqe.validator.detection.MqeCode.MQE0764;
-import static org.immregistries.mqe.validator.detection.MqeCode.MQE0765;
-import static org.immregistries.mqe.validator.detection.MqeCode.MQE0766;
-import static org.immregistries.mqe.vxu.VxuField.VACCINE_EVALUATION_AT_15_MONTHS;
-import static org.immregistries.mqe.vxu.VxuField.VACCINE_EVALUATION_AT_18_MONTHS;
-import static org.immregistries.mqe.vxu.VxuField.VACCINE_EVALUATION_AT_24_MONTHS;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.immregistries.lonestar.ForecastManagerSingleton;
 import org.immregistries.lonestar.core.ImmunizationForecastDataBean;
@@ -231,6 +202,7 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
 //			}
 //		}
 
+		Set<Detection> detectionSet = new HashSet<>();
 		DateTime today = new DateTime();
 		ForecastHandlerCore forecastHandlerCore = ForecastManagerSingleton.getForecastManagerSingleton()
 				.getForecastHandlerCore();
@@ -249,70 +221,79 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
 						forecastInput.forecastDate, traceMap, resultList, forecastInput.forecastOptions);
 				Map<String, Integer> countEvalMap = new HashMap<>();
 				for (VaccinationDoseDataBean dose : doseList) {
-
 					if (dose.getStatusCode().equals(VaccinationDoseDataBean.STATUS_VALID)) {
 						Integer count = countEvalMap.getOrDefault(dose.getForecastCode(), 0);
 						countEvalMap.put(dose.getForecastCode(), count + 1);
 					}
 				}
-				List<String> forecastCodeList = new ArrayList<>(countEvalMap.keySet());
-				Collections.sort(forecastCodeList);
-				for (String forcastCode : forecastCodeList) {
-					String s = forcastCode + "                   ";
-					s = s.substring(0, 11);
-				}
 				if (month == MONTHS_15) {
 					if (countEvalMap.getOrDefault("PCV13", 4) >= 4) {
-						issues.add(Detection.VaccineEvaluationAt15MonthsPcv4.build(target));
+						detectionSet.add(Detection.VaccineEvaluationAt15MonthsPcv4);
 					}
 					if (countEvalMap.getOrDefault("Polio", 0) >= 3) {
-						issues.add(Detection.VaccineEvaluationAt15MonthsPolio3.build(target));
+						detectionSet.add(Detection.VaccineEvaluationAt15MonthsPolio3);
 					}
 					if (countEvalMap.getOrDefault("Measles", 0) >= 1) {
-						issues.add(Detection.VaccineEvaluationAt15MonthsMmr1.build(target));
+						detectionSet.add(Detection.VaccineEvaluationAt15MonthsMmr1);
 					}
 					if (countEvalMap.getOrDefault("Varicella", 0) >= 1) {
-						issues.add(Detection.VaccineEvaluationAt15MonthsVar1.build(target));
+						detectionSet.add(Detection.VaccineEvaluationAt15MonthsVar1);
 					}
 					if (countEvalMap.getOrDefault("Hib", 0) >= 2) {
-						issues.add(Detection.VaccineEvaluationAt15MonthsHib2.build(target));
+						detectionSet.add(Detection.VaccineEvaluationAt15MonthsHib2);
 					}
 				} else if (month == MONTHS_18) {
 					if (countEvalMap.getOrDefault("HepB", 0) >= 3) {
-						issues.add(Detection.VaccineEvaluationAt18MonthsHepb3.build(target));
+						detectionSet.add(Detection.VaccineEvaluationAt18MonthsHepb3);
 					}
 					if (countEvalMap.getOrDefault("Diphtheria", 0) >= 4) {
-						issues.add(Detection.VaccineEvaluationAt18MonthsDtap4.build(target));
+						detectionSet.add(Detection.VaccineEvaluationAt18MonthsDtap4);
 					}
 					if (countEvalMap.getOrDefault("HepA", 0) >= 2) {
-						issues.add(Detection.VaccineEvaluationAt18MonthsHepa2.build(target));
+						detectionSet.add(Detection.VaccineEvaluationAt18MonthsHepa2);
 					}
 				} else if (month == MONTHS_24) {
 					if (countEvalMap.getOrDefault("Diphtheria", 0) >= 4) {
-						issues.add(Detection.VaccineEvaluationAt24MonthsDtap4.build(target));
+						detectionSet.add(Detection.VaccineEvaluationAt24MonthsDtap4);
 					}
 					if (countEvalMap.getOrDefault("Polio", 0) >= 3) {
-						issues.add(Detection.VaccineEvaluationAt24MonthsPolio3.build(target));
+						detectionSet.add(Detection.VaccineEvaluationAt24MonthsPolio3);
 					}
 					if (countEvalMap.getOrDefault("Measles", 0) >= 1) {
-						issues.add(Detection.VaccineEvaluationAt24MonthsMmr1.build(target));
+						detectionSet.add(Detection.VaccineEvaluationAt24MonthsMmr1);
 					}
 					if (countEvalMap.getOrDefault("Hib", 0) >= 3) {
-						issues.add(Detection.VaccineEvaluationAt24MonthsHib3.build(target));
+						detectionSet.add(Detection.VaccineEvaluationAt24MonthsHib3);
 					}
 					if (countEvalMap.getOrDefault("HepB", 0) >= 3) {
-						issues.add(Detection.VaccineEvaluationAt24MonthsHepb3.build(target));
+						detectionSet.add(Detection.VaccineEvaluationAt24MonthsHepb3);
 					}
 					if (countEvalMap.getOrDefault("Varicella", 0) >= 1) {
-						issues.add(Detection.VaccineEvaluationAt24MonthsVar1.build(target));
+						detectionSet.add(Detection.VaccineEvaluationAt24MonthsVar1);
 					}
 					if (countEvalMap.getOrDefault("PCV13", 4) >= 4) {
-						issues.add(Detection.VaccineEvaluationAt24MonthsPcv4.build(target));
+						detectionSet.add(Detection.VaccineEvaluationAt24MonthsPcv4);
 					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+		
+		for (Detection detection : detectionSet)
+		{
+			issues.add(detection.build(target));
+		}
+		
+		if (detectionSet.contains(Detection.VaccineEvaluationAt24MonthsDtap4) && 
+				detectionSet.contains(Detection.VaccineEvaluationAt24MonthsPolio3) && 
+				detectionSet.contains(Detection.VaccineEvaluationAt24MonthsMmr1) && 
+				detectionSet.contains(Detection.VaccineEvaluationAt24MonthsHib3) && 
+				detectionSet.contains(Detection.VaccineEvaluationAt24MonthsHepb3) && 
+				detectionSet.contains(Detection.VaccineEvaluationAt24MonthsVar1) && 
+				detectionSet.contains(Detection.VaccineEvaluationAt24MonthsPcv4) )
+		{
+			issues.add(Detection.VaccineCoverageAt24MonthsSeries4_3_1_3_3_1_4.build(target));
 		}
 
 		return buildResults(issues, passed);

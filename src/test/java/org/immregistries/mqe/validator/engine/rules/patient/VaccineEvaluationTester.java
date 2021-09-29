@@ -1,5 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.text.SimpleDateFormat;
@@ -24,20 +25,14 @@ import org.slf4j.LoggerFactory;
 public class VaccineEvaluationTester {
 
 	private static final String HIB = "Hib";
-
 	private static final String HEP_A = "HepA";
-
 	private static final String VARICELLA = "Varicella";
-
 	private static final String MMR = "MMR";
-
 	private static final String PCV = "PCV";
-
 	private static final String DTAP = "DTaP";
-
 	private static final String HEP_B = "HepB";
-
 	private static final String POLIO = "Polio";
+	private static final String SERIES_4_3_1_3_3_1_4 = "Series4:3:1:3:3:1:4";
 
 	private VaccineEvaluation rule = new VaccineEvaluation();
 
@@ -65,77 +60,58 @@ public class VaccineEvaluationTester {
 	}
 
 	@Test
-	public void uptodateThreeYearOld() {
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.YEAR, -10);
-
-		// birth
-		p.setBirthDate(cal.getTime());
-		List<MqeVaccination> vaccinations = new ArrayList<>();
-		addVaccination("08", vaccinations, cal); // Hep B at Birth
-
-		// 2 months
-		cal.add(Calendar.MONTH, 2);
-		addVaccination("122", vaccinations, cal); // Rotavirus
-		addVaccination("20", vaccinations, cal); // DTaP
-		addVaccination("10", vaccinations, cal); // IPV
-		addVaccination("17", vaccinations, cal); // Hib
-		addVaccination("08", vaccinations, cal); // Hep B
-		addVaccination("133", vaccinations, cal); // PCV13
-
-		// 4 months
-		cal.add(Calendar.MONTH, 2);
-		addVaccination("122", vaccinations, cal); // Rotavirus
-		addVaccination("20", vaccinations, cal); // DTaP
-		addVaccination("10", vaccinations, cal); // IPV
-		addVaccination("17", vaccinations, cal); // Hib
-		addVaccination("08", vaccinations, cal); // Hep B
-		addVaccination("133", vaccinations, cal); // PCV13
-
-		// 6 months
-		cal.add(Calendar.MONTH, 2);
-		addVaccination("122", vaccinations, cal); // Rotavirus
-		addVaccination("20", vaccinations, cal); // DTaP
-		addVaccination("10", vaccinations, cal); // IPV
-		addVaccination("17", vaccinations, cal); // Hib
-		addVaccination("08", vaccinations, cal); // Hep B
-		addVaccination("133", vaccinations, cal); // PCV13
-
-		// 12 months
-		cal.add(Calendar.MONTH, 6);
-		addVaccination("133", vaccinations, cal); // PCV13
-		addVaccination("94", vaccinations, cal); // MMRV
-		addVaccination("83", vaccinations, cal); // Hep A
-
-		// 15 months
-		cal.add(Calendar.MONTH, 3);
-		addVaccination("20", vaccinations, cal); // DTaP
-		addVaccination("10", vaccinations, cal); // IPV
-		addVaccination("17", vaccinations, cal); // Hib
-		addVaccination("08", vaccinations, cal); // Hep B
-
-		// 18 months
-		cal.add(Calendar.MONTH, 3);
-		addVaccination("83", vaccinations, cal); // Hep A
-
-		// 23 months
-		cal.add(Calendar.MONTH, 5);
-		addVaccination("20", vaccinations, cal); // DTaP
-		addVaccination("10", vaccinations, cal); // IPV
-
-		// 47 months
-		cal.add(Calendar.MONTH, 24);
-		addVaccination("20", vaccinations, cal); // DTaP
+	public void positiveTest() {
+		List<MqeVaccination> vaccinations = createPatientVaccinations(true);
 
 		this.mr.setVaccinations(vaccinations);
 
 		ValidationRuleResult r = rule.executeRule(p, mr);
 		logger.info(r.getValidationDetections().toString());
 		assertTrue(r.isRulePassed());
+		Set<String> foundVaccineSet = createFoundSet(r);
+//		for (String foundVaccine : foundVaccineSet)
+//		{
+//			System.out.println("--> " + foundVaccine);
+//		}
+		assertTrue(foundVaccineSet.contains(POLIO));
+		assertTrue(foundVaccineSet.contains(HEP_B));
+		assertTrue(foundVaccineSet.contains(DTAP));
+		assertTrue(foundVaccineSet.contains(PCV));
+		assertTrue(foundVaccineSet.contains(MMR));
+		assertTrue(foundVaccineSet.contains(VARICELLA));
+		assertTrue(foundVaccineSet.contains(HEP_A));
+		assertTrue(foundVaccineSet.contains(HIB));
+		assertTrue(foundVaccineSet.contains(SERIES_4_3_1_3_3_1_4));
+	}
+
+	@Test
+	public void negativeTest() {
+		List<MqeVaccination> vaccinations = createPatientVaccinations(false);
+
+		this.mr.setVaccinations(vaccinations);
+
+		ValidationRuleResult r = rule.executeRule(p, mr);
+		logger.info(r.getValidationDetections().toString());
+		assertTrue(r.isRulePassed());
+		Set<String> foundVaccineSet = createFoundSet(r);
+//		for (String foundVaccine : foundVaccineSet)
+//		{
+//			System.out.println("--> " + foundVaccine);
+//		}
+		assertFalse(foundVaccineSet.contains(POLIO));
+		assertFalse(foundVaccineSet.contains(HEP_B));
+		assertFalse(foundVaccineSet.contains(DTAP));
+		assertTrue(foundVaccineSet.contains(PCV));
+		assertTrue(foundVaccineSet.contains(MMR));
+		assertTrue(foundVaccineSet.contains(VARICELLA));
+		assertTrue(foundVaccineSet.contains(HEP_A));
+		assertFalse(foundVaccineSet.contains(HIB));
+		assertFalse(foundVaccineSet.contains(SERIES_4_3_1_3_3_1_4));
+	}
+
+	private Set<String> createFoundSet(ValidationRuleResult r) {
 		Set<String> foundVaccineSet = new HashSet<>();
-		System.out.println("--> ** " + r.getValidationDetections().size());
 		for (ValidationReport vr : r.getValidationDetections()) {
-			System.out.println("--> ** " + vr.getDetection());
 			if (Detection.VaccineEvaluationAt15MonthsPolio3.equals(vr.getDetection())) {
 				foundVaccineSet.add(POLIO);
 			}
@@ -181,21 +157,83 @@ public class VaccineEvaluationTester {
 			if (Detection.VaccineEvaluationAt24MonthsHib3.equals(vr.getDetection())) {
 				foundVaccineSet.add(HIB);
 			}
-
+			if (Detection.VaccineCoverageAt24MonthsSeries4_3_1_3_3_1_4.equals(vr.getDetection())) {
+				foundVaccineSet.add(SERIES_4_3_1_3_3_1_4);
+			}
 		}
-		for (String foundVaccine : foundVaccineSet)
-		{
-			System.out.println("--> " + foundVaccine);
-		}
-		assertTrue(foundVaccineSet.contains(POLIO));
-		assertTrue(foundVaccineSet.contains(HEP_B));
-		assertTrue(foundVaccineSet.contains(DTAP));
-		assertTrue(foundVaccineSet.contains(PCV));
-		assertTrue(foundVaccineSet.contains(MMR));
-		assertTrue(foundVaccineSet.contains(VARICELLA));
-		assertTrue(foundVaccineSet.contains(HEP_A));
-		assertTrue(foundVaccineSet.contains(HIB));
+		return foundVaccineSet;
+	}
 
+	private List<MqeVaccination> createPatientVaccinations(boolean allVaccines) {
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.YEAR, -10);
+
+		// birth
+		p.setBirthDate(cal.getTime());
+		List<MqeVaccination> vaccinations = new ArrayList<>();
+		if (allVaccines) {
+			addVaccination("08", vaccinations, cal); // Hep B at Birth
+		}
+
+		// 2 months
+		cal.add(Calendar.MONTH, 2);
+		if (allVaccines) {
+			addVaccination("122", vaccinations, cal); // Rotavirus
+			addVaccination("20", vaccinations, cal); // DTaP
+			addVaccination("10", vaccinations, cal); // IPV
+			addVaccination("17", vaccinations, cal); // Hib
+			addVaccination("08", vaccinations, cal); // Hep B
+			addVaccination("133", vaccinations, cal); // PCV13
+		}
+
+		// 4 months
+		cal.add(Calendar.MONTH, 2);
+		if (allVaccines) {
+			addVaccination("122", vaccinations, cal); // Rotavirus
+			addVaccination("20", vaccinations, cal); // DTaP
+			addVaccination("10", vaccinations, cal); // IPV
+			addVaccination("17", vaccinations, cal); // Hib
+			addVaccination("08", vaccinations, cal); // Hep B
+			addVaccination("133", vaccinations, cal); // PCV13
+		}
+
+		// 6 months
+		cal.add(Calendar.MONTH, 2);
+		if (allVaccines) {
+			addVaccination("122", vaccinations, cal); // Rotavirus
+			addVaccination("20", vaccinations, cal); // DTaP
+			addVaccination("10", vaccinations, cal); // IPV
+			addVaccination("17", vaccinations, cal); // Hib
+			addVaccination("08", vaccinations, cal); // Hep B
+			addVaccination("133", vaccinations, cal); // PCV13
+		}
+
+		// 12 months
+		cal.add(Calendar.MONTH, 6);
+		addVaccination("133", vaccinations, cal); // PCV13
+		addVaccination("94", vaccinations, cal); // MMRV
+		addVaccination("83", vaccinations, cal); // Hep A
+
+		// 15 months
+		cal.add(Calendar.MONTH, 3);
+		addVaccination("20", vaccinations, cal); // DTaP
+		addVaccination("10", vaccinations, cal); // IPV
+		addVaccination("17", vaccinations, cal); // Hib
+		addVaccination("08", vaccinations, cal); // Hep B
+
+		// 18 months
+		cal.add(Calendar.MONTH, 3);
+		addVaccination("83", vaccinations, cal); // Hep A
+
+		// 23 months
+		cal.add(Calendar.MONTH, 5);
+		addVaccination("20", vaccinations, cal); // DTaP
+		addVaccination("10", vaccinations, cal); // IPV
+
+		// 47 months
+		cal.add(Calendar.MONTH, 24);
+		addVaccination("20", vaccinations, cal); // DTaP
+		return vaccinations;
 	}
 
 	private void addVaccination(String cvxCode, List<MqeVaccination> vaccinations, Calendar cal) {

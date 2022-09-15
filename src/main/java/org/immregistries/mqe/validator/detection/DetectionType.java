@@ -118,6 +118,7 @@ public enum DetectionType implements MqeDetectionType {
   SAME_AS_UNDERAGE_PATIENT("is same as underage patient"),
   VACCINATION_COUNT_EXCEEDS_EXPECTATIONS("has more vaccinations than expected"),
   MISSING_AND_MULTIPLE_BIRTH_INDICATED("is missing and multiple birth indicated"),
+  TWO_VACCINATION_EVENTS_BY_SIX_YEARS("has at least two vaccination events before six years of age"),
   MUTLIPLES("has multiples"),
   
   IS_ON_TIME("is on time"),

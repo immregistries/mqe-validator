@@ -1,7 +1,9 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
@@ -30,6 +32,12 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
       id.setImplementationDescription(
           "Expecting less than 20 vaccinations given before 6 months of age. Expecting less than 30 vaccinations given before 2 years of age.");
     }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears);
+      id.setImplementationDescription(
+          "Patient received vaccinations on two different dates by the age of six. ");
+    }
   }
 
   @Override
@@ -43,6 +51,9 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
     DateTime birthDate = new DateTime(target.getBirthDate());
     DateTime _6months = birthDate.plusMonths(6);
     DateTime _2years = birthDate.plusYears(2);
+    DateTime _6years = birthDate.plusYears(6);
+    
+    Set<DateTime> vaccinationDatesUnder6Years = new HashSet<>();
 
     for (MqeVaccination v : m.getVaccinations()) {
       if (this.common.isValidDate(v.getAdminDateString())) {
@@ -54,6 +65,9 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
         if (adminDate.isBefore(_2years)) {
           count_of_toddler_vaccinations++;
         }
+        if (adminDate.isBefore(_6years)) {
+          vaccinationDatesUnder6Years.add(adminDate);
+        }
       }
 
     }
@@ -61,6 +75,12 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
     if (count_of_baby_vaccinations > 20 || count_of_toddler_vaccinations > 30) {
       issues.add(Detection.AdministeredVaccinationsCountIsLargerThanExpected.build(target));
       passed = false;
+    }
+    
+    int count_of_child_vaccinations = vaccinationDatesUnder6Years.size();
+    if (count_of_child_vaccinations >= 2)
+    {
+      issues.add(Detection.AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears.build(target));
     }
 
     return buildResults(issues, passed);

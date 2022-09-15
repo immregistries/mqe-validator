@@ -100,6 +100,7 @@ import static org.immregistries.mqe.validator.detection.DetectionType.HEPA_2;
 import static org.immregistries.mqe.validator.detection.DetectionType.HIB_2;
 import static org.immregistries.mqe.validator.detection.DetectionType.HIB_3;
 import static org.immregistries.mqe.validator.detection.DetectionType.SERIES_4_3_1_3_3_1_4;
+import static org.immregistries.mqe.validator.detection.DetectionType.TWO_VACCINATION_EVENTS_BY_SIX_YEARS;
 import static org.immregistries.mqe.validator.detection.MqeCode.*;
 import static org.immregistries.mqe.vxu.VxuField.*;
 import java.util.HashMap;
@@ -419,6 +420,7 @@ public enum Detection implements MqeDetection {
   PatientSystemEntryDateIsInTheFuture(PATIENT_SYSTEM_ENTRY_TIME, IN_FUTURE, ACCEPT, MQE0582),
 
   AdministeredVaccinationsCountIsLargerThanExpected(PATIENT_LEVEL, VACCINATION_COUNT_EXCEEDS_EXPECTATIONS, WARN, MQE0568),
+  AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears(PATIENT_LEVEL, TWO_VACCINATION_EVENTS_BY_SIX_YEARS , ACCEPT, MQE0770),
   
   VaccinationSystemEntryDateIsMissing(VACCINATION_SYSTEM_ENTRY_TIME, MISSING, ACCEPT, MQE0573),
   VaccinationSystemEntryDateIsInTheFuture(VACCINATION_SYSTEM_ENTRY_TIME, IN_FUTURE, ACCEPT, MQE0581),

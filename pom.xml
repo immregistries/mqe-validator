@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.immregistries</groupId>
   <artifactId>mqe-validator</artifactId>
-  <version>2021.9-BETA</version>
+  <version>2022.9-BETA</version>
   <packaging>jar</packaging>
 
   <name>mqe-validator</name>

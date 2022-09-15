@@ -69,10 +69,6 @@ public class VaccineEvaluationTester {
 		logger.info(r.getValidationDetections().toString());
 		assertTrue(r.isRulePassed());
 		Set<String> foundVaccineSet = createFoundSet(r);
-//		for (String foundVaccine : foundVaccineSet)
-//		{
-//			System.out.println("--> " + foundVaccine);
-//		}
 		assertTrue(foundVaccineSet.contains(POLIO));
 		assertTrue(foundVaccineSet.contains(HEP_B));
 		assertTrue(foundVaccineSet.contains(DTAP));
@@ -94,10 +90,6 @@ public class VaccineEvaluationTester {
 		logger.info(r.getValidationDetections().toString());
 		assertTrue(r.isRulePassed());
 		Set<String> foundVaccineSet = createFoundSet(r);
-//		for (String foundVaccine : foundVaccineSet)
-//		{
-//			System.out.println("--> " + foundVaccine);
-//		}
 		assertFalse(foundVaccineSet.contains(POLIO));
 		assertFalse(foundVaccineSet.contains(HEP_B));
 		assertFalse(foundVaccineSet.contains(DTAP));

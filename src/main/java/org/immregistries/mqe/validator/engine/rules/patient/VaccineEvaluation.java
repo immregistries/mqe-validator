@@ -144,9 +144,6 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
 		List<ValidationReport> issues = new ArrayList<ValidationReport>();
 		boolean passed = true;
 
-		int count_of_baby_vaccinations = 0;
-		int count_of_toddler_vaccinations = 0;
-
 		DateTime birthDate = new DateTime(target.getBirthDate());
 
 		Map<String, CvxCode> cvxToVaccineIdMap = null;

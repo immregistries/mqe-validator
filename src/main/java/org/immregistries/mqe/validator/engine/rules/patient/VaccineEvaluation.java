@@ -268,6 +268,9 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
 					if (countEvalMap.getOrDefault("HepB", 0) >= 3) {
 						detectionSet.add(Detection.VaccineEvaluationAt24MonthsHepb3);
 					}
+                    if (countEvalMap.getOrDefault("HepA", 0) >= 2) {
+                      detectionSet.add(Detection.VaccineEvaluationAt24MonthsHepa2);
+                  }
 					if (countEvalMap.getOrDefault("Varicella", 0) >= 1) {
 						detectionSet.add(Detection.VaccineEvaluationAt24MonthsVar1);
 					}

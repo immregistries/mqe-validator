@@ -45,6 +45,7 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
     boolean passed = true;
 
+    int count = 0;
     int count_of_baby_vaccinations = 0;
     int count_of_toddler_vaccinations = 0;
 
@@ -59,6 +60,7 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
       if (this.common.isValidDate(v.getAdminDateString())) {
         DateTime adminDate = this.datr.parseDateTime(v.getAdminDateString());
 
+        count++;
         if (adminDate.isBefore(_6months)) {
           count_of_baby_vaccinations++;
         }
@@ -77,12 +79,21 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
       passed = false;
     }
     
+    if (count_of_toddler_vaccinations < 15) {
+      issues.add(Detection.AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths.build(target));
+    }
+    
+    if (count == 0)
+    {
+      issues.add(Detection.AdministeredVaccinationsCountIsZero.build(target));
+    }
+    
     int count_of_child_vaccinations = vaccinationDatesUnder6Years.size();
     if (count_of_child_vaccinations >= 2)
     {
       issues.add(Detection.AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears.build(target));
     }
-
+    
     return buildResults(issues, passed);
   }
 

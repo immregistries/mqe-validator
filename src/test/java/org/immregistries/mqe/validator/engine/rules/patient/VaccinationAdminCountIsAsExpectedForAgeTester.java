@@ -59,6 +59,8 @@ public class VaccinationAdminCountIsAsExpectedForAgeTester {
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
     assertTrue(!r.isRulePassed());
+    assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths));
+    assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsZero));
     assertTrue(containsDetection(r, Detection.AdministeredVaccinationsCountIsLargerThanExpected));
   }
 
@@ -75,6 +77,27 @@ public class VaccinationAdminCountIsAsExpectedForAgeTester {
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
     assertTrue(!r.isRulePassed());
+    assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths));
+    assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsZero));
+    assertTrue(containsDetection(r, Detection.AdministeredVaccinationsCountIsLargerThanExpected));
+  }
+  
+
+  @Test
+  public void moreThan30forAdult() {
+    Calendar cal = Calendar.getInstance();
+    p.setBirthDate(cal.getTime());
+    cal.add(Calendar.YEAR, 1);
+    Date _1year = cal.getTime();
+
+    List<MqeVaccination> vaccinations = createVaccination(31, _1year);
+    this.mr.setVaccinations(vaccinations);
+
+    ValidationRuleResult r = rule.executeRule(p, mr);
+    logger.info(r.getValidationDetections().toString());
+    assertTrue(!r.isRulePassed());
+    assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths));
+    assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsZero));
     assertTrue(containsDetection(r, Detection.AdministeredVaccinationsCountIsLargerThanExpected));
   }
 
@@ -98,6 +121,8 @@ public class VaccinationAdminCountIsAsExpectedForAgeTester {
     logger.info(r.getValidationDetections().toString());
     
     assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears));
+    assertTrue(containsDetection(r, Detection.AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths));
+    assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsZero));
     assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsLargerThanExpected));
   }
   
@@ -126,6 +151,8 @@ public class VaccinationAdminCountIsAsExpectedForAgeTester {
     logger.info(r.getValidationDetections().toString());
     
     assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears));
+    assertTrue(containsDetection(r, Detection.AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths));
+    assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsZero));
     assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsLargerThanExpected));
   }
   
@@ -154,7 +181,9 @@ public class VaccinationAdminCountIsAsExpectedForAgeTester {
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
     
-    assertTrue(containsDetection(r, Detection.AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears));
+    assertTrue(containsDetection(r, Detection.AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears));assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsZero));
+    assertTrue(containsDetection(r, Detection.AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths));
+    assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsZero));
     assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsLargerThanExpected));
   }
   
@@ -189,10 +218,12 @@ public class VaccinationAdminCountIsAsExpectedForAgeTester {
     logger.info(r.getValidationDetections().toString());
     
     assertTrue(containsDetection(r, Detection.AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears));
+    assertTrue(containsDetection(r, Detection.AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths));
+    assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsZero));
     assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsLargerThanExpected));
   }
   
-  public boolean containsDetection(ValidationRuleResult r, Detection detection)
+  public static boolean containsDetection(ValidationRuleResult r, Detection detection)
   {
     for (ValidationReport vr : r.getValidationDetections())
     {

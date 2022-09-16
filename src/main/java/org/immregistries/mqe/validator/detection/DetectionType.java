@@ -19,6 +19,7 @@ public enum DetectionType implements MqeDetectionType {
   PRESENT("is present", "Value found, something sent, may be valid or invalid"),
   
   // Vaccine Evaluation
+  HEPB_1_ONLY("with only 1 valid HepB dose"),
   HEPB_3("with 3 valid HepB doses"),
   DTAP_4("with 4 valid DTaP doses"),
   PCV_4("with 4 valid PCV doses"),
@@ -119,6 +120,8 @@ public enum DetectionType implements MqeDetectionType {
   VACCINATION_COUNT_EXCEEDS_EXPECTATIONS("has more vaccinations than expected"),
   MISSING_AND_MULTIPLE_BIRTH_INDICATED("is missing and multiple birth indicated"),
   TWO_VACCINATION_EVENTS_BY_SIX_YEARS("has at least two vaccination events before six years of age"),
+  ZERO("is zero"),
+  LESS_THAN_FIFTEEN_DOSES_BY_24_MONTHS("is less than 15 doses by 24 months"),
   MUTLIPLES("has multiples"),
   
   IS_ON_TIME("is on time"),

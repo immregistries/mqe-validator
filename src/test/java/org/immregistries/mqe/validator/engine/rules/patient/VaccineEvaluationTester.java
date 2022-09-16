@@ -78,6 +78,7 @@ public class VaccineEvaluationTester {
 		assertTrue(foundVaccineSet.contains(HEP_A));
 		assertTrue(foundVaccineSet.contains(HIB));
 		assertTrue(foundVaccineSet.contains(SERIES_4_3_1_3_3_1_4));
+		assertFalse(VaccinationAdminCountIsAsExpectedForAgeTester.containsDetection(r, Detection.VaccineEvaluationHepb1Only));
 	}
 
 	@Test
@@ -99,6 +100,7 @@ public class VaccineEvaluationTester {
 		assertTrue(foundVaccineSet.contains(HEP_A));
 		assertFalse(foundVaccineSet.contains(HIB));
 		assertFalse(foundVaccineSet.contains(SERIES_4_3_1_3_3_1_4));
+		assertTrue(VaccinationAdminCountIsAsExpectedForAgeTester.containsDetection(r, Detection.VaccineEvaluationHepb1Only));
 	}
 
 	private Set<String> createFoundSet(ValidationRuleResult r) {

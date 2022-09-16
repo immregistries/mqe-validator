@@ -90,6 +90,7 @@ import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_
 import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_ZERO;
 import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_BAD_ADDRESS;
 import static org.immregistries.mqe.validator.detection.DetectionType.VERY_LONG_AGO;
+import static org.immregistries.mqe.validator.detection.DetectionType.HEPB_1_ONLY;
 import static org.immregistries.mqe.validator.detection.DetectionType.HEPB_3;
 import static org.immregistries.mqe.validator.detection.DetectionType.DTAP_4;
 import static org.immregistries.mqe.validator.detection.DetectionType.PCV_4;
@@ -101,6 +102,8 @@ import static org.immregistries.mqe.validator.detection.DetectionType.HIB_2;
 import static org.immregistries.mqe.validator.detection.DetectionType.HIB_3;
 import static org.immregistries.mqe.validator.detection.DetectionType.SERIES_4_3_1_3_3_1_4;
 import static org.immregistries.mqe.validator.detection.DetectionType.TWO_VACCINATION_EVENTS_BY_SIX_YEARS;
+import static org.immregistries.mqe.validator.detection.DetectionType.LESS_THAN_FIFTEEN_DOSES_BY_24_MONTHS;
+import static org.immregistries.mqe.validator.detection.DetectionType.ZERO;
 import static org.immregistries.mqe.validator.detection.MqeCode.*;
 import static org.immregistries.mqe.vxu.VxuField.*;
 import java.util.HashMap;
@@ -421,6 +424,9 @@ public enum Detection implements MqeDetection {
 
   AdministeredVaccinationsCountIsLargerThanExpected(PATIENT_LEVEL, VACCINATION_COUNT_EXCEEDS_EXPECTATIONS, WARN, MQE0568),
   AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears(PATIENT_LEVEL, TWO_VACCINATION_EVENTS_BY_SIX_YEARS , ACCEPT, MQE0770),
+  AdministeredVaccinationsCountIsZero(PATIENT_LEVEL, ZERO , ACCEPT, MQE0771),
+  AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths(PATIENT_LEVEL, LESS_THAN_FIFTEEN_DOSES_BY_24_MONTHS , ACCEPT, MQE0772),
+
   
   VaccinationSystemEntryDateIsMissing(VACCINATION_SYSTEM_ENTRY_TIME, MISSING, ACCEPT, MQE0573),
   VaccinationSystemEntryDateIsInTheFuture(VACCINATION_SYSTEM_ENTRY_TIME, IN_FUTURE, ACCEPT, MQE0581),
@@ -819,6 +825,8 @@ public enum Detection implements MqeDetection {
   VaccinationVisPublishedDateIsPresent(VACCINATION_VIS_PUBLISHED_DATE, PRESENT, ACCEPT, MQE0750),
   VaccinationVisVersionDateIsPresent(VACCINATION_VIS_VERSION_DATE, PRESENT, ACCEPT, MQE0751),
   
+  VaccineEvaluationHepb1Only(VACCINE_EVALUATION, HEPB_1_ONLY, ACCEPT, MQE0773),
+    
   VaccineEvaluationAt18MonthsHepb3(VACCINE_EVALUATION_AT_18_MONTHS, HEPB_3, ACCEPT, MQE0752),
   VaccineEvaluationAt18MonthsDtap4(VACCINE_EVALUATION_AT_18_MONTHS, DTAP_4, ACCEPT, MQE0753),
   VaccineEvaluationAt15MonthsPcv4(VACCINE_EVALUATION_AT_15_MONTHS, PCV_4, ACCEPT, MQE0754),

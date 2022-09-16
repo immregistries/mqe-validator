@@ -104,6 +104,10 @@ import static org.immregistries.mqe.validator.detection.DetectionType.SERIES_4_3
 import static org.immregistries.mqe.validator.detection.DetectionType.TWO_VACCINATION_EVENTS_BY_SIX_YEARS;
 import static org.immregistries.mqe.validator.detection.DetectionType.LESS_THAN_FIFTEEN_DOSES_BY_24_MONTHS;
 import static org.immregistries.mqe.validator.detection.DetectionType.ZERO;
+import static org.immregistries.mqe.validator.detection.DetectionType.HIB;
+import static org.immregistries.mqe.validator.detection.DetectionType.PCV;
+import static org.immregistries.mqe.validator.detection.DetectionType.ROTAVIRUS;
+import static org.immregistries.mqe.validator.detection.DetectionType.HEPB;
 import static org.immregistries.mqe.validator.detection.MqeCode.*;
 import static org.immregistries.mqe.vxu.VxuField.*;
 import java.util.HashMap;
@@ -845,6 +849,10 @@ public enum Detection implements MqeDetection {
   VaccineEvaluationAt24MonthsVar1(VACCINE_EVALUATION_AT_24_MONTHS, VAR_1, ACCEPT, MQE0765),
   VaccineEvaluationAt24MonthsPcv4(VACCINE_EVALUATION_AT_24_MONTHS, PCV_4, ACCEPT, MQE0766),
   
+  VaccineForecastAt24MonthsHibComplete(VACCINE_FORECAST_AT_24_MONTHS, HIB, ACCEPT,  MQE0774),
+  VaccineForecastAt24MonthsPcvComplete(VACCINE_FORECAST_AT_24_MONTHS, PCV, ACCEPT,  MQE0775),
+  VaccineForecastAt24MonthsRotaComplete(VACCINE_FORECAST_AT_24_MONTHS, ROTAVIRUS, ACCEPT,  MQE0776),
+  VaccineForecastAt24MonthsHepbComplete(VACCINE_FORECAST_AT_24_MONTHS, HEPB, ACCEPT,  MQE0777),
   
   VaccineCoverageAt24MonthsSeries4_3_1_3_3_1_4(VACCINE_COVERAGE_AT_24_MONTHS, SERIES_4_3_1_3_3_1_4, ACCEPT, MQE0767),
   VaccineCoverageAt36MonthsSeries4_3_1_3_3_1_4(VACCINE_COVERAGE_AT_36_MONTHS, SERIES_4_3_1_3_3_1_4, ACCEPT, MQE0768),

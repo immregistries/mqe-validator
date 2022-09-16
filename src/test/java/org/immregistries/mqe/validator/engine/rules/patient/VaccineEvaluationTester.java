@@ -79,6 +79,10 @@ public class VaccineEvaluationTester {
 		assertTrue(foundVaccineSet.contains(HIB));
 		assertTrue(foundVaccineSet.contains(SERIES_4_3_1_3_3_1_4));
 		assertFalse(VaccinationAdminCountIsAsExpectedForAgeTester.containsDetection(r, Detection.VaccineEvaluationHepb1Only));
+		assertTrue(VaccinationAdminCountIsAsExpectedForAgeTester.containsDetection(r, Detection.VaccineForecastAt24MonthsHibComplete));
+		assertTrue(VaccinationAdminCountIsAsExpectedForAgeTester.containsDetection(r, Detection.VaccineForecastAt24MonthsPcvComplete));
+		assertTrue(VaccinationAdminCountIsAsExpectedForAgeTester.containsDetection(r, Detection.VaccineForecastAt24MonthsRotaComplete));
+		assertTrue(VaccinationAdminCountIsAsExpectedForAgeTester.containsDetection(r, Detection.VaccineForecastAt24MonthsHepbComplete));
 	}
 
 	@Test
@@ -94,13 +98,17 @@ public class VaccineEvaluationTester {
 		assertFalse(foundVaccineSet.contains(POLIO));
 		assertFalse(foundVaccineSet.contains(HEP_B));
 		assertFalse(foundVaccineSet.contains(DTAP));
-		assertTrue(foundVaccineSet.contains(PCV));
+		assertFalse(foundVaccineSet.contains(PCV));
 		assertTrue(foundVaccineSet.contains(MMR));
 		assertTrue(foundVaccineSet.contains(VARICELLA));
 		assertTrue(foundVaccineSet.contains(HEP_A));
 		assertFalse(foundVaccineSet.contains(HIB));
 		assertFalse(foundVaccineSet.contains(SERIES_4_3_1_3_3_1_4));
 		assertTrue(VaccinationAdminCountIsAsExpectedForAgeTester.containsDetection(r, Detection.VaccineEvaluationHepb1Only));
+		assertTrue(VaccinationAdminCountIsAsExpectedForAgeTester.containsDetection(r, Detection.VaccineForecastAt24MonthsHibComplete));
+		assertFalse(VaccinationAdminCountIsAsExpectedForAgeTester.containsDetection(r, Detection.VaccineForecastAt24MonthsPcvComplete));
+		assertFalse(VaccinationAdminCountIsAsExpectedForAgeTester.containsDetection(r, Detection.VaccineForecastAt24MonthsRotaComplete));
+		assertFalse(VaccinationAdminCountIsAsExpectedForAgeTester.containsDetection(r, Detection.VaccineForecastAt24MonthsHepbComplete));
 	}
 
 	private Set<String> createFoundSet(ValidationRuleResult r) {

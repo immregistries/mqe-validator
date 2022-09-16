@@ -33,6 +33,12 @@ public enum DetectionType implements MqeDetectionType {
   // Vaccines Coverage
   SERIES_4_3_1_3_3_1_4("for series 4:3:1:3:3:1:4"),
   
+  // Vaccine Forecast
+  HIB("Hib"),
+  PCV("PCV"),
+  ROTAVIRUS("Rotavirus"),
+  HEPB("Hep B"),
+  
   //Valued As types:
   VALUED_AS("is valued as"),
   VALUED_AS_NO("is valued as no"),

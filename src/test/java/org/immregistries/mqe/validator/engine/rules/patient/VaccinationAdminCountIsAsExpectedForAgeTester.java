@@ -150,7 +150,7 @@ public class VaccinationAdminCountIsAsExpectedForAgeTester {
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
     
-    assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears));
+    assertTrue(containsDetection(r, Detection.AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears));
     assertTrue(containsDetection(r, Detection.AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths));
     assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsZero));
     assertFalse(containsDetection(r, Detection.AdministeredVaccinationsCountIsLargerThanExpected));

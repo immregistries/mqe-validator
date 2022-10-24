@@ -48,14 +48,13 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
     int count = 0;
     int count_of_baby_vaccinations = 0;
     int count_of_toddler_vaccinations = 0;
+    int count_of_child_vaccinations = 0;
 
     DateTime birthDate = new DateTime(target.getBirthDate());
     DateTime _6months = birthDate.plusMonths(6);
     DateTime _2years = birthDate.plusYears(2);
     DateTime _6years = birthDate.plusYears(6);
     
-    Set<DateTime> vaccinationDatesUnder6Years = new HashSet<>();
-
     for (MqeVaccination v : m.getVaccinations()) {
       if (this.common.isValidDate(v.getAdminDateString())) {
         DateTime adminDate = this.datr.parseDateTime(v.getAdminDateString());
@@ -68,13 +67,13 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
           count_of_toddler_vaccinations++;
         }
         if (adminDate.isBefore(_6years)) {
-          vaccinationDatesUnder6Years.add(adminDate);
+          count_of_child_vaccinations++;
         }
       }
 
     }
 
-    if (count_of_baby_vaccinations > 20 || count_of_toddler_vaccinations > 30) {
+    if (count_of_baby_vaccinations >= 20 || count_of_toddler_vaccinations >= 30) {
       issues.add(Detection.AdministeredVaccinationsCountIsLargerThanExpected.build(target));
       passed = false;
     }
@@ -88,7 +87,6 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
       issues.add(Detection.AdministeredVaccinationsCountIsZero.build(target));
     }
     
-    int count_of_child_vaccinations = vaccinationDatesUnder6Years.size();
     if (count_of_child_vaccinations >= 2)
     {
       issues.add(Detection.AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears.build(target));

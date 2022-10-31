@@ -18,7 +18,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <mqe.version>2021.9-BETA</mqe.version>
     <codebase.version>2.3</codebase.version>
-    <lonestar.version>4.3</lonestar.version>
+    <lonestar.version>4.4</lonestar.version>
   </properties>
 
   <dependencies>

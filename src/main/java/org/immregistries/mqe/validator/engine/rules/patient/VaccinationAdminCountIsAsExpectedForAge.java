@@ -38,6 +38,18 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
       id.setImplementationDescription(
           "Patient received vaccinations on two different dates by the age of six. ");
     }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths);
+      id.setImplementationDescription(
+          "Patient received less than 15 vaccinations by 24 months of age. ");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.AdministeredVaccinationsCountIsZero);
+      id.setImplementationDescription(
+          "Patient received no vaccinations. ");
+    }
   }
 
   @Override

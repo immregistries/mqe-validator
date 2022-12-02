@@ -139,9 +139,47 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
     this.addRuleDetection(Detection.VaccineCoverageAt36MonthsSeries4_3_1_3_3_1_4);
     {
       ImplementationDetail id =
-          this.addRuleDetection(Detection.VaccineCoverageAt24MonthsSeries4_3_1_3_3_1_4);
+          this.addRuleDetection(Detection.VaccineCoverageAt36MonthsSeries4_3_1_3_3_1_4);
       id.setImplementationDescription(
           "Vaccination coverage at 36 months of age for 4:3:1:3:3:1:4 series.");
+    }
+    
+    
+    this.addRuleDetection(Detection.VaccineEvaluationHepb1Only);
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccineEvaluationHepb1Only);
+      id.setImplementationDescription(
+          "Vaccination evaluation patient has only one Hep B");
+    }
+    this.addRuleDetection(Detection.VaccineEvaluationAt24MonthsHepa2);
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccineEvaluationAt24MonthsHepa2);
+      id.setImplementationDescription(
+          "Vaccination evaluation patient at 24 months of age for Help A series, has at least 2 doses");
+    }
+    this.addRuleDetection(Detection.VaccineForecastAt24MonthsHibComplete);
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccineForecastAt24MonthsHibComplete);
+      id.setImplementationDescription(
+          "Vaccination evaluation patient at 24 months of age for Hib series is complete");
+    }
+    this.addRuleDetection(Detection.VaccineForecastAt24MonthsPcvComplete);
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccineForecastAt24MonthsPcvComplete);
+      id.setImplementationDescription(
+          "Vaccination evaluation patient at 24 months of age for PVC series is complete");
+    }
+    this.addRuleDetection(Detection.VaccineForecastAt24MonthsRotaComplete);
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccineForecastAt24MonthsRotaComplete);
+      id.setImplementationDescription(
+          "Vaccination evaluation patient at 24 months of age for Rotavirus series is complete");
+    }
+    this.addRuleDetection(Detection.VaccineForecastAt24MonthsHepbComplete);
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccineForecastAt24MonthsHepbComplete);
+      id.setImplementationDescription(
+          "Vaccination evaluation at 24 months of age for Hep B series complete.");
     }
   }
 

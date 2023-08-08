@@ -66,7 +66,7 @@ public enum CodeRepository {
   public Code getMfrForCode(String manufacturerCode) {
     // call the new XML based code repository
     Code c =
-        this.getCodeMap().getCodeForCodeset(CodesetType.VACCINATION_LOT_NUMBER_PATTERN,
+        this.getCodeMap().getCodeForCodeset(CodesetType.VACCINATION_MANUFACTURER_CODE,
             manufacturerCode);
     return c;
   }

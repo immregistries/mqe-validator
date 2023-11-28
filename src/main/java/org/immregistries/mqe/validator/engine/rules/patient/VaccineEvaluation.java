@@ -129,6 +129,42 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
       id.setImplementationDescription(
           "Vaccination evaluation at 24 months of age for 4 valid doses of PCV.");
     }
+    this.addRuleDetection(Detection.VaccineEvaluationHasInvalidDoses1orMore);
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccineEvaluationHasInvalidDoses1orMore);
+      id.setImplementationDescription(
+          "Vaccination evaluation has 1 or more invalid doses.");
+    }
+    this.addRuleDetection(Detection.VaccineEvaluationHasInvalidDoses2orMore);
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccineEvaluationHasInvalidDoses2orMore);
+      id.setImplementationDescription(
+          "Vaccination evaluation has 2 or more invalid doses.");
+    }
+    this.addRuleDetection(Detection.VaccineEvaluationHasInvalidDoses3orMore);
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccineEvaluationHasInvalidDoses3orMore);
+      id.setImplementationDescription(
+          "Vaccination evaluation has 3 or more invalid doses.");
+    }
+    this.addRuleDetection(Detection.VaccineEvaluationHasInvalidDoses4orMore);
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccineEvaluationHasInvalidDoses4orMore);
+      id.setImplementationDescription(
+          "Vaccination evaluation has 4 or more invalid doses.");
+    }
+    this.addRuleDetection(Detection.VaccineEvaluationHasInvalidDoses5orMore);
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccineEvaluationHasInvalidDoses5orMore);
+      id.setImplementationDescription(
+          "Vaccination evaluation has 5 or more invalid doses.");
+    }
+    this.addRuleDetection(Detection.VaccineEvaluationHasInvalidDoses10orMore);
+    {
+      ImplementationDetail id = this.addRuleDetection(Detection.VaccineEvaluationHasInvalidDoses10orMore);
+      id.setImplementationDescription(
+          "Vaccination evaluation has 10 or more invalid doses.");
+    }
     this.addRuleDetection(Detection.VaccineCoverageAt24MonthsSeries4_3_1_3_3_1_4);
     {
       ImplementationDetail id =
@@ -246,6 +282,8 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
 
       List<ImmunizationForecastDataBean> resultList = new ArrayList<ImmunizationForecastDataBean>();
 
+      int invalidDoseCount = 0;
+
       try {
         Map<String, List<Trace>> traceMap = new HashMap<String, List<Trace>>();
         forecastHandlerCore.forecast(forecastInput.doseList, forecastInput.patient,
@@ -268,8 +306,29 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
                 countEvalMap.put(dose.getForecastCode(), count + 1);
               }
             }
+          } else if (dose.getStatusCode().equals(VaccinationDoseDataBean.STATUS_INVALID)) {
+            invalidDoseCount++;
           }
         }
+
+        if (invalidDoseCount >= 1) {
+          detectionSet.add(Detection.VaccineEvaluationHasInvalidDoses1orMore);
+          if (invalidDoseCount >= 2) {
+            detectionSet.add(Detection.VaccineEvaluationHasInvalidDoses2orMore);
+            if (invalidDoseCount >= 3) {
+              detectionSet.add(Detection.VaccineEvaluationHasInvalidDoses3orMore);
+              if (invalidDoseCount >= 4) {
+                detectionSet.add(Detection.VaccineEvaluationHasInvalidDoses4orMore);
+                if (invalidDoseCount >= 5) {
+                  detectionSet.add(Detection.VaccineEvaluationHasInvalidDoses5orMore);
+                  if (invalidDoseCount >= 10) {
+                    detectionSet.add(Detection.VaccineEvaluationHasInvalidDoses10orMore);
+                  }
+                }
+              }
+            }
+          }
+        } 
 
         for (int months = MONTHS.length - 1; months >= 0; months--) {
           Integer month = MONTHS[months];

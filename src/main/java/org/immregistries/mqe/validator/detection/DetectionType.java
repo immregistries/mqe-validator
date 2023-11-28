@@ -29,6 +29,14 @@ public enum DetectionType implements MqeDetectionType {
   HEPA_2("with 2 valid HepA doses"),
   HIB_2("with 2 valid Hib Doses"),
   HIB_3("with 3 valid Hib Doses"),
+  HAS_INVALID_DOSES_1_OR_MORE("", "Patient has 1 or more invalid doses"),
+  HAS_INVALID_DOSES_2_OR_MORE("", "Patient has 2 or more invalid doses"),
+  HAS_INVALID_DOSES_3_OR_MORE("", "Patient has 3 or more invalid doses"),
+  HAS_INVALID_DOSES_4_OR_MORE("", "Patient has 4 or more invalid doses"),
+  HAS_INVALID_DOSES_5_OR_MORE("", "Patient has 5 or more invalid doses"),
+  HAS_INVALID_DOSES_10_OR_MORE("", "Patient has 10 or more invalid doses"),
+
+
   
   // Vaccines Coverage
   SERIES_4_3_1_3_3_1_4("for series 4:3:1:3:3:1:4"),

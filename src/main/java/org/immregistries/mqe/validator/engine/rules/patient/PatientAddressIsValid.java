@@ -117,19 +117,17 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
     boolean passed;
 
     MqeAddress a = target.getPatientAddress();
-
+    ValidationRuleResult result = addressValidator.getAddressIssuesFor(fields, a, target);
+    issues.addAll(result.getValidationDetections());
 
     if (a != null) {
-      ValidationRuleResult result = addressValidator.getAddressIssuesFor(fields, a, target);
-      issues.addAll(result.getValidationDetections());
 
       if (!a.isEmpty()) {
-        issues.add(Detection.PatientAddressIsPresent.build(target));
         if (props.isAddressCleanserEnabled()) {
           if (!a.isClean()) {
             ValidationReport r = Detection.PatientAddressIsInvalid.build(target);
             List<SmartyStreetResponse> rList =
-                SmartyStreetResponse.codesFromDpv(a.getCleansingResultCode());
+                    SmartyStreetResponse.codesFromDpv(a.getCleansingResultCode());
             if (rList.size() > 0) {
               StringBuilder b = new StringBuilder(":");
               for (SmartyStreetResponse rz : rList) {
@@ -140,18 +138,16 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
             issues.add(r);
           }
         }
-
-        if (a.getTypeCode() != null && "BA".equals(a.getTypeCode())) {
-          issues.add(Detection.PatientAddressTypeIsValuedBadAddress.build(a.toString(), target));
-        }
-
-        issues.addAll(
-            this.codr.handleCodeOrMissing(a.getTypeCode(), VxuField.PATIENT_ADDRESS_TYPE, target));
-      } else {
-        issues.add(Detection.PatientAddressIsMissing.build(target));
       }
-    } else {
-      issues.add(Detection.PatientAddressIsMissing.build(target));
+
+      if (a.getTypeCode() != null && "BA".equals(a.getTypeCode())) {
+        issues.add(Detection.PatientAddressTypeIsValuedBadAddress.build(a.toString(), target));
+      }
+
+      issues.addAll(
+          this.codr.handleCodeOrMissing(a.getTypeCode(), VxuField.PATIENT_ADDRESS_TYPE, target)
+      );
+
     }
 
     passed = verifyNoIssuesExceptPresent(issues);

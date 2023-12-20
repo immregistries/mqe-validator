@@ -1,7 +1,9 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
@@ -30,6 +32,24 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
       id.setImplementationDescription(
           "Expecting less than 20 vaccinations given before 6 months of age. Expecting less than 30 vaccinations given before 2 years of age.");
     }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears);
+      id.setImplementationDescription(
+          "Patient received vaccinations on two different dates by the age of six. ");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths);
+      id.setImplementationDescription(
+          "Patient received less than 15 vaccinations by 24 months of age. ");
+    }
+    {
+      ImplementationDetail id =
+          this.addRuleDetection(Detection.AdministeredVaccinationsCountIsZero);
+      id.setImplementationDescription(
+          "Patient received no vaccinations. ");
+    }
   }
 
   @Override
@@ -37,32 +57,53 @@ public class VaccinationAdminCountIsAsExpectedForAge extends ValidationRule<MqeP
     List<ValidationReport> issues = new ArrayList<ValidationReport>();
     boolean passed = true;
 
+    int count = 0;
     int count_of_baby_vaccinations = 0;
     int count_of_toddler_vaccinations = 0;
+    int count_of_child_vaccinations = 0;
 
     DateTime birthDate = new DateTime(target.getBirthDate());
     DateTime _6months = birthDate.plusMonths(6);
     DateTime _2years = birthDate.plusYears(2);
-
+    DateTime _6years = birthDate.plusYears(6);
+    
     for (MqeVaccination v : m.getVaccinations()) {
       if (this.common.isValidDate(v.getAdminDateString())) {
         DateTime adminDate = this.datr.parseDateTime(v.getAdminDateString());
 
+        count++;
         if (adminDate.isBefore(_6months)) {
           count_of_baby_vaccinations++;
         }
         if (adminDate.isBefore(_2years)) {
           count_of_toddler_vaccinations++;
         }
+        if (adminDate.isBefore(_6years)) {
+          count_of_child_vaccinations++;
+        }
       }
 
     }
 
-    if (count_of_baby_vaccinations > 20 || count_of_toddler_vaccinations > 30) {
+    if (count_of_baby_vaccinations >= 20 || count_of_toddler_vaccinations >= 30) {
       issues.add(Detection.AdministeredVaccinationsCountIsLargerThanExpected.build(target));
       passed = false;
     }
-
+    
+    if (count_of_toddler_vaccinations < 15) {
+      issues.add(Detection.AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths.build(target));
+    }
+    
+    if (count == 0)
+    {
+      issues.add(Detection.AdministeredVaccinationsCountIsZero.build(target));
+    }
+    
+    if (count_of_child_vaccinations >= 2)
+    {
+      issues.add(Detection.AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears.build(target));
+    }
+    
     return buildResults(issues, passed);
   }
 

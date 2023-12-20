@@ -17,7 +17,36 @@ public enum DetectionType implements MqeDetectionType {
   UNRECOGNIZED("is unrecognized", "Coded value is not recognized as either valid or invalid because it is unknown to this system. "),
   UNEXPECTED("is unexpected"),
   PRESENT("is present", "Value found, something sent, may be valid or invalid"),
+  
+  // Vaccine Evaluation
+  HEPB_1_ONLY("with only 1 valid HepB dose"),
+  HEPB_3("with 3 valid HepB doses"),
+  DTAP_4("with 4 valid DTaP doses"),
+  PCV_4("with 4 valid PCV doses"),
+  POLIO_3("with 3 valid IPV doses"),
+  MMR_1("with 1 valid MMR dose"),
+  VAR_1("with 1 valid Varicella doses"),
+  HEPA_2("with 2 valid HepA doses"),
+  HIB_2("with 2 valid Hib Doses"),
+  HIB_3("with 3 valid Hib Doses"),
+  HAS_INVALID_DOSES_1_OR_MORE("with 1 or more invalid doses"),
+  HAS_INVALID_DOSES_2_OR_MORE("with 2 or more invalid doses"),
+  HAS_INVALID_DOSES_3_OR_MORE("with 3 or more invalid doses"),
+  HAS_INVALID_DOSES_4_OR_MORE("with 4 or more invalid doses"),
+  HAS_INVALID_DOSES_5_OR_MORE("with 5 or more invalid doses"),
+  HAS_INVALID_DOSES_10_OR_MORE("with 10 or more invalid doses"),
 
+
+  
+  // Vaccines Coverage
+  SERIES_4_3_1_3_3_1_4("for series 4:3:1:3:3:1:4"),
+  
+  // Vaccine Forecast
+  HIB("Hib"),
+  PCV("PCV"),
+  ROTAVIRUS("Rotavirus"),
+  HEPB("Hep B"),
+  
   //Valued As types:
   VALUED_AS("is valued as"),
   VALUED_AS_NO("is valued as no"),
@@ -104,6 +133,9 @@ public enum DetectionType implements MqeDetectionType {
   SAME_AS_UNDERAGE_PATIENT("is same as underage patient"),
   VACCINATION_COUNT_EXCEEDS_EXPECTATIONS("has more vaccinations than expected"),
   MISSING_AND_MULTIPLE_BIRTH_INDICATED("is missing and multiple birth indicated"),
+  TWO_VACCINATION_EVENTS_BY_SIX_YEARS("has at least two vaccination events before six years of age"),
+  ZERO("is zero"),
+  LESS_THAN_FIFTEEN_DOSES_BY_24_MONTHS("is less than 15 doses by 24 months"),
   MUTLIPLES("has multiples"),
   
   IS_ON_TIME("is on time"),

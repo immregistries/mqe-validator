@@ -11,7 +11,6 @@ import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntry;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.MqeVaccination;
 import org.immregistries.mqe.vxu.TargetType;
-import org.joda.time.DateTime;
 
 @ValidationRuleEntry(TargetType.Vaccination)
 public class VaccinationAdministeredRequiredFieldsArePresent
@@ -19,7 +18,7 @@ public class VaccinationAdministeredRequiredFieldsArePresent
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationAdministeredLotNumberIsPresent.class};
+    return new Class[] {VaccinationSourceIsAdministered.class};
   }
 
   public VaccinationAdministeredRequiredFieldsArePresent() {

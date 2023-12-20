@@ -4,92 +4,7 @@ import static org.immregistries.mqe.hl7util.SeverityLevel.ACCEPT;
 import static org.immregistries.mqe.hl7util.SeverityLevel.ERROR;
 import static org.immregistries.mqe.hl7util.SeverityLevel.INFO;
 import static org.immregistries.mqe.hl7util.SeverityLevel.WARN;
-import static org.immregistries.mqe.validator.detection.DetectionType.ADMINISTERED_BUT_APPEARS_TO_HISTORICAL;
-import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_ADMIN_DATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_LOT_EXPIRATION;
-import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_MESSAGE_SUBMITTED;
-import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_PATIENT_DEATH_DATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_SUBMISSION;
-import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_SYSTEM_ENTRY_DATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.ARE_INCONSISTENT;
-import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_BIRTH;
-import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE;
-import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_OR_AFTER_EXPECTED_DATE_RANGE;
-import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_OR_AFTER_LICENSED_DATE_RANGE;
-import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_OR_AFTER_VALID_DATE_FOR_AGE;
-import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_PUBLISHED_DATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_VERSION_DATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.CONFLICTS_COMPLETION_STATUS;
-import static org.immregistries.mqe.validator.detection.DetectionType.DEPRECATED;
-import static org.immregistries.mqe.validator.detection.DetectionType.DIFFERENT_FROM_PATIENT_ADDRESS;
-import static org.immregistries.mqe.validator.detection.DetectionType.DIFF_FROM_START;
-import static org.immregistries.mqe.validator.detection.DetectionType.EXCEPTION;
-import static org.immregistries.mqe.validator.detection.DetectionType.HAS_JUNK_NAME;
-import static org.immregistries.mqe.validator.detection.DetectionType.HISTORICAL_BUT_APPEARS_TO_BE_ADMINISTERED;
-import static org.immregistries.mqe.validator.detection.DetectionType.IGNORED;
-import static org.immregistries.mqe.validator.detection.DetectionType.INCOMPLETE;
-import static org.immregistries.mqe.validator.detection.DetectionType.INCONSISTENT;
-import static org.immregistries.mqe.validator.detection.DetectionType.INCORRECT;
-import static org.immregistries.mqe.validator.detection.DetectionType.INVALID;
-import static org.immregistries.mqe.validator.detection.DetectionType.INVALID_FOR_DATE_ADMINISTERED;
-import static org.immregistries.mqe.validator.detection.DetectionType.INVALID_FOR_VACCINE;
-import static org.immregistries.mqe.validator.detection.DetectionType.INVALID_INFIXES;
-import static org.immregistries.mqe.validator.detection.DetectionType.INVALID_PREFIXES;
-import static org.immregistries.mqe.validator.detection.DetectionType.INVALID_SUFFIXES;
-import static org.immregistries.mqe.validator.detection.DetectionType.IN_FUTURE;
-import static org.immregistries.mqe.validator.detection.DetectionType.IS_LATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.IS_ON_TIME;
-import static org.immregistries.mqe.validator.detection.DetectionType.IS_TOO_LATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.IS_VERY_LATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.MAY_BE_AN_INITIAL;
-import static org.immregistries.mqe.validator.detection.DetectionType.MAY_BE_PREVIOUSLY_REPORTED;
-import static org.immregistries.mqe.validator.detection.DetectionType.MAY_BE_TEMPORARY_NEWBORN_NAME;
-import static org.immregistries.mqe.validator.detection.DetectionType.MAY_BE_TEST_NAME;
-import static org.immregistries.mqe.validator.detection.DetectionType.MAY_INCLUDE_MIDDLE_INITIAL;
-import static org.immregistries.mqe.validator.detection.DetectionType.MISSING;
-import static org.immregistries.mqe.validator.detection.DetectionType.MISSING_AND_MULTIPLE_BIRTH_INDICATED;
-import static org.immregistries.mqe.validator.detection.DetectionType.MISSING_TIMEZONE;
-import static org.immregistries.mqe.validator.detection.DetectionType.MUTLIPLES;
-import static org.immregistries.mqe.validator.detection.DetectionType.NOT_PRECISE;
-import static org.immregistries.mqe.validator.detection.DetectionType.NOT_RESPONSIBLE_PARTY;
-import static org.immregistries.mqe.validator.detection.DetectionType.NOT_SAME_AS_ADMIN_DATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.NOT_SPECIFIC;
-import static org.immregistries.mqe.validator.detection.DetectionType.NOT_USABLE;
-import static org.immregistries.mqe.validator.detection.DetectionType.NOT_VACCINE;
-import static org.immregistries.mqe.validator.detection.DetectionType.NOT_VALUED_LEGAL;
-import static org.immregistries.mqe.validator.detection.DetectionType.ON_FIFTEENTH_DAY_OF_MONTH;
-import static org.immregistries.mqe.validator.detection.DetectionType.ON_FIRST_DAY_OF_MONTH;
-import static org.immregistries.mqe.validator.detection.DetectionType.ON_LAST_DAY_OF_MONTH;
-import static org.immregistries.mqe.validator.detection.DetectionType.OUT_OF_DATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.PRESENT;
-import static org.immregistries.mqe.validator.detection.DetectionType.REPORTED_LATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.SAME_AS_UNDERAGE_PATIENT;
-import static org.immregistries.mqe.validator.detection.DetectionType.TOO_SHORT;
-import static org.immregistries.mqe.validator.detection.DetectionType.UNDERAGE;
-import static org.immregistries.mqe.validator.detection.DetectionType.UNEXPECTED;
-import static org.immregistries.mqe.validator.detection.DetectionType.UNEXPECTED_FORMAT;
-import static org.immregistries.mqe.validator.detection.DetectionType.UNEXPECTED_FOR_DATE_ADMINISTERED;
-import static org.immregistries.mqe.validator.detection.DetectionType.UNEXPECTED_FOR_FINANCIAL_ELIGIBILITY;
-import static org.immregistries.mqe.validator.detection.DetectionType.UNRECOGNIZED;
-import static org.immregistries.mqe.validator.detection.DetectionType.VACCINATION_COUNT_EXCEEDS_EXPECTATIONS;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_ADD;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_ADD_OR_UPDATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_ADMINISTERED;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_COMPLETED;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_DELETE;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_FOREIGN;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_HISTORICAL;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_NO;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_NOT_ADMINISTERED;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_PARTIALLY_ADMINISTERED;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_REFUSED;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_RESTRICTED;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_UNKNOWN;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_UPDATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_YES;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_ZERO;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_BAD_ADDRESS;
-import static org.immregistries.mqe.validator.detection.DetectionType.VERY_LONG_AGO;
+import static org.immregistries.mqe.validator.detection.DetectionType.*;
 import static org.immregistries.mqe.validator.detection.MqeCode.*;
 import static org.immregistries.mqe.vxu.VxuField.*;
 import java.util.HashMap;
@@ -409,6 +324,10 @@ public enum Detection implements MqeDetection {
   PatientSystemEntryDateIsInTheFuture(PATIENT_SYSTEM_ENTRY_TIME, IN_FUTURE, ACCEPT, MQE0582),
 
   AdministeredVaccinationsCountIsLargerThanExpected(PATIENT_LEVEL, VACCINATION_COUNT_EXCEEDS_EXPECTATIONS, WARN, MQE0568),
+  AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears(PATIENT_LEVEL, TWO_VACCINATION_EVENTS_BY_SIX_YEARS , ACCEPT, MQE0770),
+  AdministeredVaccinationsCountIsZero(PATIENT_LEVEL, ZERO , ACCEPT, MQE0771),
+  AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths(PATIENT_LEVEL, LESS_THAN_FIFTEEN_DOSES_BY_24_MONTHS , ACCEPT, MQE0772),
+
   
   VaccinationSystemEntryDateIsMissing(VACCINATION_SYSTEM_ENTRY_TIME, MISSING, ACCEPT, MQE0573),
   VaccinationSystemEntryDateIsInTheFuture(VACCINATION_SYSTEM_ENTRY_TIME, IN_FUTURE, ACCEPT, MQE0581),
@@ -806,6 +725,41 @@ public enum Detection implements MqeDetection {
   VaccinationVisPresentedDateIsPresent(VACCINATION_VIS_PRESENTED_DATE, PRESENT, ACCEPT, MQE0749),
   VaccinationVisPublishedDateIsPresent(VACCINATION_VIS_PUBLISHED_DATE, PRESENT, ACCEPT, MQE0750),
   VaccinationVisVersionDateIsPresent(VACCINATION_VIS_VERSION_DATE, PRESENT, ACCEPT, MQE0751),
+  
+  VaccineEvaluationHepb1Only(VACCINE_EVALUATION, HEPB_1_ONLY, ACCEPT, MQE0773),
+    
+  VaccineEvaluationAt18MonthsHepb3(VACCINE_EVALUATION_AT_18_MONTHS, HEPB_3, ACCEPT, MQE0752),
+  VaccineEvaluationAt18MonthsDtap4(VACCINE_EVALUATION_AT_18_MONTHS, DTAP_4, ACCEPT, MQE0753),
+  VaccineEvaluationAt15MonthsPcv4(VACCINE_EVALUATION_AT_15_MONTHS, PCV_4, ACCEPT, MQE0754),
+  VaccineEvaluationAt15MonthsPolio3(VACCINE_EVALUATION_AT_15_MONTHS, POLIO_3, ACCEPT, MQE0755),
+  VaccineEvaluationAt15MonthsMmr1(VACCINE_EVALUATION_AT_15_MONTHS, MMR_1, ACCEPT, MQE0756),
+  VaccineEvaluationAt15MonthsVar1(VACCINE_EVALUATION_AT_15_MONTHS, VAR_1, ACCEPT, MQE0757),
+  VaccineEvaluationAt18MonthsHepa2(VACCINE_EVALUATION_AT_18_MONTHS, HEPA_2, ACCEPT, MQE0758),
+  VaccineEvaluationAt15MonthsHib2(VACCINE_EVALUATION_AT_15_MONTHS, HIB_2, ACCEPT, MQE0759),
+  
+  VaccineEvaluationAt24MonthsDtap4(VACCINE_EVALUATION_AT_24_MONTHS, DTAP_4, ACCEPT, MQE0760),
+  VaccineEvaluationAt24MonthsPolio3(VACCINE_EVALUATION_AT_24_MONTHS, POLIO_3, ACCEPT, MQE0761),
+  VaccineEvaluationAt24MonthsMmr1(VACCINE_EVALUATION_AT_24_MONTHS, MMR_1, ACCEPT, MQE0762),
+  VaccineEvaluationAt24MonthsHib3(VACCINE_EVALUATION_AT_24_MONTHS, HIB_3, ACCEPT, MQE0763),
+  VaccineEvaluationAt24MonthsHepa2(VACCINE_EVALUATION_AT_24_MONTHS, HEPA_2, ACCEPT, MQE0769),
+  VaccineEvaluationAt24MonthsHepb3(VACCINE_EVALUATION_AT_24_MONTHS, HEPB_3, ACCEPT, MQE0764),
+  VaccineEvaluationAt24MonthsVar1(VACCINE_EVALUATION_AT_24_MONTHS, VAR_1, ACCEPT, MQE0765),
+  VaccineEvaluationAt24MonthsPcv4(VACCINE_EVALUATION_AT_24_MONTHS, PCV_4, ACCEPT, MQE0766),
+
+  VaccineEvaluationHasInvalidDoses1orMore(VACCINE_EVALUATION, HAS_INVALID_DOSES_1_OR_MORE, ACCEPT, MQE0778),
+  VaccineEvaluationHasInvalidDoses2orMore(VACCINE_EVALUATION, HAS_INVALID_DOSES_2_OR_MORE, ACCEPT, MQE0779),
+  VaccineEvaluationHasInvalidDoses3orMore(VACCINE_EVALUATION, HAS_INVALID_DOSES_3_OR_MORE, ACCEPT, MQE0780),
+  VaccineEvaluationHasInvalidDoses4orMore(VACCINE_EVALUATION, HAS_INVALID_DOSES_4_OR_MORE, ACCEPT, MQE0781),
+  VaccineEvaluationHasInvalidDoses5orMore(VACCINE_EVALUATION, HAS_INVALID_DOSES_5_OR_MORE, ACCEPT, MQE0782),
+  VaccineEvaluationHasInvalidDoses10orMore(VACCINE_EVALUATION, HAS_INVALID_DOSES_10_OR_MORE, ACCEPT, MQE0783),
+
+  VaccineForecastAt24MonthsHibComplete(VACCINE_FORECAST_AT_24_MONTHS, HIB, ACCEPT,  MQE0774),
+  VaccineForecastAt24MonthsPcvComplete(VACCINE_FORECAST_AT_24_MONTHS, PCV, ACCEPT,  MQE0775),
+  VaccineForecastAt24MonthsRotaComplete(VACCINE_FORECAST_AT_24_MONTHS, ROTAVIRUS, ACCEPT,  MQE0776),
+  VaccineForecastAt24MonthsHepbComplete(VACCINE_FORECAST_AT_24_MONTHS, HEPB, ACCEPT,  MQE0777),
+  
+  VaccineCoverageAt24MonthsSeries4_3_1_3_3_1_4(VACCINE_COVERAGE_AT_24_MONTHS, SERIES_4_3_1_3_3_1_4, ACCEPT, MQE0767),
+  VaccineCoverageAt36MonthsSeries4_3_1_3_3_1_4(VACCINE_COVERAGE_AT_36_MONTHS, SERIES_4_3_1_3_3_1_4, ACCEPT, MQE0768),
 
 
   UnknownValidationIssue(CONFIGURATION, UNRECOGNIZED, WARN, MQE0000);

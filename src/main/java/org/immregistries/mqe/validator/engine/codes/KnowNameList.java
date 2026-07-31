@@ -20,9 +20,7 @@ public enum KnowNameList {
 
 
   public List<KnownName> getNames() {
-    List<KnownName> nms = new ArrayList<KnownName>();
-    Collections.copy(nms, names);;
-    return nms;
+    return new ArrayList<KnownName>(names);
   }
 
   public List<KnownName> getKnownNames(NameType type) {

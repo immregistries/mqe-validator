@@ -20,7 +20,7 @@ public enum KnowNameList {
 
 
   public List<KnownName> getNames() {
-	return new ArrayList<KnownName>(this.names);
+    return new ArrayList<KnownName>(this.names);
   }
 
   public List<KnownName> getKnownNames(NameType type) {

@@ -103,11 +103,18 @@ public class PatientAddressIsValid extends ValidationRule<MqePatient> {
 
 
     ImplementationDetail id = this.addRuleDetection(Detection.PatientAddressIsInvalid);
-    id.setImplementationDescription("Patient Address is invalid according to Smarty Streets.");
-
-    if (props.isAddressCleanserEnabled()) {
-      this.addRuleDetection(Detection.PatientAddressIsInvalid);
-    }
+    id.setImplementationDescription(
+        "Only runs when the address cleanser is enabled (props.isAddressCleanserEnabled()). "
+            + "Sends the patient address to the SmartyStreets address-verification service; "
+            + "if the returned cleansing result is not marked clean, this detection fires and "
+            + "any DPV (Delivery Point Validation) codes returned are appended to the detection message.");
+    id.setWhyToFix(
+        "An address that doesn't verify against USPS data may be undeliverable, which affects the registry's "
+            + "ability to reach the patient/guardian by mail (e.g. reminder/recall notices).");
+    id.setHowToFix(
+        "Review the submitted street, city, state, and zip for typos or an incomplete/PO-box-only address, "
+            + "and correct the source record if the address is wrong. If the address is correct but still fails "
+            + "verification (e.g. a new development not yet in USPS data), no correction is possible on the MQE side.");
   }
 
 

@@ -118,34 +118,45 @@ public enum Detection implements MqeDetection {
   ObservationDateTimeOfObservationIsMissing(OBSERVATION_DATE_TIME_OF_OBSERVATION, MISSING, INFO, MQE0481),
   ObservationDateTimeOfObservationIsInvalid(OBSERVATION_DATE_TIME_OF_OBSERVATION, INVALID, INFO, MQE0482),
   PatientObjectIsMissing(NONE, MISSING, ACCEPT, MQE0545),
+  @Documentation("The patient record does not include any address information at all.")
   PatientAddressIsMissing(PATIENT_ADDRESS, MISSING, ACCEPT, MQE0092),
+  @Documentation("The patient's address was submitted but does not resolve to a real, deliverable address when checked against an address-verification service (e.g. Smarty Streets).")
   PatientAddressIsInvalid(PATIENT_ADDRESS, INVALID, WARN, MQE0562),
   PatientAddressCityIsInvalid(PATIENT_ADDRESS_CITY, INVALID, ACCEPT, MQE0093),
+  @Documentation("The patient's address is present, but no city value was provided.")
   PatientAddressCityIsMissing(PATIENT_ADDRESS_CITY, MISSING, ACCEPT, MQE0094),
   PatientAddressCountryIsDeprecated(PATIENT_ADDRESS_COUNTRY, DEPRECATED, WARN, MQE0095),
   PatientAddressCountryIsIgnored(PATIENT_ADDRESS_COUNTRY, IGNORED, INFO, MQE0096),
   PatientAddressCountryIsInvalid(PATIENT_ADDRESS_COUNTRY, INVALID, WARN, MQE0097),
+  @Documentation("The patient's address is present, but no country value was provided.")
   PatientAddressCountryIsMissing(PATIENT_ADDRESS_COUNTRY, MISSING, ACCEPT, MQE0098),
   PatientAddressCountryIsUnrecognized(PATIENT_ADDRESS_COUNTRY, UNRECOGNIZED, WARN, MQE0099),
   PatientAddressCountyIsDeprecated(PATIENT_ADDRESS_COUNTY, DEPRECATED, WARN, MQE0100),
   PatientAddressCountyIsIgnored(PATIENT_ADDRESS_COUNTY, IGNORED, INFO, MQE0101),
   PatientAddressCountyIsInvalid(PATIENT_ADDRESS_COUNTY, INVALID, WARN, MQE0102),
+  @Documentation("The patient's address is present, but no county value was provided.")
   PatientAddressCountyIsMissing(PATIENT_ADDRESS_COUNTY, MISSING, ACCEPT, MQE0103),
   PatientAddressCountyIsUnrecognized(PATIENT_ADDRESS_COUNTY, UNRECOGNIZED, ACCEPT, MQE0104),
   PatientAddressStateIsDeprecated(PATIENT_ADDRESS_STATE, DEPRECATED, WARN, MQE0105),
   PatientAddressStateIsIgnored(PATIENT_ADDRESS_STATE, IGNORED, INFO, MQE0106),
   PatientAddressStateIsInvalid(PATIENT_ADDRESS_STATE, INVALID, ACCEPT, MQE0107),
+  @Documentation("The patient's address is present, but no state value was provided.")
   PatientAddressStateIsMissing(PATIENT_ADDRESS_STATE, MISSING, ACCEPT, MQE0108),
   PatientAddressStateIsUnrecognized(PATIENT_ADDRESS_STATE, UNRECOGNIZED, ACCEPT, MQE0109),
+  @Documentation("The patient's address is present, but no street value was provided.")
   PatientAddressStreetIsMissing(PATIENT_ADDRESS_STREET, MISSING, ACCEPT, MQE0110),
   PatientAddressStreet2IsMissing(PATIENT_ADDRESS_STREET2, MISSING, ACCEPT, MQE0111),
+  @Documentation("The patient's address is present, but no address type code (e.g. home, mailing) was provided.")
   PatientAddressTypeIsMissing(PATIENT_ADDRESS_TYPE, MISSING, ACCEPT, MQE0451),
   PatientAddressTypeIsDeprecated(PATIENT_ADDRESS_TYPE, DEPRECATED, WARN, MQE0517),
   PatientAddressTypeIsIgnored(PATIENT_ADDRESS_TYPE, IGNORED, INFO, MQE0518),
   PatientAddressTypeIsInvalid(PATIENT_ADDRESS_TYPE, INVALID, ACCEPT, MQE0519),
+  @Documentation("The patient's address type code was submitted, but the value is not one this system recognizes as either a valid or invalid code (unknown/unsupported code value).")
   PatientAddressTypeIsUnrecognized(PATIENT_ADDRESS_TYPE, UNRECOGNIZED, WARN, MQE0520),
+  @Documentation("The patient's address type code was submitted as 'BA' (Bad Address), meaning the sender has already flagged this address as undeliverable or invalid.")
   PatientAddressTypeIsValuedBadAddress(PATIENT_ADDRESS_TYPE, VALUED_BAD_ADDRESS, INFO, MQE0521),
   PatientAddressZipIsInvalid(PATIENT_ADDRESS_ZIP, INVALID, WARN, MQE0112),
+  @Documentation("The patient's address is present, but no zip/postal code value was provided.")
   PatientAddressZipIsMissing(PATIENT_ADDRESS_ZIP, MISSING, ACCEPT, MQE0113),
   PatientAliasIsMissing(PATIENT_ALIAS, MISSING, ACCEPT, MQE0114),
   PatientBirthDateIsAfterSubmission(PATIENT_BIRTH_DATE, AFTER_SUBMISSION, ERROR, MQE0115),
@@ -348,6 +359,7 @@ public enum Detection implements MqeDetection {
   VaccinationActionCodeIsValuedAsDelete(VACCINATION_ACTION_CODE, VALUED_AS_DELETE, ACCEPT, MQE0239),
   VaccinationActionCodeIsValuedAsUpdate(VACCINATION_ACTION_CODE, VALUED_AS_UPDATE, ACCEPT, MQE0240),
 
+  @Documentation("The vaccine's administration date falls on or after the expiration date of the lot that was administered, meaning the dose may have been given from expired vaccine stock.")
   VaccinationAdminDateIsAfterLotExpirationDate(VACCINATION_ADMIN_DATE, AFTER_LOT_EXPIRATION, WARN, MQE0251),
   VaccinationAdminDateIsAfterMessageSubmitted(VACCINATION_ADMIN_DATE, AFTER_MESSAGE_SUBMITTED, ERROR, MQE0252),
   VaccinationAdminDateIsAfterPatientDeathDate(VACCINATION_ADMIN_DATE, AFTER_PATIENT_DEATH_DATE, ERROR, MQE0253),
@@ -617,14 +629,22 @@ public enum Detection implements MqeDetection {
   ObservationObservationValueIsPresent(OBSERVATION_VALUE, PRESENT, ACCEPT, MQE0641),
   ObservationValueIsPresent(OBSERVATION_VALUE, PRESENT, ACCEPT, MQE0642),
   ObservationValueTypeIsPresent(OBSERVATION_VALUE_TYPE, PRESENT, ACCEPT, MQE0643),
+  @Documentation("Companion signal to PatientAddressCityIsMissing: the patient's address city value was populated.")
   PatientAddressCityIsPresent(PATIENT_ADDRESS_CITY, PRESENT, ACCEPT, MQE0644),
+  @Documentation("Companion signal to PatientAddressCountryIsMissing: the patient's address country value was populated.")
   PatientAddressCountryIsPresent(PATIENT_ADDRESS_COUNTRY, PRESENT, ACCEPT, MQE0645),
+  @Documentation("Companion signal to PatientAddressCountyIsMissing: the patient's address county value was populated.")
   PatientAddressCountyIsPresent(PATIENT_ADDRESS_COUNTY, PRESENT, ACCEPT, MQE0646),
+  @Documentation("Companion signal to PatientAddressIsMissing: the patient record includes address information.")
   PatientAddressIsPresent(PATIENT_ADDRESS, PRESENT, ACCEPT, MQE0647),
+  @Documentation("Companion signal to PatientAddressStateIsMissing: the patient's address state value was populated.")
   PatientAddressStateIsPresent(PATIENT_ADDRESS_STATE, PRESENT, ACCEPT, MQE0648),
   PatientAddressStreet2IsPresent(PATIENT_ADDRESS_STREET2, PRESENT, ACCEPT, MQE0649),
+  @Documentation("Companion signal to PatientAddressStreetIsMissing: the patient's address street value was populated.")
   PatientAddressStreetIsPresent(PATIENT_ADDRESS_STREET, PRESENT, ACCEPT, MQE0650),
+  @Documentation("Companion signal to PatientAddressTypeIsMissing: the patient's address type code was populated.")
   PatientAddressTypeIsPresent(PATIENT_ADDRESS_TYPE, PRESENT, ACCEPT, MQE0651),
+  @Documentation("Companion signal to PatientAddressZipIsMissing: the patient's address zip/postal code value was populated.")
   PatientAddressZipIsPresent(PATIENT_ADDRESS_ZIP, PRESENT, ACCEPT, MQE0652),
   PatientAliasIsPresent(PATIENT_ALIAS, PRESENT, ACCEPT, MQE0653),
   PatientBirthDateIsPresent(PATIENT_BIRTH_DATE, PRESENT, ACCEPT, MQE0654),

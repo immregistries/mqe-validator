@@ -1442,7 +1442,7 @@
 - **Message shown to submitters:** Vaccination information source is administered but appears to historical
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
-  - `VaccinationSourceIsHistoricalButAppearsAdministered` — Vaccination information source is reported as administered, but based on our scoring calculation (how recently shot was given and how much data is known about the shot) the shot seems to be historical.
+  - `VaccinationSourceIsAdministeredButAppearsHistorical` — Vaccination information source is reported as administered, but based on our scoring calculation (how recently shot was given and how much data is known about the shot) the shot seems to be historical.
 
 ### `VaccinationInformationSourceIsDeprecated` — MQE0328
 
@@ -1462,7 +1462,7 @@
 - **Message shown to submitters:** Vaccination information source is historical but appears to be administered
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
-  - `VaccinationSourceIsAdministeredButAppearsHistorical` — Vaccination information source is reported as historical but based on our scoring calculation (how recently shot was given and how much data is known about the shot) the shot seems to be administered.
+  - `VaccinationSourceIsHistoricalButAppearsAdministered` — Vaccination information source is reported as historical but based on our scoring calculation (how recently shot was given and how much data is known about the shot) the shot seems to be administered.
 
 ### `VaccinationInformationSourceIsIgnored` — MQE0330
 

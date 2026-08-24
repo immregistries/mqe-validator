@@ -350,7 +350,22 @@ public enum Detection implements MqeDetection {
   VaccinationCreationIsLate(VACCINATION_SYSTEM_ENTRY_TIME, IS_LATE, ACCEPT, MQE0570),
   VaccinationCreationIsVeryLate(VACCINATION_SYSTEM_ENTRY_TIME, IS_VERY_LATE, ACCEPT, MQE0571),
   VaccinationCreationIsTooLate(VACCINATION_SYSTEM_ENTRY_TIME, IS_TOO_LATE, ACCEPT, MQE0572),
-  
+
+  // Exact-day entry timeliness (issue #99) - finer-grained than the IsOnTime/IsLate/IsVeryLate/
+  // IsTooLate buckets above, for administered doses only. Literal "exactly N days", not "at least".
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly2Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_2_DAYS, ACCEPT, MQE0784),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly3Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_3_DAYS, ACCEPT, MQE0785),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly4Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_4_DAYS, ACCEPT, MQE0786),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly5Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_5_DAYS, ACCEPT, MQE0787),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly6Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_6_DAYS, ACCEPT, MQE0788),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly7Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_7_DAYS, ACCEPT, MQE0789),
+
   VaccinationActionCodeIsDeprecated(VACCINATION_ACTION_CODE, DEPRECATED, WARN, MQE0232),
   VaccinationActionCodeIsIgnored(VACCINATION_ACTION_CODE, IGNORED, INFO, MQE0233),
   VaccinationActionCodeIsInvalid(VACCINATION_ACTION_CODE, INVALID, ERROR, MQE0234),

@@ -2244,7 +2244,7 @@
 - **Message shown to submitters:** Vaccination system entry time is on time
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
-  - `VaccinationCreationTimeliness` — Vaccination Administered Date and System Entry Date less than or equal to 3 days of each other.
+  - `VaccinationCreationTimeliness` — Vaccination Administered Date and System Entry Date are less than or equal to 1 day of each other.
 
 ### `VaccinationCreationIsLate` — MQE0570
 
@@ -2254,7 +2254,7 @@
 - **Message shown to submitters:** Vaccination system entry time is late
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
-  - `VaccinationCreationTimeliness` — Vaccination Administered Date and System Entry Date are are more than 3 days but less than or equal to 14 days apart.
+  - `VaccinationCreationTimeliness` — Vaccination Administered Date and System Entry Date are more than 1 day but less than or equal to 7 days apart.
 
 ### `VaccinationCreationIsVeryLate` — MQE0571
 
@@ -2264,7 +2264,7 @@
 - **Message shown to submitters:** Vaccination system entry time is very late
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
-  - `VaccinationCreationTimeliness` — Vaccination Administered Date and System Entry Date are more than 14 days but less than or equal to 30 days apart.
+  - `VaccinationCreationTimeliness` — Vaccination Administered Date and System Entry Date are more than 7 days but less than or equal to 14 days apart.
 
 ### `VaccinationCreationIsTooLate` — MQE0572
 
@@ -2274,7 +2274,67 @@
 - **Message shown to submitters:** Vaccination system entry time is too late
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
-  - `VaccinationCreationTimeliness` — Vaccination Administered Date and System Entry Date are over 30 days apart.
+  - `VaccinationCreationTimeliness` — Vaccination Administered Date and System Entry Date are over 14 days apart.
+
+### `VaccinationCreationIsExactly2Days` — MQE0784
+
+- **Severity:** Accept
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** EXPERIMENTAL (since 2026-08)
+- **Message shown to submitters:** Vaccination system entry time is exactly 2 days from admin date
+- **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
+- **Implemented by:**
+  - `VaccinationCreationExactDayTimeliness` — Vaccination Administered Date and System Entry Date are exactly 2 days apart.
+
+### `VaccinationCreationIsExactly3Days` — MQE0785
+
+- **Severity:** Accept
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** EXPERIMENTAL (since 2026-08)
+- **Message shown to submitters:** Vaccination system entry time is exactly 3 days from admin date
+- **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
+- **Implemented by:**
+  - `VaccinationCreationExactDayTimeliness` — Vaccination Administered Date and System Entry Date are exactly 3 days apart.
+
+### `VaccinationCreationIsExactly4Days` — MQE0786
+
+- **Severity:** Accept
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** EXPERIMENTAL (since 2026-08)
+- **Message shown to submitters:** Vaccination system entry time is exactly 4 days from admin date
+- **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
+- **Implemented by:**
+  - `VaccinationCreationExactDayTimeliness` — Vaccination Administered Date and System Entry Date are exactly 4 days apart.
+
+### `VaccinationCreationIsExactly5Days` — MQE0787
+
+- **Severity:** Accept
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** EXPERIMENTAL (since 2026-08)
+- **Message shown to submitters:** Vaccination system entry time is exactly 5 days from admin date
+- **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
+- **Implemented by:**
+  - `VaccinationCreationExactDayTimeliness` — Vaccination Administered Date and System Entry Date are exactly 5 days apart.
+
+### `VaccinationCreationIsExactly6Days` — MQE0788
+
+- **Severity:** Accept
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** EXPERIMENTAL (since 2026-08)
+- **Message shown to submitters:** Vaccination system entry time is exactly 6 days from admin date
+- **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
+- **Implemented by:**
+  - `VaccinationCreationExactDayTimeliness` — Vaccination Administered Date and System Entry Date are exactly 6 days apart.
+
+### `VaccinationCreationIsExactly7Days` — MQE0789
+
+- **Severity:** Accept
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** EXPERIMENTAL (since 2026-08)
+- **Message shown to submitters:** Vaccination system entry time is exactly 7 days from admin date
+- **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
+- **Implemented by:**
+  - `VaccinationCreationExactDayTimeliness` — Vaccination Administered Date and System Entry Date are exactly 7 days apart.
 
 ### `VaccinationSystemEntryDateIsPresent` — MQE0744
 

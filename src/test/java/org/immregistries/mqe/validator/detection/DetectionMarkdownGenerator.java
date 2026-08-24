@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +68,16 @@ public class DetectionMarkdownGenerator {
     int totalCount = Detection.values().length;
     int activeCount = active.size();
     int documentedCount = 0;
+    Map<DetectionLifecycle, Integer> lifecycleCounts = new EnumMap<>(DetectionLifecycle.class);
+    int lifecycleUnsetCount = 0;
+    for (Detection d : Detection.values()) {
+      DetectionStatus lifecycle = lifecycleFor(d);
+      if (lifecycle == null) {
+        lifecycleUnsetCount++;
+      } else {
+        lifecycleCounts.merge(lifecycle.status(), 1, Integer::sum);
+      }
+    }
     List<String> indexLines = new ArrayList<>();
 
     for (Map.Entry<String, Map<String, List<Detection>>> objEntry : byObjectThenField.entrySet()) {
@@ -104,7 +115,14 @@ public class DetectionMarkdownGenerator {
     index.append("- Wired to an active rule: ").append(activeCount).append("\n");
     index.append("- Not yet wired to any rule: ").append(totalCount - activeCount).append("\n");
     index.append("- With a `@Documentation` concept description: ").append(documentedCount).append("\n\n");
-    index.append("## By object\n\n");
+    index.append("## Lifecycle status coverage\n\n");
+    index.append("Backfilled incrementally - see [detection-status-lifecycle.md](../detection-status-lifecycle.md). ");
+    index.append("Not build-enforced yet, just a gap report.\n\n");
+    index.append("- No `@DetectionStatus` set: ").append(lifecycleUnsetCount).append("\n");
+    for (DetectionLifecycle value : DetectionLifecycle.values()) {
+      index.append("- ").append(value).append(": ").append(lifecycleCounts.getOrDefault(value, 0)).append("\n");
+    }
+    index.append("\n## By object\n\n");
     for (String line : indexLines) {
       index.append(line).append("\n");
     }
@@ -127,8 +145,14 @@ public class DetectionMarkdownGenerator {
     StringBuilder sb = new StringBuilder();
     sb.append("### `").append(d.name()).append("` — ").append(d.getMqeMqeCode()).append("\n\n");
     sb.append("- **Severity:** ").append(d.getSeverity().getLabel()).append("\n");
-    sb.append("- **Status:** ")
+    sb.append("- **Wiring:** ")
         .append(active ? "Active - wired to at least one rule below" : "Defined but not currently wired to any rule")
+        .append("\n");
+    DetectionStatus lifecycle = lifecycleFor(d);
+    sb.append("- **Lifecycle:** ")
+        .append(lifecycle == null
+            ? "_not set - add `@DetectionStatus(...)` on this constant in Detection.java_"
+            : lifecycle.status() + " (since " + lifecycle.since() + ")")
         .append("\n");
     sb.append("- **Message shown to submitters:** ").append(d.getDisplayText()).append("\n");
 
@@ -168,6 +192,16 @@ public class DetectionMarkdownGenerator {
       // Can't happen - d.name() always names a field of its own enum class.
     }
     return "";
+  }
+
+  private static DetectionStatus lifecycleFor(Detection d) {
+    try {
+      Field f = Detection.class.getField(d.name());
+      return f.getAnnotation(DetectionStatus.class);
+    } catch (NoSuchFieldException e) {
+      // Can't happen - d.name() always names a field of its own enum class.
+      return null;
+    }
   }
 
   private static String slug(String s) {

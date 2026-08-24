@@ -10,7 +10,8 @@
 ### `MessageAcceptAckTypeIsMissing` — MQE0006
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header accept ack type is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -19,7 +20,8 @@
 ### `MessageAcceptAckTypeIsPresent` — MQE0609
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header accept ack type is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -30,7 +32,8 @@
 ### `MessageAppAckTypeIsMissing` — MQE0410
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header app ack type is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -39,7 +42,8 @@
 ### `MessageAppAckTypeIsPresent` — MQE0610
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header app ack type is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -50,7 +54,8 @@
 ### `MessageMessageControlIdIsMissing` — MQE0014
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header message control id is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -59,7 +64,8 @@
 ### `MessageMessageControlIdIsPresent` — MQE0611
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header message control id is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -70,7 +76,8 @@
 ### `MessageMessageDateIsInFuture` — MQE0015
 
 - **Severity:** Error
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header message date is in future
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -79,7 +86,8 @@
 ### `MessageMessageDateIsMissing` — MQE0017
 
 - **Severity:** Error
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header message date is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -88,14 +96,16 @@
 ### `MessageMessageDateIsNotPrecise` — MQE0526
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header message date is not precise
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `MessageMessageDateTimezoneIsMissing` — MQE0527
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header message date is missing timezone
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -104,7 +114,8 @@
 ### `MessageMessageDateIsUnexpectedFormat` — MQE0531
 
 - **Severity:** Error
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header message date is an unexpected format
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -113,7 +124,8 @@
 ### `MessageMessageDateIsPresent` — MQE0612
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header message date is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -122,7 +134,8 @@
 ### `MessageMessageDateTimezoneIsPresent` — MQE0613
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header message date is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -133,14 +146,16 @@
 ### `MessageMessageProfileIdIsMissing` — MQE0439
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header message profile id is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `MessageMessageProfileIdIsPresent` — MQE0614
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header message profile id is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -149,14 +164,16 @@
 ### `MessageMessageTriggerIsMissing` — MQE0018
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header message trigger is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `MessageMessageTriggerIsPresent` — MQE0615
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header message trigger is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -165,14 +182,16 @@
 ### `MessageMessageTypeIsMissing` — MQE0020
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header message type is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `MessageMessageTypeIsPresent` — MQE0616
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header message type is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -181,14 +200,16 @@
 ### `MessageProcessingIdIsMissing` — MQE0023
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header processing id is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `MessageProcessingIdIsPresent` — MQE0617
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header processing id is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -197,7 +218,8 @@
 ### `MessageReceivingApplicationIsMissing` — MQE0030
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header receiving application is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -206,7 +228,8 @@
 ### `MessageReceivingApplicationIsPresent` — MQE0618
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header receiving application is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -217,7 +240,8 @@
 ### `MessageReceivingFacilityIsMissing` — MQE0032
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header receiving facility is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -226,7 +250,8 @@
 ### `MessageReceivingFacilityIsPresent` — MQE0619
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header receiving facility is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -237,7 +262,8 @@
 ### `MessageSendingApplicationIsMissing` — MQE0035
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header sending application is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -246,7 +272,8 @@
 ### `MessageSendingApplicationIsPresent` — MQE0620
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header sending application is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -257,14 +284,16 @@
 ### `MessageSendingFacilityIsMissing` — MQE0037
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header sending facility is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `MessageSendingFacilityIsPresent` — MQE0621
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header sending facility is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -273,14 +302,16 @@
 ### `MessageSendingResponsibleOrganizationIsMissing` — MQE0556
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header sending responsible organization is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `MessageSendingResponsibleOrganizationIsPresent` — MQE0622
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header sending responsible organization is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -289,7 +320,8 @@
 ### `MessageVersionIsMissing` — MQE0038
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header version is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -298,7 +330,8 @@
 ### `MessageVersionIsUnrecognized` — MQE0039
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header version is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -307,14 +340,16 @@
 ### `MessageVersionIsInvalid` — MQE0523
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header version is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `MessageVersionIsPresent` — MQE0623
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Message Header version is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**

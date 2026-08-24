@@ -10,7 +10,8 @@
 ### `GeneralAuthorizationException` — MQE0002
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General authorization exception
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -19,14 +20,16 @@
 ### `GeneralConfigurationException` — MQE0003
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General configuration exception
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `UnknownValidationIssue` — MQE0000
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General configuration is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -35,7 +38,8 @@
 ### `PatientObjectIsMissing` — MQE0545
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General object is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -44,7 +48,8 @@
 ### `PatientObjectIsPresent` — MQE0687
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General object is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -55,7 +60,8 @@
 ### `GeneralParseException` — MQE0004
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General parse exception
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -64,14 +70,16 @@
 ### `GeneralProcessingException` — MQE0005
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General processing exception
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `UnknownDetection` — MQE0558
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General processing exception
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -80,7 +88,8 @@
 ### `VaccineCoverageAt24MonthsSeries4_3_1_3_3_1_4` — MQE0767
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine coverage at 24 months for series 4:3:1:3:3:1:4
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -91,7 +100,8 @@
 ### `VaccineCoverageAt36MonthsSeries4_3_1_3_3_1_4` — MQE0768
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine coverage at 36 months for series 4:3:1:3:3:1:4
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -102,7 +112,8 @@
 ### `VaccineEvaluationHepb1Only` — MQE0773
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation with only 1 valid HepB dose
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -111,7 +122,8 @@
 ### `VaccineEvaluationHasInvalidDoses1orMore` — MQE0778
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation with 1 or more invalid doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -120,7 +132,8 @@
 ### `VaccineEvaluationHasInvalidDoses2orMore` — MQE0779
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation with 2 or more invalid doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -129,7 +142,8 @@
 ### `VaccineEvaluationHasInvalidDoses3orMore` — MQE0780
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation with 3 or more invalid doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -138,7 +152,8 @@
 ### `VaccineEvaluationHasInvalidDoses4orMore` — MQE0781
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation with 4 or more invalid doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -147,7 +162,8 @@
 ### `VaccineEvaluationHasInvalidDoses5orMore` — MQE0782
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation with 5 or more invalid doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -156,7 +172,8 @@
 ### `VaccineEvaluationHasInvalidDoses10orMore` — MQE0783
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation with 10 or more invalid doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -167,7 +184,8 @@
 ### `VaccineEvaluationAt15MonthsPcv4` — MQE0754
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 15 months with 4 valid PCV doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -176,7 +194,8 @@
 ### `VaccineEvaluationAt15MonthsPolio3` — MQE0755
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 15 months with 3 valid IPV doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -185,7 +204,8 @@
 ### `VaccineEvaluationAt15MonthsMmr1` — MQE0756
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 15 months with 1 valid MMR dose
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -194,7 +214,8 @@
 ### `VaccineEvaluationAt15MonthsVar1` — MQE0757
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 15 months with 1 valid Varicella doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -203,7 +224,8 @@
 ### `VaccineEvaluationAt15MonthsHib2` — MQE0759
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 15 months with 2 valid Hib Doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -214,7 +236,8 @@
 ### `VaccineEvaluationAt18MonthsHepb3` — MQE0752
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 18 months with 3 valid HepB doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -223,7 +246,8 @@
 ### `VaccineEvaluationAt18MonthsDtap4` — MQE0753
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 18 months with 4 valid DTaP doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -232,7 +256,8 @@
 ### `VaccineEvaluationAt18MonthsHepa2` — MQE0758
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 18 months with 2 valid HepA doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -243,7 +268,8 @@
 ### `VaccineEvaluationAt24MonthsDtap4` — MQE0760
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 24 months with 4 valid DTaP doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -252,7 +278,8 @@
 ### `VaccineEvaluationAt24MonthsPolio3` — MQE0761
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 24 months with 3 valid IPV doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -261,7 +288,8 @@
 ### `VaccineEvaluationAt24MonthsMmr1` — MQE0762
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 24 months with 1 valid MMR dose
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -270,7 +298,8 @@
 ### `VaccineEvaluationAt24MonthsHib3` — MQE0763
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 24 months with 3 valid Hib Doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -279,7 +308,8 @@
 ### `VaccineEvaluationAt24MonthsHepa2` — MQE0769
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 24 months with 2 valid HepA doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -288,7 +318,8 @@
 ### `VaccineEvaluationAt24MonthsHepb3` — MQE0764
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 24 months with 3 valid HepB doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -297,7 +328,8 @@
 ### `VaccineEvaluationAt24MonthsVar1` — MQE0765
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 24 months with 1 valid Varicella doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -306,7 +338,8 @@
 ### `VaccineEvaluationAt24MonthsPcv4` — MQE0766
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine evaluation at 24 months with 4 valid PCV doses
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -317,7 +350,8 @@
 ### `VaccineForecastAt24MonthsHibComplete` — MQE0774
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine forecast at 24 months Hib
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -326,7 +360,8 @@
 ### `VaccineForecastAt24MonthsPcvComplete` — MQE0775
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine forecast at 24 months PCV
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -335,7 +370,8 @@
 ### `VaccineForecastAt24MonthsRotaComplete` — MQE0776
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine forecast at 24 months Rotavirus
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -344,7 +380,8 @@
 ### `VaccineForecastAt24MonthsHepbComplete` — MQE0777
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** General vaccine forecast at 24 months Hep B
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**

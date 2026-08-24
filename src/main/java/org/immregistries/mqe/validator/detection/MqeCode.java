@@ -704,8 +704,9 @@ public enum MqeCode {
   MQE0781,
   MQE0782,
   MQE0783,
-  
+
   // Add new codes here below in ascending order
+  MQE0793,
   ;
 
   private static Map<String, MqeCode> errorCodeStringMap = new HashMap<>();

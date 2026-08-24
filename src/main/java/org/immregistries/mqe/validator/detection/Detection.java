@@ -340,6 +340,13 @@ public enum Detection implements MqeDetection {
   AdministeredVaccinationsCountIsZero(PATIENT_LEVEL, ZERO , ACCEPT, MQE0771),
   AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths(PATIENT_LEVEL, LESS_THAN_FIFTEEN_DOSES_BY_24_MONTHS , ACCEPT, MQE0772),
 
+  // Flu-season mismerge signal (issue #101) - same "too many doses in a code group/window"
+  // pattern as PatientCovid2021DoseCountIs*OrMore, see docs/changes-needed-2028-08.md's design
+  // discussion under #3312/#3313. Hard-coded per the issue, single threshold (not a ladder -
+  // unlike COVID, the issue only ever specified one: 2 or more).
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  PatientFluSeasonDoseCountIs2OrMore(PATIENT_LEVEL, FLU_SEASON_DOSE_COUNT_2_OR_MORE, ACCEPT, MQE0793),
+
   
   VaccinationSystemEntryDateIsMissing(VACCINATION_SYSTEM_ENTRY_TIME, MISSING, ACCEPT, MQE0573),
   VaccinationSystemEntryDateIsInTheFuture(VACCINATION_SYSTEM_ENTRY_TIME, IN_FUTURE, ACCEPT, MQE0581),

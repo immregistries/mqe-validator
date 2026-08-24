@@ -141,7 +141,8 @@ public enum DetectionType implements MqeDetectionType {
   IS_ON_TIME("is on time"),
   IS_LATE("is late"),
   IS_VERY_LATE("is very late"),
-  IS_TOO_LATE("is too late");
+  IS_TOO_LATE("is too late"),
+  FLU_SEASON_DOSE_COUNT_2_OR_MORE("has 2 or more flu doses in a single flu season (Sep-Mar) at age 10 or older");
 	
   public final String wording;
   public final String description;

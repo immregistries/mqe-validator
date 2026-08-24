@@ -15,14 +15,40 @@ what has quality problems. See `../CLAUDE.md` for how this fits with the other M
 
 ## Local build note
 
-`mvn compile`/`test-compile` currently fails in this dev environment: `org.immregistries:lonestar:jar:client:4.4.2`
-can't be resolved from Maven Central (it's a private/internal artifact) and isn't cached in `~/.m2`. A stale
-but complete `target/classes` from a prior successful build (Nov 2023) is still present and usable as a
-classpath for ad hoc `javac`/`java` checks of individual files. Also note if invoking classes reflectively
-(e.g. anything that touches `ValidationRuleEntityLists`, which scans for `@ValidationRuleEntry` rules and
-eagerly loads `CodeRepository`'s JAXB-based code lists) on a modern JDK: it needs
-`--add-opens java.base/java.lang=ALL-UNNAMED` because the legacy JAXB impl this project bundles (2.2.11)
-does reflective bytecode injection that current JDKs block by default.
+As of 2026-08-24, `mvn compile test-compile` (and `mvn test`) work again. The build had been broken because
+`org.immregistries:codebase-client` and `org.immregistries:lonestar:jar:client:4.4.2` are private artifacts,
+not on Maven Central and not cached in `~/.m2` by default — `lonestar` in particular is produced as a jar
+side-artifact (classifier `client`) of building the separate `LoneStarVaccineForecaster` repo (`war`
+packaging), not published anywhere.
+
+To build from scratch in a fresh environment:
+1. Clone `immregistries/codebase-client`, check out tag `v3.0.0`, `mvn install -Dgpg.skip=true` (the gpg-sign
+   plugin execution is for the real release pipeline and has no key available locally).
+2. Build `LoneStarVaccineForecaster` (checked out separately, e.g. `C:\dev\immregistries\LoneStarVaccineForecaster`)
+   with `mvn package` — **not** `mvn install`, since the war-plugin build binds Tomcat-deploy steps
+   (`maven-antrun-plugin`/`maven-resources-plugin`) to the `pre-integration-test` phase that need
+   `${env.CATALINA_BASE}` and aren't relevant here. Then install just the produced client jar directly:
+   `mvn install:install-file -Dfile=target/lonestar-4.4.2-client.jar -DpomFile=pom.xml -Dclassifier=client
+   -DgroupId=org.immregistries -DartifactId=lonestar -Dversion=4.4.2`.
+3. `mvn compile test-compile` in `mqe-validator` now resolves both.
+
+This project, `codebase-client`, and `LoneStarVaccineForecaster` are now aligned on `codebase-client` 3.0.0
+(previously `mqe-validator` pinned `2.3.1` while `LoneStarVaccineForecaster` pinned a nonexistent `2.3` —
+the two were already out of sync before this repo's build ever failed). `3.0.0` renamed
+`javax.xml.bind` → `jakarta.xml.bind`; `LoneStarVaccineForecaster`'s pom was updated to depend on
+`org.glassfish.jaxb:jaxb-runtime` (jakarta) instead of the old `javax.xml.bind`/`com.sun.xml.bind` 2.2.11
+triplet. Neither `mqe-validator` nor `LoneStarVaccineForecaster` reference JAXB packages directly in their own
+source — it's only pulled in transitively to back `codebase-client`'s generated classes — so no source changes
+were needed in either repo, only pom dependency swaps. **The previously-needed
+`--add-opens java.base/java.lang=ALL-UNNAMED` workaround is gone**: the modern jakarta JAXB runtime doesn't do
+the reflective bytecode injection the old bundled 2.2.11 impl did, confirmed by a clean `mvn test` run with no
+extra JVM args.
+
+Separately, `mvn test` currently has 4 pre-existing failures (`ImplementationDocumentationTest`,
+`ValidationRuleTest.AllPatientRules`, `ValidationRulesOverlapTest.patientHasDuplicate`/`vaccinationHasDuplicate`)
+— these look unrelated to the library/version work (content/count mismatches in detection coverage and rule
+overlap, not JAXB/classpath errors), most likely just never caught because the build has been broken since
+2023. Not yet root-caused.
 
 ## Detection documentation
 

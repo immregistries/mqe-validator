@@ -80,6 +80,7 @@ public enum Detection implements MqeDetection {
   NextOfKinAddressStateIsMissing(NEXT_OF_KIN_ADDRESS_STATE, MISSING, ACCEPT, MQE0073),
   NextOfKinAddressStateIsUnrecognized(NEXT_OF_KIN_ADDRESS_STATE, UNRECOGNIZED, WARN, MQE0074),
   NextOfKinAddressStreetIsMissing(NEXT_OF_KIN_ADDRESS_STREET, MISSING, ACCEPT, MQE0075),
+  @DetectionStatus(status = DetectionLifecycle.PLANNED, since = "2026-08")
   NextOfKinAddressStreet2IsMissing(NEXT_OF_KIN_ADDRESS_STREET2, MISSING, ACCEPT, MQE0076),
   NextOfKinAddressTypeIsDeprecated(NEXT_OF_KIN_ADDRESS_TYPE, DEPRECATED, WARN, MQE0395),
   NextOfKinAddressTypeIsIgnored(NEXT_OF_KIN_ADDRESS_TYPE, IGNORED, INFO, MQE0396),
@@ -345,6 +346,7 @@ public enum Detection implements MqeDetection {
   VaccinationSystemEntryDateIsInvalid(VACCINATION_SYSTEM_ENTRY_TIME, INVALID, ACCEPT, MQE0574),
   
   VaccinationCreationIsOnTime(VACCINATION_SYSTEM_ENTRY_TIME, IS_ON_TIME, ACCEPT, MQE0569),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
   VaccinationCreationIsLate(VACCINATION_SYSTEM_ENTRY_TIME, IS_LATE, ACCEPT, MQE0570),
   VaccinationCreationIsVeryLate(VACCINATION_SYSTEM_ENTRY_TIME, IS_VERY_LATE, ACCEPT, MQE0571),
   VaccinationCreationIsTooLate(VACCINATION_SYSTEM_ENTRY_TIME, IS_TOO_LATE, ACCEPT, MQE0572),
@@ -727,6 +729,7 @@ public enum Detection implements MqeDetection {
   VaccinationInformationSourceIsPresent(VACCINATION_INFORMATION_SOURCE, PRESENT, ACCEPT, MQE0731),
   VaccinationLotExpirationDateIsPresent(VACCINATION_LOT_EXPIRATION_DATE, PRESENT, ACCEPT, MQE0732),
   VaccinationLotNumberIsPresent(VACCINATION_LOT_NUMBER, PRESENT, ACCEPT, MQE0733),
+  @DetectionStatus(status = DetectionLifecycle.ACTIVE, since = "2026-08")
   VaccinationManufacturerCodeIsPresent(VACCINATION_MANUFACTURER_CODE, PRESENT, ACCEPT, MQE0734),
   VaccinationNDCCodeIsPresent(VACCINATION_NDC_CODE, PRESENT, ACCEPT, MQE0735),
   VaccinationOrderControlCodeIsPresent(VACCINATION_ORDER_CONTROL_CODE, PRESENT, ACCEPT, MQE0736),

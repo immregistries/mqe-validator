@@ -14,8 +14,11 @@ below), not in these `.md` files.
   and the kind of problem (see `Detection.getDisplayText()`).
 - **What this means** — a plain-English description of the situation itself, independent of how it's
   detected. Comes from the `@Documentation("...")` annotation on the `Detection` enum constant.
-- **Status** — whether the detection is currently wired to a live `ValidationRule`, or only defined (some
+- **Wiring** — whether the detection is currently wired to a live `ValidationRule`, or only defined (some
   detections in `Detection.java` are placeholders that no rule raises yet).
+- **Lifecycle** — the detection's maintenance status (`PLANNED`/`ACTIVE`/`EXPERIMENTAL`/`UNSUPPORTED`/
+  `RETIRED`), independent of wiring — a detection can be wired *and* experimental. Comes from the
+  `@DetectionStatus(...)` annotation. See [detection-status-lifecycle.md](../detection-status-lifecycle.md).
 - **Implemented by** — which `ValidationRule` class(es) raise this detection, what triggers it
   (`ImplementationDetail.description`), why it matters (`whyToFix`), and how a data submitter would resolve
   it (`howToFix`).
@@ -36,13 +39,24 @@ with `_not yet documented_` under "What this means" is an easy one to pick up if
    id.setHowToFix("What a submitter should do to resolve it.");
    ```
    See `PatientAddressIsValid` and `VaccinationAdminDateIsBeforeLotExpirationDate` for worked examples.
-3. **Regenerate this folder** — from `mqe-validator/`:
+3. **Lifecycle/maintenance status** (independent of the above): add or edit the `@DetectionStatus(...)`
+   annotation directly above the constant in `Detection.java`. See
+   [detection-status-lifecycle.md](../detection-status-lifecycle.md) for what each status value means and
+   worked examples.
+4. **Regenerate this folder** — from `mqe-validator/`:
    ```
    mvn -q test-compile
    mvn -q org.codehaus.mojo:exec-maven-plugin:3.1.0:java -Dexec.mainClass=org.immregistries.mqe.validator.detection.DetectionMarkdownGenerator -Dexec.classpathScope=test
    ```
    (or just run `DetectionMarkdownGenerator.main()` directly from your IDE with the module's test classpath).
-4. Commit the regenerated `.md` files along with your code change. `DetectionDocsUpToDateTest` fails the
+   If `exec:java` fails with a `loader constraint violation` involving `QName`/`jaxb` on a newer JDK, that's
+   exec-maven-plugin's in-process classloader conflicting with the JDK's built-in `java.xml` module — run it
+   as a plain forked process instead:
+   ```
+   mvn -q dependency:build-classpath -Dmdep.outputFile=cp.txt -DincludeScope=test
+   java -cp "target/classes;target/test-classes;$(cat cp.txt)" org.immregistries.mqe.validator.detection.DetectionMarkdownGenerator
+   ```
+5. Commit the regenerated `.md` files along with your code change. `DetectionDocsUpToDateTest` fails the
    build if they're out of sync, so CI will catch it if you forget.
 
 ## Files

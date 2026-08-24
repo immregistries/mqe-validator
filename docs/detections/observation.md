@@ -10,7 +10,8 @@
 ### `ObservationDateTimeOfObservationIsMissing` — MQE0481
 
 - **Severity:** Info
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation date time of observation is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -19,7 +20,8 @@
 ### `ObservationDateTimeOfObservationIsInvalid` — MQE0482
 
 - **Severity:** Info
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation date time of observation is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -28,7 +30,8 @@
 ### `ObservationDateTimeOfObservationIsPresent` — MQE0639
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation date time of observation is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -39,42 +42,48 @@
 ### `ObservationObservationIdentifierCodeIsDeprecated` — MQE0475
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation identifier code is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `ObservationObservationIdentifierCodeIsIgnored` — MQE0476
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation identifier code is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `ObservationObservationIdentifierCodeIsInvalid` — MQE0477
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation identifier code is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `ObservationObservationIdentifierCodeIsMissing` — MQE0478
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation identifier code is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `ObservationObservationIdentifierCodeIsUnrecognized` — MQE0479
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation identifier code is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `ObservationObservationIdentifierCodeIsPresent` — MQE0640
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation identifier code is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -83,28 +92,32 @@
 ### `ObservationValueIsMissing` — MQE0532
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation value is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `ObservationObservationValueIsMissing` — MQE0480
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation value is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `ObservationObservationValueIsPresent` — MQE0641
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation value is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `ObservationValueIsPresent` — MQE0642
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation value is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -113,7 +126,8 @@
 ### `ObservationValueTypeIsDeprecated` — MQE0470
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation value type is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -122,14 +136,16 @@
 ### `ObservationValueTypeIsIgnored` — MQE0471
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation value type is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `ObservationValueTypeIsInvalid` — MQE0472
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation value type is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -138,7 +154,8 @@
 ### `ObservationValueTypeIsMissing` — MQE0473
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation value type is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -147,7 +164,8 @@
 ### `ObservationValueTypeIsUnrecognized` — MQE0474
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation value type is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -156,7 +174,8 @@
 ### `ObservationValueTypeIsPresent` — MQE0643
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Observation value type is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**

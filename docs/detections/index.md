@@ -10,6 +10,17 @@ See [README.md](README.md) for what this is and how to regenerate it.
 - Not yet wired to any rule: 252
 - With a `@Documentation` concept description: 20
 
+## Lifecycle status coverage
+
+Backfilled incrementally - see [detection-status-lifecycle.md](../detection-status-lifecycle.md). Not build-enforced yet, just a gap report.
+
+- No `@DetectionStatus` set: 689
+- PLANNED: 1
+- ACTIVE: 1
+- EXPERIMENTAL: 1
+- UNSUPPORTED: 0
+- RETIRED: 0
+
 ## By object
 
 - [General](general.md) - 37 detections

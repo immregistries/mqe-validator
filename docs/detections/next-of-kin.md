@@ -10,7 +10,8 @@
 ### `NextOfKinAddressIsDifferentFromPatientAddress` — MQE0056
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address is different from patient address
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -19,7 +20,8 @@
 ### `NextOfKinAddressIsMissing` — MQE0057
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -28,7 +30,8 @@
 ### `NextOfKinAddressIsInvalid` — MQE0564
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -37,7 +40,8 @@
 ### `NextOfKinAddressIsPresent` — MQE0627
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -48,14 +52,16 @@
 ### `NextOfKinAddressCityIsInvalid` — MQE0058
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address city is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressCityIsMissing` — MQE0059
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address city is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -64,7 +70,8 @@
 ### `NextOfKinAddressCityIsPresent` — MQE0624
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address city is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -75,28 +82,32 @@
 ### `NextOfKinAddressCountryIsDeprecated` — MQE0060
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address country is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressCountryIsIgnored` — MQE0061
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address country is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressCountryIsInvalid` — MQE0062
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address country is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressCountryIsMissing` — MQE0063
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address country is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -105,14 +116,16 @@
 ### `NextOfKinAddressCountryIsUnrecognized` — MQE0064
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address country is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressCountryIsPresent` — MQE0625
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address country is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -123,28 +136,32 @@
 ### `NextOfKinAddressCountyIsDeprecated` — MQE0065
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address county is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressCountyIsIgnored` — MQE0066
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address county is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressCountyIsInvalid` — MQE0067
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address county is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressCountyIsMissing` — MQE0068
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address county is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -153,14 +170,16 @@
 ### `NextOfKinAddressCountyIsUnrecognized` — MQE0069
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address county is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressCountyIsPresent` — MQE0626
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address county is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -171,28 +190,32 @@
 ### `NextOfKinAddressStateIsDeprecated` — MQE0070
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address state is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressStateIsIgnored` — MQE0071
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address state is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressStateIsInvalid` — MQE0072
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address state is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressStateIsMissing` — MQE0073
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address state is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -201,14 +224,16 @@
 ### `NextOfKinAddressStateIsUnrecognized` — MQE0074
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address state is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressStateIsPresent` — MQE0628
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address state is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -219,7 +244,8 @@
 ### `NextOfKinAddressStreetIsMissing` — MQE0075
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address street is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -228,7 +254,8 @@
 ### `NextOfKinAddressStreetIsPresent` — MQE0630
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address street is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -239,14 +266,16 @@
 ### `NextOfKinAddressStreet2IsMissing` — MQE0076
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** PLANNED (since 2026-08)
 - **Message shown to submitters:** Next-of-kin address street2 is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressStreet2IsPresent` — MQE0629
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address street2 is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -255,21 +284,24 @@
 ### `NextOfKinAddressTypeIsDeprecated` — MQE0395
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address type is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressTypeIsIgnored` — MQE0396
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address type is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressTypeIsInvalid` — MQE0397
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address type is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -278,7 +310,8 @@
 ### `NextOfKinAddressTypeIsMissing` — MQE0398
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address type is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -287,7 +320,8 @@
 ### `NextOfKinAddressTypeIsUnrecognized` — MQE0399
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address type is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -296,7 +330,8 @@
 ### `NextOfKinAddressTypeIsValuedBadAddress` — MQE0522
 
 - **Severity:** Info
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address type is valued bad address
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -305,7 +340,8 @@
 ### `NextOfKinAddressTypeIsPresent` — MQE0631
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address type is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -316,14 +352,16 @@
 ### `NextOfKinAddressZipIsInvalid` — MQE0077
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address zip is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinAddressZipIsMissing` — MQE0078
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address zip is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -332,7 +370,8 @@
 ### `NextOfKinAddressZipIsPresent` — MQE0632
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin address zip is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -343,7 +382,8 @@
 ### `NextOfKinNameIsMissing` — MQE0079
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin name is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -352,7 +392,8 @@
 ### `NextOfKinNameIsPresent` — MQE0634
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin name is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -363,7 +404,8 @@
 ### `NextOfKinNameFirstIsMissing` — MQE0080
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin name first is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -372,7 +414,8 @@
 ### `NextOfKinNameFirstIsPresent` — MQE0633
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin name first is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -383,7 +426,8 @@
 ### `NextOfKinNameLastIsMissing` — MQE0081
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin name last is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -392,7 +436,8 @@
 ### `NextOfKinNameLastIsPresent` — MQE0635
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin name last is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -403,7 +448,8 @@
 ### `NextOfKinPhoneNumberIsIncomplete` — MQE0082
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin phone is incomplete
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -412,7 +458,8 @@
 ### `NextOfKinPhoneNumberIsInvalid` — MQE0083
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin phone is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -421,14 +468,16 @@
 ### `NextOfKinPhoneNumberIsMissing` — MQE0084
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin phone is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinPhoneNumberIsPresent` — MQE0636
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin phone is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -437,28 +486,32 @@
 ### `NextOfKinRelationshipIsDeprecated` — MQE0085
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin relationship is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinRelationshipIsIgnored` — MQE0086
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin relationship is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinRelationshipIsInvalid` — MQE0087
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin relationship is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinRelationshipIsMissing` — MQE0088
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin relationship is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -467,7 +520,8 @@
 ### `NextOfKinRelationshipIsNotResponsibleParty` — MQE0089
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin relationship is not responsible party
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -476,7 +530,8 @@
 ### `NextOfKinRelationshipIsUnexpected` — MQE0485
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin relationship is unexpected
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -485,7 +540,8 @@
 ### `NextOfKinRelationshipIsUnrecognized` — MQE0090
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin relationship is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -494,7 +550,8 @@
 ### `NextOfKinRelationshipIsPresent` — MQE0637
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin relationship is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -505,14 +562,16 @@
 ### `NextOfKinSsnIsMissing` — MQE0091
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin SSN is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `NextOfKinSsnIsPresent` — MQE0638
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Next-of-kin SSN is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 

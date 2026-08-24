@@ -10,7 +10,8 @@
 ### `PatientAddressIsMissing` — MQE0092
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address is missing
 - **What this means:** The patient record does not include any address information at all.
 - **Implemented by:**
@@ -19,7 +20,8 @@
 ### `PatientAddressIsInvalid` — MQE0562
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address is invalid
 - **What this means:** The patient's address was submitted but does not resolve to a real, deliverable address when checked against an address-verification service (e.g. Smarty Streets).
 - **Implemented by:**
@@ -31,7 +33,8 @@
 ### `PatientAddressIsPresent` — MQE0647
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address is present
 - **What this means:** Companion signal to PatientAddressIsMissing: the patient record includes address information.
 - **Implemented by:**
@@ -42,14 +45,16 @@
 ### `PatientAddressCityIsInvalid` — MQE0093
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address city is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressCityIsMissing` — MQE0094
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address city is missing
 - **What this means:** The patient's address is present, but no city value was provided.
 - **Implemented by:**
@@ -58,7 +63,8 @@
 ### `PatientAddressCityIsPresent` — MQE0644
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address city is present
 - **What this means:** Companion signal to PatientAddressCityIsMissing: the patient's address city value was populated.
 - **Implemented by:**
@@ -69,28 +75,32 @@
 ### `PatientAddressCountryIsDeprecated` — MQE0095
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address country is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressCountryIsIgnored` — MQE0096
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address country is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressCountryIsInvalid` — MQE0097
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address country is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressCountryIsMissing` — MQE0098
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address country is missing
 - **What this means:** The patient's address is present, but no country value was provided.
 - **Implemented by:**
@@ -99,14 +109,16 @@
 ### `PatientAddressCountryIsUnrecognized` — MQE0099
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address country is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressCountryIsPresent` — MQE0645
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address country is present
 - **What this means:** Companion signal to PatientAddressCountryIsMissing: the patient's address country value was populated.
 - **Implemented by:**
@@ -117,28 +129,32 @@
 ### `PatientAddressCountyIsDeprecated` — MQE0100
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address county is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressCountyIsIgnored` — MQE0101
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address county is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressCountyIsInvalid` — MQE0102
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address county is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressCountyIsMissing` — MQE0103
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address county is missing
 - **What this means:** The patient's address is present, but no county value was provided.
 - **Implemented by:**
@@ -147,14 +163,16 @@
 ### `PatientAddressCountyIsUnrecognized` — MQE0104
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address county is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressCountyIsPresent` — MQE0646
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address county is present
 - **What this means:** Companion signal to PatientAddressCountyIsMissing: the patient's address county value was populated.
 - **Implemented by:**
@@ -165,28 +183,32 @@
 ### `PatientAddressStateIsDeprecated` — MQE0105
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address state is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressStateIsIgnored` — MQE0106
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address state is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressStateIsInvalid` — MQE0107
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address state is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressStateIsMissing` — MQE0108
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address state is missing
 - **What this means:** The patient's address is present, but no state value was provided.
 - **Implemented by:**
@@ -195,14 +217,16 @@
 ### `PatientAddressStateIsUnrecognized` — MQE0109
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address state is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressStateIsPresent` — MQE0648
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address state is present
 - **What this means:** Companion signal to PatientAddressStateIsMissing: the patient's address state value was populated.
 - **Implemented by:**
@@ -213,7 +237,8 @@
 ### `PatientAddressStreetIsMissing` — MQE0110
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address street is missing
 - **What this means:** The patient's address is present, but no street value was provided.
 - **Implemented by:**
@@ -222,7 +247,8 @@
 ### `PatientAddressStreetIsPresent` — MQE0650
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address street is present
 - **What this means:** Companion signal to PatientAddressStreetIsMissing: the patient's address street value was populated.
 - **Implemented by:**
@@ -233,14 +259,16 @@
 ### `PatientAddressStreet2IsMissing` — MQE0111
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address street2 is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressStreet2IsPresent` — MQE0649
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address street2 is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -249,7 +277,8 @@
 ### `PatientGuardianAddressTypeIsValuedBadAddress` — MQE0597
 
 - **Severity:** Info
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address type is valued bad address
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -258,7 +287,8 @@
 ### `PatientGuardianAddressTypeIsMissing` — MQE0598
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address type is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -267,7 +297,8 @@
 ### `PatientGuardianAddressTypeIsUnrecognized` — MQE0600
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address type is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -276,7 +307,8 @@
 ### `PatientGuardianAddressTypeIsPresent` — MQE0672
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address type is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -285,7 +317,8 @@
 ### `PatientAddressTypeIsMissing` — MQE0451
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address type is missing
 - **What this means:** The patient's address is present, but no address type code (e.g. home, mailing) was provided.
 - **Implemented by:**
@@ -294,28 +327,32 @@
 ### `PatientAddressTypeIsDeprecated` — MQE0517
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address type is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressTypeIsIgnored` — MQE0518
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address type is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressTypeIsInvalid` — MQE0519
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address type is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressTypeIsUnrecognized` — MQE0520
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address type is unrecognized
 - **What this means:** The patient's address type code was submitted, but the value is not one this system recognizes as either a valid or invalid code (unknown/unsupported code value).
 - **Implemented by:**
@@ -324,7 +361,8 @@
 ### `PatientAddressTypeIsValuedBadAddress` — MQE0521
 
 - **Severity:** Info
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address type is valued bad address
 - **What this means:** The patient's address type code was submitted as 'BA' (Bad Address), meaning the sender has already flagged this address as undeliverable or invalid.
 - **Implemented by:**
@@ -333,7 +371,8 @@
 ### `PatientAddressTypeIsPresent` — MQE0651
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address type is present
 - **What this means:** Companion signal to PatientAddressTypeIsMissing: the patient's address type code was populated.
 - **Implemented by:**
@@ -344,14 +383,16 @@
 ### `PatientAddressZipIsInvalid` — MQE0112
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address zip is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientAddressZipIsMissing` — MQE0113
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address zip is missing
 - **What this means:** The patient's address is present, but no zip/postal code value was provided.
 - **Implemented by:**
@@ -360,7 +401,8 @@
 ### `PatientAddressZipIsPresent` — MQE0652
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient address zip is present
 - **What this means:** Companion signal to PatientAddressZipIsMissing: the patient's address zip/postal code value was populated.
 - **Implemented by:**
@@ -371,7 +413,8 @@
 ### `PatientAliasIsMissing` — MQE0114
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient alias is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -380,7 +423,8 @@
 ### `PatientAliasIsPresent` — MQE0653
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient alias is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -391,7 +435,8 @@
 ### `PatientBirthDateIsAfterSubmission` — MQE0115
 
 - **Severity:** Error
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth date is after submission
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -400,7 +445,8 @@
 ### `PatientBirthDateIsOn15ThDayOfMonth` — MQE0565
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth date is on 15th day of month
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -410,7 +456,8 @@
 ### `PatientBirthDateIsOnFirstDayOfMonth` — MQE0566
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth date is on first day of month
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -420,7 +467,8 @@
 ### `PatientBirthDateIsOnLastDayOfMonth` — MQE0567
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth date is on last day of month
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -430,7 +478,8 @@
 ### `PatientBirthDateIsInvalid` — MQE0117
 
 - **Severity:** Error
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth date is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -439,7 +488,8 @@
 ### `PatientBirthDateIsMissing` — MQE0118
 
 - **Severity:** Error
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth date is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -448,7 +498,8 @@
 ### `PatientBirthDateIsUnderage` — MQE0119
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth date is underage
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -457,7 +508,8 @@
 ### `PatientBirthDateIsVeryLongAgo` — MQE0120
 
 - **Severity:** Error
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth date is very long ago
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -466,7 +518,8 @@
 ### `PatientBirthDateIsPresent` — MQE0654
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth date is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -477,7 +530,8 @@
 ### `PatientBirthIndicatorIsInvalid` — MQE0121
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth indicator is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -486,7 +540,8 @@
 ### `PatientBirthIndicatorIsMissing` — MQE0122
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth indicator is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -495,7 +550,8 @@
 ### `PatientBirthIndicatorIsPresent` — MQE0655
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth indicator is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -506,14 +562,16 @@
 ### `PatientBirthOrderIsUnknown` — MQE0557
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth order is valued as unknown
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientBirthOrderIsInvalid` — MQE0123
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth order is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -522,14 +580,16 @@
 ### `PatientBirthOrderIsMissing` — MQE0124
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth order is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientBirthOrderIsMultipleAndMultipleBirthIndicatedIsMissing` — MQE0125
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth order is missing and multiple birth indicated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -538,14 +598,16 @@
 ### `PatientBirthOrderIsPresent` — MQE0656
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth order is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientBirthOrderIsMultipleAndMultipleBirthIndicatedIsPresent` — MQE0657
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth order is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -554,7 +616,8 @@
 ### `PatientBirthPlaceIsMissing` — MQE0126
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth place is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -563,7 +626,8 @@
 ### `PatientBirthPlaceIsPresent` — MQE0658
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth place is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -574,21 +638,24 @@
 ### `PatientBirthRegistryIdIsInvalid` — MQE0127
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth registry id is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientBirthRegistryIdIsMissing` — MQE0128
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth registry id is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientBirthRegistryIdIsPresent` — MQE0659
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient birth registry id is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -597,28 +664,32 @@
 ### `PatientClassIsDeprecated` — MQE0374
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient class is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientClassIsIgnored` — MQE0375
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient class is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientClassIsInvalid` — MQE0376
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient class is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientClassIsMissing` — MQE0377
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient class is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -627,7 +698,8 @@
 ### `PatientClassIsUnrecognized` — MQE0378
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient class is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -636,7 +708,8 @@
 ### `PatientClassIsPresent` — MQE0660
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient class is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -645,7 +718,8 @@
 ### `PatientDeathDateIsBeforeBirth` — MQE0129
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient death date is before birth
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -654,7 +728,8 @@
 ### `PatientDeathDateIsInFuture` — MQE0130
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient death date is in future
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -663,7 +738,8 @@
 ### `PatientDeathDateIsInvalid` — MQE0131
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient death date is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -672,7 +748,8 @@
 ### `PatientDeathDateIsMissing` — MQE0132
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient death date is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -681,7 +758,8 @@
 ### `PatientDeathDateIsPresent` — MQE0661
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient death date is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -692,7 +770,8 @@
 ### `PatientDeathIndicatorIsInconsistent` — MQE0133
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient death indicator is inconsistent
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -701,7 +780,8 @@
 ### `PatientDeathIndicatorIsMissing` — MQE0134
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient death indicator is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -710,7 +790,8 @@
 ### `PatientDeathIndicatorIsPresent` — MQE0662
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient death indicator is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -721,7 +802,8 @@
 ### `PatientEmailIsInvalid` — MQE0588
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient email is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -730,7 +812,8 @@
 ### `PatientEmailIsMissing` — MQE0589
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient email is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -739,7 +822,8 @@
 ### `PatientEmailIsPresent` — MQE0663
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient email is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -750,7 +834,8 @@
 ### `PatientEthnicityIsDeprecated` — MQE0135
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient ethnicity is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -759,14 +844,16 @@
 ### `PatientEthnicityIsIgnored` — MQE0136
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient ethnicity is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientEthnicityIsInvalid` — MQE0137
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient ethnicity is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -775,7 +862,8 @@
 ### `PatientEthnicityIsMissing` — MQE0138
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient ethnicity is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -784,7 +872,8 @@
 ### `PatientEthnicityIsUnrecognized` — MQE0139
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient ethnicity is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -793,7 +882,8 @@
 ### `PatientEthnicityIsPresent` — MQE0664
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient ethnicity is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -804,7 +894,8 @@
 ### `PatientGenderIsDeprecated` — MQE0143
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient gender is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -813,14 +904,16 @@
 ### `PatientGenderIsIgnored` — MQE0144
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient gender is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientGenderIsInvalid` — MQE0145
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient gender is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -829,7 +922,8 @@
 ### `PatientGenderIsMissing` — MQE0146
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient gender is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -838,7 +932,8 @@
 ### `PatientGenderIsUnrecognized` — MQE0147
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient gender is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -847,7 +942,8 @@
 ### `PatientGenderIsPresent` — MQE0665
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient gender is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -858,7 +954,8 @@
 ### `PatientGuardianAddressIsMissing` — MQE0148
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian address is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -867,7 +964,8 @@
 ### `PatientGuardianAddressIsInvalid` — MQE0563
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian address is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -876,7 +974,8 @@
 ### `PatientGuardianAddressIsPresent` — MQE0669
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian address is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -885,7 +984,8 @@
 ### `PatientGuardianAddressCityIsMissing` — MQE0149
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian address city is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -895,7 +995,8 @@
 ### `PatientGuardianAddressCityIsPresent` — MQE0666
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian address city is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -906,7 +1007,8 @@
 ### `PatientGuardianAddressCountyIsMissing` — MQE0608
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian address county is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -915,7 +1017,8 @@
 ### `PatientGuardianAddressCountyIsPresent` — MQE0668
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian address county is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -924,7 +1027,8 @@
 ### `PatientGuardianAddressStateIsMissing` — MQE0150
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian address state is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -934,7 +1038,8 @@
 ### `PatientGuardianAddressStateIsPresent` — MQE0670
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian address state is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -945,7 +1050,8 @@
 ### `PatientGuardianAddressStreetIsMissing` — MQE0151
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian address street is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -954,7 +1060,8 @@
 ### `PatientGuardianAddressStreetIsPresent` — MQE0671
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian address street is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -963,7 +1070,8 @@
 ### `PatientGuardianAddressZipIsMissing` — MQE0152
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian address zip is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -973,7 +1081,8 @@
 ### `PatientGuardianAddressZipIsPresent` — MQE0673
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian address zip is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -984,7 +1093,8 @@
 ### `PatientGuardianAddressCountryIsMissing` — MQE0599
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian address zip is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -993,7 +1103,8 @@
 ### `PatientGuardianAddressCountryIsPresent` — MQE0667
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian address zip is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -1002,14 +1113,16 @@
 ### `PatientGuardianNameIsMissing` — MQE0155
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian name is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientGuardianNameIsSameAsUnderagePatient` — MQE0156
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian name is same as underage patient
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1019,7 +1132,8 @@
 ### `PatientGuardianNameIsPresent` — MQE0675
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian name is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -1028,7 +1142,8 @@
 ### `PatientGuardianNameFirstIsMissing` — MQE0153
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian name first is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1037,7 +1152,8 @@
 ### `PatientGuardianNameFirstIsPresent` — MQE0674
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian name first is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1048,7 +1164,8 @@
 ### `PatientGuardianNameLastIsMissing` — MQE0154
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian name last is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1057,7 +1174,8 @@
 ### `PatientGuardianNameLastIsPresent` — MQE0676
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian name last is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1068,7 +1186,8 @@
 ### `PatientGuardianPhoneIsMissing` — MQE0158
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian phone is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1077,7 +1196,8 @@
 ### `PatientGuardianPhoneIsPresent` — MQE0677
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian phone is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1088,14 +1208,16 @@
 ### `PatientGuardianRelationshipIsMissing` — MQE0159
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian relationship is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientGuardianRelationshipIsPresent` — MQE0678
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian relationship is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -1104,7 +1226,8 @@
 ### `PatientGuardianResponsiblePartyIsMissing` — MQE0157
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian responsible party is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1113,7 +1236,8 @@
 ### `PatientGuardianResponsiblePartyIsPresent` — MQE0679
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient guardian responsible party is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -1122,7 +1246,8 @@
 ### `PatientImmunityCodeIsDeprecated` — MQE0606
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient immunity code is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1131,7 +1256,8 @@
 ### `PatientImmunityCodeIsUnrecognized` — MQE0607
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient immunity code is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1142,42 +1268,48 @@
 ### `PatientImmunizationRegistryStatusIsDeprecated` — MQE0160
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient immunization registry status is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientImmunizationRegistryStatusIsIgnored` — MQE0161
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient immunization registry status is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientImmunizationRegistryStatusIsInvalid` — MQE0162
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient immunization registry status is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientImmunizationRegistryStatusIsMissing` — MQE0163
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient immunization registry status is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientImmunizationRegistryStatusIsUnrecognized` — MQE0164
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient immunization registry status is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientImmunizationRegistryStatusIsPresent` — MQE0680
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient immunization registry status is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -1186,7 +1318,8 @@
 ### `PatientMedicaidNumberIsInvalid` — MQE0167
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient Medicaid number is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1195,7 +1328,8 @@
 ### `PatientMedicaidNumberIsMissing` — MQE0168
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient Medicaid number is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1204,7 +1338,8 @@
 ### `PatientMedicaidNumberIsPresent` — MQE0681
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient Medicaid number is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1215,14 +1350,16 @@
 ### `PatientMiddleNameMayBeInitial` — MQE0170
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient middle name may be initial
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientNameMiddleIsInvalid` — MQE0528
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient middle name is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1231,7 +1368,8 @@
 ### `PatientNameMiddleIsMissing` — MQE0529
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient middle name is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1240,7 +1378,8 @@
 ### `PatientNameMiddleIsPresent` — MQE0685
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient middle name is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1251,7 +1390,8 @@
 ### `PatientMotherSMaidenNameIsMissing` — MQE0171
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient mother's maiden name is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1260,7 +1400,8 @@
 ### `PatientMothersMaidenNameIsInvalid` — MQE0547
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient mother's maiden name is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1269,7 +1410,8 @@
 ### `PatientMotherSMaidenNameHasJunkName` — MQE0548
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient mother's maiden name has junk name
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1278,7 +1420,8 @@
 ### `PatientMotherSMaidenNameHasInvalidPrefixes` — MQE0549
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient mother's maiden name has invalid prefixes
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1287,7 +1430,8 @@
 ### `PatientMotherSMaidenNameIsTooShort` — MQE0550
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient mother's maiden name is too short
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1296,7 +1440,8 @@
 ### `PatientMotherSMaidenNameIsPresent` — MQE0682
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient mother's maiden name is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1307,7 +1452,8 @@
 ### `PatientNameMayBeTemporaryNewbornName` — MQE0172
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name may be temporary newborn name
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1316,7 +1462,8 @@
 ### `PatientNameMayBeTestName` — MQE0551
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name may be test name
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1325,7 +1472,8 @@
 ### `PatientNameHasJunkName` — MQE0173
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name has junk name
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1336,7 +1484,8 @@
 ### `PatientNameFirstIsInvalid` — MQE0140
 
 - **Severity:** Error
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name first is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1345,7 +1494,8 @@
 ### `PatientNameFirstIsMissing` — MQE0141
 
 - **Severity:** Error
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name first is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1354,7 +1504,8 @@
 ### `PatientNameFirstMayIncludeMiddleInitial` — MQE0142
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name first may include middle initial
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1363,7 +1514,8 @@
 ### `PatientNameFirstIsPresent` — MQE0683
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name first is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1374,7 +1526,8 @@
 ### `PatientNameLastIsInvalid` — MQE0165
 
 - **Severity:** Error
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name last is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1383,7 +1536,8 @@
 ### `PatientNameLastIsMissing` — MQE0166
 
 - **Severity:** Error
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name last is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1392,7 +1546,8 @@
 ### `PatientNameLastIsPresent` — MQE0684
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name last is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1403,28 +1558,32 @@
 ### `PatientNameTypeCodeIsDeprecated` — MQE0405
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name type code is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientNameTypeCodeIsIgnored` — MQE0406
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name type code is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientNameTypeCodeIsInvalid` — MQE0407
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name type code is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientNameTypeCodeIsMissing` — MQE0408
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name type code is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1433,14 +1592,16 @@
 ### `PatientNameTypeCodeIsUnrecognized` — MQE0409
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name type code is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientNameTypeCodeIsNotValuedLegal` — MQE0516
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name type code is not valued legal
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1449,7 +1610,8 @@
 ### `PatientNameTypeCodeIsPresent` — MQE0686
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient name type code is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1460,7 +1622,8 @@
 ### `AdministeredVaccinationsCountIsLargerThanExpected` — MQE0568
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient patient has more vaccinations than expected
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1469,7 +1632,8 @@
 ### `AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears` — MQE0770
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient patient has at least two vaccination events before six years of age
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1478,7 +1642,8 @@
 ### `AdministeredVaccinationsCountIsZero` — MQE0771
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient patient is zero
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1487,7 +1652,8 @@
 ### `AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths` — MQE0772
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient patient is less than 15 doses by 24 months
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1498,7 +1664,8 @@
 ### `PatientPhoneIsIncomplete` — MQE0174
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone is incomplete
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1507,7 +1674,8 @@
 ### `PatientPhoneIsInvalid` — MQE0175
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1516,7 +1684,8 @@
 ### `PatientPhoneIsMissing` — MQE0176
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1525,7 +1694,8 @@
 ### `PatientPhoneIsPresent` — MQE0688
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1536,7 +1706,8 @@
 ### `PatientPhoneTelEquipCodeIsDeprecated` — MQE0458
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone tel equip code is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1545,14 +1716,16 @@
 ### `PatientPhoneTelEquipCodeIsIgnored` — MQE0459
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone tel equip code is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPhoneTelEquipCodeIsInvalid` — MQE0460
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone tel equip code is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1561,7 +1734,8 @@
 ### `PatientPhoneTelEquipCodeIsMissing` — MQE0461
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone tel equip code is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1570,7 +1744,8 @@
 ### `PatientPhoneTelEquipCodeIsUnrecognized` — MQE0462
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone tel equip code is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1579,7 +1754,8 @@
 ### `PatientPhoneTelEquipCodeIsPresent` — MQE0689
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone tel equip code is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1590,7 +1766,8 @@
 ### `PatientPhoneTelUseCodeIsDeprecated` — MQE0453
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone tel use code is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1599,14 +1776,16 @@
 ### `PatientPhoneTelUseCodeIsIgnored` — MQE0454
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone tel use code is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPhoneTelUseCodeIsInvalid` — MQE0455
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone tel use code is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1615,7 +1794,8 @@
 ### `PatientPhoneTelUseCodeIsMissing` — MQE0456
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone tel use code is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1624,7 +1804,8 @@
 ### `PatientPhoneTelUseCodeIsUnrecognized` — MQE0457
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone tel use code is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1633,7 +1814,8 @@
 ### `PatientPhoneTelUseCodeIsPresent` — MQE0690
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient phone tel use code is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1644,28 +1826,32 @@
 ### `PatientPrimaryFacilityIdIsDeprecated` — MQE0177
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary facility id is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPrimaryFacilityIdIsIgnored` — MQE0178
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary facility id is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPrimaryFacilityIdIsInvalid` — MQE0179
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary facility id is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPrimaryFacilityIdIsMissing` — MQE0180
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary facility id is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1674,14 +1860,16 @@
 ### `PatientPrimaryFacilityIdIsUnrecognized` — MQE0181
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary facility id is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPrimaryFacilityIdIsPresent` — MQE0691
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary facility id is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1692,7 +1880,8 @@
 ### `PatientPrimaryFacilityNameIsMissing` — MQE0182
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary facility name is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1701,7 +1890,8 @@
 ### `PatientPrimaryFacilityNameIsPresent` — MQE0692
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary facility name is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1712,28 +1902,32 @@
 ### `PatientPrimaryLanguageIsDeprecated` — MQE0183
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary language is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPrimaryLanguageIsIgnored` — MQE0184
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary language is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPrimaryLanguageIsInvalid` — MQE0185
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary language is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPrimaryLanguageIsMissing` — MQE0186
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary language is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1742,7 +1936,8 @@
 ### `PatientPrimaryLanguageIsUnrecognized` — MQE0187
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary language is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1751,7 +1946,8 @@
 ### `PatientPrimaryLanguageIsPresent` — MQE0693
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary language is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1762,42 +1958,48 @@
 ### `PatientPrimaryPhysicianIdIsDeprecated` — MQE0188
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary physician id is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPrimaryPhysicianIdIsIgnored` — MQE0189
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary physician id is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPrimaryPhysicianIdIsInvalid` — MQE0190
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary physician id is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPrimaryPhysicianIdIsMissing` — MQE0191
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary physician id is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPrimaryPhysicianIdIsUnrecognized` — MQE0192
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary physician id is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPrimaryPhysicianIdIsPresent` — MQE0694
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary physician id is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -1806,7 +2008,8 @@
 ### `PatientPrimaryPhysicianNameIsMissing` — MQE0193
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary physician name is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1815,7 +2018,8 @@
 ### `PatientPrimaryPhysicianNameIsPresent` — MQE0695
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient primary physician name is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1826,7 +2030,8 @@
 ### `PatientProtectionIndicatorIsDeprecated` — MQE0194
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient protection indicator is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1835,14 +2040,16 @@
 ### `PatientProtectionIndicatorIsIgnored` — MQE0195
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient protection indicator is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientProtectionIndicatorIsInvalid` — MQE0196
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient protection indicator is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1851,7 +2058,8 @@
 ### `PatientProtectionIndicatorIsMissing` — MQE0197
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient protection indicator is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1860,7 +2068,8 @@
 ### `PatientProtectionIndicatorIsUnrecognized` — MQE0198
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient protection indicator is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1869,7 +2078,8 @@
 ### `PatientProtectionIndicatorIsValuedAsNo` — MQE0199
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient protection indicator is valued as no
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1878,7 +2088,8 @@
 ### `PatientProtectionIndicatorIsValuedAsYes` — MQE0200
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient protection indicator is valued as yes
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1887,7 +2098,8 @@
 ### `PatientProtectionIndicatorIsPresent` — MQE0696
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient protection indicator is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -1896,21 +2108,24 @@
 ### `PatientPublicityCodeIsDeprecated` — MQE0201
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient publicity code is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPublicityCodeIsIgnored` — MQE0202
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient publicity code is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientPublicityCodeIsInvalid` — MQE0203
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient publicity code is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1919,7 +2134,8 @@
 ### `PatientPublicityCodeIsMissing` — MQE0204
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient publicity code is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1928,7 +2144,8 @@
 ### `PatientPublicityCodeIsUnrecognized` — MQE0205
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient publicity code is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1937,7 +2154,8 @@
 ### `PatientPublicityCodeIsPresent` — MQE0697
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient publicity code is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1948,7 +2166,8 @@
 ### `PatientRaceIsDeprecated` — MQE0206
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient race is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1957,14 +2176,16 @@
 ### `PatientRaceIsIgnored` — MQE0207
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient race is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientRaceIsInvalid` — MQE0208
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient race is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1973,7 +2194,8 @@
 ### `PatientRaceIsMissing` — MQE0209
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient race is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1982,7 +2204,8 @@
 ### `PatientRaceIsUnrecognized` — MQE0210
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient race is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -1991,7 +2214,8 @@
 ### `PatientRaceIsPresent` — MQE0698
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient race is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2002,7 +2226,8 @@
 ### `PatientRegistryIdIsMissing` — MQE0211
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient registry id is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2012,7 +2237,8 @@
 ### `PatientRegistryIdIsUnrecognized` — MQE0212
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient registry id is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2021,7 +2247,8 @@
 ### `PatientRegistryIdIsPresent` — MQE0699
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient registry id is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2032,42 +2259,48 @@
 ### `PatientRegistryStatusIsDeprecated` — MQE0213
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient registry status is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientRegistryStatusIsIgnored` — MQE0214
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient registry status is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientRegistryStatusIsInvalid` — MQE0215
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient registry status is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientRegistryStatusIsMissing` — MQE0216
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient registry status is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientRegistryStatusIsUnrecognized` — MQE0217
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient registry status is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientRegistryStatusIsPresent` — MQE0700
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient registry status is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -2076,7 +2309,8 @@
 ### `PatientSsnIsInvalid` — MQE0218
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient SSN is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2085,7 +2319,8 @@
 ### `PatientSsnIsMissing` — MQE0219
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient SSN is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2094,7 +2329,8 @@
 ### `PatientSsnIsPresent` — MQE0701
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient SSN is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2105,7 +2341,8 @@
 ### `PatientSubmitterIdIsMissing` — MQE0220
 
 - **Severity:** Error
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient submitter id is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2114,7 +2351,8 @@
 ### `PatientSubmitterIdIsPresent` — MQE0703
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient submitter id is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -2123,7 +2361,8 @@
 ### `PatientSubmitterIdAuthorityIsMissing` — MQE0393
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient submitter id authority is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2132,7 +2371,8 @@
 ### `PatientSubmitterIdAuthorityIsPresent` — MQE0702
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient submitter id authority is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
@@ -2141,7 +2381,8 @@
 ### `PatientSubmitterIdTypeCodeIsMissing` — MQE0394
 
 - **Severity:** Error
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient submitter id type code is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2150,35 +2391,40 @@
 ### `PatientSubmitterIdTypeCodeIsDeprecated` — MQE0512
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient submitter id type code is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientSubmitterIdTypeCodeIsInvalid` — MQE0513
 
 - **Severity:** Error
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient submitter id type code is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientSubmitterIdTypeCodeIsUnrecognized` — MQE0514
 
 - **Severity:** Warn
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient submitter id type code is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientSubmitterIdTypeCodeIsIgnored` — MQE0515
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient submitter id type code is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientSubmitterIdTypeCodeIsPresent` — MQE0704
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient submitter id type code is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2189,7 +2435,8 @@
 ### `PatientCreationIsOnTime` — MQE0575
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient system entry time is on time
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2198,7 +2445,8 @@
 ### `PatientCreationIsLate` — MQE0576
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient system entry time is late
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2207,7 +2455,8 @@
 ### `PatientCreationIsVeryLate` — MQE0577
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient system entry time is very late
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2216,7 +2465,8 @@
 ### `PatientCreationIsTooLate` — MQE0578
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient system entry time is too late
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2225,7 +2475,8 @@
 ### `PatientSystemEntryDateIsMissing` — MQE0579
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient system entry time is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2234,7 +2485,8 @@
 ### `PatientSystemEntryDateIsInvalid` — MQE0580
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient system entry time is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2243,7 +2495,8 @@
 ### `PatientSystemEntryDateIsInTheFuture` — MQE0582
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient system entry time is in future
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2252,7 +2505,8 @@
 ### `PatientSystemEntryDateIsPresent` — MQE0705
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient system entry time is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2263,7 +2517,8 @@
 ### `PatientVfcEffectiveDateIsBeforeBirth` — MQE0221
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient VFC effective date is before birth
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2272,7 +2527,8 @@
 ### `PatientVfcEffectiveDateIsInFuture` — MQE0222
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient VFC effective date is in future
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2281,14 +2537,16 @@
 ### `PatientVfcEffectiveDateIsInvalid` — MQE0223
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient VFC effective date is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientVfcEffectiveDateIsMissing` — MQE0224
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient VFC effective date is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2297,7 +2555,8 @@
 ### `PatientVfcEffectiveDateIsPresent` — MQE0706
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient VFC effective date is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2308,7 +2567,8 @@
 ### `PatientVfcStatusIsDeprecated` — MQE0225
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient VFC status is deprecated
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2317,14 +2577,16 @@
 ### `PatientVfcStatusIsIgnored` — MQE0226
 
 - **Severity:** Info
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient VFC status is ignored
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientVfcStatusIsInvalid` — MQE0227
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient VFC status is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2333,7 +2595,8 @@
 ### `PatientVfcStatusIsMissing` — MQE0228
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient VFC status is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2342,7 +2605,8 @@
 ### `PatientVfcStatusIsUnrecognized` — MQE0229
 
 - **Severity:** Warn
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient VFC status is unrecognized
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2351,7 +2615,8 @@
 ### `PatientVfcStatusIsPresent` — MQE0707
 
 - **Severity:** Accept
-- **Status:** Active - wired to at least one rule below
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient VFC status is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 - **Implemented by:**
@@ -2362,21 +2627,24 @@
 ### `PatientWicIdIsInvalid` — MQE0230
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient WIC id is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientWicIdIsMissing` — MQE0231
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient WIC id is missing
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 
 ### `PatientWicIdIsPresent` — MQE0708
 
 - **Severity:** Accept
-- **Status:** Defined but not currently wired to any rule
+- **Wiring:** Defined but not currently wired to any rule
+- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient WIC id is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
 

@@ -141,7 +141,10 @@ public enum DetectionType implements MqeDetectionType {
   IS_ON_TIME("is on time"),
   IS_LATE("is late"),
   IS_VERY_LATE("is very late"),
-  IS_TOO_LATE("is too late");
+  IS_TOO_LATE("is too late"),
+  COVID_2021_DOSE_COUNT_4_OR_MORE("has 4 or more COVID-19 doses administered in calendar year 2021"),
+  COVID_2021_DOSE_COUNT_5_OR_MORE("has 5 or more COVID-19 doses administered in calendar year 2021"),
+  COVID_2021_DOSE_COUNT_6_OR_MORE("has 6 or more COVID-19 doses administered in calendar year 2021");
 	
   public final String wording;
   public final String description;

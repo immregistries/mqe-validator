@@ -340,6 +340,16 @@ public enum Detection implements MqeDetection {
   AdministeredVaccinationsCountIsZero(PATIENT_LEVEL, ZERO , ACCEPT, MQE0771),
   AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths(PATIENT_LEVEL, LESS_THAN_FIFTEEN_DOSES_BY_24_MONTHS , ACCEPT, MQE0772),
 
+  // Calibration ladder for the "too many doses in a code group/window" mismerge signal (issue
+  // #102) - see docs/changes-needed-2028-08.md's design discussion under #3312/#3313. Explicitly
+  // hard-coded to CY2021 COVID CVX codes per the issue, not a general config mechanism.
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  PatientCovid2021DoseCountIs4OrMore(PATIENT_LEVEL, COVID_2021_DOSE_COUNT_4_OR_MORE, ACCEPT, MQE0790),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  PatientCovid2021DoseCountIs5OrMore(PATIENT_LEVEL, COVID_2021_DOSE_COUNT_5_OR_MORE, ACCEPT, MQE0791),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  PatientCovid2021DoseCountIs6OrMore(PATIENT_LEVEL, COVID_2021_DOSE_COUNT_6_OR_MORE, ACCEPT, MQE0792),
+
   
   VaccinationSystemEntryDateIsMissing(VACCINATION_SYSTEM_ENTRY_TIME, MISSING, ACCEPT, MQE0573),
   VaccinationSystemEntryDateIsInTheFuture(VACCINATION_SYSTEM_ENTRY_TIME, IN_FUTURE, ACCEPT, MQE0581),

@@ -1663,6 +1663,36 @@
 - **Implemented by:**
   - `VaccinationAdminCountIsAsExpectedForAge` — Patient received less than 15 vaccinations by 24 months of age.
 
+### `PatientCovid2021DoseCountIs4OrMore` — MQE0790
+
+- **Severity:** Accept
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** EXPERIMENTAL (since 2026-08)
+- **Message shown to submitters:** Patient patient has 4 or more COVID-19 doses administered in calendar year 2021
+- **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
+- **Implemented by:**
+  - `PatientCovid2021DoseCount` — Patient has 4 or more doses of CVX [212, 217, 207, 218, 208] administered in calendar year 2021.
+
+### `PatientCovid2021DoseCountIs5OrMore` — MQE0791
+
+- **Severity:** Accept
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** EXPERIMENTAL (since 2026-08)
+- **Message shown to submitters:** Patient patient has 5 or more COVID-19 doses administered in calendar year 2021
+- **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
+- **Implemented by:**
+  - `PatientCovid2021DoseCount` — Patient has 5 or more doses of CVX [212, 217, 207, 218, 208] administered in calendar year 2021.
+
+### `PatientCovid2021DoseCountIs6OrMore` — MQE0792
+
+- **Severity:** Accept
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** EXPERIMENTAL (since 2026-08)
+- **Message shown to submitters:** Patient patient has 6 or more COVID-19 doses administered in calendar year 2021
+- **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
+- **Implemented by:**
+  - `PatientCovid2021DoseCount` — Patient has 6 or more doses of CVX [212, 217, 207, 218, 208] administered in calendar year 2021.
+
 ### `PatientFluSeasonDoseCountIs2OrMore` — MQE0793
 
 - **Severity:** Accept
@@ -2661,4 +2691,3 @@
 - **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
 - **Message shown to submitters:** Patient WIC id is present
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
-

@@ -712,6 +712,9 @@ public enum MqeCode {
   MQE0787,
   MQE0788,
   MQE0789,
+  MQE0790,
+  MQE0791,
+  MQE0792,
   MQE0793,
   ;
 

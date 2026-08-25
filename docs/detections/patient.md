@@ -1663,6 +1663,16 @@
 - **Implemented by:**
   - `VaccinationAdminCountIsAsExpectedForAge` — Patient received less than 15 vaccinations by 24 months of age.
 
+### `PatientFluSeasonDoseCountIs2OrMore` — MQE0793
+
+- **Severity:** Accept
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** EXPERIMENTAL (since 2026-08)
+- **Message shown to submitters:** Patient patient has 2 or more flu doses in a single flu season (Sep-Mar) at age 10 or older
+- **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
+- **Implemented by:**
+  - `PatientFluSeasonDoseCount` — Patient has 2 or more doses of CVX [171, 161, 150, 140, 185, 141, 197, 186, 153, 231, 166, 111, 320, 155, 144, 200, 168, 135, 201, 202, 158, 149, 205] within a single flu season (September through March, spanning the calendar-year boundary), counting only doses where the patient was 10 or older at the time of that specific vaccination.
+
 ## Phone (PID-13)
 
 ### `PatientPhoneIsIncomplete` — MQE0174

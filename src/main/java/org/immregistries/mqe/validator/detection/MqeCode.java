@@ -712,6 +712,7 @@ public enum MqeCode {
   MQE0787,
   MQE0788,
   MQE0789,
+  MQE0793,
   ;
 
   private static Map<String, MqeCode> errorCodeStringMap = new HashMap<>();

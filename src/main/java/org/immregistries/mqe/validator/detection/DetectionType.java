@@ -147,7 +147,8 @@ public enum DetectionType implements MqeDetectionType {
   IS_EXACTLY_4_DAYS("is exactly 4 days from admin date"),
   IS_EXACTLY_5_DAYS("is exactly 5 days from admin date"),
   IS_EXACTLY_6_DAYS("is exactly 6 days from admin date"),
-  IS_EXACTLY_7_DAYS("is exactly 7 days from admin date");
+  IS_EXACTLY_7_DAYS("is exactly 7 days from admin date"),
+  FLU_SEASON_DOSE_COUNT_2_OR_MORE("has 2 or more flu doses in a single flu season (Sep-Mar) at age 10 or older");
 	
   public final String wording;
   public final String description;

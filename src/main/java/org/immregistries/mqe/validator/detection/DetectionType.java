@@ -141,7 +141,13 @@ public enum DetectionType implements MqeDetectionType {
   IS_ON_TIME("is on time"),
   IS_LATE("is late"),
   IS_VERY_LATE("is very late"),
-  IS_TOO_LATE("is too late");
+  IS_TOO_LATE("is too late"),
+  IS_EXACTLY_2_DAYS("is exactly 2 days from admin date"),
+  IS_EXACTLY_3_DAYS("is exactly 3 days from admin date"),
+  IS_EXACTLY_4_DAYS("is exactly 4 days from admin date"),
+  IS_EXACTLY_5_DAYS("is exactly 5 days from admin date"),
+  IS_EXACTLY_6_DAYS("is exactly 6 days from admin date"),
+  IS_EXACTLY_7_DAYS("is exactly 7 days from admin date");
 	
   public final String wording;
   public final String description;

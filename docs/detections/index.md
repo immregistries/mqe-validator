@@ -5,8 +5,8 @@
 
 See [README.md](README.md) for what this is and how to regenerate it.
 
-- Total detections defined: 692
-- Wired to an active rule: 441
+- Total detections defined: 698
+- Wired to an active rule: 447
 - Not yet wired to any rule: 251
 - With a `@Documentation` concept description: 20
 
@@ -17,7 +17,7 @@ Backfilled incrementally - see [detection-status-lifecycle.md](../detection-stat
 - No `@DetectionStatus` set: 688
 - PLANNED: 1
 - ACTIVE: 2
-- EXPERIMENTAL: 1
+- EXPERIMENTAL: 7
 - UNSUPPORTED: 0
 - RETIRED: 0
 
@@ -28,4 +28,4 @@ Backfilled incrementally - see [detection-status-lifecycle.md](../detection-stat
 - [Next-of-kin](next-of-kin.md) - 59 detections
 - [Observation](observation.md) - 19 detections
 - [Patient](patient.md) - 268 detections
-- [Vaccination](vaccination.md) - 274 detections
+- [Vaccination](vaccination.md) - 280 detections

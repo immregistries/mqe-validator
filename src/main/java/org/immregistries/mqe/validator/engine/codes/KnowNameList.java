@@ -20,9 +20,7 @@ public enum KnowNameList {
 
 
   public List<KnownName> getNames() {
-    List<KnownName> nms = new ArrayList<KnownName>();
-    Collections.copy(nms, names);;
-    return nms;
+    return new ArrayList<KnownName>(this.names);
   }
 
   public List<KnownName> getKnownNames(NameType type) {
@@ -80,20 +78,23 @@ public enum KnowNameList {
     }
     for (KnownName name : typeNames) {
 
-      if (!StringUtils.isBlank(name.getNameLast()) && !StringUtils.isBlank(last)
-          && name.getNameLast().equalsIgnoreCase(last)) {
-        return true;
+      boolean shouldMatchFirstName = !StringUtils.isBlank(name.getNameFirst());
+      boolean shouldMatchLastName = !StringUtils.isBlank(name.getNameLast());
+      boolean shouldMatchMiddleName = !StringUtils.isBlank(name.getNameMiddle());
+
+      if(shouldMatchFirstName && !(!StringUtils.isBlank(first) && name.getNameFirst().equalsIgnoreCase(first))) {
+        continue;
       }
 
-      if (!StringUtils.isBlank(name.getNameFirst()) && !StringUtils.isBlank(first)
-          && name.getNameFirst().equalsIgnoreCase(first)) {
-        return true;
+      if(shouldMatchLastName && !(!StringUtils.isBlank(last) && name.getNameLast().equalsIgnoreCase(last))) {
+        continue;
       }
 
-      if (!StringUtils.isBlank(name.getNameMiddle()) && !StringUtils.isBlank(middle)
-          && name.getNameMiddle().equalsIgnoreCase(middle)) {
-        return true;
+      if(shouldMatchMiddleName && !(!StringUtils.isBlank(middle) && name.getNameMiddle().equalsIgnoreCase(middle))) {
+        continue;
       }
+
+      return true;
     }
     return false;
   }

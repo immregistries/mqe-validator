@@ -62,6 +62,12 @@ public enum PhoneValidator {
         }
       }
 
+    } else if(phone != null && phone.getSingleFieldinput() != null && !phone.getSingleFieldinput().isEmpty()) {
+      issues.add(Detection.get(piPhone, DetectionType.PRESENT).build(meta));
+      Detection attr = Detection.get(piPhone, DetectionType.INVALID);
+      if (attr != null) {
+        issues.add(attr.build(phone.getFormattedNumber(), meta));
+      }
     } else {
       issues.add(Detection.get(piPhone, DetectionType.MISSING).build(meta));
     }

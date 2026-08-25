@@ -4,92 +4,7 @@ import static org.immregistries.mqe.hl7util.SeverityLevel.ACCEPT;
 import static org.immregistries.mqe.hl7util.SeverityLevel.ERROR;
 import static org.immregistries.mqe.hl7util.SeverityLevel.INFO;
 import static org.immregistries.mqe.hl7util.SeverityLevel.WARN;
-import static org.immregistries.mqe.validator.detection.DetectionType.ADMINISTERED_BUT_APPEARS_TO_HISTORICAL;
-import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_ADMIN_DATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_LOT_EXPIRATION;
-import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_MESSAGE_SUBMITTED;
-import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_PATIENT_DEATH_DATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_SUBMISSION;
-import static org.immregistries.mqe.validator.detection.DetectionType.AFTER_SYSTEM_ENTRY_DATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.ARE_INCONSISTENT;
-import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_BIRTH;
-import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_OR_AFTER_EXPECTED_DATE_FOR_AGE;
-import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_OR_AFTER_EXPECTED_DATE_RANGE;
-import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_OR_AFTER_LICENSED_DATE_RANGE;
-import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_OR_AFTER_VALID_DATE_FOR_AGE;
-import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_PUBLISHED_DATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.BEFORE_VERSION_DATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.CONFLICTS_COMPLETION_STATUS;
-import static org.immregistries.mqe.validator.detection.DetectionType.DEPRECATED;
-import static org.immregistries.mqe.validator.detection.DetectionType.DIFFERENT_FROM_PATIENT_ADDRESS;
-import static org.immregistries.mqe.validator.detection.DetectionType.DIFF_FROM_START;
-import static org.immregistries.mqe.validator.detection.DetectionType.EXCEPTION;
-import static org.immregistries.mqe.validator.detection.DetectionType.HAS_JUNK_NAME;
-import static org.immregistries.mqe.validator.detection.DetectionType.HISTORICAL_BUT_APPEARS_TO_BE_ADMINISTERED;
-import static org.immregistries.mqe.validator.detection.DetectionType.IGNORED;
-import static org.immregistries.mqe.validator.detection.DetectionType.INCOMPLETE;
-import static org.immregistries.mqe.validator.detection.DetectionType.INCONSISTENT;
-import static org.immregistries.mqe.validator.detection.DetectionType.INCORRECT;
-import static org.immregistries.mqe.validator.detection.DetectionType.INVALID;
-import static org.immregistries.mqe.validator.detection.DetectionType.INVALID_FOR_DATE_ADMINISTERED;
-import static org.immregistries.mqe.validator.detection.DetectionType.INVALID_FOR_VACCINE;
-import static org.immregistries.mqe.validator.detection.DetectionType.INVALID_INFIXES;
-import static org.immregistries.mqe.validator.detection.DetectionType.INVALID_PREFIXES;
-import static org.immregistries.mqe.validator.detection.DetectionType.INVALID_SUFFIXES;
-import static org.immregistries.mqe.validator.detection.DetectionType.IN_FUTURE;
-import static org.immregistries.mqe.validator.detection.DetectionType.IS_LATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.IS_ON_TIME;
-import static org.immregistries.mqe.validator.detection.DetectionType.IS_TOO_LATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.IS_VERY_LATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.MAY_BE_AN_INITIAL;
-import static org.immregistries.mqe.validator.detection.DetectionType.MAY_BE_PREVIOUSLY_REPORTED;
-import static org.immregistries.mqe.validator.detection.DetectionType.MAY_BE_TEMPORARY_NEWBORN_NAME;
-import static org.immregistries.mqe.validator.detection.DetectionType.MAY_BE_TEST_NAME;
-import static org.immregistries.mqe.validator.detection.DetectionType.MAY_INCLUDE_MIDDLE_INITIAL;
-import static org.immregistries.mqe.validator.detection.DetectionType.MISSING;
-import static org.immregistries.mqe.validator.detection.DetectionType.MISSING_AND_MULTIPLE_BIRTH_INDICATED;
-import static org.immregistries.mqe.validator.detection.DetectionType.MISSING_TIMEZONE;
-import static org.immregistries.mqe.validator.detection.DetectionType.MUTLIPLES;
-import static org.immregistries.mqe.validator.detection.DetectionType.NOT_PRECISE;
-import static org.immregistries.mqe.validator.detection.DetectionType.NOT_RESPONSIBLE_PARTY;
-import static org.immregistries.mqe.validator.detection.DetectionType.NOT_SAME_AS_ADMIN_DATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.NOT_SPECIFIC;
-import static org.immregistries.mqe.validator.detection.DetectionType.NOT_USABLE;
-import static org.immregistries.mqe.validator.detection.DetectionType.NOT_VACCINE;
-import static org.immregistries.mqe.validator.detection.DetectionType.NOT_VALUED_LEGAL;
-import static org.immregistries.mqe.validator.detection.DetectionType.ON_FIFTEENTH_DAY_OF_MONTH;
-import static org.immregistries.mqe.validator.detection.DetectionType.ON_FIRST_DAY_OF_MONTH;
-import static org.immregistries.mqe.validator.detection.DetectionType.ON_LAST_DAY_OF_MONTH;
-import static org.immregistries.mqe.validator.detection.DetectionType.OUT_OF_DATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.PRESENT;
-import static org.immregistries.mqe.validator.detection.DetectionType.REPORTED_LATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.SAME_AS_UNDERAGE_PATIENT;
-import static org.immregistries.mqe.validator.detection.DetectionType.TOO_SHORT;
-import static org.immregistries.mqe.validator.detection.DetectionType.UNDERAGE;
-import static org.immregistries.mqe.validator.detection.DetectionType.UNEXPECTED;
-import static org.immregistries.mqe.validator.detection.DetectionType.UNEXPECTED_FORMAT;
-import static org.immregistries.mqe.validator.detection.DetectionType.UNEXPECTED_FOR_DATE_ADMINISTERED;
-import static org.immregistries.mqe.validator.detection.DetectionType.UNEXPECTED_FOR_FINANCIAL_ELIGIBILITY;
-import static org.immregistries.mqe.validator.detection.DetectionType.UNRECOGNIZED;
-import static org.immregistries.mqe.validator.detection.DetectionType.VACCINATION_COUNT_EXCEEDS_EXPECTATIONS;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_ADD;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_ADD_OR_UPDATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_ADMINISTERED;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_COMPLETED;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_DELETE;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_FOREIGN;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_HISTORICAL;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_NO;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_NOT_ADMINISTERED;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_PARTIALLY_ADMINISTERED;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_REFUSED;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_RESTRICTED;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_UNKNOWN;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_UPDATE;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_YES;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_AS_ZERO;
-import static org.immregistries.mqe.validator.detection.DetectionType.VALUED_BAD_ADDRESS;
-import static org.immregistries.mqe.validator.detection.DetectionType.VERY_LONG_AGO;
+import static org.immregistries.mqe.validator.detection.DetectionType.*;
 import static org.immregistries.mqe.validator.detection.MqeCode.*;
 import static org.immregistries.mqe.vxu.VxuField.*;
 import java.util.HashMap;
@@ -165,6 +80,7 @@ public enum Detection implements MqeDetection {
   NextOfKinAddressStateIsMissing(NEXT_OF_KIN_ADDRESS_STATE, MISSING, ACCEPT, MQE0073),
   NextOfKinAddressStateIsUnrecognized(NEXT_OF_KIN_ADDRESS_STATE, UNRECOGNIZED, WARN, MQE0074),
   NextOfKinAddressStreetIsMissing(NEXT_OF_KIN_ADDRESS_STREET, MISSING, ACCEPT, MQE0075),
+  @DetectionStatus(status = DetectionLifecycle.PLANNED, since = "2026-08")
   NextOfKinAddressStreet2IsMissing(NEXT_OF_KIN_ADDRESS_STREET2, MISSING, ACCEPT, MQE0076),
   NextOfKinAddressTypeIsDeprecated(NEXT_OF_KIN_ADDRESS_TYPE, DEPRECATED, WARN, MQE0395),
   NextOfKinAddressTypeIsIgnored(NEXT_OF_KIN_ADDRESS_TYPE, IGNORED, INFO, MQE0396),
@@ -203,34 +119,46 @@ public enum Detection implements MqeDetection {
   ObservationDateTimeOfObservationIsMissing(OBSERVATION_DATE_TIME_OF_OBSERVATION, MISSING, INFO, MQE0481),
   ObservationDateTimeOfObservationIsInvalid(OBSERVATION_DATE_TIME_OF_OBSERVATION, INVALID, INFO, MQE0482),
   PatientObjectIsMissing(NONE, MISSING, ACCEPT, MQE0545),
+  @Documentation("The patient record does not include any address information at all.")
   PatientAddressIsMissing(PATIENT_ADDRESS, MISSING, ACCEPT, MQE0092),
+  @Documentation("The patient's address was submitted but does not resolve to a real, deliverable address when checked against an address-verification service (e.g. Smarty Streets).")
   PatientAddressIsInvalid(PATIENT_ADDRESS, INVALID, WARN, MQE0562),
   PatientAddressCityIsInvalid(PATIENT_ADDRESS_CITY, INVALID, ACCEPT, MQE0093),
+  @Documentation("The patient's address is present, but no city value was provided.")
   PatientAddressCityIsMissing(PATIENT_ADDRESS_CITY, MISSING, ACCEPT, MQE0094),
   PatientAddressCountryIsDeprecated(PATIENT_ADDRESS_COUNTRY, DEPRECATED, WARN, MQE0095),
   PatientAddressCountryIsIgnored(PATIENT_ADDRESS_COUNTRY, IGNORED, INFO, MQE0096),
   PatientAddressCountryIsInvalid(PATIENT_ADDRESS_COUNTRY, INVALID, WARN, MQE0097),
+  @Documentation("The patient's address is present, but no country value was provided.")
   PatientAddressCountryIsMissing(PATIENT_ADDRESS_COUNTRY, MISSING, ACCEPT, MQE0098),
   PatientAddressCountryIsUnrecognized(PATIENT_ADDRESS_COUNTRY, UNRECOGNIZED, WARN, MQE0099),
   PatientAddressCountyIsDeprecated(PATIENT_ADDRESS_COUNTY, DEPRECATED, WARN, MQE0100),
   PatientAddressCountyIsIgnored(PATIENT_ADDRESS_COUNTY, IGNORED, INFO, MQE0101),
   PatientAddressCountyIsInvalid(PATIENT_ADDRESS_COUNTY, INVALID, WARN, MQE0102),
+  @Documentation("The patient's address is present, but no county value was provided.")
   PatientAddressCountyIsMissing(PATIENT_ADDRESS_COUNTY, MISSING, ACCEPT, MQE0103),
   PatientAddressCountyIsUnrecognized(PATIENT_ADDRESS_COUNTY, UNRECOGNIZED, ACCEPT, MQE0104),
   PatientAddressStateIsDeprecated(PATIENT_ADDRESS_STATE, DEPRECATED, WARN, MQE0105),
   PatientAddressStateIsIgnored(PATIENT_ADDRESS_STATE, IGNORED, INFO, MQE0106),
   PatientAddressStateIsInvalid(PATIENT_ADDRESS_STATE, INVALID, ACCEPT, MQE0107),
+  @Documentation("The patient's address is present, but no state value was provided.")
   PatientAddressStateIsMissing(PATIENT_ADDRESS_STATE, MISSING, ACCEPT, MQE0108),
   PatientAddressStateIsUnrecognized(PATIENT_ADDRESS_STATE, UNRECOGNIZED, ACCEPT, MQE0109),
+  @Documentation("The patient's address is present, but no street value was provided.")
   PatientAddressStreetIsMissing(PATIENT_ADDRESS_STREET, MISSING, ACCEPT, MQE0110),
   PatientAddressStreet2IsMissing(PATIENT_ADDRESS_STREET2, MISSING, ACCEPT, MQE0111),
+  @Documentation("The patient's address is present, but no address type code (e.g. home, mailing) was provided.")
   PatientAddressTypeIsMissing(PATIENT_ADDRESS_TYPE, MISSING, ACCEPT, MQE0451),
   PatientAddressTypeIsDeprecated(PATIENT_ADDRESS_TYPE, DEPRECATED, WARN, MQE0517),
   PatientAddressTypeIsIgnored(PATIENT_ADDRESS_TYPE, IGNORED, INFO, MQE0518),
   PatientAddressTypeIsInvalid(PATIENT_ADDRESS_TYPE, INVALID, ACCEPT, MQE0519),
+  @Documentation("The patient's address type code was submitted, but the value is not one this system recognizes as either a valid or invalid code (unknown/unsupported code value).")
   PatientAddressTypeIsUnrecognized(PATIENT_ADDRESS_TYPE, UNRECOGNIZED, WARN, MQE0520),
+  @Documentation("The patient's address type code was submitted as 'BA' (Bad Address), meaning the sender has already flagged this address as undeliverable or invalid.")
   PatientAddressTypeIsValuedBadAddress(PATIENT_ADDRESS_TYPE, VALUED_BAD_ADDRESS, INFO, MQE0521),
+  @DetectionStatus(status = DetectionLifecycle.ACTIVE, since = "2026-08")
   PatientAddressZipIsInvalid(PATIENT_ADDRESS_ZIP, INVALID, WARN, MQE0112),
+  @Documentation("The patient's address is present, but no zip/postal code value was provided.")
   PatientAddressZipIsMissing(PATIENT_ADDRESS_ZIP, MISSING, ACCEPT, MQE0113),
   PatientAliasIsMissing(PATIENT_ALIAS, MISSING, ACCEPT, MQE0114),
   PatientBirthDateIsAfterSubmission(PATIENT_BIRTH_DATE, AFTER_SUBMISSION, ERROR, MQE0115),
@@ -409,16 +337,52 @@ public enum Detection implements MqeDetection {
   PatientSystemEntryDateIsInTheFuture(PATIENT_SYSTEM_ENTRY_TIME, IN_FUTURE, ACCEPT, MQE0582),
 
   AdministeredVaccinationsCountIsLargerThanExpected(PATIENT_LEVEL, VACCINATION_COUNT_EXCEEDS_EXPECTATIONS, WARN, MQE0568),
+  AdministeredVaccinationsCountIsTwoVaccinationEventsBySixYears(PATIENT_LEVEL, TWO_VACCINATION_EVENTS_BY_SIX_YEARS , ACCEPT, MQE0770),
+  AdministeredVaccinationsCountIsZero(PATIENT_LEVEL, ZERO , ACCEPT, MQE0771),
+  AdministeredVaccinationsCountIsLessThanFifteenByTwentyFourMonths(PATIENT_LEVEL, LESS_THAN_FIFTEEN_DOSES_BY_24_MONTHS , ACCEPT, MQE0772),
+
+  // Calibration ladder for the "too many doses in a code group/window" mismerge signal (issue
+  // #102) - see docs/changes-needed-2028-08.md's design discussion under #3312/#3313. Explicitly
+  // hard-coded to CY2021 COVID CVX codes per the issue, not a general config mechanism.
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  PatientCovid2021DoseCountIs4OrMore(PATIENT_LEVEL, COVID_2021_DOSE_COUNT_4_OR_MORE, ACCEPT, MQE0790),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  PatientCovid2021DoseCountIs5OrMore(PATIENT_LEVEL, COVID_2021_DOSE_COUNT_5_OR_MORE, ACCEPT, MQE0791),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  PatientCovid2021DoseCountIs6OrMore(PATIENT_LEVEL, COVID_2021_DOSE_COUNT_6_OR_MORE, ACCEPT, MQE0792),
+  // Flu-season mismerge signal (issue #101) - same "too many doses in a code group/window"
+  // pattern as PatientCovid2021DoseCountIs*OrMore, see docs/changes-needed-2028-08.md's design
+  // discussion under #3312/#3313. Hard-coded per the issue, single threshold (not a ladder -
+  // unlike COVID, the issue only ever specified one: 2 or more).
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  PatientFluSeasonDoseCountIs2OrMore(PATIENT_LEVEL, FLU_SEASON_DOSE_COUNT_2_OR_MORE, ACCEPT, MQE0793),
+
   
   VaccinationSystemEntryDateIsMissing(VACCINATION_SYSTEM_ENTRY_TIME, MISSING, ACCEPT, MQE0573),
   VaccinationSystemEntryDateIsInTheFuture(VACCINATION_SYSTEM_ENTRY_TIME, IN_FUTURE, ACCEPT, MQE0581),
   VaccinationSystemEntryDateIsInvalid(VACCINATION_SYSTEM_ENTRY_TIME, INVALID, ACCEPT, MQE0574),
   
   VaccinationCreationIsOnTime(VACCINATION_SYSTEM_ENTRY_TIME, IS_ON_TIME, ACCEPT, MQE0569),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
   VaccinationCreationIsLate(VACCINATION_SYSTEM_ENTRY_TIME, IS_LATE, ACCEPT, MQE0570),
   VaccinationCreationIsVeryLate(VACCINATION_SYSTEM_ENTRY_TIME, IS_VERY_LATE, ACCEPT, MQE0571),
   VaccinationCreationIsTooLate(VACCINATION_SYSTEM_ENTRY_TIME, IS_TOO_LATE, ACCEPT, MQE0572),
-  
+
+  // Exact-day entry timeliness (issue #99) - finer-grained than the IsOnTime/IsLate/IsVeryLate/
+  // IsTooLate buckets above, for administered doses only. Literal "exactly N days", not "at least".
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly2Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_2_DAYS, ACCEPT, MQE0784),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly3Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_3_DAYS, ACCEPT, MQE0785),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly4Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_4_DAYS, ACCEPT, MQE0786),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly5Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_5_DAYS, ACCEPT, MQE0787),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly6Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_6_DAYS, ACCEPT, MQE0788),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly7Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_7_DAYS, ACCEPT, MQE0789),
+
   VaccinationActionCodeIsDeprecated(VACCINATION_ACTION_CODE, DEPRECATED, WARN, MQE0232),
   VaccinationActionCodeIsIgnored(VACCINATION_ACTION_CODE, IGNORED, INFO, MQE0233),
   VaccinationActionCodeIsInvalid(VACCINATION_ACTION_CODE, INVALID, ERROR, MQE0234),
@@ -429,6 +393,7 @@ public enum Detection implements MqeDetection {
   VaccinationActionCodeIsValuedAsDelete(VACCINATION_ACTION_CODE, VALUED_AS_DELETE, ACCEPT, MQE0239),
   VaccinationActionCodeIsValuedAsUpdate(VACCINATION_ACTION_CODE, VALUED_AS_UPDATE, ACCEPT, MQE0240),
 
+  @Documentation("The vaccine's administration date falls on or after the expiration date of the lot that was administered, meaning the dose may have been given from expired vaccine stock.")
   VaccinationAdminDateIsAfterLotExpirationDate(VACCINATION_ADMIN_DATE, AFTER_LOT_EXPIRATION, WARN, MQE0251),
   VaccinationAdminDateIsAfterMessageSubmitted(VACCINATION_ADMIN_DATE, AFTER_MESSAGE_SUBMITTED, ERROR, MQE0252),
   VaccinationAdminDateIsAfterPatientDeathDate(VACCINATION_ADMIN_DATE, AFTER_PATIENT_DEATH_DATE, ERROR, MQE0253),
@@ -698,14 +663,22 @@ public enum Detection implements MqeDetection {
   ObservationObservationValueIsPresent(OBSERVATION_VALUE, PRESENT, ACCEPT, MQE0641),
   ObservationValueIsPresent(OBSERVATION_VALUE, PRESENT, ACCEPT, MQE0642),
   ObservationValueTypeIsPresent(OBSERVATION_VALUE_TYPE, PRESENT, ACCEPT, MQE0643),
+  @Documentation("Companion signal to PatientAddressCityIsMissing: the patient's address city value was populated.")
   PatientAddressCityIsPresent(PATIENT_ADDRESS_CITY, PRESENT, ACCEPT, MQE0644),
+  @Documentation("Companion signal to PatientAddressCountryIsMissing: the patient's address country value was populated.")
   PatientAddressCountryIsPresent(PATIENT_ADDRESS_COUNTRY, PRESENT, ACCEPT, MQE0645),
+  @Documentation("Companion signal to PatientAddressCountyIsMissing: the patient's address county value was populated.")
   PatientAddressCountyIsPresent(PATIENT_ADDRESS_COUNTY, PRESENT, ACCEPT, MQE0646),
+  @Documentation("Companion signal to PatientAddressIsMissing: the patient record includes address information.")
   PatientAddressIsPresent(PATIENT_ADDRESS, PRESENT, ACCEPT, MQE0647),
+  @Documentation("Companion signal to PatientAddressStateIsMissing: the patient's address state value was populated.")
   PatientAddressStateIsPresent(PATIENT_ADDRESS_STATE, PRESENT, ACCEPT, MQE0648),
   PatientAddressStreet2IsPresent(PATIENT_ADDRESS_STREET2, PRESENT, ACCEPT, MQE0649),
+  @Documentation("Companion signal to PatientAddressStreetIsMissing: the patient's address street value was populated.")
   PatientAddressStreetIsPresent(PATIENT_ADDRESS_STREET, PRESENT, ACCEPT, MQE0650),
+  @Documentation("Companion signal to PatientAddressTypeIsMissing: the patient's address type code was populated.")
   PatientAddressTypeIsPresent(PATIENT_ADDRESS_TYPE, PRESENT, ACCEPT, MQE0651),
+  @Documentation("Companion signal to PatientAddressZipIsMissing: the patient's address zip/postal code value was populated.")
   PatientAddressZipIsPresent(PATIENT_ADDRESS_ZIP, PRESENT, ACCEPT, MQE0652),
   PatientAliasIsPresent(PATIENT_ALIAS, PRESENT, ACCEPT, MQE0653),
   PatientBirthDateIsPresent(PATIENT_BIRTH_DATE, PRESENT, ACCEPT, MQE0654),
@@ -788,6 +761,7 @@ public enum Detection implements MqeDetection {
   VaccinationInformationSourceIsPresent(VACCINATION_INFORMATION_SOURCE, PRESENT, ACCEPT, MQE0731),
   VaccinationLotExpirationDateIsPresent(VACCINATION_LOT_EXPIRATION_DATE, PRESENT, ACCEPT, MQE0732),
   VaccinationLotNumberIsPresent(VACCINATION_LOT_NUMBER, PRESENT, ACCEPT, MQE0733),
+  @DetectionStatus(status = DetectionLifecycle.ACTIVE, since = "2026-08")
   VaccinationManufacturerCodeIsPresent(VACCINATION_MANUFACTURER_CODE, PRESENT, ACCEPT, MQE0734),
   VaccinationNDCCodeIsPresent(VACCINATION_NDC_CODE, PRESENT, ACCEPT, MQE0735),
   VaccinationOrderControlCodeIsPresent(VACCINATION_ORDER_CONTROL_CODE, PRESENT, ACCEPT, MQE0736),
@@ -806,6 +780,41 @@ public enum Detection implements MqeDetection {
   VaccinationVisPresentedDateIsPresent(VACCINATION_VIS_PRESENTED_DATE, PRESENT, ACCEPT, MQE0749),
   VaccinationVisPublishedDateIsPresent(VACCINATION_VIS_PUBLISHED_DATE, PRESENT, ACCEPT, MQE0750),
   VaccinationVisVersionDateIsPresent(VACCINATION_VIS_VERSION_DATE, PRESENT, ACCEPT, MQE0751),
+  
+  VaccineEvaluationHepb1Only(VACCINE_EVALUATION, HEPB_1_ONLY, ACCEPT, MQE0773),
+    
+  VaccineEvaluationAt18MonthsHepb3(VACCINE_EVALUATION_AT_18_MONTHS, HEPB_3, ACCEPT, MQE0752),
+  VaccineEvaluationAt18MonthsDtap4(VACCINE_EVALUATION_AT_18_MONTHS, DTAP_4, ACCEPT, MQE0753),
+  VaccineEvaluationAt15MonthsPcv4(VACCINE_EVALUATION_AT_15_MONTHS, PCV_4, ACCEPT, MQE0754),
+  VaccineEvaluationAt15MonthsPolio3(VACCINE_EVALUATION_AT_15_MONTHS, POLIO_3, ACCEPT, MQE0755),
+  VaccineEvaluationAt15MonthsMmr1(VACCINE_EVALUATION_AT_15_MONTHS, MMR_1, ACCEPT, MQE0756),
+  VaccineEvaluationAt15MonthsVar1(VACCINE_EVALUATION_AT_15_MONTHS, VAR_1, ACCEPT, MQE0757),
+  VaccineEvaluationAt18MonthsHepa2(VACCINE_EVALUATION_AT_18_MONTHS, HEPA_2, ACCEPT, MQE0758),
+  VaccineEvaluationAt15MonthsHib2(VACCINE_EVALUATION_AT_15_MONTHS, HIB_2, ACCEPT, MQE0759),
+  
+  VaccineEvaluationAt24MonthsDtap4(VACCINE_EVALUATION_AT_24_MONTHS, DTAP_4, ACCEPT, MQE0760),
+  VaccineEvaluationAt24MonthsPolio3(VACCINE_EVALUATION_AT_24_MONTHS, POLIO_3, ACCEPT, MQE0761),
+  VaccineEvaluationAt24MonthsMmr1(VACCINE_EVALUATION_AT_24_MONTHS, MMR_1, ACCEPT, MQE0762),
+  VaccineEvaluationAt24MonthsHib3(VACCINE_EVALUATION_AT_24_MONTHS, HIB_3, ACCEPT, MQE0763),
+  VaccineEvaluationAt24MonthsHepa2(VACCINE_EVALUATION_AT_24_MONTHS, HEPA_2, ACCEPT, MQE0769),
+  VaccineEvaluationAt24MonthsHepb3(VACCINE_EVALUATION_AT_24_MONTHS, HEPB_3, ACCEPT, MQE0764),
+  VaccineEvaluationAt24MonthsVar1(VACCINE_EVALUATION_AT_24_MONTHS, VAR_1, ACCEPT, MQE0765),
+  VaccineEvaluationAt24MonthsPcv4(VACCINE_EVALUATION_AT_24_MONTHS, PCV_4, ACCEPT, MQE0766),
+
+  VaccineEvaluationHasInvalidDoses1orMore(VACCINE_EVALUATION, HAS_INVALID_DOSES_1_OR_MORE, ACCEPT, MQE0778),
+  VaccineEvaluationHasInvalidDoses2orMore(VACCINE_EVALUATION, HAS_INVALID_DOSES_2_OR_MORE, ACCEPT, MQE0779),
+  VaccineEvaluationHasInvalidDoses3orMore(VACCINE_EVALUATION, HAS_INVALID_DOSES_3_OR_MORE, ACCEPT, MQE0780),
+  VaccineEvaluationHasInvalidDoses4orMore(VACCINE_EVALUATION, HAS_INVALID_DOSES_4_OR_MORE, ACCEPT, MQE0781),
+  VaccineEvaluationHasInvalidDoses5orMore(VACCINE_EVALUATION, HAS_INVALID_DOSES_5_OR_MORE, ACCEPT, MQE0782),
+  VaccineEvaluationHasInvalidDoses10orMore(VACCINE_EVALUATION, HAS_INVALID_DOSES_10_OR_MORE, ACCEPT, MQE0783),
+
+  VaccineForecastAt24MonthsHibComplete(VACCINE_FORECAST_AT_24_MONTHS, HIB, ACCEPT,  MQE0774),
+  VaccineForecastAt24MonthsPcvComplete(VACCINE_FORECAST_AT_24_MONTHS, PCV, ACCEPT,  MQE0775),
+  VaccineForecastAt24MonthsRotaComplete(VACCINE_FORECAST_AT_24_MONTHS, ROTAVIRUS, ACCEPT,  MQE0776),
+  VaccineForecastAt24MonthsHepbComplete(VACCINE_FORECAST_AT_24_MONTHS, HEPB, ACCEPT,  MQE0777),
+  
+  VaccineCoverageAt24MonthsSeries4_3_1_3_3_1_4(VACCINE_COVERAGE_AT_24_MONTHS, SERIES_4_3_1_3_3_1_4, ACCEPT, MQE0767),
+  VaccineCoverageAt36MonthsSeries4_3_1_3_3_1_4(VACCINE_COVERAGE_AT_36_MONTHS, SERIES_4_3_1_3_3_1_4, ACCEPT, MQE0768),
 
 
   UnknownValidationIssue(CONFIGURATION, UNRECOGNIZED, WARN, MQE0000);

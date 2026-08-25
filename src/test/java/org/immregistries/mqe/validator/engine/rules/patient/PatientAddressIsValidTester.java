@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import java.util.Date;
 import org.immregistries.mqe.validator.detection.Detection;
+import org.immregistries.mqe.validator.detection.ValidationReport;
 import org.immregistries.mqe.validator.engine.ValidationRuleResult;
 import org.immregistries.mqe.vxu.MqeAddress;
 import org.immregistries.mqe.vxu.MqeMessageHeader;
@@ -85,9 +86,16 @@ public class PatientAddressIsValidTester {
 
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
-    assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.PatientAddressStreetIsMissing,
-        r.getValidationDetections().get(0).getDetection());
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressStreetIsMissing::equals));
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressIsMissing::equals));
   }
 
   /**
@@ -100,7 +108,12 @@ public class PatientAddressIsValidTester {
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
 
-    assertEquals(0, r.getValidationDetections().size());
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressIsPresent::equals)
+    );
   }
 
   /**
@@ -113,8 +126,18 @@ public class PatientAddressIsValidTester {
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
     assertTrue(r.getValidationDetections().size() > 0);
-    assertEquals(Detection.PatientAddressCityIsMissing,
-        r.getValidationDetections().get(0).getDetection());
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressCityIsMissing::equals)
+    );
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressIsMissing::equals)
+    );
   }
 
   /**
@@ -126,9 +149,18 @@ public class PatientAddressIsValidTester {
 
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
-    assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.PatientAddressStateIsMissing,
-        r.getValidationDetections().get(0).getDetection());
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressStateIsMissing::equals)
+    );
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressIsMissing::equals)
+    );
   }
 
   /**
@@ -140,9 +172,18 @@ public class PatientAddressIsValidTester {
 
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
-    assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.PatientAddressZipIsMissing,
-        r.getValidationDetections().get(0).getDetection());
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressZipIsMissing::equals)
+    );
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressIsMissing::equals)
+    );
   }
 
   /**
@@ -156,7 +197,12 @@ public class PatientAddressIsValidTester {
 
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
-    assertEquals(0, r.getValidationDetections().size());
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressIsPresent::equals)
+    );
   }
 
   /**
@@ -168,9 +214,18 @@ public class PatientAddressIsValidTester {
 
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
-    assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.PatientAddressCountryIsMissing,
-        r.getValidationDetections().get(0).getDetection());
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressCountryIsMissing::equals)
+    );
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressIsPresent::equals)
+    );
   }
 
   /**
@@ -182,9 +237,18 @@ public class PatientAddressIsValidTester {
 
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
-    assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.PatientAddressCountyIsMissing,
-        r.getValidationDetections().get(0).getDetection());
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressCountyIsMissing::equals)
+    );
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressIsPresent::equals)
+    );
   }
 
   /**
@@ -196,9 +260,18 @@ public class PatientAddressIsValidTester {
 
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
-    assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.PatientAddressTypeIsValuedBadAddress,
-        r.getValidationDetections().get(0).getDetection());
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressTypeIsValuedBadAddress::equals)
+    );
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressIsPresent::equals)
+    );
   }
 
   /**
@@ -210,9 +283,18 @@ public class PatientAddressIsValidTester {
 
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
-    assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.PatientAddressTypeIsUnrecognized,
-        r.getValidationDetections().get(0).getDetection());
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressTypeIsUnrecognized::equals)
+    );
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressIsPresent::equals)
+    );
   }
 
   /**
@@ -224,8 +306,17 @@ public class PatientAddressIsValidTester {
 
     ValidationRuleResult r = rule.executeRule(p, mr);
     logger.info(r.getValidationDetections().toString());
-    assertEquals(1, r.getValidationDetections().size());
-    assertEquals(Detection.PatientAddressTypeIsMissing,
-        r.getValidationDetections().get(0).getDetection());
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressTypeIsMissing::equals)
+    );
+    assertTrue(r
+            .getValidationDetections()
+            .stream()
+            .map(ValidationReport::getDetection)
+            .anyMatch(Detection.PatientAddressIsPresent::equals)
+    );
   }
 }

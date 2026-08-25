@@ -57,7 +57,12 @@ public enum AddressValidator {
         issues.addAll(buildMissing(fields.getAddress(), meta));
         passed = false;
     } else {
-      issues.addAll(buildPresent(fields.getAddress(), meta));
+      if(this.isValid(a)) {
+        issues.addAll(buildPresent(fields.getAddress(), meta));
+      } else {
+        issues.addAll(buildMissing(fields.getAddress(), meta));
+      }
+
       if (common.isEmpty(a.getStreet())) {
         issues.addAll(buildMissing(fields.getStreetField(), meta));
       } else {
@@ -80,7 +85,7 @@ public enum AddressValidator {
       }
 
       if (issues.size() > 0) {
-        passed = false;
+        passed = verifyNoIssuesExceptPresent(issues);
         issues.addAll(buildIncomplete(fields.getAddress(), meta));
         //it can pass if it has the four basic ingredients.
       }
@@ -109,6 +114,18 @@ public enum AddressValidator {
         && StringUtils.isNotBlank(a.getCity())
         && StringUtils.isNotBlank(a.getStreet())
         && StringUtils.isNotBlank(a.getZip());
+  }
+
+  protected boolean verifyNoIssuesExceptPresent(List<ValidationReport> issues) {
+    if (issues.size() == 0) {
+      return true;
+    }
+    for (ValidationReport vr : issues) {
+      if (vr.getDetection().getDetectionType() != DetectionType.PRESENT) {
+        return false;
+      }
+    }
+    return true;
   }
 
 }

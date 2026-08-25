@@ -25,7 +25,17 @@ public class VaccinationAdminDateIsBeforeLotExpirationDate extends ValidationRul
     {
       ImplementationDetail id =
           this.addRuleDetection(Detection.VaccinationAdminDateIsAfterLotExpirationDate);
-      id.setImplementationDescription("Vaccine administered date is after Lot expiration date. ");
+      id.setImplementationDescription(
+          "Compares the vaccination's admin date to the lot's expiration date on the same vaccination record; "
+              + "fails when admin date is on or after the expiration date.");
+      id.setWhyToFix(
+          "A dose given from expired vaccine stock may not have provided the intended immunity, "
+              + "which can affect clinical decisions (e.g. whether the dose counts toward the series) "
+              + "and may indicate a data entry error (wrong lot or wrong date) rather than an actual expired-dose administration.");
+      id.setHowToFix(
+          "Confirm the lot number and admin date on the source record. If either was mistyped, correct and resubmit. "
+              + "If the dose truly was administered from expired stock, no correction is needed here, "
+              + "but the provider organization should be made aware of the expired-stock usage.");
     }
   }
 

@@ -156,6 +156,7 @@ public enum Detection implements MqeDetection {
   PatientAddressTypeIsUnrecognized(PATIENT_ADDRESS_TYPE, UNRECOGNIZED, WARN, MQE0520),
   @Documentation("The patient's address type code was submitted as 'BA' (Bad Address), meaning the sender has already flagged this address as undeliverable or invalid.")
   PatientAddressTypeIsValuedBadAddress(PATIENT_ADDRESS_TYPE, VALUED_BAD_ADDRESS, INFO, MQE0521),
+  @DetectionStatus(status = DetectionLifecycle.ACTIVE, since = "2026-08")
   PatientAddressZipIsInvalid(PATIENT_ADDRESS_ZIP, INVALID, WARN, MQE0112),
   @Documentation("The patient's address is present, but no zip/postal code value was provided.")
   PatientAddressZipIsMissing(PATIENT_ADDRESS_ZIP, MISSING, ACCEPT, MQE0113),
@@ -349,6 +350,12 @@ public enum Detection implements MqeDetection {
   PatientCovid2021DoseCountIs5OrMore(PATIENT_LEVEL, COVID_2021_DOSE_COUNT_5_OR_MORE, ACCEPT, MQE0791),
   @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
   PatientCovid2021DoseCountIs6OrMore(PATIENT_LEVEL, COVID_2021_DOSE_COUNT_6_OR_MORE, ACCEPT, MQE0792),
+  // Flu-season mismerge signal (issue #101) - same "too many doses in a code group/window"
+  // pattern as PatientCovid2021DoseCountIs*OrMore, see docs/changes-needed-2028-08.md's design
+  // discussion under #3312/#3313. Hard-coded per the issue, single threshold (not a ladder -
+  // unlike COVID, the issue only ever specified one: 2 or more).
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  PatientFluSeasonDoseCountIs2OrMore(PATIENT_LEVEL, FLU_SEASON_DOSE_COUNT_2_OR_MORE, ACCEPT, MQE0793),
 
   
   VaccinationSystemEntryDateIsMissing(VACCINATION_SYSTEM_ENTRY_TIME, MISSING, ACCEPT, MQE0573),
@@ -360,7 +367,22 @@ public enum Detection implements MqeDetection {
   VaccinationCreationIsLate(VACCINATION_SYSTEM_ENTRY_TIME, IS_LATE, ACCEPT, MQE0570),
   VaccinationCreationIsVeryLate(VACCINATION_SYSTEM_ENTRY_TIME, IS_VERY_LATE, ACCEPT, MQE0571),
   VaccinationCreationIsTooLate(VACCINATION_SYSTEM_ENTRY_TIME, IS_TOO_LATE, ACCEPT, MQE0572),
-  
+
+  // Exact-day entry timeliness (issue #99) - finer-grained than the IsOnTime/IsLate/IsVeryLate/
+  // IsTooLate buckets above, for administered doses only. Literal "exactly N days", not "at least".
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly2Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_2_DAYS, ACCEPT, MQE0784),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly3Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_3_DAYS, ACCEPT, MQE0785),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly4Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_4_DAYS, ACCEPT, MQE0786),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly5Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_5_DAYS, ACCEPT, MQE0787),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly6Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_6_DAYS, ACCEPT, MQE0788),
+  @DetectionStatus(status = DetectionLifecycle.EXPERIMENTAL, since = "2026-08")
+  VaccinationCreationIsExactly7Days(VACCINATION_SYSTEM_ENTRY_TIME, IS_EXACTLY_7_DAYS, ACCEPT, MQE0789),
+
   VaccinationActionCodeIsDeprecated(VACCINATION_ACTION_CODE, DEPRECATED, WARN, MQE0232),
   VaccinationActionCodeIsIgnored(VACCINATION_ACTION_CODE, IGNORED, INFO, MQE0233),
   VaccinationActionCodeIsInvalid(VACCINATION_ACTION_CODE, INVALID, ERROR, MQE0234),

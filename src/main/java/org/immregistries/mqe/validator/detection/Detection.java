@@ -156,6 +156,7 @@ public enum Detection implements MqeDetection {
   PatientAddressTypeIsUnrecognized(PATIENT_ADDRESS_TYPE, UNRECOGNIZED, WARN, MQE0520),
   @Documentation("The patient's address type code was submitted as 'BA' (Bad Address), meaning the sender has already flagged this address as undeliverable or invalid.")
   PatientAddressTypeIsValuedBadAddress(PATIENT_ADDRESS_TYPE, VALUED_BAD_ADDRESS, INFO, MQE0521),
+  @DetectionStatus(status = DetectionLifecycle.ACTIVE, since = "2026-08")
   PatientAddressZipIsInvalid(PATIENT_ADDRESS_ZIP, INVALID, WARN, MQE0112),
   @Documentation("The patient's address is present, but no zip/postal code value was provided.")
   PatientAddressZipIsMissing(PATIENT_ADDRESS_ZIP, MISSING, ACCEPT, MQE0113),

@@ -383,10 +383,14 @@
 ### `PatientAddressZipIsInvalid` — MQE0112
 
 - **Severity:** Warn
-- **Wiring:** Defined but not currently wired to any rule
-- **Lifecycle:** _not set - add `@DetectionStatus(...)` on this constant in Detection.java_
+- **Wiring:** Active - wired to at least one rule below
+- **Lifecycle:** ACTIVE (since 2026-08)
 - **Message shown to submitters:** Patient address zip is invalid
 - **What this means:** _not yet documented - add `@Documentation("...")` on this constant in Detection.java_
+- **Implemented by:**
+  - `PatientAddressZipIsValid` — US ZIP code (5-digit, or first 5 digits of a ZIP+4) is not exactly 5 digits, is one of the ten repeated-digit placeholders (00000, 11111, ... 99999), or falls outside the real-world assigned range 00501-99950. Only checked when the address country is US or blank (treated as domestic).
+    - *Why it matters:* A structurally invalid ZIP can't be used for geographic lookups (e.g. VFC eligibility, catchment-area reporting) and often indicates a data entry error or placeholder value.
+    - *How to fix:* Correct the ZIP code in the source record, or provide the correct 5-digit US ZIP.
 
 ### `PatientAddressZipIsMissing` — MQE0113
 

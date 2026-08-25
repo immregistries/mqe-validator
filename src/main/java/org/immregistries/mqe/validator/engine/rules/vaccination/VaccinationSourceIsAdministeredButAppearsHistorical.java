@@ -1,7 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.vaccination;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
@@ -22,15 +21,15 @@ public class VaccinationSourceIsAdministeredButAppearsHistorical
 
   @Override
   protected final Class[] getDependencies() {
-    return new Class[] {VaccinationSourceIsHistorical.class};
+    return new Class[] {VaccinationSourceIsAdministered.class};
   }
 
   public VaccinationSourceIsAdministeredButAppearsHistorical() {
     {
       ImplementationDetail id = this.addRuleDetection(
-          Detection.VaccinationInformationSourceIsHistoricalButAppearsToBeAdministered);
+          Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical);
       id.setImplementationDescription(
-          "Vaccination information source is reported as historical but based on our scoring calculation (how recently shot was given and how much data is known about the shot) the shot seems to be administered.");
+          "Vaccination information source is reported as administered, but based on our scoring calculation (how recently shot was given and how much data is known about the shot) the shot seems to be historical.");
     }
   }
 
@@ -41,9 +40,9 @@ public class VaccinationSourceIsAdministeredButAppearsHistorical
 
     int administeredScore = confidenceCalculator.administeredLikelihoodScore(target, m);
 
-    if (administeredScore >= 10) {
-      issues.add(Detection.VaccinationInformationSourceIsHistoricalButAppearsToBeAdministered
-          .build(target));
+    if (administeredScore < AdministeredLikelihood.ADMINISTERED_LIKELY_THRESHOLD) {
+      issues.add(
+          Detection.VaccinationInformationSourceIsAdministeredButAppearsToHistorical.build(target));
       passed = false;
     }
 

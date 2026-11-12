@@ -88,6 +88,13 @@
     </dependency>
 
     <dependency>
+      <groupId>org.openimmunizationsoftware.cdsi</groupId>
+      <artifactId>cdsi-parent</artifactId>
+      <classifier>client</classifier>
+      <version>5.3.4</version>
+    </dependency>
+
+    <dependency>
       <groupId>com.googlecode.libphonenumber</groupId>
       <artifactId>libphonenumber</artifactId>
       <version>8.2.0</version>

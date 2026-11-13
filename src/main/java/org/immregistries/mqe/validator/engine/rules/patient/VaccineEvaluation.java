@@ -38,6 +38,7 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
   private static final int MONTHS_24 = 25;
   private static final int MONTHS_18 = 19;
   private static final int MONTHS_15 = 16;
+  public static final String SUPPORTING_DATA_SET = "supporting-data-4.65-508";
 
   public VaccineEvaluation() {
 
@@ -481,7 +482,8 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
   private static @NonNull DataModel executeForecasting(ForecastInput forecastInput) {
     DataModel dataModel = null;
     try {
-      dataModel = DataModelLoader.createDataModel();
+      List<String> names = DataModelLoader.listBundledSupportingDataZipNames();
+      dataModel = DataModelLoader.createDataModel(names.get(0));
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
@@ -491,13 +493,13 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
             LogicStepFactory.createLogicStep(LogicStepType.GATHER_NECESSARY_DATA, dataModel));
     int count = 0;
     while (dataModel.getLogicStep().getLogicStepType() != LogicStepType.END) {
-      LogicStep nextLogicStep = null;
-      try {
-        nextLogicStep = dataModel.getLogicStep().process();
-      } catch (Exception e) {
-        throw new RuntimeException(e);
-      }
-      dataModel.setNextLogicStep(nextLogicStep);
+        LogicStep nextLogicStep = null;
+        try {
+            nextLogicStep = dataModel.getLogicStep().process();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        dataModel.setNextLogicStep(nextLogicStep);
       count++;
       if (count > 100000) {
         System.err.println(

@@ -1,11 +1,6 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.immregistries.lonestar.core.ImmunizationForecastDataBean;
@@ -286,6 +281,7 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
       DataModel dataModel = executeForecasting(forecastInput);
 
       try {
+        forecastInput.setAssessmentDate(new Date());
         HashMap<Integer, Map<String, Integer>> countEvalMapList = new HashMap<>();
         for (int i = 0; i < MONTHS.length; i++) {
           Map<String, Integer> countEvalMap = new HashMap<>();

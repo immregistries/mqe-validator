@@ -277,11 +277,12 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
       List<ImmunizationForecastDataBean> resultList = new ArrayList<ImmunizationForecastDataBean>();
 
       int invalidDoseCount = 0;
+
       // Run with stepintocdsi
-      DataModel dataModel = executeForecasting(forecastInput);
 
       try {
         forecastInput.setAssessmentDate(new Date());
+        DataModel dataModel = executeForecasting(forecastInput);
         HashMap<Integer, Map<String, Integer>> countEvalMapList = new HashMap<>();
         for (int i = 0; i < MONTHS.length; i++) {
           Map<String, Integer> countEvalMap = new HashMap<>();

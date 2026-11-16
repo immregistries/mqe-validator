@@ -21,6 +21,7 @@ import org.openimmunizationsoftware.cdsi.core.data.DataModel;
 import org.openimmunizationsoftware.cdsi.core.data.DataModelLoader;
 import org.openimmunizationsoftware.cdsi.core.data.ForecastInput;
 import org.openimmunizationsoftware.cdsi.core.domain.*;
+import org.openimmunizationsoftware.cdsi.core.domain.datatypes.PatientSeriesStatus;
 import org.openimmunizationsoftware.cdsi.core.domain.datatypes.TargetDoseStatus;
 import org.openimmunizationsoftware.cdsi.core.logic.LogicStep;
 import org.openimmunizationsoftware.cdsi.core.logic.LogicStepFactory;
@@ -289,9 +290,10 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
           countEvalMapList.put(MONTHS[i], countEvalMap);
         }
         // Filtering invalid doses from count and from detections
-        PatientSeries patientSeries = dataModel.getForecastingForPatientSeries();
-        if (patientSeries != null && patientSeries.getTargetDoseList() != null) {
-          for (TargetDose dose : patientSeries.getTargetDoseList()) {
+        List<PatientSeries> patientSeriesList = dataModel.getBestPatientSeriesList();
+        for (PatientSeries patientSeries : patientSeriesList) {
+          List<TargetDose> targetDoseList = patientSeries.getTargetDoseList();
+          for (TargetDose dose : targetDoseList) {
             if (dose.getTargetDoseStatus().equals(TargetDoseStatus.SATISFIED)) {
               DateTime adminDate = new DateTime(dose.getEvaluation().getVaccineDoseAdministered().getDateAdministered());
               for (int i = 0; i < MONTHS.length; i++) {
@@ -299,18 +301,18 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
                 DateTime age = birthDate.plusMonths(month);
                 Map<String, Integer> countEvalMap = countEvalMapList.get(month);
                 if (month == 0 || adminDate.isBefore(age)) {
-                  String forecastCode = dose.getTrackedSeriesDose().getAntigenSeries().getSeriesName();
+                  String forecastCode = dose.getTrackedSeriesDose().getAntigenSeries().getTargetDisease().getName();
                   Integer count = countEvalMap.getOrDefault(forecastCode, 0);
                   countEvalMap.put(forecastCode, count + 1);
                 }
               }
-            } else if (dose.getTargetDoseStatus().equals(TargetDoseStatus.NOT_SATISFIED)) {
-              invalidDoseCount++;
             }
-
           }
         }
-
+        invalidDoseCount =  forecastInput.getVaccinationList().size() - dataModel.getSatisfiedVaccinationInputList().size();
+        for( ForecastInput.VaccinationInput vaccinationInput : dataModel.getSatisfiedVaccinationInputList()) {
+          printAllFields(vaccinationInput);
+        }
         if (invalidDoseCount >= 1) {
           detectionSet.add(Detection.VaccineEvaluationHasInvalidDoses1orMore);
           if (invalidDoseCount >= 2) {
@@ -343,7 +345,8 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
               detectionSet.add(Detection.VaccineEvaluationHepb1Only);
             }
           } else if (month == MONTHS_15) {
-            if (countEvalMap.getOrDefault("Pneumo", 0) >= 4) {
+            // Was previously "Pneumo"
+            if (countEvalMap.getOrDefault("Pneumococcal", 0) >= 4) {
               detectionSet.add(Detection.VaccineEvaluationAt15MonthsPcv4);
             }
             if (countEvalMap.getOrDefault("Polio", 0) >= 3) {
@@ -390,7 +393,7 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
             if (countEvalMap.getOrDefault("Varicella", 0) >= 1) {
               detectionSet.add(Detection.VaccineEvaluationAt24MonthsVar1);
             }
-            if (countEvalMap.getOrDefault("Pneumo", 0) >= 4) {
+            if (countEvalMap.getOrDefault("Pneumococcal", 0) >= 4) {
               detectionSet.add(Detection.VaccineEvaluationAt24MonthsPcv4);
             }
           }
@@ -454,14 +457,15 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
 
           if (dataModel.getVaccineGroupForecastList() != null) {
             for (VaccineGroupForecast forecast : dataModel.getVaccineGroupForecastList()) {
+              String forecastLabel = forecast.getVaccineGroup().getName();
               if (forecast.getVaccineGroupStatus().equals(VaccineGroupStatus.COMPLETE)) {
-                if (forecast.getVaccineGroup().getName().equals("Hib")) {
+                if (forecastLabel.equals("Hib")) {
                   issues.add(Detection.VaccineForecastAt24MonthsHibComplete.build(target));
-                } else if (forecast.getVaccineGroup().getName().equals("PCV13")) {
+                } else if (forecastLabel.equals("Pneumococcal")) {
                   issues.add(Detection.VaccineForecastAt24MonthsPcvComplete.build(target));
-                } else if (forecast.getVaccineGroup().getName().equals("Rota")) {
+                } else if (forecastLabel.equals("Rotavirus")) {
                   issues.add(Detection.VaccineForecastAt24MonthsRotaComplete.build(target));
-                } else if (forecast.getVaccineGroup().getName().equals("HepB")) {
+                } else if (forecastLabel.equals("HepB")) {
                   issues.add(Detection.VaccineForecastAt24MonthsHepbComplete.build(target));
                 }
               }
@@ -510,6 +514,24 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
       }
     }
     return dataModel;
+  }
+
+  private static void printAllFields(Object obj) {
+    if (obj == null) {
+      System.out.println("null");
+      return;
+    }
+    System.out.println("=== " + obj.getClass().getName() + " ===");
+    for (java.lang.reflect.Field f : obj.getClass().getDeclaredFields()) {
+      f.setAccessible(true);
+      Object val = null;
+      try {
+        val = f.get(obj);
+      } catch (Exception e) {
+        val = "<error: " + e + ">";
+      }
+      System.out.println("  " + f.getName() + " = " + val);
+    }
   }
 
 }

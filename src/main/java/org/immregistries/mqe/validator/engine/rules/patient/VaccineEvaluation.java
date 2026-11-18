@@ -1,22 +1,11 @@
 package org.immregistries.mqe.validator.engine.rules.patient;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import org.immregistries.lonestar.ForecastManagerSingleton;
+import java.util.*;
+
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.immregistries.lonestar.core.ImmunizationForecastDataBean;
-import org.immregistries.lonestar.core.ImmunizationInterface;
-import org.immregistries.lonestar.core.Trace;
-import org.immregistries.lonestar.core.VaccinationDoseDataBean;
 import org.immregistries.lonestar.core.api.impl.CvxCode;
 import org.immregistries.lonestar.core.api.impl.CvxCodes;
-import org.immregistries.lonestar.core.api.impl.ForecastHandlerCore;
-import org.immregistries.lonestar.core.api.impl.ForecastOptions;
-import org.immregistries.lonestar.core.model.Immunization;
-import org.immregistries.lonestar.core.model.PatientRecordDataBean;
 import org.immregistries.mqe.validator.detection.Detection;
 import org.immregistries.mqe.validator.detection.ImplementationDetail;
 import org.immregistries.mqe.validator.detection.ValidationReport;
@@ -28,6 +17,15 @@ import org.immregistries.mqe.vxu.MqePatient;
 import org.immregistries.mqe.vxu.MqeVaccination;
 import org.immregistries.mqe.vxu.TargetType;
 import org.joda.time.DateTime;
+import org.openimmunizationsoftware.cdsi.core.data.DataModel;
+import org.openimmunizationsoftware.cdsi.core.data.DataModelLoader;
+import org.openimmunizationsoftware.cdsi.core.data.ForecastInput;
+import org.openimmunizationsoftware.cdsi.core.domain.*;
+import org.openimmunizationsoftware.cdsi.core.domain.datatypes.PatientSeriesStatus;
+import org.openimmunizationsoftware.cdsi.core.domain.datatypes.TargetDoseStatus;
+import org.openimmunizationsoftware.cdsi.core.logic.LogicStep;
+import org.openimmunizationsoftware.cdsi.core.logic.LogicStepFactory;
+import org.openimmunizationsoftware.cdsi.core.logic.LogicStepType;
 
 @ValidationRuleEntry(TargetType.Patient)
 public class VaccineEvaluation extends ValidationRule<MqePatient> {
@@ -36,6 +34,7 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
   private static final int MONTHS_24 = 25;
   private static final int MONTHS_18 = 19;
   private static final int MONTHS_15 = 16;
+  public static final String SUPPORTING_DATA_SET = "supporting-data-4.65-508";
 
   public VaccineEvaluation() {
 
@@ -246,20 +245,16 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
     }
     Set<Detection> detectionSet = new HashSet<>();
     DateTime today = new DateTime();
-    ForecastHandlerCore forecastHandlerCore =
-        ForecastManagerSingleton.getForecastManagerSingleton().getForecastHandlerCore();
 
     {
       ForecastInput forecastInput = new ForecastInput();
 
-      forecastInput.patient
-          .setDob(new org.immregistries.lonestar.core.DateTime(target.getBirthDate()));
-      forecastInput.patient.setSex(target.getSexCode());
+      forecastInput.setPatientDateOfBirth(target.getBirthDate());
+      forecastInput.setPatientSex(target.getSex());
 
       for (MqeVaccination v : m.getVaccinations()) {
         if (this.common.isValidDate(v.getAdminDateString())) {
           DateTime adminDate = this.datr.parseDateTime(v.getAdminDateString());
-          Immunization imm = new Immunization();
           String vaccineCvx = v.getAdminCvxCode();
           if (vaccineCvx != null) {
             CvxCode cvxCode = null;
@@ -269,11 +264,11 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
               cvxCode = cvxToVaccineIdMap.get("0" + vaccineCvx);
             }
             if (cvxCode != null) {
-              imm.setVaccineId(cvxCode.getVaccineId());
-              imm.setCvx(vaccineCvx);
-              imm.setMvx(v.getManufacturerCode());
-              imm.setDateOfShot(adminDate.toDate());
-              forecastInput.imms.add(imm);
+              ForecastInput.VaccinationInput vaccinationInput  = forecastInput.addVaccination();
+              vaccinationInput.setVaccineCvx(vaccineCvx);
+              vaccinationInput.setDateAdministered(adminDate.toDate());
+              vaccinationInput.setVaccineMvx(v.getManufacturerCode());
+//              vaccinationInput.setDoseCondition();
             }
           }
         }
@@ -284,33 +279,85 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
 
       int invalidDoseCount = 0;
 
+      // Run with stepintocdsi
+
       try {
-        Map<String, List<Trace>> traceMap = new HashMap<String, List<Trace>>();
-        forecastHandlerCore.forecast(forecastInput.doseList, forecastInput.patient,
-            forecastInput.imms, forecastInput.forecastDate, traceMap, resultList,
-            forecastInput.forecastOptions);
+        forecastInput.setAssessmentDate(new Date());
+        DataModel dataModel = executeForecasting(forecastInput);
         HashMap<Integer, Map<String, Integer>> countEvalMapList = new HashMap<>();
         for (int i = 0; i < MONTHS.length; i++) {
           Map<String, Integer> countEvalMap = new HashMap<>();
           countEvalMapList.put(MONTHS[i], countEvalMap);
         }
-        for (VaccinationDoseDataBean dose : forecastInput.doseList) {
-          if (dose.getStatusCode().equals(VaccinationDoseDataBean.STATUS_VALID)) {
-            DateTime adminDate = new DateTime(dose.getAdminDate());
-            for (int i = 0; i < MONTHS.length; i++) {
-              Integer month = MONTHS[i];
-              DateTime age = birthDate.plusMonths(month);
-              Map<String, Integer> countEvalMap = countEvalMapList.get(month);
-              if (month == 0 || adminDate.isBefore(age)) {
-                Integer count = countEvalMap.getOrDefault(dose.getForecastCode(), 0);
-                countEvalMap.put(dose.getForecastCode(), count + 1);
+        // Filtering invalid doses from count and from detections
+
+        List<AntigenAdministeredRecord> antigenAdministeredRecords = dataModel.getAntigenAdministeredRecordList();
+//        int cc = 0;
+//        for (AntigenAdministeredRecord dr : antigenAdministeredRecords) {
+////          printAllFields(dr);
+//          VaccineDoseAdministered vda = dr.getVaccineDoseAdministered();
+////          printAllFields(vda);
+//          TargetDose dose = vda.getTargetDose();
+////          System.out.println(vda.getTargetDose().getTargetDoseStatus());
+////          printAllFields(vda.getTargetDose().getTargetDoseStatus());
+//          if (dose != null) {
+//            printAllFields(dose);
+//            System.out.println(vda.getTargetDose().getTargetDoseStatus());
+//            if (dose.getTargetDoseStatus().equals(TargetDoseStatus.SATISFIED)) {
+//              System.out.println("==== AntigenAdministeredRecord " + cc++ + " ====");
+//              DateTime adminDate = new DateTime(dose.getEvaluation().getVaccineDoseAdministered().getDateAdministered());
+//              for (int i = 0; i < MONTHS.length; i++) {
+//                Integer month = MONTHS[i];
+//                DateTime age = birthDate.plusMonths(month);
+//                Map<String, Integer> countEvalMap = countEvalMapList.get(month);
+//                if (month == 0 || adminDate.isBefore(age)) {
+//                  String forecastCode = dose.getTrackedSeriesDose().getAntigenSeries().getTargetDisease().getName();
+//                  Integer count = countEvalMap.getOrDefault(forecastCode, 0);
+//                  countEvalMap.put(forecastCode, count + 1);
+//                }
+//              }
+//            } else if (dose.getTargetDoseStatus().equals(TargetDoseStatus.NOT_SATISFIED)) {
+////              invalidDoseCount++;
+//            }
+//          }
+//        }
+        List<PatientSeries> patientSeriesList = dataModel.getBestPatientSeriesList();
+        for (PatientSeries patientSeries : patientSeriesList) {
+          System.out.println("Patient Series all doses size " + patientSeries.getTargetDoseList().size());
+          System.out.println("Patient Series valid doses count " + patientSeries.getValidDoseCount());
+//          invalidDoseCount += patientSeries.getTargetDoseList().size() - patientSeries.getValidDoseCount();
+          List<TargetDose> targetDoseList = patientSeries.getTargetDoseList();
+          for (TargetDose dose : targetDoseList) {
+            if (dose.getTargetDoseStatus().equals(TargetDoseStatus.SATISFIED)) {
+              DateTime adminDate = new DateTime(dose.getEvaluation().getVaccineDoseAdministered().getDateAdministered());
+              for (int i = 0; i < MONTHS.length; i++) {
+                Integer month = MONTHS[i];
+                DateTime age = birthDate.plusMonths(month);
+                Map<String, Integer> countEvalMap = countEvalMapList.get(month);
+                if (month == 0 || adminDate.isBefore(age)) {
+                  String forecastCode = dose.getTrackedSeriesDose().getAntigenSeries().getTargetDisease().getName();
+                  Integer count = countEvalMap.getOrDefault(forecastCode, 0);
+                  countEvalMap.put(forecastCode, count + 1);
+                }
               }
             }
-          } else if (dose.getStatusCode().equals(VaccinationDoseDataBean.STATUS_INVALID)) {
-            invalidDoseCount++;
           }
         }
-
+        List<ForecastInput.VaccinationInput> test = new ArrayList<>(forecastInput.getVaccinationList());
+        test.removeAll(dataModel.getSatisfiedVaccinationInputList());
+//        for( ForecastInput.VaccinationInput vaccinationInput : dataModel.getSatisfiedVaccinationInputList()) {
+//          printAllFields(vaccinationInput);
+//        }
+        System.out.println(test.size());
+        invalidDoseCount = test.size();
+        System.out.println("=== Invalid VaccinationInputs ===");
+        for (ForecastInput.VaccinationInput vaccinationInput : test) {
+          printAllFields(vaccinationInput);
+        }
+        System.out.println("===== Step Into CDSI SUMMARY ======");
+        System.out.println("Size of all inputs " + forecastInput.getVaccinationList().size());
+        System.out.println("Marked Valid " + dataModel.getSatisfiedVaccinationInputList().size());
+        System.out.println("invalidDoseCount final value " + invalidDoseCount);
         if (invalidDoseCount >= 1) {
           detectionSet.add(Detection.VaccineEvaluationHasInvalidDoses1orMore);
           if (invalidDoseCount >= 2) {
@@ -343,7 +390,8 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
               detectionSet.add(Detection.VaccineEvaluationHepb1Only);
             }
           } else if (month == MONTHS_15) {
-            if (countEvalMap.getOrDefault("Pneumo", 0) >= 4) {
+            // Was previously "Pneumo"
+            if (countEvalMap.getOrDefault("Pneumococcal", 0) >= 4) {
               detectionSet.add(Detection.VaccineEvaluationAt15MonthsPcv4);
             }
             if (countEvalMap.getOrDefault("Polio", 0) >= 3) {
@@ -390,7 +438,7 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
             if (countEvalMap.getOrDefault("Varicella", 0) >= 1) {
               detectionSet.add(Detection.VaccineEvaluationAt24MonthsVar1);
             }
-            if (countEvalMap.getOrDefault("Pneumo", 0) >= 4) {
+            if (countEvalMap.getOrDefault("Pneumococcal", 0) >= 4) {
               detectionSet.add(Detection.VaccineEvaluationAt24MonthsPcv4);
             }
           }
@@ -421,14 +469,12 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
       if (!today.isBefore(age)) {
         ForecastInput forecastInput = new ForecastInput();
 
-        forecastInput.patient
-            .setDob(new org.immregistries.lonestar.core.DateTime(target.getBirthDate()));
-        forecastInput.patient.setSex(target.getSexCode());
+        forecastInput.setPatientDateOfBirth(target.getBirthDate());
+        forecastInput.setPatientSex(target.getSexCode());
 
         for (MqeVaccination v : m.getVaccinations()) {
           if (this.common.isValidDate(v.getAdminDateString())) {
             DateTime adminDate = this.datr.parseDateTime(v.getAdminDateString());
-            Immunization imm = new Immunization();
             String vaccineCvx = v.getAdminCvxCode();
             if (vaccineCvx != null) {
               CvxCode cvxCode = null;
@@ -438,35 +484,35 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
                 cvxCode = cvxToVaccineIdMap.get("0" + vaccineCvx);
               }
               if (cvxCode != null && adminDate.isBefore(age)) {
-                imm.setVaccineId(cvxCode.getVaccineId());
-                imm.setCvx(vaccineCvx);
-                imm.setMvx(v.getManufacturerCode());
-                imm.setDateOfShot(adminDate.toDate());
-                forecastInput.imms.add(imm);
+                ForecastInput.VaccinationInput vaccinationInput  = forecastInput.addVaccination();
+                vaccinationInput.setVaccineCvx(vaccineCvx);
+                vaccinationInput.setDateAdministered(adminDate.toDate());
+                vaccinationInput.setVaccineMvx(v.getManufacturerCode());
+//              vaccinationInput.setDoseCondition();
               }
             }
           }
         }
 
-        List<ImmunizationForecastDataBean> resultList =
-            new ArrayList<ImmunizationForecastDataBean>();
         try {
-          forecastInput.forecastDate = new org.immregistries.lonestar.core.DateTime(age.toDate());
-          Map<String, List<Trace>> traceMap = new HashMap<String, List<Trace>>();
-          forecastHandlerCore.forecast(forecastInput.doseList, forecastInput.patient,
-              forecastInput.imms, forecastInput.forecastDate, traceMap, resultList,
-              forecastInput.forecastOptions);
+          forecastInput.setAssessmentDate(age.toDate());
+//          Map<String, List<Trace>> traceMap = new HashMap<String, List<Trace>>();
 
-          for (ImmunizationForecastDataBean forecast : resultList) {
-            if (forecast.getStatusDescriptionExternal().equals("complete")) {
-              if (forecast.getForecastLabel().equals("Hib")) {
-                issues.add(Detection.VaccineForecastAt24MonthsHibComplete.build(target));
-              } else if (forecast.getForecastLabel().equals("PCV13")) {
-                issues.add(Detection.VaccineForecastAt24MonthsPcvComplete.build(target));
-              } else if (forecast.getForecastLabel().equals("Rota")) {
-                issues.add(Detection.VaccineForecastAt24MonthsRotaComplete.build(target));
-              } else if (forecast.getForecastLabel().equals("HepB")) {
-                issues.add(Detection.VaccineForecastAt24MonthsHepbComplete.build(target));
+          DataModel dataModel = executeForecasting(forecastInput);
+
+          if (dataModel.getVaccineGroupForecastList() != null) {
+            for (VaccineGroupForecast forecast : dataModel.getVaccineGroupForecastList()) {
+              String forecastLabel = forecast.getVaccineGroup().getName();
+              if (forecast.getVaccineGroupStatus().equals(VaccineGroupStatus.COMPLETE)) {
+                if (forecastLabel.equals("Hib")) {
+                  issues.add(Detection.VaccineForecastAt24MonthsHibComplete.build(target));
+                } else if (forecastLabel.equals("Pneumococcal")) {
+                  issues.add(Detection.VaccineForecastAt24MonthsPcvComplete.build(target));
+                } else if (forecastLabel.equals("Rotavirus")) {
+                  issues.add(Detection.VaccineForecastAt24MonthsRotaComplete.build(target));
+                } else if (forecastLabel.equals("HepB")) {
+                  issues.add(Detection.VaccineForecastAt24MonthsHepbComplete.build(target));
+                }
               }
             }
           }
@@ -479,15 +525,58 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
     return buildResults(issues, passed);
   }
 
-  protected static class ForecastInput {
-    protected List<VaccinationDoseDataBean> doseList = new ArrayList<VaccinationDoseDataBean>();
-    protected List<ImmunizationInterface> imms = new ArrayList<ImmunizationInterface>();
-    protected PatientRecordDataBean patient = new PatientRecordDataBean();
-    protected org.immregistries.lonestar.core.DateTime forecastDate =
-        new org.immregistries.lonestar.core.DateTime("today");
-    protected ForecastOptions forecastOptions = new ForecastOptions();
-    protected boolean dueUseEarly = false;
+  private static @NonNull DataModel executeForecasting(ForecastInput forecastInput) {
+    DataModel dataModel = null;
+    try {
+      List<String> names = DataModelLoader.listBundledSupportingDataZipNames();
+      dataModel = DataModelLoader.createDataModel(names.get(0));
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+    dataModel.setForecastInput(forecastInput);
+    LogicStepFactory.createLogicStep(LogicStepType.GATHER_NECESSARY_DATA, dataModel);
+    dataModel.setNextLogicStep(
+            LogicStepFactory.createLogicStep(LogicStepType.GATHER_NECESSARY_DATA, dataModel));
+    int count = 0;
+    while (dataModel.getLogicStep().getLogicStepType() != LogicStepType.END) {
+        LogicStep nextLogicStep = null;
+        try {
+            nextLogicStep = dataModel.getLogicStep().process();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        dataModel.setNextLogicStep(nextLogicStep);
+      count++;
+      if (count > 100000) {
+        System.err.println(
+                "Appear to be caught in a loop at this step: " + dataModel.getLogicStep().getTitle());
+        // too many steps!
+        if (count > 100100) {
+          throw new RuntimeException(
+                  "Logic steps seem to be caught in a loop, " + dataModel.getLogicStep().getTitle()
+                          + ", unable to get results");
+        }
+      }
+    }
+    return dataModel;
+  }
 
+  static public void printAllFields(Object obj) {
+    if (obj == null) {
+      System.out.println("null");
+      return;
+    }
+    System.out.println("=== " + obj.getClass().getName() + " ===");
+    for (java.lang.reflect.Field f : obj.getClass().getDeclaredFields()) {
+      f.setAccessible(true);
+      Object val = null;
+      try {
+        val = f.get(obj);
+      } catch (Exception e) {
+        val = "<error: " + e + ">";
+      }
+      System.out.println("  " + f.getName() + " = " + val);
+    }
   }
 
 }

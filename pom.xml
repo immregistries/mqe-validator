@@ -81,10 +81,23 @@
     </dependency>
 
     <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>4.0.5</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.immregistries</groupId>
       <artifactId>lonestar</artifactId>
       <classifier>client</classifier>
       <version>${lonestar.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.openimmunizationsoftware.cdsi</groupId>
+      <artifactId>cdsi-engine</artifactId>
+<!--      <classifier>client</classifier>-->
+      <version>5.4.1</version>
     </dependency>
 
     <dependency>

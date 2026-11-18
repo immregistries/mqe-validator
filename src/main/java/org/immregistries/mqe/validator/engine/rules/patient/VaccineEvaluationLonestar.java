@@ -29,15 +29,17 @@ import org.immregistries.mqe.vxu.MqeVaccination;
 import org.immregistries.mqe.vxu.TargetType;
 import org.joda.time.DateTime;
 
+import static org.immregistries.mqe.validator.engine.rules.patient.VaccineEvaluation.printAllFields;
+
 @ValidationRuleEntry(TargetType.Patient)
-public class VaccineEvaluationLegacy extends ValidationRule<MqePatient> {
+public class VaccineEvaluationLonestar extends ValidationRule<MqePatient> {
 
     private static final int MONTHS_0 = 0;
     private static final int MONTHS_24 = 25;
     private static final int MONTHS_18 = 19;
     private static final int MONTHS_15 = 16;
 
-    public VaccineEvaluationLegacy() {
+    public VaccineEvaluationLonestar() {
 
         this.addRuleDetection(Detection.VaccineEvaluationAt18MonthsHepb3);
         {
@@ -294,7 +296,9 @@ public class VaccineEvaluationLegacy extends ValidationRule<MqePatient> {
                     Map<String, Integer> countEvalMap = new HashMap<>();
                     countEvalMapList.put(MONTHS[i], countEvalMap);
                 }
+                int pp = 0;
                 for (VaccinationDoseDataBean dose : forecastInput.doseList) {
+                    System.out.println("Lonestar count " + pp++);
                     if (dose.getStatusCode().equals(VaccinationDoseDataBean.STATUS_VALID)) {
                         DateTime adminDate = new DateTime(dose.getAdminDate());
                         for (int i = 0; i < MONTHS.length; i++) {
@@ -307,9 +311,12 @@ public class VaccineEvaluationLegacy extends ValidationRule<MqePatient> {
                             }
                         }
                     } else if (dose.getStatusCode().equals(VaccinationDoseDataBean.STATUS_INVALID)) {
+                        System.out.println("=== Lonestar invalid dose " + invalidDoseCount  + " number " + pp + " ===");
+                        printAllFields(dose);
                         invalidDoseCount++;
                     }
                 }
+                System.out.println("invalidDoseCount lonestar " + invalidDoseCount);
 
                 if (invalidDoseCount >= 1) {
                     detectionSet.add(Detection.VaccineEvaluationHasInvalidDoses1orMore);
@@ -338,6 +345,7 @@ public class VaccineEvaluationLegacy extends ValidationRule<MqePatient> {
                     }
 
                     Map<String, Integer> countEvalMap = countEvalMapList.get(month);
+                    System.out.println("countEvalMap legacy : " + countEvalMap);
                     if (month == MONTHS_0) {
                         if (countEvalMap.getOrDefault("HepB", 0) == 1) {
                             detectionSet.add(Detection.VaccineEvaluationHepb1Only);

@@ -290,8 +290,42 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
           countEvalMapList.put(MONTHS[i], countEvalMap);
         }
         // Filtering invalid doses from count and from detections
+
+        List<AntigenAdministeredRecord> antigenAdministeredRecords = dataModel.getAntigenAdministeredRecordList();
+//        int cc = 0;
+//        for (AntigenAdministeredRecord dr : antigenAdministeredRecords) {
+////          printAllFields(dr);
+//          VaccineDoseAdministered vda = dr.getVaccineDoseAdministered();
+////          printAllFields(vda);
+//          TargetDose dose = vda.getTargetDose();
+////          System.out.println(vda.getTargetDose().getTargetDoseStatus());
+////          printAllFields(vda.getTargetDose().getTargetDoseStatus());
+//          if (dose != null) {
+//            printAllFields(dose);
+//            System.out.println(vda.getTargetDose().getTargetDoseStatus());
+//            if (dose.getTargetDoseStatus().equals(TargetDoseStatus.SATISFIED)) {
+//              System.out.println("==== AntigenAdministeredRecord " + cc++ + " ====");
+//              DateTime adminDate = new DateTime(dose.getEvaluation().getVaccineDoseAdministered().getDateAdministered());
+//              for (int i = 0; i < MONTHS.length; i++) {
+//                Integer month = MONTHS[i];
+//                DateTime age = birthDate.plusMonths(month);
+//                Map<String, Integer> countEvalMap = countEvalMapList.get(month);
+//                if (month == 0 || adminDate.isBefore(age)) {
+//                  String forecastCode = dose.getTrackedSeriesDose().getAntigenSeries().getTargetDisease().getName();
+//                  Integer count = countEvalMap.getOrDefault(forecastCode, 0);
+//                  countEvalMap.put(forecastCode, count + 1);
+//                }
+//              }
+//            } else if (dose.getTargetDoseStatus().equals(TargetDoseStatus.NOT_SATISFIED)) {
+////              invalidDoseCount++;
+//            }
+//          }
+//        }
         List<PatientSeries> patientSeriesList = dataModel.getBestPatientSeriesList();
         for (PatientSeries patientSeries : patientSeriesList) {
+          System.out.println("Patient Series all doses size " + patientSeries.getTargetDoseList().size());
+          System.out.println("Patient Series valid doses count " + patientSeries.getValidDoseCount());
+//          invalidDoseCount += patientSeries.getTargetDoseList().size() - patientSeries.getValidDoseCount();
           List<TargetDose> targetDoseList = patientSeries.getTargetDoseList();
           for (TargetDose dose : targetDoseList) {
             if (dose.getTargetDoseStatus().equals(TargetDoseStatus.SATISFIED)) {
@@ -309,10 +343,21 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
             }
           }
         }
-        invalidDoseCount =  forecastInput.getVaccinationList().size() - dataModel.getSatisfiedVaccinationInputList().size();
-        for( ForecastInput.VaccinationInput vaccinationInput : dataModel.getSatisfiedVaccinationInputList()) {
+        List<ForecastInput.VaccinationInput> test = new ArrayList<>(forecastInput.getVaccinationList());
+        test.removeAll(dataModel.getSatisfiedVaccinationInputList());
+//        for( ForecastInput.VaccinationInput vaccinationInput : dataModel.getSatisfiedVaccinationInputList()) {
+//          printAllFields(vaccinationInput);
+//        }
+        System.out.println(test.size());
+        invalidDoseCount = test.size();
+        System.out.println("=== Invalid VaccinationInputs ===");
+        for (ForecastInput.VaccinationInput vaccinationInput : test) {
           printAllFields(vaccinationInput);
         }
+        System.out.println("===== Step Into CDSI SUMMARY ======");
+        System.out.println("Size of all inputs " + forecastInput.getVaccinationList().size());
+        System.out.println("Marked Valid " + dataModel.getSatisfiedVaccinationInputList().size());
+        System.out.println("invalidDoseCount final value " + invalidDoseCount);
         if (invalidDoseCount >= 1) {
           detectionSet.add(Detection.VaccineEvaluationHasInvalidDoses1orMore);
           if (invalidDoseCount >= 2) {
@@ -516,7 +561,7 @@ public class VaccineEvaluation extends ValidationRule<MqePatient> {
     return dataModel;
   }
 
-  private static void printAllFields(Object obj) {
+  static public void printAllFields(Object obj) {
     if (obj == null) {
       System.out.println("null");
       return;

@@ -316,8 +316,10 @@ public class VaccineEvaluationLonestar extends ValidationRule<MqePatient> {
                         invalidDoseCount++;
                     }
                 }
-                System.out.println("invalidDoseCount lonestar " + invalidDoseCount);
-
+                System.out.println("===== Lonestar SUMMARY ======");
+                System.out.println("Size of all inputs " + forecastInput.doseList.size());
+                System.out.println("Marked Valid " + (forecastInput.doseList.size() - invalidDoseCount));
+                System.out.println("invalidDoseCount final value " + invalidDoseCount);
                 if (invalidDoseCount >= 1) {
                     detectionSet.add(Detection.VaccineEvaluationHasInvalidDoses1orMore);
                     if (invalidDoseCount >= 2) {
@@ -345,7 +347,6 @@ public class VaccineEvaluationLonestar extends ValidationRule<MqePatient> {
                     }
 
                     Map<String, Integer> countEvalMap = countEvalMapList.get(month);
-                    System.out.println("countEvalMap legacy : " + countEvalMap);
                     if (month == MONTHS_0) {
                         if (countEvalMap.getOrDefault("HepB", 0) == 1) {
                             detectionSet.add(Detection.VaccineEvaluationHepb1Only);

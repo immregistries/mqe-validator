@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +21,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Compares the detection output of {@link VaccineEvaluation} (new, StepIntoCDSI-based path) against
- * {@link VaccineEvaluationLegacy} (original lonestar-based path) for the same input, to ensure the
+ * {@link VaccineEvaluationLonestar} (original lonestar-based path) for the same input, to ensure the
  * refactor did not change behavior.
  */
 public class VaccineEvaluationComparisonTester {
@@ -31,7 +30,7 @@ public class VaccineEvaluationComparisonTester {
       LoggerFactory.getLogger(VaccineEvaluationComparisonTester.class);
 
   private VaccineEvaluation newRule = new VaccineEvaluation();
-  private VaccineEvaluationLegacy legacyRule = new VaccineEvaluationLegacy();
+  private VaccineEvaluationLonestar legacyRule = new VaccineEvaluationLonestar();
 
   private MqeMessageReceived mr = new MqeMessageReceived();
   private MqePatient p = new MqePatient();
@@ -52,6 +51,55 @@ public class VaccineEvaluationComparisonTester {
 
     logger.info("NEW:    " + rNew.getValidationDetections());
     logger.info("LEGACY: " + rLegacy.getValidationDetections());
+
+    assertEquals("passed flag should match", rLegacy.isRulePassed(), rNew.isRulePassed());
+    assertEquals("detection sets should match", detectionKeySet(rLegacy), detectionKeySet(rNew));
+  }
+
+  @Test
+  public void randomSubsetScenarioMatches() {
+    mr = new MqeMessageReceived();
+    p = new MqePatient();
+    mr.setPatient(p);
+
+    List<MqeVaccination> all = createPatientVaccinations(true);
+    List<MqeVaccination> subset = new ArrayList<>();
+    java.util.Random rnd = new java.util.Random(42);
+    for (MqeVaccination v : all) {
+      if (rnd.nextBoolean()) {
+        subset.add(v);
+      }
+    }
+    mr.setVaccinations(subset);
+
+    ValidationRuleResult rNew = newRule.executeRule(p, mr);
+    ValidationRuleResult rLegacy = legacyRule.executeRule(p, mr);
+
+    logger.info("RANDOM SUBSET NEW:    " + rNew.getValidationDetections());
+    logger.info("RANDOM SUBSET LEGACY: " + rLegacy.getValidationDetections());
+
+    assertEquals("passed flag should match", rLegacy.isRulePassed(), rNew.isRulePassed());
+    assertEquals("detection sets should match", detectionKeySet(rLegacy), detectionKeySet(rNew));
+  }
+
+  @Test
+  public void everyOtherDoseScenarioMatches() {
+    mr = new MqeMessageReceived();
+    p = new MqePatient();
+    mr.setPatient(p);
+
+    List<MqeVaccination> all = createPatientVaccinations(true);
+    List<MqeVaccination> everyOther = new ArrayList<>();
+    for (int i = 0; i < all.size(); i += 2) {
+      everyOther.add(all.get(i));
+    }
+    mr.setVaccinations(everyOther);
+
+    ValidationRuleResult rNew = newRule.executeRule(p, mr);
+    ValidationRuleResult rLegacy = legacyRule.executeRule(p, mr);
+
+    logger.info("EVERY OTHER NEW:    " + rNew.getValidationDetections());
+    logger.info("EVERY OTHER LEGACY: " + rLegacy.getValidationDetections());
 
     assertEquals("passed flag should match", rLegacy.isRulePassed(), rNew.isRulePassed());
     assertEquals("detection sets should match", detectionKeySet(rLegacy), detectionKeySet(rNew));

@@ -7,6 +7,7 @@ import org.immregistries.mqe.validator.detection.MqeCode;
 import org.immregistries.mqe.validator.engine.rules.ValidationRuleEntityLists;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
 import org.immregistries.mqe.vxu.TargetType;
+import org.immregistries.mqe.validator.engine.ValidationRule;
 
 public enum MessageValidator {
   INSTANCE;
@@ -17,6 +18,15 @@ public enum MessageValidator {
 
   public void configure(Set<MqeCode> codes) {
     builder.setActiveDetections(codes);
+  }
+
+  public void configure(Set<MqeCode> codes, Set<Class<? extends ValidationRule>> disabledRules) {
+    builder.setDisabledRules(disabledRules);
+    builder.setActiveDetections(codes);
+  }
+
+  public void disableRule(Class<? extends ValidationRule> ruleClass) {
+    builder.disableRule(ruleClass);
   }
 
   /**

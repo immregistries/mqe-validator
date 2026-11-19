@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.HashSet;
 
 import org.immregistries.mqe.validator.detection.MqeCode;
+import org.immregistries.mqe.validator.engine.ValidationRule;
 import org.immregistries.mqe.validator.engine.rules.ValidationRuleHolder;
 import org.immregistries.mqe.vxu.MqeMessageHeader;
 import org.immregistries.mqe.vxu.MqeMessageReceived;
@@ -18,13 +20,32 @@ public enum RulePairBuilder {
   INSTANCE;
   private static final ValidationUtility util = ValidationUtility.INSTANCE;
   private static ValidationRuleHolder VALIDATION_RULES = ValidationRuleService.getAllMqeRules();
+  private static final Set<Class<? extends ValidationRule>> DISABLED_RULES = new HashSet<>();
 
   public void resetRules() {
-    VALIDATION_RULES = ValidationRuleService.getAllMqeRules();
+    VALIDATION_RULES = ValidationRuleService.getAllMqeRules(DISABLED_RULES);
   }
 
   public void setActiveDetections(Set<MqeCode> codes) {
-    VALIDATION_RULES = ValidationRuleService.getRulesForMqeCodes(codes);
+    VALIDATION_RULES = ValidationRuleService.getRulesForMqeCodes(codes, DISABLED_RULES);
+  }
+
+  public void disableRule(Class<? extends ValidationRule> ruleClass) {
+    DISABLED_RULES.add(ruleClass);
+    resetRules();
+  }
+
+  public void enableRule(Class<? extends ValidationRule> ruleClass) {
+    DISABLED_RULES.remove(ruleClass);
+    resetRules();
+  }
+
+  public void setDisabledRules(Set<Class<? extends ValidationRule>> ruleClasses) {
+    DISABLED_RULES.clear();
+    if (ruleClasses != null) {
+      DISABLED_RULES.addAll(ruleClasses);
+    }
+    resetRules();
   }
 
   // Return copy with immutable list to avoid changing active rule any other way than through setActiveDetections
